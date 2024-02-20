@@ -1,6 +1,165 @@
 import tensorflow as tf
 from tensorflow.keras import layers
 
+
+class bSSFPUnet(tf.keras.Model):
+    def __init__(self, patience=3, checkpoint_dir='checkpoints/weights.h5', log_dir='logs', **kwargs):
+        super().__init__(**kwargs)
+        self.n_blocks = 4
+        self.n_convs = 2
+
+        self.skips_src = []
+        self.encoder = []
+        for i in range(self.n_blocks + 1):
+            for j in range(self.n_convs):
+                self.encoder.append(layers.Conv3D(filters=64 * (i + 1),
+                                                  kernel_size=3,
+                                                  activation='relu',
+                                                  padding='same'))
+            skips.append(self.encoder[-1])
+
+            self.encoder.append(layers.MaxPooling3D(pool_size=2,
+                                                    strides=2))
+
+        self.bottleneck = []
+        for i in range(self.n_convs):
+            self.bottleneck.append(layers.Conv3D(filters=1024,
+                                                 kernel_size=3,
+                                                 activation='relu',
+                                                 padding='valid'))
+
+       self.skips_dst = []
+       self.decoder = []
+       for i in range(self.n_blocks, 0, 1):
+           self.decoder.append(
+                   layers.Conv3DTranspose(filters=64 * (self.n_blocks - i),
+                                          kernel_size=3,
+                                          activation='relu',
+                                          padding='valid'))
+           self.skips_dst.append(self.decoder[-1])
+
+           for j in range(self.n_convs):
+               self.decoder.append(
+                       layers.Conv3D(filters=64 * (self.n_blocks - i),
+                                     kernel_size=3,
+                                     activation='relu',
+                                     padding='same')
+                       )
+
+       self.output_pre_train = layers.Conv3D(filters=1,
+                                             kernel_size=1,
+                                             activation='sigmoid')
+       self.output_fine_tune = layers.Conv3D(filters=6,
+                                             kernel_size=1,
+                                             activation='sigmoid')
+
+       self.callbacks = [tf.keras.callbacks.EarlyStopping(patience=patience, restore_best_weights=True),
+                         tf.keras.callbacks.ModelCheckpoint(ckeckpoint_dir, save_best_only=True),
+                         tf.keras.callbacks.TensorBoard(log_dir=log_dir),
+                         tf.keras.callbacks.ReduceLROnPlateau(factor=0.1, patience=patience, min_lr=0.00001),
+                         tf.keras.callbacks.ProgbarLogger(count_mode='steps')]
+
+   def call(self, inputs):
+       x = inputs
+       skips = []
+       for layer in self.encoder:
+           x = layer(x)
+           if layer in self.skips_src:
+               self.skips.append(x)
+
+        for layer in self.bottleneck:
+            x = layer(x)
+
+        for layer in self.decoder:
+            x = layer(x)
+           if layer in self.skips_dst:
+               x = layers.Concatenate()([x, self.skips.pop()])
+
+       if self.pre_train:
+           x = self.output_pre_train(x)
+       else:
+           x = self.output_fine_tune(x)
+
+       return x
+
+   def pre_train(self, data, batch_size=32, epochs=10, learning_rate=0.01, patience=3):
+       self.pre_train = True
+        self.output_fine_tune.trainable = False
+        self.output_pre_train.trainable = True
+
+        for layer in self.encoder:
+            layer.trainable = True
+        for layer in self.bottleneck:
+            layer.trainable = True
+        for layer in self.decoder:
+            layer.trainable = True
+
+        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=lwarning_rate),
+                      loss=self.loss,
+                      metrics=self.metrics))
+        self.history_pre_train = model.fit(data, epochs=epochs, batch_size=batch_size, callbacks=self.callbacks)
+
+        return self.history_pre_train
+
+    def transfer(self, data, batch_size=32, epochs=10, learning_rate=0.01, patience=3):
+        self.pre_train = False
+        self.output_fine_tune.trainable = True
+        self.output_pre_train.trainable = False
+
+        for layer in self.encoder:
+            layer.trainable = False
+        for layer in self.bottleneck:
+            layer.trainable = False
+        for layer in self.decoder:
+            layer.trainable = True
+
+        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=lwarning_rate),
+                      loss=self.loss,
+                      metrics=self.metrics))
+        self.history_transfer = model.fit(data, epochs=epochs, batch_size=batch_size, callbacks=self.callbacks)
+
+        return self.history_transfer
+
+    def fine_tune(self, data, batch_size=32, epochs=10, learning_rate=0.0001, patience=3):
+        self.pre_train = False
+        self.output_fine_tune.trainable = True
+        self.output_pre_train.trainable = False
+
+        for layer in self.encoder:
+            layer.trainable = True
+        for layer in self.bottleneck:
+            layer.trainable = True
+        for layer in self.decoder:
+            layer.trainable = True
+
+        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=lwarning_rate),
+                      loss=self.loss,
+                      metrics=self.metrics))
+        self.history_fine_tune = model.fit(data, epochs=epochs, batch_size=batch_size, callbacks=self.callbacks)
+
+        return self.history_fine_tune
+
+   def train_step(self, data):
+       x, y = data
+        with tf.GradientTape() as tape:
+            predictions = self(x)
+            loss = self.compute_loss(y, predictions)
+
+        gradients = tape.gradient(loss, self.trainable_variables)
+        optimizer.apply_gradients(zip(gradients, self.trainable_variables))
+
+        for metric in self.metrics:
+            if metric.name == 'loss':
+                metric.update_state(y)
+            else:
+                metric.update_state(y, predictions)
+
+        return {m.name: m.result() for m in self.metrics}
+
+
+
+
+
 class DiffusionTensorPredictionModel(tf.keras.Model):
     def __init__(self, input_shape, num_output_maps, **kwargs):
         super().__init__(**kwargs)
@@ -147,3 +306,6 @@ class DiffusionTensorPredictionModel(tf.keras.Model):
 
         return history
 
+
+if __name__ == '__main__':
+    model = bSSFPUnet()

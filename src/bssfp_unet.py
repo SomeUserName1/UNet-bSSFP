@@ -13,12 +13,13 @@ class bSSFPUnet(tf.keras.Model):
                  output_shape=(110, 110, 70, 6),
                  patience=3,
                  checkpoint_dir=('checkpoints/model-{epoch:02d}'
-                                 '-{val_loss:.2f}.keras'),
+                                 '-{loss:.2f}.keras'),
                  log_dir='logs',
                  **kwargs):
         super().__init__(**kwargs)
         self.n_blocks = 3
         self.n_convs = 2
+        base_n_filters = 8
         self.input_shape = input_shape
         self.output_shape = output_shape
 
@@ -26,8 +27,9 @@ class bSSFPUnet(tf.keras.Model):
         self.encoder = []
         for i in range(self.n_blocks):
             for j in range(self.n_convs):
-                self.encoder.append(layers.Conv3D(filters=2 ** (6 + i),
-                                                  kernel_size=3,
+                n_filters = base_n_filters * 2 ** i
+                self.encoder.append(layers.Conv3D(filters=n_filters,
+                                                  kernel_size=5,
                                                   activation='relu',
                                                   padding='valid'))
             self.skips_src.append(self.encoder[-1])
@@ -35,19 +37,19 @@ class bSSFPUnet(tf.keras.Model):
             self.encoder.append(layers.MaxPooling3D(pool_size=2))
 
         self.bottleneck = []
-        self.bottleneck.append(layers.Conv3D(filters=512,
-                                             kernel_size=3,
+        self.bottleneck.append(layers.Conv3D(filters=64,
+                                             kernel_size=5,
                                              activation='relu',
                                              padding='valid'))
-        self.bottleneck.append(layers.Conv3DTranspose(filters=512,
-                                                      kernel_size=3,
+        self.bottleneck.append(layers.Conv3DTranspose(filters=64,
+                                                      kernel_size=5,
                                                       activation='relu',
                                                       padding='valid'))
         self.skips_dst = []
         self.crop = []
         self.decoder = []
         for i in range(self.n_blocks - 1, -1, -1):
-            n_filters = 2 ** (6 + i)
+            n_filters = base_n_filters * 2 ** i
             self.decoder.append(layers.UpSampling3D(size=2))
             self.decoder.append(
                     layers.Conv3DTranspose(filters=n_filters,
@@ -61,7 +63,7 @@ class bSSFPUnet(tf.keras.Model):
             for j in range(self.n_convs):
                 self.decoder.append(
                         layers.Conv3DTranspose(filters=n_filters,
-                                               kernel_size=3,
+                                               kernel_size=5,
                                                activation='relu',
                                                padding='valid')
                         )
@@ -70,14 +72,24 @@ class bSSFPUnet(tf.keras.Model):
                                               kernel_size=1,
                                               activation='sigmoid')
         self.output_fine_tune = []
+        self.output_fine_tune.append(layers.Conv3D(filters=n_filters,
+                                                   kernel_size=5,
+                                                   dilation_rate=(16, 14, 14),
+                                                   padding='valid',
+                                                   activation='relu',
+                                                   name='dilated'))
+        self.output_fine_tune.append(layers.Conv3DTranspose(filters=6,
+                                                            kernel_size=5,
+                                                            padding='valid',
+                                                            activation='relu'))
+        self.output_fine_tune.append(layers.Conv3DTranspose(filters=5,
+                                                            kernel_size=3,
+                                                            padding='valid',
+                                                            activation='relu'))
         self.output_fine_tune.append(layers.Conv3D(filters=6,
                                                    kernel_size=1,
+                                                   padding='valid',
                                                    activation='sigmoid'))
-        self.output_fine_tune.append(layers.Flatten())
-        self.output_fine_tune.append(
-                layers.Dense(tf.math.reduce_prod(self.output_shape).numpy(),
-                             activation='sigmoid'))
-        self.output_fine_tune.append(layers.Reshape(self.output_shape))
 
         self.callbacks = [
                 tf.keras.callbacks.EarlyStopping(patience=patience,
@@ -152,27 +164,6 @@ class bSSFPUnet(tf.keras.Model):
                                           callbacks=self.callbacks)
         return self.history_fine_tune
 
-#    def train_step(self, data):
-#        x, y = data
-#        with tf.GradientTape() as tape:
-#            predictions = self.call(x)
-#            print(tf.math.is_nan(y))
-#            print(tf.math.is_inf(y))
-#            print(tf.math.is_nan(predictions))
-#            print(tf.math.is_inf(predictions))
-#            loss = self.compute_loss(y, predictions)
-#
-#        gradients = tape.gradient(loss, self.trainable_variables)
-#        self.optimizer.apply_gradients(zip(gradients,
-#                                           self.trainable_variables))
-#
-#        for metric in self.metrics:
-#            if metric.name == 'loss':
-#                metric.update_state(y)
-#            else:
-#                metric.update_state(y, predictions)
-#
-#        return {m.name: m.result() for m in self.metrics}
 
 #    def pre_train(self,
 #                  data,
@@ -229,6 +220,28 @@ class bSSFPUnet(tf.keras.Model):
 #                                          callbacks=self.callbacks)
 #
 #        return self.history_transfer
+
+#    def train_step(self, data):
+#        x, y = data
+#        with tf.GradientTape() as tape:
+#            predictions = self.call(x)
+#            print(tf.math.is_nan(y))
+#            print(tf.math.is_inf(y))
+#            print(tf.math.is_nan(predictions))
+#            print(tf.math.is_inf(predictions))
+#            loss = self.compute_loss(y, predictions)
+#
+#        gradients = tape.gradient(loss, self.trainable_variables)
+#        self.optimizer.apply_gradients(zip(gradients,
+#                                           self.trainable_variables))
+#
+#        for metric in self.metrics:
+#            if metric.name == 'loss':
+#                metric.update_state(y)
+#            else:
+#                metric.update_state(y, predictions)
+#
+#        return {m.name: m.result() for m in self.metrics}
 
 # class DiffusionTensorPredictionModel(tf.keras.Model):
 #     def __init__(self, input_shape, num_output_maps, **kwargs):
@@ -395,7 +408,7 @@ class bSSFPUnet(tf.keras.Model):
 if __name__ == '__main__':
     data_loader = bSSFPFineTuneDatasetGenerator(
             '/home/someusername/workspace/DOVE/bids',
-            batch_size=4,
+            batch_size=1,
             train_test_split=0.8,
             validate_test_split=0.5,
             random_seed=42)
@@ -405,8 +418,8 @@ if __name__ == '__main__':
                                         output_types=(tf.float32, tf.float32),
                                         output_shapes=(data_loader.in_shape,
                                                        data_loader.out_shape))
-    ds = ds.batch(4)
+    ds = ds.batch(1).repeat(2)
     model = bSSFPUnet(data_loader.in_shape)
-    history = model.fine_tune(ds, epochs=100, batch_size=4)
+    history = model.fine_tune(ds, epochs=100, batch_size=1)
     model.evaluate(ds)
 

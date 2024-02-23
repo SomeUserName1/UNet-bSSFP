@@ -48,7 +48,7 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
 
     def __call__(self):
         for i in range(self.num_files):
-            yield self.read_nifti_file(i)
+            yield self.read_nifti_file(i, True)
 
             if i == self.num_files - 1:
                 shuffle(self.filenames)
@@ -95,15 +95,15 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
         # Determine if axes are equal and can be rotated
         # If the axes aren't equal then we can't rotate them.
         equal_dim_axis = []
-        for idx in range(0, len(self.shape)):
-            for jdx in range(idx+1, len(self.shape)):
-                if self.shape[idx] == self.shape[jdx]:
+        for idx in range(0, len(self.in_shape)):
+            for jdx in range(idx+1, len(self.in_shape)):
+                if self.in_shape[idx] == self.in_shape[jdx]:
                     equal_dim_axis.append([idx, jdx])  # Valid rotation axes
         dim_to_rotate = equal_dim_axis
 
         if np.random.rand() > 0.5:
             # Random 0,1 (axes to flip)
-            ax = np.random.choice(np.arange(len(self.shape)-1))
+            ax = np.random.choice(np.arange(len(self.in_shape)-1))
             img = np.flip(img, ax)
             omap = np.flip(omap, ax)
 
@@ -123,7 +123,7 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
         """
         Read Nifti file
         """
-        idx = idx.numpy()
+        idx = idx  # .numpy()
         imgFile = self.filenames[idx][0]
         omapFile = self.filenames[idx][1]
 

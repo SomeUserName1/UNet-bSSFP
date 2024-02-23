@@ -1,11 +1,11 @@
 import abc
+from random import shuffle
 
 import tensorflow as tf
 import numpy as np
 
 import bids
 import nibabel as nib
-import pdb
 
 
 # Adapted from IntelAI/unet
@@ -38,7 +38,20 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
 
         self.create_file_list()
 
-        self.ds_train, self.ds_val, self.ds_test = self.get_dataset()
+#        self.ds_train, self.ds_val, self.ds_test = self.get_dataset()
+
+    def __len__(self):
+        return self.num_files
+
+    def __getitem__(self, idx, augment=False):
+        return self.read_nifti_file(idx, augment)
+
+    def __call__(self):
+        for i in range(self.num_files):
+            yield self.read_nifti_file(i)
+
+            if i == self.num_files - 1:
+                shuffle(self.filenames)
 
     @abc.abstractmethod
     def create_file_list(self):
@@ -119,7 +132,6 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
         img = np.reshape(img, self.in_shape)
 
         omap = np.array(nib.load(omapFile).dataobj)
-        omap.swapaxes(0, -1)
 
         # Normalize
         img = self.z_normalize_img(img)
@@ -129,7 +141,7 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
 
         return img, omap
 
-    def plot_images(self, ds, slice_num=90):
+    def plot_images(self, ds, slice_num=50):
         """
         Plot images from dataset
         """
@@ -147,24 +159,24 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
                 plt.imshow(img[idx, slice_num, :, :, img_channel], cmap="bone")
                 plt.title("MRI", fontsize=18)
                 plt.subplot(bs, num_cols, idx*num_cols + 2)
-                plt.imshow(omap[idx, slice_num, :, :], cmap="bone")
+                plt.imshow(omap[idx, :, :, slice_num, 0], cmap="bone")
                 plt.title("MRI", fontsize=18)
 
         plt.show()
 
-    def display_train_images(self, slice_num=90):
+    def display_train_images(self, slice_num=50):
         """
         Plots some training images
         """
         self.plot_images(self.ds_train, slice_num)
 
-    def display_validation_images(self, slice_num=90):
+    def display_validation_images(self, slice_num=50):
         """
         Plots some validation images
         """
         self.plot_images(self.ds_val, slice_num)
 
-    def display_test_images(self, slice_num=90):
+    def display_test_images(self, slice_num=50):
         """
         Plots some test images
         """
@@ -284,7 +296,7 @@ class bSSFPFineTuneDatasetGenerator(bSSFPBaseDatasetGenerator):
                     subject=entities['subject'],
                     session=entities['session'],
                     datatype='dwi',
-                    space='t1w'
+                    space='t1w',
                     desc='tensor',
                     suffix='dwi',
                     extension='nii.gz',
@@ -295,8 +307,6 @@ class bSSFPFineTuneDatasetGenerator(bSSFPBaseDatasetGenerator):
 
             y_fnames.append(yfname[0])
             x_fnames.append(xfname)
-
-        pdb.set_trace()
 
         assert len(x_fnames) == len(y_fnames)
 
@@ -310,30 +320,25 @@ class bSSFPFineTuneDatasetGenerator(bSSFPBaseDatasetGenerator):
         self.output_channels = self.out_shape[-1]
         self.input_channels = self.in_shape[-1]
 
-        self.filenames = {}
-        for idx, (xfname, yfname) in enumerate(zip(x_fnames, y_fnames)):
-            self.filenames[idx] = [xfname, yfname]
+        self.filenames = []
+        for xfname, yfname in zip(x_fnames, y_fnames):
+            self.filenames.append([xfname, yfname])
 
 
 if __name__ == "__main__":
+    data_loader = bSSFPFineTuneDatasetGenerator(
+            '/home/someusername/workspace/DOVE/bids',
+            batch_size=4,
+            train_test_split=0.8,
+            validate_test_split=0.5,
+            random_seed=42)
+    data_loader.print_info()
+    data_loader.ds_train, data_loader.ds_val, data_loader.ds_test = data_loader.get_dataset()
+    data_loader.display_test_images()
 
-    print("Load the data and plot a few examples")
-
-    from argparser import args
-
-    shape = (args.tile_height, args.tile_width,
-             args.tile_depth, args.number_input_channels)
-
-    """
-    Load the dataset
-    """
-    brats_data = bSSFPFineTuneDatasetGenerator(
-            data_path=args.data_path,
-            batch_size=args.batch_size,
-            train_test_split=args.train_test_split,
-            validate_test_split=args.validate_test_split,
-            number_output_classes=args.number_output_classes,
-            random_seed=args.random_seed)
-
-    brats_data.print_info()
-
+#    ds = tf.data.Dataset.from_generator(data_loader,
+#                                        output_types=(tf.float32, tf.float32),
+#                                        output_shapes=(data_loader.in_shape,
+#                                                       data_loader.out_shape))
+#
+#    ds = ds.batch(4)

@@ -1,75 +1,32 @@
 import abc
 from random import shuffle
 
-import tensorflow as tf
 import numpy as np
 
 import bids
 import nibabel as nib
 
 
-# Adapted from IntelAI/unet
-# https://github.com/IntelAI/unet/blob/master/3D/dataloader.py
-class bSSFPBaseDatasetGenerator(abc.ABC):
+class bSSFPDatasetGenerator:
     def __init__(self,
-                 data_path,
-                 batch_size,
-                 train_test_split,
-                 validate_test_split,
-                 random_seed,
-                 shard=0):
-        self.data_path = data_path
-        self.batch_size = batch_size
-        self.train_test_split = train_test_split
-        self.validate_test_split = validate_test_split
-        self.random_seed = random_seed
-        self.shard = shard  # For Horovod, gives different shard per worker
-
-        self.bids_layout = bids.BIDSLayout(
-                data_path,
-                validate=False,
-                database_path=data_path + '/dove.db')
-        self.bids_layout.add_derivatives(
-                data_path + '/derivatives/preproc-svenja',
-                database_path=data_path + '/preproc-svenja.db')
-        self.bids_layout.add_derivatives(
-                data_path + '/derivatives/preproc-dove',
-                database_path=data_path + '/preproc-dove.db')
-
-        self.create_file_list()
-
-#        self.ds_train, self.ds_val, self.ds_test = self.get_dataset()
+                 files,
+                 shape,
+                 augment=False,
+                 aug_fact=1,
+                 seed=42):
+        self.filenames = files
+        self.in_shape = shape
+        self.num_files = len(files)
+        self.seed = seed
+        self.augment = augment
+        self.aug_fact = aug_fact
 
     def __len__(self):
-        return self.num_files
-
-    def __getitem__(self, idx, augment=False):
-        return self.read_nifti_file(idx, augment)
+        return self.num_files * self.aug_fact
 
     def __call__(self):
-        for i in range(self.num_files):
-            yield self.read_nifti_file(i, True)
-
-            if i == self.num_files - 1:
-                shuffle(self.filenames)
-
-    @abc.abstractmethod
-    def create_file_list(self):
-        pass
-
-    def print_info(self):
-        """
-        Print the dataset information
-        """
-
-        print("="*30)
-        print("Dataset name:        ", self.name)
-        print("Dataset description: ", self.description)
-        print("Input shape:         ", self.in_shape)
-        print("Output shape:        ", self.out_shape)
-        print("Number of subjects:  ", self.num_subjects)
-        print("Number of samples:   ", self.num_files)
-        print("="*30)
+        for i in range(len(self)):
+            yield self.read_nifti_file(i)
 
     def z_normalize_img(self, img):
         """
@@ -85,25 +42,24 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
 
         return img
 
-    # TODO extend augmentation
     def augment_data(self, img, omap):
         """
         Data augmentation
-        Flip image and mask. Rotate image and mask.
+        Flip image and rotate image.
         """
 
         # Determine if axes are equal and can be rotated
         # If the axes aren't equal then we can't rotate them.
         equal_dim_axis = []
-        for idx in range(0, len(self.in_shape)):
-            for jdx in range(idx+1, len(self.in_shape)):
-                if self.in_shape[idx] == self.in_shape[jdx]:
+        for idx in range(0, len(img.shape)):
+            for jdx in range(idx+1, len(img.shape)):
+                if img.shape[idx] == img.shape[jdx]:
                     equal_dim_axis.append([idx, jdx])  # Valid rotation axes
         dim_to_rotate = equal_dim_axis
 
         if np.random.rand() > 0.5:
             # Random 0,1 (axes to flip)
-            ax = np.random.choice(np.arange(len(self.in_shape)-1))
+            ax = np.random.choice(np.arange(len(img.shape)-1))
             img = np.flip(img, ax)
             omap = np.flip(omap, ax)
 
@@ -119,13 +75,13 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
 
         return img, omap
 
-    def read_nifti_file(self, idx, augment=False):
+    def read_nifti_file(self, idx):
         """
         Read Nifti file
         """
-        idx = idx  # .numpy()
-        imgFile = self.filenames[idx][0]
-        omapFile = self.filenames[idx][1]
+        f_idx = idx % self.num_files
+        imgFile = self.filenames[f_idx][0]
+        omapFile = self.filenames[f_idx][1]
 
         img = np.array(nib.load(imgFile).dataobj)
         img = np.stack([np.abs(img), np.angle(img)], axis=-1)
@@ -133,11 +89,11 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
 
         omap = np.array(nib.load(omapFile).dataobj)
 
+        if self.augment:
+            img, omap = self.augment_data(img, omap)
+
         # Normalize
         img = self.z_normalize_img(img)
-
-        if augment:
-            img, omap = self.augment_data(img, omap)
 
         return img, omap
 
@@ -164,110 +120,73 @@ class bSSFPBaseDatasetGenerator(abc.ABC):
 
         plt.show()
 
-    def display_train_images(self, slice_num=50):
-        """
-        Plots some training images
-        """
-        self.plot_images(self.ds_train, slice_num)
 
-    def display_validation_images(self, slice_num=50):
-        """
-        Plots some validation images
-        """
-        self.plot_images(self.ds_val, slice_num)
-
-    def display_test_images(self, slice_num=50):
-        """
-        Plots some test images
-        """
-        self.plot_images(self.ds_test, slice_num)
-
-    def get_train(self):
-        """
-        Return train dataset
-        """
-        return self.ds_train
-
-    def get_test(self):
-        """
-        Return test dataset
-        """
-        return self.ds_test
-
-    def get_validate(self):
-        """
-        Return validation dataset
-        """
-        return self.ds_val
-
-    def get_dataset(self):
-        """
-        Create a TensorFlow data loader
-        """
-        self.num_train = int(self.num_files * self.train_test_split)
-        numValTest = self.num_files - self.num_train
-
-        ds = tf.data.Dataset.range(self.num_files).shuffle(
-                self.num_files, self.random_seed)  # Shuffle the dataset
-
-        """
-        Horovod Sharding
-        Here we are not actually dividing the dataset into shards
-        but instead just reshuffling the training dataset for every
-        shard. Then in the training loop we just go through the training
-        dataset but the number of steps is divided by the number of shards.
-        """
-        ds_train = ds.take(self.num_train).shuffle(
-                self.num_train, self.shard)  # Reshuffle based on shard
-        ds_val_test = ds.skip(self.num_train)
-        self.num_val = int(numValTest * self.validate_test_split)
-        self.num_test = self.num_train - self.num_val
-        ds_val = ds_val_test.take(self.num_val)
-        ds_test = ds_val_test.skip(self.num_val)
-
-        ds_train = ds_train.map(
-                lambda x: tf.py_function(self.read_nifti_file,
-                                         [x, True],
-                                         [tf.float32, tf.float32]),
-                num_parallel_calls=tf.data.experimental.AUTOTUNE
-                )
-        ds_val = ds_val.map(
-                lambda x: tf.py_function(self.read_nifti_file,
-                                         [x, False],
-                                         [tf.float32, tf.float32]),
-                num_parallel_calls=tf.data.experimental.AUTOTUNE
-                )
-        ds_test = ds_test.map(
-                lambda x: tf.py_function(self.read_nifti_file,
-                                         [x, False],
-                                         [tf.float32, tf.float32]),
-                num_parallel_calls=tf.data.experimental.AUTOTUNE)
-
-        ds_train = ds_train.repeat()
-        ds_train = ds_train.batch(self.batch_size)
-        ds_train = ds_train.prefetch(tf.data.experimental.AUTOTUNE)
-
-        batch_size_val = 4
-        ds_val = ds_val.batch(batch_size_val)
-        ds_val = ds_val.prefetch(tf.data.experimental.AUTOTUNE)
-
-        batch_size_test = 1
-        ds_test = ds_test.batch(batch_size_test)
-        ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
-
-        return ds_train, ds_val, ds_test
-
-
-class bSSFPFineTuneDatasetGenerator(bSSFPBaseDatasetGenerator):
+class bSSFPBaseDatasetLoader(abc.ABC):
     def __init__(self,
                  data_path,
-                 batch_size,
+                 aug_fact,
+                 train_test_split,
+                 validate_test_split,
+                 random_seed):
+        self.data_path = data_path
+        self.train_test_split = train_test_split
+        self.validate_test_split = validate_test_split
+        self.random_seed = random_seed
+
+        self.bids_layout = bids.BIDSLayout(
+                data_path,
+                validate=False,
+                database_path=data_path + '/dove.db')
+        self.bids_layout.add_derivatives(
+                data_path + '/derivatives/preproc-svenja',
+                database_path=data_path + '/preproc-svenja.db')
+        self.bids_layout.add_derivatives(
+                data_path + '/derivatives/preproc-dove',
+                database_path=data_path + '/preproc-dove.db')
+
+        self.create_file_list()
+
+        self.train_generator = bSSFPDatasetGenerator(self.train_filenames,
+                                                     self.in_shape,
+                                                     augment=True,
+                                                     aug_fact=aug_fact)
+        self.val_generator = bSSFPDatasetGenerator(self.val_filenames,
+                                                   self.in_shape)
+        self.test_generator = bSSFPDatasetGenerator(self.test_filenames,
+                                                    self.in_shape)
+
+    def get_generators(self):
+        return self.train_generator, self.val_generator, self.test_generator
+
+    @abc.abstractmethod
+    def create_file_list(self):
+        pass
+
+    def print_info(self):
+        """
+        Print the dataset information
+        """
+
+        print("="*30)
+        print("Dataset name:        ", self.name)
+        print("Dataset description: ", self.description)
+        print("Input shape:         ", self.in_shape)
+        print("Output shape:        ", self.out_shape)
+        print("Number of subjects:  ", self.num_subjects)
+        print("Number of samples:   ", self.num_files)
+        print("="*30)
+
+
+class bSSFPFineTuneDatasetLoader(bSSFPBaseDatasetLoader):
+    def __init__(self,
+                 data_path,
+                 aug_fact,
                  train_test_split,
                  validate_test_split,
                  random_seed,
                  shard=0):
-        super().__init__(data_path, batch_size, train_test_split,
-                         validate_test_split, random_seed, shard)
+        super().__init__(data_path, aug_fact, train_test_split,
+                         validate_test_split, random_seed)
 
         self.name = "bSSFP fine-tune"
         self.description = ("bSSFP fine-tune Dataset;"
@@ -279,7 +198,8 @@ class bSSFPFineTuneDatasetGenerator(bSSFPBaseDatasetGenerator):
         Get list of the files from the BIDS dataset.
         Split into training and testing sets.
         """
-        self.num_subjects = len(self.bids_layout.get_subjects())
+        self.subjects = self.bids_layout.get_subjects()
+        self.num_subjects = len(self.subjects)
 
         all_complex = self.bids_layout.get(scope='preproc-dove',
                                            datatype='anat',
@@ -324,9 +244,88 @@ class bSSFPFineTuneDatasetGenerator(bSSFPBaseDatasetGenerator):
         for xfname, yfname in zip(x_fnames, y_fnames):
             self.filenames.append([xfname, yfname])
 
+        n_train = int(self.num_subjects * self.train_test_split)
+        n_val = int((self.num_subjects - n_train) * self.validate_test_split)
+        self.train_subjects = self.subjects[:n_train]
+        val_test_subjects = self.subjects[n_train:]
+        self.val_subjects = val_test_subjects[n_val:]
+        self.test_subjects = val_test_subjects[:n_val]
+
+        self.train_filenames = [x for x in self.filenames
+                                for sub in self.train_subjects
+                                if sub in x[0]]
+        self.val_filenames = [x for x in self.filenames
+                              for sub in self.val_subjects
+                              if sub in x[0]]
+        self.test_filenames = [x for x in self.filenames
+                               for sub in self.test_subjects
+                               if sub in x[0]]
+
+
+class bSSFPPretrainDatasetLoader(bSSFPBaseDatasetLoader):
+    def __init__(self,
+                 data_path,
+                 aug_fact,
+                 train_test_split,
+                 validate_test_split,
+                 random_seed,
+                 shard=0):
+        super().__init__(data_path, aug_fact, train_test_split,
+                         validate_test_split, random_seed)
+
+        self.name = "bSSFP Pre-Train"
+        self.description = ("bSSFP pre-train Dataset;"
+                            " x are complex bSSFP 4D images,"
+                            " y are as x")
+
+    def create_file_list(self):
+        """
+        Get list of the files from the BIDS dataset.
+        Split into training and testing sets.
+        """
+        self.subjects = self.bids_layout.get_subjects()
+        self.num_subjects = len(self.subjects)
+
+        all_complex = self.bids_layout.get(scope='preproc-dove',
+                                           datatype='anat',
+                                           suffix='bssfp',
+                                           extension='nii.gz',
+                                           return_type='filename')
+        all_complex = [x for x in all_complex if 'complex' in x]
+
+        example_input = nib.load(all_complex[0])
+        self.in_shape = (example_input.shape[:-1]
+                         + (2 * example_input.shape[-1],))
+        self.out_shape = self.in_shape
+
+        self.num_files = len(all_complex)
+        self.output_channels = self.out_shape[-1]
+        self.input_channels = self.in_shape[-1]
+
+        self.filenames = []
+        for xfname, yfname in zip(all_complex, all_complex):
+            self.filenames.append([xfname, yfname])
+
+        n_train = int(self.num_subjects * self.train_test_split)
+        n_val = int((self.num_subjects - n_train) * self.validate_test_split)
+        self.train_subjects = self.subjects[:n_train]
+        val_test_subjects = self.subjects[n_train:]
+        self.val_subjects = val_test_subjects[n_val:]
+        self.test_subjects = val_test_subjects[:n_val]
+
+        self.train_filenames = [x for x in self.filenames
+                                for sub in self.train_subjects
+                                if sub in x[0]]
+        self.val_filenames = [x for x in self.filenames
+                              for sub in self.val_subjects
+                              if sub in x[0]]
+        self.test_filenames = [x for x in self.filenames
+                               for sub in self.test_subjects
+                               if sub in x[0]]
+
 
 if __name__ == "__main__":
-    data_loader = bSSFPFineTuneDatasetGenerator(
+    data_loader = bSSFPFineTuneDatasetLoader(
             '/home/someusername/workspace/DOVE/bids',
             batch_size=4,
             train_test_split=0.8,

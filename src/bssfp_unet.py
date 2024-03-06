@@ -12,8 +12,8 @@ from DataLoader import bSSFPFineTuneDatasetLoader
 
 class bSSFPUnet(K.Model):
     def __init__(self,
-                 input_shape=(128, 160, 160, 24),
-                 output_shape=(110, 110, 70, 6),
+                 in_channels=24,
+                 out_channels=6,
                  patience=3,
                  checkpoint_dir=(f'checkpoints/model-{datetime.now()}'
                                  '-e{epoch:02d}-l_{loss:.2f}.keras'),
@@ -24,8 +24,6 @@ class bSSFPUnet(K.Model):
         self.n_blocks = 3
         self.n_convs = 2
         base_n_filters = 8
-        self.input_shape = input_shape
-        self.output_shape = output_shape
 
         self.skips_src = []
         self.encoder = []
@@ -72,7 +70,7 @@ class bSSFPUnet(K.Model):
                                            padding='valid')
                         )
 
-        self.output_pre_train = ls.Conv3D(filters=self.input_shape[-1],
+        self.output_pre_train = ls.Conv3D(self.in_channels,
                                           kernel_size=1,
                                           activation='sigmoid')
         self.output_fine_tune = []
@@ -90,7 +88,7 @@ class bSSFPUnet(K.Model):
                                                         kernel_size=3,
                                                         padding='valid',
                                                         activation='relu'))
-        self.output_fine_tune.append(ls.Conv3D(filters=self.output_shape[-1],
+        self.output_fine_tune.append(ls.Conv3D(filters=self.out_channels,
                                                kernel_size=1,
                                                padding='valid',
                                                activation='sigmoid'))
@@ -444,10 +442,9 @@ def tensorflow_training(loader):
             val_gen, output_signature=output_signature
             ).prefetch(tf.data.AUTOTUNE).batch(1).cache('val_ds')
 
-    model = bSSFPUnet(loader.in_shape)
-    model.fine_tune(train_ds, val_ds, epochs=100, batch_size=1)
-    print(model.history_fine_tune.history)
-    print(f"loss, acc {model.evaluate(test_ds)}")
+    return train_ds, val_ds, test_ds
+
+
 
 
 if __name__ == '__main__':
@@ -459,5 +456,9 @@ if __name__ == '__main__':
             random_seed=42)
     loader.print_info()
 
-    tensorflow_training(loader)
+    train_ds, val_ds, test_ds = tensorflow_training(loader)
 
+    model = bSSFPUnet()
+    model.fine_tune(train_ds, val_ds, epochs=20, batch_size=1)
+    print(model.history_fine_tune.history)
+    print(f"loss, acc {model.evaluate(test_ds)}")

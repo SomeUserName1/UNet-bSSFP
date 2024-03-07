@@ -422,17 +422,16 @@ def tensorflow_training(loader):
             train_gen, output_signature=output_signature
             )
 
-    train_ds = tf.data.Dataset.range(16)
+    train_ds = tf.data.Dataset.range(8)
     train_ds = train_ds.interleave(
-            lambda x: train_ds_base.shard(16, x),
+            lambda x: train_ds_base.shard(8, x),
             num_parallel_calls=tf.data.AUTOTUNE,
             deterministic=False,
-            cycle_length=16
+            cycle_length=8
             )
     train_ds = train_ds.batch(1)
     train_ds = train_ds.cache('train_ds')
     train_ds = train_ds.shuffle(5, reshuffle_each_iteration=True)
-    train_ds = train_ds.repeat()
     train_ds = train_ds.prefetch(tf.data.AUTOTUNE)
 
     test_ds = tf.data.Dataset.from_generator(

@@ -1,5 +1,4 @@
 import abc
-from random import shuffle
 
 import numpy as np
 
@@ -92,9 +91,6 @@ class bSSFPDatasetGenerator:
         if self.augment:
             img, omap = self.augment_data(img, omap)
 
-        # Normalize
-        img = self.z_normalize_img(img)
-
         return img, omap
 
     def plot_images(self, ds, slice_num=50):
@@ -147,9 +143,8 @@ class bSSFPBaseDatasetLoader(abc.ABC):
         self.create_file_list()
 
         self.train_generator = bSSFPDatasetGenerator(self.train_filenames,
-                                                     self.in_shape,
-                                                     augment=True,
-                                                     aug_fact=aug_fact)
+                                                     self.in_shape)
+        # , augment=True, aug_fact=aug_fact)
         self.val_generator = bSSFPDatasetGenerator(self.val_filenames,
                                                    self.in_shape)
         self.test_generator = bSSFPDatasetGenerator(self.test_filenames,
@@ -231,9 +226,11 @@ class bSSFPFineTuneDatasetLoader(bSSFPBaseDatasetLoader):
         assert len(x_fnames) == len(y_fnames)
 
         example_input = nib.load(x_fnames[0])
+        self.in_affine = example_input.affine
         self.in_shape = (example_input.shape[:-1]
                          + (2 * example_input.shape[-1],))
         example_output = nib.load(y_fnames[0])
+        self.out_affine = example_output.affine
         self.out_shape = example_output.shape
 
         self.num_files = len(x_fnames)

@@ -4,26 +4,33 @@ import keras as K
 import keras.layers as ls
 
 
-import tensorflow as tf
-import torch
-
-from DataLoader import bSSFPFineTuneDatasetLoader
-
-
-class bSSFPUnet(K.Model):
+@K.saving.register_keras_serializable()
+class bSSFPUNet(K.Model):
     def __init__(self,
                  in_channels=24,
                  out_channels=6,
+                 kernel_size=(3, 3, 3),
+                 n_filters_base=24,
+                 n_blocks=2,
+                 convs_per_block=2,
                  patience=3,
                  checkpoint_dir=(f'checkpoints/model-{datetime.now()}'
-                                 '-e{epoch:02d}-l_{loss:.2f}.keras'),
+                                 '-e{epoch:02d}-l_{val_loss:.2f}.keras'),
                  log_dir='logs',
                  name='bSSFPUnet',
+                 pretrain=False,
                  **kwargs):
         super().__init__(name=name, **kwargs)
-        self.n_blocks = 3
-        self.n_convs = 2
-        base_n_filters = 8
+
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+
+        self.n_blocks = n_blocks
+        self.n_convs = convs_per_block
+        base_n_filters = n_filters_base
+        self.kernel_size = kernel_size
+
+        self.pre_train = pretrain
 
         self.skips_src = []
         self.encoder = []
@@ -31,33 +38,42 @@ class bSSFPUnet(K.Model):
             for j in range(self.n_convs):
                 n_filters = base_n_filters * 2 ** i
                 self.encoder.append(ls.Conv3D(filters=n_filters,
-                                              kernel_size=5,
+                                              kernel_size=self.kernel_size,
                                               activation='relu',
                                               padding='valid'))
             self.skips_src.append(self.encoder[-1])
 
-            self.encoder.append(ls.MaxPooling3D(pool_size=2))
+            self.encoder.append(ls.Conv3D(filters=n_filters,
+                                          kernel_size=(1, 1, 1),
+                                          strides=2,
+                                          activation='relu',
+                                          padding='valid',
+                                          name=f'downsample_conv_{i}'))
 
         self.bottleneck = []
-        self.bottleneck.append(ls.Conv3D(filters=64,
-                                         kernel_size=5,
+        bottleneck_n_filters = base_n_filters * 2 ** self.n_blocks
+        self.bottleneck.append(ls.Conv3D(filters=bottleneck_n_filters,
+                                         kernel_size=self.kernel_size,
                                          activation='relu',
-                                         padding='valid'))
-        self.bottleneck.append(ls.Conv3DTranspose(filters=64,
-                                                  kernel_size=5,
+                                         padding='valid',
+                                         name='bottleneck_conv'))
+        self.bottleneck.append(ls.Conv3DTranspose(filters=bottleneck_n_filters,
+                                                  kernel_size=self.kernel_size,
                                                   activation='relu',
-                                                  padding='valid'))
+                                                  padding='valid',
+                                                  name='bottleneck_transconv'))
         self.skips_dst = []
         self.crop = []
         self.decoder = []
         for i in range(self.n_blocks - 1, -1, -1):
             n_filters = base_n_filters * 2 ** i
-            self.decoder.append(ls.UpSampling3D(size=2))
             self.decoder.append(
                     ls.Conv3DTranspose(filters=n_filters,
-                                       kernel_size=1,
+                                       kernel_size=(1, 1, 1),
+                                       strides=2,
                                        activation='relu',
-                                       padding='valid'))
+                                       padding='valid',
+                                       name=f'upsample_transconv_{i}'))
 
             self.decoder.append(ls.Concatenate())
             self.skips_dst.append(self.decoder[-1])
@@ -65,7 +81,7 @@ class bSSFPUnet(K.Model):
             for j in range(self.n_convs):
                 self.decoder.append(
                         ls.Conv3DTranspose(filters=n_filters,
-                                           kernel_size=5,
+                                           kernel_size=self.kernel_size,
                                            activation='relu',
                                            padding='valid')
                         )
@@ -73,25 +89,26 @@ class bSSFPUnet(K.Model):
         self.output_pre_train = ls.Conv3D(self.in_channels,
                                           kernel_size=1,
                                           activation='sigmoid')
+        # TODO adjust dimensions of the output layers to match the input
         self.output_fine_tune = []
-        self.output_fine_tune.append(ls.Conv3D(filters=n_filters,
-                                               kernel_size=5,
-                                               dilation_rate=(16, 14, 14),
-                                               padding='valid',
-                                               activation='relu',
-                                               name='dilated'))
-        self.output_fine_tune.append(ls.Conv3DTranspose(filters=6,
-                                                        kernel_size=5,
-                                                        padding='valid',
-                                                        activation='relu'))
-        self.output_fine_tune.append(ls.Conv3DTranspose(filters=5,
-                                                        kernel_size=3,
-                                                        padding='valid',
-                                                        activation='relu'))
-        self.output_fine_tune.append(ls.Conv3D(filters=self.out_channels,
-                                               kernel_size=1,
-                                               padding='valid',
-                                               activation='sigmoid'))
+        for i in range(6):
+            self.output_fine_tune.append(
+                    ls.Conv3D(filters=n_filters - i * 3,
+                              kernel_size=(4, 9, 16),
+                              padding='valid',
+                              activation='relu'))
+
+        self.output_fine_tune.append(
+                ls.Conv3D(filters=self.out_channels,
+                          kernel_size=(1, 3, 1),
+                          padding='valid',
+                          activation='sigmoid'))
+
+        self.output_fine_tune.append(
+                ls.Conv3D(filters=self.out_channels,
+                          kernel_size=(1, 1, 1),
+                          padding='valid',
+                          activation='sigmoid'))
 
         self.callbacks = [
                 K.callbacks.EarlyStopping(patience=patience,
@@ -101,7 +118,7 @@ class bSSFPUnet(K.Model):
                 K.callbacks.TensorBoard(log_dir=log_dir),
                 K.callbacks.ReduceLROnPlateau(factor=0.1,
                                               patience=patience,
-                                              min_lr=0.00001),
+                                              min_lr=1e-6),
                 K.callbacks.ProgbarLogger()
                 ]
 
@@ -136,113 +153,6 @@ class bSSFPUnet(K.Model):
 
         return x
 
-    def fine_tune(self,
-                  ds_train,
-                  ds_val,
-                  batch_size=32,
-                  epochs=10,
-                  learning_rate=0.0001):
-        self.pre_train = False
-        self.output_fine_tune.trainable = True
-        self.output_pre_train.trainable = False
-
-        for layer in self.encoder:
-            layer.trainable = True
-        for layer in self.bottleneck:
-            layer.trainable = True
-        for layer in self.decoder:
-            layer.trainable = True
-
-        opt = K.optimizers.Adam(learning_rate=learning_rate)
-        self.compile(optimizer=opt,
-                     loss='mse',
-                     metrics=['mse'])
-
-        self.history_fine_tune = self.fit(ds_train,
-                                          epochs=epochs,
-                                          batch_size=batch_size,
-                                          validation_data=ds_val,
-                                          callbacks=self.callbacks)
-        return self.history_fine_tune
-
-
-#    def pre_train(self,
-#                  data,
-#                  batch_size=32,
-#                  epochs=10,
-#                  learning_rate=0.01,
-#                  patience=3):
-#        self.pre_train = True
-#        self.output_fine_tune.trainable = False
-#        self.output_pre_train.trainable = True
-#
-#        for layer in self.encoder:
-#            layer.trainable = True
-#        for layer in self.bottleneck:
-#            layer.trainable = True
-#        for layer in self.decoder:
-#            layer.trainable = True
-#
-#        opt = K.optimizers.Adam(learning_rate=learning_rate)
-#        model.compile(optimizer=opt,
-#                      loss=self.loss,
-#                      metrics=self.metrics)
-#        self.history_pre_train = model.fit(data,
-#                                           epochs=epochs,
-#                                           batch_size=batch_size,
-#                                           callbacks=self.callbacks)
-#
-#        return self.history_pre_train
-#
-#    def transfer(self,
-#                 data,
-#                 batch_size=32,
-#                 epochs=10,
-#                 learning_rate=0.01,
-#                 patience=3):
-#        self.pre_train = False
-#        self.output_fine_tune.trainable = True
-#        self.output_pre_train.trainable = False
-#
-#        for layer in self.encoder:
-#            layer.trainable = False
-#        for layer in self.bottleneck:
-#            layer.trainable = False
-#        for layer in self.decoder:
-#            layer.trainable = True
-#
-#        opt = K.optimizers.Adam(learning_rate=learning_rate)
-#        model.compile(optimizer=opt,
-#                      loss=self.loss,
-#                      metrics=self.metrics)
-#        self.history_transfer = model.fit(data,
-#                                          epochs=epochs,
-#                                          batch_size=batch_size,
-#                                          callbacks=self.callbacks)
-#
-#        return self.history_transfer
-
-#    def train_step(self, data):
-#        x, y = data
-#        with tf.GradientTape() as tape:
-#            predictions = self.call(x)
-#            print(tf.math.is_nan(y))
-#            print(tf.math.is_inf(y))
-#            print(tf.math.is_nan(predictions))
-#            print(tf.math.is_inf(predictions))
-#            loss = self.compute_loss(y, predictions)
-#
-#        gradients = tape.gradient(loss, self.trainable_variables)
-#        self.optimizer.apply_gradients(zip(gradients,
-#                                           self.trainable_variables))
-#
-#        for metric in self.metrics:
-#            if metric.name == 'loss':
-#                metric.update_state(y)
-#            else:
-#                metric.update_state(y, predictions)
-#
-#        return {m.name: m.result() for m in self.metrics}
 
 # class DiffusionTensorPredictionModel(K.Model):
 #     def __init__(self, input_shape, num_output_maps, **kwargs):
@@ -309,19 +219,7 @@ class bSSFPUnet(K.Model):
 #         # ... Compound scaling logic ...
 #         pass
 # #        return depth, width, resolution
-#
-#
-#     def pre_train(self, data):
-#         """Stub for pre-training. Implement as needed, potentially
-#            involving a separate loss function with autoencoding.
-#         """
-#         pass
-#
-#     def fine_tune(self, data):
-#         """Stub for fine-tuning. Implement with SSIM, MSE, regularization,
-#            etc., as we discussed.
-#         """
-#         pass
+
 #
 #     def train_model(model, train_data, val_data, epochs, batch_size,
 #                     patience,
@@ -404,60 +302,3 @@ class bSSFPUnet(K.Model):
 #                             callbacks=[early_stopping_cb, checkpoint_cb])
 #
 #         return history
-
-
-# After rewriting to keras:
-# TF_DUMP_GRAPH_PREFIX=/path/to/dump/dir and --vmodule=xla_compiler=2
-def tensorflow_training(loader):
-    train_gen, val_gen, test_gen = loader.get_generators()
-
-    output_signature = (
-            tf.TensorSpec(shape=loader.in_shape,
-                          dtype=tf.float32),
-            tf.TensorSpec(shape=loader.out_shape,
-                          dtype=tf.float32)
-            )
-
-    train_ds_base = tf.data.Dataset.from_generator(
-            train_gen, output_signature=output_signature
-            )
-
-    train_ds = tf.data.Dataset.range(8)
-    train_ds = train_ds.interleave(
-            lambda x: train_ds_base.shard(8, x),
-            num_parallel_calls=tf.data.AUTOTUNE,
-            deterministic=False,
-            cycle_length=8
-            )
-    train_ds = train_ds.batch(1)
-    train_ds = train_ds.cache('train_ds')
-    train_ds = train_ds.shuffle(5, reshuffle_each_iteration=True)
-    train_ds = train_ds.prefetch(tf.data.AUTOTUNE)
-
-    test_ds = tf.data.Dataset.from_generator(
-            test_gen, output_signature=output_signature
-            ).prefetch(tf.data.AUTOTUNE).batch(1).cache('test_ds')
-    val_ds = tf.data.Dataset.from_generator(
-            val_gen, output_signature=output_signature
-            ).prefetch(tf.data.AUTOTUNE).batch(1).cache('val_ds')
-
-    return train_ds, val_ds, test_ds
-
-
-
-
-if __name__ == '__main__':
-    loader = bSSFPFineTuneDatasetLoader(
-            '/home/someusername/workspace/DOVE/bids',
-            aug_fact=3,
-            train_test_split=0.8,
-            validate_test_split=0.5,
-            random_seed=42)
-    loader.print_info()
-
-    train_ds, val_ds, test_ds = tensorflow_training(loader)
-
-    model = bSSFPUnet()
-    model.fine_tune(train_ds, val_ds, epochs=20, batch_size=1)
-    print(model.history_fine_tune.history)
-    print(f"loss, acc {model.evaluate(test_ds)}")

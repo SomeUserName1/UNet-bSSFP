@@ -1,5 +1,6 @@
 import time
 import datetime
+from enum import Enum
 
 import torch
 from torch.utils.data import DataLoader, random_split
@@ -63,7 +64,7 @@ class DoveDataModule(pl.LightningDataModule):
         return shapes.max(axis=0)
 
     def prepare_data(self):
-        self.bids_layout = bids.BIDSLayout(
+        self.bids_layout = BIDSLayout(
                 self.data_dir,
                 validate=False,
                 database_path=self.data_dir + '/dove.db')
@@ -125,12 +126,12 @@ class DoveDataModule(pl.LightningDataModule):
                         subject.add_image(tio.ScalarImage(fname), 'bssfp-t2')
                 else:
                     continue
-    
+
     def get_preprocessing_transform(self):
         return tio.Compose([
             tio.ZNormalization(keep={'bssfp-complex': 'bssfp-complex_orig',
                                      'dwi-tensor': 'dwi-tensor_orig'})
-        ])
+            ])
 
     def get_augmentation_transform(self):
         return tio.Compose([
@@ -141,7 +142,7 @@ class DoveDataModule(pl.LightningDataModule):
             tio.RandomBlur(),
             tio.RandomNoise(),
             tio.RandomGamma()
-        ])
+            ])
 
     def setup(self, stage=None):
         train_subs, val_subs, test_subs = random_split(
@@ -187,7 +188,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                  lr=1e-2,
                  optimizer=torch.optim.AdamW,
                  metrics=[torch.nn.functional.mse_loss,
-                          torch.nn.functional.mae_loss],
+                          torch.nn.functional.l1_loss],
                  state=TrainingState.PRETRAIN):
         super().__init__()
         self.net = net
@@ -198,19 +199,19 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.state = state
 
         self.save_hyperparameters()
-        
+
     def setup(self, stage):
         # if self.state == TrainingState.PRETRAIN:
         #   Make model autoencoder with all layers trainable
         # elif self.state == TrainingState.TRANSFER:
-        #   Attach new head to predict tensor with all layers frozen but 
+        #   Attach new head to predict tensor with all layers frozen but
         #   the new head
         # elif self.state == TrainingState.FINE_TUNE:
         #   Unfreeze all layers and train with a smaller learning rate
         # elif self.state == TrainingState.EVALUATE:
         #   Freeze all layers. Only evaluate the model
         pass
-    
+
     def unpack_batch(self, batch):
         if self.state == TrainingState.PRETRAIN:
             x = batch['bssfp-complex'][tio.DATA]
@@ -225,7 +226,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         y_hat = self.net(x)
 
         loss = self.loss(y_hat, y)
-        self.log(f'train_loss: ', loss, on_step=True, on_epoch=True,
+        self.log('train_loss: ', loss, on_step=True, on_epoch=True,
                  prog_bar=True, logger=True)
         return loss
 
@@ -264,17 +265,16 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         return self.optimizer(self.parameters(), lr=self.lr)
 
 
-
 if __name__ == "__main__":
     sns.set()
     plt.rcParams["figure.figsize"] = 12, 8
     monai.utils.set_determinism()
     print(f'Last run on {time.ctime()}')
 
-    data = DoveDataModule('/mnt/data/dove')
+    data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
     data.prepare_data()
     data.setup()
-    
+
     model = bSSFPToDWITensorModel()
     early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss')
     trainer = pl.Trainer(

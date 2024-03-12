@@ -15,6 +15,7 @@ def fine_tune(model,
               ds_val,
               batch_size=1,
               epochs=100,
+              steps_per_epoch=None,
               learning_rate=1e-4):
     model.pre_train = False
     model.output_fine_tune.trainable = True
@@ -29,11 +30,12 @@ def fine_tune(model,
 
     opt = K.optimizers.Adam(learning_rate=learning_rate)
     model.compile(optimizer=opt,
-                  loss='mse',
-                  metrics=['mse'])
+                  loss='mean_absolute_error',
+                  metrics=['mean_absolute_error'])
 
     model.history_fine_tune = model.fit(ds_train,
                                         epochs=epochs,
+                                        steps_per_epoch=steps_per_epoch,
                                         batch_size=batch_size,
                                         validation_data=ds_val,
                                         callbacks=model.callbacks)
@@ -135,7 +137,8 @@ def evaluate_vanilla():
             ).batch(1).cache('val_ds').prefetch(tf.data.AUTOTUNE)
 
     model = bSSFPUNet()
-    fine_tune(model, train_ds, val_ds, epochs=100, batch_size=1)
+    fine_tune(model, train_ds, val_ds,
+              steps_per_epoch=len(loader.train_filenames))
     print(model.history_fine_tune.history)
     print(f"loss, acc {model.evaluate(test_ds)}")
 

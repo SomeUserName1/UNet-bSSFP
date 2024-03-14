@@ -122,9 +122,15 @@ class DoveDataModule(pl.LightningDataModule):
             self.subjects.append(subject)
 
     def get_preprocessing_transform(self):
-        return tio.Compose([
-            tio.ZNormalization(keep={'bssfp-complex': 'bssfp-complex_orig',
-                                     'dwi-tensor': 'dwi-tensor_orig'})
+        return tio.compose([
+            tio.NormalizeIntensity(out_min_max_range=(-1, 1),
+                                    in_min_max=(0, 2000), # FIXME enter reasonable value here
+                                    include['bssfp-complex'],
+                                    keep={'bssfp-complex': 'bssfp-complex_orig'}),
+            tio.RescaleIntensity(out_min_max_range=(-1, 1),
+                                 in_min_max=(-0.005, 0.005),# FIXME enter reasonable value here
+                                 include['dwi-tensor'],
+                                 keep={'dwi-tensor': 'dwi-tensor_orig'}),
             ])
 
     def get_augmentation_transform(self):
@@ -136,7 +142,7 @@ class DoveDataModule(pl.LightningDataModule):
             tio.RandomBlur(p=0.5),
             tio.RandomNoise(p=0.5),
             tio.RandomGamma(p=0.5)
-            ], p=0.5)
+            ], p=0.5, include=['bssfp-complex'])
 
     def setup(self, stage=None):
         train_subs, val_subs, test_subs = random_split(
@@ -147,11 +153,11 @@ class DoveDataModule(pl.LightningDataModule):
                 torch.Generator().manual_seed(self.seed))
 
         self.preprocess = self.get_preprocessing_transform()
-        augment = self.get_augmentation_transform()
-        self.transform = tio.Compose([self.preprocess, augment])
+        # augment = self.get_augmentation_transform()
+        # self.transform = tio.Compose([self.preprocess, augment])
 
         self.train_set = tio.SubjectsDataset(train_subs,
-                                             transform=self.transform)
+                                             transform=self.preprocess)
         self.val_set = tio.SubjectsDataset(val_subs,
                                            transform=self.preprocess)
 
@@ -178,25 +184,29 @@ class TrainingState(Enum):
 class bSSFPToDWITensorModel(pl.LightningModule):
     def __init__(self,
                  net=bSSFPUNet(),
-                 loss=torch.nn.functional.huber_loss,
+                 loss=monai.losses.ssim_loss.SSIMLoss,
                  lr=1e-4,
                  optimizer_class=torch.optim.AdamW,
                  metrics=[torch.nn.functional.mse_loss,
                           torch.nn.functional.l1_loss,
                           torch.nn.functional.huber_loss,
-                          monai.losses.ssim_loss.SSIMLoss],
+                          monai.losses.ssim_loss.SSIMLoss,
+                          monai.losses.PerceptualLoss],
                  state=TrainingState.PRETRAIN):
         super().__init__()
         self.net = net
-        self.loss = loss
+        self.loss = loss(3)
         self.lr = lr
         self.optimizer_class = optimizer_class
         self.metrics = metrics
-        self.metrics[-1](3)
+        self.metrics[-2](3)
+        self.metrics[-1](3, network_type="medicalnet_resnet50_23datasets")
         self.state = state
 
         self.save_hyperparameters()
 
+    # TODO implement Auto-Encoder pretraining on DTI Tensor.
+    # TODO Let first couple convs convert from 128,160,160 to 110,110,70
     def setup(self, stage):
         # if self.state == TrainingState.PRETRAIN:
         #   Make model autoencoder with all layers trainable
@@ -209,6 +219,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         #   Freeze all layers. Only evaluate the model
         pass
 
+    # TODO include patch sampler with patch size 32^3
     def unpack_batch(self, batch):
         if self.state == TrainingState.PRETRAIN:
             x = batch['bssfp-complex'][tio.DATA]
@@ -256,6 +267,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def predict_step(self, batch, batch_idx, dataloader_idx=None):
         x, y = self.unpack_batch(batch)
         y_hat = self.net(x)
+        
         nib.save(nib.Nifti1Image(x, np.eye(4)), f'input_{batch_idx}.nii.gz')
         nib.save(nib.Nifti1Image(y_hat, np.eye(4)), f'pred_{batch_idx}.nii.gz')
         nib.save(nib.Nifti1Image(y, np.eye(4)), f'target_{batch_idx}.nii.gz')

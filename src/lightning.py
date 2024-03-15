@@ -7,20 +7,21 @@ from torch.utils.data import DataLoader, random_split
 import monai
 import torchio as tio
 import pytorch_lightning as pl
+from pytorch_lightning.tuner import Tuner
 import numpy as np
 import nibabel as nib
 from bids import BIDSLayout
 
-from bssfp_unet import bSSFPUNet
+from bssfp_unet import bSSFPComplexToDWITensorUNet
 
 
 class DoveDataModule(pl.LightningDataModule):
     def __init__(self,
                  data_dir,
-                 batch_size=2,
+                 batch_size=1,
                  test_split=0.1,
                  val_split=0.1,
-                 num_workers=4,
+                 num_workers=32,
                  seed=42):
         super().__init__()
         self.name = "DOVE Dataset"
@@ -42,6 +43,8 @@ class DoveDataModule(pl.LightningDataModule):
         self.train_set = None
         self.val_set = None
         self.test_set = None
+
+        self.save_hyperparameters()
 
     def print_info(self):
         """
@@ -67,9 +70,6 @@ class DoveDataModule(pl.LightningDataModule):
                 validate=False,
                 database_path=self.data_dir + '/dove.db')
         self.bids_layout.add_derivatives(
-                self.data_dir + '/derivatives/preproc-svenja',
-                database_path=self.data_dir + '/preproc-svenja.db')
-        self.bids_layout.add_derivatives(
                 self.data_dir + '/derivatives/preproc-dove',
                 database_path=self.data_dir + '/preproc-dove.db')
         subject_ids = self.bids_layout.get_subjects()
@@ -79,42 +79,15 @@ class DoveDataModule(pl.LightningDataModule):
             fnames = self.bids_layout.get(subject=sub,
                                           extension='nii.gz',
                                           return_type="filename")
-
             img_dict = {}
             for fname in fnames:
                 ent = self.bids_layout.parse_file_entities(fname)
                 suffix = ent["suffix"]
 
-                if suffix == "T1w" and 'res' not in ent:
-                    img_dict['t1w'] = tio.ScalarImage(fname)
-                elif suffix == 'dwi':
-                    desc = ent["desc"]
-                    if desc == 'FA':
-                        img_dict['dwi-fa'] = tio.ScalarImage(fname)
-                    elif desc == 'MD':
-                        img_dict['dwi-md'] = tio.ScalarImage(fname)
-                    elif desc == 'MO':
-                        img_dict['dwi-mo'] = tio.ScalarImage(fname)
-                    elif desc == 'tensor' and 'space' in ent:
-                        img_dict['dwi-tensor'] = tio.ScalarImage(fname)
-                elif suffix == 'bssfp':
-                    part = fname.split('part-')[-1].split('_')[0]
-                    if part == 'asymindex':
-                        img_dict['bssfp-asymindex'] = tio.ScalarImage(fname)
-                    elif part == 'complexflat':
-                        img_dict['bssfp-complex'] = tio.ScalarImage(fname)
-                    elif part == 'fn':
-                        img_dict['bssfp-fn'] = tio.ScalarImage(fname)
-                    elif part == 'mag' and ent['desc'] == 'median':
-                        img_dict['bssfp-mag-median'] = tio.ScalarImage(fname)
-                    elif part == 'mag':
-                        img_dict['bssfp-mag'] = tio.ScalarImage(fname)
-                    elif part == 'phase':
-                        img_dict['bssfp-phase'] = tio.ScalarImage(fname)
-                    elif part == 't1':
-                        img_dict['bssfp-t1'] = tio.ScalarImage(fname)
-                    elif part == 't2':
-                        img_dict['bssfp-t2'] = tio.ScalarImage(fname)
+                if suffix == 'dwi' and ent['desc'] == 'normtensor':
+                    img_dict['dwi-tensor'] = tio.ScalarImage(fname)
+                elif suffix == 'bssfp' and ent['desc'] == 'normflatbet':
+                    img_dict['bssfp-complex'] = tio.ScalarImage(fname)
                 else:
                     continue
 
@@ -122,14 +95,18 @@ class DoveDataModule(pl.LightningDataModule):
             self.subjects.append(subject)
 
     def get_preprocessing_transform(self):
+        # TODO: Add reasonable values for the min_max_range and in_min_max
+        # TODO for each mag, phase and the respective tensor dimensions.
+        # TODO does any predefined transform support channelwise normalization
+        # TODO with predefined ranges?
         return tio.compose([
             tio.NormalizeIntensity(out_min_max_range=(-1, 1),
-                                    in_min_max=(0, 2000), # FIXME enter reasonable value here
-                                    include['bssfp-complex'],
-                                    keep={'bssfp-complex': 'bssfp-complex_orig'}),
+                                   in_min_max=(0, 2000),
+                                   include=['bssfp-complex'],
+                                   keep={'bssfp-complex': 'bssfp-complex_og'}),
             tio.RescaleIntensity(out_min_max_range=(-1, 1),
-                                 in_min_max=(-0.005, 0.005),# FIXME enter reasonable value here
-                                 include['dwi-tensor'],
+                                 in_min_max=(-0.005, 0.005),
+                                 include=['dwi-tensor'],
                                  keep={'dwi-tensor': 'dwi-tensor_orig'}),
             ])
 
@@ -142,7 +119,8 @@ class DoveDataModule(pl.LightningDataModule):
             tio.RandomBlur(p=0.5),
             tio.RandomNoise(p=0.5),
             tio.RandomGamma(p=0.5)
-            ], p=0.5, include=['bssfp-complex'])
+            ], p=0.5, keep={'bssfp-complex': 'bssfp-complex_orig',
+                            'dwi-tensor': 'dwi-tensor_orig'})
 
     def setup(self, stage=None):
         train_subs, val_subs, test_subs = random_split(
@@ -152,26 +130,25 @@ class DoveDataModule(pl.LightningDataModule):
                  self.test_split],
                 torch.Generator().manual_seed(self.seed))
 
-        self.preprocess = self.get_preprocessing_transform()
-        # augment = self.get_augmentation_transform()
-        # self.transform = tio.Compose([self.preprocess, augment])
+        self.transform = self.get_augmentation_transform()
 
         self.train_set = tio.SubjectsDataset(train_subs,
-                                             transform=self.preprocess)
-        self.val_set = tio.SubjectsDataset(val_subs,
-                                           transform=self.preprocess)
+                                             transform=self.transform)
+        self.val_set = tio.SubjectsDataset(val_subs)
 
-        self.test_set = tio.SubjectsDataset(test_subs,
-                                            transform=self.preprocess)
+        self.test_set = tio.SubjectsDataset(test_subs)
 
     def train_dataloader(self):
-        return DataLoader(self.train_set, self.batch_size)
+        return DataLoader(self.train_set, self.batch_size,
+                          num_workers=self.num_workers - 2)
 
     def val_dataloader(self):
-        return DataLoader(self.val_set, self.batch_size)
+        return DataLoader(self.val_set, self.batch_size,
+                          num_workers=2)
 
     def test_dataloader(self):
-        return DataLoader(self.test_set, self.batch_size)
+        return DataLoader(self.test_set, self.batch_size,
+                          num_workers=2)
 
 
 class TrainingState(Enum):
@@ -183,25 +160,28 @@ class TrainingState(Enum):
 
 class bSSFPToDWITensorModel(pl.LightningModule):
     def __init__(self,
-                 net=bSSFPUNet(),
+                 net=bSSFPComplexToDWITensorUNet(),
                  loss=monai.losses.ssim_loss.SSIMLoss,
-                 lr=1e-4,
+                 lr=1e-3,
                  optimizer_class=torch.optim.AdamW,
                  metrics=[torch.nn.functional.mse_loss,
                           torch.nn.functional.l1_loss,
                           torch.nn.functional.huber_loss,
                           monai.losses.ssim_loss.SSIMLoss,
                           monai.losses.PerceptualLoss],
+                 batch_size=1,
                  state=TrainingState.PRETRAIN):
         super().__init__()
         self.net = net
-        self.loss = loss(3)
+        self.criterion = loss(3)
         self.lr = lr
         self.optimizer_class = optimizer_class
         self.metrics = metrics
         self.metrics[-2](3)
-        self.metrics[-1](3, network_type="medicalnet_resnet50_23datasets")
+        self.metrics[-1](spatial_dims=3, is_fake_3d=False,
+                         network_type="medicalnet_resnet50_23datasets")
         self.state = state
+        self.batch_size = batch_size
 
         self.save_hyperparameters()
 
@@ -220,17 +200,26 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         pass
 
     # TODO include patch sampler with patch size 32^3
-    def unpack_batch(self, batch):
-        if self.state == TrainingState.PRETRAIN:
-            x = batch['bssfp-complex'][tio.DATA]
-            y = batch['bssfp_complex_orig'][tio.DATA]
+    def unpack_batch(self, batch, train=False):
+        if train:
+            if self.state == TrainingState.PRETRAIN:
+                x = batch['dwi-tensor'][tio.DATA]
+                y = batch['dwi-tensor_orig'][tio.DATA]
+            else:
+                x = batch['bssfp-complex'][tio.DATA]
+                y = batch['dwi-tensor_orig'][tio.DATA]
         else:
             x = batch['bssfp-complex'][tio.DATA]
-            y = batch['dwi-tensor_orig'][tio.DATA]
+            y = batch['dwi-tensor'][tio.DATA]
+
+        x = x.float()
+        y = y.float()
         return x, y
 
     def training_step(self, batch, batch_idx):
-        x, y = self.unpack_batch(batch)
+        x, y = self.unpack_batch(batch, True)
+        x = x.float()
+        y = y.float()
         y_hat = self.net(x)
 
         loss = self.loss(y_hat, y)
@@ -267,14 +256,13 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def predict_step(self, batch, batch_idx, dataloader_idx=None):
         x, y = self.unpack_batch(batch)
         y_hat = self.net(x)
-        
         nib.save(nib.Nifti1Image(x, np.eye(4)), f'input_{batch_idx}.nii.gz')
         nib.save(nib.Nifti1Image(y_hat, np.eye(4)), f'pred_{batch_idx}.nii.gz')
         nib.save(nib.Nifti1Image(y, np.eye(4)), f'target_{batch_idx}.nii.gz')
         return y_hat
 
     def configure_optimizers(self):
-        return self.optimizer_class(self.parameters(), lr=self.lr)
+        return self.optimizer_class(self.net.parameters(), lr=self.lr)
 
 
 if __name__ == "__main__":
@@ -287,13 +275,20 @@ if __name__ == "__main__":
     data.setup()
 
     model = bSSFPToDWITensorModel()
+
     early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss')
+    swa_cb = pl.callbacks.StochasticWeightAveraging(swa_lrs=1e-2)
+    cbs = [early_stopping_cb, swa_cb]
+
     trainer = pl.Trainer(
             max_epochs=100,
             accelerator='gpu' if torch.cuda.is_available() else None,
             devices=1 if torch.cuda.is_available() else 0,
-            precision=16 if torch.cuda.is_available() else 32,
-            callbacks=[early_stopping_cb])
+            precision="bf16-mixed" if torch.cuda.is_available() else 32,
+            callbacks=cbs)
+#    tuner = Tuner(trainer)
+#    tuner.scale_batch_size(model, mode='power')
+#    tuner.lr_find(model)
 
     start = datetime.datetime.now()
     print(f"Training started at {start}")

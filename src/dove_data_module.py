@@ -14,8 +14,8 @@ class DoveDataModule(pl.LightningDataModule):
                  test_split=0.1,
                  val_split=0.1,
                  num_workers=32,
-                 max_queue_length=100,
-                 samples_per_volume=10,
+                 max_queue_length=48,
+                 samples_per_volume=16,
                  patch_size=64,
                  seed=42):
         super().__init__()
@@ -105,8 +105,7 @@ class DoveDataModule(pl.LightningDataModule):
     # FIXME remove double rescaling
     def get_preprocessing_transform(self):
         return tio.Compose(
-                [tio.ToCanonical(),
-                 tio.Resample('bssfp-complex'),
+                [tio.Resample('bssfp-complex'),
                  tio.RescaleIntensity()])
 
     def get_augmentation_transform(self):
@@ -139,16 +138,16 @@ class DoveDataModule(pl.LightningDataModule):
                 self.max_queue_length,
                 self.samples_per_volume,
                 self.train_sampler,
-                num_workers=self.num_workers - 4)
+                num_workers=self.num_workers // 2)
 
         self.val_set = tio.SubjectsDataset(val_subs, transform=self.transform)
         self.val_sampler = tio.data.UniformSampler(self.patch_size)
         self.val_patch_queue = tio.Queue(
                 self.val_set,
-                int(self.val_split * self.max_queue_length),
+                self.max_queue_length,
                 self.samples_per_volume,
                 self.val_sampler,
-                num_workers=self.num_workers - 4)
+                num_workers=self.num_workers // 4)
 
         self.test_set = tio.SubjectsDataset(test_subs,
                                             transform=self.transform)
@@ -158,7 +157,7 @@ class DoveDataModule(pl.LightningDataModule):
                 self.max_queue_length,
                 self.samples_per_volume,
                 self.test_sampler,
-                num_workers=self.num_workers - 4)
+                num_workers=self.num_workers // 4)
 
     def train_dataloader(self):
         return DataLoader(self.train_patch_queue,

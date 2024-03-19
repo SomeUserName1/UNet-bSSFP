@@ -150,7 +150,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
 
 
 if __name__ == "__main__":
-    # torch.set_float32_matmul_precision('medium')
+    torch.set_float32_matmul_precision('medium')
     monai.utils.set_determinism()
     print(f'Last run on {time.ctime()}')
 
@@ -160,7 +160,7 @@ if __name__ == "__main__":
             in_channels=24,
             out_channels=6,
             channels=(24, 32, 48, 64, 96, 128),
-            strides=(2, 2, 2, 2),
+            strides=(2, 2, 2, 2, 2),
             dropout=0.1,
             )
     print(unet)
@@ -171,16 +171,18 @@ if __name__ == "__main__":
     logger = pl.loggers.WandbLogger(project='dove',
                                     log_model='all',
                                     save_dir='logs')
-
+    # prof = pl.profilers.PyTorchProfiler(row_limit=100,
+    #                                    sort_by_key='cpu_memory_usage',
+    #                                    profiler_kwargs={'profile_memory': True})
     trainer = pl.Trainer(
-            max_epochs=100,
+            max_epochs=2,  # 100,
             accelerator='gpu' if torch.cuda.is_available() else None,
             devices=1 if torch.cuda.is_available() else 0,
             precision='32',  # "bf16-mixed" if torch.cuda.is_available() else 32,
             # accumulate_grad_batches=10,
-            # gradient_clip_val=1,
-            # gradient_clip_algorithm="value",
+            detect_anomaly=True,
             logger=logger,
+            # profiler=prof,
             enable_checkpointing=True,
             enable_model_summary=True,
             callbacks=cbs)
@@ -197,5 +199,6 @@ if __name__ == "__main__":
     trainer.fit(model, datamodule=data)
     end = datetime.datetime.now()
     print(f"Training finished at {end}.\nTotal time: {end - start}")
+    # prof.summary()
 
-    trainer.test(model, datamodule=data)
+    # trainer.test(model, datamodule=data)

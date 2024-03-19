@@ -163,5 +163,5 @@ cython_debug/
 tags
 
 logs/
+lightning_logs
 checkpoints/
-train_ds_0.*

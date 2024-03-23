@@ -1,5 +1,6 @@
 import datetime
 from enum import Enum
+import math
 import time
 
 import monai
@@ -12,33 +13,106 @@ import torchio as tio
 from dove_data_module import DoveDataModule
 
 
+class PreTrainUnet(torch.nn.Module):
+    def __init__(self, state):
+        super().__init__()
+        self.state = state
+        self.dwi_tensor_input = monai.blocks.RegistrationResidualConvBlock(
+                spatial_dims=3, in_channels=6, out_channels=24, num_layers=5)
+        self.bssfp_input = monai.blocks.RegistrationResidualConvBlock(
+                spatial_dims=3, in_channels=24, out_channels=24, num_layers=10)
+
+        self.unet = monai.networks.nets.UNet(
+                spatial_dims=3,
+                in_channels=24,
+                out_channels=6,
+                channels=(24, 48, 96, 196, 384),
+                strides=(2, 2, 2, 2),
+                dropout=0.1,
+                )
+
+        self.all_layers = list(self.unet.children()) + [self.dwi_tensor_input,
+                                                        self.bssfp_input]
+
+        for i, layer in enumerate(self.all_layers):
+            setattr(self, f'{layer.__class__.__name__}_{i}', layer)
+
+    def setup(self, checkpoint):
+        if self.state == TrainingState.PRETRAIN:
+            # Make model autoencoder with all layers trainable
+            for layer in self.all_layers:
+                for param in layer.parameters():
+                    param.requires_grad = True
+            self.bssfp_input.requires_grad = False
+
+        elif self.state == TrainingState.TRANSFER:
+            # Freeze all layers but the new head
+            for layer in self.all_layers:
+                for param in layer.parameters():
+                    param.requires_grad = False
+            self.bssfp_input.requires_grad = True
+
+        elif self.state == TrainingState.FINE_TUNE:
+            #   Unfreeze all layers and train with a smaller learning rate
+            for layer in self.all_layers:
+                for param in layer.parameters():
+                    param.requires_grad = True
+            self.dwitensor_input.requires_grad = False
+
+    def forward(self, x):
+        if self.state == TrainingState.PRETRAIN:
+            x = self.dwi_tensor_input(x)
+        else:
+            x = self.bssfp_input(x)
+
+        x = self.unet(x)
+        return x
+
+
+class PerceptualL1L2SSIMLoss(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.l1 = torch.nn.functional.l1_loss
+        self.l2 = torch.nn.functional.mse_loss
+        self.ssim = monai.losses.ssim_loss.SSIMLoss(3, data_range=1.0)
+        self.perceptual = monai.losses.PerceptualLoss(
+                spatial_dims=3, is_fake_3d=False,
+                network_type=("medicalnet_resnet10_23datasets"))
+
+    def forward(self, y_hat, y):
+        l1 = self.l1(y_hat, y)
+        l2 = self.l2(y_hat, y)
+        ssim = self.ssim(y_hat, y)
+        perceptual = self.perceptual(y_hat, y)
+        return l1 + l2 + ssim + perceptual
+
+
 class TrainingState(Enum):
     PRETRAIN = 1
     TRANSFER = 2
     FINETUNE = 3
-    EVALUATE = 4
 
 
 class bSSFPToDWITensorModel(pl.LightningModule):
     def __init__(self,
                  net,
-                 criterion=monai.losses.ssim_loss.SSIMLoss(3),
+                 criterion=PerceptualL1L2SSIMLoss(),
                  lr=1e-3,
                  optimizer_class=torch.optim.AdamW,
                  val_metrics={'L2':     torch.nn.functional.mse_loss,
                               'L1':     torch.nn.functional.l1_loss,
                               'Huber':  torch.nn.functional.huber_loss,
                               'SSIM':   monai.losses.ssim_loss.SSIMLoss(
-                                  3).__call__,
+                                  3, data_range=2).__call__,
                               'MSSSIM': monai.metrics.MultiScaleSSIMMetric(
-                                  3, kernel_size=3).__call__,
+                                  3, kernel_size=3, data_range=1.0).__call__,
                               'Perceptual': monai.losses.PerceptualLoss(
                                   spatial_dims=3, is_fake_3d=False,
                                   network_type=(
-                                      "medicalnet_resnet50_23datasets")
+                                      "medicalnet_resnet10_23datasets")
                                   ).__call__},
                  state=TrainingState.FINETUNE,
-                 batch_size=16):
+                 batch_size=1):
         super().__init__()
         self.net = net
         self.criterion = criterion
@@ -49,18 +123,11 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.batch_size = batch_size
         self.save_hyperparameters(ignore=['net', 'criterion'])
 
-    # TODO implement Auto-Encoder pretraining on DTI Tensor.
-    # TODO Let first couple convs convert from 128,160,160 to 110,110,70
-    def setup(self, stage):
-        # if self.state == TrainingState.PRETRAIN:
-        #   Make model autoencoder with all layers trainable
-        # elif self.state == TrainingState.TRANSFER:
-        #   Attach new head to predict tensor with all layers frozen but
-        #   the new head
-        # elif self.state == TrainingState.FINE_TUNE:
-        #   Unfreeze all layers and train with a smaller learning rate
-        # elif self.state == TrainingState.EVALUATE:
-        #   Freeze all layers. Only evaluate the model
+    def setup(self, stage=None):
+        #  if self.state == TrainingState.FINETUNE:
+        #  self.lr *= 0.1
+        #  self.net.setup()
+        #  self.configure_optimizers()
         pass
 
     def unpack_batch(self, batch, train=False):
@@ -73,7 +140,14 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                 y = batch['dwi-tensor_orig'][tio.DATA]
         else:
             x = batch['bssfp-complex'][tio.DATA]
-            y = batch['dwi-tensor'][tio.DATA]
+            y = batch['dwi-tensor_orig'][tio.DATA]
+
+        if x.dtype == torch.float64:
+            x = x.float()
+            print(f'Converted x to {batch["bssfp-complex"].filename}')
+        if y.dtype == torch.float64:
+            y = y.float()
+            print(f'Converted x to {batch["dwi-tensor_orig"].filename}')
 
         return x, y
 
@@ -87,22 +161,10 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         return loss
 
     def compute_metrics(self, y_hat, y):
-        metrics = {}
-        for name, metric in self.val_metrics.items():
-            if name == 'Perceptual':
-                m = 0
-                for i in range(y_hat.shape[1]):
-                    m += metric(
-                            y_hat[:, i, ...].unsqueeze(1).to('cpu').to(
-                                torch.float32),
-                            y[:, i, ...].unsqueeze(1).to('cpu').to(
-                                torch.float32))
-            else:
-                m = metric(y_hat, y)
-
-            metrics[name] = m.mean()
-
-        return metrics
+        y_hat = y_hat.to('cpu')
+        y = y.to('cpu')
+        return {name: metric(y_hat, y)
+                for name, metric in self.val_metrics.items()}
 
     def validation_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
@@ -124,7 +186,18 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         loss = self.criterion(y_hat, y)
         metrics = self.compute_metrics(y_hat, y)
 
-        self.log('val_loss', loss, on_step=True, on_epoch=True, prog_bar=True,
+        x_img = np.moveaxis(x.cpu().numpy().squeeze(), 0, -1)
+        y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
+        y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
+
+        nib.save(nib.Nifti1Image(x_img, np.eye(4)),
+                 f'input_{batch_idx}.nii.gz')
+        nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
+                 f'pred_{batch_idx}.nii.gz')
+        nib.save(nib.Nifti1Image(y_img, np.eye(4)),
+                 f'target_{batch_idx}.nii.gz')
+
+        self.log('test_loss', loss, on_step=True, on_epoch=True, prog_bar=True,
                  logger=True, batch_size=self.batch_size)
         logger.log_metrics(metrics, step=batch_idx)
 
@@ -134,54 +207,67 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         x, y = self.unpack_batch(batch)
         y_hat = self.net(x)
 
-        nib.save(nib.Nifti1Image(x.cpu(), np.eye(4)),
+        x_img = np.moveaxis(x.cpu().numpy().squeeze(), 0, -1)
+        y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
+        y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
+
+        nib.save(nib.Nifti1Image(x_img, np.eye(4)),
                  f'input_{batch_idx}.nii.gz')
-        nib.save(nib.Nifti1Image(y_hat.cpu(), np.eye(4)),
+        nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
                  f'pred_{batch_idx}.nii.gz')
-        nib.save(nib.Nifti1Image(y.cpu(), np.eye(4)),
+        nib.save(nib.Nifti1Image(y_img, np.eye(4)),
                  f'target_{batch_idx}.nii.gz')
 
-        logger.log_image(key='prediction',
-                         images=[x.cpu(), y_hat.cpu(), y.cpu()])
         return y_hat
 
     def configure_optimizers(self):
-        return self.optimizer_class(self.net.parameters(), lr=self.lr)
+        return self.optimizer_class(
+                filter(lambda p: p.requires_grad, self.net.parameters()),
+                lr=self.lr)
 
 
-if __name__ == "__main__":
-    torch.set_float32_matmul_precision('medium')
-    monai.utils.set_determinism()
-    print(f'Last run on {time.ctime()}')
-
+def check_input_shape(strides):
     data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
-    unet = monai.networks.nets.UNet(
-            spatial_dims=3,
-            in_channels=24,
-            out_channels=6,
-            channels=(24, 32, 48, 64, 96, 128),
-            strides=(2, 2, 2, 2, 2),
-            dropout=0.1,
-            )
-    print(unet)
+    data.prepare_data()
+    data.setup()
+    batch = next(iter(data.train_dataloader()))
+    bssfp_complex_shape = batch['bssfp-complex'][tio.DATA].shape
 
-    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss')
+    for v in bssfp_complex_shape[2:]:
+        size = math.floor((v + strides[0] - 1) / strides[0])
+        print(f'Size for {v} is {size} with strides {strides}')
+        print('Size must match np.remainder(size, 2 * np.prod(strides[1:])'
+              ' == 0)')
+        print(f'np.remainder({size}, {2 * np.prod(strides[1:])}) == 0')
+        print(f'{np.remainder(size, 2 * np.prod(strides[1:])) == 0}')
+        assert np.remainder(size, 2 * np.prod(strides[1:])) == 0, \
+                ('Input shape doesnt match stride')
+
+    d = max(bssfp_complex_shape[2:])
+    max_size = math.floor((d + strides[0] - 1) / strides[0])
+    print(f'Max size for {d} is {max_size} with strides {strides}')
+    print('Max size must match np.remainder(max_size, 2 * np.prod(strides[1:])'
+          ' == 0)')
+    print(f'np.remainder({max_size}, {2 * np.prod(strides[1:])}) == 0')
+    print(f'{np.remainder(max_size, 2 * np.prod(strides[1:])) == 0}')
+    assert np.remainder(max_size, 2 * np.prod(strides[1:])) == 0, \
+            ('Input shape doesnt match stride due to instance norm')
+
+
+def train_model(net, data, logger):
+    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss',
+                                                   patience=3)
     swa_cb = pl.callbacks.StochasticWeightAveraging(swa_lrs=1e-2)
     cbs = [early_stopping_cb, swa_cb]
-    logger = pl.loggers.WandbLogger(project='dove',
-                                    log_model='all',
-                                    save_dir='logs')
-    # prof = pl.profilers.PyTorchProfiler(row_limit=100,
-    #                                    sort_by_key='cpu_memory_usage',
-    #                                    profiler_kwargs={'profile_memory': True})
+    # prof = pl.profilers.PyTorchProfiler(row_limit=100)
     trainer = pl.Trainer(
-            max_epochs=2,  # 100,
+            max_epochs=100,
             accelerator='gpu' if torch.cuda.is_available() else None,
             devices=1 if torch.cuda.is_available() else 0,
-            precision='32',  # "bf16-mixed" if torch.cuda.is_available() else 32,
-            # accumulate_grad_batches=10,
-            detect_anomaly=True,
+            precision='32',
+            accumulate_grad_batches=16,
             logger=logger,
+            # detect_anomaly=True,
             # profiler=prof,
             enable_checkpointing=True,
             enable_model_summary=True,
@@ -189,7 +275,7 @@ if __name__ == "__main__":
     with trainer.init_module():
         model = bSSFPToDWITensorModel(net=unet)
 
-    logger.watch(model, log='all', log_freq=70)
+    logger.watch(model, log='all', log_freq=50)
     # tuner = pl.tuner.Tuner(trainer)
     # tuner.scale_batch_size(model, datamodule=data, mode='power')
     # tuner.lr_find(model, datamodule=data)
@@ -201,4 +287,38 @@ if __name__ == "__main__":
     print(f"Training finished at {end}.\nTotal time: {end - start}")
     # prof.summary()
 
-    # trainer.test(model, datamodule=data)
+    trainer.test(model, datamodule=data)
+
+
+def eval_model(unet, data, checkpoint_path):
+    model = bSSFPToDWITensorModel.load_from_checkpoint(checkpoint_path,
+                                                       net=unet)
+    model.eval()
+    trainer = pl.Trainer()
+    trainer.predict(model, data)
+
+
+if __name__ == "__main__":
+    torch.multiprocessing.set_start_method('spawn')
+    torch.set_float32_matmul_precision('medium')
+    print(f'Last run on {time.ctime()}')
+
+    data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
+    logger = pl.loggers.WandbLogger(project='dove',
+                                    log_model='all',
+                                    save_dir='logs')
+    strides = (2, 2, 2, 2)
+
+    unet = monai.networks.nets.UNet(
+            spatial_dims=3,
+            in_channels=24,
+            out_channels=6,
+            channels=(24, 48, 96, 192, 384),
+            strides=strides,
+            dropout=0.1,
+            )
+    print(unet)
+    # check_input_shape(strides)
+
+    train_model(unet, data, logger)
+    # eval_model(unet, data, '/home/someusername/workspace/UNet-bSSFP/logs/dove/j12ukwvo/checkpoints/epoch=14-step=3315.ckpt')

@@ -18,7 +18,9 @@ class PreTrainUnet(torch.nn.Module):
         super().__init__()
         self.state = state
         self.dwi_tensor_input = monai.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=6, out_channels=24, num_layers=5)
+                spatial_dims=3, in_channels=6, out_channels=24, num_layers=10)
+        # alternatively use RegistrationExtractionBlock
+        # s.t. downsampling is not neccessary
         self.bssfp_input = monai.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=24, out_channels=24, num_layers=10)
 
@@ -29,6 +31,7 @@ class PreTrainUnet(torch.nn.Module):
                 channels=(24, 48, 96, 196, 384),
                 strides=(2, 2, 2, 2),
                 dropout=0.1,
+                num_res_units=2,
                 )
 
         self.all_layers = list(self.unet.children()) + [self.dwi_tensor_input,
@@ -43,7 +46,6 @@ class PreTrainUnet(torch.nn.Module):
             for layer in self.all_layers:
                 for param in layer.parameters():
                     param.requires_grad = True
-            self.bssfp_input.requires_grad = False
 
         elif self.state == TrainingState.TRANSFER:
             # Freeze all layers but the new head
@@ -63,6 +65,7 @@ class PreTrainUnet(torch.nn.Module):
         if self.state == TrainingState.PRETRAIN:
             x = self.dwi_tensor_input(x)
         else:
+            # Add image out dims here if downsampling should be avoided
             x = self.bssfp_input(x)
 
         x = self.unet(x)
@@ -124,11 +127,19 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.save_hyperparameters(ignore=['net', 'criterion'])
 
     def setup(self, stage=None):
-        #  if self.state == TrainingState.FINETUNE:
-        #  self.lr *= 0.1
-        #  self.net.setup()
-        #  self.configure_optimizers()
-        pass
+        if self.state == TrainingState.PRETRAIN:
+            self.net.state = TrainingState.PRETRAIN
+            self.net.setup()
+            self.configure_optimizers()
+        elif self.state == TrainingState.TRANSFER:
+            self.net.state = TrainingState.TRANSFER
+            self.net.setup()
+            self.configure_optimizers()
+        elif self.state == TrainingState.FINETUNE:
+            self.lr *= 0.1
+            self.net.state = TrainingState.FINETUNE
+            self.net.setup()
+            self.configure_optimizers()
 
     def unpack_batch(self, batch, train=False):
         if train:
@@ -241,7 +252,7 @@ def check_input_shape(strides):
         print(f'np.remainder({size}, {2 * np.prod(strides[1:])}) == 0')
         print(f'{np.remainder(size, 2 * np.prod(strides[1:])) == 0}')
         assert np.remainder(size, 2 * np.prod(strides[1:])) == 0, \
-                ('Input shape doesnt match stride')
+               ('Input shape doesnt match stride')
 
     d = max(bssfp_complex_shape[2:])
     max_size = math.floor((d + strides[0] - 1) / strides[0])
@@ -251,7 +262,7 @@ def check_input_shape(strides):
     print(f'np.remainder({max_size}, {2 * np.prod(strides[1:])}) == 0')
     print(f'{np.remainder(max_size, 2 * np.prod(strides[1:])) == 0}')
     assert np.remainder(max_size, 2 * np.prod(strides[1:])) == 0, \
-            ('Input shape doesnt match stride due to instance norm')
+           ('Input shape doesnt match stride due to instance norm')
 
 
 def train_model(net, data, logger):
@@ -274,6 +285,7 @@ def train_model(net, data, logger):
             callbacks=cbs)
     with trainer.init_module():
         model = bSSFPToDWITensorModel(net=unet)
+        model.setup()
 
     logger.watch(model, log='all', log_freq=50)
     # tuner = pl.tuner.Tuner(trainer)
@@ -281,12 +293,27 @@ def train_model(net, data, logger):
     # tuner.lr_find(model, datamodule=data)
 
     start = datetime.datetime.now()
-    print(f"Training started at {start}")
+    print(f"Pre-training started at {start}")
     trainer.fit(model, datamodule=data)
     end = datetime.datetime.now()
     print(f"Training finished at {end}.\nTotal time: {end - start}")
     # prof.summary()
+    trainer.test(model, datamodule=data)
 
+    model.state = TrainingState.TRANSFER
+    model.setup()
+
+    print(f"Transfer learning started at {datetime.datetime.now()}")
+    trainer.fit(model, datamodule=data)
+    print(f"Transfer learning finished at {datetime.datetime.now()}")
+    trainer.test(model, datamodule=data)
+
+    model.state = TrainingState.FINETUNE
+    model.setup()
+
+    print(f"Fine tuning started at {datetime.datetime.now()}")
+    trainer.fit(model, datamodule=data)
+    print(f"Fine tuning finished at {datetime.datetime.now()}")
     trainer.test(model, datamodule=data)
 
 
@@ -309,16 +336,10 @@ if __name__ == "__main__":
                                     save_dir='logs')
     strides = (2, 2, 2, 2)
 
-    unet = monai.networks.nets.UNet(
-            spatial_dims=3,
-            in_channels=24,
-            out_channels=6,
-            channels=(24, 48, 96, 192, 384),
-            strides=strides,
-            dropout=0.1,
-            )
+    unet = PreTrainUnet(TrainingState.PRETRAIN)
     print(unet)
     # check_input_shape(strides)
 
     train_model(unet, data, logger)
-    # eval_model(unet, data, '/home/someusername/workspace/UNet-bSSFP/logs/dove/j12ukwvo/checkpoints/epoch=14-step=3315.ckpt')
+    # eval_model(unet, data,
+    # '/home/someusername/workspace/UNet-bSSFP/logs/dove/j12ukwvo/checkpoints/epoch=14-step=3315.ckpt')

@@ -132,7 +132,7 @@ class DoveDataModule(pl.LightningDataModule):
 
     def setup(self, stage=None):
         self.transform = tio.Compose([self.get_preprocessing_transform()])  # ,
-                                      # self.get_augmentation_transform()])
+        # self.get_augmentation_transform()])
 
         self.train_set = tio.SubjectsDataset(self.train_subjects,
                                              transform=self.transform)

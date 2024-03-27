@@ -24,12 +24,13 @@ class PreTrainUnet(torch.nn.Module):
         self.bssfp_input = monai.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=24, out_channels=24, num_layers=10)
 
+        self.strides = (2, 2, 2, 2)
         self.unet = monai.networks.nets.UNet(
                 spatial_dims=3,
                 in_channels=24,
                 out_channels=6,
                 channels=(24, 48, 96, 196, 384),
-                strides=(2, 2, 2, 2),
+                strides=self.strides,
                 dropout=0.1,
                 num_res_units=2,
                 )
@@ -40,7 +41,8 @@ class PreTrainUnet(torch.nn.Module):
         for i, layer in enumerate(self.all_layers):
             setattr(self, f'{layer.__class__.__name__}_{i}', layer)
 
-    def setup(self, checkpoint):
+    def change_state(self, state):
+        self.state = state
         if self.state == TrainingState.PRETRAIN:
             # Make model autoencoder with all layers trainable
             for layer in self.all_layers:
@@ -60,6 +62,8 @@ class PreTrainUnet(torch.nn.Module):
                 for param in layer.parameters():
                     param.requires_grad = True
             self.dwitensor_input.requires_grad = False
+        else:
+            raise ValueError('Invalid Training State')
 
     def forward(self, x):
         if self.state == TrainingState.PRETRAIN:
@@ -75,8 +79,8 @@ class PreTrainUnet(torch.nn.Module):
 class PerceptualL1L2SSIMLoss(torch.nn.Module):
     def __init__(self):
         super().__init__()
-        self.l1 = torch.nn.functional.l1_loss
-        self.l2 = torch.nn.functional.mse_loss
+        self.l1 = torch.nn.L1Loss()
+        self.l2 = torch.nn.MSELoss()
         self.ssim = monai.losses.ssim_loss.SSIMLoss(3, data_range=1.0)
         self.perceptual = monai.losses.PerceptualLoss(
                 spatial_dims=3, is_fake_3d=False,
@@ -93,7 +97,7 @@ class PerceptualL1L2SSIMLoss(torch.nn.Module):
 class TrainingState(Enum):
     PRETRAIN = 1
     TRANSFER = 2
-    FINETUNE = 3
+    FINE_TUNE = 3
 
 
 class bSSFPToDWITensorModel(pl.LightningModule):
@@ -114,7 +118,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                                   network_type=(
                                       "medicalnet_resnet10_23datasets")
                                   ).__call__},
-                 state=TrainingState.FINETUNE,
+                 state=TrainingState.FINE_TUNE,
                  batch_size=1):
         super().__init__()
         self.net = net
@@ -126,20 +130,17 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.batch_size = batch_size
         self.save_hyperparameters(ignore=['net', 'criterion'])
 
-    def setup(self, stage=None):
-        if self.state == TrainingState.PRETRAIN:
-            self.net.state = TrainingState.PRETRAIN
-            self.net.setup()
-            self.configure_optimizers()
-        elif self.state == TrainingState.TRANSFER:
-            self.net.state = TrainingState.TRANSFER
-            self.net.setup()
-            self.configure_optimizers()
-        elif self.state == TrainingState.FINETUNE:
+    def change_training_state(self, state):
+        if state == TrainingState.PRETRAIN:
+            self.state = TrainingState.PRETRAIN
+        elif state == TrainingState.TRANSFER:
+            self.state = TrainingState.TRANSFER
+        elif state == TrainingState.FINE_TUNE:
+            self.state = TrainingState.FINE_TUNE
             self.lr *= 0.1
-            self.net.state = TrainingState.FINETUNE
-            self.net.setup()
-            self.configure_optimizers()
+
+        self.net.change_state(self.state)
+        self.configure_optimizers()
 
     def unpack_batch(self, batch, train=False):
         if train:
@@ -167,13 +168,13 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         y_hat = self.net(x)
 
         loss = self.criterion(y_hat, y)
-        self.log('train_loss: ', loss, on_epoch=True, prog_bar=True,
+        self.log('train_loss', loss, on_epoch=True, prog_bar=True,
                  logger=True, batch_size=self.batch_size)
         return loss
 
     def compute_metrics(self, y_hat, y):
-        y_hat = y_hat.to('cpu')
-        y = y.to('cpu')
+        # y_hat = y_hat.to('cpu')
+        # y = y.to('cpu')
         return {name: metric(y_hat, y)
                 for name, metric in self.val_metrics.items()}
 
@@ -202,11 +203,11 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
 
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
-                 f'input_{batch_idx}.nii.gz')
+                 f'input_{batch_idx}_state_{self.state}.nii.gz')
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
-                 f'pred_{batch_idx}.nii.gz')
+                 f'pred_{batch_idx}_state_{self.state}.nii.gz')
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
-                 f'target_{batch_idx}.nii.gz')
+                 f'target_{batch_idx}_state_{self.state}.nii.gz')
 
         self.log('test_loss', loss, on_step=True, on_epoch=True, prog_bar=True,
                  logger=True, batch_size=self.batch_size)
@@ -223,11 +224,11 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
 
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
-                 f'input_{batch_idx}.nii.gz')
+                 f'input_{batch_idx}_state_{self.state}.nii.gz')
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
-                 f'pred_{batch_idx}.nii.gz')
+                 f'pred_{batch_idx}_state_{self.state}.nii.gz')
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
-                 f'target_{batch_idx}.nii.gz')
+                 f'target_{batch_idx}_state_{self.state}.nii.gz')
 
         return y_hat
 
@@ -284,8 +285,8 @@ def train_model(net, data, logger):
             enable_model_summary=True,
             callbacks=cbs)
     with trainer.init_module():
-        model = bSSFPToDWITensorModel(net=unet)
-        model.setup()
+        model = bSSFPToDWITensorModel(net=net)
+        model.change_training_state(TrainingState.PRETRAIN)
 
     logger.watch(model, log='all', log_freq=50)
     # tuner = pl.tuner.Tuner(trainer)
@@ -293,28 +294,33 @@ def train_model(net, data, logger):
     # tuner.lr_find(model, datamodule=data)
 
     start = datetime.datetime.now()
+    start_total = start
     print(f"Pre-training started at {start}")
     trainer.fit(model, datamodule=data)
     end = datetime.datetime.now()
-    print(f"Training finished at {end}.\nTotal time: {end - start}")
+    print(f"Training finished at {end}.\nTook: {end - start}")
     # prof.summary()
     trainer.test(model, datamodule=data)
 
-    model.state = TrainingState.TRANSFER
-    model.setup()
+    model.change_training_state(TrainingState.TRANSFER)
 
-    print(f"Transfer learning started at {datetime.datetime.now()}")
+    start = datetime.datetime.now()
+    print(f"Transfer learning started at {start}")
     trainer.fit(model, datamodule=data)
-    print(f"Transfer learning finished at {datetime.datetime.now()}")
+    end = datetime.datetime.now()
+    print(f"Training finished at {end}.\nTook: {end - start}")
     trainer.test(model, datamodule=data)
 
-    model.state = TrainingState.FINETUNE
-    model.setup()
+    model.change_training_state(TrainingState.FINE_TUNE)
 
-    print(f"Fine tuning started at {datetime.datetime.now()}")
+    start = datetime.datetime.now()
+    print(f"Fine tuning started at {start}")
     trainer.fit(model, datamodule=data)
-    print(f"Fine tuning finished at {datetime.datetime.now()}")
+    end = datetime.datetime.now()
+    print(f"Training finished at {end}.\nTook: {end - start}")
     trainer.test(model, datamodule=data)
+
+    print(f"Total time taken: {end - start_total}")
 
 
 def eval_model(unet, data, checkpoint_path):
@@ -334,7 +340,6 @@ if __name__ == "__main__":
     logger = pl.loggers.WandbLogger(project='dove',
                                     log_model='all',
                                     save_dir='logs')
-    strides = (2, 2, 2, 2)
 
     unet = PreTrainUnet(TrainingState.PRETRAIN)
     print(unet)

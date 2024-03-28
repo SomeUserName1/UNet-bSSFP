@@ -4,6 +4,7 @@ import math
 import time
 
 import monai
+import monai.networks as mainets
 import numpy as np
 import nibabel as nib
 import pytorch_lightning as pl
@@ -17,15 +18,15 @@ class PreTrainUnet(torch.nn.Module):
     def __init__(self, state):
         super().__init__()
         self.state = state
-        self.dwi_tensor_input = monai.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=6, out_channels=24, num_layers=10)
+        self.dwi_tensor_input = mainets.blocks.RegistrationResidualConvBlock(
+                spatial_dims=3, in_channels=6, out_channels=24, num_layers=3)
         # alternatively use RegistrationExtractionBlock
         # s.t. downsampling is not neccessary
-        self.bssfp_input = monai.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=24, out_channels=24, num_layers=10)
+        self.bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
+                spatial_dims=3, in_channels=24, out_channels=24, num_layers=1)
 
         self.strides = (2, 2, 2, 2)
-        self.unet = monai.networks.nets.UNet(
+        self.unet = mainets.nets.UNet(
                 spatial_dims=3,
                 in_channels=24,
                 out_channels=6,
@@ -61,7 +62,7 @@ class PreTrainUnet(torch.nn.Module):
             for layer in self.all_layers:
                 for param in layer.parameters():
                     param.requires_grad = True
-            self.dwitensor_input.requires_grad = False
+            self.dwi_tensor_input.requires_grad = False
         else:
             raise ValueError('Invalid Training State')
 
@@ -91,7 +92,8 @@ class PerceptualL1L2SSIMLoss(torch.nn.Module):
         l2 = self.l2(y_hat, y)
         ssim = self.ssim(y_hat, y)
         perceptual = self.perceptual(y_hat, y)
-        return l1 + l2 + ssim + perceptual
+
+        return {'L1': l1, 'L2': l2, 'SSIM': ssim, 'Perceptual': perceptual}
 
 
 class TrainingState(Enum):
@@ -106,18 +108,6 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                  criterion=PerceptualL1L2SSIMLoss(),
                  lr=1e-3,
                  optimizer_class=torch.optim.AdamW,
-                 val_metrics={'L2':     torch.nn.functional.mse_loss,
-                              'L1':     torch.nn.functional.l1_loss,
-                              'Huber':  torch.nn.functional.huber_loss,
-                              'SSIM':   monai.losses.ssim_loss.SSIMLoss(
-                                  3, data_range=2).__call__,
-                              'MSSSIM': monai.metrics.MultiScaleSSIMMetric(
-                                  3, kernel_size=3, data_range=1.0).__call__,
-                              'Perceptual': monai.losses.PerceptualLoss(
-                                  spatial_dims=3, is_fake_3d=False,
-                                  network_type=(
-                                      "medicalnet_resnet10_23datasets")
-                                  ).__call__},
                  state=TrainingState.FINE_TUNE,
                  batch_size=1):
         super().__init__()
@@ -125,7 +115,6 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.criterion = criterion
         self.lr = lr
         self.optimizer_class = optimizer_class
-        self.val_metrics = val_metrics
         self.state = state
         self.batch_size = batch_size
         self.save_hyperparameters(ignore=['net', 'criterion'])
@@ -142,61 +131,41 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.net.change_state(self.state)
         self.configure_optimizers()
 
-    def unpack_batch(self, batch, train=False):
-        if train:
-            if self.state == TrainingState.PRETRAIN:
-                x = batch['dwi-tensor'][tio.DATA]
-                y = batch['dwi-tensor_orig'][tio.DATA]
-            else:
-                x = batch['bssfp-complex'][tio.DATA]
-                y = batch['dwi-tensor_orig'][tio.DATA]
+    def unpack_batch(self, batch):
+        if self.state == TrainingState.PRETRAIN:
+            x = batch['dwi-tensor'][tio.DATA]
+            y = batch['dwi-tensor_orig'][tio.DATA]
         else:
             x = batch['bssfp-complex'][tio.DATA]
             y = batch['dwi-tensor_orig'][tio.DATA]
 
-        if x.dtype == torch.float64:
-            x = x.float()
-            print(f'Converted x to {batch["bssfp-complex"].filename}')
-        if y.dtype == torch.float64:
-            y = y.float()
-            print(f'Converted x to {batch["dwi-tensor_orig"].filename}')
-
         return x, y
 
-    def training_step(self, batch, batch_idx):
-        x, y = self.unpack_batch(batch, True)
-        y_hat = self.net(x)
+    def compute_loss(self, y_hat, y, step_name):
+        losses = self.criterion(y_hat, y)
+        loss_tot = 0
+        for name, loss in losses.items():
+            self.log(f'{step_name}_loss_{name}', loss, logger=True,
+                     batch_size=self.batch_size)
+            loss_tot += loss
 
-        loss = self.criterion(y_hat, y)
-        self.log('train_loss', loss, on_epoch=True, prog_bar=True,
+        self.log(f'{step_name}_loss_total', loss_tot, prog_bar=True,
                  logger=True, batch_size=self.batch_size)
-        return loss
+        return loss_tot
 
-    def compute_metrics(self, y_hat, y):
-        # y_hat = y_hat.to('cpu')
-        # y = y.to('cpu')
-        return {name: metric(y_hat, y)
-                for name, metric in self.val_metrics.items()}
+    def training_step(self, batch, batch_idx):
+        x, y = self.unpack_batch(batch)
+        y_hat = self.net(x)
+        return self.compute_loss(y_hat, y, 'train')
 
     def validation_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
         y_hat = self.net(x)
-
-        loss = self.criterion(y_hat, y)
-        metrics = self.compute_metrics(y_hat, y)
-
-        self.log('val_loss', loss, on_epoch=True, prog_bar=True, logger=True,
-                 batch_size=self.batch_size)
-        logger.log_metrics(metrics, step=batch_idx)
-
-        return loss
+        return self.compute_loss(y_hat, y, 'val')
 
     def test_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
         y_hat = self.net(x)
-
-        loss = self.criterion(y_hat, y)
-        metrics = self.compute_metrics(y_hat, y)
 
         x_img = np.moveaxis(x.cpu().numpy().squeeze(), 0, -1)
         y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
@@ -209,11 +178,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
                  f'target_{batch_idx}_state_{self.state}.nii.gz')
 
-        self.log('test_loss', loss, on_step=True, on_epoch=True, prog_bar=True,
-                 logger=True, batch_size=self.batch_size)
-        logger.log_metrics(metrics, step=batch_idx)
-
-        return loss
+        return self.compute_loss(y_hat, y, 'test')
 
     def predict_step(self, batch, batch_idx, dataloader_idx=None):
         x, y = self.unpack_batch(batch)
@@ -267,13 +232,16 @@ def check_input_shape(strides):
 
 
 def train_model(net, data, logger):
-    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss',
-                                                   patience=3)
-    swa_cb = pl.callbacks.StochasticWeightAveraging(swa_lrs=1e-2)
+    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss_total',
+                                                   patience=2)
+    swa_cb = pl.callbacks.StochasticWeightAveraging(swa_lrs=1e-2,
+                                                    swa_epoch_start=2. / 3.,
+                                                    annealing_epochs=5,
+                                                    device=None)
     cbs = [early_stopping_cb, swa_cb]
     # prof = pl.profilers.PyTorchProfiler(row_limit=100)
     trainer = pl.Trainer(
-            max_epochs=100,
+            max_epochs=15,
             accelerator='gpu' if torch.cuda.is_available() else None,
             devices=1 if torch.cuda.is_available() else 0,
             precision='32',

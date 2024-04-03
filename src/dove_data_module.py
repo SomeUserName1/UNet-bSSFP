@@ -13,7 +13,7 @@ class DoveDataModule(pl.LightningDataModule):
                  batch_size=1,
                  test_split=0.1,
                  val_split=0.1,
-                 num_workers=24,
+                 num_workers=12,
                  seed=42):
         super().__init__()
         self.name = "DOVE Dataset"
@@ -103,8 +103,6 @@ class DoveDataModule(pl.LightningDataModule):
                 for dwi_fname in dwi_fnames:
                     for bssfp_fname in bssfp_fnames:
                         img_dict['dwi-tensor'] = tio.ScalarImage(dwi_fname)
-                        img_dict['dwi-tensor_orig'] = tio.ScalarImage(
-                                dwi_fname)
                         img_dict['bssfp-complex'] = tio.ScalarImage(
                                 bssfp_fname)
 
@@ -118,49 +116,43 @@ class DoveDataModule(pl.LightningDataModule):
 
     def get_preprocessing_transform(self):
         return tio.Compose([
-            tio.Resample('dwi-tensor'),
             tio.CropOrPad((96, 128, 128), 0)
             ])
 
     def get_augmentation_transform(self):
         return tio.Compose([
-            tio.Compose([
-                tio.RandomBiasField(p=0.16, coefficients=0.25),
-                tio.RandomNoise(p=0.16, std=(0, 0.01)),
-                ], p=1,  keep={'dwi-tensor': 'dwi-tensor_orig'}),
-            tio.RandomAffine(p=0.16)])
+            tio.RandomBiasField(p=0.25, coefficients=0.25),
+            tio.RandomNoise(p=0.25, std=(0, 0.01)),
+            ], p=1,  keep={'dwi-tensor': 'dwi-tensor_orig'})
 
     def setup(self, stage=None):
-        self.transform = tio.Compose([self.get_preprocessing_transform()])  # ,
-        # self.get_augmentation_transform()])
-
+        self.transform = tio.Compose([self.get_preprocessing_transform(),
+                                      self.get_augmentation_transform()])
         self.train_set = tio.SubjectsDataset(self.train_subjects,
                                              transform=self.transform)
-
         self.val_set = tio.SubjectsDataset(self.val_subjects,
                                            transform=self.transform)
-
-        self.test_set = tio.SubjectsDataset(self.test_subjects,
-                                            transform=self.transform)
+        self.test_set = tio.SubjectsDataset(
+                self.test_subjects,
+                transform=self.get_preprocessing_transform())
 
     def train_dataloader(self):
         return DataLoader(self.train_set,
                           shuffle=True,
                           batch_size=self.batch_size,
-                          num_workers=2 * self.num_workers // 3,
+                          num_workers=self.num_workers,
                           persistent_workers=True)
 
     def val_dataloader(self):
         return DataLoader(self.val_set,
                           batch_size=self.batch_size,
-                          num_workers=self.num_workers // 3,
+                          num_workers=self.num_workers // 2,
                           persistent_workers=True)
 
     def test_dataloader(self):
         return DataLoader(self.test_set,
                           batch_size=self.batch_size,
-                          num_workers=self.num_workers,
-                          persistent_workers=True)
+                          num_workers=self.num_workers)
 
     def predict_dataloader(self):
         return self.test_dataloader()

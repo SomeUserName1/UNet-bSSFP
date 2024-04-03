@@ -25,19 +25,17 @@ class PreTrainUnet(torch.nn.Module):
         self.bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=24, out_channels=24, num_layers=1)
 
-        self.strides = (2, 2, 2, 2)
-        self.unet = mainets.nets.UNet(
+        self.unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
                 in_channels=24,
                 out_channels=6,
-                channels=(24, 48, 96, 196, 384),
-                strides=self.strides,
+                features=(24, 48, 96, 196, 384, 24),
                 dropout=0.1,
-                num_res_units=2,
                 )
 
-        self.all_layers = list(self.unet.children()) + [self.dwi_tensor_input,
-                                                        self.bssfp_input]
+        self.all_layers = (list(self.unet.children())
+                           + list(self.dwi_tensor_input.children())
+                           + list(self.bssfp_input.children()))
 
         for i, layer in enumerate(self.all_layers):
             setattr(self, f'{layer.__class__.__name__}_{i}', layer)
@@ -55,14 +53,18 @@ class PreTrainUnet(torch.nn.Module):
             for layer in self.all_layers:
                 for param in layer.parameters():
                     param.requires_grad = False
-            self.bssfp_input.requires_grad = True
+            for layer in self.bssfp_input.children():
+                for param in layer.parameters():
+                    param.requires_grad = True
 
         elif self.state == TrainingState.FINE_TUNE:
             #   Unfreeze all layers and train with a smaller learning rate
             for layer in self.all_layers:
                 for param in layer.parameters():
                     param.requires_grad = True
-            self.dwi_tensor_input.requires_grad = False
+            for layer in self.dwi_tensor_input.children():
+                for param in layer.parameters():
+                    param.requires_grad = False
         else:
             raise ValueError('Invalid Training State')
 
@@ -114,6 +116,10 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.net = net
         self.criterion = criterion
         self.lr = lr
+        self.metric_fns = [monai.metrics.PSNRMetric(1),
+                           monai.metrics.SSIMMetric(3),
+                           monai.metrics.FIDMetric,
+                           ]
         self.optimizer_class = optimizer_class
         self.state = state
         self.batch_size = batch_size
@@ -131,13 +137,14 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.net.change_state(self.state)
         self.configure_optimizers()
 
-    def unpack_batch(self, batch):
+    def unpack_batch(self, batch, test=False):
         if self.state == TrainingState.PRETRAIN:
             x = batch['dwi-tensor'][tio.DATA]
-            y = batch['dwi-tensor_orig'][tio.DATA]
+            y = x if test else batch['dwi-tensor_orig'][tio.DATA]
         else:
             x = batch['bssfp-complex'][tio.DATA]
-            y = batch['dwi-tensor_orig'][tio.DATA]
+            y = (batch['dwi-tensor'][tio.DATA] if test
+                 else batch['dwi-tensor_orig'][tio.DATA])
 
         return x, y
 
@@ -164,7 +171,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         return self.compute_loss(y_hat, y, 'val')
 
     def test_step(self, batch, batch_idx):
-        x, y = self.unpack_batch(batch)
+        x, y = self.unpack_batch(batch, test=True)
         y_hat = self.net(x)
 
         x_img = np.moveaxis(x.cpu().numpy().squeeze(), 0, -1)
@@ -218,7 +225,7 @@ def check_input_shape(strides):
         print(f'np.remainder({size}, {2 * np.prod(strides[1:])}) == 0')
         print(f'{np.remainder(size, 2 * np.prod(strides[1:])) == 0}')
         assert np.remainder(size, 2 * np.prod(strides[1:])) == 0, \
-               ('Input shape doesnt match stride')
+                ('Input shape doesnt match stride')
 
     d = max(bssfp_complex_shape[2:])
     max_size = math.floor((d + strides[0] - 1) / strides[0])
@@ -228,24 +235,24 @@ def check_input_shape(strides):
     print(f'np.remainder({max_size}, {2 * np.prod(strides[1:])}) == 0')
     print(f'{np.remainder(max_size, 2 * np.prod(strides[1:])) == 0}')
     assert np.remainder(max_size, 2 * np.prod(strides[1:])) == 0, \
-           ('Input shape doesnt match stride due to instance norm')
+            ('Input shape doesnt match stride due to instance norm')
 
 
 def train_model(net, data, logger):
     early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss_total',
-                                                   patience=2)
+                                                   patience=10)
     swa_cb = pl.callbacks.StochasticWeightAveraging(swa_lrs=1e-2,
                                                     swa_epoch_start=2. / 3.,
-                                                    annealing_epochs=5,
+                                                    annealing_epochs=3,
                                                     device=None)
     cbs = [early_stopping_cb, swa_cb]
     # prof = pl.profilers.PyTorchProfiler(row_limit=100)
     trainer = pl.Trainer(
-            max_epochs=15,
+            max_epochs=100,
             accelerator='gpu' if torch.cuda.is_available() else None,
             devices=1 if torch.cuda.is_available() else 0,
             precision='32',
-            accumulate_grad_batches=16,
+            accumulate_grad_batches=1,
             logger=logger,
             # detect_anomaly=True,
             # profiler=prof,
@@ -256,7 +263,7 @@ def train_model(net, data, logger):
         model = bSSFPToDWITensorModel(net=net)
         model.change_training_state(TrainingState.PRETRAIN)
 
-    logger.watch(model, log='all', log_freq=50)
+    logger.watch(model, log='all')
     # tuner = pl.tuner.Tuner(trainer)
     # tuner.scale_batch_size(model, datamodule=data, mode='power')
     # tuner.lr_find(model, datamodule=data)

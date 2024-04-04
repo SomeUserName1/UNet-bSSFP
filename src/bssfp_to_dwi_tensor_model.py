@@ -3,11 +3,12 @@ from enum import Enum
 import math
 import time
 
+# from finetuning_scheduler import FinetuningScheduler
 import monai
 import monai.networks as mainets
 import numpy as np
 import nibabel as nib
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import torch
 import torchio as tio
 
@@ -20,8 +21,6 @@ class PreTrainUnet(torch.nn.Module):
         self.state = state
         self.dwi_tensor_input = mainets.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=6, out_channels=24, num_layers=3)
-        # alternatively use RegistrationExtractionBlock
-        # s.t. downsampling is not neccessary
         self.bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=24, out_channels=24, num_layers=1)
 
@@ -29,7 +28,7 @@ class PreTrainUnet(torch.nn.Module):
                 spatial_dims=3,
                 in_channels=24,
                 out_channels=6,
-                features=(24, 48, 96, 196, 384, 24),
+                features=(48, 96, 192, 384, 768, 48),
                 dropout=0.1,
                 )
 
@@ -72,7 +71,6 @@ class PreTrainUnet(torch.nn.Module):
         if self.state == TrainingState.PRETRAIN:
             x = self.dwi_tensor_input(x)
         else:
-            # Add image out dims here if downsampling should be avoided
             x = self.bssfp_input(x)
 
         x = self.unet(x)
@@ -110,7 +108,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                  criterion=PerceptualL1L2SSIMLoss(),
                  lr=1e-3,
                  optimizer_class=torch.optim.AdamW,
-                 state=TrainingState.FINE_TUNE,
+                 state=None,
                  batch_size=1):
         super().__init__()
         self.net = net
@@ -118,7 +116,8 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.lr = lr
         self.metric_fns = [monai.metrics.PSNRMetric(1),
                            monai.metrics.SSIMMetric(3),
-                           monai.metrics.FIDMetric,
+                           monai.metrics.MAEMetric(),
+                           monai.metrics.MSEMetric(),
                            ]
         self.optimizer_class = optimizer_class
         self.state = state
@@ -136,15 +135,18 @@ class bSSFPToDWITensorModel(pl.LightningModule):
 
         self.net.change_state(self.state)
         self.configure_optimizers()
+        self.save_hyperparameters()
 
     def unpack_batch(self, batch, test=False):
         if self.state == TrainingState.PRETRAIN:
             x = batch['dwi-tensor'][tio.DATA]
             y = x if test else batch['dwi-tensor_orig'][tio.DATA]
-        else:
+        elif self.state is not None:
             x = batch['bssfp-complex'][tio.DATA]
             y = (batch['dwi-tensor'][tio.DATA] if test
                  else batch['dwi-tensor_orig'][tio.DATA])
+        else:
+            raise RuntimeError('Model state not set')
 
         return x, y
 
@@ -156,9 +158,15 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                      batch_size=self.batch_size)
             loss_tot += loss
 
-        self.log(f'{step_name}_loss_total', loss_tot, prog_bar=True,
+        self.log(f'{step_name}_loss', loss_tot, prog_bar=True,
                  logger=True, batch_size=self.batch_size)
         return loss_tot
+
+    def compute_metrics(self, y_hat, y, step_name):
+        for metric_fn in self.metric_fns:
+            m = metric_fn(y_hat, y)
+            self.log(f'{step_name}_metric_{metric_fn.__class__.__name__}',
+                     m, logger=True, batch_size=self.batch_size)
 
     def training_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
@@ -168,41 +176,32 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
         y_hat = self.net(x)
+        self.compute_metrics(y_hat, y, 'val')
         return self.compute_loss(y_hat, y, 'val')
 
     def test_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch, test=True)
         y_hat = self.net(x)
-
-        x_img = np.moveaxis(x.cpu().numpy().squeeze(), 0, -1)
-        y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
-        y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
-
-        nib.save(nib.Nifti1Image(x_img, np.eye(4)),
-                 f'input_{batch_idx}_state_{self.state}.nii.gz')
-        nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
-                 f'pred_{batch_idx}_state_{self.state}.nii.gz')
-        nib.save(nib.Nifti1Image(y_img, np.eye(4)),
-                 f'target_{batch_idx}_state_{self.state}.nii.gz')
-
+        self.compute_metrics(y_hat, y, 'test')
+        self.save_predicitions(batch_idx, x, y, y_hat)
         return self.compute_loss(y_hat, y, 'test')
 
     def predict_step(self, batch, batch_idx, dataloader_idx=None):
-        x, y = self.unpack_batch(batch)
+        x, y = self.unpack_batch(batch, test=True)
         y_hat = self.net(x)
+        self.save_predicitions(batch_idx, x, y, y_hat)
+        return y_hat
 
+    def save_predicitions(self, batch_idx, x, y, y_hat):
         x_img = np.moveaxis(x.cpu().numpy().squeeze(), 0, -1)
         y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
         y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
-
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
                  f'input_{batch_idx}_state_{self.state}.nii.gz')
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
                  f'pred_{batch_idx}_state_{self.state}.nii.gz')
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
                  f'target_{batch_idx}_state_{self.state}.nii.gz')
-
-        return y_hat
 
     def configure_optimizers(self):
         return self.optimizer_class(
@@ -224,8 +223,8 @@ def check_input_shape(strides):
               ' == 0)')
         print(f'np.remainder({size}, {2 * np.prod(strides[1:])}) == 0')
         print(f'{np.remainder(size, 2 * np.prod(strides[1:])) == 0}')
-        assert np.remainder(size, 2 * np.prod(strides[1:])) == 0, \
-                ('Input shape doesnt match stride')
+        assert np.remainder(size, 2 * np.prod(strides[1:])) == 0, (
+                ('Input shape doesnt match stride'))
 
     d = max(bssfp_complex_shape[2:])
     max_size = math.floor((d + strides[0] - 1) / strides[0])
@@ -234,48 +233,77 @@ def check_input_shape(strides):
           ' == 0)')
     print(f'np.remainder({max_size}, {2 * np.prod(strides[1:])}) == 0')
     print(f'{np.remainder(max_size, 2 * np.prod(strides[1:])) == 0}')
-    assert np.remainder(max_size, 2 * np.prod(strides[1:])) == 0, \
-            ('Input shape doesnt match stride due to instance norm')
+    assert np.remainder(max_size, 2 * np.prod(strides[1:])) == 0, (
+            ('Input shape doesnt match stride due to instance norm'))
 
 
-def train_model(net, data, logger):
-    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss_total',
-                                                   patience=10)
+def train_model(net,
+                data,
+                ckpt_path=None,
+                pretrain=False,
+                debug=False,
+                infer_params=False):
+    logger = pl.loggers.WandbLogger(project='dove',
+                                    log_model='all',
+                                    save_dir='logs')
+    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss',
+                                                   patience=3)
     swa_cb = pl.callbacks.StochasticWeightAveraging(swa_lrs=1e-2,
-                                                    swa_epoch_start=2. / 3.,
-                                                    annealing_epochs=3,
                                                     device=None)
-    cbs = [early_stopping_cb, swa_cb]
-    # prof = pl.profilers.PyTorchProfiler(row_limit=100)
-    trainer = pl.Trainer(
-            max_epochs=100,
-            accelerator='gpu' if torch.cuda.is_available() else None,
-            devices=1 if torch.cuda.is_available() else 0,
-            precision='32',
-            accumulate_grad_batches=1,
-            logger=logger,
-            # detect_anomaly=True,
-            # profiler=prof,
-            enable_checkpointing=True,
-            enable_model_summary=True,
-            callbacks=cbs)
-    with trainer.init_module():
-        model = bSSFPToDWITensorModel(net=net)
-        model.change_training_state(TrainingState.PRETRAIN)
+    checkpoint_callback = pl.callbacks.ModelCheckpoint(
+            save_top_k=10,
+            monitor="val_loss",
+            mode="min",
+            filename="{model.state}-{epoch:02d}-{val_loss:.2f}",
+            )
+    cbs = [early_stopping_cb, swa_cb, checkpoint_callback]
+    trainer_args = {'max_epochs': 100,
+                    'accelerator': 'gpu',
+                    'devices': 1,
+                    'precision': '32',
+                    'accumulate_grad_batches': 4,
+                    'logger': logger,
+                    'enable_checkpointing': True,
+                    'enable_model_summary': True,
+                    'callbacks': cbs}
+    if debug:
+        prof = pl.profilers.PyTorchProfiler(row_limit=100)
+        trainer_args['detect_anomaly'] = True
+        trainer_args['profiler'] = prof
+
+    trainer = pl.Trainer(**trainer_args)
+    if ckpt_path:
+        model = bSSFPToDWITensorModel.load_from_checkpoint(ckpt_path, net=net)
+    else:
+        with trainer.init_module():
+            model = bSSFPToDWITensorModel(net=net)
 
     logger.watch(model, log='all')
-    # tuner = pl.tuner.Tuner(trainer)
-    # tuner.scale_batch_size(model, datamodule=data, mode='power')
-    # tuner.lr_find(model, datamodule=data)
+    model.change_training_state(TrainingState.PRETRAIN)
+
+    if infer_params:
+        tuner = pl.tuner.Tuner(trainer)
+        tuner.scale_batch_size(model, datamodule=data, mode='power')
+        tuner.lr_find(model, datamodule=data)
 
     start = datetime.datetime.now()
     start_total = start
-    print(f"Pre-training started at {start}")
-    trainer.fit(model, datamodule=data)
-    end = datetime.datetime.now()
-    print(f"Training finished at {end}.\nTook: {end - start}")
-    # prof.summary()
-    trainer.test(model, datamodule=data)
+
+    if pretrain:
+        print(f"Pre-training started at {start}")
+        trainer.fit(model, datamodule=data)
+        end = datetime.datetime.now()
+        print(f"Training finished at {end}.\nTook: {end - start}")
+        if debug:
+            prof.plot()
+            prof.summary()
+        trainer.test(model, datamodule=data)
+
+        logger = pl.loggers.WandbLogger(project='dove',
+                                        log_model='all',
+                                        save_dir='logs')
+        trainer_args['logger'] = logger
+        trainer = pl.Trainer(**trainer_args)
 
     model.change_training_state(TrainingState.TRANSFER)
 
@@ -284,8 +312,17 @@ def train_model(net, data, logger):
     trainer.fit(model, datamodule=data)
     end = datetime.datetime.now()
     print(f"Training finished at {end}.\nTook: {end - start}")
+    if debug:
+        prof.plot()
+        prof.summary()
     trainer.test(model, datamodule=data)
 
+#    trainer_args['callbacks'] = [FinetuningScheduler()]
+    logger = pl.loggers.WandbLogger(project='dove',
+                                    log_model='all',
+                                    save_dir='logs')
+    trainer_args['logger'] = logger
+    trainer = pl.Trainer(**trainer_args)
     model.change_training_state(TrainingState.FINE_TUNE)
 
     start = datetime.datetime.now()
@@ -293,6 +330,9 @@ def train_model(net, data, logger):
     trainer.fit(model, datamodule=data)
     end = datetime.datetime.now()
     print(f"Training finished at {end}.\nTook: {end - start}")
+    if debug:
+        prof.plot()
+        prof.summary()
     trainer.test(model, datamodule=data)
 
     print(f"Total time taken: {end - start_total}")
@@ -312,14 +352,14 @@ if __name__ == "__main__":
     print(f'Last run on {time.ctime()}')
 
     data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
-    logger = pl.loggers.WandbLogger(project='dove',
-                                    log_model='all',
-                                    save_dir='logs')
 
     unet = PreTrainUnet(TrainingState.PRETRAIN)
     print(unet)
     # check_input_shape(strides)
 
-    train_model(unet, data, logger)
+    ckpt = ('/home/someusername/workspace/UNet-bSSFP/logs/dove/zizmi5l3/'
+            'checkpoints/epoch=34-step=7630.ckpt')
+
+    train_model(unet, data, pretrain=True)
     # eval_model(unet, data,
-    # '/home/someusername/workspace/UNet-bSSFP/logs/dove/j12ukwvo/checkpoints/epoch=14-step=3315.ckpt')
+    #           )

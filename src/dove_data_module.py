@@ -1,7 +1,6 @@
 from bids import BIDSLayout
 import matplotlib.pyplot as plt
-import numpy as np
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 from torch import Generator
 from torch.utils.data import DataLoader, random_split
 import torchio as tio
@@ -13,7 +12,7 @@ class DoveDataModule(pl.LightningDataModule):
                  batch_size=1,
                  test_split=0.1,
                  val_split=0.1,
-                 num_workers=12,
+                 num_workers=8,
                  seed=42):
         super().__init__()
         self.name = "DOVE Dataset"
@@ -54,11 +53,6 @@ class DoveDataModule(pl.LightningDataModule):
                                        + len(self.test_subjects)))
         print("="*30)
 
-    def get_max_shape(self, subjects):
-        ds = tio.SubjectsDataset(subjects)
-        shapes = np.array([s.spatial_shape for s in ds])
-        return shapes.max(axis=0)
-
     def prepare_data(self):
         self.bids_layout = BIDSLayout(
                 self.data_dir,
@@ -96,7 +90,7 @@ class DoveDataModule(pl.LightningDataModule):
 
                     if suffix == 'dwi' and desc == 'normtensor':
                         dwi_fnames.append(fname)
-                    elif suffix == 'bssfp' and desc == 'normflatbet':
+                    elif suffix == 'bssfp' and desc == 'normflatbet' and 'iso' not in fname:
                         bssfp_fnames.append(fname)
 
                 img_dict = {}

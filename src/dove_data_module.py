@@ -78,6 +78,11 @@ class DoveDataModule(pl.LightningDataModule):
                                               return_type="filename")
                 bssfp_fnames = []
                 dwi_fnames = []
+                t1w_fname = None
+                asym_index_fnames = []
+                t1_fnames = []
+                t2_fnames = []
+                conf_modes_fnames = []
                 for fname in fnames:
                     ent = self.bids_layout.parse_file_entities(fname)
                     suffix = ent["suffix"]
@@ -90,15 +95,30 @@ class DoveDataModule(pl.LightningDataModule):
 
                     if suffix == 'dwi' and desc == 'normtensor':
                         dwi_fnames.append(fname)
-                    elif suffix == 'bssfp' and desc == 'normflatbet' and 'iso' not in fname:
+                    elif suffix == 'bssfp' and desc == 'normflatbet':
                         bssfp_fnames.append(fname)
+                    elif suffix == 'T1w':
+                        t1w_fname = fname
+                    elif 'asymindex' in fname:
+                        asym_index_fnames.append(fname)
+                    elif 'part-fn' in fname:
+                        conf_modes_fnames.append(fname)
+                    # elif 'part-t1' in fname:
+                    #     t1_fnames.append(fname)
+                    # elif 'part-t2' in fname:
+                    #     t2_fnames.append(fname)
 
                 img_dict = {}
+                mod_lists = [bssfp_fnames, asym_index_fnames, conf_modes_fnames]
+                # t1_fnames,t2_fnames, conf_modes_fnames]
+                mod_strings = ['bssfp', 'asym-index',  # 't1', 't2',
+                               'conf-modes']
                 for dwi_fname in dwi_fnames:
-                    for bssfp_fname in bssfp_fnames:
+                    for i in range(len(bssfp_fnames)):
                         img_dict['dwi-tensor'] = tio.ScalarImage(dwi_fname)
-                        img_dict['bssfp-complex'] = tio.ScalarImage(
-                                bssfp_fname)
+                        img_dict['t1w'] = tio.ScalarImage(t1w_fname)
+                        for m_str, mod_list in zip(mod_strings, mod_lists):
+                            img_dict[m_str] = tio.ScalarImage(mod_list[i])
 
                         l_subs.append(tio.Subject(img_dict))
 
@@ -110,6 +130,8 @@ class DoveDataModule(pl.LightningDataModule):
 
     def get_preprocessing_transform(self):
         return tio.Compose([
+            tio.RescaleIntensity((0, 1), include=['t1w', 'asym-index', 'conf-modes']),
+            tio.Resample('dwi-tensor', include=['t1w', 'asym-index', 'conf-modes']),
             tio.CropOrPad((96, 128, 128), 0)
             ])
 
@@ -120,6 +142,7 @@ class DoveDataModule(pl.LightningDataModule):
             ], p=1,  keep={'dwi-tensor': 'dwi-tensor_orig'})
 
     def setup(self, stage=None):
+        print(self.get_preprocessing_transform()[-1].include)
         self.transform = tio.Compose([self.get_preprocessing_transform(),
                                       self.get_augmentation_transform()])
         self.train_set = tio.SubjectsDataset(self.train_subjects,

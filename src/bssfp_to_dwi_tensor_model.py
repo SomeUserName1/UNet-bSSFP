@@ -34,13 +34,13 @@ class PreTrainUnet(torch.nn.Module):
                 spatial_dims=3, in_channels=2, out_channels=24, num_layers=3)
         conf_modes_input = mainets.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=3, out_channels=24, num_layers=3)
-        self.input_blocks = {'dwi_tensor': dwi_tensor_input,
+        self.input_blocks = {'dwi-tensor': dwi_tensor_input,
                              'bssfp': bssfp_input,
                              't1w': t1w_input,
-                             'asym_index': asym_index_input,
+                             'asym-index': asym_index_input,
                              't1': t1_input,
                              't2': t2_input,
-                             'conf_modes': conf_modes_input}
+                             'conf-modes': conf_modes_input}
 
         self.unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
@@ -220,11 +220,14 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
         y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
-                 f'{step}_input_{batch_idx}_state_{self.state}.nii.gz')
+                 (f'{step}_input_{batch_idx}_state_{self.state}_'
+                 f'mod_{self.input_modality}.nii.gz'))
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
-                 f'{step}_pred_{batch_idx}_state_{self.state}.nii.gz')
+                 (f'{step}_pred_{batch_idx}_state_{self.state}'
+                 f'_mod_{self.input_modality}.nii.gz'))
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
-                 f'{step}_target_{batch_idx}_state_{self.state}.nii.gz')
+                 (f'{step}_target_{batch_idx}_state_{self.state}'
+                 f'_mod_{self.input_modality}.nii.gz'))
 
     def configure_optimizers(self):
         return self.optimizer_class(
@@ -392,10 +395,12 @@ if __name__ == "__main__":
     print(unet)
     # check_input_shape(strides)
 
-    ckpt = train_model(unet, data, stages=['pretrain'])
+    # ckpt = train_model(unet, data, stages=['pretrain'])
+    ckpt = ('/home/someusername/workspace/UNet-bSSFP/logs/dove/1uklgjlj/'
+            'checkpoints/model.state=0-epoch=76-val_loss=0.01.ckpt')
 
-    for modality in ['dwi_tensor', 'bssfp', 't1w', 'asym_index',  # 't1', 't2',
-                     'conf_modes']:
+    for modality in ['dwi-tensor', 'bssfp', 't1w', 'asym-index', 't1', 't2',
+                     'conf-modes']:
         train_model(unet, data, ckpt, modality,
                     stages=['transfer', 'finetune'])
 

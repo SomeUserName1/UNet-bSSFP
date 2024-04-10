@@ -1,6 +1,9 @@
 from bids import BIDSLayout
-import matplotlib.pyplot as plt
 import lightning.pytorch as pl
+import matplotlib.pyplot as plt
+import nibabel as nib
+import os
+import numpy as np
 from torch import Generator
 from torch.utils.data import DataLoader, random_split
 import torchio as tio
@@ -103,15 +106,15 @@ class DoveDataModule(pl.LightningDataModule):
                         asym_index_fnames.append(fname)
                     elif 'part-fn' in fname:
                         conf_modes_fnames.append(fname)
-                    # elif 'part-t1' in fname:
-                    #     t1_fnames.append(fname)
-                    # elif 'part-t2' in fname:
-                    #     t2_fnames.append(fname)
+                    elif 'part-t1' in fname:
+                        t1_fnames.append(fname)
+                    elif 'part-t2' in fname:
+                        t2_fnames.append(fname)
 
                 img_dict = {}
-                mod_lists = [bssfp_fnames, asym_index_fnames, conf_modes_fnames]
-                # t1_fnames,t2_fnames, conf_modes_fnames]
-                mod_strings = ['bssfp', 'asym-index',  # 't1', 't2',
+                mod_lists = [bssfp_fnames, asym_index_fnames, t1_fnames,
+                             t2_fnames, conf_modes_fnames]
+                mod_strings = ['bssfp', 'asym-index', 't1', 't2',
                                'conf-modes']
                 for dwi_fname in dwi_fnames:
                     for i in range(len(bssfp_fnames)):
@@ -130,8 +133,11 @@ class DoveDataModule(pl.LightningDataModule):
 
     def get_preprocessing_transform(self):
         return tio.Compose([
-            tio.RescaleIntensity((0, 1), include=['t1w', 'asym-index', 'conf-modes']),
-            tio.Resample('dwi-tensor', include=['t1w', 'asym-index', 'conf-modes']),
+            tio.Lambda(np.abs, include=['conf-modes']),
+            tio.RescaleIntensity((0, 1), include=['t1w', 'asym-index', 't1',
+                                                  't2', 'conf-modes']),
+            tio.Resample('dwi-tensor', include=['t1w', 'asym-index', 't1',
+                                                't2', 'conf-modes']),
             tio.CropOrPad((96, 128, 128), 0)
             ])
 
@@ -173,6 +179,37 @@ class DoveDataModule(pl.LightningDataModule):
 
     def predict_dataloader(self):
         return self.test_dataloader()
+
+
+def invert_dwi_tensor_norm(directory: str, params: str):
+    mat = np.loadtxt(params)
+    refl_min, refl_max, non_refl_min, non_refl_max = mat
+    refl_ch = [0, 3, 5]
+    non_refl_ch = [1, 2, 4]
+
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if 'pred_' in file:
+                path = os.path.join(root, file)
+                img = nib.load(path)
+                data = img.get_fdata()
+
+                for i in range(data.shape[-1]):
+                    if i in refl_ch:
+                        min_v = refl_min
+                        max_v = refl_max
+                    elif i in non_refl_ch:
+                        min_v = non_refl_min
+                        max_v = non_refl_max
+
+                    data[..., i] = (data[..., i] * (max_v - min_v))
+                    data[..., i][data[..., i] > 0] += min_v
+                    data[..., i][data[..., i] <= 0] = 0
+
+                img = nib.Nifti1Image(data, img.affine, img.header)
+                nib.save(img, os.path.join(os.path.dirname(path),
+                                           os.path.basename(path))
+                         + '_denorm.nii.gz')
 
 
 def print_data_samples():

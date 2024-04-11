@@ -1,9 +1,115 @@
 [General]
-kile_livePreviewEnabled=false
+kile_livePreviewEnabled=true
 kile_livePreviewStatusUserSpecified=false
 kile_livePreviewTool=LivePreview-PDFLaTeX
-lastDocument=
+lastDocument=00-thesis.tex
+
+[item:00-thesis.tex]
+open=true
+order=0
+
+[item:01-abstract.tex]
+open=false
+order=-1
+
+[item:02-introduction.tex]
+open=false
+order=-1
+
+[item:03-methods.tex]
+open=true
+order=1
+
+[item:04-results.tex]
+open=true
+order=2
+
+[item:05-discussion.tex]
+open=true
+order=3
+
+[item:06-appendix.tex]
+open=true
+order=5
 
 [item:neuromasterthesis.kilepr]
 open=false
 order=-1
+
+[item:resources.bib]
+open=true
+order=4
+
+[item:themeKonstanz.sty]
+open=false
+order=-1
+
+[view-settings,view=0,item:00-thesis.tex]
+CursorColumn=102
+CursorLine=11
+Dynamic Word Wrap=false
+Force RTL Direction=false
+JumpList=
+ScrollLine=0
+TextFolding={"checksum":"c109784ef9889d65eaa3eae0d812f3a910216810","ranges":[]}
+ViMarks=
+
+[view-settings,view=0,item:03-methods.tex]
+CursorColumn=17
+CursorLine=53
+Dynamic Word Wrap=false
+Force RTL Direction=false
+JumpList=
+ScrollLine=0
+TextFolding={"checksum":"d28b356b96a6cfc5557d9db4b0dc73b159f3bc18","ranges":[]}
+ViMarks=
+
+[view-settings,view=0,item:04-results.tex]
+CursorColumn=0
+CursorLine=20
+Dynamic Word Wrap=false
+Force RTL Direction=false
+JumpList=
+ScrollLine=0
+TextFolding={"checksum":"409fb557521be5f8ba12417d4305dd56b654ccf7","ranges":[]}
+ViMarks=
+
+[view-settings,view=0,item:05-discussion.tex]
+CursorColumn=6
+CursorLine=14
+Dynamic Word Wrap=false
+Force RTL Direction=false
+JumpList=
+ScrollLine=0
+TextFolding={"checksum":"c2a61604808cadf1e8b6ec203bb258d6853d17a8","ranges":[]}
+ViMarks=
+
+[view-settings,view=0,item:06-appendix.tex]
+CursorColumn=0
+CursorLine=20
+Dynamic Word Wrap=false
+Force RTL Direction=false
+JumpList=
+ScrollLine=0
+TextFolding={"checksum":"e330af6e55cc26e6ccf28711184cf5f7b0e9ba35","ranges":[]}
+ViMarks=
+
+[view-settings,view=0,item:resources.bib]
+CursorColumn=0
+CursorLine=0
+Dynamic Word Wrap=false
+Force RTL Direction=false
+JumpList=
+ScrollLine=600
+TextFolding={"checksum":"76039e731dd4bdcd6b682df52523243e821f64d3","ranges":[]}
+ViMarks=
+
+[view-settings,view=0,item:themeKonstanz.sty]
+CursorColumn=40
+CursorLine=100
+Dynamic Word Wrap=false
+Force RTL Direction=false
+JumpList=
+ScrollLine=41
+TextFolding={"checksum":"417be473335641ecf3bc8e874722a801f854a360","ranges":[]}
+ViMarks=

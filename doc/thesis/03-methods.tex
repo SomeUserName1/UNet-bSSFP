@@ -1,0 +1,74 @@
+\chapter{Related Work}
+\section{Brain Imaging DataStructure}
+what why what it looks like
+
+\section{MRI Processing/Registration Tools}
+FSL, SPM, ANTS, FreeSurfer
+
+\section{Quantitative MRI using bSSFP}
+Some bla bla about qMRI development in the past. \\
+In depth description of sequence, profile, banding
+\subsection{Configuration Modes \& Asymmetry Maps}
+karla miller paper
+
+\subsection{T1 and T2 Map Estimation using MIRACLE}
+TESS \& MIRACLE papers
+
+\section{Deep Learning in Medical Imaging and MRI}
+UNet, challenges, impact of transformers, ...
+
+
+\chapter{Methods}\label{\positionnumber} 
+\section{The Dove Dataset}
+Some stats on size 
+\subsection{Participants \& Study Design}
+briefly describe participants, task, scanning times (of the day)
+
+\subsection{Recorded Sequences}
+cf gais doc.
+Details on acquisitions
+
+\section{Processing Pipeline}
+requirements
+\subsection{bSSFP}
+\subsection{Phase Correction}
+Why, how
+
+\subsubsection{Motion Correction \& Co-Registration}
+\paragraph{Initial FSL Pipeline} motion correction to first. Direct, inverse to t1w, B1, T1w rescaling. Difficulties with artefacts, special requirements due to quanti, auto scaling of registered image
+
+\paragraph{SPM Pipeline} exact steps that spm executes. difficulties with docs, lack of API
+
+
+\subsection{DWI}
+TODO ask svenja what was done
+
+
+\section{Machine Learning-based DWI Tensor estimation from bSSFP data}
+MONAI, torchio, pytorch lightning. 
+
+\subsection{Baseline}
+UNet + some extra layers to fit output dim. 
+
+\subsection{Augmentation}
+
+\subsection{PreTraining}
+Sparse data, small batch sizes. => Augmentation not enough => Pre training
+\paragraph{AutoEncoder PreTraining}
+As auto encoder. train autoenc for bssfp only 
+
+\paragraph{ExtraHead Transfer and Fine tuning}
+freeze autoenc, add head. transfer then unfreeze all and fine tune
+Unet + extra head
+
+\subsection{Complex vs. non-complex}
+input and weights 
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+\documentclass[11pt, rgb, bibtotoc, twoside]{scrreprt}
+
+\usepackage{themeKonstanz} 
+
+\usepackage{lipsum}
+
+\format{a4}
+
+% Thesis information  %
+\year{2024}
+\author{Fabian Klopfer, M.Sc.}
+\title{Extraction of Quantitative Relaxation and Diffusion Metrics from balanced Steady-State Free Precession Magnetic Resonance Imaging}
+%Multi-dimensional Feature Extraction of Quantitative Relaxation and Diffusion Brain Magnetic Resonance Imaging
+\uni{University of Tübingen}
+\unisection{Faculty of Science \\ Faculty of Medicine}
+\department{Graduate School of Neuroscience}
+\institute{Department for High-field Magnetic Resonance \\ Max Planck Institute for Biological Cybernetics}
+\supervisorOne{Dr. Rahel Heule}
+\supervisorTwo{Prof. Dr. Klaus Scheffler}
+
+\headFoot{14}
+ 
+\bibliography{resources} 
+
+\begin{document}
+\thesistitlepage[language=english]
+
+\include{01-abstract.tex}
+
+\newgeometry{left=2.5cm, right=2.5cm, bottom=2cm, top=2.5cm, headheight=14pt, headsep=0.8cm, footskip=30pt}
+\tableofcontents
+
+
+\restoregeometry
+\rmfamily 
+\normalsize
+
+\include{02-introduction}
+\cleardoublepage
+\include{03-methods}
+\cleardoublepage
+\include{04-results}
+\cleardoublepage
+\include{05-discussion}
+\cleardoublepage
+\include{06-appendix}
+\printbibliography
+
+
+
+
+   \begin{figure}[h]
+      \begin{center}
+         %[keepaspectratio, width=0.45\textwidth]{img/0.jpg}
+      \end{center}
+      \caption{
+         \textbf{A. \& B.} SNc and projections to the dorsal striatum in healthy subjects and patients with PD. 
+         In the healthy subject, the SNc is still highly pigmented due to the melanin-containing dopamine-producing cells being intact.
+         The SNc projects to the striatum and delivers normal amounts of DA into the basal ganglia (BG) circuit.
+         If the dopamine-producing neurons undergo apoptosis, the pigmentation decreases and so does the amount of dopamine adimnistered to the striatum. 
+         \textbf{C.} Photomicrographs of Lewy bodies.
+      }
+      \label{broad-mech}
+   \end{figure}
+
+
+\section{Discussion}
+
+
+
+
+\end{document}

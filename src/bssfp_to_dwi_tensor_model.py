@@ -215,19 +215,30 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.save_predicitions(batch_idx, x, y, y_hat, 'predict')
         return y_hat
 
-    def save_predicitions(self, batch_idx, x, y, y_hat, step):
+    def save_predicitions(self, batch, batch_idx, x, y, y_hat, step):
+        input_path = batch[self.input_modality][tio.PATH]
+        i_sub_id = input_path.split('/')[-4]
+        i_ses_id = input_path.split('/')[-3]
+        target_path = batch['dwi-tensor'][tio.PATH]
+        t_sub_id = target_path.split('/')[-4]
+        t_ses_id = target_path.split('/')[-3]
+
         x_img = np.moveaxis(x.cpu().numpy().squeeze(), 0, -1)
         y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
         y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
+
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
-                 (f'{step}_input_{batch_idx}_state_{self.state}_'
-                 f'mod_{self.input_modality}.nii.gz'))
+                 (f'{step}_input-{batch_idx}_state-{self.state}_'
+                  f'mod-{self.input_modality}_sub-{i_sub_id}_'
+                  f'ses-{i_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
-                 (f'{step}_pred_{batch_idx}_state_{self.state}'
-                 f'_mod_{self.input_modality}.nii.gz'))
+                 (f'{step}_pred-{batch_idx}_state-{self.state}'
+                 f'_mod-{self.input_modality}_sub-{t_sub_id}_'
+                  f'ses-{t_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
-                 (f'{step}_target_{batch_idx}_state_{self.state}'
-                 f'_mod_{self.input_modality}.nii.gz'))
+                 (f'{step}_target-{batch_idx}_state-{self.state}'
+                 f'_mod-{self.input_modality}_sub-{t_sub_id}_'
+                  f'ses-{t_ses_id}.nii.gz'))
 
     def configure_optimizers(self):
         return self.optimizer_class(

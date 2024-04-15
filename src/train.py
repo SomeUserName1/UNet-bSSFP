@@ -1,5 +1,4 @@
 import datetime
-import os
 import time
 
 from finetuning_scheduler import FinetuningScheduler
@@ -125,12 +124,11 @@ if __name__ == "__main__":
     print(unet)
     # check_input_shape(strides)
 
-    # ckpt = train_model(unet, data, stages=['pretrain'])
-    ckpt = ('/home/someusername/workspace/UNet-bSSFP/logs/dove/1uklgjlj/'
-            'checkpoints/model.state=0-epoch=76-val_loss=0.01.ckpt')
+    ckpt = train_model(unet, data, stages=['pretrain'])
+    # ckpt = ('/home/someusername/workspace/UNet-bSSFP/logs/dove/1uklgjlj/'
+    #         'checkpoints/model.state=0-epoch=76-val_loss=0.01.ckpt')
     # generate_default_finetuning_schedule(unet, data, 'dwi-tensor')
 
-    for modality in ['dwi-tensor', 'bssfp', 't1w', 'asym-index', 't1', 't2',
-                     'conf-modes']:
+    for modality in ['dwi-tensor', 'bssfp', 't1w']:
         train_model(unet, data, ckpt, modality, stages=['finetune'])
 

@@ -1,0 +1,79 @@
+0:
+  params:
+  - net.blocks.conf-modes.norms.0.bias
+  - net.blocks.conf-modes.norms.0.weight
+  - net.blocks.conf-modes.layers.0.conv.weight
+  - net.blocks.t2.norms.0.bias
+  - net.blocks.t2.norms.0.weight
+  - net.blocks.t2.layers.0.conv.weight
+  - net.blocks.t1.norms.0.bias
+  - net.blocks.t1.norms.0.weight
+  - net.blocks.t1.layers.0.conv.weight
+  - net.blocks.asym-index.norms.0.bias
+  - net.blocks.asym-index.norms.0.weight
+  - net.blocks.asym-index.layers.0.conv.weight
+  - net.blocks.t1w.norms.0.bias
+  - net.blocks.t1w.norms.0.weight
+  - net.blocks.t1w.layers.0.conv.weight
+  - net.blocks.bssfp.norms.0.bias
+  - net.blocks.bssfp.norms.0.weight
+  - net.blocks.bssfp.layers.0.conv.weight
+  - net.blocks.dwi-tensor.norms.0.bias
+  - net.blocks.dwi-tensor.norms.0.weight
+  - net.blocks.dwi-tensor.layers.0.conv.weight
+  lr: 1e-3
+  max_transition_epoch: 20
+1:
+  params:
+  - net.blocks.unet.conv_0.*
+  lr: 8e-4
+  max_transition_epoch: 10
+2:
+  params:
+  - net.blocks.unet.down_1.*
+  lr: 6e-4
+  max_transition_epoch: 8
+3:
+  params:
+  - net.blocks.unet.down_2.*
+  lr: 4e-4
+  max_transition_epoch: 6
+4:
+  params:
+  - net.blocks.unet.down_3.*
+  lr: 2e-4
+  max_transition_epoch: 4
+5:
+  params:
+  - net.blocks.unet.down_4.*
+  lr: 1e-4
+    max_transition_epoch: 2
+6:
+  params:
+  - net.blocks.unet.upcat_4.*
+  lr: 8e-5
+  max_transition_epoch: 2
+7:
+  params:
+  - net.blocks.unet.upcat_3.*
+  lr: 6e-5
+  max_transition_epoch: 2
+8:
+  params:
+  - net.blocks.unet.upcat_2.*
+  lr: 4e-5
+  max_transition_epoch: 2
+9:
+  params:
+  - net.blocks.unet.upcat_1.*
+  lr: 2e-5
+  max_transition_epoch: 2
+10:
+  params:
+  - net.blocks.unet.final_conv.*
+  lr: 1e-5
+  max_transition_epoch: 2
+11:
+  params:
+  - net.blocks.*
+  lr: 1e-5

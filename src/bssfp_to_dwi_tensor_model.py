@@ -1,9 +1,6 @@
-import datetime
 from enum import Enum
 import math
-import time
 
-from finetuning_scheduler import FinetuningScheduler
 import monai
 import monai.networks as mainets
 import numpy as np
@@ -11,96 +8,85 @@ import nibabel as nib
 import lightning.pytorch as pl
 import torch
 import torchio as tio
-import wandb
 
 from dove_data_module import DoveDataModule
 
 
-class PreTrainUnet(torch.nn.Module):
+class MultiInputUNet(torch.nn.Module):
     def __init__(self, state):
         super().__init__()
         self.state = state
         dwi_tensor_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=6, out_channels=24, num_layers=3)
+                spatial_dims=3, in_channels=6, out_channels=24, num_layers=1)
         bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=24, out_channels=24, num_layers=3)
+                spatial_dims=3, in_channels=24, out_channels=24, num_layers=1)
         t1w_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=1, out_channels=24, num_layers=3)
+                spatial_dims=3, in_channels=1, out_channels=24, num_layers=1)
         asym_index_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=1, out_channels=24, num_layers=3)
+                spatial_dims=3, in_channels=1, out_channels=24, num_layers=1)
         t1_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=1, out_channels=24, num_layers=3)
+                spatial_dims=3, in_channels=1, out_channels=24, num_layers=1)
         t2_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=2, out_channels=24, num_layers=3)
+                spatial_dims=3, in_channels=2, out_channels=24, num_layers=1)
         conf_modes_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=3, out_channels=24, num_layers=3)
-        self.input_blocks = {'dwi-tensor': dwi_tensor_input,
-                             'bssfp': bssfp_input,
-                             't1w': t1w_input,
-                             'asym-index': asym_index_input,
-                             't1': t1_input,
-                             't2': t2_input,
-                             'conf-modes': conf_modes_input}
-
-        self.unet = mainets.nets.BasicUNet(
+                spatial_dims=3, in_channels=3, out_channels=24, num_layers=1)
+        unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
                 in_channels=24,
                 out_channels=6,
                 features=(48, 96, 192, 384, 768, 48),
                 dropout=0.1,
                 )
-
-        self.all_layers = []
-        for _, block in self.input_blocks.items():
-            self.all_layers.extend(block.children())
-
-        self.all_layers.extend(self.unet.children())
-
-        for i, layer in enumerate(self.all_layers):
-            setattr(self, f'{layer.__class__.__name__}_{i}', layer)
+        self.blocks = torch.nn.ModuleDict(
+                {'dwi-tensor': dwi_tensor_input,
+                 'bssfp': bssfp_input,
+                 't1w': t1w_input,
+                 'asym-index': asym_index_input,
+                 't1': t1_input,
+                 't2': t2_input,
+                 'conf-modes': conf_modes_input,
+                 'unet': unet})
 
     def change_state(self, state, input_modality):
         self.state = state
         self.input_modality = input_modality
 
-        if self.state == TrainingState.PRETRAIN:
-            # Make model autoencoder with all layers trainable
-            for layer in self.all_layers:
-                for param in layer.parameters():
-                    param.requires_grad = True
-
-        elif self.state == TrainingState.TRANSFER:
-            # Freeze all layers but the new head
-            for layer in self.all_layers:
-                for param in layer.parameters():
-                    param.requires_grad = False
-            for layer in self.input_blocks[input_modality].children():
-                for param in layer.parameters():
-                    param.requires_grad = True
-
-        elif self.state == TrainingState.FINE_TUNE:
-            #   Unfreeze all layers
-            for layer in self.all_layers:
-                for param in layer.parameters():
-                    param.requires_grad = True
-            for mods in self.input_blocks.values():
-                for layer in mods.children():
-                    for param in layer.parameters():
-                        param.requires_grad = False
-            for layer in self.input_blocks[input_modality].children():
-                for param in layer.parameters():
-                    param.requires_grad = True
-        else:
-            raise ValueError('Invalid Training State')
-
     def forward(self, x):
         if self.state == TrainingState.PRETRAIN:
-            x = self.input_blocks['dwi_tensor'](x)
+            x = self.blocks['dwi_tensor'](x)
         else:
-            x = self.input_blocks[self.input_modality](x)
+            x = self.blocks[self.input_modality](x)
 
-        x = self.unet(x)
+        x = self.blocks['unet'](x)
         return x
+
+
+def check_input_shape(strides):
+    data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
+    data.prepare_data()
+    data.setup()
+    batch = next(iter(data.train_dataloader()))
+    bssfp_complex_shape = batch['bssfp-complex'][tio.DATA].shape
+
+    for v in bssfp_complex_shape[2:]:
+        size = math.floor((v + strides[0] - 1) / strides[0])
+        print(f'Size for {v} is {size} with strides {strides}')
+        print('Size must match np.remainder(size, 2 * np.prod(strides[1:])'
+              ' == 0)')
+        print(f'np.remainder({size}, {2 * np.prod(strides[1:])}) == 0')
+        print(f'{np.remainder(size, 2 * np.prod(strides[1:])) == 0}')
+        assert np.remainder(size, 2 * np.prod(strides[1:])) == 0, (
+                ('Input shape doesnt match stride'))
+
+    d = max(bssfp_complex_shape[2:])
+    max_size = math.floor((d + strides[0] - 1) / strides[0])
+    print(f'Max size for {d} is {max_size} with strides {strides}')
+    print('Max size must match np.remainder(max_size, 2 * np.prod(strides[1:])'
+          ' == 0)')
+    print(f'np.remainder({max_size}, {2 * np.prod(strides[1:])}) == 0')
+    print(f'{np.remainder(max_size, 2 * np.prod(strides[1:])) == 0}')
+    assert np.remainder(max_size, 2 * np.prod(strides[1:])) == 0, (
+            ('Input shape doesnt match stride due to instance norm'))
 
 
 class PerceptualL1L2SSIMLoss(torch.nn.Module):
@@ -124,8 +110,7 @@ class PerceptualL1L2SSIMLoss(torch.nn.Module):
 
 class TrainingState(Enum):
     PRETRAIN = 1
-    TRANSFER = 2
-    FINE_TUNE = 3
+    FINE_TUNE = 2
 
 
 class bSSFPToDWITensorModel(pl.LightningModule):
@@ -233,187 +218,14 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                   f'ses-{i_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
                  (f'{step}_pred-{batch_idx}_state-{self.state}'
-                 f'_mod-{self.input_modality}_sub-{t_sub_id}_'
+                  f'_mod-{self.input_modality}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
                  (f'{step}_target-{batch_idx}_state-{self.state}'
-                 f'_mod-{self.input_modality}_sub-{t_sub_id}_'
+                  f'_mod-{self.input_modality}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))
 
     def configure_optimizers(self):
         return self.optimizer_class(
                 filter(lambda p: p.requires_grad, self.net.parameters()),
                 lr=self.lr)
-
-
-def check_input_shape(strides):
-    data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
-    data.prepare_data()
-    data.setup()
-    batch = next(iter(data.train_dataloader()))
-    bssfp_complex_shape = batch['bssfp-complex'][tio.DATA].shape
-
-    for v in bssfp_complex_shape[2:]:
-        size = math.floor((v + strides[0] - 1) / strides[0])
-        print(f'Size for {v} is {size} with strides {strides}')
-        print('Size must match np.remainder(size, 2 * np.prod(strides[1:])'
-              ' == 0)')
-        print(f'np.remainder({size}, {2 * np.prod(strides[1:])}) == 0')
-        print(f'{np.remainder(size, 2 * np.prod(strides[1:])) == 0}')
-        assert np.remainder(size, 2 * np.prod(strides[1:])) == 0, (
-                ('Input shape doesnt match stride'))
-
-    d = max(bssfp_complex_shape[2:])
-    max_size = math.floor((d + strides[0] - 1) / strides[0])
-    print(f'Max size for {d} is {max_size} with strides {strides}')
-    print('Max size must match np.remainder(max_size, 2 * np.prod(strides[1:])'
-          ' == 0)')
-    print(f'np.remainder({max_size}, {2 * np.prod(strides[1:])}) == 0')
-    print(f'{np.remainder(max_size, 2 * np.prod(strides[1:])) == 0}')
-    assert np.remainder(max_size, 2 * np.prod(strides[1:])) == 0, (
-            ('Input shape doesnt match stride due to instance norm'))
-
-
-def build_trainer_args():
-    logger = pl.loggers.WandbLogger(project='dove',
-                                    log_model='all',
-                                    save_dir='logs')
-    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss',
-                                                   patience=20)
-    swa_cb = pl.callbacks.StochasticWeightAveraging(swa_lrs=1e-2,
-                                                    device=None)
-    checkpoint_callback = pl.callbacks.ModelCheckpoint(
-            save_top_k=10,
-            monitor="val_loss",
-            mode="min",
-            filename="{model.state}-{epoch:02d}-{val_loss:.2f}",
-            )
-    cbs = [early_stopping_cb, swa_cb, checkpoint_callback]
-    trainer_args = {'max_epochs': 100,
-                    'accelerator': 'gpu',
-                    'devices': 1,
-                    'precision': '32',
-                    'accumulate_grad_batches': 1,
-                    'logger': logger,
-                    'enable_checkpointing': True,
-                    'enable_model_summary': True,
-                    'callbacks': cbs}
-    return trainer_args, checkpoint_callback
-
-
-def train_model(net,
-                data,
-                ckpt_path=None,
-                modality='bssfp',
-                stages=['all'],
-                debug=False,
-                infer_params=False):
-    trainer_args, ckpt_cb = build_trainer_args()
-    if debug:
-        prof = pl.profilers.PyTorchProfiler(row_limit=100)
-        trainer_args['detect_anomaly'] = True
-        trainer_args['profiler'] = prof
-
-    trainer = pl.Trainer(**trainer_args)
-    if ckpt_path:
-        model = bSSFPToDWITensorModel.load_from_checkpoint(ckpt_path, net=net)
-    else:
-        with trainer.init_module():
-            model = bSSFPToDWITensorModel(net=net)
-
-    trainer_args['logger'].watch(model, log='all')
-
-    if infer_params:
-        tuner = pl.tuner.Tuner(trainer)
-        tuner.scale_batch_size(model, datamodule=data, mode='power')
-        tuner.lr_find(model, datamodule=data)
-
-    start = datetime.datetime.now()
-    start_total = start
-
-    if 'all' in stages or 'pretrain' in stages:
-        model.change_training_state(TrainingState.PRETRAIN)
-        print(f"Pre-training started at {start}")
-        trainer.fit(model, datamodule=data)
-        end = datetime.datetime.now()
-        print(f"Training finished at {end}.\nTook: {end - start}")
-        if debug:
-            prof.plot()
-            prof.summary()
-        trainer.test(model, datamodule=data)
-
-        ckpt_path = ckpt_cb.best_model_path
-        trainer_args, ckpt_cb = build_trainer_args()
-        trainer = pl.Trainer(**trainer_args)
-        model = bSSFPToDWITensorModel.load_from_checkpoint(ckpt_path, net=net)
-
-    if 'all' in stages or 'transfer' in stages:
-        model.change_training_state(TrainingState.TRANSFER, modality)
-
-        start = datetime.datetime.now()
-        print(f"Transfer learning started at {start}")
-        trainer.fit(model, datamodule=data)
-        end = datetime.datetime.now()
-        print(f"Training finished at {end}.\nTook: {end - start}")
-        if debug:
-            prof.plot()
-            prof.summary()
-        trainer.test(model, datamodule=data)
-
-        trainer_args['callbacks'] = [FinetuningScheduler()]
-        ckpt_path = ckpt_cb.best_model_path
-        trainer_args, ckpt_cb = build_trainer_args()
-        trainer = pl.Trainer(**trainer_args)
-        model = bSSFPToDWITensorModel.load_from_checkpoint(ckpt_path, net=net)
-
-    if 'all' in stages or 'finetune' in stages:
-        model.change_training_state(TrainingState.FINE_TUNE, modality)
-
-        start = datetime.datetime.now()
-        print(f"Fine tuning started at {start}")
-        trainer.fit(model, datamodule=data)
-        end = datetime.datetime.now()
-        print(f"Training finished at {end}.\nTook: {end - start}")
-        if debug:
-            prof.plot()
-            prof.summary()
-        trainer.test(model, datamodule=data)
-        model.eval()
-        trainer.predict(model, data)
-
-    end = datetime.datetime.now()
-    print(f"Total time taken: {end - start_total}")
-    wandb.finish()
-    return ckpt_cb.best_model_path
-
-
-def eval_model(unet, data, checkpoint_path):
-    model = bSSFPToDWITensorModel.load_from_checkpoint(checkpoint_path,
-                                                       net=unet)
-    model.eval()
-    trainer = pl.Trainer()
-    trainer.predict(model, data)
-
-
-if __name__ == "__main__":
-    torch.multiprocessing.set_start_method('spawn')
-    torch.set_float32_matmul_precision('medium')
-    print(f'Last run on {time.ctime()}')
-
-    data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
-
-    unet = PreTrainUnet(TrainingState.PRETRAIN)
-    print(unet)
-    # check_input_shape(strides)
-
-    # ckpt = train_model(unet, data, stages=['pretrain'])
-    ckpt = ('/home/someusername/workspace/UNet-bSSFP/logs/dove/1uklgjlj/'
-            'checkpoints/model.state=0-epoch=76-val_loss=0.01.ckpt')
-
-    for modality in ['dwi-tensor', 'bssfp', 't1w', 'asym-index', 't1', 't2',
-                     'conf-modes']:
-        train_model(unet, data, ckpt, modality,
-                    stages=['transfer', 'finetune'])
-
-    # eval_model(unet, data,
-    #           )

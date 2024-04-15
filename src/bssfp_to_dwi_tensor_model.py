@@ -21,15 +21,7 @@ class MultiInputUNet(torch.nn.Module):
         bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=24, out_channels=24, num_layers=1)
         t1w_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=1, out_channels=24, num_layers=1)
-        asym_index_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=1, out_channels=24, num_layers=1)
-        t1_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=1, out_channels=24, num_layers=1)
-        t2_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=2, out_channels=24, num_layers=1)
-        conf_modes_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=3, out_channels=24, num_layers=1)
+                spatial_dims=3, in_channels=6, out_channels=24, num_layers=1)
         unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
                 in_channels=24,
@@ -41,10 +33,6 @@ class MultiInputUNet(torch.nn.Module):
                 {'dwi-tensor': dwi_tensor_input,
                  'bssfp': bssfp_input,
                  't1w': t1w_input,
-                 'asym-index': asym_index_input,
-                 't1': t1_input,
-                 't2': t2_input,
-                 'conf-modes': conf_modes_input,
                  'unet': unet})
 
     def change_state(self, state, input_modality):
@@ -53,7 +41,7 @@ class MultiInputUNet(torch.nn.Module):
 
     def forward(self, x):
         if self.state == TrainingState.PRETRAIN:
-            x = self.blocks['dwi_tensor'](x)
+            x = self.blocks['dwi-tensor'](x)
         else:
             x = self.blocks[self.input_modality](x)
 
@@ -138,7 +126,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def change_training_state(self, state, input_modality=None):
         self.state = state
         if self.state == TrainingState.PRETRAIN:
-            input_modality = 'dwi_tensor'
+            input_modality = 'dwi-tensor'
         else:
             self.input_modality = input_modality
         self.net.change_state(self.state, input_modality)

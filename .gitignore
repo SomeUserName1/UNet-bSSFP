@@ -166,3 +166,4 @@ logs/
 lightning_logs
 checkpoints/
 preds/
+lit/

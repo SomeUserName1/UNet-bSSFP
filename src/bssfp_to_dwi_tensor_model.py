@@ -17,11 +17,13 @@ class MultiInputUNet(torch.nn.Module):
         super().__init__()
         self.state = state
         dwi_tensor_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=6, out_channels=24, num_layers=1)
+                spatial_dims=3, in_channels=6, out_channels=24, num_layers=3)
+        pc_bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
+                spatial_dims=3, in_channels=24, out_channels=24, num_layers=3)
         bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=24, out_channels=24, num_layers=1)
+                spatial_dims=3, in_channels=24, out_channels=24, num_layers=3)
         t1w_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=6, out_channels=24, num_layers=1)
+                spatial_dims=3, in_channels=6, out_channels=24, num_layers=3)
         unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
                 in_channels=24,
@@ -31,6 +33,7 @@ class MultiInputUNet(torch.nn.Module):
                 )
         self.blocks = torch.nn.ModuleDict(
                 {'dwi-tensor': dwi_tensor_input,
+                 'pc-bssfp': pc_bssfp_input,
                  'bssfp': bssfp_input,
                  't1w': t1w_input,
                  'unet': unet})
@@ -77,11 +80,10 @@ def check_input_shape(strides):
             ('Input shape doesnt match stride due to instance norm'))
 
 
-class PerceptualL1L2SSIMLoss(torch.nn.Module):
+class PerceptualL1SSIMLoss(torch.nn.Module):
     def __init__(self):
         super().__init__()
         self.l1 = torch.nn.L1Loss()
-        self.l2 = torch.nn.MSELoss()
         self.ssim = monai.losses.ssim_loss.SSIMLoss(3, data_range=1.0)
         self.perceptual = monai.losses.PerceptualLoss(
                 spatial_dims=3, is_fake_3d=False,
@@ -89,11 +91,10 @@ class PerceptualL1L2SSIMLoss(torch.nn.Module):
 
     def forward(self, y_hat, y):
         l1 = self.l1(y_hat, y)
-        l2 = self.l2(y_hat, y)
         ssim = self.ssim(y_hat, y)
         perceptual = self.perceptual(y_hat, y)
 
-        return {'L1': l1, 'L2': l2, 'SSIM': ssim, 'Perceptual': perceptual}
+        return {'L1': l1, 'SSIM': ssim, 'Perceptual': perceptual}
 
 
 class TrainingState(Enum):
@@ -104,7 +105,7 @@ class TrainingState(Enum):
 class bSSFPToDWITensorModel(pl.LightningModule):
     def __init__(self,
                  net,
-                 criterion=PerceptualL1L2SSIMLoss(),
+                 criterion=PerceptualL1SSIMLoss(),
                  lr=1e-3,
                  optimizer_class=torch.optim.AdamW,
                  state=None,
@@ -126,10 +127,10 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def change_training_state(self, state, input_modality=None):
         self.state = state
         if self.state == TrainingState.PRETRAIN:
-            input_modality = 'dwi-tensor'
+            self.input_modality = 'dwi-tensor'
         else:
             self.input_modality = input_modality
-        self.net.change_state(self.state, input_modality)
+        self.net.change_state(self.state, self.input_modality)
         self.configure_optimizers()
         self.save_hyperparameters()
 
@@ -179,37 +180,42 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         x, y = self.unpack_batch(batch, test=True)
         y_hat = self.net(x)
         self.compute_metrics(y_hat, y, 'test')
-        self.save_predicitions(batch_idx, x, y, y_hat, 'test')
+        self.save_predicitions(batch, batch_idx, x, y, y_hat, 'test')
         return self.compute_loss(y_hat, y, 'test')
 
     def predict_step(self, batch, batch_idx, dataloader_idx=None):
         x, y = self.unpack_batch(batch, test=True)
         y_hat = self.net(x)
-        self.save_predicitions(batch_idx, x, y, y_hat, 'predict')
+        self.save_predicitions(batch, batch_idx, x, y, y_hat, 'predict')
         return y_hat
 
     def save_predicitions(self, batch, batch_idx, x, y, y_hat, step):
-        input_path = batch[self.input_modality][tio.PATH]
-        i_sub_id = input_path.split('/')[-4]
-        i_ses_id = input_path.split('/')[-3]
-        target_path = batch['dwi-tensor'][tio.PATH]
-        t_sub_id = target_path.split('/')[-4]
-        t_ses_id = target_path.split('/')[-3]
+        input_path = batch[self.input_modality][tio.PATH][0]
+        i_sub_id = input_path.split('/')[-4].split('-')[-1]
+        i_ses_id = input_path.split('/')[-3].split('-')[-1]
+        target_path = batch['dwi-tensor'][tio.PATH][0]
+        t_sub_id = target_path.split('/')[-4].split('-')[-1]
+        t_ses_id = target_path.split('/')[-3].split('-')[-1]
 
         x_img = np.moveaxis(x.cpu().numpy().squeeze(), 0, -1)
         y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
         y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
 
+        state = self.state.name.lower()
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
-                 (f'{step}_input-{batch_idx}_state-{self.state}_'
+                 (f'{step}_input-{batch_idx}_state-{state}_'
                   f'mod-{self.input_modality}_sub-{i_sub_id}_'
                   f'ses-{i_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
-                 (f'{step}_pred-{batch_idx}_state-{self.state}'
+                 (f'{step}_pred-{batch_idx}_state-{state}'
                   f'_mod-{self.input_modality}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
-                 (f'{step}_target-{batch_idx}_state-{self.state}'
+                 (f'{step}_target-{batch_idx}_state-{state}'
+                  f'_mod-{self.input_modality}_sub-{t_sub_id}_'
+                  f'ses-{t_ses_id}.nii.gz'))
+        nib.save(nib.Nifti1Image(y_img - y_hat_img, np.eye(4)),
+                 (f'{step}_diff-{batch_idx}_state-{state}'
                   f'_mod-{self.input_modality}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))
 

@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is '00-thesis.blg'
+[40] biber:340> INFO - === Thu Apr 18, 2024, 18:37:29
+[49] Biber.pm:419> INFO - Reading '00-thesis.bcf'
+[79] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[89] Biber.pm:4419> INFO - Processing section 0
+[97] Biber.pm:4610> INFO - Looking for bibtex file 'resources.bib' for section 0
+[101] bibtex.pm:1713> INFO - LaTeX decoding ...
+[137] bibtex.pm:1519> INFO - Found BibTeX data source 'resources.bib'
+[413] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[413] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[414] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[414] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[438] bbl.pm:660> INFO - Writing '00-thesis.bbl' with encoding 'UTF-8'
+[453] bbl.pm:763> INFO - Output to 00-thesis.bbl

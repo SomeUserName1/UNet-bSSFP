@@ -76,6 +76,7 @@ class DoveDataModule(pl.LightningDataModule):
                                               subject=sub,
                                               extension='nii.gz',
                                               return_type="filename")
+                pc_bssfp_fnames = []
                 bssfp_fnames = []
                 dwi_fnames = []
                 t1w_fname = None
@@ -92,6 +93,8 @@ class DoveDataModule(pl.LightningDataModule):
                     if suffix == 'dwi' and desc == 'normtensor':
                         dwi_fnames.append(fname)
                     elif suffix == 'bssfp' and desc == 'normflatbet':
+                        pc_bssfp_fnames.append(fname)
+                    elif suffix == 'bssfp' and desc == 'nfbnopc':
                         bssfp_fnames.append(fname)
                     elif suffix == 'T1w' and desc == 'normrepeat':
                         t1w_fname = fname
@@ -101,6 +104,8 @@ class DoveDataModule(pl.LightningDataModule):
                     for i in range(len(bssfp_fnames)):
                         img_dict['dwi-tensor'] = tio.ScalarImage(dwi_fname)
                         img_dict['t1w'] = tio.ScalarImage(t1w_fname)
+                        img_dict['pc-bssfp'] = tio.ScalarImage(
+                                pc_bssfp_fnames[i])
                         img_dict['bssfp'] = tio.ScalarImage(bssfp_fnames[i])
 
                         l_subs.append(tio.Subject(img_dict))
@@ -166,11 +171,11 @@ def print_data_samples():
     batch = next(iter(data.train_dataloader()))
     k = 32
     print(batch.keys())
-    batch_mag = batch['bssfp-complex'][tio.DATA][:, 0, k, ...]
-    batch_pha = batch['bssfp-complex'][tio.DATA][:, 1, k, ...]
+    batch_mag = batch['pc-bssfp'][tio.DATA][:, 0, k, ...]
+    batch_pha = batch['pc-bssfp'][tio.DATA][:, 1, k, ...]
     batch_t2w = batch['dwi-tensor_orig'][tio.DATA][:, 0, k, ...]
     batch_diff = batch['dwi-tensor_orig'][tio.DATA][:, 1, k, ...]
-    print(batch['bssfp-complex'][tio.DATA].shape,
+    print(batch['pc-bssfp'][tio.DATA].shape,
           batch['dwi-tensor_orig'][tio.DATA].shape)
 
     fig, ax = plt.subplots(1, 4, figsize=(20, 25))

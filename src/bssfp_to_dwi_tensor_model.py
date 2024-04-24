@@ -1,5 +1,6 @@
 from enum import Enum
 import math
+import datetime
 
 import monai
 import monai.networks as mainets
@@ -41,6 +42,41 @@ class MultiInputUNet(torch.nn.Module):
     def change_state(self, state, input_modality):
         self.state = state
         self.input_modality = input_modality
+
+        if self.state == TrainingState.PRETRAIN:
+        # Make model autoencoder with all layers trainable
+            for block in self.blocks.values():
+                for layer in block.children():
+                    for param in layer.parameters():
+                        param.requires_grad = True
+
+        elif self.state == TrainingState.TRANSFER:
+        # Freeze all layers but the new head
+            for block in self.blocks.values():
+                for layer in block.children():
+                    for param in layer.parameters():
+                        param.requires_grad = False
+            for layer in self.blocks[input_modality].children():
+                for param in layer.parameters():
+                    param.requires_grad = True
+
+        elif self.state == TrainingState.FINE_TUNE:
+        #   Unfreeze all layers
+            for block in self.blocks.values():
+                for layer in block.children():
+                    for param in layer.parameters():
+                        param.requires_grad = True
+            for k, mods in self.blocks.items():
+                if k == 'unet':
+                    continue
+                for layer in mods.children():
+                    for param in layer.parameters():
+                        param.requires_grad = False
+            for layer in self.blocks[input_modality].children():
+                for param in layer.parameters():
+                    param.requires_grad = True
+        else:
+            raise ValueError('Invalid Training State')
 
     def forward(self, x):
         if self.state == TrainingState.PRETRAIN:
@@ -99,7 +135,8 @@ class PerceptualL1SSIMLoss(torch.nn.Module):
 
 class TrainingState(Enum):
     PRETRAIN = 1
-    FINE_TUNE = 2
+    TRANSFER = 2
+    FINE_TUNE = 3
 
 
 class bSSFPToDWITensorModel(pl.LightningModule):
@@ -130,6 +167,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
             self.input_modality = 'dwi-tensor'
         else:
             self.input_modality = input_modality
+        lr=1e-4
         self.net.change_state(self.state, self.input_modality)
         self.configure_optimizers()
         self.save_hyperparameters()
@@ -150,20 +188,21 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def compute_loss(self, y_hat, y, step_name):
         losses = self.criterion(y_hat, y)
         loss_tot = 0
+        sync = step_name != 'train'
         for name, loss in losses.items():
             self.log(f'{step_name}_loss_{name}', loss, logger=True,
-                     batch_size=self.batch_size)
+                     batch_size=self.batch_size, sync_dist=sync)
             loss_tot += loss
 
         self.log(f'{step_name}_loss', loss_tot, prog_bar=True,
-                 logger=True, batch_size=self.batch_size)
+                 logger=True, batch_size=self.batch_size, sync_dist=sync)
         return loss_tot
 
     def compute_metrics(self, y_hat, y, step_name):
         for metric_fn in self.metric_fns:
             m = metric_fn(y_hat, y)
             self.log(f'{step_name}_metric_{metric_fn.__class__.__name__}',
-                     m, logger=True, batch_size=self.batch_size)
+                     m, logger=True, batch_size=self.batch_size, sync_dist=True)
 
     def training_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
@@ -204,19 +243,19 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         state = self.state.name.lower()
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
                  (f'{step}_input-{batch_idx}_state-{state}_'
-                  f'mod-{self.input_modality}_sub-{i_sub_id}_'
+                  f'mod-{self.input_modality}_{datetime.datetime.now()}_sub-{i_sub_id}_'
                   f'ses-{i_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
                  (f'{step}_pred-{batch_idx}_state-{state}'
-                  f'_mod-{self.input_modality}_sub-{t_sub_id}_'
+                  f'_mod-{self.input_modality}_{datetime.datetime.now()}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
                  (f'{step}_target-{batch_idx}_state-{state}'
-                  f'_mod-{self.input_modality}_sub-{t_sub_id}_'
+                  f'_mod-{self.input_modality}_{datetime.datetime.now()}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_img - y_hat_img, np.eye(4)),
                  (f'{step}_diff-{batch_idx}_state-{state}'
-                  f'_mod-{self.input_modality}_sub-{t_sub_id}_'
+                  f'_mod-{self.input_modality}_{datetime.datetime.now()}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))
 
     def configure_optimizers(self):

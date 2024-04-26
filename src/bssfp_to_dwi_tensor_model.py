@@ -253,7 +253,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                  (f'{step}_target-{batch_idx}_state-{state}'
                   f'_mod-{self.input_modality}_{datetime.datetime.now()}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))
-        nib.save(nib.Nifti1Image(y_img - y_hat_img, np.eye(4)),
+        nib.save(nib.Nifti1Image((y_img - y_hat_img) / y_img, np.eye(4)),
                  (f'{step}_diff-{batch_idx}_state-{state}'
                   f'_mod-{self.input_modality}_{datetime.datetime.now()}_sub-{t_sub_id}_'
                   f'ses-{t_ses_id}.nii.gz'))

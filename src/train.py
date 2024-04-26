@@ -21,13 +21,13 @@ def build_trainer_args(debug, modality, state):
                                     save_dir='logs')
     early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss',
                                                    patience=10)
-    fname = f'{state}-{modality}-'
+    fname = f'base-{modality}-'
     checkpoint_callback = pl.callbacks.ModelCheckpoint(
             save_top_k=10,
             monitor="val_loss",
             mode="min",
             filename=fname + "{epoch:02d}-{val_loss:.4f}" + f'{datetime.datetime.now()}',
-            dirname="/home/fklopfer/logs/"
+            dirpath="/home/fklopfer/logs/"
             )
     cbs = [early_stopping_cb, checkpoint_callback]
     trainer_args = {'max_epochs': 100,
@@ -113,12 +113,18 @@ def train_model(net,
 
         trainer = pl.Trainer(devices=1, num_nodes=1)
         trainer.test(model, datamodule=data)
+        wandb.finish()
         
     if 'all' in stages or 'finetune' in stages:
-        assert ckpt_path, 'Need a checkpoint path of a transferred model to fine-tune'
         trainer_args, ckpt_cb = build_trainer_args(debug, modality, TrainingState.FINE_TUNE)
         trainer = pl.Trainer(**trainer_args)
-        model = bSSFPToDWITensorModel.load_from_checkpoint(ckpt_path, net=net)
+
+        if ckpt_path:
+            model = bSSFPToDWITensorModel.load_from_checkpoint(ckpt_path, net=net)
+        else:
+            with trainer.init_module():
+                model = bSSFPToDWITensorModel(net=net)
+
         model.change_training_state(TrainingState.FINE_TUNE, modality)
 
         start = datetime.datetime.now()
@@ -158,20 +164,17 @@ if __name__ == "__main__":
 
     # ckpt = train_model(unet, data, stages=['pretrain'])
     ckpts = [
-            ('/home/fklopfer/logs/finetune/dwi/'
-        'TrainingState.TRANSFER-dwi-tensor-epoch=14-val_loss=0.00712024-04-21 23:15:36.286439.ckpt'),
-            ('/home/fklopfer/logs/finetune/pc-bssfp/'
-                'TrainingState.TRANSFER-pc-bssfp-epoch=31-val_loss=0.04342024-04-22 14:24:15.094625.ckpt'),
-            ('/home/fklopfer/logs/finetune/one-bssfp/'
-                'TrainingState.TRANSFER-bssfp-epoch=31-val_loss=0.05482024-04-22 17:52:47.256176.ckpt')
-            ('/home/fklopfer/logs/finetune/t1w/epoch=54-val_loss=0.06342024-04-23 13:52:05.351665.ckpt')
+            '/ptmp/fklopfer/logs/pretrain/epoch=78-val_loss=0.0062.ckpt'
+ #           '/home/fklopfer/logs/finetune/dwi/TrainingState.TRANSFER-dwi-tensor-epoch=14-val_loss=0.00712024-04-21 23:15:36.286439.ckpt',
+ #           '/home/fklopfer/logs/finetune/pc-bssfp/TrainingState.TRANSFER-pc-bssfp-epoch=31-val_loss=0.04342024-04-22 14:24:15.094625.ckpt',
+ #           '/home/fklopfer/logs/finetune/one-bssfp/TrainingState.TRANSFER-bssfp-epoch=31-val_loss=0.05482024-04-22 17:52:47.256176.ckpt',
+ #           '/home/fklopfer/logs/finetune/t1w/epoch=54-val_loss=0.06342024-04-23 13:52:05.351665.ckpt',
             ]
 
     for ckpt in ckpts:
         assert os.path.exists(ckpt), f'Typo in checkpoint path {ckpt}'
 
-    modalities = ['dwi-tensor', 'pc-bssfp', 'bssfp', 't1w']
-    # generate_default_finetuning_schedule(unet, data, 'dwi-tensor')
+    modalities =  ['pc-bssfp'] # 'bssfp', 'dwi-tensor', 't1w']#, 
     for modality, ckpt in zip(modalities, ckpts):
-        train_model(unet, data, ckpt, modality, stages=['finetune'])
+        train_model(unet, data, None, modality, stages=['finetune'])
 

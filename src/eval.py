@@ -29,6 +29,8 @@ def run_concurrently(func, arglist, n_concurrent=cpu_count()-3):
                     wait(futures)
                     futures = []
 
+            wait(futures)
+
 
 def do_invert_dwi_tensor_norm(fname, refl_min, refl_max, non_refl_min, non_refl_max):
     img = nib.load(fname)

@@ -229,7 +229,7 @@ if __name__ == "__main__":
     data = DoveDataModule('/ptmp/fklopfer/bids')
     dwi_rescale_args_path = '/home/fklopfer/UNet-bSSFP/rescale_args_dwi.txt'
 
-    modalities = ['pc-bssfp', 'bssfp', 't1w'] # 'dwi-tensor', 
+    modalities = ['t1w'] # 'dwi-tensor', 'pc-bssfp', 'bssfp', 
     ckpts = [
 #            '/ptmp/fklopfer/logs/finetune/dwi/TrainingState.FINE_TUNE-dwi-tensor-epoch=00-val_loss=0.00662024-04-24 14:29:21.450677.ckpt',
 #            '/ptmp/fklopfer/logs/finetune/pc-bssfp-local-norm/TrainingState.FINE_TUNE-pc-bssfp-epoch=40-val_loss=0.03032024-04-24 17:39:30.603000.ckpt',

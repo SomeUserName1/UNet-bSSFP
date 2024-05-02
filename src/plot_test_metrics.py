@@ -14,7 +14,7 @@ if __name__ == '__main__':
                     row['modality'] = dir_name.split('/')[-1]
                     metrics = pd.concat([metrics, row])
 
-    metrics.drop(['epoch', 'step'], axis=1, inplace=True)
+    metrics.drop(['epoch', 'step', 'test_metric_MSEMetric'], axis=1, inplace=True)
     metrics.set_index('modality', inplace=True)
     reorder = ['dwi', 'pc-bssfp', 'one-bssfp', 't1w']
     metrics = metrics.reindex(reorder)
@@ -22,20 +22,20 @@ if __name__ == '__main__':
     metrics.to_csv('test_metrics_all.csv')
 
     loss = metrics[['test_loss_L1', 'test_loss_Perceptual', 'test_loss_SSIM']]
-    errors = metrics[['test_metric_MSEMetric', 'test_metric_MAEMetric']]
+    errors = metrics[['test_metric_MAEMetric']]
     ssim = metrics[['test_metric_SSIMMetric']]
     psnr = metrics[['test_metric_PSNRMetric']]
 
     ax = loss.plot.bar(title='Test Loss', stacked=True, rot=0)
     ax.figure.savefig('test_loss.pdf')
 
-    ax = errors.plot.bar(title='Test Metrics: MSE & MAE', rot=0)
+    ax = errors.plot.bar(title='Test Metrics: Mean Absolute Error', rot=0)
     ax.figure.savefig('test_mse_mae.pdf')
 
-    ax = ssim.plot.bar(title='Test Metrics: SSIM', ylim=(0.95, 1), rot=0)
+    ax = ssim.plot.bar(title='Test Metrics: Structual Similarity Index Measure', ylim=(0.95, 1), rot=0)
     ax.figure.savefig('test_ssim.pdf')
 
-    ax = psnr.plot.bar(title='Test Metrics: PSNR', ylim=(30, 45), rot=0)
+    ax = psnr.plot.bar(title='Test Metrics: Peak Signal to Noise Ratio', ylim=(30, 45), rot=0)
     ax.figure.savefig('test_psnr.pdf')
 
 

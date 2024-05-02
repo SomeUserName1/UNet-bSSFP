@@ -3,6 +3,7 @@ from multiprocessing import cpu_count, set_start_method
 import os
 import datetime
 from functools import partial
+import shutil
 
 import nibabel as nib
 import numpy as np
@@ -67,7 +68,10 @@ def invert_dwi_tensor_norm(directory: str, params: str):
     files = [os.path.join(directory, fn) for fn in next(os.walk(directory))[2]]
     proc_files = []
     for fname in files:
-        if ('_pred-' not in fname and '_target-' not in fname) or '_denorm' in fname:
+        if (('_pred-' not in fname and '_target-' not in fname)
+                or '_denorm' in fname or '_rgb' in fname or '_rd' in fname
+                or '_md' in fname or '_inclination' in fname or '_fa' in fname
+                or '_azimuth' in fname or '_ad' in fname):
             continue
         else:
             proc_files.append(fname)
@@ -142,8 +146,11 @@ def calc_scalar_maps(directory: str):
     files = [os.path.join(directory, fn) for fn in next(os.walk(directory))[2]]
     proc_files = []
     for fname in files:
-        if 'denorm' not in fname or ('_pred-' not in fname
-                                    and '_target-' not in fname):
+        if ('denorm' not in fname or ('_pred-' not in fname
+                                    and '_target-' not in fname)
+                or '_ad' in fname or '_rd' in fname or '_fa' in fname
+                or '_md' in fname or 'azimuth' in fname 
+                or 'inclination' in fname or '_rgb' in fname):
             continue
         else:
             proc_files.append(fname)
@@ -172,11 +179,12 @@ def calc_diff_maps(directory: str):
         pairs = []
         for i in subject_ids:
             s_files = [f for f in files
-                       if (f'_pred-{i}' in f or f'_target-{i}' in f)
+                       if (f'_pred-{i}_' in f or f'_target-{i}_' in f)
                        and suffix in f]
             if len(s_files) != 2:
                 print(f'Could not find both files for subject {i}'
                       f' and suffix {suffix}')
+                print(f'Found {s_files}')
                 continue
             else:
                 pred = s_files[0] if '_pred' in s_files[0] else s_files[1]
@@ -194,18 +202,17 @@ def eval_model(unet, data, checkpoint_path, state,
     logger = pl.loggers.WandbLogger(project='dove',
                                     log_model='all',
                                     save_dir='logs')
-    trainer = pl.Trainer(**{'max_epochs': 100,
-                            'accelerator': 'gpu',
+    trainer = pl.Trainer(**{'accelerator': "gpu",
                             'devices': 1,
                             'precision': '32',
-                            'accumulate_grad_batches': 1,
                             'logger': logger,
-                            'enable_checkpointing': True,
                             'enable_model_summary': True})
     trainer.test(model, data)
-    for root, dir_name, f_name in os.walk(os.getcwd()):
-        if '.nii.gz' in f_name:
-            os.rename(os.path.join(root, dir_name, f_name), os.path.join(pred_dir, f_name))
+    files = [os.path.join(os.getcwd(), fn) for fn in next(os.walk(os.getcwd()))[2] if '.nii.gz' in  fn]
+
+    for f_path in files:
+        fname = f_path.split('/')[-1]
+        shutil.move(f_path, os.path.join(pred_dir, fname))
 
 
 def eval_dwi_tensors(preds_dir, dwi_rescale_args_path):
@@ -215,29 +222,29 @@ def eval_dwi_tensors(preds_dir, dwi_rescale_args_path):
 
 
 if __name__ == "__main__":
-    torch.multiprocessing.set_start_method('spawn')
-    #torch.set_float32_matmul_precision('high')
+    set_start_method('spawn')
+    torch.set_float32_matmul_precision('high')
 
-    #unet = MultiInputUNet(state=TrainingState.FINE_TUNE)
-    #data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
+    unet = MultiInputUNet(state=TrainingState.FINE_TUNE)
+    data = DoveDataModule('/ptmp/fklopfer/bids')
     dwi_rescale_args_path = '/home/fklopfer/UNet-bSSFP/rescale_args_dwi.txt'
 
-    modalities = ['dwi-tensor', 'pc-bssfp', 'bssfp', 't1w']
+    modalities = ['pc-bssfp', 'bssfp', 't1w'] # 'dwi-tensor', 
     ckpts = [
-            '/ptmp/fklopfer/logs/finetune/dwi/TrainingState.FINE_TUNE-dwi-tensor-epoch=00-val_loss=0.00662024-04-24 14:29:21.450677.ckpt',
-            '/ptmp/fklopfer/logs/finetune/pc-bssfp-local-norm/TrainingState.FINE_TUNE-pc-bssfp-epoch=40-val_loss=0.03032024-04-24 17:39:30.603000.ckpt'
-            '/ptmp/fklopfer/logs/finetune/one-bssfp-local-norm/TrainingState.FINE_TUNE-bssfp-epoch=32-val_loss=0.03362024-04-24 14:30:28.831256.ckpt'
-            '/ptmp/fklopfer/logs/finetune/pc-bssfp/TrainingState.FINE_TUNE-t1w-epoch=40-val_loss=0.04312024-04-24 21:18:44.008765.ckpt'
+#            '/ptmp/fklopfer/logs/finetune/dwi/TrainingState.FINE_TUNE-dwi-tensor-epoch=00-val_loss=0.00662024-04-24 14:29:21.450677.ckpt',
+#            '/ptmp/fklopfer/logs/finetune/pc-bssfp-local-norm/TrainingState.FINE_TUNE-pc-bssfp-epoch=40-val_loss=0.03032024-04-24 17:39:30.603000.ckpt',
+#            '/ptmp/fklopfer/logs/finetune/one-bssfp-local-norm/TrainingState.FINE_TUNE-bssfp-epoch=32-val_loss=0.03362024-04-24 14:30:28.831256.ckpt',
+            '/ptmp/fklopfer/logs/finetune/t1w/TrainingState.FINE_TUNE-t1w-epoch=40-val_loss=0.04312024-04-24 21:18:44.008765.ckpt'
              ]
-    pred_base = '/ptmp/fklopfer/preds/finetune/latest/'
+    pred_base = '/ptmp/fklopfer/preds/finetune/best/'
     pred_dirs = [
-            pred_base + 'dwi/',
-            pred_base + 'pc-bssfp-local-norm/',
-            pred_base + 'one-bssfp-local-norm/',
+#            pred_base + 'dwi/',
+#            pred_base + 'pc-bssfp-local-norm/',
+#            pred_base + 'one-bssfp-local-norm/',
             pred_base + 't1w/',
             ]
 
     for modality, ckpt, pred_dir in zip(modalities, ckpts, pred_dirs):
-        # eval_model(unet, data, ckpt, TrainingState.FINE_TUNE,
-        #           modality, pred_dir)
+        eval_model(unet, data, ckpt, TrainingState.FINE_TUNE,
+                   modality, pred_dir)
         eval_dwi_tensors(pred_dir, dwi_rescale_args_path)

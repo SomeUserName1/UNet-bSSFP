@@ -1,3 +1,4 @@
+*.pdf filter=lfs diff=lfs merge=lfs -text
 /doc/sub-001_ses-3_part-complex_space-t1w_desc-normflatbet_bssfp.nii.gz filter=lfs diff=lfs merge=lfs -text
 /doc/img_progress/sub-001_ses-3_part-complex_space-t1w_desc-normflatbet_bssfp.nii.gz filter=lfs diff=lfs merge=lfs -text
 /src/model.onnx filter=lfs diff=lfs merge=lfs -text

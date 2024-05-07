@@ -1,8 +1,13 @@
 import matplotlib.pyplot as plt
-import pandas as pd
 import os
+import pandas as pd
+import seaborn as sns
+from tabulate import tabulate
+import datetime
+from itertools import chain
 
-if __name__ == '__main__':
+
+def plot_nn_metrics():
     csv_fname = 'test_metrics.csv'
     keys = []
     metrics = pd.DataFrame()
@@ -39,4 +44,65 @@ if __name__ == '__main__':
     ax.figure.savefig('test_psnr.pdf')
 
 
+def plot_rel_errors():
+    csv_fname = '/home/fklopfer/relative_errors.csv'
+    df = pd.read_csv(csv_fname)
+#    print(f'columns {df.columns}')
+#    print(tabulate(df, headers='keys', tablefmt='psql'))
+    
+    by = ['roi', 'modality']
+    columns = [['dxx', 'dxy', 'dxz', 'dyy', 'dyz', 'dzz'],
+               ['dxx_norm', 'dxy_norm', 'dxz_norm', 'dyy_norm', 'dyz_norm', 'dzz_norm'],
+                ['fa', 'md', 'ad', 'rd', 'inclination', 'azimuth']
+               ]
+    col_names = ['denorm_tensor', 'norm_tensor', 'scalars']
+    flat_cols = list(chain.from_iterable(columns))
+    for col in flat_cols:
+       #  ax = df.hist(column=col, by=by, sharex=True, sharey=True, xrot=90, figsize=(27, 36),
+       #          range=(0, 10), bins=100, legend=True, density=True, stacked=True)
+       #  axs = ax.flatten()
+       #  for a in axs:
+       #      a.set_xscale('log')
+       #  fig = ax[0][0].figure
+       #  fig.tight_layout()
+       #  fig.savefig(f'err_{name}_{datetime.datetime.now()}.pdf')
+        ax = sns.violinplot(df, log_scale=True, x='roi', y=col, hue='modality', split=True)
+        fig = ax.figure.savefig(f'violins_{col}.pdf')
+        plt.clf()
 
+    stat_df = pd.DataFrame(columns=['Scalar', 'ROI', 'Modality', 'Median', '1-Percentile', '25-Percentile',
+        '75-Percentile', '99-Percentile', 'Mean', 'Std', 'Max', 'Min'])
+    # extract median per quantity, modality and roi
+    flat_cols = list(chain.from_iterable(columns))
+    for col in flat_cols:
+        data = {}
+        group = df[by + [col]].groupby(by)
+        data['Scalar'] = [col for i in range(len(group))]
+        med_df =  group.median().reset_index()
+        data['ROI'] = med_df['roi']
+        data['Modality'] = med_df['modality']
+        data['Median'] = med_df[col].values
+        data['1-Percentile'] = group.quantile(0.01)[col].values
+        data['25-Percentile'] = group.quantile(0.25)[col].values
+        data['75-Percentile'] = group.quantile(0.75)[col].values
+        data['99-Percentile'] = group.quantile(0.99)[col].values
+        data['Mean'] = group.mean()[col].values
+        data['Std'] = group.std()[col].values
+        data['Max'] = group.max()[col].values
+        data['Min'] = group.min()[col].values
+        row = pd.DataFrame.from_dict(data)
+        stat_df = pd.concat([stat_df, row])
+
+    stat_df.set_index(['Scalar', 'ROI', 'Modality'], inplace=True)
+    print(tabulate(stat_df, headers='keys', tablefmt='psql'))
+    stat_df.to_csv('sample_stats.csv')
+    ax = stat_df.plot()
+    fig = ax.figure.savefig('stats.pdf')
+
+    covs = group.cov()
+    ax = plt.matshow(covs)
+    ax.figure.savefig('cov.pdf')
+
+
+if __name__ == '__main__':
+    plot_rel_errors()

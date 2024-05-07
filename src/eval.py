@@ -50,7 +50,7 @@ def do_invert_dwi_tensor_norm(fname, refl_min, refl_max, non_refl_min, non_refl_
             min_v = non_refl_min
             max_v = non_refl_max
 
-        data[..., i] = (data[..., i] * (max_v - min_v))
+        data[..., i] = data[..., i] * np.abs(max_v - min_v)
         data[..., i] += min_v
 
     img = nib.Nifti1Image(data, img.affine, img.header)
@@ -235,7 +235,7 @@ def do_calc_error_avg(args: Tuple[str, nib.Nifti1Image, nib.Nifti1Image]):
 
     if 'denorm' == value_t or 'nii.gz' == value_t:
         suffix = '' if 'denorm' == value_t else '_norm'
-        cc = ['dxx', 'dxz', 'dxz', 'dyy', 'dyz', 'dzz']
+        cc = ['dxx', 'dxy', 'dxz', 'dyy', 'dyz', 'dzz']
         cc = [c + suffix for c in cc]
     else:
         cc = [value_t]
@@ -302,13 +302,13 @@ def calc_error_table(pred_path: str, data_path: str):
                     f_p = os.path.join(dir_name, fname)
                     argslist.append((f_p, masks[sub], probsegs[sub]))
 
-    #run_concurrently(do_calc_error_avg, argslist)
+    run_concurrently(do_calc_error_avg, argslist)
 
     index_cols = ['modality', 'pred_id', 'roi']
     rel_errors = pd.DataFrame(columns=['modality', 'pred_id', 'sub', 'ses', 'roi',
         'dxx_norm', 'dxy_norm', 'dxz_norm', 'dyy_norm', 'dyz_norm',
-        'dzz_norm', 'dxx', 'dxz', 'dyy', 'dyz', 'dzz', 'md', 'fa',
-        'ad', 'rd', 'azimuth', 'incline'])
+        'dzz_norm', 'dxx', 'dxy', 'dxz', 'dyy', 'dyz', 'dzz', 'md', 'fa',
+        'ad', 'rd', 'azimuth', 'inclination'])
     rel_errors.set_index(index_cols, inplace=True)
     for root, dnames, _ in os.walk(pred_path):
         for dname in dnames:
@@ -317,17 +317,13 @@ def calc_error_table(pred_path: str, data_path: str):
                 if 'rel_errors.csv' in fname:
                     row = pd.read_csv(os.path.join(root, dname, fname))
                     row.set_index(index_cols, inplace=True)
-                    print(row.columns)
-                    print(rel_errors.columns)
-                    print(row)
-                    print(rel_errors)
                     rel_errors = rel_errors.combine_first(row)
 
-    print(rel_errors)
+    print(rel_errors.to_string())
     rel_errors.to_csv('relative_errors.csv')
 
 
-def eval_dwi_tensors(preds_dir, dwi_rescale_args_path):
+def eval_dwi_tensors(pred_dir, dwi_rescale_args_path):
     invert_dwi_tensor_norm(pred_dir, dwi_rescale_args_path)
     calc_scalar_maps(pred_dir)
     calc_diff_maps(pred_dir)
@@ -340,18 +336,18 @@ def gen_predictions():
     data = DoveDataModule('/ptmp/fklopfer/bids')
     dwi_rescale_args_path = '/home/fklopfer/UNet-bSSFP/rescale_args_dwi.txt'
 
-    modalities = ['t1w'] # 'dwi-tensor', 'pc-bssfp', 'bssfp',
+    modalities = ['dwi-tensor', 'pc-bssfp', 'bssfp', 't1w']
     ckpts = [
-#            '/ptmp/fklopfer/logs/finetune/dwi/TrainingState.FINE_TUNE-dwi-tensor-epoch=00-val_loss=0.00662024-04-24 14:29:21.450677.ckpt',
-#            '/ptmp/fklopfer/logs/finetune/pc-bssfp-local-norm/TrainingState.FINE_TUNE-pc-bssfp-epoch=40-val_loss=0.03032024-04-24 17:39:30.603000.ckpt',
-#            '/ptmp/fklopfer/logs/finetune/one-bssfp-local-norm/TrainingState.FINE_TUNE-bssfp-epoch=32-val_loss=0.03362024-04-24 14:30:28.831256.ckpt',
+            '/ptmp/fklopfer/logs/finetune/dwi/TrainingState.FINE_TUNE-dwi-tensor-epoch=00-val_loss=0.00662024-04-24 14:29:21.450677.ckpt',
+            '/ptmp/fklopfer/logs/finetune/pc-bssfp-local-norm/TrainingState.FINE_TUNE-pc-bssfp-epoch=40-val_loss=0.03032024-04-24 17:39:30.603000.ckpt',
+            '/ptmp/fklopfer/logs/finetune/one-bssfp-local-norm/TrainingState.FINE_TUNE-bssfp-epoch=32-val_loss=0.03362024-04-24 14:30:28.831256.ckpt',
             '/ptmp/fklopfer/logs/finetune/t1w/TrainingState.FINE_TUNE-t1w-epoch=40-val_loss=0.04312024-04-24 21:18:44.008765.ckpt'
              ]
     pred_base = '/ptmp/fklopfer/preds/finetune/best/'
     pred_dirs = [
-#            pred_base + 'dwi/',
-#            pred_base + 'pc-bssfp-local-norm/',
-#            pred_base + 'one-bssfp-local-norm/',
+            pred_base + 'dwi/',
+            pred_base + 'pc-bssfp-local-norm/',
+            pred_base + 'one-bssfp-local-norm/',
             pred_base + 't1w/',
             ]
 
@@ -362,4 +358,5 @@ def gen_predictions():
 
 if __name__ == "__main__":
     set_start_method('spawn')
+    # gen_predictions()
     calc_error_table('/ptmp/fklopfer/preds/finetune/best/', '/ptmp/fklopfer/bids')

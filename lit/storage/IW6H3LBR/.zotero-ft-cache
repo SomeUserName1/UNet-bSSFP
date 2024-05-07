@@ -1,0 +1,403 @@
+Received: 17 September 2021 DOI: 10.1002/nbm.4669
+
+Revised: 4 December 2021
+
+Accepted: 6 December 2021
+
+RESEARCH ARTICLE
+
+High-resolution neural network-driven mapping of multiple diffusion metrics leveraging asymmetries in the balanced steady-state free precession frequency profile
+
+Florian Birk1 | Felix Glang1 | Alexander Loktyushin1,2 | Christoph Birkl3 | Philipp Ehses4 | Klaus Scheffler1,5 | Rahel Heule1,5
+
+1High Field Magnetic Resonance, Max Planck Institute for Biological Cybernetics, Tübingen, Germany 2Empirical Inference, Max Planck Institute for Intelligent Systems, Tübingen, Germany 3Department of Neuroradiology, Medical University of Innsbruck, Innsbruck, Austria 4German Center for Neurodegenerative Diseases (DZNE), Bonn, Germany 5Department of Biomedical Magnetic Resonance, University of Tübingen, Tübingen, Germany
+Correspondence Rahel Heule, High Field Magnetic Resonance, Max Planck Institute for Biological Cybernetics, Max-Planck-Ring 11, 72076, Tübingen, Germany. Email: rahel.heule@tuebingen.mpg.de
+Funding information German Research Foundation; Max Planck Society
+
+We propose to utilize the rich information content about microstructural tissue properties entangled in asymmetric balanced steady-state free precession (bSSFP) profiles to estimate multiple diffusion metrics simultaneously by neural network (NN) parameter quantification. A 12-point bSSFP phase-cycling scheme with high-resolution whole-brain coverage is employed at 3 and 9.4 T for NN input. Lowresolution target diffusion data are derived based on diffusion-weighted spin-echo echo-planar-imaging (SE-EPI) scans, that is, mean, axial, and radial diffusivity (MD, AD, and RD), fractional anisotropy (FA), as well as the spherical coordinates (azimuth Φ and inclination ϴ) of the principal diffusion eigenvector. A feedforward NN is trained with incorporated probabilistic uncertainty estimation. The NN predictions yielded highly reliable results in white matter (WM) and gray matter structures for MD. The quantification of FA, AD, and RD was overall in good agreement with the reference but the dependence of these parameters on WM anisotropy was somewhat biased (e.g. in corpus callosum). The inclination ϴ was well predicted for anisotropic WM structures, while the azimuth Φ was overall poorly predicted. The findings were highly consistent across both field strengths. Application of the optimized NN to high-resolution input data provided whole-brain maps with rich structural details. In conclusion, the proposed NN-driven approach showed potential to provide distortion-free high-resolution whole-brain maps of multiple diffusion metrics at high to ultrahigh field strengths in clinically relevant scan times.
+KEYWORDS diffusion metrics, high resolution, multiparametric quantitative MRI, neural networks, phasecycled bSSFP, probabilistic uncertainty estimation
+
+Abbreviations used: AD, axial diffusivity; AI, asymmetry index; B0, static magnetic field; bSSFP, balanced steady-state free precession; CC, corpus callosum; CNN, convolutional neural network; CSF, cerebrospinal fluid; DTI, diffusion tensor imaging; DWI, diffusion-weighted imaging; EPI, echo-planar imaging; FA, fractional anisotropy; GM, gray matter; GRAPPA, generalized autocalibrating partial parallel acquisition; HL, hidden layer; IC, internal capsule; MD, mean diffusivity; MPRAGE, magnetization-prepared rapid gradient-echo; MSE, mean squared error; NN, neural network; OR, optic radiations; PSF, point spread function; RD, radial diffusivity; ReLU, rectified linear unit; ROI, region of interest; SE, spin echo; SD, standard deviation; SSFP, steady-state free precession; WM, white matter.
+
+This is an open access article under the terms of the Creative Commons Attribution-NonCommercial License, which permits use, distribution and reproduction in any medium, provided the original work is properly cited and is not used for commercial purposes. © 2021 The Authors. NMR in Biomedicine published by John Wiley & Sons Ltd.
+
+NMR in Biomedicine. 2022;35:e4669. https://doi.org/10.1002/nbm.4669
+
+wileyonlinelibrary.com/journal/nbm
+
+1 of 16
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+2 of 16
+
+BIRK ET AL.
+
+1 | INTRODUCTION
+Diffusion-weighted imaging (DWI) allows measuring the directionality of microstructural diffusion processes and delineating white matter (WM) fiber pathways based on the anisotropic movement of water protons. The acquired MR signal is sensitized to the diffusion of water molecules in biological tissues by the application of strong magnetic field gradients in multiple directions. High-resolution DWI has the potential to resolve brain tissue structures at a microscopic level, aiding in the visualization of fine-scale axonal fiber architecture in WM1 or the detection of cortical gray matter (GM)2 anisotropy. Considering the complexity of diffusion processes underlying brain tissue microstructure, DWI is expected to greatly benefit from imaging at high isotropic submillimeter resolution.
+DWI is a widely used MR protocol in clinical disease assessment and applied to reveal brain tissue changes following acute ischemic strokes,3–5 but also to trace degenerative diseases like multiple sclerosis,6–8 Parkinson's disease,9,10 or Alzheimer's disease.11–13 Quantitative metrics derived from diffusion tensor imaging (DTI), such as mean diffusivity (MD) or fractional anisotropy (FA), reflect alterations in the tissue microenvironment. Increased MD values are an indicator for damaged tissues because lower cell integrity leads to increased free diffusion.3 Reduced FA, on the other hand, is a well-known marker of axon loss and declines in myelin integrity,3,7,13 especially for WM. Axial diffusivity (AD) and radial diffusivity (RD) measure water diffusion parallel and perpendicular to axon bundles, providing increased specificity to differentiate between axonal damage and myelin injury (demyelination), respectively, as reported within studies in mice14–17 and humans.18–20 This interpretation based on the underlying biophysical properties such as axon or myelin status may, however, fail in regions of complex brain tissue architecture, for example, in voxels characterized by crossing fibers.21
+Most current DWI sequences are based on the original Stejskal–Tanner pulsed-gradient spin-echo (SE) technique.22 Strong monopolar or bipolar diffusion-sensitizing gradients are applied during the SE module, followed by a fast single- or multi-shot echo-planar-imaging (EPI) readout. Diffusion-weighted SE-EPI prevails, but it has a number of limitations related to its typically low bandwidth in the phase-encoding direction, in particular severe image distortions in the presence of static magnetic field (B0) inhomogeneity and spatial blurring due to T2* decay along the echo train. These image degradations can be mitigated to a certain degree at the cost of prolonged scan times in multishot segmented EPI acquisitions, provided that dedicated (self-)navigation techniques are applied to remove motion-induced shot-to-shot phase instabilities.23–27
+The issue of geometric distortion and T2*-blurring in echo-planar DWI is amplified at ultrahigh fields due to larger B0 field variations causing a loss of the intrinsic spatial resolution. In addition, the relative level of distortion with respect to the voxel size increases at higher resolutions. Recently, a diffusion-weighted point spread function (PSF) mapping approach with multishot SE-EPI encoding was suggested to achieve highresolution distortion-free diffusion data at 7 T.28 However, isotropic high-resolution diffusion imaging providing volumetric brain coverage within clinically relevant measurement times remains challenging and hardly feasible at ultrahigh field strength. Steady-state free precession (SSFP) imaging is a promising alternative, which is not prone to geometric distortions and suited for 3D scans at high isotropic submillimeter resolution. Efficient diffusion weighting can be achieved by adding diffusion-encoding gradients to each cycle in the rapid RF pulse train.29 However, SSFP with unbalanced gradient waveforms is vulnerable to motion artifacts, hindering its application to in vivo brain imaging. Instead, its potential has been explored for ex vivo DTI in fixed human brain tissue.30,31
+Interestingly, it was reported that information about tissue anisotropies is entangled in the phase-cycled balanced SSFP (bSSFP) signal, manifest by frequency responses with different degrees of asymmetry depending on the underlying tissue type and the corresponding intravoxel frequency distribution.32–34 Miller et al. observed pronounced bSSFP profile asymmetries in WM and compared the asymmetry level with DTI data.33 The respective findings suggest significant correlations of the bSSFP asymmetry index (AI) with DTI metrics, such as the component of the principal diffusion eigenvector parallel to B0 providing information about fiber tract orientation, or FA reflecting the strength of tract directionality. The highest bSSFP asymmetries are found in highly anisotropic WM tracts oriented perpendicular to B0.33 The results of a recent study investigating the contribution of chemical exchange effects to asymmetric intravoxel frequency distributions in WM corroborate that the main factor driving bSSFP profile asymmetries in WM is structure- and not exchange-related.35
+This inherent sensitivity to tissue microstructure, combined with a mixed dependence on both T1 and T2, as well as the ability to enable distortion-free motion-robust volumetric imaging with high signal-to-noise ratio efficiency in short scan times,36,37 makes phase-cycled bSSFP an interesting tool for multiparametric mapping of various MR quantities.38–40 Because off-resonance effects in the bSSFP signal arising from B0 inhomogeneities are used as an additional encoding dimension for multiparametric mapping, phase-cycled bSSFP is well suited for high-resolution imaging at ultrahigh field strength. However, current quantitative methods using phase-cycled bSSFP data do not include the intravoxel frequency dispersion in the employed analytical signal model. This results, for example, in a considerable bias of T1 and T2 quantification in brain tissues, especially in WM,38,39 which can be eliminated by a recently reported deep learning-driven approach.40
+Here, we propose to utilize the rich information content about tissue microstructure entangled in bSSFP profile asymmetries to simultaneously estimate multiple diffusion measures by means of artificial neural networks (NNs). Concretely, we aim at quantifying the scalar metrics MD, FA, AD, and RD, as well as the spherical coordinates Φ (azimuth) and ϴ (inclination) of the principal diffusion eigenvector, directly from 12-point 3D phasecycled bSSFP input data acquired at high (3 T) and ultrahigh (9.4 T) field strength in healthy volunteers. To this end, a feedforward NN is investigated at each field strength with incorporated probabilistic uncertainty estimation offering the ability to quantify the confidence level of the predicted parameters in each voxel.41–43 Target data are obtained at 3 T using a standard 2D multislice SE-EPI DTI measurement.
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+BIRK ET AL.
+
+3 of 16
+
+2 | METHODS
+MRI experiments were performed on healthy subjects at a field strength of 3 T (Magnetom Prisma, Siemens Healthineers, Erlangen, Germany) using a manufacturer-built 64-channel receive head array coil and at 9.4 T (Siemens Magnetom) using a custom-built head coil array consisting of 18 transceiver surface loops and 14 receive-only vertical loops.44 All experiments conducted in this study were in accordance with the local ethical guidelines and each subject gave written informed consent before scanning. Image registration and segmentation as well as DTI fitting including distortion correction were performed with the software packages FSL45 and AFNI.46 Data preparation for the NN and visualization of the results were implemented using Matlab (R2019b; MathWorks, Natick, MA). The open-source Python-based deep-learning framework Keras47 (version 2.3.1), with the TensorFlow48 (version 2.2.0) backend, was used to train the NN models. The Python package scikit-optimize49 enabled hyperparameter optimization to find adequate NN architectures.
+
+2.1 | Data acquisition at 3 T
+Whole-brain 3D sagittal bSSFP data of six subjects were acquired with a 12-point phase-cycling scheme and corresponding RF phase increments φ, uniformly distributed in the range (0, 360), that is, φj = 180/12Á(2j-1), j = 1, 2, … 12. Other bSSFP protocol parameters included an isotropic resolution of 1.3 x 1.3 x 1.3 mm3, 128–144 partitions to cover the whole brain, a TR/TE of 4.8/2.4 ms, a nominal flip angle αnom of 15, and 256 dummy preparation pulses before each phase-cycle acquisition. Using an in-plane generalized autocalibrating partial parallel acquisition (GRAPPA) acceleration factor of 2, the total scan time for phase-cycled bSSFP ranged from 10 min 12 s to 11 min 27 s, depending on the number of partitions.
+Diffusion-weighted images were acquired using a standard axial 2D multislice single-shot SE-EPI DTI sequence. Diffusion-sensitized scans were performed with a bipolar diffusion gradient scheme along 20 directions and a b-value of 1000 s/mm2. Additionally, a nondiffusion-weighted (b-value = 0) dataset was acquired with reverse phase-encoding direction. Protocol parameters included a resolution of 1.4 x 1.4 x 3.0 mm3, 36 slices for whole-brain coverage, a TR/TE of 4800/83 ms, an in-plane GRAPPA acceleration factor of 2, and nine averages per direction and bvalue, yielding a total acquisition time of 15 min 23 s.
+The measurement protocol was complemented by a magnetization-prepared rapid gradient-echo (MPRAGE) sequence,50 which provided structural T1-weighted images for segmentation purposes (isotropic resolution = 1.2 x 1.2 x 1.2 mm3, TR/TE = 2200/3.44 ms, αnom = 8, scan time = 3 min 7 s).
+
+2.2 | Data acquisition at 9.4 T
+Whole-brain 3D sagittal phase-cycled bSSFP experiments were conducted in the same six subjects as scanned at 3 T. The employed 12-point bSSFP phase-cycling scheme was identical to the 3 T protocol. The acquisition was performed with a high isotropic resolution of 0.8 x 0.8 x 0.8 mm3, 208–224 partitions to ensure whole-brain coverage, a TR/TE of 4/2 ms, αnom = 9, a GRAPPA acceleration factor of 4 (in-plane: 2/through-plane: 2), and 256 dummy preparation pulses before each phase-cycle acquisition, resulting in total scan times of 9 min 17 s to 9 min 58 s, depending on the number of partitions.
+
+2.3 | Data processing pipeline
+To achieve distortion correction of the 3 T SE-EPI diffusion data, the two nondiffusion-weighted datasets with opposite phase-encoding directions were used to estimate the susceptibility-induced off-resonance field, which served as additional input for the subsequent eddy current correction of the 4D DWI data. Then, the diffusion tensor was calculated voxelwise based on weighted least-squares fitting to derive the eigenvalues λ1, λ2, and λ3, as well as the principal diffusion eigenvector V1 corresponding to the largest eigenvalue λ1. From the eigenvalues, the scalar diffusion metrics MD, FA, AD = λ1, and RD = (λ2 + λ3)/2 were obtained. The principal eigenvector V1 in Cartesian coordinates (x, y, z) was transformed to spherical coordinates (r, Φ, ϴ; with r = 1 per definition). The inclination ϴ represents the angle between V1 and B0, while the azimuth Φ defines the angle between the positive x-axis and the projection of V1 into the x-y plane. The six diffusion metrics MD, FA, AD, RD, Φ, and ϴ derived at 3 T served as the target for NN training at both field strengths (cf. Figure 1). To provide matched NN input data, the high-resolution 3 and 9.4 T bSSFP phase-cycles, as well as the 3 T anatomical MPRAGE, were registered and downsampled to the lower resolution 3 T DTI data using the distortion-corrected nondiffusion-weighted dataset as reference. More details about the preprocessing of the bSSFP data are available in the supporting information (subsection 1).
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+4 of 16
+
+BIRK ET AL.
+
+F I G U R E 1 Neural network (NN) training and hyperparameter optimization scheme for the proposed multiparameter mapping pipeline. Real and imaginary parts of the 12-point balanced steady-state free precession (bSSFP) phase-cycling data (green box) are fed voxelwise into a fully connected feedforward NN. For each voxel, a 3 x 3 window of nearest neighbors in the axial plane is extracted, leading to 216 input features. After NN training, the predictions for unseen test data are compared with the target data obtained with standard spin-echo echo-planar-imaging diffusion tensor imaging (SE-EPI DTI) measurements (blue box) to evaluate the NN performance. The sum of all mean squared errors (MSEs) between predicted and targeted values was used as an optimization metric for hyperparameter optimization (for more details about the hyperparameter optimization, refer to the supporting information, subsection 2). HL, hidden layer
+Brain extraction (i.e. skull-stripping), and subsequent brain tissue classification based on the MPRAGE contrast, provided WM, GM, and cerebrospinal fluid (CSF) probability masks. Voxels containing pure CSF were excluded from the voxelwise NN training to increase the weight of tissues, and the brain masks were further thresholded based on the target diffusion metrics to remove erroneous values according to MD/AD/RD  (0, 2.5Á10À3] mm2/s, FA  [0.01, 0.99], Φ/ϴ  (0, 90] .
+The measured WM bSSFP profiles were binned voxelwise for different ϴ ranges after B0-shift correction to visualize the degree of asymmetry depending on fiber tract orientation. For comparison, the bSSFP frequency response was simulated using the analytical steady-state equation51 for the respective scan parameters, as well as literature WM relaxation times52 at 3 and 9.4 T. The dependence of bSSFP profile asymmetries in WM on FA and ϴ was analyzed by calculating the AI32,33 for WM voxels, binned into different FA as well as ϴ ranges: AI (FA,ϴ) = (hn – hp)/(hn + hp), where hn,p refers to the signal peak at negative (n) and positive (p) frequency offsets in the magnitude of the B0-corrected bSSFP profile relative to the banding. Binning included the whole-brain datasets of all subjects by retaining WM voxels classified with a probability higher than 90%. For each bin, the mean and standard deviation (SD) was computed.
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+BIRK ET AL.
+
+5 of 16
+
+2.4 | NN architecture
+In this proof-of-principle study, multilayer perceptrons, that is, fully connected feedforward NNs, were used as the basic architecture for voxelwise supervised learning, as illustrated in Figure 1. Because the MR signal evolution of one voxel may spread to its neighbors (e.g. due to residual registration errors), a 3 x 3 window in the axial plane was extracted around each voxel and used in a vectorized form as NN input. Real and imaginary parts of the 12-point complex bSSFP profile were stacked, yielding a total of 216 input features. The NN output consisted of 12 features represented by the six diffusion metrics MD, FA, AD, RD, Φ, and ϴ as well as their respective uncertainties σi (i = 1, 2, … 6) to make the NN network probabilistic41 and allow posterior uncertainty estimation in future applications, where likely no target data will be available. Target diffusion data for the supervised learning process were obtained from standard DTI measurements, as described above. The uncertainties σi were indirectly inferred during the training process based on the principle of maximum likelihood (see below) without requiring any labeled targets.
+The depth of the multilayer perceptron is defined by the number of hidden layers (HLs) between input and output layers. The total NN size is determined by the number of neurons in each HL. Here, an identical number of neurons was assumed for all HLs. The neural input in the HLs was processed by a rectified linear unit (ReLU) activation function. For the neurons in the output layer, a linear activation function was used. To find an optimal NN architecture, hyperparameter optimization was performed based on 12-point bSSFP data acquired at 3 T by treating the number of HLs, the number of neurons per HL, and the batch size as variables, as described in detail in the supporting information (subsection 2). It was assumed that 3 and 9.4 T bSSFP profiles share sufficiently similar information content to justify the use of identical optimal NN models. The hyperparameter optimization returned an optimum for the sampled hyperparameter space of four HLs, 500 neurons per HL, and a batch size of 128, which was selected in the following as optimal NN architecture, yielding in total 866 012 learnable parameters for the model.
+
+2.5 | NN training
+
+The training data of our prototype neural network (NN1) contained $590 000 voxels from four subjects; 20% of these voxels were used for validation purposes during training. The data of the two left-out subjects were used for testing purposes only (test subjects 1 and 2 in the case of NN1). Prior to training, the input data were standardized (i.e. mapped to mean = 0/SD = 1) and the target data were normalized (i.e. scaled to the range [0, 1]). NN weights were adjusted using the Adam53 optimization algorithm with a fixed learning rate of 10À4. An additional uncertainty term was added to the loss function to implicitly learn the posterior variance of the NN output parameters, also referred to as heteroscedastic aleatoric uncertainty, by applying the maximum likelihood principle and extending the standard mean squared error (MSE) to a negative loglikelihood loss function41,42,54,55
+
+Àlog
+
+pÀμtgt
+
+;
+
+μðxÞ,
+
+σ
+
+Á ðxÞ
+
+¼
+
+1
+
+Xn
+
+2 i¼1
+
+μti gt
+
+À
+
+μi
+
+!2 ðxÞ
+
+σ i ðxÞ
+
+þ
+
+Xn
+i¼1
+
+logðσi
+
+ðxÞÞ
+
+þ
+
+n 2
+
+logð2πÞ,
+
+for a given input-target pair (x, μtgt). This forces the NN to not only adjust the mean μi(x) but also the standard deviation σi(x) of a Gaussian probability distribution during training. The means μi(x) and the SDs σi(x) (i = 1, 2, … n = 6) refer to the predictions of the six diffusion metrics and the corresponding uncertainties, respectively, for a given input bSSFP profile x.
+Using the identified optimal NN architecture (four HLs, 500 neurons/HL, batch size: 128) with 216 input features (3 x 3 window), separate networks were trained for 12-point bSSFP input data at 3 and 9.4 T. For each field strength, the training of the prototype network NN1 was repeated 10 times with different random initializations of the weights to reduce the dependence on the initialization and thus increase the generalization ability. To validate the benefit of extracting a 3 x 3 window, NNs with identical architecture but single-voxel input yielding a reduced feature vector of 24 neurons in the input layer were trained for 10 different random weight initializations. The consistency of the NN parameter estimation was verified by implementing leave-two-out crossvalidation NN trainings. To this end, the data of the six subjects were split into training (four subjects) and testing (two subjects) data for three different divisions, such that each subject was contained once in the testing group (prototype NN1 with test subjects 1 and 2, NN2 with test subjects 3 and 4, NN3 with test subjects 5 and 6). Here, only a single NN was trained for each data division.
+
+2.6 | NN testing on unseen data
+
+The variability across the employed 10 random initializations of NN1 for a 3 x 3 neighborhood, as well as for a single-voxel input, was analyzed
+
+based
+
+on
+
+the
+
+sum
+
+of
+
+MSEs
+
+calculated
+
+for
+
+test
+
+subject
+
+1
+
+at
+
+each
+
+initialization
+
+instance
+
+(MSEsum
+
+¼
+
+P
+
+6 i¼1
+
+MSEi
+
+with
+
+MSEi
+
+referring
+
+to
+
+the
+
+MSE
+
+of
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+6 of 16
+
+BIRK ET AL.
+
+prediction i). In addition, the NN outputs of the 10 networks were averaged, and the sum of MSEs corresponding to the averaged parameter estimates was calculated, as described above with MSEi referring to the averaged prediction i. For the leave-two-out crossvalidation, the three networks NN1, NN2, and NN3 trained at a single weight initialization, were applied to their respective two test subjects with reported MSEsum for each test subject. Please note that the reported sum of MSEs refers to the normalized NN output and target data scaled to the range [0 1] and is thus dimensionless.
+All subsequent analysis was based on NN1, whereas the final NN outputs for the two test subjects 1 and 2 were derived as the average over all 10 NN predictions. All displayed quantitative maps and quantification accuracy assessment is thus based on the averaged NN predictions. The NN-predicted maps were calculated for both downsampled bSSFP data matched to standard DTI data to enable a direct validation of the NN quantification accuracy against the reference, and high-resolution bSSFP data to demonstrate the feasibility of deriving multiple quantitative diffusion metrics with whole-brain coverage at high isotropic resolution.
+The predicted uncertainties were transformed voxelwise into a relative metric in units of percentage to allow for a direct comparison across different brain tissue structures and quantitative parameters: σi,rel = (σi/μitgt) Â 100. The NN-predicted diffusion metrics at 3 and 9.4 T were quantitatively validated in WM and GM masks containing pure WM and GM voxels (i.e. classified with 100% probability), respectively. The WM masks were further subdivided based on different FA ranges according to the reference DTI measurement, yielding the following five masks: WM1, WM2, WM3, WM4, and WM5 with FA values in the range (0.0, 0.2], (0.2, 0.4], (0.4, 0.6], (0.6, 0.8], and (0.8, 1.0), respectively. In addition, smaller regions of interest (ROIs) were defined based on the acquired anatomical MPRAGE in WM (i.e. in a frontal region and in the corpus callosum (CC)) and in GM (i.e. in the putamen and the thalamus) (cf. Figure S1). The quantitative accuracy of the predicted parameters was assessed for all masks/ROIs by the relative error in units of percentage defined as Δrel = [(<μi > À < μitgt>)/<μitgt>] Â 100 (< > refers to the mean in the respective masks). All reported means, SDs, and relative errors are pooled over the two test subjects.
+
+F I G U R E 2 Balanced steady-state free precession (bSSFP) profile asymmetries and corresponding asymmetry index (AI) levels assessed at (A)-(C) 3 and (D)-(F) 9.4 T in white matter (WM). (A) and (D) The magnitude of the measured 12-point bSSFP profiles in WM is binned voxelwise across all measured subjects for six different ranges of the inclination angle (ϴ), as indicated in the legend and displayed for the average in each bin. Simulated analytical bSSFP profiles for literature WM relaxation times at 3 and 9.4 T are shown for comparison (black dashed curves). Please note that the level of bSSFP profile asymmetry is highly dependent on field strength and sequence parameters with an increased degree of asymmetry at higher fields (and longer TRs, not shown). (B) and (E), and (C) and (F) The bSSFP AI in WM is plotted versus (B) and (E), the inclination angle (ϴ), and (C) and (F), the azimuthal angle (Φ), respectively. The AI values are binned across all measured subjects and averaged for five different ranges of the fractional anisotropy (FA), as indicated in the legend with a bin size of 7.5 for both ϴ and Φ. The shaded regions indicate the extent of ± SD (standard deviation of the mean for each bin)
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+BIRK ET AL.
+
+7 of 16
+
+3 | RESULTS
+3.1 | WM bSSFP profile asymmetries
+Balanced SSFP profile asymmetries in WM are highly dependent on the fiber tract orientation relative to B0, that is, on the inclination angle ϴ (cf. Figure 2A,D). At 9.4 T (Figure 2D), enhanced asymmetries with stronger dependency on ϴ can be seen in comparison with 3 T (Figure 2A). A clear increase of the AI can be observed when incrementing ϴ from parallel (0) to orthogonal (90) tract orientation (cf. Figure 2B,E) with AI levels, which are almost twice as high at 9.4 than at 3 T. In addition, the AI positively correlates with FA in WM, yielding overall higher AI levels for increasing FA values. On the other hand, the AI is almost unaffected by the azimuthal angle Φ (cf. Figure 2C,F).
+These findings can be visualized on a voxelwise basis by comparing AI maps at 3 and 9.4 T (cf. Figure 3A) with inclination ϴ, and FA maps (cf. Figure 3B) for a WM mask overlaid onto the anatomical T1-weighted MPRAGE. The AI maps at 3 T (Figure 3A, left) and 9.4 T (Figure 3A, right) reveal the highest asymmetries in highly anisotropic WM structures (i.e. high FA values close to 1) and perpendicular fiber tract orientations relative to B0 (i.e. ϴ ≈ 90), for example, in the CC genu and splenium.
+
+3.2 | NN testing on unseen data
+The results of NN retraining for 10 random weight initializations as well as the comparison between nearest-neighbor and single-voxel NN input data are summarized in Figure S2. The sum of MSEs for the average network output calculated using the same brain masks as defined for NN training (dashed lines in Figure S2) is consistently lower than the sum of MSEs of the 10 individual NNs (squares and circles in Figure S2). As a
+
+F I G U R E 3 (A) Asymmetry index (AI) maps obtained at 3 (left) and 9.4 T (right) for a representative axial slice in the same subject, registered to and overlaid on the structural T1-weighted magnetization-prepared rapid gradient-echo (MPRAGE) acquired at 3 T. Please note the different scaling of AI for 3 and 9.4 T because the AI levels observed at 9.4 T are almost twice as high as the corresponding AI values at 3 T. (B) Maps of the inclination angle (ϴ) (left) and the fractional anisotropy (FA) (right) obtained with standard spin-echo echo-planar-imaging diffusion tensor imaging (SE-EPI DTI) measurements at 3 T overlaid on the T1-weighted MPRAGE
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+8 of 16
+
+BIRK ET AL.
+
+result, apart from reducing the NN variability induced by different weight initializations, calculation of averaged NN predictions is expected to increase the generalization ability of the NN. Additionally, it can be observed that a nearest-neighbor input improves the NN performance, resulting in a considerably lower sum of MSEs (cf. Figure S2) and quantitative maps in better agreement with the target DTI data (cf. Figure S3) compared with a single-voxel input. The NN performance of 9.4 T data is at a similar but slightly lower level compared with 3 T data (cf. Figure S2).
+Leave-two-out crossvalidation yields a consistent performance of the three different NNs (NN1, NN2, NN3), with rather small deviations in the reported sum of MSEs (cf. Table S1). Overall, the variation across test subjects was slightly higher for the 9.4 T data (MSEsum ranging from 0.211 to 0.278) compared with the 3 T data (MSEsum ranging from 0.185 to 0.207), likely reflecting an increased variability due to stronger B0 inhomogeneities.
+All subsequently presented results are based on average NN outputs obtained with the prototype network NN1. NN predictions of all six investigated diffusion metrics and their associated relative uncertainties are shown in Figure 4 for 3 and 9.4 T bSSFP input data of test subject 1 not included in NN training and downsampled to match the reference DTI data. A general structural smoothing and slight loss of contrast can be observed for all predicted quantitative parameters in comparison with the reference measurements, for example, in the posterior internal capsule (IC) or the optic radiations (OR) (cf. colored arrows in Figure 4). The results at both field strengths bear high resemblance. The relative uncertainty maps allow a fast visual assessment of the confidence level of the parameter prediction in the displayed representative axial slice, indicating that the NN prediction is generally reliable for MD (overall), AD (overall, but better in WM), RD (overall, apart from CC), FA (in WM, while GM exhibits higher uncertainties mainly due to division by low FA values), and inclination ϴ (apart from a few structures, mainly in GM, which appear impaired, likely due to the discrete nature of the angle, which is difficult to be learned by the NN). The NN prediction of the azimuth Φ fails almost completely (apart from a few WM structures), presumably because this metric is not correlated with bSSFP profile asymmetries (cf. Figure 2C,F) in contrast to ϴ (cf. Figure 2B,E), and will therefore not be validated quantitatively.
+The NN predictions of MD are in high agreement with the reference measurement at both field strengths (cf. Figure 4). MD is consistently slightly overestimated by the NN with mean relative errors below 9% in the assessed WM and GM masks (Figure 5A) and is barely dependent on FA as expected, that is, similar results are yielded for WM1–5. By contrast, a prominent dependence of the relative error on the WM anisotropy can be observed for FA (Figure 5B), AD (Figure 5C), and RD (Figure 5D). The NN model is able to correctly predict a linear dependence with increasing FA/AD values and decreasing RD values for increasingly anisotropic WM structures, but it underestimates the absolute value of the slope. In the case of FA and AD, this results in an overestimation for structures with low FA (e.g. for WM1) and an underestimation for structures with high FA (e.g. for WM5), as can be seen in Figure 5B,C. In the case of RD, an increasing overestimation for higher FA values is apparent (Figure 5D), also reflected by clearly higher relative uncertainties in the CC (cf. Figure 4). The MD, FA, AD, and RD mean values of the whole-brain GM masks are overall in good agreement with the reference.
+The ROI analysis in selected WM and GM structures yields generally good agreement between NN predictions and reference for MD, FA, AD, and RD, with relative errors of the order of 10% or below (e.g. for MD) at both 3 and 9.4 T (Table 1). Increased errors occur in CC, which is characterized by high anisotropy, leading to an underestimation of FA as well as AD, and especially to a pronounced overestimation in RD, in accordance with the results presented in Figure 5.
+The NN performance in predicting the inclination ϴ is analyzed in Figure 6 for three different ϴ ranges: (0, 30], (30, 60], and (60, 90]. For all three ranges, the mean relative errors in WM decrease with increasing FA while the NN prediction appears to fail for low FA values, especially for small ϴ. The obtained low relative errors of the NN-predicted ϴ for high FA are reflected by low uncertainties of ϴ in highly anisotropic WM structures (cf. Figure 4). The NN prediction of ϴ in the GM masks yields unreliable results, as is apparent from the bar charts, where similar mean values can be observed for all three ϴ ranges.
+Based on the validation of the NN-predicted diffusion metrics in Figures 5 and 6 as well as Table 1, the quantification accuracy can be considered similar for both investigated field strengths. The ability to deliver whole-brain quantitative maps of multiple diffusion metrics with high isotropic resolution of 1.3 x 1.3 x 1.3 mm3 and 0.8 x 0.8 x 0.8 mm3 is illustrated in Figures 7 and 8 for MD, FA, AD, and RD at 3 and 9.4 T, respectively, using 12-point bSSFP phase-cycling schemes. Increased B0 inhomogeneities at 9.4 T resulted in erroneous parameter estimates close to the frontal sinuses, which became especially apparent in the high-resolution NN predicted FA, AD, and RD maps displayed in Figure 8 (cyan arrow). The NN predictions exhibit high-resolution structural information content, revealing fine-scale WM structures, as indicated by the green and orange arrows in Figures 7 and 8.
+
+4 | DISCUSSION
+This proof-of-principle study indicates the high potential of NNs to jointly predict high-resolution volumetric maps of multiple diffusion metrics based on phase-cycled bSSFP input data at high to ultrahigh field strengths (cf. Figures 7 and 8). The trained NNs demonstrate an ability to reliably estimate scalar diffusion measures (here, MD, FA, AD, and RD) with isotropic resolutions of 1.3 x 1.3 x 1.3 mm3 and 0.8 x 0.8 x 0.8 mm3 at 3 and 9.4 T, respectively, yielding whole-brain coverage in scan times of only about 10 min for 12-point phase-cycling schemes. The prediction of
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+9 of 16
+
+F I G U R E 4 Legend on next page.
+
+BIRK ET AL.
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+10 of 16
+
+BIRK ET AL.
+
+F I G U R E 4 Neural network (NN) predictions are depicted for 12-point phase-cycled balanced steady-state free precession (bSSFP) data of test subject 1, not included in NN training, acquired at field strengths of 3 (middle) and 9.4 T (right) in comparison with reference data obtained with standard spin-echo echo-planar-imaging (SE-EPI)-based diffusion tensor imaging (DTI) fitting (left). A representative axial slice is shown. The green and orange arrows drawn on the reference fractional anisotropy (FA) map indicate the location of the posterior internal capsule (IC) and the optic radiations (OR), respectively. Both 3 and 9.4 T bSSFP data were coregistered (including downsampling) to the reference data. Relative (Rel.) uncertainty maps enable comparing the confidence level of the NN parameter prediction in different brain tissue structures and across quantitative parameters
+
+F I G U R E 5 White matter (WM) and gray matter (GM) mask analysis of the neural network (NN) quantification accuracy in (A) mean diffusivity (MD), (B) fractional anisotropy (FA), (C) axial diffusivity (AD), and (D) radial diffusivity (RD) at 3 and 9.4 T for 12-point balanced steady-state free precession (bSSFP) input data. The masks WM1, WM2, WM3, WM4, and WM5 refer to WM voxels with FA values in the range (0.0, 0.2], (0.2, 0.4], (0.4, 0.6], (0.6, 0.8], and (0.8, 1.0), respectively. GM is assessed by a whole-brain mask. The relative error in percentage (right axis) between NN predictions and reference is depicted by light red-colored bar charts. Negative and positive values refer to a mean underestimation and overestimation, respectively, relative to the reference in the respective brain tissue mask. The mean values of the quantitative parameters (left axis) for the assessed masks are displayed in black and dark red colors for the reference and NN, respectively, as dots connected by straight lines for better visibility across the WM mask and as bar charts for GM. For both, relative error and mean, darker red refers to 3 T and lighter red refers to 9.4 T
+diffusion directionality information (here, the spherical angles Φ and ϴ) was impaired due to the discrete nature of these metrics and weak correlation with the bSSFP asymmetry index in the case of Φ.
+While the bSSFP profile asymmetry is expected to considerably aid in the NN prediction of multiple diffusion metrics due to its microstructure sensitivity, resulting in a distinct dependence on FA and ϴ (cf. Figure 2B,E), it is certainly not the only factor contributing to diffusion estimation. It is likely that the NN incorporates several other valuable features, which shape the characteristic bSSFP profiles, into its learning process, such as T1 and T2 relaxation times, proton density, and off-resonances related to macroscopic B0 field variations. At lower field strengths (≤1.5 T), the bSSFP profile is reported to become approximately symmetric for sufficiently short TR.56 However, here the aim was to use the bSSFP profile asymmetry as a contrast mechanism for multiparametric mapping and to explore its dependencies on metrics of interest like the WM fiber orientation (ϴ) with respect to B0, or the FA.
+The NN prediction results are highly consistent across the two investigated field strengths (Figure 4). One possible explanation for the apparent structural smoothing in the NN-predicted parameter maps concerns interpolation effects, because a general solution is parametrized to best approximate the target data during NN training. While the general structural information is preserved for the NN-predicted scalar diffusion metrics MD, FA, AD, and RD, fine-scale structural details, for example regions where fiber crossings reduce FA, such as in the posterior IC or the OR (pointed to by colored arrows in Figures 4, 7, and 8), are not captured by the NN predictions displayed in Figure 4, but they seem to reappear in
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+BIRK ET AL.
+
+11 of 16
+
+T A B L E 1 Region of interest analysis of mean diffusivity (MD), fractional anisotropy (FA), axial diffusivity (AD), and radial diffusivity (RD) quantification accuracy pooled over both test subjects, which were not included in neural network (NN) training, for relevant structures in white matter (WM) (frontal WM, corpus callosum) and gray matter (GM) (putamen, thalamus), as defined in Figure S1. The NN predictions at 3 and 9.4 T based on 12-point phase-cycled balanced steady-state free precession (bSSFP) input data are compared with the reference diffusion metrics derived with standard spin-echo echo-planar-imaging diffusion tensor imaging (SE-EPI DTI). Positive and negative relative errors indicate an overestimation and underestimation with respect to the reference, respectively, as emphasized by the bold numbers
+
+WM
+
+GM
+
+MD (10À4) [mm2/s] FA AD (10À4) [mm2/s] RD (10À4) [mm2/s]
+
+Reference 3T 9.4 T Δrel 3 T [%] Δrel 9.4 T [%] Reference 3T 9.4 T Δrel 3 T [%] Δrel 9.4 T [%] Reference 3T 9.4 T Δrel 3 T [%] Δrel 9.4 T [%] Reference 3T 9.4 T Δrel 3 T [%] Δrel 9.4 T [%]
+
+Frontal WM 7.7 ± 0.3 8.0 ± 0.1 7.9 ± 0.1 +4 +3
+0.40 ± 0.05 0.47 ± 0.04 0.42 ± 0.04 +19
++5 11.2 ± 0.8 12.6 ± 0.6 11.9 ± 0.4 +13
++6 5.9 ± 0.4 5.7 ± 0.2 6.0 ± 0.3 À4
+<1
+
+Corpus callosum 8.1 ± 0.8 8.2 ± 0.6 8.0 ± 0.5 +1 <1
+0.80 ± 0.09 0.70 ± 0.08 0.63 ± 0.08 À12 À21 17.8 ± 1.3 16.1 ± 0.8 15.0 ± 1.5 À10 À16
+3.2 ± 1.2 4.2 ± 0.9 4.5 ± 0.8 +31 +42
+
+Putamen 7.1 ± 0.5 7.3 ± 0.2 7.6 ± 0.2 +3 +7
+0.17 ± 0.07 0.19 ± 0.03 0.18 ± 0.04 +13
++9 8.3 ± 0.8 8.8 ± 0.5 9.0 ± 0.5 +6 +9 6.5 ± 0.6 6.6 ± 0.2 6.9 ± 0.2 +1 +6
+
+Thalamus 7.5 ± 0.8 7.7 ± 0.5 7.6 ± 0.5 +3 +1
+0.31 ± 0.07 0.30 ± 0.06 0.27 ± 0.03
+À2 À14 9.8 ± 0.9 10.3 ± 0.9 9.8 ± 0.6 +5
+<1 6.4 ± 0.9 6.4 ± 0.5 6.5 ± 0.5 +1 +3
+
+the high-resolution maps (cf. Figures 7 and 8). A certain extent of the smoothing visible in Figure 4 may thus be attributed to the downsampling of the bSSFP data to the low-resolution DTI reference data. The 3 x 3 nearest neighbor NN input appeared to slightly enhance the blurring in the parameter maps in comparison with a single-voxel input (cf. Figure S3). However, it also yielded more stable parameter estimation results with increased precision and higher accuracy (cf. Figures S2 and S3), as it is less sensitive to image misregistrations and provides additional spatial information, which may be especially beneficial for brain regions affected by severe B0 inhomogeneities.
+Pronounced structural deficiencies in the NN predictions of the azimuthal angle Φ indicate that the orientation of the principal diffusion vector in the x-y plane is not directly contained in the phase-cycled bSSFP data, which hinders a better inference of this parameter. The finding that the AI does not reflect any information about Φ (cf. Figure 2C,F) supports this interpretation. By contrast, a successful estimation of the inclination ϴ in anisotropic WM structures (Figure 6) corroborates that enhanced bSSFP profile asymmetry in WM tracts perpendicular to B0 (cf. Figure 2B,E) provides useful information for the NN, reflected by lower relative uncertainties in these regions. Figure 5 reveals a high correlation between the strength of anisotropy in WM and the NN prediction performance of FA, AD, and RD. While the NN is able to correctly predict an increase of FA and AD as well as a decrease of RD with increasing anisotropy, it fails to properly estimate the absolute value of the slope of this nearly linear relationship, by underestimating it. Repeated measurements with slightly different head orientations and thus altered asymmetry levels in WM could be employed in the future to improve the NN performance.
+The use of complex data was beneficial as the phase contains information about the local frequency (B0) and helped to increase the robustness of the NN predictions in the presence of B0 field variations. However, at 9.4 T, residual banding-related artifacts in regions of high B0 inhomogeneity, such as near the sinuses, were encountered in some cases, reducing the NN performance (Figure 8, cyan arrow). Therefore, we will aim at improving the handling of complex data in future work, for example, by the development of complex-valued NNs instead of splitting the complex-valued data into real and imaginary parts. This offers the benefit that the NN model can incorporate the mathematical correlation between real and imaginary input channels directly during training, eliminating the need to learn phase information from scratch.
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+12 of 16
+
+BIRK ET AL.
+
+F I G U R E 6 White matter (WM) and gray matter (GM) mask analysis of the neural network (NN) quantification accuracy in the inclination ϴ at 3 and 9.4 T for 12-point balanced steady-state free precession (bSSFP) input data. The WM and GM masks are defined as in Figure 5. Additionally, the masks are subdivided into three different ϴ ranges according to the reference diffusion tensor imaging (DTI) measurement: (A) (0, 30], (B) (30, 60], and (C) (60, 90]. The relative error in percentage (right axis) between NN predictions and reference is depicted by light redcolored bar charts. Negative and positive values refer to a mean underestimation and overestimation, respectively, relative to the reference in the respective brain tissue mask. The mean ϴ values (left axis) for the assessed masks are displayed in black and dark red colors for the reference and NN, respectively, as dots connected by straight lines for better visibility across the WM mask and as bar charts for GM. For both, relative error and mean, darker red refers to 3 T and lighter red refers to 9.4 T
+The employed voxelwise NN fitting by means of a multilayer perceptron is inherently well suited for tissue quantification tasks as it learns the intrinsic dependence of the acquired signal evolution on multiple tissue characteristics. Under motion-free conditions, the MR signal series in one voxel can be considered independent of surrounding voxels. Nevertheless, to better learn the dependency on WM anisotropy, it appears useful to include spatial features in the NN training. Convolutional NNs (CNNs), which are well known for feature encoding and decoding of structural information, for example, in the context of brain segmentation,57,58 could therefore be investigated in the future.
+Because in practice (e.g. in clinical applications), no reference data will be available to evaluate the NN performance, probabilistic output layers were used in this work, providing a voxelwise uncertainty estimation for each target parameter. This type of implicitly learned variance is sometimes
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+BIRK ET AL.
+
+13 of 16
+
+F I G U R E 7 High-resolution whole-brain neural network (NN) predictions of mean diffusivity (MD), fractional anisotropy (FA), axial diffusivity (AD), and radial diffusivity (RD) are depicted for 12-point phase-cycled balanced steady-state free precession (bSSFP) data of test subject 1, not included in NN training, acquired at a field strength of 3 T with an isotropic resolution of 1.3 x 1.3 x 1.3 mm3. Representative sagittal, coronal, and axial slices are displayed for each parameter. Please note that the FA maps are windowed differently here compared to Figure 4 to improve the visual appearance and enhance the high-resolution structural information content. The green and orange arrows in the axial slice of the FA prediction indicate the location of the posterior internal capsule (IC) and the optic radiations (OR), respectively
+referred to as heteroscedastic aleatoric uncertainty,54 which quantifies the observational variance between the given training samples and is a good indicator, as long as the training dataset contains enough samples to represent the population. The uncertainty estimate is an additional deterministic model output that is dependent on the training data, and which is not expected to perform well for unseen data distributions (e.g. on noisy or biased inputs not contained in the training data distribution). Because of the small subject size investigated in this work, the obtained uncertainty results should thus be interpreted with caution. Apart from increasing the number of subjects, data augmentation may be considered in the future to incorporate data with applied random noise or artificially simulated bias (e.g. increased B0 shifts) into the training process. Special care has to be taken in future studies when applying NNs to patient data because it is not clear a priori whether NNs trained in healthy volunteers are directly applicable to pathological conditions. Retraining, including pathological data as input into the NN, will likely be needed.
+To the best of the authors' knowledge, this is the first proposed method enabling simultaneous voxelwise mapping of diffusion parameters directly from phase-cycled bSSFP contrasts. The high-resolution NN-predicted maps in Figures 7 and 8 demonstrate the feasibility and reliability of jointly estimating multiple diffusion metrics with whole-brain coverage at 3 and 9.4 T. The absence of diffusion gradients in the bSSFP acquisition has the inherent advantage of providing high motion robustness. By contrast, standard DTI sequences such as multishot SE-EPI are adversely affected by shot-to-shot phase errors caused by physiological motion, which necessitates the acquisition of navigators, and thus prolongs scan time. Due to the presence of strong B0 field inhomogeneities inducing image distortions, SE-EPI–based diffusion-weighted scans are barely applicable at ultrahigh fields. Furthermore, long echo trains in EPI acquisitions lead to T2* decay along the phase-encoding direction and result in spatial blurring. Balanced SSFP imaging benefits from a comparably narrower PSF, which allows resolving smaller voxels of submillimeter resolution at ultrahigh field within scan times of the order of only 10 min for whole-brain coverage.
+In addition, the presented NN-based approach does not require any complex mathematical modeling as compared to conventional diffusion tensor fitting, thus offers very fast multiparametric quantification of diffusion metrics once the NN is trained. This adds considerable value to the proposed NN-driven approach, which is able to infer high-resolution distortion-free maps of various diffusion metrics with high structural information content from phase-cycled bSSFP input data within a processing time of only a few seconds.
+It has to be noted that the presented proof-of-concept study is somewhat limited by the number of subjects with slight intersubject performance differences (Table S1). This encourages the investigation of NN behavior not only in the presence of a larger amount of data, but also in the presence of data leaks in future work. Another goal is to keep the quality of in vivo data as high as possible so as not to introduce misleading information to the network.
+At the current stage, the proposed NN prediction of selected diffusion metrics based on the bSSFP frequency profile does not provide the same information content as standard DTI. As evidenced by the results, directionality information can likely only partially be derived because the
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+14 of 16
+
+BIRK ET AL.
+
+F I G U R E 8 Ultrahigh field high-resolution whole-brain neural network (NN) predictions of mean diffusivity (MD), fractional anisotropy (FA), axial diffusivity (AD), and radial diffusivity (RD) obtained at 9.4 T with an isotropic resolution of 0.8 x 0.8 x 0.8 mm3 are depicted for the same subject (test subject 1) and similar slice positionings as in Figure 7. Please note that the FA maps are windowed differently here compared to Figure 4 to improve the visual appearance and enhance the high-resolution structural information content. The green and orange arrows in the axial slice of the FA prediction indicate the location of the posterior internal capsule (IC) and the optic radiations (OR), respectively. The cyan arrow in the axial slice of the FA prediction indicates an artefact caused by increased magnetic field inhomogeneities at 9.4 T close to the frontal sinuses
+estimation of the azimuthal angle Φ fails, and therefore only a subset of diffusion measures with respect to DTI can be provided. However, the estimation of diffusion metrics could in future be synergistically combined with the quantification of relaxation parameters validated previously using analytical or NN models based on the same underlying phase-cycled bSSFP acquisition scheme,38–40 and without any increase of scan time. This may offer the joint quantification of various clinically relevant tissue characteristics at high speed and high resolution.
+5 | CONCLUSION
+The presented NN-driven approach showed potential to jointly derive the diffusion metrics MD, FA, AD, RD, and ϴ from phase-cycled bSSFP data. The trained NNs were able to provide high-resolution quantitative diffusion data of remarkable structural details with whole-brain coverage. The focus of future studies will be on eliminating the residual bias in the predicted diffusion metrics, for example, by investigating complex-valued NNs and image-based CNNs.
+ACKNOWLEDGMENTS The financial support of the Max Planck Society and the German Research Foundation (DFG, Reinhart Koselleck Project, DFG SCHE 658/12) is gratefully acknowledged.
+DATA AVAILABILITY STATEMENT Code that supports the findings of this study is openly available in GitHub at https://github.com/birkfl/deepbssfp_dti. Upon request, fully anonymized training data samples can be made available by the corresponding author.
+ORCID Florian Birk https://orcid.org/0000-0003-0860-3570 Felix Glang https://orcid.org/0000-0003-3506-4947 Alexander Loktyushin https://orcid.org/0000-0001-6249-9124
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+BIRK ET AL.
+
+15 of 16
+
+Christoph Birkl https://orcid.org/0000-0003-3101-4002
+Philipp Ehses https://orcid.org/0000-0002-5839-6525
+Klaus Scheffler https://orcid.org/0000-0001-6316-8773
+Rahel Heule https://orcid.org/0000-0002-4589-6483
+REFERENCES
+1. Miller KL, Stagg CJ, Douaud G, et al. Diffusion imaging of whole, post-mortem human brains on a clinical MRI scanner. NeuroImage. 2011;57(1): 167-181.
+2. McNab JA, Polimeni JR, Wang R, et al. Surface based analysis of diffusion orientation for identifying architectonic domains in the in vivo human cortex. NeuroImage. 2013;69:87-100.
+3. Werring DJ, Toosy AT, Clark CA, et al. Diffusion tensor imaging can detect and quantify corticospinal tract degeneration after stroke. J Neurol Neurosurg Amp Psychiatry. 2000;69(2):269-272.
+4. Urbanski M, Thiebaut de Schotten M, Rodrigo S, et al. DTI-MR tractography of white matter damage in stroke patients with neglect. Exp Brain Res. 2011;208(4):491-505.
+5. Park CH, Kou N, Boudrias MH, Playford ED, Ward NS. Assessing a standardised approach to measuring corticospinal integrity after stroke with DTI. NeuroImage Clin. 2013;2:521-533.
+6. Roosendaal S, Geurts J, Vrenken H, et al. Regional DTI differences in multiple sclerosis patients. NeuroImage. 2009;44(4):1397-1403. 7. Henry RG, Shieh M, Amirbekian B, Chung S, Okuda DT, Pelletier D. Connecting white matter injury and thalamic atrophy in clinically isolated syn-
+dromes. J Neurol Sci. 2009;282(1–2):61-66. 8. Cercignani M, Bozzali M, Iannucci G, Comi G, Filippi M. Magnetisation transfer ratio and mean diffusivity of normal appearing white and grey matter
+from patients with multiple sclerosis. J Neurol Neurosurg Psychiatry. 2001;70(3):311-317. 9. Zheng Z, Shemmassian S, Wijekoon C, Kim W, Bookheimer SY, Pouratian N. DTI correlates of distinct cognitive impairments in Parkinson's disease:
+DTI Measures of Cognitive Impairment in PD. Hum Brain Mapp. 2014;35(4):1325-1333. 10. Vaillancourt DE, Spraker MB, Prodoehl J, et al. High-resolution diffusion tensor imaging in the substantia nigra of de novo Parkinson disease. Neurol-
+ogy. 2009;10(16):1378-1384. 11. Müller MJ, Greverus D, Weibrich C, et al. Diagnostic utility of hippocampal size and mean diffusivity in amnestic MCI. Neurobiol Aging. 2007;28(3):
+398-403. 12. Ukmar M, Makuc E, Onor ML, Garbin G, Trevisiol M, Cova MA. Evaluation of white matter damage in patients with Alzheimer's disease and in patients
+with mild cognitive impairment by using diffusion tensor imaging. Radiol Med. 2008;113(6):915-922. 13. Liu Y, Spulber G, Lehtimäki KK, et al. Diffusion tensor imaging and tract-based spatial statistics in Alzheimer's disease and mild cognitive impairment.
+Neurobiol Aging. 2011;32(9):1558-1571. 14. Song SK, Sun SW, Ramsbottom MJ, Chang C, Russell J, Cross AH. Dysmyelination revealed through MRI as increased radial (but unchanged axial) dif-
+fusion of water. NeuroImage. 2002;17(3):1429-1436. 15. Song SK, Sun SW, Ju WK, Lin SJ, Cross AH, Neufeld AH. Diffusion tensor imaging detects and differentiates axon and myelin degeneration in mouse
+optic nerve after retinal ischemia. NeuroImage. 2003;20(3):1714-1722. 16. Song SK, Yoshino J, Le TQ, et al. Demyelination increases radial diffusivity in corpus callosum of mouse brain. NeuroImage. 2005;26(1):132-140. 17. Winklewski PJ, Sabisz A, Naumczyk P, Jodzio K, Szurowska E, Szarmach A. Understanding the physiopathology behind axial and radial diffusivity
+changes—What do we know? Front Neurol. 2018;9:92. 18. Kumar R, Macey PM, Woo MA, Alger JR, Harper RM. Diffusion tensor imaging demonstrates brainstem and cerebellar abnormalities in congenital cen-
+tral hypoventilation syndrome. Pediatr Res. 2008;64(3):275-280. 19. Kumar R, Woo MA, Macey PM, Fonarow GC, Hamilton MA, Harper RM. Brain axonal and myelin evaluation in heart failure. J Neurol Sci. 2011;
+307(1–2):106-113. 20. Kumar R, Chavez AS, Macey PM, Woo MA, Harper RM. Brain axial and radial diffusivity changes with age and gender in healthy adults. Brain Res.
+2013;1512:22-36. 21. Wheeler-Kingshott CAM, Cercignani M. About “axial” and “radial” diffusivities. Magn Reson Med. 2009;61(5):1255-1260. 22. Stejskal EO, Tanner JE. Spin diffusion measurements: spin echoes in the presence of a time-dependent field gradient. J Chem Phys. 1965;42(1):
+288-292. 23. Heidemann RM, Porter DA, Anwander A, et al. Diffusion imaging in humans at 7T using readout-segmented EPI and GRAPPA. Magn Reson Med. 2010;
+64(1):9-14. 24. Wu W, Poser BA, Douaud G, et al. High-resolution diffusion MRI at 7T using a three-dimensional multi-slab acquisition. NeuroImage. 2016;143:1-14. 25. Setsompop K, Fan Q, Stockmann J, et al. High-resolution in vivo diffusion imaging of the human brain with generalized slice dithered enhanced resolu-
+tion: simultaneous multislice (gSlider-SMS): high-resolution diffusion imaging with gSlider-SMS. Magn Reson Med. 2018;79(1):141-151. 26. Moeller S, Ramanna S, Lenglet C, et al. Self-navigation for 3D multishot EPI with data-reference. Magn Reson Med. 2020;84(4):1747-1762. 27. Fair MJ, Liao C, Manhard MK, Setsompop K. Diffusion-PEPTIDE: Distortion- and blurring-free diffusion imaging with self-navigated motion-correction
+and relaxometry capabilities. Magn Reson Med. 2021;85(5):2417-2433. 28. In MH, Posnansky O, Speck O. High-resolution distortion-free diffusion imaging using hybrid spin-warp and echo-planar PSF-encoding approach.
+NeuroImage. 2017;148:20-30. 29. McNab JA, Miller KL. Steady-state diffusion-weighted imaging: theory, acquisition and analysis. NMR Biomed. 2010;23(7):781-793. 30. McNab JA, Jbabdi S, Deoni SCL, Douaud G, Behrens TEJ, Miller KL. High resolution diffusion-weighted imaging in fixed human brain using diffusion-
+weighted steady state free precession. NeuroImage. 2009;11(3):775-785. 31. Foxley S, Jbabdi S, Clare S, et al. Improving diffusion-weighted imaging of post-mortem human brains: SSFP at 7T. NeuroImage. 2014;11:579-589. 32. Miller KL. Asymmetries of the balanced SSFP profile. Part I: theory and observation: balanced SSFP asymmetry: theory. Magn Reson Med. 2010;63(2):
+385-395. 33. Miller KL, Smith SM, Jezzard P. Asymmetries of the balanced SSFP profile. Part II: white matter. Magn Reson Med. 2010;63(2):396-406.
+
+10991492, 2022, 6, Downloaded from https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.4669 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [11/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+16 of 16
+
+BIRK ET AL.
+
+34. Ehses P, Báez-Yánez MG, Erb M, Scheffler K. Asymmetries of the balanced SSFP profile allow to probe microstructure anisotropy at 9.4 Tesla. Proc Intl Soc Mag Reson Med. 2017;0993.
+35. Heule R, Deshmane A, Zaiss M, Herz K, Ehses P, Scheffler K. Structure or exchange? On the feasibility of chemical exchange detection with balanced steady-state free precession in tissue – an in vitro study. NMR Biomed. 2020;33(3):e4200.
+36. Bieri O, Scheffler K. Fundamentals of balanced steady state free precession MRI: fundamentals of balanced SSFP MRI. J Magn Reson Imaging. 2013; 38(1):2-11.
+37. Scheffler K, Lehnhardt S. Principles and applications of balanced SSFP techniques. Eur Radiol. 2003;13(11):2409-2418. 38. Nguyen D, Bieri O. Motion-insensitive rapid configuration relaxometry. Magn Reson Med. 2017;78(2):518-526. 39. Shcherbakova Y, van den Berg CAT, Moonen CTW, Bartels LW. PLANET: An ellipse fitting approach for simultaneous T 1 and T 2 mapping using
+phase-cycled balanced steady-state free precession: ellipse fitting approach for T 1 and T 2 mapping. Magn Reson Med. 2018;79(2):711-722. 40. Heule R, Bause J, Pusterla O, Scheffler K. Multi-parametric artificial neural network fitting of phase-cycled balanced steady-state free precession data.
+Magn Reson Med. 2020;84(6):2981-2993. 41. Prokudin S, Gehler P, Nowozin S. Deep directional statistics: pose estimation with uncertainty quantification. In: Ferrari V, Hebert M, Sminchisescu C,
+Weiss Y, eds. Computer Vision – ECCV 2018. Vol. 11213. Springer International Publishing; 2018:542-559. 42. Glang F, Deshmane A, Prokudin S, et al. DeepCEST 3T: robust MRI parameter determination and uncertainty quantification with neural networks—
+application to CEST imaging of the human brain at 3T. Magn Reson Med. 2020;84(1):450-466. 43. Herzog L, Murina E, Dürr O, Wegener S, Sick B. Integrating uncertainty in deep neural networks for MRI based stroke analysis. Med Image Anal. 2020;
+65:101790 44. Avdievich NI, Giapitzakis IA, Bause J, Shajan G, Scheffler K, Henning A. Double-row 18-loop transceive-32-loop receive tight-fit array provides for
+whole-brain coverage, high transmit performance, and SNR improvement near the brain center at 9.4T. Magn Reson Med. 2019;81(5):3392-3405. 45. Smith SM, Jenkinson M, Woolrich MW, et al. Advances in functional and structural MR image analysis and implementation as FSL. NeuroImage. 2004;
+23:S208-S219. 46. Cox RW. AFNI: software for analysis and visualization of functional magnetic resonance neuroimages. Comput Biomed Res. 1996;29(3):162-173. 47. Chollet F, and others. Keras. 2015. https://keras.io. Accessed February 14, 2021. 48. Abadi M, Barham P, Chen J, et al. TensorFlow: large-scale machine learning on heterogeneous systems. arXiv:1603.04467. 2015:21. 49. Head T, MechCoder, Louppe G, et al. Scikit-Optimize/Scikit-Optimize. V052. Zenodo; 2018. 50. Mugler JP, Brookeman JR. Three-dimensional magnetization-prepared rapid gradient-echo imaging (3D MP RAGE). Magn Reson Med. 1990;15(1):
+152-157. 51. Zur Y, Wood ML, Neuringer LJ. Motion-insensitive, steady-state free precession imaging. Magn Reson Med. 1990;16(3):444-459. 52. Zhu J, Klarhöfer M, Santini F, Scheffler K, Bieri O. Relaxation measurements in brain tissue at field strengths between 0.35T and 9.4T. Proc. Int. Soc.
+Mag. Reson. Med., 2014;22:3208. 53. Kingma DP, Ba J. Adam: A Method for Stochastic Optimization. 2014. http://arxiv.org/abs/1412.6980. Accessed March 20, 2021. 54. Kendall A, Gal Y. What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? In: Advances in Neural Information Processing Sys-
+tems. 2017;30:5580-5590. http://arxiv.org/abs/1703.04977. Accessed January 15, 2021. 55. Nix DA, Weigend AS. Estimating the mean and variance of the target probability distribution. In: Proceedings of 1994 IEEE International Conference on
+Neural Networks (ICNN’94). IEEE. 1994;1:55-60. 56. Schäper J, Bauman G, Ganter C, Bieri O. Pure balanced steady-state free precession imaging (pure bSSFP). Magn Reson Med. 2021. https://doi.org/10.
+1002/mrm.29086 57. Cui Z, Yang J, Qiao Y. Brain MRI segmentation with patch-based CNN approach. In: 2016 35th Chinese Control Conference (CCC). IEEE. 2016:
+7026-7031. 58. Chen L, Wu Y, DSouza AM, Abidin AZ, Wismüller A, Xu C. MRI tumor segmentation with densely connected 3D CNN. In: Angelini ED, Landman BA,
+eds. Medical Imaging 2018: Image Processing. SPIE; 2018:50.
+
+SUPPORTING INFORMATION Additional supporting information may be found in the online version of the article at the publisher's website.
+
+How to cite this article: Birk F, Glang F, Loktyushin A, et al. High-resolution neural network-driven mapping of multiple diffusion metrics leveraging asymmetries in the balanced steady-state free precession frequency profile. NMR in Biomedicine. 2022;35(6):e4669. doi:10.1002/nbm.4669
+

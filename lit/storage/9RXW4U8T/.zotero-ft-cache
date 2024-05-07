@@ -1,0 +1,865 @@
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH Public Access
+Author Manuscript
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+Published in final edited form as: Magn Reson Med. 2011 June ; 65(6): 1532–1556. doi:10.1002/mrm.22924.
+Diffusion Tensor Imaging and Beyond
+Jacques-Donald Tournier1, Susumu Mori2,*, and Alexander Leemans3
+1Brain Research Institute, Florey Neuroscience Institutes, Neurosciences Building, Austin Health, Heidelberg West, Victoria, Australia 2Department of Radiology, Johns Hopkins University School of Medicine, Baltimore, Maryland, USA 3Image Sciences Institute, University Medical Center Utrecht, Utrecht, The Netherlands
+The diffusion of water molecules inside organic tissues is often anisotropic (1). Namely, if there are aligned structures in the tissue, the apparent diffusion coefficient (ADC) of water may vary depending on the orientation along which the diffusion-weighted (DW) measurements are taken. In the late 1980s, diffusion-weighted imaging (DWI) became possible by combining MR diffusion measurements with imaging, enabling the mapping of both diffusion constants and diffusion anisotropy inside the brain and revealing valuable information about axonal architectures (2-14). In the beginning of the 1990s, the diffusion tensor model was introduced to describe the degree of anisotropy and the structural orientation information quantitatively (15,16). This diffusion tensor imaging (DTI) approach provided a simple and elegant way to model this complex neuroanatomical information using only six parameters. Since then, we have witnessed a tremendous amount of growth in this research field, including more sophisticated nontensor models to describe diffusion properties and to extract finer anatomical information from each voxel. Three-dimensional (3D) reconstruction technologies for white matter tracts are also developing beyond the initial deterministic line-propagation models (17-20). As these new reconstruction methods are an area of very active research, it is important to remember that the theory cannot be dissociated from practical aspects of the technology. Importantly, DWI is inherently a noisesensitive and artifact-prone technique (Fig. 1). Thus, we cannot overemphasize the importance of image quality assurance and robust image analysis techniques. Last but not least, data acquisition technologies have also been steadfastly evolving. In this article, we review the recent advances in these areas since 2000.
+DATA ACQUISITION TECHNIQUES AND IMAGING PARAMETERS
+Issues Related to Single-Shot Echo-Planar Imaging and the Potential Solutions
+DWI is inherently a low-resolution and low-SNR technique. Image quality problems are further exacerbated by its high sensitivity to physiological motion. DWI is sensitized to translational motion of water molecules, which is of the order of 5–15 mm assuming typical measurement times. A small amount of subject motion, even cardiac pulsation, can lead to a significant amount of signal phase shift or signal loss, which can severely affect image quality (21-25). To reduce motion sensitivity, single-shot echo-planar imaging (EPI) is commonly used. However, these single-shot data acquisitions usually suffer from artifacts and other limitations. The images are distorted due to B0 susceptibility effects and are prone
+© 2011 Wiley-Liss, Inc. *Correspondence to: Susumu Mori, PhD, The Russell H. Morgan, Department of Radiology and Radiological Science, The Johns Hopkins University School of Medicine, 330B Traylor Building, 720 Rutland Avenue, Baltimore, MD 21205. susumu@mri.jhu.edu.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 2
+to eddy current-induced distortions (Figs. 2 and 3). In addition, T*2 signal decay during the lengthy echo train leads to severe imaging blurring and limits the spatial resolution.
+To reduce these EPI artifacts, techniques are required to shorten the echo train length and reduce the echo spacing. Parallel imaging and segmented k-space sampling are two widely used such methods. Parallel imaging was introduced in the late 1990s (26) and is ideally suited to DWI, as it allows a substantial shortening of both the echo train length and echo spacing, while retaining the robustness to motion of single-shot EPI. The resulting reduction of B0-susceptibility artifacts is substantial. With parallel imaging capability now standard on modern magnetic resonance imaging (MRI) scanners, most DWI studies currently use parallel imaging as part of a routine protocol. However, the acceleration factor (parallel imaging factor) is practically limited to 2–4 depending on the number of receiver channels and coil geometry.
+If one requires further reduction of susceptibility-induced distortions and/or higher image resolution, a multishot segmented scanning scheme needs to be used. In terms of pulse programming, segmented k-space sampling is straightforward. However, the extreme motion sensitivity of DWI poses a unique challenge. For each shot, translational motion of water leads to signal loss (incoherent motion) or phase shifts (bulk motion). When singleshot imaging is used, phase shifts are irrelevant because the phase information is discarded by the magnitude calculation. However, if the k-space is acquired over multiple shots, phase coherence between shots has to be preserved, which cannot be guaranteed if motioninduced phase shifts occurs. Phase monitoring and post-processing correction are, therefore, imperative to avoid severe artifacts in multishot DWI (27-34). In the past, phase navigation techniques have been used for segmented EPI (35), spiral EPI (36), and FSE type scans. More sophisticated approaches have been proposed including self-navigated blade-type scans such as PROPELLER (37,38), and more recently vertically segmented EPI (39-41). One drawback of all segmented scans istheir reduced SNR per scan time compared with single-shot imaging. Even with single-shot scans and with a relatively low spatial resolution (2–2.5 mm isotropic voxels), DTI typically requires an acquisition time of ~5 min to obtain appropriate data. It remains to be seen whether the improved B0 susceptibility distortion and spatial resolution provided by segmented imaging techniques can provide enough SNR and robustness to motion within a clinically feasible scan time. If so, this would of course open up new and exciting opportunities for research studies in which scan time and success rate are less of an issue.
+Another image quality issue related to the usage of the single-shot EPI readout is that of image distortion due to eddy currents introduced by the rapid switching of the large diffusion gradient pulses. While this was an important issue in the ‘90s due to limitations in the gradient systems, this type of distortion is much less problematic on moderns MRI scanners due to advancements in hardware quality and eddy-current compensation schemes. Moreover, eddy current effects caused by the DW gradient pulses can be further suppressed using appropriate pulse sequences, including the use of bipolar gradients (42,43).
+Several studies have investigated the impact of cardiac pulsation in detail, which causes nonlinear motion and local deformations of the brain parenchyma (44,45), and can corrupt the measured diffusion signal (9,21,22,46,47). The resulting signal drop-outs and residual misalignments between the DW images will lead to erroneous estimates of the diffusion tensor (or any other model) and, consequently, of any subsequently derived diffusion measure of interest. To avoid these pulsatile artifacts, one can trigger the acquisition sequence to the cardiac cycle, which introduces a dependence of the effective pulse repetition time on the heart rate of the subject. Triggering can for example be performed based on the signal obtained from a pulse-oximeter placed on the subject’s forefinger. The
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 3
+
+downside of cardiac gating is that the acquisition typically requires a longer and unpredictable scan time.
+
+Imaging Parameters for Diffusion Tensor Imaging
+Diffusion-weighting by a pair of strong gradient pulses introduces a number of imaging parameters unique to diffusion imaging. This includes the magnitude (b-value) and orientations as well as the number of the least DW images (so-called b = 0 images). The majority of DTI studies nowadays use b-values in the range of 700–1000 s/mm2, leading to 30–50% signal reduction assuming the mean diffusivity of normal white matter is around 0.8 to 1.0 × 10−3 mm2/s. The determination of the optimum b-value (48,49) is complicated by the involvement of many factors (50), including: SNR (the higher the SNR, the more accurately signal attenuation can be measured with higher b-values), echo time (the smaller the b-value, the shorter the achievable echo time), and other factors that are more difficult to assess such as eddy current and motion artifacts (in general, smaller b-values produce less artifacts).
+Determination of the optimal number and distribution of gradient directions is also not straightforward. Simulation studies have shown improvements in fractional anisotropy (FA) estimation (a reduced dependency of the accuracy on the fiber orientation) by increasing the number of orientations up to 30 orientations, suggesting that as many DW gradient orientations should be used as time allows (51-53). On modern MR scanners, assuming 50– 65 axial slices (2.0–2.5 mm thickness) and a 5 min scan time, there should be enough time to acquire about 30–40 imaging volumes. If 5 b = 0 images are acquired, the rest of the time can be spent sampling as many orientations as possible (25–35 orientations). A related question is whether for example a 36 direction scheme is better than 3 repeats of a 12 direction scheme (which have equivalent scan times), and if so, by how much? This question is compounded by various other potentially more dominant sources of inaccuracy such as physiological noise (motion-induced intensity fluctuations or misregistration) and instrument imperfection (eddy-currents, stability, etc). In a human study comparing 6, 10, 15, and 30 orientation schemes, the differences in test–retest reproducibility were found to be relatively minor for studies with scan times shorter than 10 min, provided the orientations used are well distributed in space (54,55). From a practical point of view, multiple repeat scans (e.g., 3 × 12 orientations rather than 36 orientations) may provide a better way to judge the quality of the postprocessing (e.g., coregistration) or existence of motioncorrupted voxels, by comparing corresponding images across the multiple repeats. It is, therefore, difficult to conclude that multiple repeated sets of a smaller number of orientations should not be used. Please note that these discussions are applicable only for tensor-based approaches, where only six parameters need to be estimated, and the system is, therefore, overdetermined. For nontensor or multiple-tensor based analyses, the number of parameters that need to be estimated may be much larger, and the correspondingly larger minimum number of directions may preclude the acquisition of multiple repeats within a feasible scan time. These issues will be discussed in more detail in Sections ”Data Processing and Quality Control” and ”Beyond the tensor model.”
+
+DATA PROCESSING AND QUALITY CONTROL
+Although general guidelines exist for optimizing a DTI acquisition protocol in terms of SNR, b-value, voxel size, diffusion gradient directions, cardiac gating, etc. (56), there are still large variations in data quality across imaging centers due to, for instance, differences in scanner hardware, pulse sequences, and available scan times. Despite recent efforts to ensure high-data quality (e.g., by considering specialized diffusion phantoms to further improve acquisition settings and optimize postprocessing methods) (57-61), there is currently no consensus over which approach is preferred for DTI quality assessment.
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 4
+
+Visual Inspection
+Detailed slice-by-slice inspection of the DW MRI data to detect potential artifacts can be extremely time-consuming given the vast amount of acquired data.1 However, by simply looping through the DW images at a relatively high frame rate (~10 fps), large signal dropouts and geometric distortions can be spotted instantly in a short amount of time. Subtle system drifts, which may result in apparent translations (i.e., the “levitation” artifact), may also be detected by quickly toggling between the views of the first and last acquired DW image. Perhaps considered trivial, but often overlooked, is to inspect the images in different “orthogonal” views and not only to look at the image plane that the data were acquired in. In doing so, interslice and intravolume instabilities (i.e., the “zebra pattern” or “zipper” artifact), such as relative offsets in slice location or differences in signal intensity, can be easily observed (see Fig. 4).
+
+Image Misalignment and Pulsation Artifacts
+Calculating the standard deviation across the different DW images (SDWI) for each voxel provides an efficient way to investigate image misalignment artifacts (62,63). In Fig. 5, SDWI is shown for (Fig. 5a) the raw uncorrected DW images and (Fig. 5b) the same DW images, but now corrected for subject motion and eddy-current induced geometric distortions (64). The size and brightness of the rims at brain edges and tissue interfaces in these SDWI maps reflect the degree of misalignment between the different DW images. If multiple b = 0 images are available, taking the standard deviation across these images can be a sensitive approach to locate cardiac pulsation artifacts (see Fig. 6).
+
+Physically Implausible Signals
+By definition, FA is bound between 0 and 1. However, FA values larger than 1 can be obtained if the diffusion tensor contains one (or more) negative eigenvalues. These negative eigenvalues are typically encountered when there is a non-DW signal that is smaller than (any of) the DW signals. A binary map that flags such physically implausible signals proves to be a powerful method to spot additional artifacts (e.g., Gibbs ringing in the b = 0 images) (Fig. 7).
+
+Model Residuals
+A residual can be defined as the difference between a modeled and a measured signal. Large residuals indicate that the applied model (e.g., the second-rank diffusion tensor) is not able to characterize the observed signal accurately reflecting either the inadequacy of the model or the presence of artifactual signal intensities (e.g., Ref. 65). Assuming the latter, a residual map R can show artifacts that are not always visible on the FA map or the individual DW images. For the examples shown in Fig. 8, R is defined as the average residual of the observed signal DWIobs to the modeled signal DWImod, i.e.,
+
+[1]
+
+where the K modeled DW signals, with corresponding B-matrices Bk (k = 1, …,K), are derived from the fitted diffusion tensor Dfit, and the non-DW image DWI°:
+[2]
+
+NIH-PA Author Manuscript
+
+1A typical DTI acquisition, for instance, can produce a few thousand image slices. Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+Tournier et al.
+
+Page 5
+In general, there are two guidelines: (1) a poor diffusion tensor fit, assumed to be caused by artifacts, results in higher residuals and (2) a uniformly appearing R map reflects good image quality data.
+In contrast to averaging across the K DW signals for each voxel (see Eq. 1), calculating the mean residual Rk for each DW image across all N brain voxels ri (i = 1, …,N) can be useful to identify “problematic” DW images separately (Fig. 9a), i.e.,
+
+NIH-PA Author Manuscript
+
+[3]
+
+NIH-PA Author Manuscript
+
+Several diffusion tensor estimation procedures have been developed that take advantage of the diffusion tensor residuals to detect signal outliers (66-68). As these outliers may originate from artifactual data, an efficient identification of their location will be useful for further diffusion quality assessment (see Fig. 9b,c) (69).
+Eddy Current Induced Geometric Distortions
+When acquiring diffusion MRI data, strong magnetic field gradient pulses are applied to probe the diffusion along a specific direction. The rapid change in the magnetic field associated with the ramp-up and ramp-down of such large gradients will generate so-called “eddy currents” in nearby electrically conductive elements of the MRI scanner (e.g., the magnet dewar or the gradient coils themselves). These eddy currents will in turn produce time-dependent magnetic field gradients that will tend to oppose the applied change. Assuming slow decay of the eddy currents over the signal acquisition period, the unwanted complementary gradient will modify the sampled trajectory in k-space and, as a result, geometric distortions will be introduced (Fig. 2). In addition, although not directly visible, a difference between the prescribed and the actual b-value will occur for each gradient direction, as it depends on several gradient field properties that are affected by the eddy currents. Numerous strategies have been developed to correct for eddy-current induced geometric distortions based on: (1) additional information obtained during acquisition, (2) postprocessing tools such as image registration techniques, and (3) a combination of the previous two (42,43,64,65,70-79) (Fig. 10).
+ANATOMICAL INFORMATION WITHIN THE FRAMEWORK OF THE TENSOR
+MODEL
+The simplest model of water diffusion would use a single diffusion constant, which would assume that the system has isotropic structures. However, it is now well-known that the diffusion of water within brain white matter tissue is anisotropic. The 3 × 3 tensor model was proposed as the simplest and most elegant way to characterize such a system, requiring only six parameters to be estimated. Understandably, the tensor model may oversimplify the underlying neuroanatomy (see Section “Beyond the tensor model” for more detail). Thus, it is important to interpret results derived from the tensor model with care. Using only six parameters to characterize the DW information within a pixel is a significant reduction in the DW information content (Information reduction I: Tensor model). It is also important to realize that visualization and quantification, which usually requires the tensor to be further contracted to a scalar value, constitutes further information reduction (Information reduction II: scalarization). Such scalar values include metrics for the degree of anisotropy (e.g., FA) and diffusivity (trace, parallel, and perpendicular diffusivity). Finally, quantification of these scalar maps will often involve further information reduction (Information reduction III: quantification and reporting). For example, comparisons across subjects are often performed by manually drawing several regions of interest, thus ignoring a vast amount of the remaining information. Voxel-based analyses do not necessarily require so much
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 6
+information reduction, but spatial correspondence between images is usually not guaranteed, and the SNR is often too low to detect abnormalities. For these reasons, a substantial amount of spatial filtering is often applied, effectively reducing the amount of information. The use of spatial filtering is also a subject of controversy as it may not mitigate the adverse effect of structural misalignment between images, and particularly as the voxel-based analyses results are highly dependent on the amount and type of the filtering (80-82). In addition, although implicitly assumed to be negligible, it has been shown that choice of registration approach and atlas/template selection can further affect the outcome of the voxel-based analyses results (83,84).
+The reduction of the anatomical information to a tensor and then to a scalar value implies that when changes or differences are found in one of the scalar metrics, it is often difficult to draw any conclusions about the exact cause at the cellular level. While this can be considered as a drawback of DTI, the systematic information reduction can also be viewed as an advantage: with more than 100 billion neurons, an equal number of axons, 100 trillion synapses, and hundreds of billions of astrocytes, the human brain is a hugely complex system, the complete characterization of which is currently beyond our ability. If one wants to characterize its anatomical status and compare it between different populations, a quantitative method that can systematically reduce the anatomical information into a manageable size is required, which is exactly what DTI can offer noninvasively and within a short time-frame.
+Figure 11 shows a conceptual diagram of different anatomical factors that could affect diffusion anisotropy. These factors can be roughly divided into microscopic and macroscopic factors. From the microscopic point of view, there are various cellular components that confer diffusion anisotropy such as axons and myelin sheaths, which are structures in the order of 1–5 μm (85). These structures are often packed and aligned, forming axonal bundles. These fibers then become components of bigger white matter structures on a much larger macroscopic scale. While the microscopic factors are necessary for water to exhibit diffusion anisotropy, they are not sufficient because the macroscopic factors can override them; heterogeneous fiber orientations within a voxel can lead to isotropic diffusion properties. If a decrease (or increase) in diffusion anisotropy is observed, it is difficult to immediately conclude which of these multiple factors accounts for the change (86).
+To retrieve more specific information about the status of the underlying neuroanatomy, the information reduction (particularly steps I and II) needs to be avoided. For example, when FA is decreased, there are at least three potential cases in terms of the relative relationship among eigenvalues: (1) the longest axis of the diffusion ellipsoid (λ1, parallel diffusivity) is shortened, (2) the shorter axes (λ2 and λ3, perpendicular diffusivity) are elongated, or (3) both of these happen simultaneously. By contracting the 3 × 3 tensor information to a single FA value, these three cases become degenerate. By observing each eigenvalue, more information can potentially be retrieved to infer the cause of the change. Past studies have shown that myelin loss is correlated with an increase in perpendicular diffusivity, whereas axonal loss is related more to a decrease in the parallel diffusivity (87,88). However, there is the possibility that such correlations are specific to the particular disease model used and may not always hold. For instance, histological correlation studies do not support the inverse relationship (e.g., axonal loss may lead to a decrease in the parallel diffusivity, but such a decrease may not necessarily mean axonal loss). Note that this interpretation focuses only on microscopic contributions, excluding potential macroscopic factors; care must be taken when interpreting such changes in regions known to contain heterogeneous fiber orientations (86).
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 7
+
+BEYOND THE TENSOR MODEL
+Although attractive in its simplicity, the diffusion tensor model has been shown to be inadequate in the many regions of the brain that contain so-called “crossing fibers” (62,89-95), whereby two or more differently oriented fiber bundles are co-located within the same voxel. The term “crossing fibers” is itself somewhat misleading, as it includes any situation where multiple fiber orientations contribute to the signal measured for the same imaging voxel. Therefore, this also applies to configurations that may not initially have been thought of as “crossing fibers,” for example, fiber bundles that “brush” past each other within the same imaging voxel, or even curving or “fanning” fibers (Fig. 12). Crossing fibers are endemic to DWI, due to its coarse resolution (~2 to 3mm) compared with the white matter structures of interest even the pyramidal tracts are only ~3-mm thick in subcortical regions (96)]. Indeed, recent studies have shown that a significant proportion of the white matter contain crossing fibers (97), with the most recent estimating that multiple fiber orientations can be detected in over 90% of white matter voxels (98) (Fig. 13).
+These effects have an obvious impact on the diffusion tensor and any measures derived from it (101). As the mean ADC is largely unaffected, anisotropy measures such as FA (102) are particularly sensitive to the presence of crossing fibers (101), as are the axial and radial diffusivities (86) (Fig. 12). This has important consequences for their interpretation, as they are commonly regarded as surrogate markers of white matter “integrity.” Given the extent and profound impact of crossing fiber regions, such interpretations should only be made with extreme caution.
+Crossing fibers are even more problematic for tensor-based tractography methods (62,90,95,101,103,104): if one corrupt orientation estimate is encountered, the tracking algorithm may venture off course into an adjacent white matter structure, leading to both false-positive and false-negatives connections (97). Moreover, the problem is far greater than might initially be expected: any given white matter tract of interest will traverse a large number of voxels, any of which might contain crossing fibers. It can readily be appreciated that the proportion of tracts traversing at least one affected voxel must be much greater than the proportion of affected voxels. If as much as 90% of white matter voxels are affected (98), it is unlikely that any tracts will remain unaffected throughout their entire course.
+In practice, the orientation produced by the diffusion tensor model is likely to be fairly close to the largest contributing fiber direction; this is why tensor-based tractography algorithms can often follow the corticospinal tract through known crossing fibers regions such as the pons and centrum semiovale (105). The impact of these effects is, therefore, most severe for nondominant tracts. For example, the lateral projections of the corticospinal tract cross through regions where the superior longitudinal fasciculus is dominant. The commissural projections of the corpus callosum cross through the more dominant fibers of the corona radiata. These and other pathways, such as the acoustic radiations, cannot be delineated reliably without the ability to resolve crossing fibers (97). Moreover, pathology can turn a normally dominant tract into a nondominant tract, as has been shown with Wallerian degeneration in the corticospinal tract (104).
+For these reasons, there is increasing interest in using higher order models to capture the information provided by DWI more fully. An overview of these models is provided here.
+q-Space Approaches
+Methods based on q-space provide an estimate of the spin propagator (or at least its angular dependence) by exploiting its Fourier relationship with the DW signal measured as a function of the q-vector (related to the direction and intensity of the DW gradient pulse)
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 8
+(106). The spin propagator corresponds to the spin displacement probability density function —in others words, it provides the probability that a randomly chosen water molecule within the volume of interest (i.e., a single voxel) will have a particular displacement over the diffusion time. As water molecules are more likely to move along fiber orientations, the spin propagator will have higher probability along these orientations. As there is no explicit need for a model of diffusion in white matter, these methods are often considered to be “modelfree.”
+A common criticism of practical implementations of q-space based methods is the violation of the Narrow Pulse Approximation. The q-space formalism is only strictly valid if the spins are approximately static during the application of each DW gradient pulse. For the in vivo case, this requires DW gradient pulse durations of the order of 1 ms or less (107). Unfortunately, due to the limited gradient amplitudes available on current clinical systems, the required diffusion weighting cannot be obtained with such short DW pulse durations. However, it has been shown that in the presence of longer DW gradient pulses, the spin displacements obtained reflect the difference between the spin’s time-averaged positions during each DW gradient pulse (108). In a restricted environment, this will cause an underestimation of quantitative measurements of displacement (109), but importantly will not necessarily affect the estimated orientations (91). In fact, recent studies suggest that using long DW gradient pulses may be beneficial for fiber orientation estimation by exaggerating the orientation dependence of the DW signal (110,111).
+Another concern with the q-space approach is that the spin propagator does not necessarily reflect the true fiber orientation distribution (112). Fiber orientations are typically extracted from the spin propagator by identifying the directions along which the probability of displacement is highest (91,113). Unfortunately, due to the nature of diffusion, these high probability regions will be relatively broad and overlap significantly. While not necessarily a problem in itself, it does have consequences for the estimated orientations when using peaks in the spin propagator: (i) closely aligned fiber orientations will be “blurred” together and will thus be identified as a single orientation; and (ii) this can lead to a bias in the estimated fiber orientations (114,115). These issues can be addressed by the introduction of a suitable model for diffusion in white matter (112,116), although these methods could then no longer be called “model-free.”
+With the exception of diffusion spectrum imaging (DSI), most q-space methods are based on the shorter and arguably more efficient high-angular resolution DW imaging (HARDI) acquisition (see “Data Acquisition” below). However, as data are collected on a spherical shell in q-space, it is not possible to perform directly the 3D Fourier transform required for q-space analysis. The problem is made tractable by assuming a particular functional form for the radial dependence of either the DW signal or of the spin propagator. The various methods based on both HARDI and q-space differ in the specific assumptions they make in this respect.
+Diffusion Spectrum Imaging—DSI is the direct application of q-space in 3D (91). It requires data to be acquired on a 3D Cartesian grid in q-space, from which it is trivial to perform the required 3D Fourier transform. Fiber orientations are identified by reducing the 3D spin propagator to its 2D radial projection, the diffusion orientation density function (ODF), and finding the peaks of this function. The largest obstacle to its routine use is the large amount of data required and the correspondingly lengthy acquisition (see “Data Acquisition” below).
+Since the introduction of DSI, a number of variations have been proposed. For instance, the 3D Cartesian q-space framework has been extended to spherical coordinates, to allow direct
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 9
+
+reconstruction from data sampled on multiple shells in q-space (i.e., multiple q-values per direction) (117). Another approach, generalized DTI parameterizes the spin propagator using higher order tensors, also allowing the use of a multishell acquisition (118-120). These variations may offer advantages over DSI, in terms of a simplified acquisition protocol and improved robustness of reconstruction.
+
+Q-Ball Imaging—Q-ball imaging (QBI) provides an estimate of the diffusion ODF using the significantly shorter HARDI acquisition (89). It can be shown that the Funk-Radon transform of the DW signal (i.e., the integral over a great circle in q-space) provides an approximation to the radial integral of the spin propagator (i.e., the diffusion ODF). As with DSI, fiber orientations can be extracted from QBI by finding the peaks in the diffusion ODF, and used to track through crossing fiber regions (121-123). QBI has been shown to be both fast and capable of producing results similar to DSI with substantially reduced acquisition times. However, to ensure adequate SNR in the DW images, QBI is typically performed using low to intermediate q-values; this will introduce significant blurring into the ODF, since the approximation inherent in QBI isvalid in the limit of large q-values. Although blurring can be reduced using large q-values, this can only be done at the expense of SNR and/or scan time.
+
+Persistent Angular Structure MRI—Persistent angular structure MRI (PAS-MRI)
+provides an estimate of the so-called PAS of the spin propagator using HARDI data (94). The underlying principle is that spins are assumed to diffuse by a fixed distance r, with an angular distribution given by the PAS. With this definition of the radial dependence of the spin propagator, it becomes possible to perform the 3D Fourier transform required for qspace analysis. PAS-MRI is also combined with a maximum entropy constraint to improve the stability of the results. Unfortunately, the current implementation of PAS-MRI is computationally intensive, limiting its practical use. On the other hand, the entropy constraint allows PAS-MRI to operate on low b-value data (e.g., b = 1156 s/mm2 in Ref. 94).
+
+The Diffusion Orientation Transform—The diffusion orientation transform also operates on HARDI data and provides an estimate of the spin propagator evaluated at any given radius R0 (124). The 3D Fourier transform is made tractable by assuming a monoexponential radial dependence for the DW signal. The diffusion orientation transform differs from most other q-space methods in that the ODF provided is not a radial projection of the spin propagator, but corresponds to the amplitude of the spin propagator for a chosen displacement R0. This has the advantage of providing increased separation between the various fiber orientations when using larger values of R0.
+Mixture Models
+Methods based on a mixture model rely on explicit models to provide an estimate of the DW signal arising from each distinct fiber population. The DW signal that would be measured for a particular combination of fiber orientations is assumed to be given as the weighted sum of each population’s contribution to the DW signal. Estimating the fiber orientations given the data then becomes a matter of fitting the model to the measured DW signal.
+Mixture models assume that the DW signal measured from a given voxel is simply the linear sum of the DW signals for each fiber population present within that voxel. This allows the problem to be expressed as a linear combination, which can be solved using relatively simple and established methods. This assumption is met as long as there is negligible exchange of water molecules between the various fiber populations during the diffusion time (i.e., ~50 ms). Note that this is distinct from exchange between different cellular
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 10
+compartments (e.g., intracellular/extracellular). In this context, we are concerned with exchange between much larger scale bundles of fibers.
+This assumption can be justified by the following arguments. First, the typical mean spin displacement across white matter fibers is of the order of 10 mm or less (85). Significant exchange can, therefore, only occur over the ~10 mm immediately adjacent to the interface between fiber bundles. Therefore, exchange effects can only become significant if fibers from the different bundles interdigitate at the micron scale. Second, there is increasing evidence that water molecules within the intra-axonal space are to a good approximation restricted (85), in which case there will be negligible exchange between adjacent axons, and by extension between different fiber bundles. Although the extra-axonal water may exchange, its impact will remain small as it occupies only ~20% by volume and is, moreover, generally assumed to diffuse more rapidly (and hence will be more strongly attenuated) than the intra-axonal water.
+Mixture model methods also typically assume that fiber bundles in the brain share at least some, if not all of their DWI characteristics, which make it possible to reduce the complexity of the model and increase the stability of the reconstruction. This can range from simply assuming axial symmetry of the diffusion signal about the fiber axis (i.e., the diffusion tensor is prolate for each bundle) to stating that the diffusion signal is effectively identical for all fiber bundles (i.e., the diffusion tensor has fixed eigenvalues for each bundles). The latter assumption is commonly made as it leads to much better conditioned reconstructions and allows the problem to be expressed as a spherical deconvolution (see below). By extension, this also implies that any observed variations in white matter anisotropy (as measured by DTI) are due entirely to crossing fiber effects.
+Although this assumption may seem naïve given the known variations in axonal diameters, packing density, and myelination levels, amongst other potential confounding factors (e.g., 125,126), there are reasons to suggest that it is justified, at least in the context of fiber orientation estimation. First, these parameters have a relatively weak effect on the anisotropy: axonal membranes are sufficient to drive anisotropic diffusion (85). Second, minor changes in parallel diffusivity can only weakly affect the axial DW signal as it is already strongly attenuated, while changes in perpendicular diffusivity are almost indistinguishable from changes in the volume fraction of the corresponding bundle (92,127). In both cases, the estimated orientation will not be affected.
+An additional advantage of these methods is the possibility of introducing constraints based on prior knowledge about the fiber orientation distribution. In particular, the constraint of positive (or at least non-negative) volume fractions is commonly included, either implicitly or explicitly (85,90,97,99,128). A maximum entropy constraint can also be used, which favors a distribution of fiber orientations with few well-defined peaks (129). Such constraints, where they can be applied, help to improve the conditioning of the problem, and can provide results that are much more robust to noise.
+Multitensor Fitting—Multitensor fitting extends the diffusion tensor model to handle multiple fiber orientations and typically makes use of HARDI data. In this model, the DW signal is assumed to originate from a mixture of compartments, each characterized by its own diffusion tensor. To improve the stability of the method, the shape of each diffusion tensor is assumed to be prolate and axially symmetric. Its anisotropy is also typically fixed (90,97,127), although some implementations allow the anisotropy to vary (127,130). An additional isotropic compartment is sometimes included to account for CSF or gray matter contamination (97,127,130). Importantly, these methods require an estimate of the number of fiber orientations to include in the model for each voxel, which is typically achieved by
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 11
+
+some form of model comparison. Some implementations are framed as Bayesian inference problems, providing the posterior distribution of fiber orientations given the noisy data. Therefore, they form a natural basis for probabilistic tractography methods that rely on the availability of such a distribution (97,127,130,131).
+
+Combined Hindered and Restricted Model of Diffusion—Combined hindered and restricted model of diffusion (CHARMED) is strongly related to multitensor fitting methods in that a discrete number of diffusing compartments are included in the model. In this case, however, the model consists of one extra-axonal compartment (characterized with a single diffusion tensor), and a number of intra-axonal compartments each corresponding to a distinct fiber population (characterized using a model of restricted diffusion within cylinders) (132). This approach requires a more demanding 3D q-space acquisition to discriminate between the hindered and restricted components of the model.
+
+Spherical Deconvolution—Spherical deconvolution forms the basis of a number of recently proposed methods. Fundamentally, it extends the multitensor concept by increasing the number of fiber populations to infinity. In this limit, the summation becomes an integral over the distribution of fiber orientations, allowing the problem to be expressed as a spherical convolution (92,93). By assuming a particular convolution kernel (representing the DW signal for a single fiber orientation), the fiber orientation distribution can be estimated by performing the spherical deconvolution operation (92). Spherical deconvolution results obtained using constrained spherical deconvolution (99) are shown in Fig. 14.
+The various implementations differ in the assumed convolution kernel, with some methods assuming a diffusion tensor model (93,133-135), and others measuring it directly from the data (92,99). They also differ in the constraints placed on the solution, with many implementations introducing a non-negativity constraint (99,128,129,133), and others including a maximum entropy term (129).
+
+Apparent Diffusion Coefficient Models
+Some methods have been proposed to characterizing the angular dependence of the ADC in the presence of crossing fibers. These include fitting spherical harmonics to the ADC profile (95,103), or fitting a generalized diffusion tensor series to the ADC profile (118). However, ADC-based methods have been shown to be inconsistent in the presence of non-gaussian diffusion (136) and are, hence, inappropriate to characterize crossing fibers. Moreover, these methods cannot be used to infer the fiber orientations themselves without significant further processing (124).
+More recently, diffusion kurtosis imaging has been proposed as a way of characterizing nongaussian behavior in DWI (137). In its simplest form, it extents the simple linear relationship between the logarithm of the DW signal and b-value by introducing a quadratic term. This can be extended to 3D with a rank-4 diffusional kurtosis tensor (138). These approaches provide promising new measures of tissue microstructure that relate to nongaussian diffusion in the brain.
+
+Data processing and Quantification
+Given the increased complexity of nontensor models, it is inevitable that the amount of postprocessing will increase. However, in many cases, computation times can be kept very short: many algorithms can be expressed as linear matrix operations, and performed in seconds on modern workstations. These include DSI, QBI, diffusion orientation transform, and spherical deconvolution. Other algorithms, while requiring more computation, still provide results within a timeframe of a few minutes for a whole-brain data set (e.g.,
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 12
+
+constrained spherical deconvolution). In other cases, the amount of computation can become prohibitive (hours or days), and limit the potential of these methods for clinical use.
+Most of the methods described above (with the exception of ADC-based methods) aim to provide improved estimates of fiber orientations. While these are crucial for fiber tracking, there is a need for scalar measures to quantify features of the white matter that are insensitive to crossing fibers. Measures of diffusion anisotropy based on the diffusion tensor model have been used as surro-gate markers of white matter integrity in countless studies, but these are profoundly affected by crossing fibers. Unfortunately, deriving such crossingfiber invariant measures is extremely difficult, as most white matter changes have relatively subtle effects on the DW signal. Nonetheless, diffusion kurtosis imaging, while still in its early stages of development, may provide biologically useful measures (137-139), although it is unclear whether they are entirely unaffected by crossing fibers.
+
+Data Acquisition
+Some of the algorithms described above required a 3D q-space acquisition, whereby DW images are acquired with the DW gradients applied over a range of orientations and amplitudes. DSI for instance operates on data acquired with q-vectors arranged in a Cartesian grid, to facilitate the application of the subsequent 3D Fourier transform. The CHARMED model requires data acquired at multiple q-values per DW orientation, along multiple orientations. Moreover, these algorithms will require relatively large maximum qvalues, which can only be achieved on clinical systems by increasing the echo time. For these reasons, the scan times required to acquire data suitable for these types of analyses tend to be long.
+On the other hand, most algorithms make use of data acquired using the HARDI strategy (90), whereby a relatively large number of DW directions are used with a constant b or qvalue. This allows the acquisition to focus on the angular part of the DW signal and select the most appropriate diffusion weighting so as to maximize contrast-to-noise per unit of scan time. The HARDI sequence is, therefore, arguably more efficient than the 3D q-space acquisition for the purposes of fiber orientation estimation. However, the optimal b-value and number of directions are both still the subject of ongoing research. This is partly a consequence of the wide range of algorithms and associated parameters that can be used to analyze HARDI data, making it difficult to design an experiment that would provide recommendations applicable to all these algorithms. Nevertheless, a number of recent studies have shown that b-values in the range 2000–3000 s/mm2 provide the best power to resolve crossing fibers (50,92,99). The number of DW directions required has also been the subject of a recent study, suggesting that the minimum number required is at least 28 for low b-values (b ~ 1000 s/mm2), climbing to 45 for intermediate b-values (b ~ 3000 s/mm2), although it is recommended to acquire a greater number of images to boost overall SNR (either as additional DW directions or as multiple repeats of the same DW orientations) (140,141). Finally, the optimal distribution of orientations for a given number of DW directions has also been studied extensively (49,141-144)], with a recent study suggesting that force-minimizing strategies [e.g., electro-static repulsion (49,142)] and icosahedral schemes perform best in a multifiber setting (141,143).
+
+TRACTOGRAPHY
+Anatomical Background of Tractography
+Brain white matter consists of axons that connect different regions of the brain. Axons that share a similar destination tend to form larger bundles, called white matter tracts. There are many prominent tracts that are large enough to observe visually in human brains. These major tracts can be clearly delineated by DTI with 2–3 mm image resolution using so-called
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 13
+
+tractography or fiber-tracking algorithms. These operate based on the voxel-wise information provided by DTI (or other models) to infer connections between adjacent voxels that may belong to the same tract, thereby reconstructing the white matter architecture in 3D. However, a fundamental question remains to be answered: “What exactly is the biological information provided by tractography?” This question is further compounded by the fact that tractography results are used and interpreted in many different ways and the answer to the question may vary depending on the purpose of the study.
+For example, tractography is often used to investigate brain “connectivity,” based on the premise that the output of tractography algorithms is a true reflection of the corresponding white matter tracts and the status of their connectivity. A good example is stroke patients with damage to the corticospinal tracts, whose motor pathways could have compromised connectivity. In these types of investigations, tractography is used as visual support for the pathology, as the damaged areas can typically be appreciated just as readily by voxel-wise information such as color-coded orientation maps. Similarly, questions related to the largescale arrangement of white matter tracts, such as “are the corona radiata on the left or right side of the tumor” or “which tracts are affected by the lesion,” can often be visualized and answered by color-coded maps as well as 3D by tractography.
+However, as the connectivity information we are asking becomes more specific and microscopic, the interpretation and validity of tractography results both become increasingly questionable. At the most microscopic level, connectivity is defined by the axon of a single neuron. Because one axon may have a complicated branching pattern, even if we could delineate an axon in its entirety, the characterization of its connectivity is already very challenging. Of course, connectivity at the single-cell level is far too microscopic to be studied by DTI. On the other hand, region-to-region connection by white matter tracts is a very difficult notion to define. In fact, the notion of a “tract” is itself often a vague and subjective concept, as axons can merge and exit at any point along the tract, making it impossible to define a clear boundary. If we cannot unequivocally define the biological entity we are trying to delineate, there is no gold standard by which to judge the validity of tractography, and interpretation becomes difficult.
+On the other hand, the advantages of tractography are clear: it can delineate white matter tracts in 3D and non-invasively from less than 10 min of MR data acquisition, which cannot be achieved by any other modality. It is thus very important to understand these properties and limitations of tractography, to ensure that they are used wisely to answer biological and/ or clinical hypotheses about brain anatomy.
+
+Deterministic Tractography
+Most tractography algorithms in common use rely on line propagation techniques to delineate white matter pathways (105). This general class of methods is also often referred to as deterministic streamline fiber tractography (Fig. 15a). These rely on: the identification of a suitable position from which to initiate the algorithm (the seed point); the propagation of the track along the estimated fiber orientation; and the termination of the track when appropriate termination criteria are met. Each of these aspects is described below, starting with the propagation of the track.
+
+Track Propagation—Tractography algorithms rely on the availability of estimates of the orientation of the white matter fibers at any location in 3D space within the volume of interest. The major eigenvector of the diffusion tensor (also referred to as the principal diffusion direction) is typically assumed to provide a suitable estimate of the fiber orientation within each imaging voxel (146). The simplest method to obtain an estimate of this orientation at any location is then to use nearest-neighbor interpolation: the desired
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 14
+white matter orientation is approximated as that of the nearest voxel. The algorithm can then proceed by stepping out from the starting position along the orientation estimated at that point, by a fixed user-specified step-size. The orientation at the new location is then estimated, and the next step taken along that direction, until the track is terminated (see below). This combination of fixed step-size tracking using nearest-neighbor interpolation is the basis of the original fiber assignment by continuous tracking (FACT) algorithm (18).
+Other implementations differ mainly in the choice of interpolation method. Most algorithms use tri-linear interpolation, whereby the quantity of interest is calculated as a weighted sum from the 8 voxels nearest to the point of interest (17). Some implementations will perform tri-linear interpolation on the raw DW signals themselves, and recompute the major eigenvector based on these data (17). Another approach is to interpolate the elements of the diffusion tensor themselves (147-152).
+Other differences between implementations relate to the propagation algorithm used. The FACT algorithm mentioned above is in essence a first-order Euler integration procedure, which is known to overshoot in highly curved regions due to the finite step size (153,154). The use of fourth-order Runge-Kutta integration has been proposed to minimize these errors (20). Other propagation methods have been proposed to allow fiber-tracking to proceed through crossing fiber regions, by “deflecting” the direction of tracking according to the diffusion tensor, rather than strictly following its major eigenvector (155). This approach has however been shown to increase the amount of overshoot in highly curved regions (153).
+Track Termination—Another important aspect of fiber-tracking algorithms is choosing when a track should stop propagating. The most common such criterion is to impose a threshold based on a measure of diffusion anisotropy [typically FA (156)]: if the anisotropy falls below a certain threshold value (e.g., FA < 0.2), the track is not allowed to propagate any further (17). There are two main reasons for this choice of criterion: (i) in regions with low anisotropy, the major eigenvector of the diffusion tensor will tend to be poorly estimated and sensitive to noise; and (ii) as anisotropy tends to be high in white matter and low in gray matter, a sudden drop in anisotropy is likely to coincide with the gray/white matter boundary, where tracts are generally assumed to start and end.
+Another common criterion for termination is based on the local curvature of the track: if the angle between the directions of two subsequent steps is above a certain predefined threshold, the track is not allowed to propagate any further (e.g., Ref. 20). The motivation for this criterion is that a sudden change in direction of the track is likely to be caused by artifacts in the data (e.g., noise). This has the additional benefit of reducing the number of tracks that “rebound,” turning 180° relatively suddenly and propagating back down toward the seed point (157).
+It is possible to use other criteria or indeed a combination of a number of criteria. For example, a measure of the coherence of the fiber orientations within the immediate neighboring voxels can be used, as in Ref. 158. It is also possible to terminate tracks as they leave a predefined binary mask of the allowed regions (e.g., a mask of the brain; Refs. 113 and 159), or as they enter forbidden regions (e.g., a mask of the CSF; Ref. 160).
+Seed Point Selection—The selection of appropriate seed points is typically performed by the operator, although other methods exist. In most cases, the user is expected to supply a region of interest, and the algorithm will initiate tracks from all points within this region. The selection of anatomically appropriate regions is critical, since even relatively small changes in the position of the seed point can lead to very different results (161).
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 15
+
+An alternative approach to manual seed point or region selection is to use the so-called “brute-force” approach (17,162,163), whereby tracking is initiated from all voxels in the brain. This is typically best used in combination with tract-editing methods to identify tracts of interest (see below). Another interesting method consists of using areas of peak activation from functional MRI experiments as seed regions for a subsequent fiber-tracking experiment (160,164-166), allowing for correlation analyses between structural and functional connectivity.
+Combining tractography with cortical activation maps obtained from fMRI in this way is particularly attractive as it allows the integration of cortical functional information and white matter connectivity (164,166-169). While this approach is anatomically appealing, there are practical difficulties due to the need to extent the seed region beyond the cortex into the adjacent white matter, where the anisotropy is sufficiently high for the tractography algorithm (164,166,167,170). This issue is further complicated by the complex axonal structures found at the junction of the cortex and the white matter. Nevertheless, the use of fMRI activation site as seed regions has the potential to provide more biologically meaningful tractography results, with the additional benefit of reduced operator dependence (166).
+
+Tract-Editing—Tract-editing techniques are commonly used to introduce prior anatomical knowledge to refine fiber-tracking results (17,162,171). In essence, it consists of defining regions through which the tract of interest is known to pass (these are also referred to as “waypoints” or “gates”). Tracks that enter these regions are considered anatomically plausible, and all other tracks are simply discarded. Conversely, it is also possible to define regions through which the tract is known not to pass and discard any tracks that enter these regions. While these methods are very powerful for removing spurious findings, they require expert anatomical knowledge about the tracts of interest. Moreover, the removal of any tracks not previously hypothesized implies that these techniques are not suited to exploratory studies, where the connections that may be identified by the fiber-tracking algorithm may not be known a priori.
+
+Probabilistic Tractography
+Noise in the DW measurements will inevitably introduce uncertainty in the estimated fiber orientations, which may in turn introduce errors in the delineated pathway (153,154,157,172). These errors can lead to completely different connections being identified, as a small error at one point in the track can cause the algorithm to enter and follow a different white matter pathway. Unfortunately, deterministic tractography algorithms only provide a single estimate of the path of white matter fibers from each supplied seed point, without any indication of the confidence interval that can be placed around this estimate. Probabilistic algorithms attempt to address this limitation by providing their results in the form of a probability distribution, rather than a single “best fit” estimate (Fig. 15b). It should be emphasized that probabilistic methods are not more “accurate” than their deterministic counterparts, as they rely on the same underlying model. Many probabilistic tractography methods are based on deterministic techniques (e.g., Ref. 145), and hence suffer from the same limitations. As with deterministic approaches, manual guidance such as ROI-based editing may be needed to ensure the validity of the probabilistic results. The main benefit of probabilistic approaches, however, is that they can provide an estimate of the “precision” with which a tract pathway has been reconstructed. It is also critical to emphasize that the probability values produced by these algorithms are in no way related to the “connectivity” (e.g., number of axons, etc.) of the corresponding white matter pathways; they merely reflect the confidence that the particular connection of interest exists (173).
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 16
+Most probabilistic approaches derive from and extend the deterministic streamlines techniques described above, and therefore share many of their characteristics. The fundamental difference is the use of white matter orientation estimates that are drawn at random from the local probability density function (PDF) of fiber orientations. In other words, at each step of the algorithm, the direction for the next step is no longer unique, but chosen from a range of likely orientations. Starting from the seed point, the track is propagated in this way, with each step selected at random. To obtain an estimate of the distribution of likely connections, a large number of probabilistic tracks are generated from the same seed point. Brain regions that contain higher densities of the resulting tracks are then deemed to have a higher probability of connection with the seed point (174,175). Probabilistic streamlines results are, therefore, often quantified by generating maps of the number of tracks that traverse each voxel, which can then be analyzed and compared more readily (174,175).
+A key aspect of these methods is the accurate characterization of the fiber orientation PDF. It should provide an estimate of the fiber orientation and its associated uncertainty given the data and the noise contained therein, and it should be possible to evaluate it at any location within the dataset. A number of methods have been proposed to estimate the fiber orientation PDF, including estimating the uncertainty based on a heuristic function of the shape of the diffusion tensor (175,176), using “bootstrap” methods (23,145,172,177), and Bayesian inference methods (174,178).
+Other probabilistic methods have also been proposed, including: the use of fast marching algorithms (179), front evolution methods (176), random-walk models (180), and graphtheoretic approaches (181). These methods are conceptually similar to the probabilistic streamlines algorithms described above, in that they aim to provide a more distributed map reflecting the probability of connection, and differ mainly in the techniques used to propagate the tracks.
+When compared with deterministic approaches, probabilistic approaches have the additional advantage that they are not restricted by the rule of one tract per seed. If we select two arbitrary brain regions at random, it is unlikely that a connection will be identified between them using deterministic approaches. Deterministic approaches are, therefore, often used to study the status of known prominent tracts following established ROI-drawing protocols. On the other hand, the probabilistic approach can identify connections to much wider regions from one seed pixel (in fact, between any two regions of the brain), a feature that makes the probabilistic method far more flexible.
+However, an important consideration for probabilistic tractography is the correct interpretation of the results, particularly of the probability values generated by counting the number of tracks through each voxel. First, there is a clear distance effect in the results, simply due to the fact that voxels located close to the seed region are more likely to be reached by the algorithm than voxels located more remotely. It is, therefore, common to find short, anatomically implausible tracks with higher probability values than more distant, biologically relevant connections. Second, the results are inherently dependent on the data acquisition protocol. Ideally, the fiber orientation PDF should provide an estimate of the uncertainty in the fiber orientation given the data and the assumed model. This uncertainty will be less for higher quality data (e.g., higher SNR, larger number of DW directions, etc.), leading to improved precision in the tracking results, and a reduction in the spread of the results. Conversely, this leads to a greater density of tracks reaching the connected region, and hence to a greater inferred probability of connection. Finally, in cases where the tract of interest branches off to multiple destinations, there will be a corresponding reduction in the proportion of tracks reaching any one of these destinations. Each destination will, therefore,
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 17
+
+be assigned a lower probability value than might otherwise be expected. For these reasons, it is important to bear in mind that the probability values produced by probabilistic tractography algorithms should in no way be interpreted as a measure of the degree of anatomical connectivity (173). As stated previously, they merely reflect the “precision” with which a particular pathway can be reconstructed, given the data and the particular model assumed by the algorithm.
+
+Tractography with Nontensor Analysis
+As mentioned previously, the diffusion tensor model is unable to characterize crossing fiber voxels, and the need to use more sophisticated models, particularly for tractography, is increasingly recognized. Many of the algorithms proposed to date are extensions of the previous algorithms described above, with the white matter orientation estimates obtained using appropriate nontensor models. There is, however, some conceptual differences that deserve to be highlighted. First, in voxels where more than a single fiber orientation has been identified, a decision needs to be made as to which direction the algorithm should propagate along. In many cases, the direction closest to the current direction of tracking is selected (97,100,113,116,122,123,182-184), whereas in other cases the algorithm may “branch” and investigate both directions (116,121,185). A further consideration when using nontensor analyses is that even if the fiber orientations where known precisely, there may be many equally likely configurations of fiber bundles that match these orientations (e.g., crossing vs. kissing, curving vs. fanning, etc.) (186). The tractography problem is thus still a very significant challenge, even when using so-phisticated higher order models.
+The majority of the algorithms proposed are extensions of the streamlines approach, either in a deterministic of probabilistic setting (97,100,113,116,123,182-185). Other techniques have also been proposed to propagate the tracks, including flow-based methods (121), graph-theoretic approaches (187), or random-walk techniques (116).
+Deterministic approaches typically identify fiber orientations by finding the peaks of the diffusion ODF as identified by DSI (97,100,113,116,123,182-185), QBI (107,185), spherical deconvolution (107), or PAS-MRI (182). In some of these algorithms, the line between the deterministic and probabilistic approaches is blurred by the fact that all possible branches are followed, producing a more “distributed” characterization of the connectivity (107,185).
+Probabilistic algorithms, on the other hand, attempt to account for imaging noise as well as crossing fibers, by allowing some spread around the estimated orientations. As for the tensor case, an important aspect of these methods is the availability of a fiber orientation PDF, in this case allowing for the presence of multiple orientations. Such a PDF can be obtained in a number of way, including using empirically determined functions of the estimated fiber orientations or ODF (107,121,182), Bayesian inference methods (97), and “bootstrap” methods (100,123,183). Figure 16 shows results obtained using such an algorithm in conjunction with fiber orientation distribution data (Fig. 14) computed using constrained spherical deconvolution (99).
+Recently, a number of tractography algorithms have been proposed based on a more “global” approach to the problem (188-190). Essentially, these algorithms attempt to find the configuration of fibers that best explain the observed data. They hence do not rely on a preprocessing step to extract the fiber orientations, but rather operate directly on the acquired DWI data. On the other hand, they do rely on a model to compute the expected DW signal intensities for a given arrangement of fiber orientations (current implementations use a simple mixture model—see above). These approaches have the potential to provide more robust results than current “local” streamlines methods, by incorporating additional information from neighboring voxels. Unfortunately, these approaches are currently
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 18
+
+extremely computer-intensive, limiting their immediate use in clinical environments. They do nonetheless have the potential to improve the robustness of fiber-tracking results, and processing times are likely to be reduced significantly in the coming years as these techniques mature.
+
+CONCLUSIONS AND FUTURE OUTLOOK
+DWI provides a unique way of probing tissue microstructure in vivo and noninvasively and is by far the most promising tool for studying white matter and its organization in living humans. It is, however, a difficult technique to apply correctly due to its unique imaging artifacts, the often very intricate interactions between microstructure and signal, the sophistication of the reconstruction algorithms used, and the shear complexity of white matter itself. For these reasons, DWI is currently a very active field of research, both in terms of technical development, and of its application to the study of the brain and its disorders. As the methods evolve and mature, we expect that DWI will provide new and unforeseen insights into long-standing problems that would otherwise be impossible to study.
+
+Acknowledgments
+A part of the studies presented in this review is supported by National Institute of Health RR15241 and AG20012.
+
+REFERENCES
+1. Tanner JE. Self diffusion of water in frog muscle. Biophys J. 1979; 28:107–116. [PubMed: 318065]
+2. Le Bihan D, Breton E, Lallemand D, Grenier P, Cabanis E, Laval-Jeantet M. MR imaging of intravoxel incoherent motions: application to diffusion and perfusion in neurologic disorders. Radiology. 1986; 161:401–407. [PubMed: 3763909]
+3. Le Bihan D, Turner R, MacFall J. Effects of intravoxel incoherent motions (IVIM) in steady-state free precession (SSFP) imaging: application to molecular diffusion imaging. Magn Reson Med. 1989; 10:324–337. [PubMed: 2733589]
+4. Merboldt KD, Bruhn H, Frahm J, Gyngell ML, Hanicke W, Deimling M. MRI of “diffusion” in the human brain: new results using a modified CE-FAST sequence. Magn Reson Med. 1989; 9:423– 429. [PubMed: 2710008]
+5. Chenevert TL, Brunberg JA, Pipe JG. Anisotropic diffusion in human white matter: demonstration with MR technique in vivo. Radiology. 1990; 177:401–405. [PubMed: 2217776]
+6. Moseley ME, Cohen Y, Kucharczyk J, Mintorovitch J, Asgari HS, Wendland MF, Tsuruda J, Norman D. Diffusion-weighted MR imaging of anisotropic water diffusion in cat central nervous system. Radiology. 1990; 176:439–445. [PubMed: 2367658]
+7. Moseley ME, Cohen Y, Mintorovitch J, Chileuitt L, Shimizu H, Kucharczyk J, Wendland MV, Weinstein PR. Early detection of regional cerebral ischemia in cats: comparison of diffusion- and T2-weighted MRI and spectroscopy. Magn Reson Med. 1990; 14:330–346. [PubMed: 2345513]
+8. Moseley ME, Kucharczyk J, Mintorovitch J, Cohen Y, Kurhanewicz J, Derugin N, Asgari H, Norman D. Diffusion-weighted MR imaging of acute stroke: correlation with T2-weighted and magnetic susceptibility-enhanced MR imaging in cats. Am J NeuroRad. 1990; 11:423–429.
+9. Turner R, LeBihan D, Maier J, Vavrek R, Hedges LK, Pekar J. Echo-planar imaging of intravoxel incoherent motions. Radiology. 1990; 177:407–414. [PubMed: 2217777]
+10. Belliveau J, Kennedy RN, McKinstry RC, Buchbinder ER, Weisskoff RM, Cohen MS, Vevea JM, Brady TJ, Rosen BR. Functional mapping of the human visual cortex by magnetic resonance imaging. Science. 1991; 254:716–719. [PubMed: 1948051]
+11. Douek P, Turner R, Pekar J, Patronas N, Le Bihan D. MR color mapping of myelin fiber orientation. J Comput Assist Tomogr. 1991; 15:923–929. [PubMed: 1939769]
+12. Duerk JL, Simonetti OP. Theoretical aspects of motion sensitivity and compensation in echoplanar imaging. J Magn Reson Imaging. 1991; 1:643–650. [PubMed: 1823169]
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 19
+13. Mintorovitch J, Moseley ME, Chileuitt L, Shimizu H, Cohen Y, Weinstein PR. Comparison of diffusion-and T2-weighted MRI for the early detection of cerebral ischemia and reperfusion in rats. Magn Reson Med. 1991; 18:39–51. [PubMed: 2062240]
+14. Moonen CTW, Pekar J, de Vleeschouwer MH, van Gelderen P, van Zijl PCM, DesPres D. Restricted and anisotropic displacement of water in healthy cat brain and in stroke studied by NMR diffusion imaging. Magn Reson Med. 1991; 19:322–327.
+15. Basser PJ, Mattiello J, Le Bihan D. MR diffusion tensor spectroscopy and imaging. Biophys J. 1994; 66:259–267. [PubMed: 8130344]
+16. Basser PJ, Mattiello J, LeBihan D. Estimation of the effective self-diffusion tensor from the NMR spin echo. J Magn Reson B. 1994; 103:247–254. [PubMed: 8019776]
+17. Conturo TE, Lori NF, Cull TS, Akbudak E, Snyder AZ, Shimony JS, McKinstry RC, Burton H, Raichle ME. Tracking neuronal fiber pathways in the living human brain. Proc Natl Acad Sci USA. 1999; 96:10422–10427. [PubMed: 10468624]
+18. Mori S, Crain BJ, Chacko VP, van Zijl PC. Three-dimensional tracking of axonal projections in the brain by magnetic resonance imaging. Ann Neurol. 1999; 45:265–269. [PubMed: 9989633]
+19. Poupon C, Clark CA, Frouin V, Regis J, Bloch I, Le Bihan D, Mangin J. Regularization of diffusion-based direction maps for the tracking of brain white matter fascicles. Neuroimage. 2000; 12:184–195. [PubMed: 10913324]
+20. Basser PJ, Pajevic S, Pierpaoli C, Duda J, Aldroubi A. In vivo fiber tractography using DT-MRI data. Magn Reson Med. 2000; 44:625–632. [PubMed: 11025519]
+21. Skare S, Andersson JL. On the effects of gating in diffusion imaging of the brain using single shot EPI. Magn Reson Imaging. 2001; 19:1125–1128. [PubMed: 11711237]
+22. Pierpaoli, C.; Marenco, S.; Rohde, G.; Jones, D.; Barnett, A. Analyzing the contribution of cardiac pulsation to the variability of quantities derived from the diffusion tensor; International Society for Magnetic Resonance in Medicine; Toronta, Canada. 2003; p. 70
+23. Jones DK, Pierpaoli C. Confidence mapping in diffusion tensor magnetic resonance imaging tractography using a bootstrap approach. Magn Reson Med. 2005; 53:1143–1149. [PubMed: 15844149]
+24. Nunes RG, Jezzard P, Clare S. Investigations on the efficiency of cardiac-gated methods for the acquisition of diffusion-weighted images. J Magn Reson. 2005; 177:102–110. [PubMed: 16112886]
+25. Turner R, Le Bihan D. Single-shot diffusion imaging at 2.0 tesla. J Magn Reson. 1990; 86:445– 452.
+26. Pruessmann KP, Weiger M, Scheidegger MB, Boesiger P. SENSE: sensitivity encoding for fast MRI. Magn Reson Med. 1999; 42:952–962. [PubMed: 10542355]
+27. Butts K, de Crespigny A, Pauly JM, Moseley M. Diffusion-weighted interleaved echo-planar imaging with a pair of orthogonal navigator echoes. Magn Reson Med. 1996; 35:763–770. [PubMed: 8722828]
+28. Alsop DC. Phase insensitive preparation of single-shot RARE: application to diffusion imaging in humans. Magn Reson Med. 1997; 38:527–533. [PubMed: 9324317]
+29. Ordidge RJ, Helpern JA, Qing ZX, Knight RA, Nagesh V. Correction of motional artifacts in diffusion-weighted NMR images using navigator echoes. Magn Reson Imaging. 1994; 12:455– 460. [PubMed: 8007775]
+30. Williams CF, Redpath TW, Norris DG. A novel fast split-echo multi-shot diffusion-weighted MRI method using navigator echoes. Magn Reson Med. 1999; 41:734–742. [PubMed: 10332849]
+31. Atkinson D, Porter DA, Hill DL, Calamante F, Connelly A. Sampling and reconstruction effects due to motion in diffusion-weighted inter-leaved echo planar imaging. Magn Reson Med. 2000; 44:101–109. [PubMed: 10893527]
+32. Clark CA, Barker GJ, Tofts PS. Improved reduction of motion artifacts in diffusion imaging using navigator echoes and velocity compensation. J Magn Reson. 2000; 142:358–363. [PubMed: 10648154]
+33. Dietrich O, Heiland S, Benner T, Sartor K. Reducing motion artefacts in diffusion-weighted MRI of the brain: efficacy of navigator echo correction and pulse triggering. Neuroradiology. 2000; 42:85–91. [PubMed: 10663480]
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 20
+34. Norris DG. Implications of bulk motion for diffusion-weighted imaging experiments: effects, mechanisms, and solutions. J Magn Reson Imaging. 2001; 13:486–495. [PubMed: 11276093]
+35. Skare S, Newbould RD, Clayton DB, Albers GW, Nagle S, Bammer R. Clinical multishot DW-EPI through parallel imaging with considerations of susceptibility, motion, and noise. Magn Reson Med. 2007; 57:881–890. [PubMed: 17457876]
+36. Liu C, Bammer R, Kim DH, Moseley ME. Self-navigated interleaved spiral (SNAILS): application to high-resolution diffusion tensor imaging. Magn Reson Med. 2004; 52:1388–1396. [PubMed: 15562493]
+37. Pipe JG, Farthing VG, Forbes KP. Multishot diffusion-weighted FSE using PROPELLER MRI. Magn Reson Med. 2002; 47:42–52. [PubMed: 11754441]
+38. Pipe JG, Zwart N. Turboprop: improved PROPELLER imaging. Magn Reson Med. 2006; 55:380– 385. [PubMed: 16402378]
+39. Porter DA, Heidemann RM. High resolution diffusion-weighted imaging using readout-segmented echo-planar imaging, parallel imaging and a two-dimensional navigator-based reacquisition. Magn Reson Med. 2009; 62:468–475. [PubMed: 19449372]
+40. Holdsworth SJ, Skare S, Newbould RD, Bammer R. Robust GRAPPA-accelerated diffusionweighted readout-segmented (RS)-EPI. Magn Reson Med. 2009; 62:1629–1640. [PubMed: 19859974]
+41. Skare S, Newbould RD, Nordell A, Holdsworth SJ, Bammer R. An auto-calibrated, angularly continuous, two-dimensional GRAPPA kernel for propeller trajectories. Magn Reson Med. 2008; 60:1457–1465. [PubMed: 19025911]
+42. Alexander AL, Tsuruda JS, Parker DL. Elimination of eddy current artifacts in diffusion-weighted echo-planar images: the use of bipolar gradients. Magn Reson Med. 1997; 38:1016–1021. [PubMed: 9402204]
+43. Reese TG, Heid O, Weisskoff RM, Wedeen VJ. Reduction of eddy-current-induced distortion in diffusion MRI using a twice-refocused spin echo. Magn Reson Med. 2003; 49:177–182. [PubMed: 12509835]
+44. Poncelet BP, Wedeen VJ, Weisskoff RM, Cohen MS. Brain parenchyma motion: measurement with cine echo-planar MR imaging. Radiology. 1992; 185:645–651. [PubMed: 1438740]
+45. Enzmann DR, Pelc NJ. Brain motion: measurement with phase-contrast MR imaging. Radiology. 1992; 185:653–660. [PubMed: 1438741]
+46. Jones, DK.; Pierpaoli, C. The contribution of cardiac pulsation to variability in tractography results. International Society of Magnetic Resonance in Medicine; Miami: 2005. p. 225
+47. Jiang HY, Golay X, van Zijl PCM, Mori S. Origin and minimization of residual motion-related artifacts in navigator-corrected segmented diffusion-weighted EPI of the human brain. Magn Reson Med. 2002; 47:818–822. [PubMed: 11948746]
+48. Armitage PA, Bastin ME. Utilizing the diffusion-to-noise ratio to optimize magnetic resonance diffusion tensor acquisition strategies for improving measurements of diffusion anisotropy. Magn Reson Med. 2001; 45:1056–1065. [PubMed: 11378884]
+49. Jones DK, Horsfield MA, Simmons A. Optimal strategies for measuring diffusion in anisotropic systems by magnetic resonance imaging. Magn Reson Med. 1999; 42:515–525. [PubMed: 10467296]
+50. Alexander DC, Barker GJ. Optimal imaging parameters for fiber-orientation estimation in diffusion MRI. Neuroimage. 2005; 27:357–367. [PubMed: 15921931]
+51. Jones DK. The effect of gradient sampling schemes on measures derived from diffusion tensor MRI: a Monte Carlo study. Magn Reson Med. 2004; 51:807–815. [PubMed: 15065255]
+52. Skare S, Hedehus M, Moseley ME, Li TQ. Condition number as a measure of noise performance of diffusion tensor data acquisition schemes with MRI. J Magn Reson. 2000; 147:340–352. [PubMed: 11097823]
+53. Papadakis NG, Xing D, Houston GC, Smith JM, Smith MI, James MF, Parsons AA, Huang CL, Hall LD, Carpenter TA. A study of rotationally invariant and symmetric indices of diffusion anisotropy. Magn Reson Imaging. 1999; 17:881–892. [PubMed: 10402595]
+54. Farrell JA, Landman BA, Jones CK, Smith SA, Prince JL, van Zijl PC, Mori S. Effects of signalto-noise ratio on the accuracy and reproducibility of diffusion tensor imaging-derived fractional
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 21
+anisotropy, mean diffusivity, and principal eigenvector measurements at 1.5 T. J Magn Reson Imaging. 2007; 26:756–767. [PubMed: 17729339] 55. Landman BA, Farrell JA, Jones CK, Smith SA, Prince JL, Mori S. Effects of diffusion weighting schemes on the reproducibility of DTI-derived fractional anisotropy, mean diffusivity, and principal eigenvector measurements at 1.5 T. Neuroimage. 2007; 36:1123–1138. [PubMed: 17532649] 56. Jones DK, Leemans A. Diffusion tensor imaging. Methods Mol Biol. 2011; 711:127–144. [PubMed: 21279600] 57. Tofts, P. Quantitative MRI of the brain. Wiley; Chichester: 2003. 58. Fieremans E, De Deene Y, Delputte S, Ozdemir MS, D’Asseler Y, Vlassenbroeck J, Deblaere K, Achten E, Lemahieu I. Simulation and experimental verification of the diffusion in an anisotropic fiber phantom. J Magn Reson. 2008; 190:189–199. [PubMed: 18023218] 59. Pierpaoli, C. Polyvinylpyrrolidone (PVP) water solutions as isotropic phantoms for diffusion MRI studies; Annual Meeting of the ISMRM; Honolulu, Hawaii. 2009; 60. Ivancevic, M. Universal phantom for multi-center apparent diffusion coeffi cient (ADC) measurement; Annual Meeting of the ISMRM; Honolulu, Hawaii. 2009; 61. Leemans A, Sijbers J, Verhoye M, Van der Linden A, Van Dyck D. Mathematical framework for simulating diffusion tensor MR neural fiber bundles. Magn Reson Med. 2005; 53:944–953. [PubMed: 15799061] 62. Frank LR. Anisotropy in high angular resolution diffusion-weighted MRI. Magn Reson Med. 2001; 45:935–939. [PubMed: 11378869] 63. Correia, M. Characterisation of brain anisotropy using diffusion MRI; Annual Meeting of the ISMRM; Germany. 2007; 64. Leemans A, Jones DK. The B-matrix must be rotated when correcting for subject motion in DTI data. Magn Reson Med. 2009; 61:1336–1349. [PubMed: 19319973] 65. Andersson JL, Skare S. A model-based method for retrospective correction of geometric distortions in diffusion-weighted EPI. Neuroimage. 2002; 16:177–199. [PubMed: 11969328] 66. Mangin JF, Poupon C, Clark C, Le Bihan D, Bloch I. Distortion correction and robust tensor estimation for MR diffusion imaging. Med Image Anal. 2002; 6:191–198. [PubMed: 12270226] 67. Chang LC, Jones DK, Pierpaoli C. RESTORE: robust estimation of tensors by outlier rejection. Magn Reson Med. 2005; 53:1088–1095. [PubMed: 15844157] 68. Chang, L-C.; Walker, L.; Pierpaoli, C. Proc. Intl. Soc. Mag. Reson. Med. Vol. 17. Hawaii, USA: 2009. p. 3557 69. Leemans, A.; Evans, CJ.; Jones, DK. Quality assessment through analysis of residuals of diffusion image fitting; International Society for Magnetic Resonance in Medicine - 16th Scientific Meeting; Toronto, Canada. 2008; p. 3300 70. Papadakis NG, Martin KM, Pickard JD, Hall LD, Carpenter TA, Huang CL. Gradient preemphasis calibration in diffusion-weighted echo-planar imaging. Magn Reson Med. 2000; 44:616–624. [PubMed: 11025518] 71. Bastin ME. Correction of eddy current-induced artefacts in diffusion tensor imaging using iterative cross-correlation. Magn Reson Imaging. 1999; 17:1011–1024. [PubMed: 10463652] 72. Nielsen JF, Ghugre NR, Panigrahy A. Affine and polynomial mutual information coregistration for artifact elimination in diffusion tensor imaging of newborns. Magn Reson Imaging. 2004; 22:1319–1323. [PubMed: 15607105] 73. Rohde GK, Barnett AS, Basser PJ, Marenco S, Pierpaoli C. Comprehensive approach for correction of motion and distortion in diffusion-weighted MRI. Magn Reson Med. 2004; 51:103– 114. [PubMed: 14705050] 74. Bastin ME, Armitage PA. On the use of water phantom images to calibrate and correct eddy current induced artefacts in MR diffusion tensor imaging. Magn Reson Imaging. 2000; 18:681– 687. [PubMed: 10930777] 75. Jezzard P, Barnett AS, Pierpaoli C. Characterization of and correction for eddy current artifacts in echo planar diffusion imaging. Magn Reson Med. 1998; 39:801–812. [PubMed: 9581612]
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 22
+76. Zhuang J, Hrabe J, Kangarlu A, Xu D, Bansal R, Branch CA, Peterson BS. Correction of eddycurrent distortions in diffusion tensor images using the known directions and strengths of diffusion gradients. J Magn Reson Imaging. 2006; 24:1188–1193. [PubMed: 17024663]
+77. Ardekani S, Sinha U. Geometric distortion correction of high-resolution 3 T diffusion tensor brain images. Magn Reson Med. 2005; 54:1163–1171. [PubMed: 16187289]
+78. Aksoy M, Skare S, Holdsworth S, Bammer R. Effects of motion and b-matrix correction for high resolution DTI with short-axis PROPELLER-EPI. NMR Biomed. 2010; 23(7):794–802. [PubMed: 20222149]
+79. Bodammer N, Kaufmann J, Kanowski M, Tempelmann C. Eddy current correction in diffusionweighted imaging using pairs of images acquired with opposite diffusion gradient polarity. Magn Reson Med. 2004; 51:188–193. [PubMed: 14705060]
+80. Jones DK, Symms MR, Cercignani M, Howard RJ. The effect of filter size on VBM analyses of DT-MRI data. Neuroimage. 2005; 26:546–554. [PubMed: 15907311]
+81. Van Hecke W, Sijbers J, De Backer S, Poot D, Parizel PM, Leemans A. On the construction of a ground truth framework for evaluating voxel-based diffusion tensor MRI analysis methods. Neuroimage. 2009; 46:692–707. [PubMed: 19268708]
+82. Van Hecke W, Leemans A, De Backer S, Jeurissen B, Parizel PM, Sijbers J. Comparing isotropic and anisotropic smoothing for voxel-based DTI analyses: a simulation study. Hum Brain Mapp. 2010; 31:98–114. [PubMed: 19593775]
+83. Van Hecke W, Sijbers J, D’Agostino E, Maes F, De Backer S, Vandervliet E, Parizel PM, Leemans A. On the construction of an inter-subject diffusion tensor magnetic resonance atlas of the healthy human brain. Neuroimage. 2008; 43:69–80. [PubMed: 18678261]
+84. Sage CA, Van Hecke W, Peeters R, Sijbers J, Robberecht W, Parizel P, Marchal G, Leemans A, Sunaert S. Quantitative diffusion tensor imaging in amyotrophic lateral sclerosis: revisited. Hum Brain Mapp. 2009; 30:3657–3675. [PubMed: 19404990]
+85. Beaulieu C. The basis of anisotropic water diffusion in the nervous system—a technical review. NMR Biomed. 2002; 15:435–455. [PubMed: 12489094]
+86. Wheeler-Kingshott CA, Cercignani M. About “axial” and “radial” diffusivities. Magn Reson Med. 2009; 61:1255–1260. [PubMed: 19253405]
+87. Song SK, Sun SW, Ramsbottom MJ, Chang C, Russell J, Cross AH. Dysmyelination revealed through MRI as increased radial (but unchanged axial) diffusion of water. Neuroimage. 2002; 17:1429–1436. [PubMed: 12414282]
+88. Song SK, Yoshino J, Le TQ, Lin SJ, Sun SW, Cross AH, Armstrong RC. Demyelination increases radial diffusivity in corpus callosum of mouse brain. Neuroimage. 2005; 26:132–140. [PubMed: 15862213]
+89. Tuch DS. Q-ball imaging. Magn Reson Med. 2004; 52:1358–1372. [PubMed: 15562495] 90. Tuch DS, Reese TG, Wiegell MR, Makris N, Belliveau JW, Wedeen VJ. High angular resolution
+diffusion imaging reveals intravoxel white matter fiber heterogeneity. Magn Reson Med. 2002; 48:577–582. [PubMed: 12353272] 91. Wedeen VJ, Hagmann P, Tseng WY, Reese TG, Weisskoff RM. Mapping complex tissue architecture with diffusion spectrum magnetic resonance imaging. Magn Reson Med. 2005; 54:1377–1386. [PubMed: 16247738] 92. Tournier JD, Calamante F, Gadian DG, Connelly A. Direct estimation of the fiber orientation density function from diffusion-weighted MRI data using spherical deconvolution. Neuroimage. 2004; 23:1176–1185. [PubMed: 15528117] 93. Anderson AW. Measurement of fiber orientation distributions using high angular resolution diffusion imaging. Magn Reson Med. 2005; 54:1194–1206. [PubMed: 16161109] 94. Jansons KM, Alexander DC. Persistent angular structure: new insights from diffusion MRI data. Inf Process Med Imaging. 2003; 18:672–683. Dummy version. [PubMed: 15344497] 95. Alexander DC, Barker GJ, Arridge SR. Detection and modeling of non-Gaussian apparent diffusion coefficient profiles in human brain data. Magn Reson Med. 2002; 48:331–340. [PubMed: 12210942] 96. Ebeling U, Reulen HJ. Subcortical topography and proportions of the pyramidal tract. Acta Neurochir (Wien). 1992; 118:164–171. [PubMed: 1456101]
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 23
+97. Behrens TE, Berg HJ, Jbabdi S, Rushworth MF, Woolrich MW. Probabilistic diffusion tractography with multiple fibre orientations: what can we gain? Neuroimage. 2007; 34:144–155. [PubMed: 17070705]
+98. Jeurissen, B. Estimating the number of fiber orientations in diffusion MRI voxels: a constrained spherical deconvolution study. International Society for Magnetic Resonance in Medicine; Stockholm, Sweden: 2010.
+99. Tournier JD, Calamante F, Connelly A. Robust determination of the fibre orientation distribution in diffusion MRI: non-negativity constrained super-resolved spherical deconvolution. Neuroimage. 2007; 35:1459–1472. [PubMed: 17379540]
+100. Jeurissen B, Leemans A, Jones DK, Turnier JD, Sijbers J. Probabilistic fiber tracking using the residual bootstrap with constrained spherical deconvolution. Hum Brain Mapp. 2011; 32:461– 479. [PubMed: 21319270]
+101. Alexander AL, Hasan KM, Lazar M, Tsuruda JS, Parker DL. Analysis of partial volume effects in diffusion-tensor MRI. Magn Reson Med. 2001; 45:770–780. [PubMed: 11323803]
+102. Basser PJ, Pierpaoli C. Microstructural and physiological features of tissues elucidated by quantitative-diffusion-tensor MRI. J Magn Reson B. 1996; 111:209–219. [PubMed: 8661285]
+103. Frank LR. Characterization of anisotropy in high angular resolution diffusion-weighted MRI. Magn Reson Med. 2002; 47:1083–1099. [PubMed: 12111955]
+104. Pierpaoli C, Barnett A, Pajevic S, Chen R, Penix LR, Virta A, Basser P. Water diffusion changes in Wallerian degeneration and their dependence on white matter architecture. Neuroimage. 2001; 13(pt 1):1174–1185. [PubMed: 11352623]
+105. Mori S, van Zijl PC. Fiber tracking: principles and strategies—a technical review. NMR Biomed. 2002; 15:468–480. [PubMed: 12489096]
+106. Callaghan PT. NMR imaging, NMR diffraction and applications of pulsed gradient spin echoes in porous media. Magn Reson Imaging. 1996; 14:701–709. [PubMed: 8970070]
+107. King MD, Houseman J, Roussel SA, van Bruggen N, Williams SR, Gadian DG. q-Space imaging of the brain. Magn Reson Med. 1994; 32:707–713. [PubMed: 7869892]
+108. Mitra PP. Multiple wave-vector extensions of the NMR pulsed-field-gradient spin-echo diffusion measurement. Phys Rev B Condens Matter. 1995; 51:15074–15078. [PubMed: 9978461]
+109. Bar-Shir A, Avram L, Ozarslan E, Basser PJ, Cohen Y. The effect of the diffusion time and pulse gradient duration ratio on the diffraction pattern and the structural information estimated from qspace diffusion MR: experiments and simulations. J Magn Reson. 2008; 194:230–236. [PubMed: 18667345]
+110. Hall. Finite pulse widths improve fibre orientation estimates in diffusion tensor MRI. International Society for Magnetic Resonance in Medicine; Seattle: 2006.
+111. Yeh CH, Tournier JD, Cho KH, Lin CP, Calamante F, Connelly A. The effect of finite diffusion gradient pulse duration on fibre orientation estimation in diffusion MRI. Neuroimage. 2010; 51:743–751. [PubMed: 20188192]
+112. Tuch DS, Reese TG, Wiegell MR, Wedeen VJ. Diffusion MRI of complex neural architecture. Neuron. 2003; 40:885–895. [PubMed: 14659088]
+113. Wedeen VJ, Wang RP, Schmahmann JD, Benner T, Tseng WY, Dai G, Pandya DN, Hagmann P, D’Arceuil H, de Crespigny AJ. Diffusion spectrum magnetic resonance imaging (DSI) tractography of crossing fibers. Neuroimage. 2008; 41:1267–1277. [PubMed: 18495497]
+114. Zhan W, Yang Y. How accurately can the diffusion profiles indicate multiple fiber orientations? A study on general fiber crossings in diffusion MRI. J Magn Reson. 2006; 183:193–202. [PubMed: 16963296]
+115. Tournier JD, Yeh CH, Calamante F, Cho KH, Connelly A, Lin CP. Resolving crossing fibres using constrained spherical deconvolution: validation using diffusion-weighted imaging phantom data. Neuroimage. 2008; 42:617–625. [PubMed: 18583153]
+116. Descoteaux M, Deriche R, Knosche TR, Anwander A. Deterministic and probabilistic tractography based on complex fibre orientation distributions. IEEE Trans Med Imaging. 2009; 28:269–286. [PubMed: 19188114]
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 24
+117. Canales-Rodriguez EJ, Melie-Garcia L, Iturria-Medina Y. Mathematical description of q-space in spherical coordinates: exact q-ball imaging. Magn Reson Med. 2009; 61:1350–1367. [PubMed: 19319889]
+118. Ozarslan E, Mareci TH. Generalized diffusion tensor imaging and analytical relationships between diffusion tensor imaging and high angular resolution diffusion imaging. Magn Reson Med. 2003; 50:955–965. [PubMed: 14587006]
+119. Liu C, Bammer R, Acar B, Moseley ME. Characterizing non-Gaussian diffusion by using generalized diffusion tensors. Magn Reson Med. 2004; 51:924–937. [PubMed: 15122674]
+120. Liu C, Mang SC, Moseley ME. In vivo generalized diffusion tensor imaging (GDTI) using higher-order tensors (HOT). Magn Reson Med. 2010; 63:243–252. [PubMed: 19953513]
+121. Campbell JS, Siddiqi K, Rymar VV, Sadikot AF, Pike GB. Flow-based fiber tracking with diffusion tensor and q-ball data: validation and comparison to principal diffusion direction techniques. Neuroimage. 2005; 27:725–736. [PubMed: 16111897]
+122. Perrin M, Poupon C, Cointepas Y, Rieul B, Golestani N, Pallier C, Riviere D, Constantinesco A, Le Bihan D, Mangin JF. Fiber tracking in q-ball fields using regularized particle trajectories. Inf Process Med Imaging. 2005; 19:52–63. [PubMed: 17354684]
+123. Berman JI, Chung S, Mukherjee P, Hess CP, Han ET, Henry RG. Probabilistic streamline q-ball tractography using the residual bootstrap. Neuroimage. 2008; 39:215–222. [PubMed: 17911030]
+124. Ozarslan E, Shepherd TM, Vemuri BC, Blackband SJ, Mareci TH. Resolution of complex tissue microarchitecture using the diffusion orientation transform (DOT). Neuroimage. 2006; 31:1086– 1103. [PubMed: 16546404]
+125. Aboitiz F, Scheibel AB, Fisher RS, Zaidel E. Individual differences in brain asymmetries and fiber composition in the human corpus callosum. Brain Res. 1992; 598:154–161. [PubMed: 1486478]
+126. Aboitiz F, Scheibel AB, Fisher RS, Zaidel E. Fiber composition of the human corpus callosum. Brain Res. 1992; 598:143–153. [PubMed: 1486477]
+127. Hosey TP, Harding SG, Carpenter TA, Ansorge RE, Williams GB. Application of a probabilistic double-fibre structure model to diffusion-weighted MR images of the human brain. Magn Reson Imaging. 2008; 26:236–245. [PubMed: 17881178]
+128. Jian B, Vemuri BC. A unified computational framework for deconvolution to reconstruct multiple fibers from diffusion weighted MRI. IEEE Trans Med Imaging. 2007; 26:1464–1471. [PubMed: 18041262]
+129. Seunarine, K. Linear persistent angular structure MRI and non-linear spherical deconvolution for diffusion MRI. International Society for Magnetic Resonance in Medicine; Seattle, Washington: 2006.
+130. Hosey T, Williams G, Ansorge R. Inference of multiple fiber orientations in high angular resolution diffusion imaging. Magn Reson Med. 2005; 54:1480–1489. [PubMed: 16265642]
+131. Powell HW, Parker GJ, Alexander DC, Symms MR, Boulby PA, Wheeler-Kingshott CA, Barker GJ, Koepp MJ, Duncan JS. Abnormalities of language networks in temporal lobe epilepsy. Neuroimage. 2007; 36:209–221. [PubMed: 17400477]
+132. Assaf Y, Freidlin RZ, Rohde GK, Basser PJ. New modeling and experimental framework to characterize hindered and restricted water diffusion in brain white matter. Magn Reson Med. 2004; 52:965–978. [PubMed: 15508168]
+133. Dell’Acqua F, Rizzo G, Scifo P, Clarke RA, Scotti G, Fazio F. A model-based deconvolution approach to solve fiber crossing in diffusion-weighted MR imaging. IEEE Trans Biomed Eng. 2007; 54:462–472. [PubMed: 17355058]
+134. Kaden E, Knosche TR, Anwander A. Parametric spherical deconvolution: inferring anatomical connectivity using diffusion MR imaging. Neuroimage. 2007; 37:474–488. [PubMed: 17596967]
+135. Kaden E, Anwander A, Knosche TR. Variational inference of the fiber orientation density using diffusion MR imaging. Neuroimage. 2008; 42:1366–1380. [PubMed: 18603006]
+136. Liu C, Bammer R, Moseley ME. Limitations of apparent diffusion coefficient-based models in characterizing non-gaussian diffusion. Magn Reson Med. 2005; 54:419–428. [PubMed: 16032684]
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 25
+137. Jensen JH, Helpern JA, Ramani A, Lu H, Kaczynski K. Diffusional kurtosis imaging: the quantification of non-gaussian water diffusion by means of magnetic resonance imaging. Magn Reson Med. 2005; 53:1432–1440. [PubMed: 15906300]
+138. Lu H, Jensen JH, Ramani A, Helpern JA. Three-dimensional characterization of non-gaussian water diffusion in humans using diffusion kurtosis imaging. NMR Biomed. 2006; 19:236–247. [PubMed: 16521095]
+139. Cheung MM, Hui ES, Chan KC, Helpern JA, Qi L, Wu EX. Does diffusion kurtosis imaging lead to better neural tissue characterization? A rodent brain maturation study. Neuroimage. 2009; 45:386–392. [PubMed: 19150655]
+140. Tournier, J. How many diffusion gradient directions are required for HARDI?. International Society for Magnetic Resonance in Medicine; Hawai’i: 2009.
+141. Mang SC, Gembris D, Grodd W, Klose U. Comparison of gradient encoding directions for higher order tensor diffusion data. Magn Reson Med. 2009; 61:335–343. [PubMed: 19161144]
+142. Papadakis NG, Murrills CD, Hall LD, Huang CL-H, Carpenter TA. Minimal gradient encoding for robust estimation of diffusion anisotropy. Magn Reson Imaging. 2000; 18:671–679. [PubMed: 10930776]
+143. Batchelor PG, Atkinson D, Hill DL, Calamante F, Connelly A. Anisotropic noise propagation in diffusion tensor MRI sampling schemes. Magn Reson Med. 2003; 49:1143–1151. [PubMed: 12768593]
+144. Hasan KM, Parker DL, Alexander AL. Comparison of gradient encoding schemes for diffusiontensor MRI. J Magn Reson Imaging. 2001; 13:769–780. [PubMed: 11329200]
+145. Jones DK. Tractography gone wild: probabilistic fibre tracking using the wild bootstrap with diffusion tensor MRI. IEEE Trans Med Imaging. 2008; 27:1268–1274. [PubMed: 18779066]
+146. Lin CP, Tseng WY, Cheng HC, Chen JH. Validation of diffusion tensor magnetic resonance axonal fiber imaging with registered manganese-enhanced optic tracts. Neuroimage. 2001; 14:1035–1047. [PubMed: 11697935]
+147. Batchelor PG, Moakher M, Atkinson D, Calamante F, Connelly A. A rigorous framework for diffusion tensor calculus. Magn Reson Med. 2005; 53:221–225. [PubMed: 15690523]
+148. Basser PJ, Pajevic S, Pierpaoli C, Duda J, Aldroubi A. In vitro fiber tractography using DT-MRI data. Magn Reson Med. 2000; 44:625–632. [PubMed: 11025519]
+149. Pajevic S, Aldroubi A, Basser PJ. J Magn Reson. 2002; 154(1):85–100. [PubMed: 11820830] 150. Pajevic S, Aldroubi A, Basser PJ. A continuous tensor field approximation of discrete DT-MRI
+data for extracting microstructural and architectural features of tissue. J Magn Reson. 2002; 154:85–100. [PubMed: 11820830] 151. Arsigny V, Fillard P, Pennec X, Ayache N. Log-Euclidean metrics for fast and simple calculus on diffusion tensors. Magn Reson Med. 2006; 56:411–421. [PubMed: 16788917] 152. Mishra A, Lu Y, Meng J, Anderson AW, Ding Z. Unified framework for anisotropic interpolation and smoothing of diffusion tensor images. Neuroimage. 2006; 31:1525–1535. [PubMed: 16624586] 153. Lazar M, Alexander AL. An error analysis of white matter tractography methods: synthetic diffusion tensor field simulations. Neuroimage. 2003; 20:1140–1153. [PubMed: 14568483] 154. Tournier JD, Calamante F, King MD, Gadian DG, Connelly A. Limitations and requirements of diffusion tensor fiber tracking: an assessment using simulations. Magn Reson Med. 2002; 47:701–708. [PubMed: 11948731] 155. Lazar M, Weinstein DM, Tsuruda JS, Hasan KM, Arfanakis K, Meyer- and ME, Badie B, Rowley HA, Haughton V, Field A, Alexander AL. White matter tractography using diffusion tensor deflection. Hum Brain Mapp. 2003; 18:306–321. [PubMed: 12632468] 156. Basser PJ. Inferring microstructural features and the physiological state of tissues from diffusionweighted images. NMR Biomed. 1995; 8:333–344. [PubMed: 8739270] 157. Lori NF, Akbudak E, Shimony JS, Cull TS, Snyder AZ, Guillory RK, Conturo TE. Diffusion tensor fiber tracking of human brain connectivity: aquisition methods, reliability analysis and biological results. NMR Biomed. 2002; 15:494–515. [PubMed: 12489098] 158. Mori S, Crain BJ, Chacko VP, van Zijl PCM. Three dimensional tracking of axonal projections in the brain by magnetic resonance imaging. Ann Neurol. 1999; 45:265–269. [PubMed: 9989633]
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 26
+159. Newton JM, Ward NS, Parker GJ, Deichmann R, Alexander DC, Friston KJ, Frackowiak RS. Non-invasive mapping of corticofugal fibres from multiple motor areas—relevance to stroke recovery. Brain. 2006; 129(pt 7):1844–1858. [PubMed: 16702192]
+160. Toosy AT, Ciccarelli O, Parker GJ, Wheeler-Kingshott CA, Miller DH, Thompson AJ. Characterizing function-structure relationships in the human visual system with functional MRI and diffusion tensor imaging. Neuroimage. 2004; 21:1452–1463. [PubMed: 15050570]
+161. Ciccarelli O, Toosy AT, Hickman SJ, Parker GJ, Wheeler-Kingshott CA, Miller DH, Thompson AJ. Optic radiation changes after optic neuritis detected by tractography-based group mapping. Hum Brain Mapp. 2005; 25:308–316. [PubMed: 15834863]
+162. Stieltjes B, Kaufmann WE, van Zijl PC, Fredericksen K, Pearlson GD, Solaiyappan M, Mori S. Diffusion tensor imaging and axonal tracking in the human brainstem. Neuroimage. 2001; 14:723–735. [PubMed: 11506544]
+163. Huang H, Zhang J, van Zijl PC, Mori S. Analysis of noise effects on DTI-based tractography using the brute-force and multi-ROI approach. Magn Reson Med. 2004; 52:559–565. [PubMed: 15334575]
+164. Smits M, Vernooij MW, Wielopolski PA, Vincent AJ, Houston GC, van der Lugt A. Incorporating functional MR imaging into diffusion tensor tractography in the preoperative assessment of the corticospinal tract in patients with brain tumors. AJNR Am J Neuroradiol. 2007; 28:1354–1361. [PubMed: 17698540]
+165. Powell HW, Parker GJ, Alexander DC, Symms MR, Boulby PA, Wheeler-Kingshott CA, Barker GJ, Noppeney U, Koepp MJ, Duncan JS. Hemispheric asymmetries in language-related pathways: a combined functional MRI and tractography study. Neuroimage. 2006; 32:388–399. [PubMed: 16632380]
+166. Guye M, Parker GJ, Symms M, Boulby P, Wheeler-Kingshott CA, Salek-Haddadi A, Barker GJ, Duncan JS. Combined functional MRI and tractography to demonstrate the connectivity of the human primary motor cortex in vivo. Neuroimage. 2003; 19:1349–1360. [PubMed: 12948693]
+167. Holodny AI, Ollenschleger MD, Liu WC, Schulder M, Kalnin AJ. Identification of the corticospinal tracts achieved using blood-oxygen-level-dependent and diffusion functional MR imaging in patients with brain tumors. AJNR Am J Neuroradiol. 2001; 22:83–88. [PubMed: 11158892]
+168. Krings T, Reinges MH, Thiex R, Gilsbach JM, Thron A. Functional and diffusion-weighted magnetic resonance images of space-occupying lesions affecting the motor system: imaging the motor cortex and pyramidal tracts. J Neurosurg. 2001; 95:816–824. [PubMed: 11702872]
+169. Song AW, Harshbarger T, Li T, Kim KH, Ugurbil K, Mori S, Kim DS. Functional activation using apparent diffusion coefficient-dependent contrast allows better spatial localization to the neuronal activity: evidence using diffusion tensor imaging and fiber tracking. Neuroimage. 2003; 20:955–961. [PubMed: 14568465]
+170. Kim DS, Kim M, Ronen I, Formisano E, Kim KH, Ugurbil K, Mori S, Goebel R. In vivo mapping of functional domains and axonal connectivity in cat visual cortex using magnetic resonance imaging. Magn Reson Imaging. 2003; 21:1131–1140. [PubMed: 14725920]
+171. Catani M, Howard RJ, Pajevic S, Jones DK. Virtual in vivo interactive dissection of white matter fasciculi in the human brain. Neuroimage. 2002; 17:77–94. [PubMed: 12482069]
+172. Jones DK. Determining and visualizing uncertainty in estimates of fiber orientation from diffusion tensor MRI. Magn Reson Med. 2003; 49:7–12. [PubMed: 12509814]
+173. Jones DK. Challenges and limitations of quantifying brain connectivity in vivo with diffusion MRI. Imaging Med. 2010; 2:341–355.
+174. Behrens TE, Woolrich MW, Jenkinson M, Johansen-Berg H, Nunes RG, Clare S, Matthews PM, Brady JM, Smith SM. Characterization and propagation of uncertainty in diffusion-weighted MR imaging. Magn Reson Med. 2003; 50:1077–1088. [PubMed: 14587019]
+175. Parker GJ, Haroon HA, Wheeler-Kingshott CA. A framework for a streamline-based probabilistic index of connectivity (PICo) using a structural interpretation of MRI diffusion measurements. J Magn Reson Imaging. 2003; 18:242–254. [PubMed: 12884338]
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 27
+176. Tournier JD, Calamante F, Gadian DG, Connelly A. Diffusion-weighted magnetic resonance imaging fibre tracking using a front evolution algorithm. Neuroimage. 2003; 20:276–288. [PubMed: 14527588]
+177. Lazar M, Alexander AL. Bootstrap white matter tractography (BOOT-TRAC). Neuroimage. 2005; 24:524–532. [PubMed: 15627594]
+178. Friman O, Farneback G, Westin CF. A Bayesian approach for stochastic white matter tractography. IEEE Trans Med Imaging. 2006; 25:965–978. [PubMed: 16894991]
+179. Parker GJ, Wheeler-Kingshott CA, Barker GJ. Estimating distributed anatomical connectivity using fast marching methods and diffusion tensor imaging. IEEE Trans Med Imaging. 2002; 21:505–512. [PubMed: 12071621]
+180. Koch MA, Norris DG, Hund-Georgiadis M. An investigation of functional and anatomical connectivity using magnetic resonance imaging. Neuroimage. 2002; 16:241–250. [PubMed: 11969331]
+181. Iturria-Medina Y, Canales-Rodriguez EJ, Melie-Garcia L, Valdes-Hernandez PA, MartinezMontes E, Aleman-Gomez Y, Sanchez-Bornot JM. Characterizing brain anatomical connections using diffusion weighted MRI and graph theory. Neuroimage. 2007; 36:645–660. [PubMed: 17466539]
+182. Parker GJ, Alexander DC. Probabilistic anatomical connectivity derived from the microscopic persistent angular structure of cerebral tissue. Philos Trans R Soc Lond B Biol Sci. 2005; 360:893–902. [PubMed: 16087434]
+183. Haroon HA, Morris DM, Embleton KV, Alexander DC, Parker GJ. Using the model-based residual bootstrap to quantify uncertainty in fiber orientations from Q-ball analysis. IEEE Trans Med Imaging. 2009; 28:535–550. [PubMed: 19272997]
+184. Malcolm JG, Shenton ME, Rathi Y. Two-tensor tractography using a constrained filter. Med Image Comput Comput Assist Interv. 2009; 12(pt 1):894–902. [PubMed: 20426073]
+185. Chao YP, Chen JH, Cho KH, Yeh CH, Chou KH, Lin CP. A multiple streamline approach to high angular resolution diffusion tractography. Med Eng Phys. 2008; 30:989–996. [PubMed: 18375171]
+186. Savadjiev P, Campbell JS, Descoteaux M, Deriche R, Pike GB, Siddiqi K. Labeling of ambiguous subvoxel fibre bundle configurations in high angular resolution diffusion MRI. Neuroimage. 2008; 41:58–68. [PubMed: 18367409]
+187. Sotiropoulos SN, Bai L, Tench CR. Fuzzy anatomical connectedness of the brain using single and multiple fibre orientations estimated from diffusion MRI. Comput Med Imaging Graph. 2010; 34:504–513. [PubMed: 19762214]
+188. Kreher BW, Mader I, Kiselev VG. Gibbs tracking: a novel approach for the reconstruction of neuronal pathways. Magn Reson Med. 2008; 60:953–963. [PubMed: 18816816]
+189. Fillard P, Poupon C, Mangin JF. A novel global tractography algorithm based on an adaptive spin glass model. Med Image Comput Comput Assist Interv. 2009; 12(pt 1):927–934. [PubMed: 20426077]
+190. Jbabdi S, Woolrich MW, Andersson JL, Behrens TE. A Bayesian framework for global tractography. Neuroimage. 2007; 37:116–129. [PubMed: 17543543]
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 28
+
+FIG. 1. Examples of typical artifacts: (i) signal/slice dropouts, (ii) eddy-current induced geometric distortions, (iii) systematic vibration artifacts, and (iv) ghosting (insufficient/incorrect fatsuppression).
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+Tournier et al.
+
+Page 29
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+FIG. 2. Three examples of DW images with shears, stretches, and translations induced by eddy currents in the frequency-encoded left-right (LR) direction (a), the phase-encoded anterior– posterior (AP) direction (b), and the slice-select encoded inferior–superior (IS) direction (c), respectively. For each example, the undistorted B0 image (i) is shown with lines overlaid in red indicating brain edges and boundaries of the lateral ventricles. The mismatches of these prominent contours when overlaid on the distorted DW images, shown in (ii) and (iii), now become obvious (see also the enlarged regions corresponding with the arrowheads). Notice the difference in polarity of the eddy current induced gradient between (ii) and (iii) for each example. The images in (c) are shown in a sagittal view to highlight the linearly varying image translation as a function of slice position. Note that this distortion, induced by eddy currents along the IS orientation, may be considered as a shear in the AP-IS plane.
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+Tournier et al.
+
+Page 30
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+FIG. 3.
+Static geometric deformations in the phase-encoded direction by B0 field inhomogeneities (or susceptibility-induced off-resonance fields). The deformations are clearly visible when fused rigidly with a structural T1 weighted image (the enlarged region shows the misalignment of the genu of the corpus between the color-encoded FA image and the T1 map).
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 31
+
+FIG. 4. A DW image shown in three orthogonal views. The interslice instabilities (encircled) in this axially interleaved acquisition might not be seen on the axial slices, but are very prominent on the sagittal and coronal through-plane views.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+Tournier et al.
+
+Page 32
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+FIG. 5. To assess subject motion, or more generally, misalignment between the DW images,
+computing the standard deviation across the DW images SDWI is an efficient and more quantitative approach than inspection of the DW images on a slice-by-slice basis. The bright rim in the SDWI map shown in (a) is not present after correction for subject motion and eddy current induced geometric distortions (b) (see arrowheads).
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 33
+
+FIG. 6.
+In the b = 0 images (i.e., the non-DWIs), unreliable regions in terms of signal variability (most likely due to pulsation artifacts) can be visualized readily by taking the standard deviation across the b = 0 images (Sb = 0). For the example shown here, six b = 0 images were acquired. Notice the high variability near the medial parts of the brainstem,
+cerebellum, and the lateral ventricles.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 34
+
+FIG. 7.
+Examples of “physically implausible signals” (i.e., voxels where the B0 intensity is lower than the DW intensities) that contaminate the fractional anisotropy (FA) values. When comparing the locations of the corrupted voxels (in red) between the middle and the left image, these FA values are typically overestimated. A more detailed investigation revealed the presence of negative eigenvalues, which were caused by ill-conditioned diffusion tensor estimations. The corresponding B0 images on the right contain the artifacts (Gibbs-ringing) that formed the basis of these error accumulations: parallel to the interface between the CSF and the surrounding white matter, artificially low intensity rims can be observed (see arrowheads), which is typically seen in images with a relatively small acquisition matrix.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+Tournier et al.
+
+Page 35
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+FIG. 8.
+Three examples that showcase the high sensitivity of diffusion tensor residual maps (R) to detect artifacts. a: The experienced DTI user will immediately spot the phantom commissural pathways that connect left and right occipital lobes on the directionally colorencoded fractional anisotropy (FA) maps (encircled). If one is unfamiliar with the rich (colorful) information contained in these images, however, or when pathology is involved, the corresponding R map is a useful tool to differentiate between low and high quality regions. In this example, the artifact is clearly visible on the R map as well. By contrast, in (b) and (c), the artifacts, i.e., ghosting due to insufficient fat suppression and RF interference (i)–(iii)/slice dropout (iv), respectively, are not visible on the FA maps and can hardly be seen on the individual DW images themselves.
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 36
+
+FIG. 9. a: Diffusion tensor residuals calculated for each DW image (averaged across all brain voxels —see Eq. 3, with the error bars representing the inter-quartile range). In the example shown, five diffusion volumes were “heavily” corrupted as indicated by the higher residuals (encircled). b: A more quantitative feel of the significance of high residual values is obtained by calculating the “statistical” outliers of these tensor residuals. The percentage of outliers per DW image may then serve as a marker to identify artifacts. c: To increase the specificity of detecting artifacts, the same procedure can be applied to each slice separately and along the different (coronal, axial, and sagittal) image views. In this way, a summary statistic of data quality can be shown for each slice and for all the DW gradient directions simultaneously in a single matrix. Retrospective identification of “problematic” slices is then facilitated by the “hot spots” (see enlarged region).
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+Tournier et al.
+
+Page 37
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+FIG. 10. a: Directionally color-encoded fractional anisotropy (FA) maps before (i) and after (ii) correcting for subject motion and eddy current-induced geometric distortions. The bright rim (see enlarged region), clearly visible in (i), is practically nonexistent in the corrected image (ii). In this example, geometric distortions and subject motion in the DW images are corrected for simultaneously. As a result, the orientation of the diffusion gradients should be adjusted to take potential head rotations into account. In (b), the difference in orientation of the estimated first eigenvector between the uncorrected (i) and the corrected (ii) gradient directions is shown in a region of the genu. To fully appreciate the effect of neglecting this processing step, the glyph representations of the first eigenvectors are shown in (iii) (blue: uncorrected; yellow: corrected), focusing on the mid-sagittal region, which corresponds with the black rectangle in (i) and (ii). Although the errors shown in (iii) seem small and, therefore, perhaps deemed insignificant, the tractography results in (c) clearly show the deviation in the reconstructed fiber tract pathways when subject motion and eddy currentinduced geometric distortions are not taken into account.
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 38
+
+FIG. 11. Various anatomical factors that could influence the diffusion anisotropy measurement by DTI and their approximate scale.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+Tournier et al.
+
+Page 39
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+FIG. 12. Simulated configurations of complex fiber bundle architecture at the length scale of a single voxel (61). Note that any tract organization different from a single straight fiber population is typically referred to as “crossing fibers,” including (i) bending (e.g., uncinate fasciculus) and (ii) fanning (e.g., pyramidal projections) fiber bundles. Interdigitating fibers, as shown in (iii), might occur in the region of the centrum semiovale, where the lateral projections of the corpus callosum intersect with the corticospinal tract among others. By contrast, the configuration shown in (iv) reflects adjacent fiber bundles, such as the cingulum bundle and the body of the corpus callosum, which—by definition of the partial volume effect—are captured within a single voxel.
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 40
+
+FIG. 13. The number of distinct fiber orientations detected within each voxel (98), overlaid on the
+corresponding anatomical T1-weighted image. Each voxel within the mask is colored according to the number of orientations detected (red: single orientation; green: two
+orientations; blue: more than two orientations). These results were produced from data
+obtained from a healthy volunteer, consisting of 15 repeats of 30 DW directions, acquired at b = 1000 s/mm2, analyzed using constrained spherical deconvolution (99) within a “bootstrap” framework (100). Image courtesy of Ben Jeurissen.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 41
+
+FIG. 14. Fiber orientation distributions for each voxel, for a coronal section showing the lateral projections of the corpus callosum (left-right: red lobes) crossing through the fibers of the corona radiata (inferior–superior: blue lobes) and of the superior longitudinal fasciculus (anterior–posterior: green lobes). Results produced from data obtained from a healthy
+volunteer, consisting of 60 DW directions acquired at b = 3000 s/mm2 (9 min scan time), analyzed using constrained spherical deconvolution (99).
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 42
+
+FIG. 15. Conceptual example of (a) deterministic (Ref. 20) and (b) probabilistic (Ref. 145) streamline tractography based on the diffusion tensor model. The white lines in (a) represent fiber tract pathways that were reconstructed by following the principal diffusion directions (see the glyphs shown in the blue region of interest) in consecutive steps, initiated bidirectionally at the indicated locations (i.e., “seed points”). For each of the pathways in (a), there is no information available about the precision/dispersion that is associated with their tract propagation. By contrast, the set of multiple (1000) lines shown in (b) provides a feel for the degree of uncertainty related to the tract reconstruction initiated from the single seed point. Note that the same underlying tractography algorithm (Ref. 20) was used for both examples, but in (b), each tract pathway was calculated from a “different” diffusion tensor data set that was created with the wild-bootstrap approach (Ref. 145).
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+
+NIH-PA Author Manuscript
+
+Tournier et al.
+
+Page 43
+
+FIG. 16. Whole-brain nontensor probabilistic tractography results displayed as a coronal 2-mm-thick section. Each track is colored according to its direction of travel (red: left–right; green: anterior–posterior; blue: inferior–superior). 100,000 tracks were produced by seeding at random throughout the brain, with a probabilistic streamlines algorithm using fiber orientation distributions estimated using constrained spherical deconvolution (99), based on the same data as shown in Fig. 8. Note in particular the extensive regions of crossing fibers in the pons and periventricular areas.
+
+NIH-PA Author Manuscript
+
+NIH-PA Author Manuscript
+
+Magn Reson Med. Author manuscript; available in PMC 2012 June 04.
+

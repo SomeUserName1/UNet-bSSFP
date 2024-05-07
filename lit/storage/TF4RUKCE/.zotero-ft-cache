@@ -1,0 +1,3235 @@
+Principles of
+WYeofelat-\itom <-exolatelara-Miuitellealte
+Dwight G. Nishimura
+
+Principles of
+Magnetic Resonance Imaging
+
+Principles of
+Magnetic Resonance Imaging
+Dwight G. Nishimura
+Department of Electrical Engineering Stanford University
+
+© Copyright 2010 by Dwight G. Nishimura All Rights Reserved
+Edition 1.2 (August 2016)
+Printed by www.lulu.com
+
+To Ann, Mark, and Peter
+
+Contents
+
+Contents
+
+1 Introduction
+
+iis Macnetic Resonance Imagine...
+
+aida eee es es ee ss
+
+fem EEISTOTICAIING FOS a6 ohMerten Shed Sassen nar mayeeeg dyclxak’ x Mom, mie ex
+
+ecm C SaATIT ath iy helo eee Gidei ih a Vac Te RE GENS wcue Sn a Sols
+
+fi Preliminaries Be RC ORIDIe MINUTMDCTS = cn's.2 2)esi8 kus 4 FG Aw bs Me POE OULICT: UANSTOLINS =4) 4.5 6. as, Soa we a ete a = ae
+
+aged
+
+Zee Ib WOMEN) SIONAL ae. ict alse a «se, SOEs wie SS ok 2.3 Projections and the Central Section Theorem ...........
+Za eeEOLOCTLOLS areli Ws.ceienot re Roskreh Ree cot. fle doe 2.3.2 The Central Section Theorem ...............-; eo SSANTIVE) aCe, eee Qe eae ca ater 0 eae aa ie Ane eae Pret Ol AleOnN Ma EEICC Sim. ened ceescu eckbs aw) ek aves eee eke Goo cin zane 3 PRE ISAT TLOLSAEIDN Vien eae role. ca aoa kre) vide bm veora esas, aye DEM ICLOUN VaLlADICS stn oc) e 4 ose) ee aoe sin Roan a ate PiGee RARUOU) PEOCESSCS tase) << Sneek tk we ee see se 2 TENG OUENEANS SPoa Sant oereee ee oe oO icin ene te ee ee en er
+3 Overview Srila laGGICa CSCI POM Ol MIR Cotes. eS nce aw mynw se see
+Sa AIIUELCLONB ameter ste a aveen Seon a occ Ge at se ess le 2 Ragiomwequency Pield By Kila ee ede eee weee es Beeeerinear Gradient ricias G.: S. 2.65 oes Yee Soa ees BueAmeE OC EQ UALOME) fey ee et wi pelt Ge oe ea 32 Gonverional MR Imaging: Methods... ... 52... 555.0%
+Vii
+
+3.2.1 Selective Excitation 3.2.2 2D Imaging Methods Other Approaches to MR Imaging Imaging Considerations Instrumentation
+
+CONTENTS
+
+4.1 Nuclear Spins 4.2 Interaction with a Static Magnetic Field
+4.2.1 Magnetization 4.2.2 Precession Interaction with a Radiofrequency Field
+4.4.1 Longitudinal Relaxation 4.4.2 Transverse Relaxation 4.4.3 Relaxation Times of Biological Tissue Bloch Equation Chemical Shift
+Imaging Principles 5.1 Bloch Equation
+5.1.1 Homogeneous Object, Uniform Field 5.1.2 Inhomogeneous Object, Nonuniform Field Signal Equation 5.2.1 Other Considerations of the Signal Equation Alternate Derivation: Signal Equation Fourier Interpretation of the Signal Equation Illustration of the k-Space Perspective Basic 2D Imaging Methods 5.6.1 2D Projection Reconstruction 5.6.2 2D Fourier Transform Sampling Requirements: 2DFT Imaging 5.7.1 Field of View 5.7.2 Spatial Resolution 5.7.3 DFT Image Reconstruction
+
+CONTENTS
+
+6 Excitation
+
+6.1 Basic Excitation Principles
+
+Sm Gl ereneCrabEOrnuratiGlern
+
+sy ou.oe ek fs Sette ee
+
+6.1.2 Rotating Frame Transformation .......:.......
+
+6.1.3 Graphical and Analytical Solutions
+
+6.2 Selective Excitation
+
+6.2.2 Small Tip-Angle Approximation Gio ee LOCU SIU emrereca cont es. sakes Soke food e 6.2.4 General Selective Excitation Example GO-3. Excitauen k-Spaceinterpretation wc.) 4.8 es Gack. Be ed O4 .oelective ExcitaniomPulse Designs Alc ih ds ek eeu oes eee ELODIEISI mesye NG ae eed SR ee See ov See Re
+
+Imaging Considerations faeOR ReSONalCe;SOULCeS fea Se ec th cet
+
+ee 8
+
+hn be
+
+7.1.2 Off-Resonance Effects on Imaging ..............
+
+PE SPECHOES os ein fe tcee Sano. 6 Lie Pr peLe eedotal kik bolola
+
+fale Se ODMUECNOES MM) IMAGING Wo... ys Gk sy nee lee we Se
+
+em
+
+RUAN AMOM rome eee ee as ec ie Piete fa steee
+
+Heme COU erNOMIG@ANTCS 2. 4 ce. pep ie Soa es ae eA Ete es
+
+7.3.1 Radiofrequency Field Considerations ............
+
+7.3.2 Gradient Field Considerations ................
+
+ee MGA CROMAUEASE en Moco perc yd aa dc,cue ehwtery ee cell oyede ye)an
+
+PP AneeS LI AlONURCCOVELVs. snc oisna was Guchcas nos Nec e w o
+
+ede eV eRSIONURCCOVCLY i iaaee & cacle aeeeers aie ues =}
+
+FEEENOISE]© OLISICCLALONUS 5) hc 3.0 eS iw < alas wie ew se
+
+7.5.1 Physical and Instrumental Parameters ...........
+
+Vos imaving Sequence Parameters” . oss ce ee ee ee
+
+IG CARCI SETTE erR ee ee
+
+8 Volumetric Imaging and Fast Imaging
+
+Soin ATIVEEeLC PAPAS TAOS es oe cate ee whe iesret se!Oe wehw whXs oss
+
+8.1.1 3D Imaging by Multiple 2D Slice Acquisition .......
+
+Salo 2s Wk -SPaAcerACGUISHIOM 2 2 woe cate ee ek eee oe
+
+Sse Prolecave ImaviNG 4. ee Fe a
+
+Ree Site
+
+acme ee tea ae Pape ee eo ees nw
+
+Sleek space IrajeClOlleS: = a sone fc decree = oe ee eee
+
+8.2.2 Signal-Generation Approaches ......-..---+-+++-
+
+xX
+
+CONTENTS
+
+9 Spectroscopic Imaging
+
+193
+
+9.1 Effect of Chemical Shift on the Signal Equation .......... 193
+
+9.2 Spectroscopic Imaging Methods 55. ses 45) ace ee eee 194
+
+9.2.1 3D Fourier Transform Spectroscopic Imaging ....... 195
+
+9.2.2 Spectroscopic Imaging with Time-Varying Gradients . . 198
+
+9.2.3 N-Component Chemical Shift Imaging ........... 199
+
+10 Flow Imaging
+
+203
+
+LOSE FLOW EHECIS@S-3
+
+5 Of :ie s Onn sd to ee oe 203
+
+LOSS TORRE OCIS” ah: o.n eos s4 ce he $a ee
+
+ee 203
+
+100192. Phaseliiectsem cues Ae eee
+
+ee
+
+eee 205
+
+10:2. Flow, maging: Methods i242 enc <a ee
+
+ee ee 208
+
+10-2.1,.OF-Based, Methods: is. 4.a.) atte ee
+
+208
+
+1O°222.Piase-Based Methods ... .:.. <.. «=e ee eee 210
+
+11 Instrumentation
+
+213
+
+HL Main Field mts niente es hi <,(ee. :. «pee ae
+
+ee
+
+213
+
+IZ Radiofrequency: Pield:s een a \ cue see eee
+
+214
+
+HSS ora C@my PLCS Seti ca,scsull TicWilaSng: one
+
+2LY,
+
+A Useful Constants and Conversions
+
+219
+
+Bibliography
+
+221
+
+Index
+
+224
+
+CONTENTS
+
+xi
+
+Preface
+
+This book gives an introduction to magnetic resonance (MR) imaging, a remarkably rich field that touches on many disciplines in medicine, science, and engineering. Because of this richness, this book makes no attempt to provide a comprehensive treatment. Instead, the goal is to present a manageable introduction to MR imaging by focusing on the basic principles of image formation, image content, and performance considerations. Greater emphasis is given to the signal processing elements than to the physics and life-science elements of MR imaging.
+This book grew out of notes prepared for a graduate-level course in electrical engineering at Stanford. A background in Fourier transforms serves as the primary prerequisite. Elegant Fourier descriptions pervade the analysis of MR. Likewise, MR serves as a beautiful physical example of Fourier transforms.
+Although structured for electrical engineering students, the material should be accessible to those from other technical fields. In a 10-week quarter (approximately 27 lecture hours), it is reasonable to cover Chapters 3-7, which represent the bulk of the material. The latter chapters (Chapters 8-11) provide brief overviews of imaging extensions and selected topics. A semester-long course could cover the entire book, with time for additional topics such as image reconstruction and imaging applications. Problems at the end of the chapters are provided not only to review the concepts but to challenge the student to apply these concepts in new situations.
+Finally, it is worth mentioning that this book has long been a work-inprogress. Much more material could be included. However, I have received feedback that the book is usable in its current form so I have decided to make it available now.
+
+Dwight G. Nishimura
+
+xii
+
+CONTENTS
+
+Acknowledgements
+For over 25 years, I have had the pleasure and privilege of working in MR with many talented people at Stanford in the Magnetic Resonance Systems Research Lab (MRSRL). These people, too numerous to list (see wwwmrsrl.stanford.edu for a partial list), have substantially shaped the content of this book. I am particularly indebted to Albert Macovski who introduced me to medical imaging and whose profound insights are an important part of this book. Special thanks go to Steven Conolly, Bob Hu, Craig Meyer, John Pauly, Greig Scott, and Graham Wright for many helpful discussions. I also express my appreciation to Shuye Huan for her tireless handling of past printings of this book.
+I wish to acknowledge Ronald Bracewell and Joseph Goodman for their early guidance and inspiration. I also wish to thank the students and teaching assistants of EE 369B (formerly EE 492B) who endured early versions of this book, toiled diligently through the problems, and provided invaluable feedback.
+Finally, I am extremely grateful to my family and, most importantly, to Ann for their unwavering and unconditional support.
+
+Dwight G. Nishimura
+
+Chapter 1
+Introduction
+The discovery of x-rays by Roentgen in 1895 brought a new and powerful capability to the practice of medicine—visualizing the interior of the human body without surgical intervention. Today, an array of medical imaging modalities exist, including x-ray computed tomography (CT), ultrasound, nuclear medicine, and magnetic resonance (MR).
+1.1 Magnetic Resonance Imaging
+This book is about magnetic resonance, a powerful noninvasive imaging modality that has gained widespread usage. Standard applications of MR include diagnostic studies of the central nervous system and musculoskeletal system. MR imaging remains a very active area of research and entirely new medical applications may eventually emerge. Although referred to as nuclear magnetic resonance (NMR) in the chemistry and physics communities, the imaging community often omits the word “nuclear” to avoid the negative connotations associated with that word. Ironically, MR imaging involves no ionizing radiation and presents no known health risk under normal operating conditions. (Note: “MR imaging” is commonly referred to as “MRI” and occasionally though awkwardly as “MRI Imaging.”)
+An important characteristic of MR imaging is its flexibility. MR offers a wide range of physical parameters to image and a plethora of instrumental parameters to set for control of image content. In addition to anatomic imaging, valuable metabolic information is available with MR, thereby opening the possibilities of noninvasive in vivo physiological studies. MR is often compared to x-ray CT because both enable cross-sectional imaging. Although physical constraints restrict CT images to transverse
+i
+
+2
+
+CHAPTER 1. INTRODUCTION
+
+cross-sections, MR images can be made of planes at an arbitrary orientation. Moreover, MR images possess comparable spatial resolution and far superior soft-tissue contrast. Representative MR images in Fig. 1.1 demonstrate the exquisite anatomical detail possible with MR. Shortcomings of MR include the sophisticated and expensive hardware required, the centerpiece of which is a large powerful magnet that can present siting challenges in a hospital. Also, conventional MR imaging methods may involve scan
+times of several minutes, making nonstationary regions (e.g., abdomen)
+more difficult to image.
+
+1.2 Historical Notes
+NMR in condensed matter was discovered independently by Felix Bloch [Blo46] and Edward Purcell [PTP46] in 1946, a discovery for which they shared the Nobel Prize in Physics. NMR has long been used in chemistry and physics for studying molecular structure and diffusion. In 1973, Paul Lauterbur reported the first MR image [Lau73] using linear gradient fields. During the 1970s, most of the work in MR imaging took place in academia—primarily in the United Kingdom. In the 1980s however, industry joined forces with universities, investing substantial resources to develop imaging systems for clinical use in medical centers. As a result, image quality improved dramatically and clinical imagers proliferated across the world. Overall, this rapidly-growing field encompasses an array of disciplines and many new developments continue to emerge. In 2003, the Nobel Prize in Physiology or Medicine was awarded to Lauterbur and Sir Peter Mansfield for their discoveries in MR imaging.
+
+1.3 Organization
+The emphasis of this textbook is on developing a description of MR imaging from a systems perspective. Fourier-domain descriptions pervade MR analyses; hence, the material in this book is founded largely on Fourier transform and linear systems theory, the basic principles of which are reviewed in Chapter 2. Those readers unfamiliar with multi-dimensional Fourier transform theory may find Chapter 2 particularly useful. Chapter 2 also contains other mathematical preliminaries such as rotation matrices and basic probability.
+Chapter 3 provides a general overview of the material on MR imaging that will be more fully developed in the subsequent chapters. The goal of this early chapter is to foster a physical intuition of the fundamental
+
+1.3. ORGANIZATION
+
+3
+
+Figure 1.1: Representative Cross-Sectional Brain Images: (a) Sagittal cross section; (b) Coronal cross section; (c) Transaxial cross section. Sagittal, coronal, and transaxial (or simply axial) refer to the slice orientation as illustrated. The images are presented in a standard display format with anatomical location labels: anterior (A), posterior (P), superior (S), inferior (I), left (L), and right (R). Note that the “anatomic right” appears on the “image left” in the coronal and axial images.
+
+4
+
+CHAPTER 1. INTRODUCTION
+
+concepts. Those who have studied MR imaging would probably agree that the underlying principles, while elegant, may lack intuitive appeal initially. Therefore, Chapter 3 should be viewed as a gentle survey of the material.
+Although the emphasis of this book is on the systems analysis of MR imaging, Chapter 4 gives background information on the basic physics of nuclear magnetic resonance. For the purposes of this book, a classical description of the physics will suffice.
+Conventional MR imaging sequences may be divided into two parts: excitation and reception. Nuclei are excited by a radiofrequency magnetic field and produce a time signal which is recorded and processed to form an image. Chapter 5 delves into the basic principles involved in the reception portion of imaging while Chapter 6 deals with the excitation portion. It will be easier and more convenient to discuss the reception portion first. In both chapters however, elegant Fourier-domain perspectives will emerge from the analyses.
+While Chapter 5 describes imaging from an idealized perspective, Chapter 7 considers the effects of system imperfections and physical constraints on imaging. Also considered are image contrast and noise, both of which are important issues with respect to disease diagnosis. In Chapter 8, extensions to the basic imaging sequences are examined, specifically volumetric (3D) imaging and fast imaging.
+Chapter 9 touches on another imaging extension, spectroscopic imaging, which concerns the imaging of specific chemical species with subtle frequency differences. Mapping of such species can provide useful physiological information. Flow imaging is the topic of Chapter 10. Several approaches exist to make MR sensitive to flowing material, enabling direct imaging or measurement of flowing material. The final chapter, Chapter 11, gives a brief overview of MR instrumentation issues.
+
+Chapter 2
+Preliminaries
+
+This chapter contains a review of some mathematics and principles that will be useful for understanding the concepts that follow in the subsequent chapters.
+
+2.1 Complex Numbers
+
+A complex number c can be expressed as
+
+c=a+ib
+
+(251)
+
+where i = /—1. Hence the real and imaginary parts of c are simply
+
+Re{c} = a
+
+lmiic} =p
+
+(2.2)
+
+Alternatively, c can be expressed as
+
+c = Ae’? = A(cosfp+ isin d)
+
+(2.3)
+
+where A, the magnitude, and @, the phase, are given by
+
+An
+
+a7 be
+
+p = tanoaeb
+
+(2.4)
+
+In MR, phase plays an extremely important role. Phase is typically referenced with respect to the x-axis (@ = 0), although the relative phase is often the important quantity.
+
+6
+
+CHAPTER 2. PRELIMINARIES
+
+It is convenient to use the complex number c to describe a vector residing in a plane with axes, say, in x and y. Hence a and b correspond to the x and y components respectively, while A and ¢ pertain to the vector’s length and direction. Often considered is the case of a vector of magnitude A rotating in the xy plane at some angular frequency w in the clockwise direction and some starting phase #.. This time-varying vector
+can be expressed as
+
+c(t) = Aet@)t git: = Ae tt etd-
+
+(2.5)
+
+where the —w suggests clockwise rotation.
+
+2.2. Fourier Transforms
+This section surveys the basic principles and theorems of Fourier transforms. A more in-depth coverage can be found in [Bra00, Pap62].
+
+2.2.1 One Dimensional The one-dimensional (1D) Fourier transform of a function f (x) is
+
+F(Ky).= | f (Rye ee dx
+
+(2.6)
+
+where F(kx) is commonly called the frequency spectrum of f(x)» The Fourier transform integral can be rewritten as
+
+F(ky = I F(x) cos 211kxx dx — if. f(x) sin 21rky,x dx
+
+(2.7)
+
+The Fourier transform decomposes the function f(x) into its cosinusoidal
+
+and sinusoidal components at all frequencies kx. If f(x) is real-valued,
+
+then—from Eq. 2.7 and the fact that f(x) is decomposable into the sum
+
+of an even function and an odd function—F(k,) possesses Hermitian sym-
+
+metry; that is,
+
+F(—kx) = F* (kx)
+
+(2.8)
+
+Therefore the real part of F(k,) is an even function while the imaginary
+
+part of F(k,) is an odd function. Similarly, if f(2x) is strictly imaginary-
+
+valued, then
+
+F(-ky) = —F* (kx)
+
+(2.9)
+
+a symmetry referred to as anti-Hermitian. Table 2.1 lists some functions and their Fourier transforms. The units of x and kx are the reciprocal of
+
+2.2. FOURIER TRANSFORMS
+
+&
+
+each other; hence if x is in mm, then ky is in cycles/mm. Also common is the use of reciprocal variables t and f, where t is in units of sec and Reon units of cycles/sec or Hertz (Hz).
+To recover f(x) from F(k,), the inverse 1D Fourier transform is
+
+Hea ih F(ky)eri2m™ex ak,
+
+(2.10)
+
+2.2.2 Two Dimensional
+The Fourier integral expands into multiple dimensions by the inclusion of additional integrals and complex exponentials. For the case of a twodimensional (2D) Fourier transform, the integral becomes
+
+Fiky, Ky) = | | Pee. Ah texte) ax ay
+
+(2.11)
+
+| | F(x, Y) cos 27t(kxx + kyy) dx dy
+
+-i| | S(x sin , 21 (y kyx ) +kyy) dxdy (2.12)
+
+Because the variables x and y often correspond to spatial coordinates when dealing with 2D functions, the typical unit for x and y is mm and thus the unit for kx and ky is cycles/mm. Therefore kx and ky are variables representing spatial frequency (as opposed to temporal frequency as in the 1D case when the dimension of x is time). A spatial frequency component is a sinusoidal variation over 2D space. For example, when dealing with images, the amplitude that varies over space is the gray level.
+The 2D Fourier transform decomposes the 2D function into its spatial frequency components. Figure 2.1 shows an example of a cosinusoidal component at a particular spatial frequency. Figure 2.1a depicts this component as an grayscale image while Fig. 2.1b is a mesh plot representation. In two dimensions, a spatial frequency component is defined by two parameters, ky and ky, or, equivalently, its magnitude |k| and direction 0. The period L of the sinusoid is given by 1/|k|.
+Two special cases of 2D functions are separable functions and circularly symmetric functions.
+
+Separable Functions
+A function f(x,y) is separable in Cartesian coordinates if it can be written as fx(x)fy(y). For example, the box function 27” (x,y) is separable, being equal to M(x) m (y). With separable 2D functions, their 2D Fourier
+
+CHAPTER 2. PRELIMINARIES
+
+f(x)
+n(x) = |; lee
+onmx?
+1
+el2mk.x 6(x = Xo)
+W(x) = YZ_., d(x — i)
+cos 271k.x
+sin 271k.x
+
+F (kx)
+singkx2 sinc(kx)
+enTkx®
+5(kx)
+6 (kx = ko) e~t2TtkxXo
+W(kx)
+516 (kx + ko) + 5(kx — ke)]
+is[6(kx + ko) — (k—xke)]
+
+Table 2.1: 1D Fourier Transforms.
+
+yy) orf (1)
+
+F(kx,ky) or F(x)
+
+AAR dys’), 2x) n (y)
+eo M(x*+y*) oy eon
+
+sinc(kx)sinc(k,)
+e-TMkx? +ky?) as ene?
+
+il
+25 (x Sx) Vive)
+cos2m(kixtkoy) sin2m(kix+koy)
+n(r)
+
+teh Gee ky)
+et2T (kxXo+Ky yo)
+4[26(kye + ki,ky+ kz) + 26(ky — ki,ky~ ka)] is[20 (kx + ki,ky + ko) — 26 (kx — ki,ky — ke)]
+mJip(™yee@xe) a.jinc(@x)
+
+Table 2.2: 2D Fourier Transforms.
+
+2.2. FOURIER TRANSFORMS
+
+9
+
+Ik|=
+
+ke
+
++k
+
+2 y
+
+(a)
+
+—g_S _z S
+(b)
+
+Figure 2.1: cos 27t(kxx + kyy): (a) grayscale representation; (b) mesh plot representation.
+
+transforms are simply the product of the individual 1D Fourier transforms. Thus,
+
+Fop {f (x, y)} = Fip {fx(x)F}in {fy (7) }
+
+(2213)
+
+Circularly Symmetric Functions
+A 2D function with circular symmetry may be expressed as f (7) where r is the radial distance from the origin. An example is 1(7) which represents a circle function with unit diameter. If the object is circularly symmetric, then its 2D Fourier transform will also be circularly symmetric, expressible as F(ox), where Qx is the radial spatial frequency variable. In this special case, the 2D Fourier transform integral can be rewritten as an integral over just the variable r. The transform becomes
+Fop (f(1)} = Flex) = 200 |,rf(r)Jo(2mren) dr (2.14)
+
+This expression is called the Hankel transform of zero order. The inverse Hankel transform (and hence the inverse 2D Fourier transform) takes the same form as the forward Hankel transform. Thus
+
+Fob (F(x) }= f(r) = 2m leoxF (ex) Jo(2Trer) dex
+
+(2.15)
+
+Table 2.2 lists several 2D Fourier transforms of some useful functions.
+
+10
+
+CHAPTER 2. PRELIMINARIES
+
+Figure 2.2: 1D Projection g(x’) of a 2D Function f(x,y) obtained by integrating f(x,y) along the y’ direction.
+
+2.3 Projections and the Central Section Theorem
+
+2.3.1 Projections
+
+A 1D parallel projection of a 2D function arises by integrating the 2D function along some direction. The projection represents a compressed or “shadow” version of the 2D function. For example, a projection taken along the y-axis is
+
+g(x) =| Fey ay
+
+(2.16)
+
+y
+
+More generally, a projection taken along an arbitrary direction parameter-
+
+ized by @ is depicted in Fig. 2.2. Using a rotated coordinate system, the
+
+projection along y’ is
+
+Geox) = |Fe f(x’ cos @- y’ sin@,x’ sin@ + y’ cos @) dy’
+
+(2.17)
+
+where x’ is the distance from the origin to the particular projection line of interest. For any given x’ and @, the value of gg(x’) equals the integral of S(x,y) along the line x cos 0+ y sin 0 = x’. The projection values are said to correspond to the line integrals of f (x,y).
+
+2.3. PROJECTIONS AND THE CENTRAL SECTION THEOREM
+
+iy
+
+f(x,y)
+
+Figure 2.3: Central Section Theorem: The 1D Fourier transform of gg(x’) equals the radial slice of F(kx,ky) at that same angle 0.
+2.3.2 The Central Section Theorem
+Often, f(x,y) is the function of interest but only projections of f(x,y) are obtainable. For example, in a simple x-ray imaging setup, a source emits x-rays photons collimated into a pencil beam passing through the object. An x-ray detector measures the x-ray photons transmitted through object, providing the line-integral of the object’s x-ray attenuation coefficient along the beam path. A 1D parallel projection is collected by sweeping this pencil beam in a linear fashion across the object. In x-ray computed tomography (CT), a set of such projections is accumulated at all angles about the object. The problem is how to reconstruct f(x,y) given all of its projections.
+The theorem that lends powerful insight into the information content of gg(x’) is the Central Section Theorem (or Projection Slice Theorem), derived by Bracewell [Bra56].
+Central Section Theorem: Let gg(x’) be the projection of f(x,y) at some angle @ and let F(kx,ky) be the 2D Fourier transform of f(x,y). Then the 1D Fourier transform of the projection
+go(x’) equals the 2D Fourier transform F(kx,k,) along the radial line at that same angle 0.
+Figure 2.3 illustrates this theorem. The proof of this theorem can be shown
+
+2
+
+CHAPTER 2. PRELIMINARIES
+
+easily for the 0 = 0 case as
+Fivtg(x)} = iL|,fon ay|@ thax go
+:% | | f (x, ye tet hax Oy) dx dy x Jy
+
+Because a rotation of coordinate systems does not fundamentally change matters, this result generalizes to other angles. The central section theorem makes clear that projections taken at all angles 0 about the 2D object provides sufficient information to fill the 2D Fourier transform space of f(x,y). Hence to reconstruct f(x,y) from its projections, one can simply Fourier transform each projection, fill 2D Fourier transform space, and finally inverse 2D Fourier transform to recover f(x,y).
+
+2.4 Sampling
+One-dimensional sampling of a function can be modeled by multiplying the function with a comb (also called shah) function (1/A) I(-/A) where Ii(-/A) is an infinite string of equally-spaced delta functions separated by A, the sampling period. The 1/A factor normalizes each delta function to unit strength. To describe the basic principles, we will consider 1D sampling in this section, although the extension to 2D sampling is straightforward as the 2D function would be multiplied by a 2D array of delta functions (a so-called “bed of nails” function).
+Sampling in the time or object domain is a common scenario in many disciplines. In MR imaging however, we will be concerned primarily with the opposite situation of sampling in the frequency domain. Given a function F(k,), we can express its sampled version, F (kx), as
+pan Fike) 5 u(*)
+
+F(kx)- >) (k—xNAx,)
+N=—0o
+II >, F(ndAg,)5(kx — NAK,)
+n=—©o
+
+(2.19)
+
+Thus F(kx) consists of a string of delta functions of amplitude given by the sample values F(nAx,). The sampling period is Ax,, corresponding
+
+2.4. SAMPLING
+
+13
+
+to a sampling rate of 1/A,,. Inverse Fourier transforming Eq. 2.19, the resultant function f(x) is
+
+fix) = FUP (k)}
+= eee Ree)
+
+= foe s 5 (x-*)
+kx n=— oo
+
+= ee 3 if(x- a
+
+(2.20)
+
+=—0
+
+x
+
+Equation 2.20 represents a function comprised of replicated versions of (x), where each replication “island” is separated by 1/Ax,, the sampling rate. Figures 2.4a and 2.4b illustrate the behavior in the two domains.
+If f(x) is “space-limited”—that is, f(x) is of finite extent—then the replicated versions of f(x) are nonoverlapping if the sampling rate is sufficiently high. If the sampling rate is too low, then the replication islands overlap, resulting in a condition known as aliasing. The minimum sampling rate that avoids aliasing is called the Nyquist rate and is equal to the total extent of f(x) (note that if the sampling period is in units of mm™!, then the sampling rate in the frequency domain is in units of mm).
+If sampling occurs over a finite extent, then Eq. 2.19 expands to
+
+Fw (kx)= F(kx)- = u( 7 (a)
+
+(2.21)
+
+where Wz, is the total extent sampled in frequency space (Fig. 2.4c). The total extent can be represented as
+
+Wx, = 2 (Kena + =A )
+
+(2.22)
+
+where Kxmax is the maximum frequency sampled. In this definition of Wx, we add Ax, /2 to each side of the highest frequency sampled so that the borders of the rectangle function lie between sample points. Thus
+
+Wr, = Ak, * Nsamples
+
+(2.23)
+
+(the convenience of this definition will be appreciated below). The transform of Eq. 2.21 becomes
+
+fw(x) = FM Fwlkx)}
+
+f(x) * W(Ag,.x) * We, sinWcx(, x)
+
+(2.24)
+
+14
+
+CHAPTER 2. PRELIMINARIES
+
+x
+
+Ky
+
+(b)
+
+f(x)
+
+F(k,) r
+
+eee TF
+
+|Sea
+
+eect 4s
+
+Bante Ky
+
+-
+
+F(X)
+
+Fuk) | | ne
+li:
+
+X
+
+ky
+
+Figure 2.4: Sampling in the Frequency Domain: (a) Original functions. (b)
+Sampled function F(kx) transforms to replicated version f (x) in x domain. (c) Finite sampling results in blurring with sinc function in x domain. (d) If fw (x) is evaluated at discrete points separated by 1/W,,., then replication of Fy (kx) occurs every W,,, giving rise to periodic samples in both domains. One period of sample values in each domain are related by the DFT.
+
+2.5. ROTATION MATRICES
+
+15
+
+The effect of finite sampling in the frequency domain is to blur in the x domain by a sinc function of approximate width 1/ W;, (Fig. 2.4c). Note that as kxmax approaches oo, Wx, sinc(Wx,x) approaches 6(x).
+4 If we now sample fw(x) with a period of 1/W,,, the resultant function
+
+Fw) = f(x) - Wx, (Wx, X) and its transform Fw(kx) is
+
+(2.25)
+
+Fw(kx) = Fw(kx) * Ms
+ky
+
+(2.26)
+
+Because Fw (kx) is of finite extent (width W;,) sampling Fy (x) at arate of Wk, corresponds to the Nyquist rate and no aliasing occurs (Fig. 2.4d). In
+addition, both van and F w consist of a periodic string of delta functions. One period of sample values in each domain are related by the Discrete Fourier Transform (DFT). Figure 2.4d thus shows the Fourier transform relationship between a finite set of samples and its DFT.
+
+2.5 Rotation Matrices
+
+Rotations in three-dimensional space are specified by two parameters: 1) the axis of rotation and 2) the rotation angle. On 3D vectors, rotations can be described by multiplication with a 3 by 3 rotation matrix. Often the axis of rotation will be about one of the major axes—x, y, or z. For example, a rotation about the z-axis by an angle « is represented by
+
+cosa sink O
+
+R2(a) =| —sina cosa. 0
+
+(2:27)
+
+0
+
+0 1
+
+For convenience in describing MR, we adopt a left-handed convention for
+
+the rotation.
+
+The inverse matrix corresponds to rotation in the opposite direction.
+
+Thus
+
+R51 (cx) = Rz(—@) = R-z(a)
+
+(2.28)
+
+16
+
+CHAPTER 2. PRELIMINARIES
+
+Figure 2.5: Rotation about a general axis z’.
+
+The matrices for rotation about the other major axes are
+
+ih 0
+
+0
+
+Re(axy= | 0. cosine) “sina
+
+(2.29)
+
+O —sinx cose
+
+and cosx O —sing
+
+Ry (a) =
+
+0
+
+1
+
+0
+
+(2.30)
+
+sinx O cose
+
+To consider a rotation about a general axis z’ specified by angles (0, €) (Fig. 2.5), one approach is to first transform a vector M into M’, its representation in the primed coordinate system. Using rotations about the major axes,
+
+M’ = Ry(E)R2(0)M
+
+(2:31)
+
+Alternatively,
+
+M = R,(—0)Ry(—&)M’
+
+(2.32)
+
+2.6. BASIC PROBABILITY
+
+17
+
+Then, a rotation of M’(0) about z’ by angle « (in time T) gives cosSK sinnx O
+
+M(T) =
+
+—sinw cosa O |M’(0)
+
+0
+
+0 i
+
+= R,(a)M’(0)
+
+(2.33)
+
+Using Eqs. 2.31 and 2.32, we substitute for both M’(0) and M’(T), resulting in an expression in the original coordinate system of
+
+M(T) = Rz(—@)Ry(—§)Rz(X)Ry (E)Rz2(0)M(0)
+
+(Zed)
+
+Hence, the rotation about a general z’-axis is decomposable as
+
+Rz (&) = Rz(—0)Ry(—§)Rz((XE))RRz y(0)
+
+(2.33)
+
+In the special case where @ = 0, then
+
+cosacos*&+sin?=
+
+sinacos—€ (1—cos«) cos Esing
+
+Rz (a) =
+
+— sin «cos &
+
+COS &
+
+sixn sin &
+
+(1—cosa)cos§sinE
+
+-sinasinE
+
+cosasin® £ + cos? &
+(2.36)
+
+In MR, a common rotation is the precession of the magnetization vector about the z-axis at the Larmor frequency Wo (left-handed rotation). The rotation matrix that describes such a precession is
+
+cOSWot
+
+sinWot O
+
+R,(Wot) =
+
+—sinWot cosWot O
+
+0
+
+0
+
+1
+
+(eS)
+
+2.6 Basic Probability
+
+2.6.1 Random Variables
+
+A random variable X is characterized by its cumulative distribution function F(x), where the probability that X takes on values less than or equal
+
+to x is
+
+Pr{X = x} = F(x)
+
+(2.38)
+
+18
+
+CHAPTER 2. PRELIMINARIES
+
+Relatedly, the probability density function (pdf) f(x) pertaining to X is
+
+aF (x)
+f(x) = ax
+
+(2939)
+
+Therefore the probability that X will take on values between x and x2 is
+
+Pr {x1 < X < X20} = F(x2) — F(x1) = * f(x) ax
+
+(2.40)
+
+Note that f(x) is a positive-valued function with area equal to 1. The expected value of arandom variable X (often called the mean value)
+
+is
+
+EX =X'= Jxfeo ke
+
+(2.41)
+
+the first moment of the pdf. Another quantity of interest is the variance
+o? of X, defined as
+
+o*
+
+F(X —X} = |(«= X)? fx) dx
+
+E[X2]—X°
+
+(2.42)
+
+The variance equals the second moment of the pdf with respect to the mean, and is indicative of the width of f(x). The standard deviation of X is simply o,, the square root of the variance.
+The following are examples of pdfs that are relevant to MR imaging.
+
+Gaussian Density: If X is a Gaussian (normal) random variable of mean
+pt and variance o°, then its pdf is
+
+F(x) = Jan1o? *P -(x2—02p)? |
+
+ea
+
+Equivalently, we write compactly that X ~ N(y,07), where N(y, 0%) rep-
+resents the normal distribution of mean p and variance o. Often, we will deal with a complex-valued random variable Y = X, + iX2, where X, and X>2 are independent, Gaussian random variables. Y, sometimes termed a bi-variate Gaussian random variable, can be visualized as a random vector in the complex plane. It follows that EY = EX,+1iEX> and Oe = E|Y—EY|?.
+
+Rayleigh Density: Consider Y = X, + iX2, where X; and X2 are inde-
+
+pendent, and X; ~ N(0,o2) and X2 ~ N(0,@%). If Z = |Y| = |X? +.X2,
+
+the magnitude of Y, then Z is called a Rayleigh random variable with a pdf
+
+given by
+
+2 fAZ)= = exp (-<2) forz>0
+
+(2.44)
+
+2.6. BASIC PROBABILITY
+
+19
+
+where o% = (2 —1t/2)o2 and EZ = o 1/2.
+
+Rician Density: Now consider Y = X; + iX2 where X, ~ N(t4, 07) and
+X2 ~ N(0,o7), and X; and X2 are independent. If Z = |Y| = /X? + X3,
+the magnitude of Y, then Z is called a Rician random variable. The Rician
+density is written as
+
+Zz
+
+Zoe Ne (a
+
+.
+
+fz(ZZ) = Doe &XP (= 202
+
+I, e Zu Cos O/o do
+
+iz ZZ,00( z+ Huit )1, (z=H) for z > 0 (2.45)
+
+where Io is the modified Bessel function of zero order:
+27
+Ip(x) = = iE ex cos? ag
+
+(2.46)
+
+The Rician density arises when one of the Gaussian-distributed components has a non-zero mean whereas the Rayleigh density arises when both of the Gaussian-distributed components have zero means. Figure 2.6 contains plots of f7(z) for different values of p,. Note that if uy, > 1, then the Rician density can be approximated by a Gaussian density with mean Ly and variance o°.
+
+2.6.2. Random Processes
+
+In considering noise in MR imaging, we will deal with random processes X(t) (continuous time) and X[n] (discrete time). An important characterization of a random process is its autocorrelation function, defined as
+
+R(ti, t2) = E [X(t1)X(t*2)]
+
+(2.47)
+
+We will assume that these processes are weakly stationary, meaning that the autocorrelation depends on only tz — t;. Therefore, we may write
+
+R(t) = E[X(£)X* (t+ T)]
+
+(2.48)
+
+The power spectral density S(f) of a random process is defined to be the Fourier transform of the autocorrelation function; that is,
+
+S(f) = FiR(t)}
+
+(2.49)
+
+If X(t) is passed through a linear time-invariant system with transfer function H(f) to produce output Y(t), then the power spectral density of Y(t)
+
+is
+
+Sy(f) = Sx(f)IH(f)I?
+
+(2.50)
+
+20
+
+CHAPTER 2. PRELIMINARIES
+
+Figure 2.6: Rician density functions f7(z) for uw; = 0,1,2,3 (0? = 1). For Ly = 0, the function represents a Rayleigh density.
+
+Similar relations exist for a discrete-time random process X(n), where
+
+n is an integer (normalizing the sampling rate to unity). The autocorrela-
+
+tion is
+
+R(m,n) = E[X(m)X*(n)]
+
+2 50)
+
+If weakly stationary, then
+
+R(m,n) = R(m— n,0)
+
+(2252)
+
+and the power spectral density is
+
+S( iia F URGh)i a eR lege
+N=—0c
+If X(n) is a zero-mean input process, then X = 0 and
+R(0) = ee 1/2 Of
+
+(2.53)
+(2.54)
+
+the variance of X(n).
+
+2.7. PROBLEMS
+
+21
+
+PT f Problems
+
+ZL If the Fourier transform of f(x) is F (kx), what is the Fourier transform of the following functions?
+
+(a) f(ax + b)
+(Def (=x) (eC) FO)
+
+oe Find the projection gg(x’) of the following 2D functions at the specified projection angles 0.
+(a)e-" for all 0
+(b) 2 (x,y) for @ = 45°
+(c) jinc(7) for all @
+(d) *6(x —x.,y — y.) for all 0
+
+aes For what projection angles @ is the projection of the following function equal to zero?
+
+f(x,y) = sinc(x)sinc(y) cos 21rx
+
+2.4 A function f(x) is decomposable into the sum of an even function fe(x) and odd function f(x). What is the corresponding decomposition for a two-dimensional function g(x, y)?
+2-5 If f(x) = cos21rfx is sampled at a sampling rate of 3/2, sketch the resultant spectrum of the sampled function.
+2.6 A vector M starting at [0 0 1]? is rotated about the x axis by 90°, then about z by some angle @, and finally about x again by 90°. Determine the resulting vector as a function of 0.
+Cat If the M vector starts at [0 0 1]/, specify a rotation axis in the xzplane and rotation angle « such that the vector is rotated to [1 0 0]. Use Eq. 2.36 to verify that the rotation matrix is correct.
+
+ee
+
+CHAPTER 2. PRELIMINARIES
+
+Chapter 3
+Overview
+We will begin by surveying the basic physics and imaging methods of MR. The emphasis in this overview is on providing some acquaintance with the wide variety of physical and instrumental parameters involved in MR imaging. Given the complexity of MR, a qualitative understanding of the main concepts will be useful to have before tackling the more detailed and mathematical descriptions in later chapters.
+3.1 Classical Description of MR
+This section briefly outlines the basic principles and physics of MR. Although the descriptions in this section are neither complete nor rigorous, the intent is to present only the concepts relevant to understanding the nature and behavior of the MR phenomenon. A rigorous and accurate description of the basic MR physics requires quantum mechanics; however, in most cases, a classical treatment amply describes the macroscopic behavior.
+Atoms with an odd number of protons and/or odd number of neutrons possess a nuclear spin angular momentum, and therefore exhibit the MR phenomenon. Qualitatively, these nucleons can be visualized as spinning charged spheres that give rise to a small magnetic moment. We will often refer to these MR-relevant nuclei as simply spins. In biological specimens, hydrogen ('H), with a single proton, is the most abundant (the body consists largely of H2O0), the most sensitive (that is, gives rise to the largest signals), and by far the most studied. Other atoms such as phosphorus (3!P)—an important indicator of metabolism—are also of interest. Henceforth however, unless noted, we will assume 'H (proton) imaging.
+23
+
+24
+
+CHAPTER 3. OVERVIEW
+
+The nature of MR is based on the interaction of these spins with three types of magnetic fields: 1) main field Bo, 2) radiofrequency field B,, and 3) linear gradient fields G. We will organize our general description of MR around the usages of these fields.
+
+3.1.1 Main Field Bo
+In the absence of an external magnetic field, the spins are oriented randomly and the net macroscopic magnetic moment is zero. However, in the presence of an external magnetic field Bo, two notable effects occur. First, the magnetic moment vectors tend to align in the direction of Bo to create a net magnetic moment. By convention, the direction of the applied field is called the z-direction or longitudinal direction. Second, the nuclear spins exhibit resonance at a well-defined frequency called the Larmor frequency jw. This Larmor frequency relates to the applied magnetic field by a simple but vastly important expression,
+
+w=yB
+
+(32%)
+
+or
+
+y
+
+f= BB
+
+(3.2)
+
+where y is called the gyromagnetic ratio, a known constant unique for each type of atom. For 'H, y/2m = 42.58 MHz/Tesla (1 Tesla (T) = 104 Gauss
+(G)); hence, at a magnetic field strength of 1.0 T, the Larmor frequency is
+42.58 MHz, in the radiofrequency (RF) region. Most whole-body imaging
+systems operate at a fixed field strength within the range of 0.1 to 3 T.
+Macroscopically, the Bo field polarizes the sample, inducing a net mag-
+netization vector pointed in the z-direction of strength M,. Also, the spins
+exhibit resonance at their Larmor frequency. They will be “excited” by the appropriate radiofrequency magnetic field tuned to the Larmor frequency and they will “oscillate” and produce a signal based on the Larmor frequency as well. As an analogy, the spinning nuclei react to Bo like a spinning top does in a gravitational field, precessing about the field at a well-defined frequency.
+
+3.1.2 Radiofrequency Field B,
+In the presence of a static magnetic field Bo, the equilibrium state of the magnetization vectors in the body is depicted in Fig. 3.1. To obtain an MR signal, a radiofrequency (RF) magnetic pulse B, tuned to the resonant frequency of the spins is applied in the xy (transverse) plane to excite these spins out of equilibrium (Fig. 3.2). Effectively, By applies a torque
+
+3.1. CLASSICAL DESCRIPTION OF MR
+
+25
+
+Zz
+Ipeetiirs teedthant
+e> e faire
+Mo(x,y,Z)
+
+Figure 3.1: Equilibrium condition of magnetization in the presence of the main static magnetic field Bo.
+
+Figure 3.2: B,; radiofrequency field tuned to Larmor frequency and applied in transverse (xy) plane induces nutation (at Larmor frequency) of magnetization vector as it tips away from z-axis—lab frame of reference.
+Figure 3.3: B, induces rotation of magnetization towards transverse plane—(a) laboratory frame behavior of M; (b) rotating frame behavior. Strength and duration of B, can be set for a 90° rotation, leaving M entirely in the xy plane.
+
+26
+
+CHAPTER 3. OVERVIEW
+
+Receiver Coil
+
+Figure 3.4: After B; turns off, M precesses in the xy plane at the resonant frequency, generating an EMF signal in the receiver coil.
+which rotates the magnetization vectors by a prescribed angle dependent on the strength of B, and its duration. On a human imaging system, the strength of B, is typically a few microtesla (a small fraction of a Gauss); its duration is usually a few milliseconds. Figure 3.3a depicts the behavior in the laboratory frame of reference while Fig. 3.3b shows the behavior in the frame rotating at the Larmor frequency about the z-axis. If the excitation is set for (say) a 90° tip angle (Fig. 3.3), then upon turning the excitation off, the tipped vectors precess in the xy plane at the Larmor frequency (Fig. 3.4). Relaxation back to equilibrium also occurs in which the length of the magnetization vector does not remain constant over time. The time constant characterizing the return of the magnetization vector along the zaxis (longitudinal axis) is called T,, while the time constant characterizing the decay of the vector component in the xy plane (transverse plane) is called To. In humans, T; values of tissues appearing in an image range from about 100-2000 ms while T2 values range from about 10-300 ms. These relaxation time constants, along with the density p of the atoms, are important MR parameters which have distinct values for different tissues.
+From Faraday’s law of induction, the rotating magnetization vectors induce an electromotive force (EMF) in an RF receiver coil oriented to detect changes of magnetization in the xy plane (Fig. 3.4). Often, the coil generating the RF excitation field will switch modes and receive the signal as well. The generated time signal is called a free induction decay (FID); in general, a set of FIDs will be recorded and processed to reconstruct an MR image. Thus, the body can be visualized as an ensemble of tiny oscillators inducing RF signals. The objective of MR imaging then is to map the spatial distribution of their amplitudes. As will be shown, imaging is based on controlling the relative phases and frequencies of these oscillators.
+3.1.3. Linear Gradient Fields G
+If the applied field is simply the main static field Bo in the z-direction, then all spins possess the same resonance frequency wo = yBo and, if ex-
+
+3.1. CLASSICAL DESCRIPTION OF MR
+
+27
+
+cited, behave like oscillators inducing signals at that frequency (Fig. 3.5a). Because the excitation/receiver RF coil encompasses the entire region of interest, it is not possible to excite a selected portion of the volume nor is it possible to distinguish the signals generated from different spatial locations if only Bo exists. The problem lies in the fact that we record the total signal generated by all the oscillators of the excited region in a single time waveform.
+In MR imaging, spatial localization is achieved by applying linear gradient magnetic fields in addition to Bo. For example, if we apply a gradient G, in the x-direction (Fig. 3.5b), then the applied field is Bp + Gyx . It is important to note that this gradient field leaves the combined magnetic field still pointing in the z-direction but now the field strength varies with the x-location; hence, G, = dBz/dx. The frequency of the spins thus becomes a function of their x-location; that is, w(x) = y(Bo + Gxx) = Wo + YGxx . On whole-body imaging systems, the gradient field strength is usually less than 50 mT/m (5 G/cm-although it is proper to use SI units, some find the CGS units of Gauss/centimeter easier to interpret).
+The utility of a gradient field can be easily seen if we consider the sig-
+nal generated when a constant Gy is turned on after an excitation. The time signal contains the contributions of oscillators emitting signals over a range of frequencies. If G, = 10 mT/m (1 G/cm), then the frequencies vary as 425.8 kHz/m (4.258 kHz/cm) for 'H, amounting to a frequency
+bandwidth of 42.58 kHz for an object 100 mm (10 cm) wide. Therefore,
+Fourier transformation of the FID time signal (Fig. 3.5b) determines the
+contribution from each frequency component which in turn linearly maps to a particular x-position. In this case of a constant x-gradient, a 1D image can be formed since x-position is encoded as temporal frequency.
+The idea of purposefully creating an inhomogeneous field with a gradient plays a vital role in MR imaging. By making the magnetic field inhomogeneous, we take advantage of the fact that the resonant frequency
+of these nuclei is proportional to the applied field strength and that this
+frequency changes instantaneously when the field strength changes.
+
+3.1.4 Bloch Equation
+
+In general, the behavior of the magnetization vector M is described phenomenologically by the so-called Bloch equation, given by
+
+aetMhe rack Myx i+ yMyji M, (Mz — M.))k
+
+at
+
+T2
+
+Th
+
+(3.3)
+
+where i, j, and k are unit vectors in the x, y, and z directions respectively, M, is the equilibrium magnetization arising from the main field Bo, and
+
+28
+
+CHAPTER 3. OVERVIEW
+
+B =B, +GQx
+
+time
+
+time
+
+i
+(a)
+
+frequency
+
+| frequency (b)
+
+Figure 3.5: Square water object: (a) Given only Bo, the FID signal contains contributions from water in the entire square at the same temporal frequency. Fourier transformation of the FID gives a single peak located at the resonant frequency wo. The signals from water at different positions are indistinguishable. (b) Given Bo and gradient field G,, water at a higher X position experiences a higher field than water at a lower x position and therefore generates a signal at a higher frequency. The signal contains contributions over a range of frequencies. Fourier transformation of the FID gives a flat rectangular profile as water at different x-positions contribute at their respective frequencies.
+
+3.2. CONVENTIONAL MR IMAGING METHODS
+
+29
+
+B includes the various magnetic fields applied. In later chapters, we will solve this equation to develop a mathematical description of the different situations just discussed.
+
+3.2 Conventional MR Imaging Methods
+MR imaging methods are as diverse as the ways to describe them. However, for conventional methods, the procedure can be organized into basically two parts: excitation and reception. For the methods we will examine in this introductory chapter, each excitation/reception sequence results in a time signal measurement that provides a single spatial projection of the object under study. A typical measurement duration is about 10 ms. After pausing for some time (often 0.1-2.0 s) to allow suitable magnetization recovery, the excitation/reception sequence repeats for collection of the next measurement. A set of measurements is thus collected to provide the appropriate set of projections for image reconstruction.
+As described in the previous section, excitation involves the use of a radio-frequency pulse(s) to tip the spins in a specified region so that they become sources of an RF signal. What is important to realize is that the spins generate this recordable RF signal if the tipping results in a vector component rotating in the xy plane (i.e., a 180° excitation leads to no signal). Combinations of excitation pulses are typically employed to make the amplitude of these oscillators become some function of the MR parameters (p, Ti, T2). At this point, we will not be concerned with this issue of image contrast. It suffices to appreciate that after the excitation, we are left with a region of precessing magnetic dipoles with an amplitude distribution m(x, vy, Z) we would like to reconstruct. As will be described shortly, it is also possible to excite just a thin plane instead of the whole volume by broadening the range of resonant frequencies. If the excited slice is perpendicular to say the z-axis, the imaging problem reduces to that of reconstructing m(x, y).
+We will see in the following sections how the various imaging methods use the gradients in different ways to form images. Before elaborating on how gradients are used during the reception portion, we will briefly discuss the use of gradient fields during the excitation portion of the imaging cycle.
+3.2.1 Selective Excitation
+As discussed in Section 3.1.2, a transverse RF magnetic field B,, tuned to the Larmor frequency of the nuclear spins, tips the magnetization vectors by some angle, typically 90°. If By is applied in the presence of Bo, then
+
+30
+
+CHAPTER 3. OVERVIEW
+
+Before Excitation
+
+After Selective Excitation
+
+Figure 3.6: Effect of 90° selective excitation on spin distribution.
+
+all spins are at the same resonance frequency and the excitation is nonselective because all spins are tipped. In this case where the entire volume contributes signal, some form of 3D imaging must be performed. Unfortunately, 3D imaging is usually a time-consuming endeavor unless image contrast or spatial resolution is compromised.
+Hence it is desirable to be able to reduce a 3D imaging task into a manageable 2D one by exciting a plane instead of the entire volume. Such a selective excitation is achieved by applying B, in the presence of Bo and a linear gradient field. If we wish to excite a plane, say, perpendicular to the z-axis of thickness Az (Fig. 3.6), then Gz turns on during the RF excitation. With G, on, the resonance frequency varies linearly with z-position; intuitively, because B; must be tuned to the Larmor frequency for excitation to occur, B; must now possess a temporal frequency bandwidth that matches the bandwidth of resonance frequencies of spins in the slice of interest (Fig. 3.7). The desired bandwidth is yGzAz, centered about wo for excitation of the plane at z = 0. The B, excitation field therefore takes the form of
+
+B, = B,(t) (cos Wot i-— sin Wotj)
+
+(3.4)
+
+giving a field rotating at the center frequency wo with time-varying am-
+plitude B,(t). Continuing with our intuitive notions, to achieve a slice ex-
+citation with a rectangular profile, the frequency content of B,(t) must
+be a rectangle function. Thus if the Fourier transform of B,(t) is to be a
+rectangle function, then ideally B,(t) must be a sinc function.
+Practically, rectangular slice profiles are difficult to achieve because B,(t) is of finite duration and because Fourier analysis for determining B,(t) turns out to be only an approximation—albeit a reasonable one in many cases—as the Bloch equation behaves nonlinearly. In general, for well-defined selective excitations, the waveform B,(t) is “sinc-like” but should be designed carefully.
+
+3.2. CONVENTIONAL MR IMAGING METHODS
+
+31
+
+Excited ,
+
+Slice
+
+‘
+
+®
+
+@
+
+Sed ce realipee ase |
+
+Figure 3.7: Selective Excitation: With Gz, resonant frequency varies linearly with z. A B, pulse with a rectangular frequency content excites only those spins in z-locations at the matching frequencies.
+3.2.2 2D Imaging Methods
+For the ensuing sections which discuss planar (2D) imaging methods, we will simplify matters by considering the following excitation/reception sequence.
+1. We apply a selective 90° excitation in the presence of G; such that the nuclear magnetization vectors in a thin plane at a particular zlocation are tipped into the xy plane. We further assume that all of the magnetization vectors in this plane are pointed in the same direction; that is, they are in phase.
+2. The excited spins, acting as RF sources, have an amplitude distribution m(x, y) that we wish to image. As the excited spins precess and induce an EMF in the receiver coil, we encode their signals via gradient fields to get spatially dependent information in the FID signal. The methods to be discussed perform this step in different ways.
+3. Eventually, the signal decays and the spin vectors return to equilibrium. We then repeat this procedure to acquire the next measure-
+ments.
+
+32
+
+CHAPTER 3. OVERVIEW
+
+ee er ae es eee
+
+RF 4
+
+‘excitation
+
+=||
+
+i
+
+|
+
+\
+
+readout Gy
+Figure 3.8: Timing diagram for the projection-reconstruction method, projection angle 0 = 0.
+We now examine the basic principles of two specific imaging methods: projection-reconstruction and 2D Fourier transform. The 2D Fourier transform method dominates the field, but because of the analogy with x-ray CT, it is insightful to discuss the projection-reconstruction method first.
+Projection-Reconstruction Method
+This method uses the established reconstruction method from x-rayCT by making MR measurements that correspond to the projections of m(x, y) over the required angles. We will give both a qualitative and an analytic description of how a projection at a specific angle is obtained. Generalizing to an arbitrary projection angle will be a straightforward matter.
+A timing diagram of the sequence (excitation/reception) is given in Fig. 3.8. Following a selective excitation of a 2D section, the signal readout occurs in the presence of a constant gradient field. (We defer discussion of the negative Gz lobe that follows the RF pulse until Chapter 6). We have already described what happens when a gradient G in the x-direction is applied when the FID is recorded. This sequence corresponds precisely to acquiring a projection in which the line integrals are along the y-direction. The presence of G means that upon Fourier transforming the received FID signal s,(t), each frequency component corresponds to the contributions from the spins at some x-location. At a particular x-location, all of the spins along y oscillate at the same frequency and therefore sum to give the value at that frequency bin. Thus, the Fourier transform of s,(t) directly gives the projection of m(x, y) along the y-direction (or projection
+
+3.2. CONVENTIONAL MR IMAGING METHODS
+
+33
+
+Mx
+
+iMy
+
+Figure 3.9: Rotating magnetization vector in xy plane with phasor notation.
+
+angle @ = 0°).
+To gather a projection at a different angle, we apply a gradient whose field varies along a different direction; that is, we rotate the direction of the gradient (remember though, the applied field remains in the z-direction with Bo) to rotate the angle of the projection. If we want N projection angles, we must repeat the excitation/reception cycle N times, each time with a different gradient direction. We then proceed through the regular reconstruction procedure to form the image of m(x, y).
+Mathematically, the Bloch equation can be solved to express the behavior of the magnetization vectors. We will skip directly to the solution and use a more convenient phasor representation of the precessing magnetization vectors. The signal generated by the oscillator at position (x, y) can be written as m(x, y) exp(—iwt) where m(x, y) is a complex quantity given by
+
+m(X,Vv) =m,(x,y) + im, (x,y)
+
+(3.5)
+
+and exp(—iwt), from a phasor point-of-view, represents a rotating vector
+at frequency w. Physically, as discussed earlier, the oscillators arise because the magnetization vectors rotate in the xy plane at a frequency w (Fig. 3.9). In the presence of a gradient G in the x-direction, the frequency is spatially dependent; that is, w(x) = Wo + yGx. The total received signal s,(t) can be written by integrating over the entire excited plane. Ignoring
+relaxation terms,
+
+SHES | | mx y)e t, t e-¥Oxt dx dy
+
+(3.6)
+
+poe ey
+
+We are interested in the baseband signal, so we will ignore the high-frequency
+
+34
+
+CHAPTER 3. OVERVIEW
+
+factor exp(—iwot). Then, the baseband signal s(t) is expressed as
+
+S(t) =. Spitjen et
+
+| | m(yxe,¥o*! dx dy,
+x Sy
+
+| I mix, rdy|EU EM
+
+(3.7)
+
+a ey
+
+If
+
+g(x) = | m(x,y) dy
+
+(3.8)
+
+iy
+
+then
+
+S(t) Il |gixje Po" ax
+x
+
+| ace exp |-ien (ct) x| ax 27
+
+FAQG(X) }lke =(y/2m)Gt
+
+(3.9)
+
+(x and kx are space and spatial frequency variables respectively). Because g(x) equals the projection of m(x, vy) along the y-direction, s(t) is related
+to the 1D Fourier transform of this projection. Thus
+
+g(x) == F {s(t bl ¢=-(r2mex
+
+(3.10)
+
+(t and f are time and temporal frequency variables respectively). The height of each frequency bin in the Fourier spectrum of the FID time signal equals the value of the projection at the appropriate x-position.
+This result can be generalized to other projection angles by applying a gradient oriented in a different direction. Applying
+
+Gx = Gcos@
+
+(3.11)
+
+Gy =Gsin0
+
+12)
+
+leads to a projection at angle 0. Once projections over all angles are obtained, the image is reconstructed by processing the data in the conventional manner used in x-ray CT.
+From the central section theorem (Section 2.3.2), the 1D Fourier transform of a projection taken at angle @ provides information along a radial slice of the 2D Fourier transform of the distribution m(x, y) at that angle 0. Each FID therefore gives information along a line as shown in Fig. 3.10.
+
+3.2. CONVENTIONAL MR IMAGING METHODS
+
+raps
+
+k y
+
+Figure 3.10: From the central section theorem, each FID in the projectionreconstruction method gives a line at the projection angle @ in the 2D Fourier transform of the object.
+2D Fourier Transform Method
+The projection-reconstruction method just described where projections at different angles are taken is an intuitively pleasing approach. In x-ray imaging, each point in the projection corresponds to the sum of the object distribution along the appropriate ray path. Therefore, a single projection angle does not provide spatial information of the object distribution along the ray path, and it is sensible then that other angles are needed to resolve the ambiguity.
+In MR, a method called 2D Fourier transform (2DFT) provides a fresh perspective of the imaging problem. This method operates with a set of projections taken at a single projection angle to reconstruct m(x,y). At first, it may not be intuitively obvious that any such method could work based on what was discussed in the previous paragraph. However, the key to the method is that m(x,y) is spatially weighted in some clever way before the projection takes place.
+To illustrate the idea, suppose that the projection is always in the ydirection. If, by some means, we were able to apply a weighting factor that was unity at some value of y and zero elsewhere, then the resultant projection of the spatially weighted distribution would give information about the original distribution along y even though we projected along y. Nowif, as we obtained subsequent projections along the same direction, we were able to move the y-position of the unity weighting, we would eventually be able to reconstruct m(x, y). In this simple example, no special processing of the projections would be necessary to reconstruct the image because each projection directly determines the value at some y-position.
+Another way of decomposing the distribution along the line of projec-
+
+36
+
+CHAPTER 3. OVERVIEW
+
+See Re ane |eae
+
+/excitation
+
+RF
+
+i
+
+|
+
+y ty a
+
+phase encoding
+
+eaten
+Gy
+
+Figure 3.11: Timing diagram for the 2D Fourier transform method.
+
+tion is by its spatial frequency components. If we first weight a distribution h(x, y) by cos 2mrk;y (and sin 27rk;y) and then project along the y-direction, the resultant projection would give information about to what extent h(x, y) contained that particular spatial frequency component kj. In essence, that projection would give the value of the Fourier transform of h(x, y) for that particular frequency. If we were to vary k; on subsequent projections, we would eventually assemble the necessary spatial frequency bins to be able to reconstruct h(x, y) by taking the inverse Fourier transform of the accumulated data. This inverse transform operation would amount to a series of 1D transforms, each one reconstructing a distribution along the line of projection at a different x-location.
+This Fourier decomposition of h(x,y) is the framework in which the 2DFT method operates. To reconstruct the distribution along the “ray” path, each projection is not of simply m(x, vy) but of m(x, y) multiplied by a spatial frequency weighting factor. Subsequent projections are based on m(x,y) multiplied by a different spatial frequency weighting factor. This process continues until the range of spatial frequencies is sufficient to describe the distribution along the line of projection. This capability in MR to induce a weighting distribution with negative values—something not possible in x-ray CT—stems from the availability of phase information. For example, when two magnetization vectors are 180° out of phase, their signal contributions will negate each other.
+The timing diagram for the 2DFT method is found in Fig. 3.11. To effectively apply the spatial frequency weighting factor in MR, a gradient Gy in the y direction is turned on for a time t, before recording the FID.
+
+3.2. CONVENTIONAL MR IMAGING METHODS
+
+oN
+
+> —> > > > >
+>
+— yyyvereeetereeheeeyyre
+
+(a)
+
+(b)
+
+Figure 3.12: (a) Direction of magnetization after excitation but before phase encoding gradient G,,. All vectors have the same phase. (b) Direction of magnetization after phase encoding gradient Gy has been applied. The phase varies linearly with y position. A higher or longer phase encoding gradient creates greater amount of phase warping.
+
+During this gradient interval, spins along y experience a different field strength and therefore rotate at a different frequency (linearly increasing with y). As a result, the spins which were originally in-phase become increasingly out-of-phase with time. The phase of the spins oscillating at w(y) = Wo + yGyy after an interval ty is Woty + yGyty¥; in the rotating frame, the phase equals yGyt,y, a linear function of the y-position. In essence then, the spins are spatially phase-encoded by the time the FID is to be recorded, with the amount of phase-encoding dependent on the amplitude G, and on the interval t,. Because m(x, 7) is a complex-valued function representing both the M, and M, components, the distribution becomes weighted by a complex exponential corresponding to the spatial frequency (y/27t)Gyty; more precisely, the distribution that is projected (at time ty) is m(x,y) exp(—tyGytyy).
+Physically, the distribution m(x, y) of the magnetization vectors, originally in phase (Fig. 3.12a), are placed out-of-phase along the projection line by the G, gradient (Fig. 3.12b). This spin warping effectively weights m(x,y) by the complex exponential weighting factor. After this phaseencoding gradient, the usual gradient G, is applied in the x-direction during the readout of the FID, and the Fourier transform of this time waveform results in the projection as before. For the next projection, t, (or equivalently Gy) is varied to induce a different spatial frequency weighting factor on m(x,y) and the same readout gradient Gx, is used. This procedure repeats until information about enough spatial frequencies is acquired.
+Pictorially, each FID (for a given t,) gives information along a horizontal
+
+38
+
+CHAPTER 3. OVERVIEW
+
+Figure 3.13: Each FID in the 2DFT method gives a horizontal line in the 2D frequency domain of the object.
+
+line in the 2D Fourier space of m(x, y) (Fig. 3.13) in contrast to the radial line that is obtained in the projection-reconstruction method. As we vary ty, we build the 2D transform space in a Cartesian grid, not a polar one as in projection-reconstruction.
+
+Once all of the FIDs are assembled, a simple 2D Fourier transform is used to reconstruct m(x,y). Effectively, when the Fourier transform is performed in the k,-direction, the FID time signals transform into projections, each projection corresponding to a particular ky spatial frequency component. Operating on these projections, a Fourier transform, performed in the ky-direction, yields the object distribution m(x,¥y). Figure 3.14 gives an illustrative example.
+
+Describing this method mathematically, the baseband signal is written as
+
+S(tity) = |x |Jy (m(x, ye Gy) etyGxxt dx dy
+
+(3.13)
+
+where for any given FID, ty is set and t is the running variable. The bracketed term arises from the phase-encoding step, and the exp(—iyG,xt) factor results from the presence of the constant Gx gradient during the recording of the FID. Letting
+
+Gty (x) = | m(yx e , Worry dy y
+be the line integral of m(x,y) exp(—iyG,yt,,), then
+
+(3.14)
+
+S(tty) = | Ores? ied x
+
+(3.15)
+
+x
+
+Thus s(t; t,,) provides information about Gt, (x), the projection of a phase-
+
+3.2. CONVENTIONAL MR IMAGING METHODS
+
+ae)
+
+ales
+
+Object
+
+Raw data
+
+Each Fourier transform along ky gives a projection, (line integral along y), of a weighted object.
+
+Projection
+
+4
+
+a
+
+ee ee ae
+
+6
+
+a
+
+ae
+
+ye LS eee
+
+SS
+
+ee
+
+Fourier transform
+along k y
+
+Figure 3.14: 2DFT Example: Square test object and six of its projections with progressively increasing phase-encodings. Assembling the projections (after Fourier transforming each raw data signal) and taking a 2nd Fourier transform results in the reconstructed image.
+
+40
+
+CHAPTER 3. OVERVIEW
+
+warped version of m(x,y). More generally, we can write that
+
+S(t}ty) = | |m(x, ye WGxxte-GrVty dx dy
+
+x Jy
+= Footm(xV,3 yjamert
+
+(3.16)
+
+ky=(y/2T)Gyty
+
+which shows the 2D transform relation between m(x, y) and the FIDs. After assembling all of the FIDs (and therefore all horizontal lines in Fourier transform space), we simply take the inverse 2D transform to reconstruct
+m(x,y). The descriptions of projection-reconstruction and 2D Fourier trans-
+form imaging just presented give an introductory perspective on gradient fields and the principles of MR imaging, with some emphasis on an object-
+domain point-of-view. It is clear however that Fourier analysis is intimately
+involved in the description of MR imaging. We will generalize this Fourier-
+based treatment of MR imaging in Chapter 5.
+
+3.3. Other Approaches to MR Imaging
+
+One of the interesting aspects of MR imaging is that spatial localization
+
+is achieved via the encoding of signals using gradient fields. To appreci-
+
+ate the utility of the gradient field, it is instructive to conceptualize other
+
+approaches to MR imaging that rely on the RF or static field for spatial
+
+localization.
+
+>
+
+One possibility is to confine the RF receiver coil sensitivity to a small
+
+region near the surface and to move this sensitivity region around to build
+
+up an image. This approach would suffer from long scan times and limited
+
+spatial resolution. Conceptually, another approach would be to somehow
+
+excite a small region. One problem with this idea concerns how to “focus”
+
+the RF magnetic field to such a small region without exciting others.
+
+Using the main field for localization, one can imagine confining Bo to a
+
+small region using a local magnet. Among the problems with this approach
+
+is poor spatial resolution due to the geometric and continuity constraints
+
+in creating such a field. Alternatively, one can shape a field such that
+
+the field equals Bo over a small region as in a saddle-shaped field. An RF
+
+excitation at wo therefore produces signal from the Bo region and image is
+
+therefore assembled by moving this saddle point about the object.
+
+All of the above scenarios represent a more geometric approach to MR
+
+imaging. In each case though, the scanning procedure is awkward and
+
+inefficient as only a small portion of the object produces usable signal at
+
+any given time.
+
+3.4. IMAGING CONSIDERATIONS
+
+41
+
+3.4 Imaging Considerations
+
+The design and detailed specifications of the imaging sequence depend on an assortment of system and physical factors. These factors play important roles in considerations such as the length of signal readout (and other sequence variables), image contrast, and signal-to-noise ratio (SNR).
+There are limits to the duration of signal readout for each time signal. A typical readout duration after each excitation (to give a single projection) is about 5-25 ms. Magnetic field inhomogeneities on the order of a few parts per million create errors in the resonant frequencies across the object and can lead to significant signal loss if long signal readouts are used. In addition, such inhomogeneities cause phase errors in the measurements which result in image distortion. Ultimately, intrinsic T2 decay determines the duration over which signal is available.
+High contrast between various soft tissue in the body has been an important feature of MR imaging. Image contrast depends mainly on the timing and tip angles of the excitation used in signal generation. For example, when a 90° excitation is used for signal generation, the resultant signal depends on the amplitude of the M, component prior to the excitation, because that component gets rotated into the transverse plane by the radiofrequency pulse. Because of T; relaxation, time must elapse after a 90° excitation to yield some M; recovery before the next 90° excitation can be applied. By setting the interpulse timing appropriately, image contrast based on 7; differences between tissues can be established. Typ-
+ically, given T; values of around 500-1000 ms, repetition times of about 500-1000 ms are used. This implies that the minimum scan time to acquire sufficient measurements for an image equals N(TR), where N is the number of measurements and TR is the repetition time. If N = 256 and TR = 1000 ms, then the scan time is over 4 min.
+The main source of noise in MR imaging is due to thermal fluctuations of electrolytes in the body which are detected by the receiver coil. This additive “body noise” often dominates the noise of the receiver electronics and thermal noise of the coil itself. The resulting image SNR depends on a variety of sequence and image parameters. Generally, the SNR increases by the square root of the acquisition time and linearly with the voxel size.
+
+3.5 Instrumentation
+A general drawing of an MR imaging system is shown in Fig. 3.15. Three types of magnetic fields are required for imaging: a static uniform field, gradient fields, and radiofrequency fields.
+
+42
+
+CHAPTER 3. OVERVIEW
+
+The main hardware of the system is a large magnet that provides the stable, homogeneous field Bo in the range typically from 0.1-3.0 T (1.030 kG). For clinical use, the magnet must have a sufficiently large bore to allow entry of a torso. Smaller-bore systems, using fields as high as 11 T, exist for animal, small-sample, and microscopic imaging studies. At the other end, less-expensive whole-body imagers using field strengths as low as 0.02 T (200 G) are also available.
+Three types of magnets are currently used: permanent magnets, resistive magnets (air-core or iron-core), and superconducting magnets. They each have their advantages and disadvantages with regard to cost, weight, field-strength, stability, homogeneity, and fringe fields. The most popular magnet type is the superconducting magnet, primarily because of its excellent homogeneity, stability, and higher field-strength. However, superconducting magnets require cryogens (liquid helium), are more expensive, and create fringe fields that can extend a large distance, making siting of these magnets more challenging.
+The other components in the MR system include gradient coils (for x, y, and z gradients), an RF coil (for excitation and reception), and the associated control and computer hardware. Interestingly, the scanning system involves no moving parts. The cost of a whole-body system ranges from one to over two million dollars.
+
+Bo Coil
+
+Radiofrequency Coil
+Figure 3.15: Simplified Drawing of Basic Instrumentation. Body lies on table encompassed by coils for static field Bo, gradient fields (two of three shown), and radiofrequency field B).
+
+3.6. PROBLEMS
+
+43
+
+3.6 Problems
+3.1 Consider the hypothetical situation of a modified 2DFT imaging sequence in which the 2D object is decomposed in one direction by its Hadamard components and not by its spatial frequency components. Such a weighting factor W(y) is depicted below. Obviously a linear gradient field cannot produce W(y).
+4| WY)
+
+(a) Plot a magnetic field function C(y) (applied in addition to Bo) that will lead to the spatial weighting factor W(y). If C(y) is applied for time t,, find an expression for the the amplitude of this field. Are there other possible amplitudes?
+(b) If imaging hydrogen and ty = 1 ms, find a value for the amplitude of C(y).
+3.2 Let m(x, y), in the excited plane at z = z. , be m. *M(x/X,y/Y).
+(a) For the “single-sided” (in Fourier space) projection-reconstruction sequence using FID signals, write a general expression for s(t) when Gx = Gxo, Gy = Gyo . If X = Y, predict the FID signal s(t) for Gy, = GV2/2 , Gy = GJ 2/2:
+(b) Determine the FID signal s(t) for the 2DFT sequence (single-
+sided Fourier-space acquisition) when Gy is turned on for ty seconds before readout. For what value(s) of ty is s(f) = 0?
+Explain from an object domain perspective why s(t) =0.
+3.3 Consider an MR imaging system equipped with only a radial gradient Gr = see where r = ,|x2 + y2 = 0, the radial distance in the xy plane. We desire to use this system to image 2D circularly symmetric objects m(7r).
+(a) For a general G,(t) and m(r), determine the baseband signal equation s(t) for this system.
+(b) Find an expression for the baseband signal s(t) if the 2D circularly symmetric object is a delta ring 6(r — R) and G,(t) = Gr, a constant for t > 0.
+
+44
+
+CHAPTER 3. OVERVIEW
+
+(c) If the object is a circular pillbox of unit amplitude and diameter D, as shown below, sketch |S(f)|, the Fourier transform magnitude of the recorded baseband signal s(t). Describe a strategy for image reconstruction of m(r).
+
+DAQ on
+(d) Given the imaging situation of part (c), if G- = 2 mT/m (0.2 G/cm) during signal readout and D = 100 mm (10 cm), what is the bandwidth of the recorded signal?
+
+Chapter 4
+Physics
+
+We will briefly cover the basic physics of magnetic resonance (MR) at a level suitable for understanding imaging. Although the focus will be largely on a classical descriptions of MR, some quantum mechanical descriptions are included when appropriate. For a more complete background of MR physics, there are several excellent texts on this subject (for example, see
+[Abr61, FB71, Gol88, Sli80, Gad82)).
+
+4.1 Nuclear Spins
+
+The phenomenon of nuclear magnetic resonance arises in atoms with an odd number of protons and/or an odd number of neutrons. These atoms possess a property known as spin angular momentum. Spin angular momentum is a vector quantity expressed as
+
+S=Al
+
+(4.1)
+
+where f is Planck‘s constant (divided by 27r) and I is called the spin opera-
+
+tor in quantum mechanics. Associated with S is a magnetic dipole moment
+
+HH, where
+
+p= yS= yal
+
+(4.2)
+
+and y is the gyromagnetic ratio, a known constant unique for different nuclear species. As a classical picture, one can imagine a charged sphere spinning about its axis, thereby giving rise to a current loop that creates the magnetic dipole moment. Several atoms such as !H, 3!P, and 23Na fit this category and therefore exhibit the MR phenomenon. However, because 1H is by far the most abundant in the body (mainly in H20), imaging based on the proton is the most practiced case. To appreciate the source of the
+
+45
+
+46
+
+CHAPTER 4. PHYSICS
+
+z_ longitudinal
+
+X
+xy = transverse
+
+Figure 4.1: Applied Bo field in z-direction (longitudinal) creates magnetization M.
+MR signal, we will need to consider the interaction of these nuclei with two types of magnetic fields: a static magnetic field and a radiofrequency (RF) field.
+
+4.2 Interaction with a Static Magnetic Field
+When nuclear spins are subjected to a static magnetic field, (say) Bo in the z direction, two important effects arise. First, there occurs a tendency of the spins to align in the direction of Bo, giving rise to a net magnetization moment M. Second, the spins exhibit resonance which is manifested by precessional behavior at a well-defined frequency.
+
+4.2.1 Magnetization
+In the presence of Bo, a magnetization moment M is produced in the direction of Bo. From a classical viewpoint, one can imagine that p aligns in the direction of the applied field; therefore, per unit volume, M = Dy. Figure 4.1 shows the conventions. The z direction is called the longitudinal direction while the xy direction is called the transverse direction.
+A quantum mechanical description helps put this polarization into some perspective however. The potential energy E of a magnetic moment p in the presence of a B field is
+
+E = —pu-B=—yzBo = —ySzBo
+
+(4.3)
+
+4.2. INTERACTION WITHA STATIC MAGNETIC FIELD
+
+47
+
+However from quantum mechanics, Sz is quantized to Alz. For hydrogen, I, = +1/2, leading to two energy states separated by
+
+AE = YRyBhBo == thv—s—y Bo
+
+(4.4)
+
+Thus two populations of nuclei arise, one parallel (n,) and the other antiparallel (n_). Although the n, population is of lower energy and the tendency is to occupy the minimum energy state, thermal energy is sufficient to exceed the energy separation. Hence the ratio of the two populations is dependent on the Boltzmann distribution:
+
+Wee ALIKE
+
+(4.5)
+
+Ny
+
+where k is Boltzmann’s constant and T is absolute temperature. Typically, this ratio is about 0.999993, implying an excess of only 4 out of 10° in the parallel state. Macroscopically however, this excess accounts for the polarization (albeit a weak one).
+We can compute the equilibrium nuclear magnetization M.. In general, it can be shown that
+
+M,
+
+ioe U(N4 re ne)
+
+Ny2h2I- (Iz + 1)Bo
+
+=
+
+3kT
+
+(4. 6)
+
+where N = n, + n_, the number of nuclear spins per unit volume. Thus the magnetization is proportional to the applied field Bp. At 37° C= 310K,
+M, for protons in H20 is 3.25 x 10-3Bo A/m.
+
+4.2.2 Precession
+
+At thermal equilibrium, M and B will be pointed in the same direction. If M is made to point in a different direction than B, precessional behavior of the magnetization will occur. From classical mechanics, the torque applied to a dipole moment p in the presence of B is p x B. However, while force equals the rate of change of linear momentum, torque equals the rate of change of angular momentum. Therefore
+
+Saaeesd es uxB
+
+(44..77)
+
+Multiplying both sides by y,
+
+adiuu _p B
+
+(4.8)
+
+48
+
+CHAPTER 4. PHYSICS
+
+Nucleus
+
+oy MHz/T
+
+Relative Sensitivity
+
+1H
+
+42.577
+
+13¢ 10.705
+
+19F 40.054
+
+23Na 11.262
+
+31p 17.235
+
+1.000 0.016 0.830 0.093 0.066
+
+Table 4.1: Gyromagnetic ratios and relative sensitivities.
+
+Finally, if we consider the summation of p over a unit volume,
+
+—ddMt =M~x weyB
+
+(4.9)
+
+The solution to this equation is for M to precess (nutate) about B at a frequency given by
+
+w = yB rad/s
+{f=eraDare Hz
+
+(4.10) (4.11)
+
+This frequency is an important quantity known as the Larmor frequency. The magnetization is resonant at that well-defined frequency. As noted earlier, y, the gyromagnetic ratio, is a unique constant. Table 4.1 lists the value of y for relevant nuclei along with their relative sensitivities. (The sensitivity depends on y, Jz and the natural abundance of the isotope). As described in the next section, a radiofrequency field can perturb the magnetization and following this perturbation, the magnetization will precess at the Larmor frequency.
+Note that this behavior is analogous to the nutation of a spinning top in a gravitational field. The angular momentum of the top is analogous to the magnetic moment while the gravitation field is analogous to the magnetic field. The gravitational field applies a torque to the top, causing it to precess about the direction of the gravitational field.
+
+4.3 Interaction with a Radiofrequency Field
+A magnetic field B; applied in the transverse direction and rotating at the resonant frequency of the magnetization will “excite” the magnetization.
+
+4.3. INTERACTION WITH A RADIOFREQUENCY FIELD
+
+49
+
+Classically, excitation implies a rotation of M by some angle. From a classical description, the rotating magnetic field B, induces a torque on the magnetization, causing M to rotate away from its equilibrium position along z while precessing about the z-axis. As discussed later in Chapter 6, this behavior is describable by solving Eq. 4.9. The frequency of rotation away from the z-axis is w; = yBj, an analogous result to the Larmor relationship.
+Referring back to the quantum mechanical description, another perspective is that the application of RF energy at a frequency f = (y/27T)Bo stimulates energy exchange between the two populations that are separated by
+
+AE = h2—Bo
+27
+
+(4.12)
+
+This description suffices for describing the behavior of the longitudinal component but does not suffice for describing the resulting transverse component. For the transverse component, we will rely on the classical description.
+Following this excitation, the magnetization will continue to precess about the z-axis at a precessional frequency proportional to the applied field. Given a transverse component to the magnetization, detection of the magnetization becomes possible via Faraday’s law of induction. The same RF coil used to generate the rotating B, field can be used to detect the precessing magnetization. This detection occurs because the precessing magnetization causes a change in flux ® in the coil, thereby inducing a small electromotive force (EMF) €, where
+
+62 ==
+
+(4.13)
+
+The resulting time signal is commonly called a free induction decay (FID)
+and represents the basic MR signal that is recorded.
+A common excitation angle is 90° in which the magnetization is rotated to lie completely in the xy plane with no Mz component. For a single excitation, a 90° excitation leads to the largest possible signal. However, M eventually returns to its equilibrium state along z. This implies that the transverse component My must decay away while the longitudinal component M, must regrow. Two important MR parameters, T) and T>, characterize this return to equilibrium and are called relaxation time constants.
+
+50
+
+CHAPTER 4. PHYSICS
+
+4.4 Relaxation
+Following an excitation, the transverse component of the magnetization decays away while the longitudinal component returns to its thermal equilibrium state. The mechanisms by which these relaxation events occur are diverse and complex, but can be appreciated from a classical description. We will consider only the dominant mechanism relevant to biological tissues—magnetic dipole-dipole interactions.
+
+4.4.1 Longitudinal Relaxation
+The longitudinal component of the magnetization behaves according to
+
+ee
+
+T;
+
+(4.14)
+
+The solution of this equation is
+Mz = M. + (Mz(0) — M.)e"/
+
+(4.15)
+
+Following a 90° excitation, Mz(0) = 0; hence,
+Mz = M.(1—e '/")
+
+(4.16)
+
+T, is called the spin-lattice time constant and characterizes the return to equilibrium along the z-direction (direction of Bo field). Physically, T) involves the exchange of energy between the nuclei and the surrounding lattice. Thermal equilibrium occurs when M, is restored to M.; that is, when the lowest energy state is reached. At a microscopic level, randomly fluctuating magnetic fields caused by motion of surrounding magnetic dipoles enhance energy exchange and therefore enhance longitudinal relaxation (shortens T,). The pertinent field fluctuations are those with an xy-component at the spins’ resonant frequency, inducing transitions between the populations n, and n_. Note therefore that T, will be dependent on field-strength. Because greater energy exchange is required at higher frequencies, this relaxation effect will take longer at higher fields. Hence T, values lengthen with increasing Bo.
+
+4.4.2 Transverse Relaxation
+
+The behavior of the transverse component of the nuclear magnetization is describable by
+
+aAMxy
+
+ve Mxy
+
+apoe te
+
+(4.17)
+
+4.5. BLOCH EQUATION
+
+a1
+
+The solution (after a 90° excitation—M(,0) = M.) is simply
+Mxy = M.e tl
+
+(4.18)
+
+T2 is called the spin-spin time constant and characterizes the decay of the transverse magnetization. Because the magnetization must eventually return to its equilibrium position along z, the same x y-component field fluctuations that account for T; relaxation also account for T> relaxation. However, T> relaxation processes also depend on z-component field fluctuations; therefore T> < T,. The z-component fluctuations often dominate the T2 relaxation process. Microscopically, the interactions between dipoles of their field components in z lead to a broadening of the spins’ resonant frequencies. Macroscopically, this spread in resonant frequencies manifests as transverse decay owing to the loss of phase coherence (dephasing) of the transverse component. The pertinent frequency components of the fluctuating z fields are those near zero. These components contribute only to the T> relaxation process and not to T;. Therefore T> is largely independent of field strength.
+In solids, the presence of relatively slow fluctuations creates a large resonant frequency broadening effect and thus extremely rapid T> decay. In biological tissue, spins bound to lumbering macromolecules also experience rapid T2 decay while relatively mobile spins (e.g., those in water) exhibit much slower decay. However, because of rapid exchange of protons between these two types of environments, the effective T2 is some average of the two relaxation rates.
+
+4.4.3 Relaxation Times of Biological Tissue
+Figure 4.2 plots typical values of T; versus field strength for various normal tissue types. Correspondingly, Table 4.2 lists their approximate Tz values along with approximate values of their relative spin density [BHAAM87, EKH*t 85, EMB94].
+
+4.5 Bloch Equation
+Combining Eq. 4.9 with Eqs. 4.14 and 4.17, the dynamics of the nuclear magnetization are described phenomenologically by the Bloch equation:
+
+idM eee
+
+5 eT: T Mxi+ Myj ~ (M, — M.)k
+
+(4.19)
+
+52
+T1()
+
+CHAPTER 4. PHYSICS
+
+T
+
+T
+
+Tay matter gray
+
+T
+ean _ = tnuscle
+
+_--- white matter
+
+Magnetic Field Strength (Tesla)
+Figure 4.2: Approximate T) values as a function of Bo.
+
+Tissue
+
+T2 (ms) relative spin density
+
+gray matter
+
+100
+
+0.75
+
+white matter
+
+92
+
+0.65
+
+muscle
+
+47
+
+0.61
+
+fat
+
+85
+
+0.90
+
+kidney
+
+58
+
+0.60
+
+liver
+
+43
+
+0.60
+
+Table 4.2: T2 and relative spin density (water spin density = 1) of some normal tissue types.
+
+4.6. CHEMICAL SHIFT
+
+5
+
+where
+
+y
+
+= gyromagnetic ratio
+
+Ti
+
+= spin-lattice (longitudinal-z) relaxation time constant
+
+T2
+
+= spin-spin (transverse-x y) relaxation time constant
+
+M,
+
+= equilibrium sample magnetization due to Bo field
+
+i,j,k = unit vectors in x, y,z — directions respectively
+
+The cross-product relation describes a precessional behavior while the relaxation terms describe the exponential behavior of both the longitudinal and transverse components. It should be noted that this exponential behavior is an approximation, given the phenomenological nature of the equation. Although precession does not change the magnitude of M, 7 and T> relaxation effects do change the magnitude. Hence the length of the magnetization does not remain constant as a function of time. For example, in species where T> is considerably shorter than T;, the magnetization can temporarily decay to zero prior to its regrowth along the longitudinal direction.
+
+4.6 Chemical Shift
+
+Chemical shift is a small displacement of the resonant frequency due to shielding created by the orbital motion of the surrounding electrons in response to the main Bo field. In the presence of Bo, the effective field experienced by the nucleus is
+
+Bett = Bo — Boo = Bo(1 - 0)
+
+(4.20)
+
+where o equals a shielding constant that is dependent on the chemical environment. From the Larmor relationship,
+
+Wetf = Wo — Woo = Wo(1 - 0)
+
+(4.21)
+
+Woo is therefore the displacement of the resonant frequency. Thus the change in frequency is proportional to the magnetic field Bo. The chemical shift is defined with respect to a reference frequency wr. If the resonant frequency of our sample is ws, then the chemical shift 6, in parts per million, is
+
+1—OR
+mu (On —Gs) x 10° because org <1
+
+(4.22)
+
+54
+
+CHAPTER 4. PHYSICS
+
+CH 3
+COOH
+
+12
+
+8
+
+4
+
+0 p.p.m.
+
+Figure 4.3: 'H NMR spectrum of acetic acid (CH3COOH).
+
+10
+
+0
+
+-10
+
+720 D:p:M:
+
+Figure 4.4: 3!P NMR spectrum showing the lines from inorganic phosphate Pi, phosphocreatine (PCr), and the three lines from the high-energy compound adenosine triphosphate (ATP).
+
+4.6. CHEMICAL SHIFT
+
+35
+
+By placing a sample of some material in a uniform magnet, exciting it, recording its FID, and then Fourier transforming the FID, the resultant NMR spectrum shows lines at different frequencies corresponding to different chemical shifts. An example of such a spectrum is given in Fig. 4.3, which is the 'H spectrum of acetic acid (CH3COOH). The three protons in the CH3 group experience a different chemical shift than the proton in the COOH group. Because the valency of the oxygen in the COOH group leads to an attraction of the electron away from the proton, there is less shielding for the proton in the COOH group compared to the protons in the CH3 group.
+For historical reasons, the chemical shift axis in NMR spectroscopy is such that the frequency decreases from left to right. Note too that the area under the CHs3 line is three times the area under the COOH line, reflecting the presence of three times more protons. The characteristic lineshape is a Lorentzian owing to the Tz exponential decay of the signal. For a line
+centered about wo, the Lorentzian lineshape is
+
+Ny
+
+T2
+_ 1+ (w = Wo)2T>*
+
+(4.23)
+
+which has a linewidth at half height of 2/To. Because T> varies little with Bo while the absolute frequency difference between two lines increases linearly with Bo, higher field strengths are employed to obtain greater line separation (also to improve SNR).
+In humans, the most abundant 'H species with different chemical shifts are water (H2O) and fat (lipids) (many CH2 groups). We will often assume that the resonant frequency of fat with respect to water’s is about 3.5 ppm lower. In general however, fat contains several spectral lines.
+A second example of an NMR spectrum is given in Fig. 4.4 which shows a3!P spectrum. PCr is phosphocreatine, P; is inorganic phosphate, and ATP is adenosine triphosphate. The compounds identified in the 3!P spectrum are of physiological interest as the metabolic state of tissue can be inferred by analyzing the relative heights of these lines. For example, an increase in the Pj peak and corresponding decrease in the PCr peak indicates a state of high energy demand or an anaerobic condition, perhaps due to some pathology. Also, the P; line shifts depend on the pH level, providing additional information such as the level of lactic acid (a byproduct of anaerobic metabolism) which reduces the pH level. Correlation of these peaks with pathology remains an area of research.
+Overall NMR spectroscopy is a powerful tool that can be used to probe molecular structure, analyze chemical exchange rates, and follow metabolic processes. Other phenomena exist that complicate the spectrum and add even more subtle but useful information.
+
+56
+
+CHAPTER 4. PHYSICS
+
+4.7 Problems
+
+4.1 Let the total number of spins per unit volume be N = n, + 7n-_.
+(a) Use Eqn. 4.5 to find an expression for n, —n_ in terms of N and the physical parameters.
+(b) If I, = 1/2 and kT is large compared to the energy difference between n, and n_, simplify your expression from part (a).
+4.2 A material has equilibrium magnetization M, and relaxation time constants T; and T>. If a 90° excitation is applied, find an expression for |M(t)|, the magnitude of the magnetization as a function of time. Show that if T> < T,, |M(t)| can never exceed M.,.
+4.3 Solve equation 4.14 for M;(t), assuming a general initial condition M;(0).
+4.4 Consider two materials A and B with the same M, but with relaxation time constants (T),4, T24) and (T)z, T2z) respectively. Let AS;y(t) = Mx a(t)—Mxyp(t) be the difference in transverse magnetization, and AS7z(t) = Mza(t) — Mzp(t) be the difference in longitudinal magnetization. Assume a 90° excitation.
+(a) Find an expression for the time that maximizes |AS,y]|. (b) Find an expression for the time that maximizes |AS;|.
+(c) Evaluate the expressions from parts (a) and (b) if the two materials are white brain matter and gray brain matter (at Bo = 1 T).
+
+Chapter 5
+Imaging Principles
+
+In this chapter, we will derive the equations for the MR signals that will allow us to describe the basic principles of MR image formation. From these analyses, an elegant Fourier interpretation of the signals will emerge that lends powerful insight into the structure of MR imaging. We will show that the received signal directly gives information about the Fourier transform of the object that we wish to image. The ramifications of this result on
+parameters such as spatial resolution and image field-of-view will also be
+discussed.
+
+5.1 Bloch Equation
+
+We begin with the Bloch equation,
+
+saetMS Mocys
+
+Myx,i+MyyjJ T>
+
+(MM,, -—M.))k Ti
+
+eali)
+
+a phenomenological equation that governs the behavior of the nuclear magnetization, M(t), in the presence of a magnetic field B(t). In MR imaging, B consists of three types of magnetic fields: 1) Bo, the main static field; 2) B, (t), radiofrequency fields which are used for excitation (discussed in Chapter 6); and 3) G(t), gradient fields which are essential for spatial localization.
+We first present a brief qualitative description of the solution to the Bloch equation. Ignoring the relaxation terms, the Bloch equation states that the time rate of change of M is proportional to the cross-product of M with yB. Because this cross-product is perpendicular to the plane defined by M and B, the time rate of change of M will be perpendicular to the
+
+a7
+
+38
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+direction of M, implying that the angle between M and B does not change. Hence if B is static, this motion corresponds to a precession of M about B at an angular frequency of y|B|. If B is time-varying in amplitude, then the precessional frequency becomes time-varying. Also if B changes directions, the axis of precession will change accordingly.
+
+Example: If B points in the z-direction and M points as shown in Fig. 5.1, then the precession of M will be in the xy plane at angular frequency y|B|. The 90° angle between B and M will not change.
+
+We now proceed to present mathematical solutions to the Bloch equation for a variety of conditions.
+
+5.1.1 Homogeneous Object, Uniform Field
+
+In the simplest case, we consider a homogeneous sample in a static, uni-
+
+form field; that is, B(t) = Bok. If we ignore both T; and T> effects, the
+
+Bloch equation is
+
+aM
+aE =Mx yBok
+
+(622)
+
+which in matrix form is
+
+aM,
+
+dt
+
+0 yBo O Mx
+
+dMy oP
+
+= | =vY5o
+
+ORO
+
+M y
+
+(5.3)
+
+dM,
+
+0
+
+On)
+
+M,
+
+at
+
+The cross-coupling of the M, and M, components leads to a solution of
+
+M,(t)
+
+COS Wot sinWot O
+
+M(t) =
+
+M,(t) |=] -—sin wot cos wot O | M°
+
+M;(t)
+
+0
+
+0
+
+1
+
+= Rz(Wot)M°
+
+(5.4)
+
+where
+
+aM° == jnitial conditions yBo = Larmor frequency
+
+(5.5)
+
+5.1. BLOCH EQUATION
+
+39
+
+Figure 5.1: Precessing Magnetization Vector about the z-axis.
+
+Equation 5.4 describes a magnetization vector precessing about Zz, the direction of the applied field, at an angular frequency of wo (Fig. 5.1).
+If we include the terms containing T; and T>, the Bloch equation written in matrix form becomes
+
+—1/T>
+
+yBo
+
+0
+
+0
+
+a =
+
+—-yBo -—I1/To
+
+0
+
+M+
+
+0
+
+0
+
+0
+
+—] /Ty
+
+MT,,
+
+and the solution is
+
+(5.6)
+
+e t/Te 0
+
+0
+
+0
+
+M(t) =
+
+0 ek
+
+0
+
+Rz(Wot)M° +
+
+0
+
+0
+
+0 et
+
+M,(1 —e-#/TN1)
+(5.7)
+
+The solution for M, and M, now contains the factor exp(—t/T2), indicating the existence of decay of the precessing magnetization in the transverse (xy) plane with time constant T2. Simultaneous with this transverse decay, there occurs a return to the equilibrium position along the longitudinal axis (z) at a rate determined by time constant 7). Figure 5.2 plots the transverse and longitudinal behavior of M when M° = M.i.
+
+60
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+ae 1- expt, 3)
+
+(a)
+
+(b)
+
+Figure 5.2: Relaxation Behavior: (a) Transverse relaxation characterized by time constant T>. (b) Longitudinal relaxation characterized by time con-
+stant 7).
+
+We often examine the behavior of the transverse component M,,, because it determines the time signals recorded. Because vectors rotating at frequency Wo are conveniently described by the complex exponential exp(—iWot), we will make a slight notational change by representing the transverse component as a complex quantity,
+
+M 2 My +iMy
+
+(5.8)
+
+with an initial condition of
+
+M° = My + iMS,
+
+(5.9)
+
+Using this complex representation, the Bloch equation for this case is now
+
+written as
+
+dM dM) aM
+
+ee
+
+it se cde ade (75+ two) M
+
+ety
+
+aM —_ _MM.z—=M.°
+
+at
+
+Ti
+
+(5.11)
+
+Equation 5.10 for the transverse component is a simple first-order differential equation with a compact solution of
+
+M Il M°e t/T2 e—iwot M°e-t/Tz p-i2m fot
+
+(5.12)
+
+representing a decaying complex exponential of frequency fo. The original components’ values are related to M by
+
+Re{M} = Mx Im{M} = My
+
+(5eb3) (5.14)
+
+3.1. BLOCH EQUATION
+
+61
+
+3.1.2 Inhomogeneous Object, Nonuniform Field
+We now generalize from a homogeneous sample to an inhomogeneous sample. Therefore M(t) and T2 become M(r,t) and T(r), now functions of space (r = [x y z]). Note here that it is important to keep track of whether (x, y,Z) is being used to designate spatial position or magnetization component. In general, the quantities we deal with are Mx (x, y,Z), My(x,¥y,Z), and Mz(x, y,Z).
+We will also generalize the situation from a uniform static magnetic field Bok to a nonuniform magnetic field but one still pointed in the zdirection. This nonuniform field can be static B(r) or, more generally, timevarying B(r, t) where
+
+B(r, t) = [Bo + AB(r, t)]k
+
+(Salo)
+
+The term AB(r,t) accounts for both the spatial and time dependences. Using this expression for B, we write the Bloch equation for the trans-
+verse component as
+
+dM at
+
+1 es a ilwo + Awcr,t)
+
+(5.16)
+
+where
+
+Wo = YBo
+Aw(r,t) = yAB(r,t)
+
+The general solution for the transverse component is
+
+t
+
+M(r,t)
+
+=
+
+M°(r)e22—#e-t/wot exp
+
+(-i| Aw(r,T) 0
+
+ar]
+
+We now consider specific cases of nonuniform fields.
+
+(617) (5.18)
+
+Static Gradient Field
+
+The simplest but most common and important case of a nonuniform field is a static gradient field. This is a field pointing in the z direction (as is Bo) but with an amplitude that varies with position. For example, an x-gradient Gx is the slope in the x-direction of the z-component of the applied field;
+
+that is,
+
+dB, = Gx dx
+
+(5.19)
+
+With a static x-gradient,
+
+Aw(r) = YGxx
+
+(5.20)
+
+62
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+Note that with only Bo present, the Larmor frequency is Ww = Wo = yBo, but with an x-gradient turned on in addition, the Larmor frequency varies with x-position:
+
+W(X) = Wo + Aw(r) = y(Bo + Gxx) The solution to the Bloch equation is
+M(r, t) = M°(r12)) ge -twoWl p*—Uy/Gxx)t
+
+(3:21)
+(5.22)
+
+This equation implies that planes at different x-locations produce signals at different frequencies. The variation in frequency with x-position is linear, corresponding to the use of a linear gradient field.
+
+Static Gradient Field—Arbitrary Orientation
+
+A more general case than an x-gradient is a static gradient at a general orientation in 3D. This gradient can be expressed as a vector G = Gy i+ Gyj+ Gzk. With all three gradients turned on, the resultant field is a gradient of
+magnitude (G% + G4, + GZ)!/? and sloped in a direction dependent on their
+relative amplitudes. The total magnetic field is
+
+Bir) = (Bo+Gxx+Gyy + Gzz)k = (Bo+G-r)k
+
+(5.23)
+
+Thus
+
+Aw(r) = yG-r
+
+\ (5.24)
+
+and
+
+MT, By aiNee (yet Et) as tiok ot erry
+
+(5.25)
+
+Time-Varying Gradient Fields
+
+Most generally, we will deal with time-varying gradients in which
+
+B(r,t) = [Bo + G(t) - r]k
+
+The solution is
+
+:
+
+t
+
+M(r,t) = M°(r)e~#/12) e-twot exp (-ir{G(T) -r ar)
+
+0
+
+For example, with a time-varying x-gradient G,.(t),
+t M(r,t) = M°(r)e#/22® e-iwot exp (-ivx|0 G(r) ar]
+
+(5.26)
+(5.27) (5.28)
+
+9.2. SIGNAL EQUATION
+
+63
+
+x
+
+Figure 5.3: Selective excitation results in transverse magnetization from a plane.
+
+9.2 Signal Equation
+
+Thus far, we have solved the Bloch equation for several important cases involving gradient fields. We now use these solutions to show how these gradients enable imaging of the nuclear magnetization. In MR imaging systems, the receiver coil encompasses and is (ideally) uniformly sensitive over the entire volume-of-interest. Also the receiver coil is designed to detect flux changes in the transverse direction. Therefore, the received time signal s;(t) is derived from the contributions of all precessing transverse magnetization in the volume. Simplistically, we may write then that
+
+Sr(t) I [ MG. t) dV
+
+ll I.{,[ Mona,2.0 dx dy dz
+
+(5.29)
+
+ignoring constant gain factors and constant phase factors (see next section). Using the result for a general time-varying gradient (Eq. 5.27),
+
+Sr (t) = Ie accacar a
+
+t exp (-ir|0 G(T) rar)dx dy dz
+(5.30)
+
+At this point, we will use the following simplifications to facilitate our
+
+discussion on imaging methods.
+
+e We will ignore the relaxation term exp(—t/T2).
+e We will deal with 2D (planar) imaging methods (3D imaging is discussed in Chapter 8). We assume then that a plane centered at Z = Z. and of thickness Az has been selectively excited (we defer a detailed discussion on selective excitation until Chapter 6) so that signals from only that plane are received (Fig. 5.3). Examining Fig. 5.4, we
+
+64
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+Figure 5.4: Distribution of transverse magnetization in the excited plane.
+
+see that the length of each vector represents the magnitude of magnetization at a particular (x,y) position and the direction of each vector represents its relative phase.
+The 2D function that we are interested in imaging is based on the integral over the slice width. Therefore
+
+Z.+Az/2
+m(x,y) = | : M°(x,y,Z) dz
+
+(5.31)
+
+and t
+Galig r= J | m(x, ye '°! exp (-ir|,G(T) -rdr] ax dy (5.32) x Jy
+e We will drop the exp(—iwot) factor. This simplification is completely justified because s,(t) is typically demodulated in frequency by wo using phase sensitive detection as described in the next section. The resultant baseband (or envelope) signal, s(t), is therefore
+S(t) aes tye see t
+ll | | m(x,y) exp (-iv\,G(T) -r ar]dxdy (5.33) x Jy
+Via this planar integral, s(t) provides information about m(x, y.), the transverse nuclear magnetization distribution of interest. Ultimately, we wish to acquire an appropriate set of time signals {s(t)} to reconstruct an image I(x,y) that most closely approximates m(x,y). In general, m(x,¥y) is a function of the NMR parameters p(x, y) (density), T) (x,y), and T2(x,y). The precise functional form depends on various timing and excitation parameters. We defer this issue of image contrast until Chapter 7 and instead concentrate first on the mechanisms of image formation.
+Because spatial localization is required in only the x and y directions, Eq. 5.33 simplifies further by considering only the x and y gradient fields
+
+5.2. SIGNAL EQUATION
+
+65
+
+Gx (t) and G,(t). Thus, our equation for the received time signal from an excited plane becomes
+
+SC) | [me.» exp |-iy ((,Gear) x|.
+(5.34) exp |-iy(/Gy (rar y|dx dy
+or
+
+s(t)
+
+=
+
+| I x Jy
+
+mOjc e Ari h y
+
+ON
+
+aeay,
+
+(5.35)
+
+where
+
+kx(t) = 5ya |t G dt
+
+k(t) = 3y |t G(r) dt
+
+(5.36)
+
+the time integrals of the gradient waveforms.
+We will refer to Eq. 5.35 as the signal equation. This equation is extremely important as it will enable us to describe almost every imaging method. The imaging problem becomes one of acquiring the appropriate set of signals {s(t)} to enable inversion of Eq. 5.35 to determine m(x, y).
+
+5.2.1 Other Considerations of the Signal Equation
+This simplified form of the signal equation is convenient and will not impede our discussion on the basic imaging principles. However we ignored two complicating issues in the derivation of s(t). The first issue concerns Faraday’s law of induction which is the physical law that dictates signal detection. The second issue deals with the real-valued nature of the received signal and how demodulation occurs. Before proceeding then, we will address these issues to provide a more accurate description. However we will show that the same expression results for s(t).
+
+66
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+Faraday’s Law and the Signal Equation
+
+The precessing magnetization gives rise to an electromotive force (EMF) in the neighboring receiver coil. From Faraday’s law of induction, the electromotive force (€) generated in a receiver coil depends on the rate of change
+of flux (#) in the coil; specifically,
+
+ey0®
+
+637)
+
+If B, (x, y,Z) is the magnetic field produced at point (x,y,z) per unit current in the coil, then from the principle of reciprocity [HL79], it can be shown that the incremental EMF produced in the coil is
+
+de = 5B, (X,752) M(x, 9.2.0) Lav
+
+(5.38)
+
+Hence B,(x, y,Z) is indicative of the receiver coil’s sensitivity within the volume. The units are as follows:
+
+SeTS eisaN
+
+Am* magnetic moment
+
+M:
+
+aa
+
+:
+
+m
+
+unit volume
+
+fy
+— {B, -MadvV}: ot
+
+1 Wb/m? A
+
+WwW
+
+—.
+
+/ ee
+
+S
+
+A
+
+m
+
+S
+
+ao,
+= magnetization volte
+
+Integrating over the volume, we derive the total EMF signal s;(t).°
+
+de=eit ee | ” im ap LBa (X55 Z) -M(x,y,Z,t)] dV
+
+vol
+
+v
+
+(5.39)
+
+Assuming that B; is directed in the transverse direction and is homogeneous (= Bix) over the volume of interest, then the EMF depends on the time-variation of the transverse component of the magnetization. Ignoring To decay,
+
+0
+
+Sr(t)
+
+a
+
+-| Bixy aM (XY se, t) dV
+
+vol
+
+ot
+
+a
+
+ll = | Bingy M°(X, YZ) ae ecu exp (-iy|G(T) -r ar)|dv
+
+vol
+
+ot
+
+Il
+
+-| Bixy M°(x, y,Z)
+
+vol
+
+|-i(co + yG(t) - r)e7?@o exp (-iy [em -T ar)|dv
+
+(5.40)
+
+5.2. SIGNAL EQUATION
+
+67
+
+This relation helps explain the rationale for having the receiver coil designed to detect changes in the transverse component of the magnetization rather than the longitudinal component. The presence of Bo along z, the longitudinal axis, establishes a high-frequency precession in the transverse direction, lending itself to convenient detection by induction.
+Because the main field dominates the gradient field on most systems, the center frequency wo > yG(t) - r, and the signal equation reduces to
+
+BPE) = Tay Biss | M°(x,9,2)e Ht exp (-iy|G(t) +r dr) dv
+
+oe
+
+(5.41)
+
+At this point, we note that the strength of the signal is proportional to Wo which is also proportional to Bo. This is one factor in the Bo-dependence
+
+of signal-to-noise considerations.
+
+Henceforth we will ignore the constant 1WoBixy and write the signal
+
+equation as simply
+
+Sr(t) = J|[rece ze tt exp(-iy |er) rd) dx dy dz (5.42)
+
+Demodulation
+
+For our analysis, we have described a complex-valued received signal s,(t) and a complex-valued baseband signal s(t), related by
+
+Sr(t) = s(t)e oF = a(t)e Hwot+ (61
+
+(5.43)
+
+where a(t) and ¢@(t) are the amplitude and phase modulation of the baseband signal. The received signal corresponds to the laboratory frame behavior while the baseband signal corresponds to the rotating frame behavior.
+The demodulation of s,(t) down to s(t) is described by
+
+s(t) = s(t)ett@ot = a(t)etPO
+
+(5.44)
+
+It is important to realize that the complex-valued s;(t) serves as a useful quantity for the sake of analysis but in practice, a single time signal is usually recorded. If we call this real-valued physical signal sy (t), then
+
+Sp(t) = Re{sy(t)} = x(t) cos[Wot + P(t)]
+
+(5.45)
+
+However from this real-valued sy(t), we can still demodulate down to the desired complex-valued s(t) through a process known as quadrature phase-sensitive detection (PSD).
+
+68
+Sp(t)
+
+2
+cos Wo!
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+low-pass
+
+:
+
+ny
+
+sin Oo!
+
+low-pass
+h(t)
+
+Figure 5.5: Quadrature Detection: The incoming RF signal is split into two channels, one multiplied by cos Wot and and the other by sin wot. Subsequent low-pass filtering retains the baseband component. The output consists of I(t) (the in-phase signal) and Q(t) (the quadrature signal) which are then digitized.
+
+Figure 5.5 is a block diagram of quadrature PSD which leads to two output signals: I(t) (for in-phase) and Q(t) (for quadrature). Equivalently, they are often called the real and imaginary components of the baseband signal.
+The expression for I(t) is
+
+I(t)
+
+{ax(t) cos[wot + d(t)] - cos Wot} * h(t)
+
+|= tcosl2wot ar ioeces g(e))} * hit)
+
+a(t) cos P(t)
+
+(5.46)
+
+where h(t) is the impulse response of the low-pass filter that removes the 2Wo frequency component. For Q, the expression is
+
+Q(t) = {a(t)cos[wot + d(t)] - sinwot} *« h(t)
+z | 2 tsint2wot Bite sing(t)}| ehh
+
+= -—«a(t)sin d(t)
+
+(5.47)
+
+Hence the baseband signal is realized by
+
+s(t)
+
+I(t) +iQ(t)
+
+a(te PO
+
+(5.48)
+
+as desired.
+
+9.3. ALTERNATE DERIVATION: SIGNAL EQUATION
+
+69
+
+5.3 Alternate Derivation: Signal Equation
+
+The baseband signal equation, derived explicitly by solving the Bloch equation, can be also derived by using a simple physical model. We can imagine a tiny “magnetic oscillator” rotating at frequency w = yB at each position (x, y) in the plane-of-interest. The oscillator possesses some amplitude m(x,¥y) (which we will assume is time-invariant) and some phase d(x, ¥,t) (which is in general time-varying). Hence we express the signal from the oscillator at (x,y) as m(x,y) exp[—ig(x, y,t)]. If the receiver coil is uniformly sensitive over the plane, then the total received signal is the sum of signals from every point in the plane. The expression becomes
+
+Sy (t) = | | m(yx e , PY) dx dy
+x Jy
+
+(5.49)
+
+What is #(x, y,t)? By definition, frequency equals the time rate of change
+
+in phase, and from the solution to the Bloch equation, frequency is also proportional to the applied field B(x, y, t) from the Larmor relation. There-
+
+fore
+
+ape I = w(x, y,t) = yB(x,y,t)
+
+(5.50)
+
+and
+
+;
+
+?
+
+p(x, y,t) = I,W(x,y,T) AT = y |BO YoU at
+
+assuming an initial phase of zero. If
+
+B(x, y,t) = Bo + Gx(t)x + Gy(t)y
+
+(5.51) (5.52)
+
+then p(x, V;2) Il
+
+t
+
+t
+
+t
+
+y |,Bo dt +y ((,Gx (T) ar]x+y ((,Gy(T) ar]y
+
+Wot + 21rkx(t)x + 2mk,(t)y
+
+(5252)
+
+The gradient fields thus enable control of the phase of the precessing mag-
+
+netization.
+
+.
+
+Demodulating to remove the carrier frequency factor exp(—iwWot), we
+
+get
+
+$(b) = | | m(x, ye 2mlkxOxtky OY] dx dy
+
+(5.54)
+
+x Jy
+
+the same as Eq. 5.35 as derived earlier from first principles with the Bloch equation. This derivation, which avoids an explicit use of the Bloch equation, illustrates a convenience of relying on the basic Larmor relationship
+
+70
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+(that is implicit with the Bloch equation) when considering the transverse component.
+
+Example: Given an MR sequence, the Bloch equation need not be solved explicitly to determine the resultant signal; instead, only the expression for the phase @ of the baseband signal need be determined. Hence,
+
+t p= y |.G(r,T) -rdt
+
+(5.55)
+
+Often, the analysis will center on just this expression for the phase. If, for example, we apply Gx (t) = Asin Qt (a gradient whose amplitude
+varies sinusoidally with time), then we can immediately write the expression for the resultant phase as
+t Ox t) s= y |.A(sinQt)x dt
+
+A = you — cos QOt)x
+
+(5.56)
+
+The signal equation becomes
+
+s(t) = | | m(x,y) exp |-ivSa — cos at)x |dx dy x Jy
+
+(5.57)
+
+5.4 Fourier Interpretation of the Signal Equation
+
+The signal equation states that the baseband signal is the planar integral
+
+of the magnetization multiplied by a spatially-dependent phase factor. Be-
+
+cause linear gradient fields are applied, the resultant phase modulation
+
+factor will also vary linearly with spatial position. Comparing the signal
+
+equation,
+
+s(t) = | | Lhe ay Camernaee eebyBaary
+
+(5.58)
+
+x Jy
+
+with the 2D Fourier transform of m(x, y),
+
+Mkxsky) =| | matce, ye @rrto2 dx dy (5.59) x Jy
+
+and doing a one-to-one correspondence, we see immediately that the baseband signal can be expressed as
+
+s(t) = M(kx(t), ky(t))
+
+(5.60)
+
+5.4. FOURIER INTERPRETATION OF THE SIGNAL EQUATION
+
+vi
+
+Ze oe
+t
+
+q
+
+5 |
+
+Xx
+
+ue
+
+x
+
+y
+
+(pe tees 3 e,n
+
+OSs
+
+tO
+
+3
+
+Pe ray 8lsX=
+
+(a)
+
+(b)
+
+(c)
+
+Figure 5.6: Square Object Example: (a) m(x,y) = 2r(x,y). (b) Pulse Sequence with plot of baseband signal generated. (c) k-Space trajectory of pulse sequence.
+
+or
+
+s(t) -Fi o(S2ONG[Ge) dt, 2¥640[om ar)
+
+(5.61)
+
+Thus kx and ky are in units of spatial-frequency, typically cycles/mm or cycles/cm.
+This is the most important relationship in MR imaging. At any given time f, s(t) equals the value of the 2D Fourier transform of m(x, y) at some spatial frequency. The total recorded signal s(t) therefore maps directly to a trajectory through spatial-frequency (Fourier) space as determined by the time integrals of the applied gradient waveforms G,(t) and Gy(t). In the MR literature [Lju83, Twi83], 2D Fourier transform space is often called “k-space,” where k represents the spatial-frequency variable. To form an image, the required set of signals {s(t)} is obvious. The trajectories given by {s(t)} should cover a sufficient part of k-space to allow reconstruction of m(x,y). This elegant Fourier-space interpretation greatly facilitates the design and analysis of imaging methods. It is particularly useful for analyzing sequences employing time-varying gradients, which are more difficult to appreciate from an object-domain perspective because the mapping between temporal frequency and spatial position breaks down.
+
+72
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+Example: Consider a square object (see Fig. 5.6a) where m(x,yv) = 24(x,y). When the pulse sequence of Fig. 5.6b is applied, the resultant signal s(t) appears as plotted. Figure 5.6c shows the k-space trajectory of this particular pulse sequence. The trajectory starts at the origin and, with the negative gradient on, moves along the negative k-axis. When the gradient reverses at time ¢), the trajectory, being the time-integral of the gradient waveform, begins to move in the positive kx direction, eventually crossing the origin at time tz (when the gradient area becomes zero) and stopping at time t3 at some positive kx-position. With a square object, its Fourier transform will be a centered sinc function along the kx axis.
+Therefore, from the k-space interpretation of the signal equation, we know
+that s(t) will also be a sinc function, as depicted in Fig. 5.6b. Because the
+trajectory retraces itself over the negative ky region, the signal from fo to
+t, will be the time reflection of the signal from f; to fo.
+
+5.5 Illustration of the k-Space Perspective
+Before discussing specific imaging methods, we elaborate in this section on why the value of the signal s(t) at a given time equals the 2D Fourier transform of m(x,) at a particular spatial frequency (kx,k,). This section presents plots illustrating the phase behavior of the nuclear magnetization vectors in a plane under the influence of gradient fields (which determine kx and ky). Each plot presents a top-view “snapshot” of the excited slice at a given time. Each vector in the plot represents the transverse magnetization at a position (x, y) in the slice (in the case considered, 23 by 23 different elements are depicted), with the vector length indicating magnitude and the vector direction indicating phase. Because all vectors shown possess the same length, the assumed object is uniform.
+The first plot (Fig. 5.7, position 1) shows the state of the vectors immediately following the excitation. An ideal excitation leaves each vector pointed in the same direction as shown. Because the vectors are in phase, they sum coherently and the resultant signal at this moment in time equals the “magnetization volume” of the slice. Because the volume under a 2D function m(x, y) equals the value of its 2D Fourier transform at (kx = 0,ky = 0), s(t = 0) is exactly equal to the value at the origin of k-space. Therefore, the trajectory begins at the origin.
+Continuing with the sequence, the y-gradient is switched on, causing spins at higher y-positions to precess faster than those at lower ypositions. After leaving G, on for some time, the snapshot taken of the
+
+5.5. ILLUSTRATION OF THE K-SPACE PERSPECTIVE
+
+73
+
+Meat
+
+Sees eee
+
+c A
+
+X =
+
+ttt NaNine
+
+~~
+
+SSIES EARS SAGES AS LS SONS GQ NSSy gus et NS
+
+asiaieRaeie
+
+CD
+
+DO
+
+ENE EN nD
+
+arnae 7 CCA R CRNeSrCEEReeNLw E ? PEeNCEePs AA OM AE
+
+We ee
+
+Qe Se ? aSSeS
+
+ote
+
+ee eaees
+
+es ReecseaeS e S RSseoSeeoeeSsRe e aeSeeeetN is eSEe2 y eA SSS SS SSS SSS Ss SS
+
+Se ee Pe
+
+_ SIN Ne S SENN SSSS SAAS ESS SSS CS
+
+oS
+
+>
+
+See Ss te
+
+Ae CL Pere a CANE PANO I
+
+N
+
+o e
+
+isa
+(Top) Timing diagram and k-space trajectory. (Bottom) Spin dis-
+
+tribution corresponding to the four labelled time points (1) immediately
+
+is)
+
+.1S) =
+
+5 {c=B}
+
+ise}
+—Ca_tend
+
+(ccvxBD)e))
+
+is,se)os
+
+N
+—
+
+—_
+
+mi
+
+dway
+
+after
+
+the y
+
+gradient
+
+has
+
+been
+
+turned
+
+on
+
+(3)
+
+just prior to turning off the y gradient and (4) after the x gradient has
+
+been left on.
+
+74
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+slice (Fig. 5.7, position 2) shows the phase progressively increasing as one moves along the y-direction (the vectors rotate clockwise as one scans from bottom to top). In fact, the phase varies linearly with y-position. Such a linear phase variation with spatial position implies a particular spatial frequency, analogous to the linear phase variation with time that exists for cos 2m ft, a sinusoid at a particular temporal frequency f. Examination of Fig. 5.7 (position 2) reveals that the x-component of each vector is weighted by a cosine as a function of the vectors’ y-position; the ycomponent of each vector is weighted by a sine as a function of the vectors’ y-position. Because the vectors are representable as complex-valued quantities, they are thus being multiplied by a complex exponential of some frequency k,,. The signal at this instant in time therefore equals the planar integral of m(x,y) multiplied by exp(—i27rky1y). This integral (and hence the signal value) is precisely equal to the 2D Fourier transform of m(x,y) at k-space position (0, ky).
+After leaving Gy on longer, the phase varies even faster as one scans in the y-direction, effectively weighting the complex-valued distribution by a complex exponential of a higher spatial frequency ky2. Thus at this moment in time (Fig. 5.7, position 3), the signal equals the k-space value at a higher spatial-frequency position (0, ky2).
+We now turn off the G, gradient and turn on the Gx gradient. The x-gradient creates phase variations in x because those vectors located at higher x-positions precess faster. The trajectory through k-space takes a right-hand turn and moves parallel to the k,-axis. The resultant snapshot of the magnetization vectors (Fig. 5.7, position 4) resembles the cosinusoidal function of Fig. 2.1, oriented at some angle between 0° and 90°. The signal at this moment, being the sum of all the vectors, equals the k-space value at the appropriate (kx, ky2) position.
+
+5.6 Basic 2D Imaging Methods
+We now discuss some specific 2D MR imaging sequences from both spatialfrequency domain and object-domain perspectives.
+9.6.1 2D Projection Reconstruction
+This method is similar to that used in x-ray computed tomography (CT). The timing diagram of the basic 2D projection reconstruction (2DPR) sequence is given in Fig. 5.8a. Following the excitation, the x and y gradients turn on and the FID signal is read out. The amplitudes of the two gradients are incremented appropriately on subsequent excitations.
+
+9.6. BASIC 2D IMAGING METHODS
+
+75
+
+(a)
+
+(b)
+
+Figure 5.8: 2D Projection Reconstruction Sequence: (a) Timing Diagram: Readout begins immediately after selective excitation in the presence of a
+gradient. (b) k-Space trajectory begins at the origin and extends outwards.
+
+@)
+
+(b)
+
+Figure 5.9: Modified 2D Projection Reconstruction Sequence: (a) Timing Diagram: A negative gradient lobe precedes the positive lobe; The signal is read out during the positive lobe. (b) k-Space trajectory extends outwards and then retraces itself. Information in two quadrants is acquired.
+
+76
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+Fourier-Domain Perspective
+
+The k-space trajectory of this sequence is a set of radial lines (“spokes”) emanating from the origin of k-space, one from each excitation. Each line starts at the origin (because kx (0) = k,(0) = 0) and moves out at an angle @ where @ = tan~!(Gy/G,x) (Fig. 5.8b). Because data from only one
+quadrant is obtained after each excitation, the angular extent of the mea-
+surement set must range from 0 to 360 degrees.
+
+Theoretically, if m(x,y) is a real function, then M(kx,k,) is Hermitian; that is,
+
+M(—-kx,-ky) = M* (kx, ky)
+
+(5.62)
+
+Thus the line in quadrant I can be used to determine the corresponding line in quadrant III and only half of k-space need be acquired. Practically however, m(x,y) is usually not real-valued (due to phase shifts from a variety of sources) and the Hermitian assumption breaks down.
+Alternatively, to traverse the entire line, the gradient waveforms of Fig. 5.9a can be applied during the signal readout. In this case, the k-space trajectory begins at the origin, initially moves left, turns around when the gradient reverses, moves right, passes through the origin again, and continues to move right (Fig. 5.9b). Hence information from two quadrants is obtained for each readout, and so an angular extent from 0 to 180 degrees suffices to fill k-space. As depicted by the dotted lines in Fig. 5.9, the relative amplitudes of the two gradient components are varied to acquire a line at a different angle in k-space.
+
+Object-Domain Perspective
+Whenever a constant gradient is used during signal readout, temporal frequency maps conveniently to spatial position, and a clear object-domain perspective emerges. If (say) an x-gradient is on, then all spins located at a particular x-position will contribute signal at a single frequency. Each frequency bin is based therefore on the integration over y of spins with the same x-position. This relationship implies that the frequency spectrum of the recorded signal represents a 1D projection of the object. Because the gradient during readout is applied at different angles in a 2DPR sequence, the measurement set provides 1D projections at different angles as in the x-ray CT situation.
+The relationship between the measurements and the projections can be
+
+9.6. BASIC 2D IMAGING METHODS
+
+77
+
+derived from the signal equation, as
+
+s(t) = | | m(yxe ,¥oxX dx dy
+x Jy
+oz, Ih([mix.an ay)exp ay127 (E4e Gxt) x| ax
+
+= FivtGo=0°(X) blk =(y/2)Gxt
+
+(5.63)
+
+where
+
+Gor (x) =| m(x,y) dy
+y
+
+(5.64)
+
+the projection of m(x, y) along the y-direction. As noted, each frequency bin of the temporal Fourier transform of s(t) corresponds to the summation of m(x, y) at a particular x—location. To compute this projection, we simply Fourier transform s(t); that is,
+
+Gor (X) = Fin {s(t)} |¢--Gy2mG,x More generally, to generate a gradient oriented at an angle 0,
+GCyy ==. GGcsoisnéd@
+
+(5.65)
+(5.66)
+
+Then using rotated coordinates, where
+x = ucosd—-vsind y = usind+vcosd
+we can write the signal expression as
+
+t62)
+
+so(t) = I 'mo(u,v)e¥o™ du dv
+uUJvU
+
+= | exp |-in (x cr)u| du (|mMoa(u,v) dv)
+
+u
+
+271.
+
+v
+
+= Fintgdole,(=(uy/2)m)Gt
+
+(5.68)
+
+From the central section theorem, the 1D Fourier transform of a projection taken at angle 0 gives us the radial slice of the 2D Fourier transform of the object at that angle 8. Hence each measurement provides information in the 2D Fourier transform plane along the line at angle 0.
+Note that the reasoning in this section involved two 1D Fourier transforms, one relating s(t) to the 1D projection, and the other relating the 1D projection to the radial line in 2D Fourier transform space via the central section theorem. Given these back-to-back Fourier transforms, we have
+
+78
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+(a)
+
+(b)
+
+Figure 5.10: 2D Fourier Transform Sequence: (a) Timing Diagram (b) kSpace Trajectory.
+
+another indication that s(t) resides in the 2D Fourier transform domain of m(x,y). Therefore, we have obtained the k-space perspective of the signal equation from a different point of view—that is, by using physical reasoning to derive projections, and invoking the central section theorem to relate the projections to k-space.
+To summarize the 2D projection-reconstruction method:
+1. record N k-space lines (projections), each line (projection) at a different angle 0 by changing the gradient orientation each time;
+2. reconstruct m(x, vy) by processing the data set with established CT reconstruction algorithms (for example, convolution back-projection) on the projections or by 2D Fourier transformation of the k-space data after interpolation onto a 2D grid.
+
+5.6.2 2D Fourier Transform
+This method has no analog in x-ray imaging. Figure 5.10a shows the timing diagram of the basic 2D Fourier transform (2DFT) sequence. A selective excitation pulse excites the slice and the y-gradient turns on for a time ty.
+Once G, turns off, the signal is read out in the presence of a constant x-
+gradient. On subsequent excitations, the amplitude of the yy-gradient lobe is incremented but the x-gradient remains the same.
+
+9.6. BASIC 2D IMAGING METHODS
+
+rE)
+
+ale ee
+
+ky
+
+ly y g t eo
+
+(a)
+
+(b)
+
+Figure 5.11: Modified 2D Fourier Transform Sequence: (a) Timing Diagram (b) k-Space Trajectory.
+
+Fourier-Domain Perspective
+Beginning at the origin, the k-space trajectory moves along the k,-axis during the Gy interval and then takes a right turn, moving along the kx direction as the signal is read out (Fig. 5.10b).
+To obtain the entire horizontal line in k-space, the sequence is modified as shown in Fig. 5.11a. The timing of the data acquisition is adjusted accordingly to record during the full-length horizontal traversal in k-space (Fig. 5.11b). A change in the amplitude of the G, gradient leads to a different line in k-space (see dotted lines in Fig. 5.11). In comparison with 2DPR, where sampling in k-space falls on a polar grid, the 2DFT method samples k-space in a rectilinear (Cartesian) grid. By indexing to a set of ky-positions, we can assemble sufficient measurements to fill 2D transform space and simply perform an inverse 2D transform to reconstruct m(x,y).
+
+Object-Domain Perspective The signal equation for the one-sided sequence is
+st) -|xJJy m(x, ye iY (Gxxt+Gyyty) dx dy
+
+(5.69)
+
+80
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+For each measurement, Gyty is fixed and t is the “running” variable. We
+can rewrite the signal equation as
+
+s(t)
+
+iexp |i;er (a+e Gxt) x|dx ;
+
+|[mena exp |-ien (XG,ty)] y| ay| = F\p{Projection along y of
+m(x,y) exp |-iar (Gyty) ¥ |New (derext (5.70)
+
+Because the same constant G, gradient is on during each signal acquisi-
+
+tion, we can view the set of measurements as giving projections with line-
+
+integration always along the y-direction. However, the application of a y-
+
+gradient prior to signal readout implies that the projection is of m(x, y)
+
+multiplied by a complex weighting factor exp{—i27r[(y/211)Gyt, ]y}. This
+
+complex weighting factor varies with y-position and corresponds to spa-
+
+tial frequency ky = (y/21r)Gyty. In interpreting this complex weighting
+
+(or phase) factor, we observe that the y-gradient “warps” the phases of the
+
+spins prior to the signal readout—hence 2DFT imaging is sometimes re-
+
+ferred to as spin-warp imaging. Each measurement is based on a different
+
+Gt, product which implies a different amount of phase warping. Typi-
+
+cally we hold t,, fixed and vary the amplitude of Gy, although in principle,
+
+Gy and/or ty can be varied. What matters is the area under the y-gradient
+
+waveform.
+
+,
+
+Because of the specific roles that these gradients play, the indexed Gy
+
+gradient is often referred to as the phase-encoding gradient while the Gx
+
+gradient, which is on during the data acquisition, is called the readout gra-
+
+dient. The third gradient G, is appropriately called the slice-select gradient.
+
+To summarize the 2D Fourier Transform Method:
+1. record N k-space lines at different k,-positions by changing the area under the y-gradient for each measurement.
+2. reconstruct m(x,y) by 2D Fourier transformation of the k-space data which already resides on a Cartesian grid.
+Figure 5.12 displays some of the baseband time signals from a typical 2DFT scan. These time signals correspond to the readouts of some of the 256 phase encoding steps taken during the scan. The image is reconstructed by mapping this raw data appropriately in Fourier space and then Fourier transforming.
+
+9.6. BASIC 2D IMAGING METHODS
+
+81
+
+{
+
+;
+
+meas. #
+
+onthe
+
+96
+
+96
+
+aga |>--——— 1260— [28
+
+lh.
+
+160
+
+160
+
+time signals ° .
+256
+
+: i
+:
+raw data (Fourier space)
+
+image
+
+2D inverse Fourier transform
+
+Figure 5.12: A collection of time signals maps to Fourier space (raw data space). Inverse Fourier transformation of the raw data reconstructs the image. Not surprisingly, the time signals resemble sinc functions because the object is rectangular.
+
+2DFT Examples
+Imaging with 2DFT sequences predominates in MR. One reason is the convenience and efficiency in image reconstruction afforded by the Cartesian sampling in k-space (other reasons are discussed in Chapter 7). In this section, we show images and the corresponding k-space data which will illustrate the Fourier transform relationship. Figure 5.13a is the “raw” data (actually the magnitude of raw data), displayed in an image format. This data, collected with a 2DFT sequence, consists of 256 by 256 data points, where each of the 256 rows corresponds to a particular time signal acquired at one of the phase-encoding levels. The 256 points in each row implies that each time signal was sampled to 256 points. The brightness at each point indicates the amplitude of the time-signal sample. Figure 5.13b is the resultant image produced after a 2D FFT of the raw data. Not surprisingly, the object is a circle which corresponds to the jinc function appearance in the raw data.
+
+82
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+Figure 5.13: Test Tube of Water—2DFT sequence: (a) Raw Data (magnitude) displayed in image format; 256 phase encodes (vertical direction) x 256 time samples (horizontal direction). Raw data, being in k-space, is a jinc function. (b) Image after 2D FFT of (a).
+
+Figure 5.14: Two Test Tubes of Water—2DFT sequence: (a) Raw Data (magnitude): This example illustrates the modulation theorem of Fourier transforms as the raw data shows a modulation in the 45° direction. (b) Image shows two test tubes separated in the modulation direction.
+
+9.6. BASIC 2D IMAGING METHODS
+
+83
+
+Figure 5.15: Larger Test Tube: (a) Raw Data (magnitude): This example illustrates the stretch theorem of Fourier transforms. The raw data is a compressed version of the raw data from the small test tube. (b) Image is of a correspondingly larger test tube.
+Figures 5.14 and 5.15 show related raw data/image pairs. Based on Fig. 5.13a, one can predict the resultant images in Figs. 5.14 and 5.15 by invoking Fourier transform theorems. The modulation theorem applies for the case of Fig. 5.14 because the raw data of Fig. 5.14a equals the raw data of Fig. 5.13a multiplied a cosinusoidal weighting factor. Therefore the image, Fig. 5.14b, consists of two small vials separated along the direction of modulation. At larger separations, the modulation frequency will be increased. Figure 5.15 exemplifies the stretch theorem as the narrower jinc function behavior in k-space (Fig. 5.15a) leads to a circular object of larger radius (Fig. 5.15b).
+Magnitude Display of MR Images: All of the MR images shown are based on the magnitude of the complex-valued reconstruction. In an ideal situation, I(x,yv) = m(x,y), a real-valued function, and a magnitude display is unnecessary. In practice however, I(x, 7) will be complex-valued for a variety of reasons (e.g., the data acquisition is not precisely centered at the k-space origin, the spatial sensitivity of the RF coil is not uniform in phase). Typically, if m(x, y) represents the ideal magnetization distribution, then we can model the actual image reconstruction as m(x, y) exp(—id(x, y)), where #(x, y) represents the phase variation across the image.
+
+84
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+5.7 Sampling Requirements: 2DFT Imaging
+
+Proper image formation depends on the appropriate coverage in k-space. In 2DFT imaging, the raster nature of the k-space trajectory corresponds to rectangular coverage on a Cartesian grid, allowing convenient image reconstruction with a 2D DFT. Thus far, our analysis has been with continuous time signals but in practice, the baseband signal, and thus k-space, is sampled as shown in Fig. 5.16a. The sampling periods are Ax, and Ax, while the highest spatial frequencies sampled are kxmax and Kymax. With 2DFT imaging, an asymmetry exists in the k-space acquisition as samples along the k, direction accumulate during a single readout while samples along the ky direction accumulate by repeating the excitation for different phase encodes. As discussed in Section 2.4, we can express the sampled k-space
+data M(kx, ky) as
+
+Milksky) = Mlk ky) + ( J )au(# va ala val
+
+Ak, Ak,
+
+Ax,’ Ak,
+
+Wk,’ Wry
+
+(S270)
+
+where
+
+ee
+
+Te ome + ns)
+
+Wi, = 2 Roe + <=)
+
+(6.72)
+
+are the widths traversed in k-space in each direction (note the extra A term above, which makes the width W equal the product of A and the number of samples; the boundaries of the rectangle function thus lie a half sample period past the highest spatial frequency sample on each side).
+The resultant Fourier transform into the object domain relates the image m(x, y) to the actual distribution m(x, y).
+M(x,Y) = M(x,y)* MAKX,,Ak, V)* -KWe, We, Sinc(Wy,X)sinc(Wx, y)
+(5.73) where * * denotes 2D convolution. We now analyze Eq. 5.73 to discuss how the image field of view (FOV) and spatial resolution relate to the k-space sampling periods (Ax,., Ax,,) and k-space widths (Wx, Wx, )-
+
+5.7.1 Field of View
+In general, sampling in one domain (object or spatial frequency) amounts to replication in the corresponding transform domain. In MR, sampling
+
+9.7. SAMPLING REQUIREMENTS: 2DFT IMAGING
+
+85
+
+y eeeee
+
+k ymax.
+eeee
+
+eeeeeleeeee
+
+eeeeeleeeee
+
+eeeeeele eee eii, k xmax
+eeeeeleecveoe,
+
+1] aes eeleeeee
+
+Ay
+
+eeeevleenecee
+
+*X
+
+y eeeeeleeeee
+
+eeeeeleeecee
+
+y ry eeeecileeeee
+
+> x
+x
+
+Figure 5.16: (a) Sampling in k-space. (b) Corresponding replication in object domain.
+
+¥ & +>y y
+
+yp
+
+Ge
+
+G
+
+t
+
+Gg eat
+xr
+G
+xX
+45 xX
+
+Figure 5.17: Timing and Amplitude Parameters: Phase Encoding: Gy; = incremental gradient amplitude; Gy, = maximum gradient amplitude; Ty = phase-encoding interval. Readout: Gxr = gradient amplitude; At = interval between data samples; Tx = total readout interval.
+
+86
+
+CHAPTER 5. IMAGING PRINCIPLES
+
+takes place in the spatial frequency domain; hence replication in the object domain must be considered. If we assume sampling that is infinite in
+extent, then from Eq. 5.73 the resultant object is
+
+m(x,y) = m(x,y) * *°M(Ax,AXk,,Y)
+
+(5.74)
+
+The next section on spatial resolution discusses the effect of finite-extent sampling.
+The convolution of m(x, y) with *M(Ax,.x, Ax, ¥) implies a replication of m(x,y) at intervals of 1/A,, in the x direction and by 1/Ax,, in the y direction (Fig. 5.16b). The separation of these replication islands determines the effective FOV in the image. From Eq. 5.74 and Fig. 5.16b, we can write that
+
+FOV... = ra = sampling rate along kx
+kx
+
+FOV, = = = sampling rate along ky
+
+(5:75)
+
+ay
+
+To relate FOV to the parameters of 2DFT imaging, we refer to Fig. 5.17. Because the k-space position is a function of the gradient areas, the kspace sampling period is a function of the incremental area under each gradient. Thus the sampling period along the readout direction depends on the readout gradient amplitude G,, and the sampling period At of the A/D converters. Along the phase-encoding direction, the sampling period depends on the incremental gradient area, as determined by the incremental gradient amplitude G,; and the fixed phase-encoding duration T,,. The expressions for these periods are
+
+Akx = Grr At
+x
+
+From this, we can write the expressions for FOV as
+
+FOV
+
+ee eee
+
+Ak,
+
+5 GxrAt
+
+6:77)
+
+and
+
+i Ia |
+
+(5.78)
+

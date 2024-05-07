@@ -1,0 +1,89 @@
+
+Skip to main content
+Cornell University
+We gratefully acknowledge support from the Simons Foundation, member institutions , and all contributors. Donate
+arxiv logo > cs > arXiv:1904.00625
+
+Help | Advanced Search
+Search
+Computer Science > Computer Vision and Pattern Recognition
+(cs)
+[Submitted on 1 Apr 2019 ( v1 ), last revised 17 Jul 2019 (this version, v4)]
+Title: Med3D: Transfer Learning for 3D Medical Image Analysis
+Authors: Sihong Chen , Kai Ma , Yefeng Zheng
+View a PDF of the paper titled Med3D: Transfer Learning for 3D Medical Image Analysis, by Sihong Chen and 2 other authors
+View PDF
+
+    Abstract: The performance on deep learning is significantly affected by volume of training data. Models pre-trained from massive dataset such as ImageNet become a powerful weapon for speeding up training convergence and improving accuracy. Similarly, models based on large dataset are important for the development of deep learning in 3D medical images. However, it is extremely challenging to build a sufficiently large dataset due to difficulty of data acquisition and annotation in 3D medical imaging. We aggregate the dataset from several medical challenges to build 3DSeg-8 dataset with diverse modalities, target organs, and pathologies. To extract general medical three-dimension (3D) features, we design a heterogeneous 3D network called Med3D to co-train multi-domain 3DSeg-8 so as to make a series of pre-trained models. We transfer Med3D pre-trained models to lung segmentation in LIDC dataset, pulmonary nodule classification in LIDC dataset and liver segmentation on LiTS challenge. Experiments show that the Med3D can accelerate the training convergence speed of target 3D medical tasks 2 times compared with model pre-trained on Kinetics dataset, and 10 times compared with training from scratch as well as improve accuracy ranging from 3% to 20%. Transferring our Med3D model on state-the-of-art DenseASPP segmentation network, in case of single model, we achieve 94.6\% Dice coefficient which approaches the result of top-ranged algorithms on the LiTS challenge. 
+
+Subjects: 	Computer Vision and Pattern Recognition (cs.CV)
+Cite as: 	arXiv:1904.00625 [cs.CV]
+  	(or arXiv:1904.00625v4 [cs.CV] for this version)
+  	https://doi.org/10.48550/arXiv.1904.00625
+Focus to learn more
+arXiv-issued DOI via DataCite
+Submission history
+From: Sihong Chen [ view email ]
+[v1] Mon, 1 Apr 2019 08:14:29 UTC (890 KB)
+[v2] Tue, 9 Apr 2019 01:57:57 UTC (897 KB)
+[v3] Mon, 10 Jun 2019 06:41:44 UTC (897 KB)
+[v4] Wed, 17 Jul 2019 10:19:12 UTC (897 KB)
+Full-text links:
+Access Paper:
+
+    View a PDF of the paper titled Med3D: Transfer Learning for 3D Medical Image Analysis, by Sihong Chen and 2 other authors
+    View PDF
+    TeX Source
+    Other Formats 
+
+view license
+Current browse context:
+cs.CV
+< prev   |   next >
+new | recent | 1904
+Change to browse by:
+cs
+References & Citations
+
+    NASA ADS
+    Google Scholar
+    Semantic Scholar
+
+1 blog link
+( what is this? )
+DBLP - CS Bibliography
+listing | bibtex
+Sihong Chen
+Kai Ma
+Yefeng Zheng
+a export BibTeX citation Loading...
+Bookmark
+BibSonomy logo Reddit logo
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer ( What is the Explorer? )
+Litmaps Toggle
+Litmaps ( What is Litmaps? )
+scite.ai Toggle
+scite Smart Citations ( What are Smart Citations? )
+Code, Data, Media
+Demos
+Related Papers
+About arXivLabs
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? )
+
+    About
+    Help
+
+    contact arXiv Click here to contact arXiv Contact
+    subscribe to arXiv mailings Click here to subscribe Subscribe
+
+    Copyright
+    Privacy Policy
+
+    Web Accessibility Assistance
+
+    arXiv Operational Status
+    Get status notifications via email or slack
+

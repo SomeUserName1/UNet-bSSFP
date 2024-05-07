@@ -1,0 +1,312 @@
+Trim Size: 170mm x 244mm
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 17
+
+CHAPTER 3
+Relaxation
+As mentioned in Chapter 2, the MR measurement can be analyzed in terms of energy transfer. The process by which the protons release the energy that they absorbed from the RF pulse is known as relaxation. Relaxation is a fundamental aspect of MR, as essential as energy absorption, and provides the primary mechanism for image contrast as discussed in Chapter 6. In resonance absorption, RF energy is absorbed by the protons only when it is broadcast at the correct frequency. The additional energy disturbs the equilibrium arrangement of spins parallel and antiparallel to B0. Following excitation, relaxation occurs in which the protons release this added energy and return to their original conﬁguration through naturally occurring processes. It is a time-dependent process and is characterized by a rate constant known as the relaxation time. Although it is individual protons that absorb the energy, relaxation times are measured for an entire sample of spins and are statistical or average quantities. Relaxation times are measured for gray matter or cerebrospinal ﬂuid as bulk samples rather than for the individual water or fat molecules within the organs. Two relaxation times can be measured, known as T1 and T2. While both times measure the spontaneous energy transfer by an excited proton, they differ in the ﬁnal disposition of the energy.
+3.1 T1 relaxation and saturation
+The relaxation time T1 is the time required for the z component of M to return to 63% of its original value following an excitation pulse. It is also known as the spin-lattice relaxation time or longitudinal relaxation time. Recall from Chapter 2 that M0 is parallel to B0 at equilibrium and that energy absorption will rotate M0 into the transverse plane. T1 relaxation provides the mechanism by which the protons give up their energy to return to their original orientation. If a 90∘ pulse is applied to a sample, M0 will rotate as illustrated in Figure 2.2, and there will be no longitudinal magnetization present following the pulse. As time goes on, a return of the longitudinal magnetization will be observed as
+MRI Basic Principles and Applications, Fifth Edition. Brian M. Dale, Mark A. Brown and Richard C. Semelka. © 2015 John Wiley & Sons, Ltd. Published 2015 by John Wiley & Sons, Ltd.
+17
+
+Trim Size: 170mm x 244mm
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 18
+
+10.1002/9781119013068.ch3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119013068.ch3 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [18/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+18 MRI Basic Principles and Applications
+
+the protons release their energy (Figure 3.1). This return of magnetization typically follows an exponential growth process, with T1 being the time constant describing the rate of growth:
+
+M(𝜏) = M0(1 – e−𝜏∕T1)
+
+(3.1)
+
+where 𝜏 is the time following the RF pulse. T1 relaxation times in tissues are relatively slow, with values ranging from a few milliseconds to several seconds. After 3 T1 time periods, M will have returned to 95% of its value prior to the excitation pulse, M0. The term spin-lattice refers to the fact that the excited proton (“spin”) transfers its energy to its surroundings (“lattice”) rather than to another proton. The energy no longer contributes to spin excitation.
+
+1.0 0.95 0.86
+
+0.63
+Mz M0
+
+0
+
+T1
+
+2*T1
+
+3*T1
+
+τ
+
+Figure 3.1 T1 relaxation curve. Immediately following a 90∘ RF pulse, there is no longitudinal
+magnetization. A short time later, longitudinal magnetization will be observed as the protons
+release their energy through T1 relaxation. Gradually, as more protons release their energy, a larger fraction of MZ is reestablished. Eventually, M0 will be restored completely. The change of MZ∕M0 with time 𝜏 follows an exponential growth process as described by equation (3.1). The time constant for this process is T1, the spin-lattice relaxation time, and is the time when MZ has returned to 63% of its original value.
+
+In a modern MR experiment, pulsed RF energy is applied to the protons repeatedly with a delay time between the pulses. This time between pulses allows the excited protons to give up the absorbed energy (T1 relaxation). As the protons give up this energy to their surroundings, the population difference (spin up versus spin down) is reestablished so that net absorption can reoccur after the next pulse. In the macroscopic picture, M returns toward its initial value M0 as more energy is dissipated. Since M is the ultimate source of the MR signal, the more energy dissipated, the more signal is generated following the next RF pulse.
+For practical reasons, the time between successive RF pulses is usually insufﬁcient for complete T1 relaxation so that M will not be completely restored to M0. Application of a second RF pulse prior to complete relaxation will rotate M into the transverse plane, but with a smaller magnitude than following the ﬁrst RF pulse. The following experiment describes the situation (Figure 3.2):
+
+Trim Size: 170mm x 244mm
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 19
+
+10.1002/9781119013068.ch3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119013068.ch3 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [18/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Relaxation 19
+a b
+
+M
+
+M'
+
+M"
+
+90° pulse
+
+time
+
+90°
+
+time
+
+τ
+
+pulse
+
+τ
+
+Figure 3.2 Following a 90∘ RF pulse, longitudinal magnetization is regenerated through T1
+relaxation. If the time between successive RF pulses 𝜏 is insufﬁcient for complete recovery of M, only M′ will be present at the time of the next RF pulse (a). If time 𝜏 elapses again, only M′′ will be present (b). M′′ will be smaller than M′, but the difference will be less than the difference between M and M′.
+
+1 A 90∘ RF pulse is applied. M is rotated into the transverse plane.
+2 A time 𝜏 elapses, insufﬁcient for complete T1 relaxation. The longitudinal magnetization at the end of 𝜏, M′, is less than in step 1.
+3 A second 90∘ RF pulse is applied. M′ is rotated into the transverse plane. 4 After a second time 𝜏 elapses, M′′ is produced. It is smaller in magnitude than
+M′, but the difference is less than the difference between M and M′.
+
+Following a few repetitions, M returns to the same magnitude prior to each RF pulse; that is, M achieves a steady-state value. In general, this steady-state value depends on ﬁve parameters: 1 The main magnetic ﬁeld strength B0. The larger the value for B0, the larger is M. 2 The number of protons producing M (per unit volume of tissue, known as the proton density). 3 The amount of energy absorbed by the protons (the pulse angle or ﬂip angle). 4 The rate of RF pulse application (time 𝜏). 5 The efﬁciency of the protons in giving up their energy (T1 relaxation time).
+For many MRI experiments such as standard spin echo and gradient echo imaging, a steady state of M is present because multiple RF pulses are applied and the repetition time TR between the pulses is nearly always less than sufﬁcient for complete relaxation. To produce this steady state prior to data collection, additional RF pulses are applied to the tissue immediately prior to the main imaging pulses. These extra RF pulses are known as preparatory pulses or dummy pulses because the generated signals are usually ignored. These preparatory pulses ensure that M has the same magnitude prior to every measurement during the scan.
+
+10.1002/9781119013068.ch3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119013068.ch3 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [18/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Trim Size: 170mm x 244mm
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 20
+
+20 MRI Basic Principles and Applications
+The rate of RF pulse application and the efﬁciency of energy transfer must have the proper balance. Suppose the RF energy is applied faster than T1 relaxation can occur. A comparison of the microscopic and macroscopic pictures is useful at this point. In the microscopic picture, the protons in the lower energy level absorb the RF energy and the protons in the upper energy level are stimulated to emit their energy. As more energy is transmitted, the proton populations of the two levels will gradually equalize. When this equalization occurs, no further net absorption of energy is possible, a condition known as saturation (Figure 3.3). In the macroscopic picture, M will rotate continuously but gradually get smaller in magnitude until it disappears as the net population difference approaches zero. Since there is no net magnetization, there will be no coherence of proton motion in the transverse plane and thus no signal is produced. This condition is known as saturation. There is a limited amount of energy that a collection of protons can absorb before they become saturated. In a conventional MR measurement, each tissue will experience different amounts of saturation, due to their different T1 relaxation times. As a result, the contribution of a tissue to M will differ, as will its maximum potential signal.
+As mentioned earlier, spin-lattice relaxation measures the rate of energy transfer from an excited proton to its surroundings. The key to this energy transfer is the presence of some type of molecular motion (e.g., vibration, rotation) of the lattice in the vicinity of the excited proton with an intrinsic frequency, 𝜔L, that matches the resonant frequency, 𝜔0. The closer 𝜔0 is to 𝜔L, the more readily the motion absorbs the energy and the more frequently this energy transfer occurs, allowing the collection of protons to return to its equilibrium conﬁguration sooner. In tissues, the nature of the protein molecular structure and any metal ions that may be present have a pronounced effect on the particular 𝜔L. Metals ions such as iron or manganese can have signiﬁcant magnetic moments that may inﬂuence the local environment. While the particular protein structures are different for many tissues, the molecular rotation or tumbling of most proteins typically have 𝜔L of approximately 1 MHz. Therefore, at lower resonant frequencies (lower B0), there is a better match
+
+B0
+
+∆E
+
+Figure 3.3 Saturation. If RF pulses are applied faster than the T1 relaxation processes can dissipate the energy, the spin populations equalize between the two energy levels. As a result, there is no difference in the number of spins and no net magnetization.
+
+Trim Size: 170mm x 244mm
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 21
+
+10.1002/9781119013068.ch3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119013068.ch3 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [18/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Relaxation 21
+between 𝜔L and 𝜔0. This enables a more efﬁcient energy transfer to occur and thus T1 is shorter. This is the basis for the frequency dependence of T1; namely, T1 decreases with decreasing strength of the magnetic ﬁeld. This is also the reason that a larger B0 does not necessarily translate to a greater signal, as saturation is more prevalent due to the longer T1 times.
+3.2 T2 relaxation, T2* relaxation, and spin echoes
+
+The relaxation time T2 is the time required for the transverse component of M to
+decay to 37% of its initial value through irreversible processes. It is also known as
+the spin–spin relaxation time or transverse relaxation time. Recall from Chapter 1 that
+M0 is oriented only along the z (B0) axis at equilibrium and that no portion of M0 is in the xy plane. The coherence is entirely longitudinal or parallel to B0. Absorption of energy from a 90∘ RF pulse as in Figure 2.2 causes M0 to rotate entirely into the xy plane, so that the coherence is in the transverse plane at the end of the pulse. As time elapses, this coherence disappears
+while at the same time the protons release their energy and reorient themselves along B0. This disappearing coherence produces the FID described in Chapter 2. As this coherence disappears, the value of M in the xy plane decreases toward 0. T2 or T2∗ relaxation is the process by which
+this transverse magnetization is lost.
+A comparison of the microscopic and macroscopic pictures provides additional insight. At the end of the 90∘ RF pulse, when the protons have absorbed energy and M is oriented in the
+transverse plane, each proton precesses at the same frequency 𝜔0 and is synchronized at the same point or phase of its precessional cycle. Since a nearby proton of the same type will have
+the same molecular environment and the same 𝜔0, it can readily absorb the energy that is being released by its neighbor. Spin–spin relaxation refers to this energy transfer from an excited
+proton to another nearby proton (Figure 3.4). The absorbed energy remains as spin excitation
+
+H
+
+H
+
+O
+
+H
+
+H
+
+O
+
+(a)
+
+H
+
+H
+
+O
+
+H
+
+H
+
+O
+
+(b)
+Figure 3.4 Spin– spin relaxation. (a) Two water molecules, with one hydrogen atom on one molecule having absorbed RF energy and being excited (spin down). (b) If the molecules are in close proximity, the energy can be transferred from the ﬁrst water molecule to a hydrogen atom on the second water molecule.
+
+10.1002/9781119013068.ch3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119013068.ch3 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [18/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Trim Size: 170mm x 244mm
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 22
+
+22 MRI Basic Principles and Applications
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+(a)
+2 1.0
+
+MXY
+
+3
+
+MXYmax
+0.37 4
+
+5
+
+6
+
+0
+
+T2
+
+τ
+
+(b)
+
+(Faigrruorwe)3i.s5or(aie)nAterdotpaatrinaglleflrtaomBe0sl(onwotesrhtohwann)𝜔p0riios ratsosuamneRdFfpour ltsheis(1ﬁ)g. uForell.oNweint gmaag9n0e∘tiRzFatpiounlseM, the spins precess initially in phase in the transverse plane (2). Due to inter-and intramolecular
+interactions, the spins begin to precess at different frequencies (dashed arrow, faster; dotted
+arrow, slower) and become asynchronous with each other (3). As more time elapses (4,5), the
+transverse coherence becomes smaller until there is complete randomness of the transverse
+components and no coherence (6). (b) Plot of relative MXY component as a function of time. The numbers correspond to the expected MXY component from (a). The change in MXY ∕MXY max with time follows an exponential decay process as described by equation (3.3). The time constant for this process is the spin-spin relaxation time T2∗ and is the time when MXY has decayed to 37% of its original value.
+
+Trim Size: 170mm x 244mm
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 23
+
+10.1002/9781119013068.ch3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119013068.ch3 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [18/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Relaxation 23
+rather than being transferred to the surroundings as in T1 relaxation. This proton–proton energy transfer can occur many times as long as the protons are in close proximity and remain at the same 𝜔0. Intermolecular and intramolecular interactions such as vibrations or rotations cause transient ﬂuctuations in the magnetic ﬁeld and thus cause 𝜔0 to ﬂuctuate. This ﬂuctuation produces a gradual, irreversible loss of phase coherence to the spins as they exchange the energy and reduce the magnitude of the transverse magnetization and the generated signal (Figure 3.5). T2 is the time when the transverse magnetization is 37% of its value immediately after the 90∘ pulse when this irreversible process is the only cause for the loss of coherence. As more time elapses, this transverse coherence completely disappears, only to reform in the longitudinal direction as T1 relaxation occurs. This dephasing time T2 is always less than or equal to T1.
+There are several potential causes for a loss of transverse coherence to M. One is the molecular motions of the adjacent spins due to vibrations or rotations. This irreversible movement is responsible for spin–spin relaxation or the true T2. Another cause arises from the fact that a proton never experiences a magnetic ﬁeld that is 100% uniform or homogeneous in value. As the proton precesses, it experiences a ﬂuctuating local magnetic ﬁeld, causing a change in 𝜔0 and a loss in transverse phase coherence. This nonuniformity in B0 comes from three sources: 1 Main ﬁeld inhomogeneity. There is always some degree of nonuniformity to
+B0 due to imperfections in magnet manufacturing, interactions with nearby building walls, or other sources of metal. This ﬁeld distortion is constant during the measurement time. 2 Sample-induced inhomogeneity. Differences in the magnetic susceptibility or degree of magnetic polarization of adjacent tissues (e.g., bone, air) will distort the local magnetic ﬁeld near the interface between the different tissues. Provided there is no motion of the sample, this inhomogeneity is also of constant magnitude and is present as long as the patient is present within the magnet. 3 Imaging gradients. As discussed in Chapter 4, the technique used for spatial localization generates a magnetic ﬁeld inhomogeneity that induces proton dephasing. This inhomogeneity is transient during the measurement.
+
+The contributions of the imaging gradients may be eliminated as a source of dephasing through proper design of the measurement process, as described in Chapter 4. The other sources contribute to the total transverse relaxation time, T2∗:
+
+1∕T2∗ = 1∕T2 + 1∕T2M + 1∕T2MS
+
+(3.2)
+
+where T2M is the dephasing time due to the main ﬁeld inhomogeneity and T2MS is the dephasing time due to the magnetic susceptibility differences. The decay of the transverse
+
+Trim Size: 170mm x 244mm
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 24
+
+10.1002/9781119013068.ch3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119013068.ch3 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [18/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+24 MRI Basic Principles and Applications
+
+magnetization following a 90∘ RF pulse, the FID, follows an approximately exponential process with the time constant of T2∗ rather than just T2:
+
+MXY (t) = MXY maxe−t∕T2∗
+
+(3.3)
+
+where MXY max is the transverse magnetization MXY immediately following the excitation pulse. For most tissues or liquids, T2M is the major factor in determining T2∗, while for tissue with signiﬁcant iron deposits or air-ﬁlled cavities, T2MS dominates T2∗.
+
+Some sources of proton dephasing can be reversed by the application of a 180∘
+RF pulse, which is described by the following sequence of events (Figure 3.6): 1 A 90∘ RF pulse.
+2 A short delay of time t. 3 A 180∘ RF pulse.
+4 A second time delay t.
+
+The initial 90∘ RF pulse rotates M0 into the transverse plane. During the time t, proton dephasing will occur through T2∗ relaxation processes and the transverse coherence will diminish. Application of the 180∘ RF pulse causes the protons to reverse their
+phases relative to the resonant frequency. The rates and directions of precession for the protons
+do not change, only their relative phase. If time t elapses again, then the protons will regain
+some of their transverse coherence. This reformation of phase coherence induces another sig-
+nal in the receiver coil, known as a spin echo. Sources of dephasing that do not change during
+the two time periods, the main ﬁeld inhomogeneity and magnetic susceptibility differences,
+are eliminated because the protons experience exactly the same interactions prior to and following the 180∘ pulse. This means that the contributions to T2∗ relaxation from these static sources will disappear. Only the irreversible spin–spin relaxation is not recovered by the 180∘
+RF pulse so that the loss of phase coherence and signal amplitude for a spin echo is due only
+to true T2 relaxation.
+
+Following the echo formation, the protons continue to precess and dephase a
+second time as the sources of dephasing continue to affect them. Application of a second 180∘ RF pulse again reverses the proton phases and generates another
+coherence to the protons, producing another spin echo. This second echo differs
+from the ﬁrst echo by the increased amount of T2 relaxation contributing to the signal loss. This process of spin echo formation by 180∘ RF pulses can be repeated
+as many times as desired, until T2 relaxation completely dephases the protons. The use of multiple 180∘ pulses maintains phase coherence to the protons longer than the use of a single 180∘ RF pulse because of the signiﬁcant dephasing that
+the ﬁeld inhomogeneity induces over very short time periods.
+
+10.1002/9781119013068.ch3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119013068.ch3 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [18/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Trim Size: 170mm x 244mm
+1.
+
+2.
+90° pulse
+
+Dale c03.tex V3 - 07/08/2015 11:15 A.M. Page 25
+Relaxation 25 3.
+time t
+
+4.
+
+5.
+
+180°
+
+time
+
+pulse
+
+t
+
+Figure 3.6 (arrow) is
+
+A rotation frame slower than 𝜔0 is oriented parallel to B0 (not shown)
+
+assumed for this ﬁgure. Net magnetization M prior to an RF pulse (1). Application of a 90∘
+
+RF
+
+pulse rotates M into the transverse plane (2). Due to the T2∗ relaxation processes, the protons
+
+become asynchronous with each other during time t (3). Application of a 180∘ RF pulse causes
+
+the protons to reverse their phase relative to the transmitter phase. The protons that precessed
+
+most rapidly are farthest behind (dashed arrow), while the slowest protons are in front (dotted
+
+arrow) (4). Allowing time t to elapse again allows the protons to regain their phase coherence
+
+in the transverse plane (5), generating a signal in the receiver coil known as a spin echo. The
+
+loss in magnitude of the reformed coherence relative to the original coherence (2) is due to
+
+irreversible processes (i.e., true spin–spin or T2 relaxation). Equation (3.3) describes the decay of MXY if T2 is used instead of T2∗.
+
+One important difference between T1 and T2 relaxation is in the inﬂuence of B0. As mentioned earlier, T1 is very sensitive to B0, with longer T1 times measured for a tissue at higher B0. T2 is relatively insensitive to B0 at the relatively large ﬁeld strengths currently used in MRI. Only at very low B0 (less than 0.05 T) will there be signiﬁcant changes in T2. The other components of T2∗, T2M and T2MS become more prominent at higher B0. Good magnetic ﬁeld uniformity is more difﬁcult to generate at high magnetic ﬁelds, so that
+T2M will be shorter. Greater B0 will also cause greater differences in M0 between two tissues with different magnetic susceptibilities, producing shorter T2MS. The result is that T2-weighted techniques will see little sensitivity to B0 while T2∗-weighted techniques will show greater signal differences at higher B0.
+

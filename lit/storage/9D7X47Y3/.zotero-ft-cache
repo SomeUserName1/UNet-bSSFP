@@ -1,0 +1,151 @@
+ Skip to main
+Zenodo home
+Communities
+My dashboard
+Log in Sign up
+Published March 4, 2024 | Version v2.2.1
+Software Open
+Fine-Tuning Scheduler
+Creators
+
+    Dale, Dan
+
+Description
+
+A PyTorch Lightning extension that enhances model experimentation with flexible fine-tuning schedules.
+Notes
+If you want to cite this extension, feel free to use this 😊
+Files
+speediedan/finetuning-scheduler-v2.2.1.zip
+Files (1.4 MB)
+Name 	Size 	Download all
+speediedan/finetuning-scheduler-v2.2.1.zip
+md5:2ee2b9989dab4606e07ccd4f01c23ec0
+	1.4 MB 	Preview Download
+Additional details
+Related works
+
+Is supplement to
+    Software: https://github.com/speediedan/finetuning-scheduler/tree/v2.2.1 (URL) 
+
+Citations
+Show only:
+literature (0)
+dataset (0)
+software (0)
+unknown (0)
+Citations to this version
+Search citations
+Search
+
+Oops! Something went wrong while fetching results.
+498
+Views
+42
+Downloads
+Show more details
+Versions
+Version v2.2.1 10.5281/zenodo.10780386
+Mar 4, 2024
+Version v2.2.0 10.5281/zenodo.10637464
+Feb 8, 2024
+Version v2.1.4 10.5281/zenodo.10611882
+Feb 2, 2024
+Version v2.1.3 10.5281/zenodo.10420340
+Dec 21, 2023
+Version v2.1.2 10.5281/zenodo.10412826
+Dec 20, 2023
+View all 36 versions
+
+Cite all versions? You can cite all versions by using the DOI 10.5281/zenodo.6463952 . This DOI represents all versions, and will always resolve to the latest one. Read more .
+External resources
+Available in
+
+    speediedan/finetuning-scheduler
+
+    Release: v2.2.1
+
+Indexed in
+
+    OpenAIRE
+
+Keywords and subjects
+Keywords
+
+    machine learning
+    deep learning
+    artificial intelligence
+    fine-tuning
+    finetuning
+
+Details
+
+DOI
+    10.5281/zenodo.10780386
+Resource type
+    Software
+Publisher
+    Zenodo
+
+Rights
+
+    Apache License 2.0
+
+Citation
+Dale, D. (2024). Fine-Tuning Scheduler (v2.2.1). Zenodo. https://doi.org/10.5281/zenodo.10780386
+Style
+APA
+Export
+JSON
+Export
+Technical metadata
+
+Created
+    March 4, 2024 
+Modified
+    March 4, 2024 
+
+Jump up
+About
+
+    About
+    Policies
+    Infrastructure
+    Principles
+    Projects
+    Roadmap
+    Contact
+
+Blog
+
+    Blog
+
+Help
+
+    FAQ
+    Docs
+    Guides
+    Support
+
+Developers
+
+    REST API
+    OAI-PMH
+
+Contribute
+
+    GitHub
+    Donate
+
+Funded by
+
+Powered by CERN Data Centre & InvenioRDM
+
+    Status
+    Privacy policy
+    Cookie policy
+    Terms of Use
+    Support
+
+This site uses cookies. Find out more on how we use cookies
+Accept all cookies Accept only essential cookies

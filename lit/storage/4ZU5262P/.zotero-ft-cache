@@ -1,0 +1,3774 @@
+HANDBOOK OF
+MRI
+PULSE SEQUENCES
+MATT A. BERNSTEIN, PH.D.
+Departm ent of Radiology, Mayo Clini c and Mayo Clini c College of Medicin e Rochester, Minnesota
+KEVIN F. KING, PH.D.
+GE Health care Waukesha , Wisconsin
+XIAOHONG JOE ZHOU, PH.D.
+University of Illinois Med ical Center Chicago, Illinois
+ELSEVIER
+ACADEMIC PR ESS
+Amsterdam Boston Heidelberg London New York Oxford Paris San Diego San Francisco Singapore Sydney Tokyo
+
+Nothing in this book implies endorsement by Mayo Found ation or University of Illinois of any medical equipment manufacturer.
+Elsevier Acade mic Press 200 Wheeler Road, 6th Floor, Burlin gton, MA 01803, USA 525 B Street , Suite 1900, San Diego, California 92101-4495 , USA 84 The obald 's Road , London WCIX 8RR, UK
+Thi s book is printed on acid-free paper. =-
+Copyright © 2004, Elsevier Inc. All rights reserved.
+No part of this publ ication may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopy, recording, or any information storage and retrieval system, without perm ission in writing from the publ isher.
+Permi ssions may be sought directl y from Elsevier' s Science & Technology Rights Departm ent in Oxford , UK: phone: (+44 ) 1865 843830, fax: (+44) 1865853333, e-mail: permi ssions @elsevier.com.uk. You may also complete your reque st on-line via the Elsevier homepage (http ://elsevier.com ), by selecting "Customer Support" and then "Obtaining Permi ssions."
+Library of Congress Cataloging-in-Publication Data Application submitted
+British Library Cataloguing in Publication Data A catalog ue record for this book is available from the British Library
+ISBN-13: 978- 0-12-092861-3 ISBN-IO: 0-12-09286 )-2
+For all informati on on all Elsevier Academi c Press publications visit our Web site at www.books.elsevier.com
+Printed in the United States of America 05 06 07 08 09 9 8 7 6 5 4 3 2
+
+To Rhoda, Juliet, Sara, and Lee
+MAB.
+To Sherry and our son Christopher
+X.J.Z.
+To Beth
+K.F.K.
+
+FOREWORD
+MRI has now been developing for over 30 years. The first experiments did not use any technique that would ordinarily be called a "pulse sequence," employing CW applications of radiofrequency (RF) fields and static main magnetic fields and gradients, with iterative back projection reconstruction and T1 discrimination by changing of RF intensity. It was soon realized, however, that time-dependent RF pulses and magnetic field gradients offered more flexibility in many applications, and the field of "pulse sequence" design opened. This book is the best evidence of its subsequent proliferation, both for the sake of novelty and to tailor instrument responses to a variety of applications. An unfortunate side effect has been that such efforts have introduced innumerable acronyms or near-acronyms in an effort to distinguish the various sequences, or fix credit for their designs. This book is the most valiant and successful attempt yet to provide a useful description of this "zoo," and to relate and classify the various denizens in it. Such a taxonomy can never be complete, as the inhabitants keep multiplying and providing new hybrids which must be classified to facilitate discourse among physicists, engineers, physicians, and others, and to help pulse sequence designers avoid inadvertent duplication of efforts. I believe that no MRI developer or user can read this book without learning more about the field, as I have.
+But what does this suggest about future editions or successors? New applications will continue to become important, and new opportunities will continue to suggest themselves to creative pulse-sequence designers. Will we soon reach the limit of our ability to absorb, retain, and understand such innovations, which may include aspects of high-resolution solid-state spectroscopy
+XV
+
+xvi
+
+FOREWORD
+
+and quantum computing? There is some evidence that we already have, as much MRI seems even now driven by habit, custom, and instrumental constraints rather than by medical and other needs. In the future, the functions that this book serves may be accomplished by interactive database programs that "understand" MRI physics, so that properly defined needs can be matched to the best sequences, and new sequences consistent with machine capabilities can be computer-developed as needed. I therefore look forward to the second edition of this book as a CD or equivalent, combined with a specialized search-engine. In the meantime, the first edition will well-repay careful study.
+Paul C. Lauterbur, Ph.D. Center for Advanced Study Professor of Chemistry, Biophysics and Computational Biology, and in the Bioengineering Program Research Professor of Medical Information Sciences College of Medicine at Urbana-Champaign and Distinguished Professor, College of Medicine University of Illinois at Chicago
+
+FOREWORD
+Magnetic resonance imaging is recognized as one of the most important medical advances of the century. It has opened new windows into the human body, revealing structure and function with a level of detail that would have been unimaginable only decades ago.
+The award of the Nobel Prize in Medicine to Paul Lauterbur and Peter Mansfield is a wonderful recognition for their important contributions to the development of MRI. The award of the Nobel Prize in Medicine for work that is rooted in Physics and Engineering is also an important validation of these disciplines as important participants within the medical research community.
+While the pioneering work of Lauterbur and Mansfield was critical to the early development of MRI, the amazingly wide range of its capabilities have resulted from the efforts of the many scientists and clinicians. Unlike other high-tech imaging modalities, a large proportion of the techniques currently used in state-of-the-art practice were not initially introduced by industry. Rather, these advances were made by investigators and physician specialists in academic centers and clinical imaging practices. In a very real way, MRImone of the most important tools of modem medical practice--is a technology that was invented by its users!
+The Handbook of MRI Pulse Sequences is a comprehensive and highly readable reference targeted squarely at those who want to understand the current state-of-the-art, as well as those who are committed to continuing the process of innovation. The authors have segmented the vast subject of MRI technology into five logical sections: Background Concepts, Radiofrequency
+xiii
+
+xiv
+
+FOREWORD
+
+Pulses, Gradients, Data Acquisition, and Pulse Sequences. These sections contain carefully planned groups of chapters that systematically cover the field. The chapters use a modular building block approach that avoids repetition, allowing efficient presentation of a subject. Each of the main sections is selfcontained, allowing the reader to go directly to any section without the need to review previous sections. Consistent nomenclature is used throughout.
+Such disciplined and accessible coverage of the field would have been difficult if the book followed the model of chapters written by dozens of authors. Instead the Handbook of MRI Pulse Sequences is the product of three highly dedicated authors. Drs. Bernstein, King, and Zhou have all made significant contributions to the MRI field and have collective experience spanning from industry to academia. All three are highly accomplished in teaching the "nuts and bolts" of MRI technology.
+Most chapters are accessible to readers with varying levels of expertise. The book should be useful to physicists and MRI radiologists alike. The chapters combine rigorous mathematical coverage of concepts to the level warranted by the subject matter, with qualitative descriptions wherever feasible.
+This book is unique in the fact that it brings together in one reference many areas of MRI technology that are not well covered in other available references. Such areas include adiabatic fast passage radiofrequency pulses, stimulated echoes, ordered phase encoding, navigator echoes, and many others. The section on Gradients nicely clarifies the generally misunderstood terminology and purpose of the various types of correction gradients such as crushers, spoilers, and twisters.
+Many scientists who are active in supervising MRI research by graduate and postdoctoral students have encountered, year after year, a relative paucity of comprehensive reference textbooks that can answer the recurring questions that arise. The Handbook of MRl Pulse Sequences will address this need in an outstanding fashion.
+This book will become one of the classic texts in the field and will play a key role in helping the next generation of scientists and MRI clinicians to continue the process of invention.
+Richard L. Ehman, M.D. Professor of Radiology Mayo Clinic
+
+PREFACE
+Since its invention in the early 1970s, the development of magnetic resonance imaging (MRI) has been among the most active and exciting areas in science, technology, and medicine. Today, thousands of MRI scanners are operating throughout the world, providing crucial information in such diverse areas as material science, pharmaceutical development, and especially medical diagnosis.
+MRI encompasses many areas of science and technology, including spin physics, biophysics, image reconstruction, and hardware design. Although each area performs a necessary function, it is the MRI pulse sequence that links many of the individual functions together and plays a pivotal role in data acquisition. Over the past 30 years, development of pulse sequences has been an extremely active area of MRI research. Many important concepts of MRI are realized through pulse sequence design, and virtually every imaging application is enabled by one or more pulse sequences. This book aims to help the reader gain a comprehensive understanding of many pulse sequences (and their associated techniques) in use today. The book is also intended to assist the reader to continue the innovation in pulse sequence design, and to carry MRI development into the future.
+While this handbook focuses on MRI pulse sequences, it also covers the building blocks from which they are composed, as well as the related image reconstruction techniques and important mathematical tools that are helpful for understanding them. We have divided the book into five parts. Each part of the book is preceded by its own introduction, which provides an overview of its contents. Part I covers two basic mathematical tools: Fourier transforms
+xvii
+
+xviii
+
+PREFACE
+
+and the rotating reference frame. Parts II through IV describe a variety of the basic building blocks and associated techniques of MRI pulse sequences: radiofrequency (RF) pulses, gradient waveforms, data acquisition strategies, and common image reconstruction methods. Part V describes how these components are integrated into some of the common pulse sequences. Selected applications of each pulse sequence are also discussed in Part V.
+The five parts of the book are further subdivided into chapters. For example, Part III on Gradients contains chapters describing gradient lobe shapes, imaging gradients, motion-sensitizing gradients, and correction gradients. Each chapter in turn contains multiple sections that are usually arranged alphabetically. In all, there is a total of 65 sections. The sections in each chapter are independent, forming their own self-contained units. As such, the sections do not have to be read in any particular order. Each section contains an introduction to the subject and some qualitative description. Depending on the subject matter, mathematical analysis, practical implementation details, and/or descriptions of applications may also be included. At the end of each section, selected references are provided, and the related sections are listed.
+It is also important to say what this book is not. This book is not meant to be an encyclopedia of pulse sequences. We have attempted to cover most of the MRI pulse sequences in common use today, but have made no attempt to describe every pulse sequence that has ever been published. We believe, however, that virtually every MRI pulse sequence that has ever been implemented (or even proposed) is composed, at least in part, of the building blocks described in detail in this handbook. We would also like to emphasize that exclusion of any particular sequence or technique is not meant to imply anything about its relative importance. The scope of this book encompasses MR imaging pulse sequences, but excludes purely spectroscopic pulse sequences, and only briefly touches on spectroscopic imaging. The physical description of spin dynamics (sometimes called spin "gymnastics") is limited to the classical picture, which is sufficient for the vast majority of the discussion throughout the book. Therefore, neither quantum mechanical formalism nor multiple-quantum phenomena are covered.
+We make no rigorous attempt to provide an historical record of who invented or first published any particular pulse sequence or technique. Given the activity in the field of MRI, a thorough study of that subject could probably fill a large volume itself. The selected references at the end of each section are only intended to provide the reader with additional material to understand the subject matter, and do not necessarily correspond to the earliest work on that subject. The references are a collection of papers, review articles, conference abstracts, books, book chapters, and patents selected from those we have found instructive during our own study. The reader may also notice that some of the sections in Part V contain many more references than the earlier sections.
+
+PREFACE
+
+xix
+
+Perhaps this is an expression that there are many more ways to combine and
+
+permute the building blocks, compared to the number of building blocks them-
+
+selves. Because of the breadth and depth of activity in MRI research, we realize
+
+that we have inevitably omitted some important references. We are eager to
+
+receive feedback about the book, so feel free to contact us if you would like to
+
+suggest additional references that should be included in future editions.
+
+This book is written primarily for scientists and engineers working in
+
+the field of MRI. It can also serve as a supplementary textbook for a gradu-
+
+ate course on medical imaging, medical physics, or biomedical engineering.
+
+Radiologists and other medical professionals interested in an in-depth under-
+
+standing of various MRI pulse sequences will also benefit from the book. To
+
+cover the diverse background of the readership, both non-mathematical and
+
+mathematical descriptions are provided. Readers not interested in the mathe-
+
+matical description of a particular topic can skip over those portions of a section
+
+that contain complicated equations. It is our aim to provide those readers with
+
+sufficient qualitative description in text and figures to convey the gist of each
+
+section. The level of mathematical sophistication varies widely from section
+
+to section. This is because we have tried to tailor the mathematical level to the
+
+specific subject material, rather than to a specific readership. For example the
+
+mathematical level used in the sections describing SLR pulses (w gridding
+
+(w
+
+and parallel imaging reconstruction (w is considerably higher
+
+than that describing real-time imaging (w11.4). In general, however, the level
+
+of mathematical sophistication is at the first-year university level, with use of
+
+vectors, basic calculus, and linear algebra. A notable exception is the use of
+
+Fourier transforms, which are relied on extensively throughout the book. To
+
+help keep the book self-contained, w1.1 is entirely devoted to the properties of
+
+continuous and discrete Fourier transforms.
+
+In writing this book, we have assumed that the reader has already acquired
+
+some basic knowledge of MRI physics. Although we provide discussion of a
+
+few essential physical concepts, such as the Bloch equations, gradients, and
+
+rotating reference frame, we encourage the reader to consult any of the excel-
+
+lent introductory MRI physics books, should there be a background concept
+
+that is unfamiliar. Similar to the level of mathematics, the level of physics is
+
+also tailored to individual sections. For example, w12.1 on cardiac triggering
+
+requires little background on spin physics, while to understand the adiabatic
+
+pulses described in Chapter 6 requires a somewhat deeper background in MRI
+
+physics. Many of the physical concepts used to understand adiabatic pulses,
+
+however, are described in that chapter, or in other sections of the book.
+
+The idea of writing a handbook on MRI pulse sequences, with self-
+
+contained sections, was initiated by one of the authors (X.J.Z.) in the spring of
+
+1999, but it was only through the effort of all three authors working in concert
+
+that the book took its current shape. Between 1999 and 2000, the three authors
+
+XX
+
+PREFACE
+
+held numerous meetings and conference calls to define the scope. We focused on designing a book with three primary features, all aimed at helping the reader extract the maximal information with the minimal effort. First, as mentioned earlier, each section is self-contained so the reader can go straight to the material of interest without reading the preceding sections in sequential order. Second, also mentioned earlier, each subject in a section is discussed both qualitatively and quantitatively to serve readers with various backgrounds. Third, special attention is paid to maximizing consistency across all the sections. This frees the reader from having to make the mental adjustment for inconsistent notation, conventions, and terminology usually required when reading a set of original research papers, or an edited book that has many contributing authors. Many of the mathematical symbols, constants, abbreviations, and acronyms used across multiple sections of the book are listed in the appendices.
+This handbook was written during a period from 2000 to early 2004. It
+is the product of three authors who contributed equally. The author names in
+various places are listed alphabetically and the order does not imply relative contribution to the book. Each step in the process was designed to ensure maximal consistency throughout while maintaining the breadth of coverage that three authors can provide. In this electronic era, being based in separate cities did not hamper this effort. A primary author drafted each section, and then sent it to one of the other authors for review. Based on the comments and additions received, the primary author revised the section and sent it to the third author for further review. The process was iterated as many times as necessary (in some cases, seven or eight iterations) until all authors were satisfied with the manuscript. To make the handbook as seamless as possible, the three authors participated in telephone conference calls at regular intervals. As a result, each author made substantial contributions to every section. In spite of our efforts, mistakes undoubtedly still exist. We encourage the reader to contact us, should she/he find any errors, omitted material, or any explanations that are not clear. Correspondence about a particular section can be addressed to the primary section author who is listed in the table of contents, and who will continue to manage the revisions of that section.
+In addition to our own review process, we also asked a number of experts to review several sections of the manuscript. We are indebted to these guest reviewers who improved the quality of those sections with their insightful comments. Stephen Riederer, Ph.D. reviewed w11.4 on real-time imaging, and w15.3 on time-of-flight and contrast-enhanced MR angiography. James Glockner, M.D., Ph.D. reviewed w12.1 on cardiac triggering, as did Kiaran McGee, Ph.D. Heidi Ward, Ph.D. reviewed w on navigator echoes, and w on gradient echoes. Elisabeth Angelos, Ph.D. reviewed w13.3 on parallel imaging. Yihong Yang, Ph.D. reviewed w17.1 on arterial spin tagging. Sarah Patch,
+
+PREFACE
+
+xxi
+
+Ph.D. reviewed w17.5 on projection acquisition. We greatly appreciate all of their help. Naturally, any errors remaining in those sections are solely ours.
+We also thank the many contributors (Drs. Kimberly Amrami, Walter Block, Reed Busse, Kim Butts, Norbert Campeau, Bruce Daniel, J. Kevin DeMarco, Kevin Glaser, E. Mark Haacke, Romhild M. Hoogeveen, John Huston III, Emanuel Kanal, Chen Lin, Kiaran McGee, Paul McGough, Gary Miller, Koichi Oshio, Scott Reeder, Pr. Regent, Larry Tanenbaum, Heidi Ward, Qing-San Xiang, Yihong Yang, and Frank Q. Ye) who provided images for this handbook. Their contributions are individually acknowledged again in the figure captions.
+We would also like to thank Linda Greene for her review of some of the page proofs, David Thomasson, Ph.D. for providing a glossary of MR terms used by Siemens Medical Solutions, and Tim Hiller for providing a list of acronyms used by Philips Medical Systems and other vendors. Our appreciation is also extended to Dr. K. Noelle Gracy, Anne Russum, Marcy Barnes-Henrie, Paul Gottehrer, and others at Elsevier who aided us during various stages of planning and writing the book.
+Many other individuals also helped us in various ways to make this book possible. We would like to individually express our whole-hearted gratitude to them:
+MAB: I am indebted to all my teachers and mentors. In the field of physics, the guidance from Drs. Bill Friedman, Gary Glover, and Norbert Pelc has been especially valued. Drs. John Huston III, Paul McGough, Patrick Turski, and many others have patiently taught me some of the clinical aspects of MRI. Larry Ploetz introduced me to the subtleties of pulse sequence programming. I am also indebted to my colleagues on the clinical MRI Physics team at the Mayo Clinic in Rochester, including Drs. Joel Felmlee, Chen Lin, and Kiaran McGee, as well as Diana Lanners and Renee Jonsgaard. Of course without the patience and support of my wife Rhoda Lichy, my contribution to this book would not have been possible.
+KFK: Thanks to Paul Moran for introducing me to medical imaging and teaching me about magnetic resonance. Richard Kinsinger gave me career opportunities for which I will always be very grateful. The work of Gary Glover and Norbert Pelc has provided a standard by which I measure all of my own work. Thanks to the many colleagues at GE with whom I have had the privilege and pleasure to work. You have instructed, challenged, and inspired me. Special thanks to Carl Crawford, Alex Ganin, and Lisa Angelos. Without your collaboration, the work would not have been nearly as much fun.
+XJZ: I would like to thank Professor Paul C. Lauterbur who introduced me to the field of MRI, shared his remarkable insight into MRI physics, and encouraged the idea of writing this book. I would also like to thank Drs. G. Allen Johnson, Keith R. Thulborn, and Richard E. Kinsinger who guided me, in various
+
+xxii
+
+PREFACE
+
+stages of my career, to acquire knowledge of pulse sequence design. My gratitude is owed to Drs. Norman E. Leeds, Edward F. Jackson, Haesun Choi, and Srikanth Mahankali for teaching me a great deal on the clinical aspects of MRI. Many colleagues, friends, and students also helped me in developing the materials that are included in the book. In particular, I am indebted to Dr. Fernando E. Boada, Gary P. Cofer, Dr. John D. Hazle, Dr. Christof Karmonik, Dr. Zhi-Pei Liang, Dr. James R. MacFall, Joseph K. Maier, Dr. Graeme C. McKinnon, Dr. Bryan J. Mock, Dr. Douglas C. Noll, Aziz H. Poonawalla, H. Glenn Reynolds, Dr. Gary X. Shen, Dr. R. Jason Stafford, Dr. S. Lalith Talagala, Dr. Qing-San Xiang, and Dr. Yihong Yang. Finally, my appreciation goes to Sherry Xia Yao who spent countless evenings and weekends taking care of our infant son during the period when the book was written.
+The development of MRI pulse sequences over the last 30 years has been truly exciting. The process of writing this book has only enhanced our appreciation of the dedicated scientists, engineers, and clinicians who have advanced MRI into the essential tool that it has become. We hope you will enjoy this book, and find it to be a useful reference for continuing the advancement of this great field.
+Matt A. Bernstein Rochester, Minnesota mbernstein @mayo.edu
+
+Kevin E King Waukesha, Wisconsin kevin,f.king @med. ge.com
+
+Xiaohong Joe Zhou Chicago, Illinois xjzhou@uic.edu May 2004
+
+BACKGROUND
+
+3
+
+Introduction
+
+Part I of this book contains selected background information that is used in many sections throughout the book. Chapter 1 (the only chapter in Part I) describes two mathematical tools that are universally used to analyze magnetic resonance imaging (MRI): the Fourier transform (Section 1.1), and the rotating reference frame (Section 1.2). Although neither of these tools is a pulse sequence (or pulse sequence element) itself, they are both described in considerable detail to establish the notation and conventions that are used throughout the book. A more extensive discussion of Fourier transform can be found in Bracewell (1978). A more thorough introduction to the rotating reference frame and other magnetic resonance (MR) physics concepts is contained in many references, for example, Slichter (1989).
+Other mathematical tools (e.g., rotation matrices) used in specific applications are described in their own individual sections (e.g., Section 2.3), as needed. For additional general mathematical tools used in this book, the reader is encouraged to consult a mathematics handbook such as Arfken and Weber (2001).
+
+SELECTED REFERENCES
+Arfken, G. B., and Weber, H. J. 2001. Mathematical methods for physicists. 5th ed. San Diego: Academic Press.
+Bracewell, R. N. 1978. The Fourier transform and its applications. New York: McGraw-Hill. Slichter, C. E 1989. The principles of magnetic resonance. 3rd ed. Berlin: Springer-Verlag.
+
+CHAPTER
+1
+TOOLS
+1.1 Fourier Transforms
+The Fourier transform (FT) is a mathematical operation that yields the spectral content of a signal (Bracewell 1978). It is named after the French mathematician Jean Baptiste Joseph Fourier (1768-1830). If a signal consists of oscillation at a single frequency (e.g., 163 Hz), then its FT will contain a peak at that frequency (Figure 1.1a). If the signal contains a superposition of tones at multiple frequencies, the FT operation essentially provides a histogram of that spectral content (Figure 1. lb). For example, consider the following physical analogy. Suppose several keys on a piano are struck simultaneously and the resultant sounds are sampled and digitized. The FT of that signal will provide information about which keys were struck and with what force.
+Fourier transforms are ubiquitous in the practical reconstruction of MR data and also in the theoretical analysis of MR processes. This is because the physical evolution of the transverse magnetization is described very naturally by the FT. In Magnetic Resonance Imaging (MRI), we usually use complex Fourier transforms, which employ the complex exponential, rather than separate sine or cosine Fourier transforms. This choice is made because a complex exponential conveniently represents the precession of the magnetization vector. Table 1.1 reviews some basic properties of the complex exponential. Often a magnitude operation (i.e., [Z[) is used on a pixel-by-pixel basis to convert the complex output of the FT to positive real numbers that can be more conveniently displayed as pixel intensities.
+
+6
+(a)
+t-
+t-
+03
+
+CHAPTER 1 TOOLS
+100 Time (ms)
+163 Hz -~,~,~
+
+Frequency (kHz)
+
+0.190
+
+(b)
+
+v
+Or) 0
+
+100 Time (ms)
+163 Hz
+
+__.15 Hz
+
+0
+
+0.190
+
+Frequency (kHz)
+
+FIGURE 1.1 Schematic representations of the Fourier transform. (a) If a time domain signal contains a tone at a single frequency, its Fourier transform will contain a peak at that frequency, which in this case is 163 Hz. (b) If the signal contains a superposition of two tones, the Fourier transform displays a second peak. In the case shown, a 15-Hz tone with approximately one-quarter the amplitude is modulating the original tone.
+
+1.1 FOURIERTRANSFORMS
+
+7
+
+TABLE 1.1 Properties of Complex Numbers
+
+i -- ~
+
+-- e irr/2
+
+e iO - - cos 0 + i sin 0
+e i(a+b) __ eia eib
+
+e io + e -io COS 0 =
+2
+e io _ e-iO
+sin 0 - -
+2i
+if Z --/9 e i~ then IZI - p, arg(Z) = Z z = 0
+
+if Z - x + iy, then IZI = v/x2 + y2, arg(Z) - t a n -I (Y)
+\ x /
+Z* = x - iy = pe -iO (complex conjugate of Z)
+
+Z1Z2 = PlP2e i(01+02) = (XlX2 - YlY2) + i(xlY2 + ylx2)
+
+When we are provided with a function of a continuous variable, its FT is calculated by a process that includes integration. This continuous FT is widely used for theoretical work in MRI. The actual MRI signal that is measured, however, is sampled at a finite number of discrete time points, so instead a discrete Fourier transform (DFT) is used for practical image reconstruction. With the DFT, the integration operation of the FT is replaced by a finite summation. An important special case of the DFT is called the f a s t Fourier transform (FFT) (Cooley and Tukey 1965; Brigham 1988). The FFT is an algorithm that calculates the DFT of signals whose lengths are particular values (most typically equal to a power of 2, e.g., 256 -- 28). As its name implies, the FFT is computationally faster than the standard DFT.
+
+1.1.1 THE CONTINUOUS FOURIER TRANSFORM AND ITS INVERSE
+Let g(x) be a function of the real variable x. The output of the function g(x) can have complex values. The complex Fourier transform of g(x) is another function, which we call G(k):
+
+f+oo
+
+FT [g(x)] -- G(k) -
+
+g(x)e -2rril~xdx
+
+--OO
+
+(1.1)
+
+8
+
+CHAPTER 1 TOOLS
+
+The two real variables x and k are known as Fourier conjugates and represent a pair of FT domains. Examples of domain pairs commonly used in MR are (time, frequency) and (distance, k-space). If the physical units of the pair of variables that represent the two domains are multiplied together, the result is always dimensionless. For example, with the time-frequency pair, the product:
+
+1 millisecond x 1k H z - 1 (dimensionless)
+
+(1.2)
+
+The two functions g(x) and G(k) in Eq. (1.1) are called Fourier transform pairs. Knowledge about one of the pair is sufficient to reconstruct the other. If G(k) is known, then g(x) can be recovered by performing an inverse Fourier transform (IFT):
+
+-if(x)
+FT -1 [G(k)] -- g(x) -- f G(k) e+2rrikxdk
+m CX3
+The IFT undoes the effect of the FF, that is:
+
+(1.3)
+
+vr-'
+
+-
+
+(1.4)
+
+and vice versa:
+
+vr[vr-'
+
+- c(k
+
+Note that the fight sides of Eqs. (1.4) and (1.5) are simply g(x) and G(k), respectively, and are not multiplied by any scaling factors. This is because the IFT definition in Eq. (1.3) is properly normalized. A further discussion of the normalization is given in subsection 1.1.10.
+Note the factor of 2zr that appears in the argument of the exponentials in Eqs. (1.1) and (1.3). If instead domain variables such as time and angular frequency (co, measured in radians/second) are used, then the form of the FT appears somewhat differently. The FT and its inverse become:
+
+fqt-(X)
+G(t) -- ~1 g(co)e -iogt do9
+
+-- (X)
+f+CX~
+g(co) -- G(t) eiwtdt
+
+(1.6)
+
+Note the absence of the 2zr factor in the exponential in Eq. (1.6) and the extra multiplicative normalization factor in front of the FT. Equation (1.6) could be
+
+1.1 FOURIER TRANSFORMS
+
+9
+
+recast into a more symmetric form by splitting the 27r into equal x/(27r) factors in the denominators of both the FT and IFT definitions. Alternatively, we can recast Eq. (1.6) by making the familiar substitution from angular frequency co to standard frequency f (measured in cycles/second or hertz):
+
+c o - 27rf d co - 27r df
+
+(1.7)
+
+Substituting Eq. (1.7) into Eq. (1.6) yields the symmetric FT pairs
+
+f G(t) - g(f) e-27riftdf
+
+(~.8)
+
+and
+
+f--~-OG
+
+g(f)-
+
+G(t)e27riftdt
+
+(1.9)
+
+In this book, we mainly use the form of the FT and IFT with the factor of 27r in the exponential, such as Eqs. (1.1) and (1.8).
+
+1.1.2 MULTIDIMENSIONALFOURIER TRANSFORMS, AND SEPARABILITY
+Multidimensional FTs often arise in MRI. For example, the two-dimensional FT (2D-FT) of a function of two variables can be defined as"
+-k-r +-~c
+FT[g(x,y)]-G(kx, k~,)- f fg(x,y)e-2~ik'Xe-2~ik::dxdy
+- - O C - - ~)C,
+-ff+gVC(+xVC,y)e-2~i~dxdy (1.10)
+--OO - - ~
+
+where i - (x, y) and k - (kx, kv) are vectors. The inverse 2D-FT is given by:
+
++cx~ +oc
+
+(1.11)
+
+w oG - oo
+
+Eqs. (1.10) and (1.11) are readily generalized to three or more dimensions.
+
+10
+
+CHAPTER 1 TOOLS
+
+If the function g is separable in x and y:
+
+g(x, y) = gx(X) gr(Y)
+
+(1.12)
+
+then the FT is also separable:
+
+FT[g(x, y)] = FT[gx(x)gr(Y)] = Gx(kx)Gy(ky)
+
+(1.13)
+
+An example of a separable two-dimensional function is the Gaussian:
+
+_(.,.2+:.2) _,.2 _,.2
+e 2a2 ~-- e 2 0 2 e 2 ~ 2
+
+(1.14)
+
+In contrast, is not separable.
+
+(x + y)2 _ x 2 + y2 4_ 2xy
+
+(1.15)
+
+1.1.3 PROPERTIES OF THE FOURIER TRANSFORM
+
+An important property of the FT is the shift theorem. A shift or offset of the coordinate in one domain results in a multiplication of the signal by a linear phase ramp in the other domain, and vice versa:
+
+-it-(3o
+FT[g(x + a)] -- f g(x) e -2rrik(x+a) dx - G(k) e -2Jrika
+
+(1.16)
+
+A second useful property of the FI' is that convolution in one domain is equivalent to simple multiplication in the other. If f (x) and g (x) are two functions, then convolution is defined as"
+
+fnt-(X~
+f (x) | g(x) -- f (x - x') g(x') dx'
+
+(1.17)
+
+--00
+
+and
+
+FT[f(x) | g(x)] = F(k) G(k)
+
+(1.18)
+
+Parseval's theorem (named after Marc-Antoine Parseval des Ch~snes, 17551836, a French mathematician) is a third commonly used property of the FT. It states that if f and g are two functions with Fourier transforms F and G, respectively, then
+
+f
+
+f
+
+1.1 FOURIERTRANSFORMS
+
+11
+
+where * denotes complex conjugation. Letting g = f in Eq. (1.19) results
+
+in a useful special case, which shows that the FT operation conserves
+
+normalization:
+
++oo
+
++oo
+
+f ,f(x)12dx- f IF(k)12dk
+
+(1.20)
+
+--OO
+
+--OG
+
+Table 1.2 provides several 1D-FT pairs that are commonly used in MRI. These relationships can be applied to multidimensional FTs if the variables are separable.
+
+1.1.4 THE DISCRETE FOURIER TRANSFORM AND ITS INVERSE
+
+In MRI, the sampling process provides a finite number (e.g., 256) of complex
+
+data points, rather than a function of a continuous variable. Consequently, the
+
+MR image is normally reconstructed with a DFT. Given a string of N complex
+
+data points:
+
+{d} = {d0, dl, d2 . . . . . tiN-l}
+
+(1.21)
+
+the Jth element of DFT is defined as:
+
+N-I -2rriJK
+DFT[{d}]j - Dj -- dKe U ,
+K=0
+
+J -- 0, 1, 2 . . . . . N - 1
+
+(1.22)
+
+Note that the index J = 0 represents the DC, or zero-frequency element, of the DFT (DC is adopted from the abbreviation for direct current used in electrical engineering). The exponential factor in Eq. (1.22) is sometimes called a twiddle factor. The Kth element of the inverse DFT (IDFT) is defined as
+
+1 N-1
+
++2rciJtK
+
+D F T - 1 [ { D } ] K - - d K - - - ~ ~ Dj,e u , K -- O, 1, 2, . . ., N - 1
+
+J'=0
+The factor of 1/N in Eq. (1.23) is required for normalization, so that
+
+(1.23)
+
+DFT-I [ D F T [ { d } ] ] - {d} D F T [ D F T - 1 [ { D } ] ] - {D}
+
+(1.24)
+
+In analogy to the manipulation of the 2rr-normalization factor of the complex FT described for Eqs. (1.6)-(1.9), the normalization factor of 1/N in Eq. (1.23) can be moved from the IDFT to the DFT. Alternatively, it is sometimes symmetrically distributed as equal 1 / ~ factors on both the DFT and IDFT. It is
+
+12
+
+CHAPTER 1 TOOLS
+
+TABLE 1.2 Fourier Transform Pairs Commonly Used in Magnetic Resonance Imaging
+
+-at-oo
+
+g(x)
+
+FT[g(x)] - G(k) -- f g(x)e -2Jrikx dx
+
+g(x)e2Jriko x
+
+--00
+G(k - ko)
+
+g(x - xo) x
+
+G(k)e-2Jrikxo Ic~lG(c~k)
+
+g(-x)
+
+G(-k)
+
+dg(x) dx
+g*(x)
+
+2zrikG(k) G*(-k)
+
+xg(x)
+af (x) + bg(x)
+
+i dG(k)
+27r dk aF(k) + bG(k)
+
+f (x) | g(x)
+
+F(k)G(k)
+
+% ifx r
+
+~(x)=
+
+6(x) dx = 1
+
+1 e27r ikox
+cos(2n'kox) sin(2rr kox) cos2 (27rkox)
+sin 2 (27rkox) cos3(2rr kox ) sin3 (2yrk0x)
+
+6(k)
+
+fi(k - ko)
+1
+~[S(k - ko) + S(k + ko)]
+
+1
+_2~[6(k - ko) - 6(k + ko)]
+
+1 [~(k) + 3(k-2ko)+3(k+2ko)]
+
+2
+
+2
+
+1 [~(k ) ~(k-2ko)+~(k+2ko)]
+
+2
+
+2
+
+1
+~[3(~(k - ko) + ~(k + ko)) + 8(k - 3ko) + ~(k + 3ko)]
+
+1
+1- [83 ( 8 ( k - ko) - 6(k + ko)) - ,~(k - 3ko) + 8(k + 3ko)]
+
+1.1 FOURIERTRANSFORMS
+
+13
+
+oo
+Z 6(x -- nxo)
+n----00
+1 ifx>O H(x)= 0 ifx <0
+
+TABLE 1.2 Continued
+
+Z ~ k-m m
+
+X0 m=--cx~
+
+X0
+
+21zr [zr6(k) - i Principle part ( ~ ) ]
+
+RECT (x~o) -- {1 0
+
+if lxl -< xo 2x0SINC(u), iflxl > xo
+
+sin(u) SINC(u) =-- ~ u ,
+
+u -
+
+27r kxo
+
+e-X2/2rr 2
+
+O"~ / ~ e -2zrzrrzk2, cr real
+
+e-Xlxl H(x)e -xx
+
+2~. ~2 4- (2rrk)2 '
+1
+X 4- 2rrik'
+
+Re)~ > 0 Re~. > 0
+
+best to check the documentation of the particular numerical routines that you
+
+use. The 1/N normalization factor is required (somewhere) for Eq. (1.24) to
+
+hold, because"
+
+N-1 -27riK(Jt-J)
+
+I N,
+
+e
+
+N
+
+--
+
+Ka"'=0
+
+/ 0,
+
+j _ jt otherwise
+
+(1.25)
+
+Although the DFT is typically evaluated numerically, it does have some useful analytical properties, which are summarized in Table 1.3.
+
+1.1.5 IDENTIFYING PHYSICAL UNITS WITH THE DISCRETE FOURIER TRANSFORM OUTPUT
+In the complex Fourier transform of Eq. (1.1), it is easy to identify physical units withx (e.g., cm)andk (e.g., cm-1). With the DFI' of Eq. (1.22), however, J and K are simply dimensionless integer indices. When we perform a DFT on a signal that has physical meaning, such as MRI data, how do we associate physical units with the string of numbers that is the output of the computer? Consider a one-dimensional MR signal S(k), which can be reconstructed with an IFT:
+
+I (x) - [ S(k)e +2~rikxdk
+it]
+--00
+
+(1.26)
+
+14
+
+CHAPTER 1 TOOLS
+
+TABLE 1.3
+Discrete Fourier Transform Pairs
+
+dK
+adK + bcK
+-2zriKa
+dKe N dK-a
+
+N-1 -2niJK
+DFr[{d}]j = Dj -- Z d K e ~
+K=O
+a D j -k- b C j
+DJ+a
+2niJa
+Dje u
+
+(--1)K dK Dj+_~
+
+1 dK+N dN-1-K
+
+1 - e-2niJ
+-2niJ
+1--eu Dj
+2zriJ
+D_je N
+
+In order to see how Eq. (1.26) relates to the DFT, first approximate the continuous variables x and k with their discrete representations"
+
+xj -- JAx kM - - M Ak
+
+(1.27)
+
+Approximating the integral by a discrete summation and substituting Eq. (1.27) into Eq. (1.26) yields"
+
+OO
+I(JAx) -- C Z S(kM)e+2~riJm(AkAx) M-- -r
+
+(1.28)
+
+where the constant C is determined by the normalization conditions; that is, it
+
+is equivalent to a factor of Ak that converts the integral to a sum. The important
+
+point is, comparing the exponentials in Eqs. (1.23) and (1.28), we conclude
+
+that:
+
+1 AxAk = n
+
+(1.29)
+
+N
+
+Equation (1.29) provides the link between the step sizes of the input and
+
+output of the DFT operation and the number of complex points in the data
+
+string. It is a very useful relationship for MRI. For example, it tells us that the
+
+product of the pixel size and the step size in k-space is equal to the inverse of
+
+1.1 FOURIERTRANSFORMS
+
+15
+
+the number of sampled points. Equation (1.29) can be rearranged as:
+
+NAk Ax
+
+(1.30)
+
+which says that the total extent in k-space is equal to the inverse of the spatial pixel size. Similarly, the field of view is the inverse of the step size in k-space.
+
+Example 1.1 Suppose 256 complex points are sampled for a total duration of 8.192 ms. An image is reconstructed with a 256-point DFT. Find the bandwidth, and express it in two common forms: bandwidth per pixel A ppp and the halfbandwidth -+-Av.
+
+Answer Applying Eq. (1.30) with the time-frequency domain pairs, the total bandwidth is:
+
+1
+
+256
+
+NAvpp -- 2Av -- ~ --
+
+= 31.25 kHz
+
+At 8.192 ms
+
+(1.31)
+
+Thus A v -- + 15.625 kHz. The bandwidth in units of hertz per pixel is"
+
+1
+
+1
+
+Appp
+
+--
+_
+
+NAt
+
+=
+
+= 8.192 ms
+
+122 Hz/pixel
+
+1.1.6 PROPERTIES OF THE DISCRETE FOURIER TRANSFORM
+
+Like the continuous FT, the DFT obeys a shift theorem as well. Similar to Eq. (1.16), multiplying the data by a linearly increasing phase ramp results in the shift:
+
+Ny -~1
+
+-2rci(J+a)K NZ-(1
+
+-2yriaK)-2yriJK
+
+Dj+a -- dKe N --
+
+dKe N e N
+
+K-0
+
+K=0
+
+(1.32)
+
+A common case is called the halffield of view or Nyquist shift (named after Harry Nyquist, 1889-1976, a Swedish-born American engineer). Setting a N/2, Eq. (1.32) becomes:
+
+Dj+N-
+
+N-1 y~
+
+(dKe-rciK)e-2~ JK
+
+--
+
+N-1 y~
+
+[dK(--1)K]e ~-2~NiJK
+
+K=0
+
+K=0
+
+(1.33)
+
+The Nyquist shift is used when we want the DC component of the DFT to be centered, instead of occurring at the zeroth point. Because this is typically the case in MR images, the two-dimensional raw data are multiplied by a
+
+16
+
+CHAPTER 1 TOOLS
+
+Pixel # 0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+F~One-half pixel shift
+Center of image
+FIGURE 1.2 Demonstration of the one-half pixel shift that arises with the discrete FT. Here the DFT length is N = 8. The zero frequency, or DC, component of the DFT occupies the zeroth pixel, whose center is indicated with a dot. After a Nyquist shift, the DC signal occupies the fourth pixel. The center of the fourth pixel is shifted by one-half pixel compared to the image center.
+
+checkerboard [ 1 , - 1] pattern before reconstruction (see Section 13.1). Note that if N is an even integer and the ( - 1) K multiplier is used to center the DFT response, then the DC component will not be exactly centered but, rather, offset by one-half pixel. Figure 1.2 illustrates using an example with N = 8. The shift constant a in Eq. (1.32) need not necessarily be an integer, so shifts by fractions of a pixel can be accomplished with the appropriate linear phase ramp. This is sometimes used to correct the one-half pixel offset.
+
+1.1.7 MULTIDIMENSIONAL DISCRETE FOURIER TRANSFORMS
+
+The two-dimensional DFT can be defined as:
+
+M-1 N-1
+L=O K=O
+
+-2~iJK -2~iLH
+N e ~ M,
+
+J--0, 1,2 ..... N-I,
+
+H--0,1,2 ..... M-1 (1.34)
+
+Three-dimensional (and higher) DFTs are defined analogously to Eq. (1.34). Note that the data input for the 2D-DFT is a rectilinear N • M matrix of complex numbers, dKL. Because this matrix can be rearranged either as series of rows or columns, 2D-DFTs can be evaluated by performing either the row
+
+1.1 FOURIERTRANSFORMS
+
+17
+
+or column 1D-DFT first. Similarly, 3D (or higher dimensionality) DFTs can be evaluated by performing the 1D-DFFs in any order. This is a very useful property for partial Fourier reconstructions (Section 13.4), where it is necessary to perform the reconstruction along the partial Fourier direction last.
+
+1.1.8 DISCRETENESS AND PERIODICITY
+If the signal in one domain consists of discretely sampled points, then the FT (or IFT) in the other domain is periodic. In MRI, the signal is discretely sampled, so the image is periodic or consists of replicates that can lead to aliasing artifacts. (This is discussed in more detail in Section 11.1.)
+To understand how this property of periodicity arises, consider the continuous signal S ( t ) , - e ~ < t < cxz. In practice, the signal will be sampled over a finite time interval, - T < t < T. To represent the finite sampling interval, first we multiply the signal S (t) by a rectangle (RECT) function, which is defined in Table 1.2 and which is zero for It l > T. Next, the discreteness of the sampling process can be mathematically represented by multiplication by a sampling comb, which consists of a series of Dirac deltas (further described in Section 1.1.10). If the samples are separated in time by At, then the sampled signal becomes:
+
+S'(t) - S(t)RECT y
+
+a(t - nAt)
+
+n-----O0
+
+(1.35)
+
+According to the convolution theorem, the FT of product in Eq. (1.35) is the convolution of the FTs of the three factors. From Table 1.2, the FT of the RECT function is a sine x over x, or SINC function. Convolution with this factor gives rise to the shape of the point-spread function. The FT of the sampling comb is another series of deltas, this time spaced by 1/At. Convolution with this comb gives rise to the periodic nature of the image. In order to avoid aliasing, the replicates must not overlap. This is accomplished by satisfying the Nyquist criterion--that is, the sampling rate 1/At must be at least twice the highest frequency contained in the signal. (These properties are further discussed in Section 11.1 on bandwidth and sampling.)
+
+1.1.9 THE FAST FOURIER TRANSFORM
+A modern MRI scanner must perform a large number of DFTs to reconstruct an image. Computational speed is an important issue. Consider the DFT from Eq. (1.22)
+
+N-1
+
+J=0,1,2 ..... N-1
+
+(1.36)
+
+K=0
+
+18
+
+CHAPTER 1 TOOLS
+
+where we have abbreviated the twiddle factor
+-2rri
+WN = e N
+
+(1.37)
+
+If the twiddle factors are precalculated and stored in a table of complex numbers, then it takes approximately N 2 complex multiplications to evaluate Eq. (1.36) for all values of J. The FFT algorithm reduces the number of operations and thereby increases the computational efficiency.
+If N is even, then the signal can be split into two subsignals: its evenindexed elements and its odd-indexed elements. It can be shown that the DFT can be expressed as a linear combination of two half-length DFTs of the evenand odd-indexed signals. The total number of complex multiplications is then approximately 2(N/2) 2 -- N 2/2. If N is a power of 2 (1, 2, 4, 8, 16, 32 . . . . ), then this process can be continued recursively all the way down to single-point DFTs. When the sub-FFTs are finally reassembled, the number of complex multiplications is on the order of N log 2 N. For N -- 512 -- 29, this increases the speed by a factor of approximately 512/9 ~ 57, which is very substantial. Clinical high-resolution MRI would not be feasible without the invention of the FFT.
+Although 2 is by far the most common base, or radix, for the length
+of the FFT, some computational speed can be gained whenever N is not a prime number. Because of the wide availability and maximal computational efficiency of the radix-2 FFT, however, signals of arbitrary length are often extended to the next power of 2 by using zero filling (see Section 13.1.2) prior to reconstruction.
+
+1.1.10 THE DIRAC DELTA AND NORMALIZATION OF THE FOURIER TRANSFORM
+
+This section describes the Dirac delta function (named after Paul Adrien
+
+Maurice Dirac, 1902-1984, an English physicist and mathematician) and the
+
+normalization of the continuous FT. Those who are not interested in these
+
+mathematical properties can skip to the next section.
+
+The Dirac delta function (Dirac 1957, 58-61) (or perhaps more properly
+
+the Dirac delta distribution) is zero everywhere except at the origin, yet has
+
+unit area:
+
+l~(x) --
+
+0
++oc
+f a(x)dx -
+--00
+
+1
+
+ifx # 0
+
+(1.38)
+
+Thus, the 6(x) must not be finite at the origin. The Dirac delta has the property of picking out a single value of a function under multiplication and
+
+1.1 FOURIERTRANSFORMS
+
+19
+
+integration"
+
+-t- (X)
+f 3(x - x') f (x) dx -- f (x')
+--(N2
+
+(1.39)
+
+The normalization of continuous FTs, for example, Eqs. (1.1), (1.3), and (1.4), requires that:
+
+g ( x ) - f e2Jrikx
+--00
+By rearranging Eq. (1.40)"
+
+J e-27rikx'g(xt) dx' dk
+
+(~.4o)
+
+['( 1 g(x) -- f g(x') dx'
+
+eZrcik(x-x')dk
+
+(1.41)
+
+-- (X)
+
+and comparing this with Eq. (1.39), we conclude that the contents of the square brackets in Eq. (1.41) must be a representation of the Dirac delta:
+
+--{-OG
+x,, - f e2Jrik(x-x')dk
+- - 0~2
+or, substituting (x - x ~) - a, and 27rk - u"
+
+(1.42)
+
+--I-OG
+1 f 3 ( a ) - ~ eialtdu
+--OG,
+To show that Eq. (1.43) is true, it is useful to first state the result:
+
+(1.43)
+
+--]-oG
+f sin u dll
+/1/ --oo
+
+m 7r
+
+(1.44)
+
+which can be demonstrated either with contour or numerical integration.
+
+20
+
+CHAPTER 1 TOOLS
+
+Then consider:
+f f(a)
+--0@
+
+eiaVdv
+
+f [eiav] -+-00
+
+da -
+
+f (a) i---if- v=-g da
+
+--00
+
++oo
+
+-- f f ( a ) 2 saing ag g d a
+
+--00
+Letting u - ag, Eq. (1.45) becomes"
+
+--F-O0
+2 f f ( ug) siunu du
+
+(1.45) (1.46)
+
+Letting g --+ cx~ and using the result from Eq. (1.44)"
+
+-4-oo
+2 f f ( g ) Sinudu~2f(o)f~u
+
+-t-oo
+sinUu du - 2rrf (0)
+
+--00
+
+--(X)
+
+f (+[) Combining Eqs. (1.45) and (1.47)"
+
+f (a)
+
+elaUdu da -- 2Jrf ( 0 )
+
+(1.47) (1.48)
+
+Thus, the integral of the complex exponential is a Dirac delta function. Specifically, Eq. (1.43) is verified, and the continuous FT and IFT pair of Eqs. (1.1) and (1.3) is properly normalized.
+
+SELECTED REFERENCES
+Bracewell, R. N. 1978. The Fouriertransformand its applications. New York:McGraw-Hill. Brigham, E. O. 1988. Thefast Fouriertransform and its applications. EnglewoodCliffs, NJ:
+Prentice Hall. Cooley, J. W., and Tukey, J. W. 1965. An algorithm for the machine calculation of complex
+Fourier series.Mathematicsof Computation 19:297-301. Dirac, E A. M. 1957.Theprinciples of quantum mechanics.4th ed. Oxford:Oxford,University
+Press.
+
+RELATED SECTIONS
+Section 11.1Bandwidthand Sampling Section 13.1 FourierReconstruction Section 13.4 Partial Fourier Reconstruction
+
+1.2 ROTATINGREFERENCEFRAME
+
+21
+
+1.2 RotatingReferenceFrame
+
+The description of many physical quantities and processes requires a coordinate
+system, or reference frame. Depending on the choice of reference frame, the
+description of a physical process can be drastically different. For example, suppose a bicyclist is traveling east as viewed from a building's window. The same bicyclist will appear to be going west when viewed from a car traveling east at a higher speed. In this example, the building and the car are two different reference frames. They give entirely different descriptions of the same physical process.
+Two reference frames, the laboratory reference frame and the rotating reference frame, are often employed to describe MRI phenomena. The labora-
+tory reference frame is defined with respect to the scanner or the magnet. By convention, when discussing the rotating frame, the B0-field direction is
+always chosen to be the z axis (also known as the longitudinal axis). (This is
+somewhat different from the definition of logical gradient axes in Section 7.3, in which z axis may or may not correspond to the B0-field direction.) The x and y axes in the laboratory reference frame are selected as a pair of orthogonal vectors in a plane normal to the B0-field (denoted by x' and y' in Figure 1.3a). In a horizontal magnet with a cylindrical bore, the y axis is usually chosen to be from floor to ceiling (or from down to up). When the z axis is pointing toward the viewer, the x axis is selected to be from left to fight. These three axes conform to the fight-hand rule, which states that if the fingers of the right hand are curled from the positive x axis to the positive y axis, the thumb points
+along the positive z axis. Such a coordinate system is called a right-handed Cartesian coordinate system, and the plane defined by the x and y axes is known as the transverse plane.
+
+(a)
+
+z'
+
+(b)
+
+Bo
+
+y'
+
+,,y
+
+= --moZ X
+FIGURE 1.3 (a) The laboratory reference frame and (b) a rotating reference frame. These frames are related by a rotation about the z axis with an angular frequency oJ0.
+
+22
+
+(a)
+
+z'
+
+o t
+
+CHAPTER 1 TOOLS
+
+(b)
+
+z
+
+M
+y
+
+x ~
+
+x
+
+FIGURE 1.4 Spin precession as viewed from (a) the laboratory reference frame and (b) a rotating reference frame. The rotating reference frame slows down the precession. When the angular frequency of the rotating reference frame is equal to the spin precession frequency, the rotational motion of the spin is frozen. (Note that the angular frequency vector Y~follows the fight-hand rule in the convention that we use.)
+
+When the transverse plane of the laboratory reference frame rotates about the z axis with a nonzero angular frequency coo (Figure 1.3b), a rotating reference frame results. Although coo is usually a constant, it does not have to be.
+The rotating reference frame greatly simplifies the description of many MRI phenomena. For example, in the laboratory reference frame, spins will precess about the magnetic field with their Larmor frequency co (Figure 1.4a, named after Joseph Larmor, 1857-1942, an Irish physicist). In the reference frame rotating with the Larmor frequency, the precession of the spins appears stopped (Figure 1.4b). Using the rotating frame is analogous to stepping onto a moving merry-go-round. From that reference frame, the rotation of the carousel also appears stopped. A mathematical description of this simplification is given in subsection 1.2.2. The concept of the rotating frame is widely used in analyzing and describing the precession and nutation of magnetization, the radiofrequency (RF) magnetic field (i.e., B1 field), and, in particular, the interaction between spin systems and magnetic fields. Many examples can be found throughout this book (e.g., in Sections 3.1, 3.3, and 6.3).
+
+1.2.1 MATHEMATICAL DESCRIPTION
+
+Let x I, yl, and z~denote the three Cartesian axes in the laboratory reference frame, and x, y, and 'z denote the three axes in the corresponding rotating reference frame. Consider a time-dependent vector /5(t) whose three
+components in the laboratory reference frame are px,(t), py,(t), and pz,(t),
+respectively:
+
+~'(t) -- px,(t)~' -t- py,(t)~' + pz,(t)~"
+
+(1.49)
+
+1.2 ROTATING REFERENCE FRAME
+
+23
+
+(Recall that the symbol A denotes a unit vector.) The same vector can also be expressed in the rotating reference frame"
+
+flU) -- px(t)fc + py(t)~ + pz(t)~
+
+(~.5o)
+
+Because the reference frame rotates about the z axis, it can be readily seen
+
+that:
+
+2'-- ~
+
+(1.51)
+
+The two sets of transverse axes are related to one another by a rotation:
+
+x -- x , cos(w0t) _ y, sin(co0t) y -- x t sin(w0t) + yt cos(co0t)
+
+(1.52) (1.53)
+
+where coo is the angular frequency of the rotating frame.
+
+In light of Eqs. (1.5 1-1.53), the three components of/3(t) in the rotating
+
+frame are related to their laboratory-frame counterparts by"
+[coso, s,no, o]rx]
+
+py -- sin~oot coscoot 0 |py, -- 3t/5'
+
+(1.54)
+
+Pz
+
+0
+
+0 1 LPz'
+
+where 9~ is a rotation matrix. If the components in the rotating reference frame
+
+are known, the components in the laboratory frame can be determined from"
+[ cos0, sin0, 0]
+
+py,] - -sincoot cosw0t 0 py _ 3 1 - 1 ~ _ 31T fi (1.55)
+
+Pz'J
+
+0
+
+0 1 Pz
+
+where the inverse of the rotation matrix ~t-1 equals its transpose 3lT. A useful relation between the rates of change of a vector in the two ref-
+erence frames can be derived (Slichter 1989) by taking the time derivative of Eq. (1.49):
+
+(d~(t)) _(d~(t)) + ~ x/5(t)
+
+dt lab
+
+dt rot
+
+(1.56)
+
+-- -o90~
+
+(1.57)
+
+where, subscripts lab and rot represent laboratory and rotating reference frames, respectively, and f2 is a rotational angular velocity vector. For a clockwise-rotating reference frame (as viewed from the positive z axis), points to the negative z axis as indicated in Eq. (1.57) and Figure 1.4. (f2 follows a fight-hand rule" If the fingers of the fight hand curl in the direction
+
+24
+
+CHAPTER 1 TOOLS
+
+of the rotation of the rotating frame, then the thumb points along f2.) The relationships given by Eqs. (1.54) and (1.56) are often used to simplify the descriptions of MRI phenomena, some of which are detailed in the following subsection.
+
+1.2.2 SIMPLIfiCATIONS PROVIDED BY THE ROTATING FRAME
+Description of Spin Precession Consider a group of spins precessing
+with the same phase in a static magnetic field B0. The net magnetization of the spins, M, will precess about the magnetic field direction (i.e., the z axis) with a Larmor frequency o~ = 9/B0 (where y is the gyromagnetic ratio). In the laboratory reference frame, this rotational motion can be mathematically described by:
+
+- - ~ l a b - M x (co~:)
+
+(1.58)
+
+According to Eqs. (1.56) and (1.57), the rate of change of M in the rotating reference frame is:
+
+-~
+
+-- --~
+
+- ~ x M = ( ~ o - e ) 0 ) M x ~:
+
+rot
+
+lab
+
+(1.59)
+
+(Note that we have used ~2 x M = - M x ~ to derive Eq. (1.59).) If we choose the angular frequency of the rotating frame to be equal to the Larmor
+frequency (i.e., w0 = w), then the magnetization becomes a stationary vector, that is, (dM/dt)rot -- 0. This example illustrates how the rotating reference
+frame simplifies the description of spin precession.
+
+Radiofrequency Magnetic Field In order to produce transverse magnet-
+ization that generates the MRI signal, a component of the RF magnetic field
+must be in the transverse plane. Suppose that the RF magnetic field B1 (t) is initially applied along the x axis and has a frequency of Wrf (also known
+as the carrier frequency). In the laboratory frame, a circularly polarized, or quadrature, B1 field can be expressed as:
+
+B1 (t) - J' B1 (t) cos COrft- ~' B1 (t) sin Wrft
+
+(1.60)
+
+1 [cos0 Using Eq. (1.54), we can readily transform this B1 field to the rotating frame:
+
+Bl,y(t) -- sin~o0t cose)0t
+
+- B l ( t ) sin~orft
+
+(1.61)
+
+Bl,z(t) rot
+
+O
+
+0
+
+0
+
+1.2 ROTATING REFERENCE FRAME
+
+25
+
+If we set the rotating frame angular frequency coo to be equal to the cartier frequency corf, Eq. (1.61) then becomes:
+
+B,,y(t)| -L 0 J
+
+(1.62)
+
+Bl,z(t)Jrot
+
+Clearly, the rotating frame has demodulated the RF oscillation and transformed the rapidly oscillating RF field into a much simpler form--the time-dependent envelope Bl(t). This simplification is widely used in analyzing RF pulses throughout Part II of this book (see examples in Sections 3.1, 6.1, and 6.3).
+
+Two-Dimensional Vectors and Their Complex Representation Often twodimensional vectors given by Eq. (1.63) are used to describe quantities in the transverse plane, such as the B1 field or the magnetization. A two-dimensional vector precessing with an angular frequency co can be expressed as:
+
+p(t) -- fix(t) q- py(t) = ~ p ( t ) cos cot - ~ p ( t ) s i n cot
+
+(1.63)
+
+If the following identifications are made"
+
+r 1, ~ r
+
+~/~-1
+
+(1.64)
+
+then the two-dimensional vector/~(t) in Eq. (1.63) is equivalent to a complex variable pc(t) given by:
+
+pc(t) -- p ( t ) cos cot - i p ( t ) sin cot -- p ( t ) e -i~176
+
+(1.65)
+
+Equation (1.65) is called the complex representation of the two-dimensional vector/5. This representation is particularly convenient to work with because of properties of the complex exponential. For example, a straightforward multiplication can translate a vector from the laboratory frame to the rotating frame:
+
+[p(t )e-iO~ ]rot -- p(t )e-i~Ot eiOJot _ p(t )e-i (w-coo)t
+
+(1.66)
+
+We can use this relationship to rederive the results in the earlier part of subsection 1.2.2 with a greater simplicity.
+The complex representation is a natural way to describe the precessing transverse magnetization. The MRI signals induced by the precessing transverse magnetization are also often expressed in the complex form and simplified using Eq. (1.66). An example is provided in the following subsection.
+
+26
+
+CHAPTER 1 TOOLS
+
+The Bloch Equations The Bloch equations (1.67), namedafter Felix Bloch 1905-1983, a Swiss born American physicist, relate the time evolution of magnetization to the external magnetic fields, the relaxation times (T1 and T2), the molecular self-diffusion coefficient (D), and other parameters (Slichter 1989; Torrey 1956).
+
+d m = y M-. • B-. - Mx~ + m y ~ - ( M o - m z ) z + DvZAqt
+
+dt
+
+T2
+
+T1
+
+(1.67)
+
+If we apply a static B0 field and the RF B1 field given by Eq. (1.60) to a spin system, then the overall magnetic field becomes:
+
+B -- ~ B1 (t)cos COrft - ~ B1 (t)sin Ogrft + ~B0
+
+(1.68)
+
+Let us ignore the relaxation and diffusion processes for now. Then, Eq. (1.67) reduces to"
+
+dM = y M • (J B1 (t) cos COrft - ~ BI (t) sin COrft + ~B0)
+dt
+
+(1.69)
+
+Next, we convert Eq. (1.69) from the laboratory reference frame into a rotating reference frame. Applying Eq. (1.56) to Eq. (1.69), we obtain:
+
+--~
+
+- -~
+
+- f2 x M - v M x ~ BI (t) cos corft
+
+rot
+
+lab
+
+S2 - ~ B l ( t ) s i n ~Orft + ~:B0 + --
+Y
+
+(1.70)
+
+This conversion, however, is not yet complete because the B1 field is still in the laboratory frame. The components of the B l field in the rotating frame can be obtained from Eq. (1.61)"
+
+I Bl,x,rot(t) -- B1 (t)(cos cootcos corft + sin coot sin corft) -- B1 (t) cos(coo - COrf)t
+
+Bl,y,rot(t) -- B1 (t)(sin cootcos corft - cos coot sin corft) -- B1(t) sin(coo - corf)t
+
+Bl,z,rot(t) -- 0
+
+(1.71)
+
+Incorporating the B1 field of Eq. (1.71) into Eq. (1.70) and explicitly expressing
+
+f2 using Eq. (1.57), the rotating reference frame Bloch equation is derived:
+
+-~
+
+- vM x B1 (t)(~- cos(corf - co0)t - ~ sin(corf - co0)t) + ~ B0 -
+
+rot
+
+Y
+
+(1.72)
+
+1.2 ROTATINGREFERENCEFRAME
+
+27
+
+The magnetic field in the square brackets is known as the effective field, Beff"
+
+Beff -- B1 (t)(J cos(corf - co0)t - ~ sin(corf - co0)t) + 2 B0 -
+
+(1.73)
+
+In the rotating reference frame, the magnetization always precesses about
+Beff. A special scenario occurs at resonance (i.e., co -- corf -- coo), where the effective field reduces to .~B1(t) and the magnetization precesses about the applied B1 field, as if there were no static magnetic field B0 present. The concept of effective field is frequently used to describe the interactions between RF pulses and the spin systems (see, for example, Sections 6.1 and 6.2).
+Equation (1.72) can be equivalently expressed as three scalar equations after explicitly carrying out the vector cross product:
+
+-- y M y Bo - ~ + YMz B1 (t) sin(corf - co0)t
+
+dt rot
+
+Y
+
+(1.74)
+
+(dMy) _ _yMx (Bo_ 7) + yMzBl(t)cos(corf _coo)t dt rot
+
+(1.75)
+
+-- - y Mx B1 (t) sin(corf -- coo)t -- ~'MyB1 (t) cos(coff - coo)t dt rot
+(1.76)
+
+Let us define a complex quantity to represent the vector component of the magnetization in the transverse plane:
+
+M+ -- Mx + i My
+
+(1.77)
+
+Using this complex quantity, we can derive Eq. (1.78) by multiplying Eq. (1.75) by i and adding the result to Eq. (1.74):
+
+-- - i y M + BO - ~ + i y M z B l ( t ) e -i(~~176176 (1.78)
+
+dt rot
+
+Y
+
+Equation (1.78) is particularly useful in solving for the transverse magnetization after an RF excitation pulse (see Section 3.1).
+Finally, let us consider two special cases. In the first case, we set the rotating frame frequency to be identical to the carrier frequency of the RF field (i.e., coo = corf). Thus, Eq. (1.72) becomes:
+
+( )rot
+
+28
+
+CHAPTER 1 TooLs
+
+This reference frame is sometimes referred to as the RF reference frame or B1 reference frame because the B1 field is stationary in this frame. Note that the B1 field lies along the x axis because we have chosen a specific initial condition for t - 0, as implied by Eq. (1.60). In general, the ~ B1 term can be replaced by (J cos c~ + ~ sin c~)B1, where c~ is the angle between the initial B1 vector and the x axis. Equation (1.79) shows that in a rotating reference frame with coo -- corf, the B1 field is demodulated and the main magnetic field is effectively reduced by corf/Y. At resonance (i.e., corf = v B0), the z component of the effective magnetic field disappears and the magnetization will precess about the B1 field.
+In the second case, we can set the rotating frame frequency equal to the Larmor frequency (i.e., coo = co). Thus, Eq. (1.72) becomes:
+
+()rot-- y M x [B1 (t)(J cos(cod - co)t - ~ sin(cod - co)t)] (1.80)
+This reference frame is known as the Larmor reference frame or Bo reference frame because the B0 field disappears in this reference frame. If we keep the RF field at a fixed frequency and sweep the B0 field (i.e., changing co), resonance can also occur when co - coo - corf.
+
+SELECTED REFERENCES
+Slichter, C. E 1989. Principlesof magneticresonance.Berlin: Springer-Verlag. Torrey, H. C. 1956. Bloch equations with diffusion terms. PhysicalReview 104: 563.
+
+RELATED SECTIONS
+Section 3.1 Excitation Pulses Section 3.2 Inversion Pulses Section 3.3 Refocusing Pulses Section 4.1 Composite Pulses Section 4.3 Spectrally Selective Pulses Section 6.1 Adiabatic Excitation Pulses Section 6.2 Adiabatic Inversion Pulses Section 6.3 Adiabatic Refocusing Pulses
+
+RADIOFREQUENCY PULSES
+
+31
+
+Introduction
+
+Part ii of this book describes radiofrequency (RF) pulses. Chapter 2 focuses on several commonly used RF pulse shapes including hard pulses (Section 2.1), SINC pulses (Section 2.2), and a family of tailored pulses generated with the Shinnar-Le Roux (SLR) algorithm (Section 2.3). The SLR section is more mathematically involved than many others in the book, and that section can be skipped unless the reader has a special interest in this topic. Some of the theoretical results from Section 2.3, however, have wider practical significance and reappear in other sections of Part II. For example, SLR analysis can be used to explain when and how an excitation pulse also can be used for refocusing. A discussion of variable-rate pulses (Section 2.4) completes Chapter 2. Variable rate is not a specific pulse shape but rather a method to modify the shape of any spatially selective RF pulse in order to reduce its RF power deposition. In addition to the basic pulse shapes covered in Chapter 2, other pulse shapes are used in MRI and several less commonly used pulse shapes are discussed in the other sections of the book (for example, a discussion of Gaussian and Fermi pulse shapes is provided in Section 4.2).
+Chapter 3 discusses three basic RF pulse functions: excitation (Section 3.1), inversion (Section 3.2), and refocusing (Section 3.3) of the magnetization. These sections describe nonadiabatic RF pulses; the adiabatic pulses performing these same three functions are the focus of Chapter 6. The slice profile and nonlinearity of the Bloch equations are explored in Section 3.1; Section 3.3 introduces the formation of RF spin echoes. The relationship among the three RF pulse functions is explored in both Sections 3.2 and 3.3. All the sections in Chapter 3 examine the effect of spins being off-resonance on their respective functions.
+Spectrally selective RF pulses (i.e., pulses that are played without a concurrent slice-selection gradient and affect spins only within a specific frequency range) are discussed in Chapter 4. Composite pulses (Section 4.1) are more widely Used in magnetic resonance (MR) spectroscopy, but have found applicatiOn to imaging as well. Magnetization transfer pulses (Section 4.2) are mainly used in 3D 'time-of-flight MR angiography. A general discussion of spectrally selective pulses is given in Section 4.3, which includes a discussion of lipid suppression with spectrally selective excitation and saturation, widely used ~n imaging applications.
+Spatially selective RF pulses are the topic of Chapter 5. This chapter covers a number of RF pulses that are played along with a gradient pulse to affect the magnetization in a spatially dependent fashion. The pulses included in this chapter are.multidimensional pulses (Section 5.1), ramp pulses, also known as tilted optimized non saturating excitation (TONE) pulses (Section 5.2); spatial
+
+32
+
+RADIOFREQUENCY PULSES
+
+saturation pulses (Section 5.3); spatial-spectral pulses (Section 5.4); and spatial tagging pulses (Section 5.5). Multidimensional pulses are selective in more than one spatial direction. Ramp pulses intentionally yield a nonuniform spatial profile and are used for MR angiography. Spatial saturation pulses attenuate signal from specified regions and are widely used in imaging applications to suppress artifacts from aliasing, flow, and motion. Spatial-spectral (SPSP) pulses are simultaneously selective in one spatial and the spectral dimension. (The placement of the spatial-spectral section in Chapter 5 rather than in Chapter 4 is somewhat arbitrary). The chapter concludes with a discussion of spatial tagging pulses, which are used to prepare the longitudinal magnetization with a set of stripes or grids prior to an imaging sequence. Unlike the other pulses described in Chapter 5, tagging pulses are not necessarily played with a concurrent slice-selection gradient but rather can be interleaved with a gradient pulse.
+Chapter 6 revisits the basic RF pulse functions of excitation (Section 6.1), inversion (Section 6.2), and refocusing (Section 6.3) using adiabatic pulses. Adiabatic pulses are insensitive to variations in B1-amplitude as long as a minimum amplitude threshold is met. These pulses are governed by a specific set of rules, known collectively as the adiabatic condition, discussed in Section 6.1. As such, the properties of adiabatic pulses and their interaction with the magnetization are quite different from their nonadiabatic counterparts. In clinical MR imaging, perhaps the most widely used adiabatic pulse is the hyperbolic secant inversion pulse, which is described in Section 6.2. That pulse can be made spatially selective by applying a concurrent slice-selection gradient. Other adiabatic pulses are less frequently used in imaging, mainly because of lack of robustness in spatial selectivity. They are quite useful in localized spectroscopy, however, especially when RF power deposition is not problematic.
+It should be noted that the classification of RF pulses in Chapters 2-6 is somewhat arbitrary. The placement of a pulse in a particular category does not preclude it from belonging in other categories as well. For example, a SINC pulse can be used as spatial saturation pulse, a spectrally selective pulse, an excitation pulse, an inversion pulse, or a refocusing pulse. Thus, Chapters 3-6 focus on the general properties of any RF pulse used for that function rather than concentrating on specific pulse shapes.
+Several physical quantities are used repeatedly throughout Part II to characterize RF pulses. The RF envelope, which we denote by B1 (t) or A(t), is typically measured in microteslas. The RF envelope is a (relatively) slowly varying function of time, with at most a few zero-crossings per millisecond. The RF pulse played at the physical RF coil is a sinusoidal carrier waveform that is modulated (i.e., multiplied) by the RF envelope. The RF cartier varies much more rapidly than the RF envelope; its frequency is typically set equal to Larmor frequency (e.g. 63.85 MHz at 1.5 T), plus (or minus) the frequency
+
+RADIOFREQUENCY PULSES
+
+33
+
+offset 8f required for the desired slice location, as described in Section 4.3. (For spectrally selective pulses, the chemical shift rather than the spatial offset determines the carrier frequency, as described in Section 4.3.)
+The duration of the RF pulse is called the pulse width (T) and is typically measured in seconds or milliseconds. The RF bandwidth Af , specified in hertz or kilohertz, is a measure of the frequency content of the pulse and is typically given by the full width at half maximum (FWHM) of the frequency profile (Section 4.3). (Note that the RF bandwidth Af differs from the receiver bandwidth Av discussed in Section 11.1, and from the carrier frequency offset 8f). The dimensionless time-bandwidth product T A f is a measure of the selectivity of the pulse and is determined by the pulse shape.
+Another parameter that is commonly used to describe an RF pulse is its flip angle O. The flip angle is measured in radians or degrees and describes the nutation angle produced by the pulse. For example, an excitation pulse that tips the longitudinal magnetization completely into the transverse plane has a flip angle of 90~ or n / 2 rad. As shown in Section 3.1, the flip angle (on-resonance) can be calculated by finding the area underneath the envelope of the RF pulse. This calculation, however, is not valid for adiabatic pulses.
+RF pulses deposit RF energy that can cause unwanted heating of the patient. This heating is measured by the specific absorption rate (SAR) (in watts per kilogram). Clinical MRI scanners operate under regulatory guidelines for the maximal amount of SAR that can be deposited. In the United States, the Food and Drug Administration specifies nonsignificant risk guidelines for the maximal amount of SAR that can be deposited into the patient's head, whole body, torso, or extremities. Although typically the exact amount of SAR deposited must be empirically calibrated, several convenient scaling relationships exist. For example, in the clinical range of field strengths (B0 = 0.2-3.0 T) SAR is proportional to the square of the Larmor frequency or, equivalently, the square of B0. As discussed in Section 2.4, SAR is also proportional to the square of the Bl-amplitude. Thus, for a nonadiabatic pulse, the SAR is proportional to the flip angle squared, 02 . Holding other parameters (i.e., the flip angle and pulse width) fixed, SAR is linearly proportional to the RF bandwidth. To summarize the scaling relationships:
+
+SAR ~ B202Af
+
+It is interesting to note that in MRI, unlike computed tomography, the spatial distribution of the dose (i.e., the SAR) is not concentrated near the selected slice. Instead in MRI the deposited energy covers the entire sensitive region of the RF transmit coil. This is because the energy involved in tipping the spins is negligible compared to the energy dissipated as heat, which is nearly the same whether or not the spins are on-resonance. For a
+
+34
+
+RADIOFREQUENCY PULSES
+
+more complete discussion of SAR, the reader is referred to Bottomley et al. (1985).
+
+SELECTED REFERENCES
+Bottomley, P. A., Redington, R. W., Edelstein, W. A., and Schenck, J. F. 1985. Estimating radiofrequency power deposition in body NMR imaging. Magn. Reson. Med. 2: 336-349.
+
+CHAPTER
+2
+RADIOFREQUENCYPULSE SHAPES
+2.1 Rectangular Pulses
+A rectangular or hard pulse is simply a pulse shaped like a RECT function in the time domain (Figure 2.1). (In contrast, pulses that are time-varying or shaped are sometimes called soft pulses.) Hard pulses can be used when no spatial or spectral selection is required and are convenient because the pulse length can be very short. Like a spectrally selective pulse, a hard pulse is played without a concurrent gradient. The bandwidth of a hard pulse, however, is broad enough so that spins with a wide range of resonant frequencies are affected.
+B1
+T FIGURE 2.1 A rectangular or hard RF pulse.
+35
+
+36
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+In the small flip angle approximation, the frequency profile corresponding to a hard pulse is a SINC. Because the first zero-crossing of a SINC is the inverse of the corresponding RECT width, the narrow pulse width means that a hard pulse flips spins over a very wide bandwidth. The flip angle 0 of a hard pulse is directly proportional to the amplitude (B1) and the width (T) of the pulse:
+
+0 =yB1T
+
+(2.1)
+
+Example 2.1 A commercial MR scanner generates a maximum B1 field of 30 IxT. What is the length T of a hard pulse that gives a 90 ~ flip angle?
+Answer
+
+T = re/2 =
+
+rr/2
+
+= 1.96 • 10-4s -- 1961xs
+
+y B1 (2rr • 42.57 MHz/T)(30 IxT)
+
+2.1.1 RECTANGULAR PULSE USES
+Because most imaging pulse sequences require RF pulses with spectral or spatial selectivity, hard pulses are very infrequently used. One exception is 3D acquisitions (Section 11.6), in which sometimes the imaging volume is sufficiently large to cover the entire sensitive region of the coil. Hard pulses can be grouped together to form composite pulses that are spectrally selective (see Section 4.1). Hard pulses are also used for magnetization transfer, but even there a small amount of windowing may be applied to the pulse (see Section 4.2), for example, to form a Fermi pulse. Hard pulses are also used in combination with gradients to create tagging pulses (see Section 5.5).
+One problem with implementing a hard pulse is that it may be played with poor fidelity by some RF amplifiers because of the waveform discontinuities. In this case, a windowed hard pulse, such as a half-sine pulse, usually works better. Another option is to play a trapezoidal RF waveform. Table 2.1 lists some properties of rectangular and related pulse shapes. Hard pulses must have sufficiently high bandwidth (i.e., sufficiently short temporal duration) so that all the frequencies of interest are excited. From Table 2.1, we see that when the hard pulse duration is 100-500 txs, bandwidths on the order of 2-10 kHz result, which easily cover the range of resonant frequencies encountered in most imaging volumes in the absence of a gradient.
+RELATED SECTIONS
+Section 4.1 Composite Pulses Section 4.2 Magnetization Transfer Pulses Section 5.5 Tagging Pulses
+
+2.2 SINC PULSES
+
+37
+
+TABLE 2.1 Properties of Rectangular Pulses and Related Pulse Shapes
+
+Pulse Shapea
+
+Fourier Transform
+
+FWHM b
+
+1 if Itl< ~T -- 0 if Itl> ~T
+HS(t) = cos (T) RECT (T-~)
+
+TRAP(t)
+0
+(T/2+t)
+r 1
+cr/2-t) r
+
+if Itl> T
+2
+
+if -- __T < t < _T_ + r 2 -- -- 2
+
+if -r--+r <t <-r-r
+
+2
+
+2
+
+if T _ r < t < r___
+
+2
+
+- -2
+
+TSINC(Jrf T)
+
+1.21
+
+T
+
+TSINC (JrfT + 2)
+( +~-SINC ~rfr- ~
+(T-r) • (rcf(T - r))
+SINC (7rf r)
+
+1.64 T
+
+1.21 (r = 0) T
+
+(T)
+
+1.77
+
+r --
+
+T
+
+a HS(t) is a half-sine pulse. TRAP(t) is a trapezoidal pulse with ramp time r and total width T. b F W H M is the full width at half maximum in the frequency domain under the small flip angle
+approximation.
+
+2.2 SINCPulses
+SINC pulses (Runge et al. 1988; MacFall et al. 1990) have been widely used for selective excitation, saturation, and refocusing. A SINC pulse consists of several adjacent lobes of alternating polarity. The central lobe has the highest amplitude and is also twice as wide as every other lobe. The amplitude of the lobes progressively decreases on either side of the central lobe, as their polarity alternates.
+Under the conditions described in Section 3.1, the frequency profile produced by an RF excitation pulse is well approximated by the Fourier transform of its RF envelope. (The shapes of the frequency and slice profiles are equivalent when a slice-selection gradient is played during the RF pulse.) The Fourier transform of an infinitely long SINC pulse is the RECT function (see Chapter 1, Table 1.1); that is, it has the top-hat shape of the ideal slice profile. Consequently SINC pulses have been natural choices when a uniform slice profile is desired. A SINC pulse that can be generated in practice has a finite duration and is obtained by truncating all but the central lobe and a few of its neighbors, or side lobes. In general, the greater the number of lobes that are included in the SINC pulse, the better the approximation to the ideal frequency profile.
+
+38
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+Adding more lobes increases the duration of the pulse. This can lead to a number of adverse effects, such as prolonging the minimum echo time (TE) and repetition time (TR) of the pulse sequence and increasing the sensitivity to flow and off-resonance effects. An apodizing window is usually applied to the SINC pulse to ease the effects caused by truncation and to smooth its slice profile.
+An asymmetric or truncated SINC pulse (MacFall et al. 1990) is implemented by retaining an unequal number of side lobes to the left and to the fight of the central lobe. Retaining fewer lobes to the fight can be used to reduce the minimum TE.
+On commercial MR scanners, tailored pulses, designed with methods such as the SLR algorithm (Section 2.3) have replaced many SINC pulses. For example, for a fixed product of the pulse duration and bandwidth (i.e., the dimensionless time-bandwidth product T Af) minimum phase SLR pulses can generally produce a more desirable slice profile than an asymmetric SINC pulse. Still, SINC pulses, especially symmetric ones, are simple to implement and remain popular, especially for excitation with small flip angles.
+
+2.2.1 MATHEMATICALDESCRIPTION
+SINC Formula The time dependence of the RF envelope of a SINC pulse (without windowing) is given by:
+
+Bl(t)-- ASINC 0
+
+sin (~ot) - - A t o 7ct
+
+--NLto <_ t <_ NRtO (2.2) elsewhere
+
+where A is the peak RF amplitude occurring at t = 0, to is one-half the width
+
+of the central lobe (which is equal to the full width of each side lobe), and NL
+
+and NR are the number of zero-crossings in the SINC pulse to the left and fight
+
+of the central peak, respectively. If NL = NR, the SINC pulse is symmetric.
+
+To a good approximation, the bandwidth of the SINC pulse (FWHM of the
+
+slice profile) is given by:
+
+1
+
+A f ,~ --
+
+(2.3)
+
+to
+
+The precise value of the bandwidth can be determined with Bloch equation
+
+analysis; some examples are given in Table 2.2. According to Eqs. (2.2) and
+
+(2.3), the dimensionless time-bandwidth product of a SINC pulse is given by:
+
+T A f - NL + NR
+
+(2.4)
+
+The time-bandwidth product of a SINC pulse also equals the number of zerocrossings of the RF envelope, including the start and end (i.e., the margins)
+
+2.2 SINC PULSES
+
+39
+
+of the pulse. Because, in practice, NL and NR are both finite (e.g., typically 1 to 4), the SINC pulse has a discontinuous first derivative at NLto and NRtO, which can lead to unwanted tinging in the slice profile. For a symmetric SINC with NL = NR = N, the discontinuity in the first derivative at the margins of the pulse is given by:
+
+dBl (t) I
+
+- {~0
+
+when ltl --+ (Nto)+
+
+(2.5)
+
+dt t--iNto
+
+when It]--+ (Nto)-
+
+The problem of the discontinuous first derivative can be addressed by apodizing the SINC pulse. The apodization window gently tapers the RF amplitude, especially at the start and end of the pulse. Common apodization functions include the Hamming and Hanning windows. SINC pulses apodized by these windows are described by:
+
+sin (~0t)
+
+Bl (t) -- Ato (1-ot)+c~cos
+
+rot
+
+--NLto < t < NRtO
+
+0
+
+elsewhere
+
+(2.6)
+
+where N is the larger of NL and NR. Setting the parameter c~= 0.5 yields the Hanning window, and setting c~--0.46 yields the Hamming window. Equa-
+
+tion (2.6) reduces to the unapodized SINC of Eq. (2.2) when c~= 0 . The
+
+Hanning window ensures a continuous first derivative for a symmetric SINC,
+
+whereas the Hamming window reduces the first derivative at the margins of
+
+the symmetric pulse by a factor of 12.5. Figure 2.2 shows an N = 2 symmetric
+
+Bl(t)
+
+~- t o ~ to--,
+FIGURE 2.2 A symmetric N -- 2 SINC pulse. The bold line shows the pulse without apodization; the thin line shows the pulse apodized with a Hamming window. The width of the central lobe is 2 x to, and the width of all the side lobes is to.
+
+40 B(t)
+
+CHAPTER 2 RADIOFREQUENCY PULSESHAPES
+My, Mx
+
+"4.
+
+--
+
+Ao9
+
+FIGURE 2.3 An N = 4 symmetric SINC pulse apodized with a Hamming window and the resultant frequency profile at a flip angle of 30~ The solid line indicates My, and the dotted line Mx. This frequency profile produced by the SINC pulse is a good approximation of the ideal profile.
+
+SINC pulse with and without a Hamming apodization window. Figure 2.3 shows an N -- 4 symmetric windowed SINC pulse and the resultant frequency (or slice) profile for a 30~ flip angle calculated with the Bloch equations or a forward SLR transform.
+
+Example 2.2 A SINC pulse has a total duration of 3.2 ms. The pulse is symmetric and has one negative lobe on each side of the central lobe. What is the approximate value of the bandwidth in hertz? What are the values of N and TAf for this pulse?
+
+Answer Recalling that the central lobe is twice as broad as the other two, we
+
+can infer that:
+
+3.2 ms
+
+to =
+
+-- 0.8 ms
+
+1+2+1
+
+Therefore the bandwidth is approximately:
+
+1 Aft----
+to
+
+1250Hz
+
+NL -- NR = N -- 2 for this pulse because there are two zero-crossings on each side of the central lobe. The time-bandwidth product can be calculated either directly, or with the use of Eq. (2.4)"
+
+T Af = 3.2 ms x 1250 Hz -- 4.00
+
+or TAf -- NL + NR -- 2 + 2 -- 4
+
+2.2 SINC PULSES
+
+41
+
+(a)
+
+m
+
+0 (b) 1
+0.5
+
+1
+
+2
+
+3
+
+Time (ms)
+
+...... -i'o ....... -~ ........ ~ ....... ~ ........ i'o ........
+Frequency (kHz)
+(c)
+0.6
+0.4
+0.2
+
+.........
+
+i .........
+
+I .........
+
+-10 -5
+
+i .........
+0
+
+I .........
+5
+
+i .........
+10
+
+Frequency (kHz)
+
+FIGURE 2.4 (a) An N -- 4 symmetric SINC pulse apodized with a Hamming window. (b) When played as an excitation pulse at a flip angle of 120~ prominent side lobes appear (arrow). (c) When played as a refocusing pulse (assuming crushers are used), the side lobes are suppressed and the bandwidth is narrowed.
+
+42
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+SINC Refocusing Pulses Given the severe nonlinearity of the Bloch equations for RF excitation with flip angles greater than 90 ~ (see Section 3.1), it is somewhat surprising that SINC pulses can make effective refocusing pulses. (Refocusing pulses are normally played at a flip angle of 180~ but reduced flip angles, e.g., 130~ are sometimes used when SAR is a limiting factor, as discussed in Section 3.3.)
+One reason that SINC pulses can be effectively used for refocusing pulses is that they are typically played with accompanying crusher gradients (see Section 10.2). It can be shown that the slice profile of a refocusing pulse with crushers is equal to the square of the small flip angle profile, which can be demonstrated with SLR analysis (Section 2.3). (Recall that the profile obtained at small flip angles is well approximated by the Fourier transform of the RF envelope and therefore does not contain nonlinearity introduced by the Bloch equations.) Figure 2.4 shows the responses of a SINC pulse with a 120~ flip angle played as an excitation pulse and as a refocusing pulse (with crushers). Both responses were calculated with forward SLR transforms. The lack of side lobes in the refocusing pulse profile is a general result for this pulse and is valid even at a flip angle of 180~ as long as crushers accompany the pulse. Generally the effect of squaring any slice profile is to make it more sharply peaked, to suppress its side lobes, and to narrow it. Therefore, if SINC pulses that are identical (except in flip angle) are used for both excitation and refocusing in a spin echo pulse sequence, the amplitude of the slice-selection gradient of the refocusing SINC pulse is reduced by 25-40% to counteract the slice narrowing effect.
+Table 2.2 gives some quantitative examples of the slice narrowing. When played as a small flip angle pulse (0 = 30~ the values are nearly equal to unity, indicating that Eq. (2.3) holds to an excellent approximation. At 0 = 90 ~ the approximation is less accurate. When the SINC pulses are played as refocusing pulses, with crushers, the bandwidth is substantially lower, so that the amplitude of the slice-selection gradient must be reduced to obtain the expected slice thickness.
+
+TABLE 2.2 RF Bandwidtha, as Measured by the FWHM of the Slice Profile,
+for Two SINC Pulses Apodized with a Hamming Window
+
+Af •
+
+0 = 3 0 ~ 0 = 9 0 ~ O = 180~
+
+NL = NR = N = 2
+
+1.01
+
+1.09
+
+0.67
+
+NL = NR = N = 4
+
+1.00
+
+1.02
+
+0.70
+
+a In units of l/to. See Eq. (2.6). 6 Refocus (with crushers).
+
+2.3 SLR PULSES
+
+43
+
+SELECTED REFERENCES
+MacFall, J. R., Charles, H. C., and Prost, R. 1990. Truncated SINC slice excitation for 31p spectroscopic imaging.Magn.Reson. Imaging8:619-624.
+Runge,V.M., Wood,M. L., Kaufman,D. M., and Silver,M. S. 1988.MRimagingsectionprofile optimization:Improvedcontrastand detectionof lesions.Radiology167:831-834.
+
+RELATED SECTIONS
+Section3.1 ExcitationPulses Section 3.3 RefocusingPulses Section 2.3 SLR Pulses
+
+2.3 SLR Pulses
+Given a slice-selective RF pulse and the initial orientation of the magnetization vector, the slice profile can be determined by solving the Bloch equations for Mx, My, and Mz (e.g., see Eq. 3.13 in Chapter 3). Although numerical methods are usually required, the process is straightforward and deterministic. The inverse problem, however, is much more difficult. Given the desired slice profile and the initial condition of the magnetization, what RF pulse should be applied? For small flip angles, the shape of an excitation pulse can be determined (to an excellent approximation) by inverse Fourier transformation of the slice profile (Section 3.1). This procedure begins to fail for pulses with larger flip angles (i.e., over the range 30-90 ~) due to the nonlinearity of the Bloch equations. In those cases, the RF pulse can be determined by iterative numerical optimization methods (for example, using optimal control theory), but this process is time-consuming and has limited flexibility for making trade-offs among pulse parameters. A summary of iterative and other RF pulse design methods can be found in Warren and Silver (1988, chap. 4).
+The Shinnar-Le Roux (SLR) algorithm (Le Roux 1986; Shinnar, Eleff, et al. 1989; Shinnar, Bolinger, et al. 1989a, 1989b; Shinnar and Leigh 1989; Pauly et al. 1991) allows this inverse problem to be solved directly and efficiently, without iteration. Characteristics such as RF bandwidth, pulse duration, flip angle, percent ripple in the passband, and percent tipple in the stopband are specified, and the algorithm returns the exact RF pulse through a straightforward computational process. Moreover, the SLR algorithm allows the pulse designer to make trade-offs among these parameters before the pulse is even generated. Because of these advantages, the SLR algorithm has found widespread use for nonadiabatic pulse design in imaging and spectroscopy.
+The SLR algorithm uses two key concepts: the two-dimensional mathematical representation of rotations known as SU(2), and the hard pulse
+
+44
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+approximation. Rotations in three-dimensional space can be described equally well by two distinct representations. The first representation uses the familiar 3 x 3 orthogonal rotation matrices and 3 x 1 vectors. This set of 3 x 3 rotation matrices is said to be the special orthogonal 3D group, or SO(3). The second representation uses 2 x 2 unitary matrices, and 2 x 1 complex vectors called spinors (Le Roux 1986; Shinnar and Leigh 1989; Pauly et al. 1991). The set of rotation 2 x 2 unitary matrices is said to be the special unitary 2D group, or SU(2). Both the SO(3) and SU(2) representations are equally valid to describe macroscopic rotations such as those experienced by the magnetization vector. The SU(2) representation for rotations is used in the SLR algorithm because it offers considerable mathematical simplification.
+The second key concept of the SLR algorithm is the hard pulse approximation (Le Roux 1986; Shinnar, Eleff, et al. 1989), which is useful for nonadiabatic pulses and is depicted in Figure 2.5. The hard pulse approximation states that any shaped, or soft, pulse B1 (t) can be approximated by a series of short hard pulses separated by periods of free precession. The approximation becomes progressively more accurate as the number of hard pulses increases and the duration of the free precession periods decreases. When rotations are described in the SU(2) representation and the hard pulse approximation is used, the effect of any soft pulse on the magnetization can be mathematically described by two polynomials with complex coefficients. The process that transforms from the RF pulse to the two polynomials is called theforward SLR transform. It is important that the inverse SLR transform also can be calculated. The inverse transform yields the RF pulse, given the two complex polynomials corresponding to the desired magnetization.
+
+\
+
+At
+FIGURE 2.5 The hard pulse approximation. A selective or 'soft' RF pulse B1(t) can be approximated by a series of hard pulses, represented by the vertical lines. The hard pulses are separated by periods of free precession of duration At. As the number of hard pulses increases and At decreases, the accuracy of the hard pulse approximation improves.
+
+2.3 SLR PULSES
+
+45
+
+In digital signal processing (DSP), these polynomials are filters for which there are well-established and powerful design tools available. In the SLR algorithm, the inverse SLR transform is used in conjunction with finite impulse response (FIR) filter design tools to design RF pulses directly (Shinnar, Bolinger, et al. 1989b; Pauly et al. 1991).
+This section introduces the reader to the main concepts underlying the SLR algorithm. If the reader wants to actively engage in SLR pulse design, additional details beyond the scope of this section will be required and the reader is referred to Pauly et al. (1991) the DSP references therein. Several excellent commercial and shareware software packages for FIR filter design are also available. (We cannot recommend any particular package here, but if the reader enters key words such as filter design, Remez, and Parks-McClellan into an Internet search engine, several options will appear.)
+
+2.3.1 MATHEMATICALDESCRIPTION
+Rotations Rotations in three dimensions can be described equivalently by either the SO(3) or SU(2) representations. In the SO(3) representation, the familiar 3 x 3 rotation matrices have nine real matrix elements. The matrices are orthogonal and normalized (often called orthonormal):
+
+N3t r = Nr3t = I[
+
+(2.7)
+
+where ,OtT represents the transpose of the matrix 9t and ]Iis the identity matrix. Because a general rotation can be completely specified by three free parameters (e.g., three Euler angles X, ~P, and r/), Eq. (2.7) represents 9 - 3 - - 6 constraints.
+In the SU(2) representation, a general rotation matrix Q can be written:
+-#,
+
+where ot and/3 are complex numbers known as the Cayley-Klein parameters
+
+and the asterisk represents complex conjugation. The matrix Q is unitary;
+
+that is:
+
+Q Q t = Q t Q = I[
+
+(2.9)
+
+where Q~ is the Hermitian conjugate or adjoint of Q, which is obtained by transposing Q and taking the complex conjugate of each element. Note the product of unitary matrices is also a unitary matrix. Because the two complex Cayley-Klein parameters ot and/3 contain a total of four real numbers, Eq. (2.9) contains only 4 - 3 -- 1 constraint. (Again recall that three free parameters are
+
+46
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+required to describe a general rotation.) From Eqs. (2.8) and (2.9), that single constraint is the normalization condition:
+
+c~c~*+/3/3* -Ic~l 2 + 11312- 1
+
+(2.10)
+
+The rotation matrix Q acts on 2 x 1 complex vectors (i.e., the spinors). In the SLR algorithm, the initial state of the spinor is taken to be:
+
+Note that the effect of the unitary rotation matrix in Eq. (2.8) on the initial state of the spinor is
+
+In other words the elements of the spinor are the Cayley-Klein parameters. Thus, the elements of the spinor satisfy the same normalization constraint that is given in Eq. (2.10).
+The mathematical simplification afforded by the SU(2) representation is a consequence of the fewer number of constraints implicit in Eq. (2.9) versus Eq. (2.7) (i.e., one versus six). This situation is analogous to solving a system of linear equations, where it is nearly always easier to solve fewer equations with fewer constraints.
+Given three Euler angles X, ~, and 7, a two-dimensional unitary matrix can be written for the rotation (Goldstein 1980, Chap. 4):
+
+Q -- Fei (X+~)/2 COS ie -i(x-Tj)/2 sin ~1
+
+Liei(X-~P)/2sin~ e-i (x+~)/2 cos
+
+(2.13)
+
+Note the appearance of the half values of the angles in Eq. (2.13), which is typical in the SU(2) representation. A rotation by 2zr (i.e., ~ --+ ~ + 2re) negates the matrix Q, whereas the same rotation leaves the corresponding 3 x 3 orthogonal rotation matrix 9~ unchanged. Thus there is a one-to-one correspondence between elements of SO(3) and SU(2), that is, between 9~and the pair (-Q, Q).
+Although the SU(2) representation offers some mathematical simplification, ultimately the rotation of the magnetization vector occurs in real, three-dimensional space. A set of rules, or dictionary, that translates between the SU(2) and the SO(3) representations is required. Those rules were given
+
+2.3 SLR PULSES
+
+47
+
+by Jaynes (1955) and later adapted in Pauly et al. (1991). Defining the complex transverse magnetization in terms of the x and y components of the magnetization vector:
+
+M•
+
++iMy
+
+M*I -- Mx - iMy
+
+(2.14)
+
+the magnetization before ( - ) and after (+) a rotation is given by:
+
+M 2 (q_) _ _ (fl,)2 c~2
+
+2eq3*
+
+|M_T- ( - )
+
+Mz(+)
+
+-(otfl)* -otfl otot* -/3/3* L M e ( - )
+
+(2.15)
+
+where c~ and/3 are the Cayley-Klein parameters. Several important special cases (Pauly et al. 1991) can be extracted from Equation (2.15). For example, consider an inversion pulse. Prior to the application of the pulse, assume the magnetization is entirely aligned with the z axis and is assumed to have its maximal equilibrium value:
+
+M• =0
+Mz(-) = Mo
+
+(2.16)
+
+Substituting Eq. (2.16) into Eq. (2.15), and applying the normalization condition of Eq. (2.10) yields:
+
+Mz(+) -- Mo(aot* - tiff*) -- M0(1 - 21/312)
+
+(2.17)
+
+Note that the expression for the inversion slice profile in Eq. (2.17) is a real quantity, as it must be, even though the individual Cayley-Klein parameters are complex numbers. Table 2.3 gives several other special cases.
+
+The Hard Pulse Approximation and the Forward SLR Transform This subsection gives an overview of the hard pulse approximation and forward SLR transform. For more details, the reader is referred to Pauly et al. (1991); here we mainly follow the notation of that paper.
+Recall that a selective, or soft, pulse can be approximated by a series of hard pulses, separated by periods of free precession (Fig. 2.5). In this way the net effect of the RF pulse can be approximated by a series of nutations and free precessions. Each nutation and each precession produces a rotation of the magnetization vector, which can be described by a unitary rotation matrix in the SU(2) representation. If relaxation effects are ignored, the net effect of all the nutations and precessions is a composite rotation that can be described by a
+
+48
+
+CHAFFER 2 RADIOFREQUENCY PULSESHAPES
+
+TAB LE 2.3 Response of the Magnetization to Commonly used RF Pulse Types in Terms
+of the Cayley-Klein Parameters
+
+Pulse Type
+
+Initial Condition
+(Mx, My, Mz)
+
+Final State
+
+Excitation or saturation
+Inversion Refocus (without crushers) Refocus (with crushers,
+which dephase the (~,)2 term giving a voxel average of 0)
+
+(0, O, Mo)
+(0, O, Mo) (0, M0, 0) (0, mo, O)
+
+Mx = 2MoRe(ot/3*) My = 2MoIm(ot/3*) M• = 2c~fl*
+M z = M0(1 - 2[/3[2)
+M_L = i M0((c~*)2 -+-132)
+M• = i Mofl 2
+
+single unitary matrix obtained by multiplying the individual rotation matrices in sequence.
+As shown in Figure 2.5, the hard pulses are taken to be a series of spikes (i.e., delta functions) with adjacent hard pulses separated by a time interval At. So that the entire series of hard pulses produces the same flip angle as the soft pulse, the incremental flip angle produced by the j th hard pulse must be
+
+Oj = y l B l , j l A t
+
+(2.18)
+
+(Equation 2.18 can be interpreted as approximating the integral under the soft pulse by a series of rectangles.) The SLR algorithm does not require the RF field to lie along a single direction in the rotating frame, so B I,j is represented by a complex value, as discussed in Section 1.2 (hence the absolute value in Eq. 2.18). If the phase of the RF field in the rotating frame is given by:
+
+99j -- Z'(BI,j) --- arg(Bl,j),
+
+(2.19)
+
+then, Oj and qgj are related to the three Euler angles by r / = Oj, X -- -~P and
+
+X - ~ = 2r The rationale behind choosing these values for the Euler angles
+
+is explained in Figure 2.6. Equation (2.13) then provides the unitary matrix
+
+that describes the jth nutation:
+[ coisn
+
+(~nutation,j -- | i e i~~ Oj
+
+Oj 2
+
+(2.20)
+
+2
+
+2
+
+2.3 SLR PULSES
+
+49
+
+z M
+
+~ ~ ' ~ B 1,j
+
+can FIGURE 2.6 Nutation of the magnetization by the jth hard pulse. Because BI,j ~j be complex (i.e., can make any angle with respect to the x axis in the rotating
+frame) the nutation is described by three Euler angles. First, a rotation about z by the
+is Euler angle ~ = - 99j aligns B I,j with the x axis. Then, a rotation about the x axis
+by ~ = Oj accomplishes the nutation. Finally, B I,j restored to its initial orientation with a rotation about the z axis by X = +qgj.
+
+Again using Eq. (2.13), and assuming both At and the resonant offset o0 to
+
+be independent of the index j, the unitary rotation matrix describing any pre-
+
+cession period is obtained by setting ~ = X = 0 and ~ equal to the precession
+
+angle:
+
+Oprecession__0[ei;'
+
+z_l/2 - z
+
+z-1 (2.21)
+
+The variable z is related to the resonant offset, which is determined by the ...+
+gradient G and displacement F from isocenter:
+--+
+z -- exp(iTt) -- exp(iwAt) -- exp(i2rcfAt) -- exp(iyG. FAt) (2.22)
+(For spectratly selective pulses in Section 4.3, there is no slice-selection gradient, so the last term of Eq. 2.22 does not apply.) If, without loss of generality, it is assumed that the free precession precedes the nutation, then the effect of the first precession and nutation on the initial state given in Eq. (2.11) is:
+/ / sin~ lI ]
+
+----Z1/2 Fl COS~-0--1I1 ~ Z1/2[CS111 (2.23) ie i~~ sin
+
+50
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+Equation (2.23) contains the definition of C1 and Sl, and Cj and Sj are defined
+
+analogously. The spinor state after the j th precession can be obtained by
+
+recursion:
+
+sj -- Qnutation,j QprecessionSj- 1
+
+(2.24)
+
+For example,
+
+$2 -- Qnutation,2(~precessionSl
+I cos_O
+
+--Z
+
+ie
+
+i~~
+
+2
+sin
+
+m022
+
+cos -02-2
+
+C2C1 - S1S~z -l] -- Z C1S2 + S1C2z -1
+
+o]I Icos
+z-1 iei~~ sin -0~1-J
+(2.25)
+
+Defining the j th spinor state in terms of two complex polynomials"
+
+sj - zj/2 [ Aj(z)lBj(z)]
+
+(2.26)
+
+it can be seen from Eqs. (2.24) and (2.25) that Aj(z) and Bj(z) are each poly-
+nomials of order j - 1 in the variable z-1 . After the entire RF pulse has been approximated by N interleaved periods of free precession and hard pulses, we have"
+
+S N - - z N / 2 [ AN(z)]BN(z)
+
+(2.27)
+
+Note that from Eq. (2.25), the constant term in the polynomial AN is a product of the cosine terms:
+
+AN,O -- CNCN-1CN-2 """C2C1
+
+(2.28)
+
+All of the other terms in the polynomial AN contain at least one factor of Sj, each of which is proportional to sin(0j/2) and hence proportional to Oj (because Oj << 1 rad). For small flip angles, all those terms are negligible in
+comparison to the constant term, so
+
+AN(Z) "~ A N , O - C N C N - I C N - 2 " " "C2C1 ~ 1
+
+(2.29)
+
+because Cj is equa, to cos
+
+2.3 SLR PULSES
+
+51
+
+From Eqs. (2.12) and (2.27), the two polynomials AN and BN are related
+to the Cayley-Klein parameters for the net rotation by:
+
+AN(Z) = z-N/20t BN(Z) = z-N/2 fl
+
+(2.30)
+
+According to Eq. (2.22), ]zl - 1, so the polynomials AN and BN satisfy the
+normalization constraint:
+
+IAN(Z)]2 -t-IBN(Z)I2 = 1
+
+(2.31)
+
+At this point, we have demonstrated the forward SLR transform from the RF pulse to the two polynomials in Eq. (2.27). The resulting magnetization is found from Eq. (2.30) and the relationships in Table 2.3.
+Equation (2.29) provides further insight when used to interpret Table 2.3. For example, small flip angle excitation pulses satisfy Iotl ~ 1 because the cosines of all the hard pulse flip angles are approximately 1, and the sines are approximately 0. Because the small flip angle response is approximately proportional to the Fourier transform of the pulse, we can infer that Iot/3*l I/~*l - I/~l must also be proportional to the magnitude of the Fourier transform of B1 (t). Examining the result for the refocusing pulse (with crushers), we see that its slice profile is related to the square of the small flip angle excitation slice profile. This explains, for example, the narrowing of the slice profile of a SINC pulse used as a refocusing pulse (with crushers) compared to one used as an excitation pulse (Section 2.2).
+
+The Inverse SLR Transform The inverse SLR transform translates from the two polynomials AN(Z.) and BN(Z) back to the jth RF pulse element BI,j. Like the forward SLR transform, the inverse is calculated recursively.
+Inverting Eq. (2.24), and recalling the unitary property of the matrices (i.e.,
+Eq. 2.9) yields:
+
+s
+
+j
+
+_l--
+
+-(J
+"~
+
+-
+
+~)
+
+/
+
+2I
+
+ABjj-_~1((zZ))
+
+1
+
+--
+
+-~
+
+-~
+
+(~precession(~nutation,.j
+
+sj
+
+= Qpr4-ecession Qnutation . j sj
+
+(2.32)
+
+Because Aj(z) and Bj(z) are polynomials of order j - 1 in Z -1 , the constraint
+that their orders must decrease by one power of a-l for each iteration provides sufficient information to calculate their coefficients. As described in detail in Pauly et al. (1991), that constraint allows the amplitude and phase of the hard
+
+52
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+pulse BI,j to be calculated with the relationship:
+
+ylBl,jlAt -- 2 arctan Bj'-----2~ Aj,o
+Z'(BI,j) -- z(_ - i Aj,o
+
+(2.33)
+
+where Aj,o, and Bj,o are the lowest order (i.e., constant) terms of the polynomials Aj(z) and Bj(z) (note that on the left-hand side of Eq. (2.33) BI,j is the
+RF field strength, not to be confused with the polynomial B.) By proceeding with the recursion, the entire hard pulse approximation can be recovered from the polynomials A and B. This provides the inverse SLR transform.
+In practical calculations, for computational efficiency N is usually taken to be less than the number of the digital points used to ultimately represent the RF pulse on the MRI scanner. The final high-resolution digital representation of the pulse is obtained with interpolation (e.g., with cubic splines) of the hard pulse representation. If N is chosen too small, the hard pulse approximation begins to break down. Typically, N might be chosen to be 20-100, while the final digital resolution of the pulse can be 100-1000 or more, depending on its duration and on the details of the digital-to-analog converter (DAC) in the RF chain.
+
+The Polynomials A and B To design an RF pulse, the filter (i.e., polynomial) BN(Z) is matched to the desired frequency response. This is done by
+a procedure described in Le Roux (1986) and Pauly et al. (1991) and outlined
+next. From Eqs. (2.8) and (2.13), we note that I/~l = IBN[ -- sin(0/2) where r/is the net nutation angle of the pulse. First we generate up an ideal BN(Z)
+polynomial that is equal to the sine of one-half the desired flip angle of the ideal profile. (Recall that z is related to the spatial coordinates by Eq. 2.22.)
+For example, to design a 90~ pulse we set the ideal BN(Z) equal to 0 in the
+stopband and equal to the constant value:
+
+sin ( - ~ ) - ~ 0.707
+
+(2.34)
+
+in the passband. This ideal slice profile cannot be realized with a finite-length RF pulse, so a more realistic profile with a finite transition band and tipples is used instead. We can generate the realistic polynomial with the ParksMcClellan algorithm (Oppenheim and Schaeffer 1975, Chap. 5), which is also sometimes referred to as the Remez exchange algorithm. Figure 2.8a (later in
+this chapter) shows an example of the resulting BN(Z) polynomial. Note that
+
+2.3 SLR PULSES
+
+53
+
+the finite-width transition band, the passband tipples, and the amplitude in the passband (~0.7) are consistent with Eq. (2.34).
+To perform the inverse SLR transform we also need to determine the poly-
+nomial AN(Z). There are many possible choices that satisfy the normalization
+constraint:
+
+JAN(Z)]- V/1 -- BN(z)B~v(z)
+
+(2.35)
+
+The problem of selecting the most physically meaningful filter AN(Z) was solved by Le Roux (1986), who pointed out that minimum phase AN(Z) yields
+the pulse that deposits the least amount of RF energy. That choice for the polynomial maximizes its constant term AN,0, which from Eq. (2.29) is equivalent to minimizing all the flip angles of the hard pulses and hence the total RF power. Minimum phase polynomials have the property that all of their zeros (roots) lie within the unit circle; that is, if AN (ZR) --- 0, then IzRI < 1. Once its magnitude has been determined as in Eq. (2.35), the complete polynomial, including its phase, can be calculated or retrieved with a mathematical tool called a Hilbert transform (named for David Hilbert, 1862-1943, a German mathematician), as explained in Pauly et al. (1991).
+Once the minimum phase solution is selected for AN(Z), there are still several inputs to be made to the SLR pulse design. The phase of the filter BN(Z)
+dropped out of Eq. (2.35), but it is a design choice in the Parks-McClellan algorithm. Minimum, linear, and maximum phases are the most commonly used. In order to reduce the peak RF power, other phase choices (Shinnar 1994), including quadratic phase, can be used instead. The final RF pulse is
+often referred to according to the phase choice of the filter BN(Z), for example,
+a minimum phase pulse. Note that the minimum phase solution is always
+used for AN(Z), regardless of whether minimum, maximum, or linear phase solutions are used for BN(Z).
+
+2.3.2 DESIGN CONSIDERATIONS
+The time-bandwidth product (the product of the pulse duration T and the RF bandwidth Af ) is a dimensionless measure of the selectivity of the pulse. A highly selective pulse has an abrupt transition from its passband to its stopband. Because of requirements such as minimum TE or maximum
+RF power, the desired slice profile might not be attainable with the T A f
+product available for the pulse. Defining W to be the dimensionless width of the transition band of the response (i.e., W x A f is the transition width in hertz), then W is determined by the relation (Pauly et al. 1991):
+
+T Af W = D~
+
+(2.36)
+
+54
+
+CHAPTER 2 R A D I O F R E Q U E N C Y PULSESHAPES
+
+where D~ is a function of the pulse design parameters. Equation (2.36) allows the pulse designer to trade off parameters before the pulse is generated. In Eq. (2.36), D ~ can be expressed by a simple function (Pauly et al. 1991) of the amount of tipple allowed in the passband and the stopband and of the phase type for the polynomial B. A more selective pulse has a smaller value of W, which can be accomplished either by increasing the time-bandwidth product T Af or by changing the pulse design to decrease D~. Increasing the percentage of tipple allowed, particularly in the stopband, is an effective way to decrease D~. Also, all other things being equal, minimum and maximum phase RF pulses have smaller values of D~ than linear phase pulses. For example, for an excitation pulse with T A f = 8, 1.0% passband tipples, and 0.7% tipples in the stopband, D ~ = 2.037 for the linear phase pulse and D ~ = 1.628 for the minimum phase pulse. Therefore, the transition region W is 20% narrower for the minimum phase pulse.
+Of the phase types discussed, only linear phase pulses produce a phase dispersion that can be completely rephased with a gradient rephasing lobe. Thus linear phase pulses are commonly used as spatial excitation pulses for 2D pulse sequences. The isodelay (see Section 3.1) of the linear phase pulse is equal to one-half its pulse width:
+
+T Atl -- -2-
+z
+
+(linear phase)
+
+(2.37)
+
+Linear phase pulses also are widely used as slice refocusing pulses, because the phase dispersion accumulated during the first and second halves of the pulse cancel. Figure 2.7 shows an example of a linear phase pulse and its magnetization response.
+Minimum phase pulses are useful in a number of applications because they have an isodelay that is less than one-half the pulse width:
+
+T Atl < --
+2
+
+(minimum phase)
+
+(2.38)
+
+and generally the inequality in Eq. (2.38) becomes more extreme as the timebandwidth product increases. Minimum phase pulses are an excellent choice as excitation pulses for 3D volume gradient echo applications in which it is important to minimize TE. A drawback of minimum phase pulses is that their phase dispersion is a nonlinear function of frequency offset and cannot be completely rephased with a gradient lobe. For 3D acquisitions, however, this is not a serious problem because the phase dispersion of the slice profile is distributed across the entire 3D slab, while intravoxel dephasing is determined by the encoded slice width. In practice, intravoxel phase dispersion due to a minimum phase pulse will rarely result in more than a 1% signal loss if even a minimal number (e.g., 16) of slices are phase encoded. Figure 2.8 shows
+
+2.3 SLR PULSES
+
+55
+
+(a)
+0.03
+
+0.02
+
+0.01
+
+'
+
+'
+
+'
+
+'
+
+I ,
+
+,
+
+,
+
+,
+
+I '
+
+'
+
+'
+
+'
+
+I
+
+....
+
+0
+
+2
+
+Time (ms)
+
+/
+
+....
+
+4
+
+(b)
+
+0.5
+
+~--- - - ----t
+
+'''1
+
+.........
+
+-10
+
+I .........
+-5
+
+I .........
+0
+
+I .........
+5
+
+Frequency (kHz)
+
+I'''
+10
+
+FIGURE 2.7 Linear phase excitation pulse with a time-bandwidth product of 20, a flip angle of 45~ and 2% ripple in both the passband (i.e., in-slice) and the stopband (i.e., out of slice). (a) RF amplitude versus time. (b) My and Mx (dotted line) responses. The plot assumes that the optimal rephasing gradient lobe has been applied. Note that Mx is nearly 0 (i.e., the phase across the slice is approximately constant), suggesting that the linear phase introduced during the pulse is effectively rephased by the rephasing gradient lobe.
+
+an example of a minimum phase pulse that could be used as an excitation pulse for a 3D volume acquisition. Because minimum phase pulses have a reduced transition width W compared to linear phase pulses (holding T, Af, and the tipple percentages constant), a minimum phase pulse also makes a good choice when the phase of the magnetization response is unimportant, such as for inversion pulses.
+
+56
+
+CHAPTER 2 RADIOFREQUENCY PULSE SHAPES
+
+(a)
+
+IBN(Z)I
+
+0.6
+
+0.4
+
+0.2
+
+..,
+
+.........
+
+-10
+
+, .........
+0
+
+~ ....
+10
+
+Frequency (kHz)
+
+(b) 0.04
+
+0.02
+
+0
+
+-0.02
+
+.........
+0
+
+, .........
+0.5
+
+, .........
+1
+
+, .........
+1.5
+
+Time (ms)
+
+(c) 1 My, gx
+0.5
+
+0
+
+= :
+
+_o= i/ii
+
+''''l''''l''''l''''l''''l''''
+
+-10
+
+0
+
+10
+
+Frequency (kHz)
+
+I (d) I IM_LI,Z(M•
+
+i~ .i ,~ ]
+
+~,i." ,'..'. {11 I~! i! i! .~i /
+
+o s
+
+:J:~,i"
+
+.:!
+~i
+
+ii
+/i
+
+::
+:iii
+
+~:
+ii
+
+.::
+i i
+
+:i
+~i
+
+;ii:l:l:
+
+ii :ji ii ii ii iii
+
+0 x::::', ' : . . . . .
+
+i : i ii4
+
+-0.5
+
+~i i~. i; ::I ili ii i~ iii
+
+-1
+",'o ........ o........ i'o
+Frequency (kHz)
+
+FIGURE 2.8 Minimum phase pulse with a time-bandwidth product of 10, a flip angle of 90~ and 0.5% ripple in the passband and the stopband. (a) The filter (polynomial) BN(Z) plotted versus frequency. (b) The RF amplitude versus time. (c) The My and Mx (dotted line) response. (d) Plots of the same response as (c), but this time in terms of the polar instead of Cartesian components. Note from (b) that the isodelay is much less than one-half of the pulse duration (T = 2 ms and Atl -- 288 IXS),and the nonlinear phase is apparent from (c) (real and imaginary) and (d) (modulus and phase). Also the tipples apparent on the filter passband are attenuated in the response (d) compared to (a) because the flip angle is 90~
+
+Maximum phase pulses can be thought of as time-reversed minimum phase pulses. Consequently their isodelay is greater than one-half their pulse width. Maximum phase pulses are sometimes used for spatial or spectral saturation, where signal dephasing is desirable instead of detrimental.
+
+2.3.3 PRACTICAL
+
+CONSIDERATIONS
+
+Pulses designed with the SLR algorithm account for the nonlinearity of the B loch equations, but only at a single flip angle. For example, if an SLR excitation pulse is designed for a flip angle of 45 ~ but played at a flip angle of 60 ~ then deviations from the designed profile will begin to emerge. If this is an important consideration, a set of pulses designed for different flip angles
+
+2.3 SLR PULSES
+
+57
+
+can be stored on the MR scanner. Alternatively, the SLR design could be done in real time when the operator selects the flip angle.
+The amount of tipple that is tolerable for the filter BN(Z) depends on the
+intended function of the pulse. For example, from Table 2.3, a small flip angle excitation pulse response is linearly related to the Cayley-Klein parameter fl,
+and so from Eq. (2.30) it is also proportional to BN(Z). Therefore the amount of tipple in the filter BN(Z) is equal to the amount tipple in the slice profile.
+For a refocusing pulse with crushers, however, there is a quadratic relationship between/3 and the response. As shown in Pauly et al. (1991), this implies, for example, that the ripple in the passband of the magnetization response will be four times larger than the tipple in the passband of the filter. SLR pulses are always specified by the desired tipple in the magnetization response, and
+the corresponding tipple in the filter BN(Z) is calculated according to the type
+of RF pulse being designed. The intuitive basis for these types of relations between the tipple in the
+response and tipple in the filter can be appreciated by considering a 90~ (i.e., zr/2) excitation pulse. The magnetization response is proportional to the sine of the flip angle. Near 90~ the tipples in the passband are attenuated because the response is second-order in the tipple amplitude A0:
+
+t t ( (A0)2 ) IM• M0 sin ~- + A0 -- M0 cos A0 -- M0 1
+
+2 ~-""
+
+(2.39)
+
+Consequently, higher amplitude tipples can be designed into the filter's passband. This effect is illustrated in Fig. 2.8. Quantitative relationships between filter ripple and response tipple for a variety of cases are given in Pauly et al. (1991). It should be noted, however, that if due to B1 inhomogeneity a pulse intended to be played at 90~ (and designed with higher passband tipples) is actually played at 45 ~ over part of the subject, then the passband ripples can be unacceptable in that region.
+The amount of stopband tipple that can be tolerated also depends on the specific use of the RF pulse. 3D volume excitation pulses tend to be less forgiving of stopband tipple because the phase encoding process in the slice direction can cause an unwanted signal from the stopband to alias into the desired slice locations. If, however, the main issue is whether or not the ripples in the stopband will disturb the z component of off-resonant magnetization (e.g., as with magnetization transfer, chemically selective, or some spatial saturation pulses), then the situation is much more forgiving. The amount of z magnetization that remains undisturbed is proportional to cos A0, which from Eq. (2.39) is second order in A0.
+
+58
+
+CHAPTER 2 RADIOFREQUENCYPULSE SHAPES
+
+SELECTED REFERENCES
+Goldstein, H. 1980. Classical mechanics, 2nd ed. Reading: Addison-Wesley. Jaynes, E. T. 1955. Matrix treatment of nuclear induction. Phys. Rev. 98:1099-1105. Le Roux, P. 1986. French patent 8610179. Oppenheim, A. V., and Schaeffer, R. W. 1975. Digital signal processing. Englewood Cliffs:
+Prentice-Hall. Pauly, J., Le Roux, E, Nishimura, D., and Makovski, A. 1991. Parameter relations for the Shinnar-
+Le Roux selective excitation pulse design algorithm. IEEE Trans. Med. Imag. 10: 53-65. Shinnar, M. 1994. Reduced power selective excitation RF pulses. Magn. Reson. Med. 32:
+658-660. Shinnar, M., Bolinger, L., and Leigh, J. S. 1989a. The synthesis of soft pulses with a specified
+frequency response. Magn. Reson. Med. 12: 88-92. Shinnar, M., Bolinger, L., and Leigh, J. S. 1989b. The use of finite impulse response filters in
+pulse design. Magn. Reson. Med. 12: 75-87. Shinnar, M., Eleff, S., Subramanian, H., and Leigh, J. S. 1989. The synthesis of pulse sequences
+yielding arbitrary magnetization vectors. Magn. Reson. Med. 12: 74-80. Shinnar, M., and Leigh, J. S. 1989. The application of spinors to pulse synthesis and analysis.
+Magn. Reson. Med. 12: 93-98. Warren, W. S., and Silver, M. E. 1988. The art of pulse crafting: Applications to magnetic
+resonance and laser spectroscopy. In Advances in magnetic resonance, Vol. 12, edited by J. S. Waugh, pp. 247-384. New York: Academic Press.
+
+RELATED SECTIONS
+Section 3.1 Excitation Pulses Section 3.2 Inversion Pulses Section 3.3 Refocusing Pulses Section 4.3 Spectrally Selective Pulses
+
+2.4 Variable-RatePulses
+A one-dimensional spatially selective RF pulse that is played concurrently with a time-varying gradient is called a variable-rate (VR) pulse (Conolly et al. 1988, 1991). VR pulses are also known as variable-rate gradient (VRG) pulses or variable-rate selective excitation (VERSE) pulses. One main application of VR pulses is to reduce RF power deposition to the patient, which is accomplished by decreasing the RF amplitude in the vicinity of the peak of the pulse. The peak of the pulse typically contributes the bulk of the power deposition because the contribution to the SAR from the pulse is proportional to the square of its B 1 amplitude. Another application of VR pulses is to play RF concurrently with the gradient ramps, as is commonly done with spatial subpulses in a spatial-spectral pulse (Section 5.4). Playing RF with the ramps makes efficient use of the entire time allotted for the slice-selection gradient lobe, which allows thinner slices or an improvement of the slice profile.
+
+2.4 VARIABLE-RATEPULSES
+
+59
+
+(a)
+
+~Ao(t)
+
+Go
+
+.....i_. _
+
+(b) AvR( t)
+
+-[ G( t) = Gox 2(t)
+
+T ~-i
+
+t
+
+,
+
+,
+
+FIGURE 2.9 The variable-rate modification to a SINC RF pulse. The original RF envelope Ao(t) is stretched and attenuated wherever the gradient amplitude is reduced. The gradient amplitude dips according to the function k(t).
+
+~t2
+Az
+FIGURE 2.10 Whenever the gradient amplitude G(t) is reduced, there is a proportionate reduction in the RF bandwidth Af and frequency offset 3f so that the same slice Az is produced.
+To maintain the nominal flip angle when the RF amplitude is reduced, the VR pulse is proportionately stretched, or time dilated. This in turn reduces the instantaneous RF bandwidth (defined later in Section 2.4) of any portion of the pulse that is stretched. To ensure that the entire VR pulse produces the desired slice profile, the slice-selection gradient amplitude must be proportionately reduced whenever the RF pulse is stretched in order to match the reduced RF bandwidth. Figure 2.9 shows an example of an original and a VR-modified SINC pulse with a concurrent gradient. Figure 2.10 illustrates how the reduced RF bandwidth and reduced gradient amplitude work in concert to maintain the same slice profile.
+
+60
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+A VR-modified pulse is designed to produce exactly the same slice profile as the original pulse for on-resonance spins (e.g., water). The slice profile of offresonance spins (e.g., lipids), however, will suffer distortion. This is because the pulse designer can dilate the RF and adjust the gradient, but has no control over the precession period of off-resonance spins. Off-resonance slice profile distortion often limits the degree of VR stretching that can be used in practice.
+VR pulses are sometimes called the 10-speed bicycle of RF excitation because when the work gets strenuous (i.e., pedaling uphill or playing highamplitude RF), the duration of the work is dilated (by using a lower gear or by stretching the RF pulse). VR pulses also can be thought of as a transmit analog of variable bandwidth reception described in Section 14.3 or data readout with ramp sampling described in Section 16.1. Both adiabatic and nonadiabatic pulses can be modified with the VR method.
+
+2.4.1 QUANTITATIVEDESCRIPTION
+
+Variable-Rate Stretching Suppose the original envelope of an RF pulse is
+
+given by Ao(t) and has pulse width To (Fig. 2.9). Also, suppose that some or all
+
+of the RF pulse is stretched so that the new pulse width is T > To. To maintain
+
+the flip angle, the RF amplitude is attenuated by a dimensionless reduction
+
+factor, which we call )~(t). For the example in Figure 2.9, ~.(t) = 1, except in
+
+the region where the gradient amplitude is reduced, for which )~(t) < 1. The
+
+process of stretching and attenuating the pulse is described by the mathematical
+
+transformation:
+
+AvR(t)--)~(t) x Ao(u)
+
+(2.40)
+
+where the variable u
+
+f t
+u(t) -- )~(t')dt'
+
+(2.41)
+
+0
+can be interpreted as undilated time. The normalization of AVR(t)in Eq. (2.40) can be verified by comparing the flip angles produced by the original and VR pulses. We examine the important special case of a real, nonadiabatic pulse here; a more general derivation that covers the adiabatic pulses is given in Conolly et al. (1991). Also, to agree with the convention adopted for RF k-space stated in Section 5.4, we assume that the integrations begin at the end of the pulse Tend, which we set to t -- 0, and then proceed to the left. The flip angle for the VR pulse for on-resonance spins is:
+
+T
+
+Y ] AVR(t)dt- y ] ~(t) Ao(u(t))dt
+
+J
+
+tl
+
+0
+
+0
+
+(2.42)
+
+2.4 VARIABLE-RATEPULSES
+
+61
+
+Equation (2.41) implies du-X(t)dt. Substituting this relationship into Eq. (2.42) demonstrates that the flip angles are equal"
+
+T
+
+T0
+
+• f AvR(t)dt -- • f Ao(u) du
+
+0
+
+0
+
+(2.43)
+
+The widths of the original and the VR pulses are related by:
+
+To -- f X(t') dt'
+
+or
+
+T -- (XT(ot))
+
+(2.44)
+
+where ()~(t)) is the time average of the dimensionless reduction factor. Equation (2.43) indicates that the area underneath the RF envelope is conserved. This is true not only for the entire pulse, but also for any segment of the pulse. Whenever the RF pulse amplitude is reduced in the process of VR modification, the RF pulse width is stretched accordingly to maintain the same area.
+The slice-selection gradient amplitude must also 'dip' by the reduction factor X(t) to account for the instantaneous variation of the RF bandwidth due to the stretching of the RF waveform. We can define instantaneous or time-varying bandwidth Af(t) to be the RF bandwidth that would result if the entire pulse were stretched by the value of the reduction factor at time t, ~.(t). Recall the RF bandwidth is inversely proportional to the duration of the pulse, so adapting Eq. (8.53) from Section 8.3 to account for the time-varying RF bandwidth Af(t):
+
+2n'Af(t) 2n"Af0X(t)
+
+G(t) --
+
+=
+
+= GoX(t)
+
+FAz
+
+FAz
+
+(2.45)
+
+where Af0 and Go are the bandwidth and slice-selection gradient amplitude of the original pulse, respectively, and Az is the slice thickness.
+
+RF k-Space Interpretation and Dwell Factor The expression for the VR pulse in Eq. (2.40) has an elegant interpretation when the concept of the RF k-space is employed. As defined in Section 5.4 on spatial-spectral pulses, the RF k-space is related to the area under the slice-selection gradient by:
+
+t
+yf k(t) -- - ~ G(t') dt' o
+
+(2.46)
+
+62
+
+CHAPTER 2 RADIOFREQUENCY PULSESHAPES
+
+Substituting the time-varying gradient amplitude from Eq. (2.45) yields"
+
+t
+k(t) - ?'Go2zcf )~(t')dt'
+
+(2.47)
+
+0
+
+Using Eqs. (2.41) and (2.47) and recognizing that k(t) is proportional u(t),
+Eq. (2.40) can be recast as:
+
+AVR (t)
+
+--
+
+2zr yGo
+
+A o ( k )dd~kt
+
+(2.48)
+
+For small flip angle excitation pulses the slice profile is given by the Fourier
+transform of the RF envelope. Adapting Eq. (3.14) from the section on excit-
+ation pulses to account for the time-dependent slice-selection gradient G(t),
+the slice profile for small flip angles is:
+
+t
+
+i t
+
+-iyz f G(s)ds
+
+IM•
+
+f AvR (t')e o dt t
+
+0
+
+Substituting Eqs. (2.46) and (2.48) into Eq. (2.49) yields:
+
+(2.49)
+
+t
+
+t !
+
+-iyz f G(s)ds
+
+IMj_(z)l- yMo f AvR (t') e o
+
+dt t
+
+0
+
+kmax
+2Jrmo f Ao(k) e-2zrikz dk
+Go
+kmin
+
+(2.50)
+
+Several inferences can be drawn from Eqs. (2.48) and (2.50). First, the
+factor (dk/dt) ~xG(t) in Eq. (2.48) is a Jacobian required for the change of variables from t to k(t). (Jacobians factors are named after the German math-
+ematician Carl Gustav Jacob Jacobi, 1804-1851, aad geometrically represent
+a ratio of differential lengths in 1D integrals, a ratio, of areas in 2D integrals,
+etc.; Kreyszig 1998, 482.) Because Jacobian factors cannot change sign, we
+can infer that whenever G(t) < 0 (such as was encountered for spatial-spectral pulses) IG(t)l must be used instead. Physically, Idk/dtl is the dwell factor that
+is required to uniformly weight the RF k-space. When IG(t)l is small, the tra-
+versal through k-space is slow, so the RF amplitude must be reduced in order
+to avoid overweighting that region. The analogous expression for traversal
+through a two-dimensional RF k-space is discussed in Section 5.1.
+
+2.4 VARIABLE-RATEPULSES
+
+63
+
+Second, comparing the integration expressions in Eq. (2.50) illustrates the value of the RF k-space concept. The integral on the upper line represents what is physically played, namely the VR pulse as a function of time. Note the very complicated functional dependence. The equivalent integral on the lower line represents a much simpler expression: the Fourier transform of the original RF pulse, which is known to yield the slice profile as originally designed.
+The situation represented in Eq. (2.50) is analogous to variable bandwidth during signal reception (discussed in Sections 14.3 and 16.1)--although the raw data plotted versus time will be stretched or compressed depending on the value of the receiver bandwidth, the k-space representation of the data is independent of the bandwidth.
+
+Off-Resonance Effects The design strategy represented by Eqs. (2.40) and
+
+(2.50) assumes on-resonance spins. In the presence of off-resonance effects,
+
+such as chemical shift fcs, Eq. (2.50) becomes:
+
+( t, )
+
+t
+
+-i 2rCfcst'+yzf G(s)ds
+
+IM• = yM0 f AvR (t') e
+
+o
+
+dt'
+
+(2.51)
+
+o
+
+The additional term in the exponential of Eq. (2.51) means that the expression for the resulting slice profile is more complicated (i.e., it is the convolution
+of the desired profile with the Fourier transform of e-i2rcfcst(k)). This causes
+the slice profile to be distorted and the signal within the slice to be dephased. Conolly et al. (1991) show that the distortion tends to be lower for adiabatic pulses (which are typically both amplitude and phase modulated) than for pulses with only amplitude modulation.
+Figure 2.11 a shows the slice profile of a RF pulse with nominal bandwidth of 2 kHz for spins that are on-resonance. For spins that are 400 Hz below the resonant frequency (i.e., roughly the fat-water chemical shift at 3 T), the entire slice profile undergoes a bulk shift equal to 400 Hz/2000 Hz --- 0.2, that is, one-fifth of the slice width (Figure 2.1 l b). If the RF pulse is a VR pulse, however, in addition to the bulk shift of the slice profile there is also distortion (Figure 2.1 lc). Figure 2.12 schematically illustrates the origin of the distortion.
+
+VR to Minimize SAR For a given RF pulse width T, the RF power absorbed by the imaged object is given by:
+
+T SAR ~x f B2(t)dt
+o
+
+(2.52)
+
+64
+(a)
+
+CHAPTER 2 RADIOFREQUENCYPULSE SHAPES
+
+(b)
+
+(c)
+
+.J
+
+Z
+
+Z
+
+Z
+
+FIGURE 2.11 Bloch equation calculation of the slice profile of a VR SINC pulse with a bandwidth of Af = 2 kHz, duration of T = 4 ms, and flip angle of 0 -- 45~ (a) The on-resonance profile is identical to the profile that would have been produced by the original pulse. (b) The slice profile produced by the original pulse experiences a bulk chemical shift for spins that are 400 Hz below resonance. (c) The profile of the VR pulse experiences not only a bulk chemical shift, but also distortion for off-resonance spins.
+
+'l
+
+9",', { [,cs
+
+~~'~/. Gz.2
+
+Z
+AZF2 AZF1 AZw
+
+FIGURE 2.12 Schematic representation of the origin of the slice profile distortion calculated in Figure 2.11. As in Figure 2.10, the gradients, RF bandwidths, and frequency offsets are properly scaled to produce the same on-resonance slice, Azw (diagonal bar pattern). The pulse programmer, however, has no control over the chemical shift, fcs, which is the same regardless of the gradient amplitude. Consequently, the two lipid slices AZF1 (dotted pattern) and AZF2 (vertical bar pattern) do not coincide. Note that
+AZF2 is further from Azw. In this diagram, the value of fcs has been exaggerated so
+that the slice profiles do not overlap.
+
+The SAR is minimized subject to the flip angle constraint:
+
+T
+o - f B1(t) dt
+0
+
+(2.53)
+
+when the RF envelope is a constant. The envelopes of most RF pulses (e.g., a SINC) have a single dominant peak, so they are hardly constant. The VR method, however, presents the opportunity to flatten out, or rectangularize, any
+
+2.4 VARIABLE-RATEPULSES
+
+65
+
+RF pulse so that it deposits the minimum possible SAR. With this strategy, ~.(t) is chosen to be approximately proportional to the inverse of the RF envelope; that is, ~.(t) < 1 is used for the pulse peak, and ~.(t) > 1 is used for the side lobes. (A ceiling value must be placed on )~(t) so that it does not diverge at the zero-crossings of the RF pulse.) All the mathematical analysis of the previous subsections remains valid when )~(t) > 1.
+Minimum power VR pulses have not been commonly used, however, mainly because their off-resonance profiles tend to be poor. More commonly, an additional constraint is added--namely, )~(t) cannot differ from 1 by more than a predetermined amount. More design details are provided in Conolly et al. (1988).
+
+Spatial Offset The VR pulse given in Eq. (2.40) yields a slice centered
+at gradient isocenter, z - 0. Just as with spatial-spectral pulses, to offset the slice by a distance 3z away from isocenter, the pulse is phase (or frequency) modulated by:
+
+AVR(t, 6Z) -- e - i Y ~ z f G ( t ' ) d t '
+
+AVR(t, ~Z = 0) --
+
+e -iYG~
+
+f x ( t ' ) d t ' AVR(t, SZ -- 0)
+
+(2.54)
+
+Figure 2.10 schematically illustrates why the time-dependent frequency offset
+is directly proportional to G(t). Equation (2.54) also indicates that the fre-
+quency modulation must match the actual time-varying gradient. Any deviation will cause slice profile distortion and intraslice signal dephasing, resulting in a slice intensity that varies with slice offset 6z. The offset slice profile also experiences the same slice distortion from chemical shift effects as depicted in Figure 2.11.
+
+2.4.2 PRACTICAL CONSIDERATIONS
+VR pulses can be generated by many methods. One procedure is to use the following steps.
+1. Choose an original RF envelope Ao(t) that has a duration To and the
+desired slice profile. 2. Choose a function ~.(t) that dips near the peak of the RF pulse. 3. Calculate the pulse width T based on To and ~.(t) using Eq. (2.44),
+and check that the calculated value of T is acceptable for the pulse sequence application (in terms of minimum TE, TR, or echo spacing). If T is too long, either go back to Step 1 and decrease To, or go back to Step 2 and make the dip in ~.(t) less severe. 4. Generate the pulse according to Eq. (2.40), using numerical integration and an interpolation method such as cubic splines.
+
+66
+
+CHAPTER 2 RADIOFREQUENCYPULSESHAPES
+
+5. Numerically calculate the slice profile of the pulse with the B loch equations on-resonance and for various values of fcs that might be encountered in practice (e.g., the lipid frequency shift at the field strength of interest.)
+6. Increase or decrease the degree of the dip in ~,(t) depending on the results of Step 5.
+7. Repeat Steps 2-6 until an acceptable AVR (t) is achieved.
+Other more sophisticated design procedures are provided in Conolly et al. (1988, 1991).
+The VR design principles are quite useful in reducing the RF power deposition of adiabatic pulses. For example, the adiabatic inversion pulse based on hyperbolic modulation functions (see Section 6.2) can be reshaped using the VR design to minimize the RF power deposition at the expense of prolonged pulse width. Conolly et al. (1991) describes an adiabatic inversion pulse with a bandwidth of 2.6 kHz and a pulse width of 5.376 ms.
+Like spatial-spectral pulses, VR pulses are sensitive to system imperfections such as mismatches between the RF and gradient group delay, and gradient eddy currents, especially for slice locations far from isocenter. Similar correction methods can be applied. It should be noted that the performance and design strategies of VR pulses also depend on field strength. In the range of clinical field strengths (i.e., 0.2-3.0 T), the RF power deposition scales approximately as the square of the B0 field. Thus, the need for VR pulses increases with increasing B0. The chemical shift, ,/cs, however, also increases linearly with B0, so the VR design becomes more difficult.
+
+SELECTED REFERENCES
+Conolly, S., Glover, G., Nishimura, D., and Macovski, A. 1991. A reduced power selective adiabatic spin echo pulse sequence.Magn. Res. Med. 18" 28-38.
+Conolly,S., Nishimura,D., Macovski,A., and Glover.G. 1988.Variable-rateselectiveexcitation. J. Magn. Reson. 78: 440-458.
+Kreyszig, E. 1998.Advanced engineering mathenutti(s, 8th ed. New York:John Wiley& Sons.
+
+RELATED SECTIONS
+Section 3.1 Excitation Pulses Section 5.1 Multidimensional Pulses Section 5.4 Spatial-Spectral Pulses Section 6.2 Adiabatic Inversion Pulses Section 8.3 Slice Selection Gradient
+
+CHAPTER
+3
+BASIC RADIOFREQUENCY PULSE FUNCTIONS
+3.1 Excitation Pulses
+Excitation pulses tip the magnetization vector away from the direction of the main magnetic field B0 (Joseph et al. 1984; Hoult 1980; Pauly et al. 1991). Magnetization aligned with B0 does not create any MR signal, but once a component of the magnetization lies in the transverse plane, an MR signal can be detected. Therefore every MR pulse sequence uses at least one excitation pulse. Excitation RF pulses can be applied either adiabatically (Section 6.1) or nonadiabatically. This section focuses on nonadiabatic excitation pulses.
+The excitation pulse is implemented by switching on (i.e., pulsing) the RF field modulation envelope, denoted by B1 (t), for a short time (typically 200 txs to 5 ms). This range is short enough so that T I and T2 relaxation during the pulse typically can be neglected for proton MRI. Excitation pulses are
+characterized by their tip angle, or flip angle, which we denote by the Greek
+letter theta (0). 0 is the angle between the direction of the main magnetic field, and the magnetization vector immediately after the excitation pulse is terminated (Figure 3.1). With the exception of adiabatic excitation pulses, the flip angle for on-resonance spins can be calculated by finding the area under the envelope of the RF field. Typically a flip angle of 0 = 90~ is used for excitation pulses in spin echo pulse sequences, and a flip angle in the range of 0 = 5-70 ~ is used for gradient echo pulse sequences.
+67
+
+68
+
+CHAPTER 3 BASICRADIOFREQUENCYPULSEFUNCTIONS
+
+Z
+
+/30
+
+\\
+
+"~ (t)
+X
+FIGURE 3.1 A representation of an excitation pulse in the rotating reference frame._, The magnetization vector M is initially aligned with the main magnetic field B0, which lies in the z direction. An RF excitation pulse B1(t) is applied along the x axis. After the magnetization rotates in the yz plane by the flip angle 0, the RF excitation pulse is switched off.
+Slice-selective excitation pulses are played concurrently with a sliceselection gradient (Section 8.3) to produce an excited section, or slice of magnetization. Hard pulses (Section 2.1) are short duration pulses, often rectangular in shape, that are played without an accompanying slice-selection gradient. A hard pulse typically excites all the magnetization that is coupled to the RF coil.
+The flip angle produced by an excitation pulse can vary across the selected slice. This results in a distribution of transverse magnetization when plotted versus either position or frequency. This distribution is called the slice profile. The plot of the flip angle can also describe the slice profile because the flip angle and transverse magnetization are related as shown by Eq. (3.16) later in this chapter.
+For small flip angles, the slice profile is approximated by the Fourier transform of the RF pulse. As illustrated in Figure 3.2, an ideal slice profile consists of a uniform flip angle within the desired slice (i.e., within the passband) and a flip angle of 0 = 0~ outside (i.e., in the stopband). The transition region between the passband and stopband of an ideal slice profile has infinitely narrow width. The ideal slice profile cannot be achieved in practice because it requires an excitation pulse of infinite duration. Several approximations to the ideal slice profile, however, can be achieved with a variety of shaped RF pulses such as SINC pulses (Section 2.2) and SLR pulses (Section 2.3).
+3.1.1 MATHEMATICAL DESCRIPTION
+Bloch Equations and Flip Angle On-Resonance The flip angle produced on-resonance (i.e., when the RF frequency matches the Larmor
+
+3.1 EXCITATIONPULSES
+
+69
+
+...I. z or Ao9
+FIGURE 3.2 An ideal selective excitation pulse produces a uniform flip angle (and hence uniform transverse magnetization) within the passband of the pulse and a zero flip angle in the stopband (solid line). The width of the passband is equal to the slice thickness. The transition region of an ideal selective excitation pulse is infinitely narrow. Such an ideal slice profile cannot be produced in practice, but several effective approximations are available, which yield a nearly uniform flip angle profile (dotted line).
+
+frequency) is:
+
+t
+t$
+
+O(t)--y [ Bl(t')dt'
+
+(3.1)
+
+t]
+tt=0
+
+where y is the gyromagnetic ratio in units of radians per second per tesla, and B1 (t) is the RF modulation envelope, which is 0 prior to t -- 0. By definition, the on-resonance condition is always met at the center of the slice profile (Note that chemical shift and magnetic susceptibility effects, which are neglected in Eq. 3.1., can shift the center of the slice). The integration in Eq. (3.1) is performed over the duration of the RF pulse, and the resulting flip angle is in radians.
+
+Example 3.1 A hard RF pulse has a rectangular-shaped envelope. Its pulse
+width is 100 IXS,and its flip angle (on-resonance) is 90 ~ What is its amplitude?
+
+Answer A rectangular envelope has a constant B1 (t) field. Recalling that
+90 ~ -- 7r/2 radians, substituting into Eq. (3.1) yields:
+
+O---J-r --yB1 x ( 1 0 0 x 10 - 6 s )
+2
+
+Jr
+
+yr ( r a d )
+
+B] -- 2 y ( 1 0 0 lxs) -- 2 x 2yr x 42.57 x 106(rad/s 9T) x 100 x 10-6(s)
+
+-- 58.7 t~T
+
+Equation (3.1) represents a linear relationship between the flip angle and the RF field. If B1 (t) is scaled by a factor of 2, the flip angle 0 also doubles. As is shown later in this section, the linear relationship between
+
+70
+
+CHAPTER 3 BASICRADIOFREQUENCYPULSEFUNCTIONS
+
+B1 (t) and 0 holds only under one of the following two conditions: (1) for onresonance excitation or (2) for small flip angles (i.e., 0 << 1 rad). In general, the response of the flip angle and the magnetization to RF excitation is quite nonlinear.
+Equation (3.1) can be readily derived by considering the Bloch equations in the rotating reference frame. Equation (1.79) in Section 1.2 states that when relaxation effects are neglected and the angular frequency of the rotating frame is chosen to match the RF frequency, the Bloch equations for an RF pulse applied in the x direction become:
+
+()rot--yMx JBl(t)+~ B0Y
+
+(3.2)
+
+In this section, all of the analysis is carried out in that rotating frame, so the "rot" subscript is dropped. Defining an angular frequency offset,
+
+Aw -- y Bo - Wrf
+
+(3.3)
+
+Eq. (3.2), which is in vector form, can be expanded into three scalar equations:
+
+dMx
+= Aw My dt
+dMy = y B1 (t)Mz - A w Mx
+dt
+dMz -- -yBl(t)My
+dt
+
+(3.4)
+
+We note that Eq. (3.4) can equivalently be expressed in the vector-matrix form:
+
+dM =~M
+
+- I --A0 w A0w yB01 1
+
+(3.5)
+
+dt
+
+0 -yB1 0
+
+which has the solution:
+
+Ill(t) = e :~tl(4(t = O)
+
+e'~t-I[+~t+- 1~2 t2 +-..
+
+(3.6)
+
+2
+
+where ]I is the identity matrix. For analyzing excitation pulses, we generally choose the initial conditions Mx = 0, My = 0, and Mz = Mo at t -- 0 because the magnetization is initially aligned with the main magnetic field (i.e., the z direction). If Eq. (3.4) is further simplified by specifying that the
+
+3.1 EXCITATIONPULSES
+
+71
+
+RF frequency matches the Larmor frequency (i.e., Aco = 0) the solution to the set of equations in (3.4) is:
+Mx(t) =0
+
+My(t) -- Mo sin { y tf Bl (t')dt ' ]
+
+0
+
+(3.7)
+
+Mz(t) -- Mocos l y / Bl(t')dt'] o
+Equation (3.7) simply states that, on-resonance, the magnetization precesses
+in the yz plane of the rotating frame (Figure 3.1), and the accumulated flip
+angle is given by Eq. (3.1). At the end of the pulse, Eq. (3.7) can be expressed, in terms of the flip angle 0, as:
+
+Mx = O
+
+My = Mo sin 0
+
+(3.8)
+
+Mz = Mo cos 0
+
+More generally, spherical coordinates can describe an arbitrary orientation of the magnetization vector. In that case the flip angle 0 is the same as the polar angle, and q~represents the azimuthal angle that the transverse magnetization makes with the x axis:
+
+Mx -- MOcos 4>sin 0
+
+My = Mo sin 4) sin 0
+
+(3.9)
+
+Mz = Mo cos 0
+
+In general, 4> ~ 90 ~ except for the special case of on-resonance excitation (Aoo = 0). Although we have assumed that the B1 field is applied along the x axis in the rotating frame, similar results can also be obtained for B1 field applied along other directions in the transverse plane. For example, when the B1 field is applied along the y axis, the magnetization vector is rotated in the (z, - x ) plane and Eq. (3.9) becomes:
+
+Mx = -Mo sin q~' sin 0 My = MOcos q~' sin 0 Mz = Mo cos 0
+
+(3.10)
+
+where 4~' is the angle between the transverse magnetization and the y axis.
+
+72
+
+C H A P T E R 3 BASIC RADIOFREQUENCY PULSE FUNCTIONS
+
+Fourier Transform Approximation Except at the center of the selected
+slice profile, we cannot assume that the spins are exactly on-resonance. Therefore, in general, we cannot set Aw -- 0 in Eq. (3.4). Instead, defining the complex transverse magnetization:
+
+M• -- Mx + iMy
+
+(3.11)
+
+the first two equations in (3.4) can be reexpressed as:
+
+dM• dt
+
+=
+
+-i
+
+AwMz +
+
+iyBl(t)Mz(t)
+
+(3.12)
+
+With the initial condition Mz -- 0 at t -- 0, Eq. (3.12) has the solution (Joseph et al. 1984):
+
+f t
+M_t_(t) -- iye -iAwt Mz(t')B1 (t')eiZX~ '
+
+(3.13)
+
+0
+
+Thus the complex transverse magnetization is proportional to the inverse
+Fourier transform of the product of the applied RF field and the z component of the magnetization. For practical calculations, Eq. (3.13) is not very help-
+ful because Mz(t) also changes throughout the RF pulse and is therefore not known. To a good approximation, however, for small flip angles Mz(t) ~ Mo,
+in which case:
+
+f t
+M_t_(t) ~ iyMo e-iAwt Bl(t')eiA~~ ,
+
+(3.14)
+
+or
+v/ ,x +
+Combining Eqs. (3.9) and (3.15):
+
+t
+f B1(t')eiAc~ ' 0
+
+-t-~ M2 + My2 + [Mi(t)[
+
+sin 0 -
+
+=
+
+M0
+
+M0
+
+because Mz (t) ~ M0, 0 must be small and
+
+t
+f B1 (t')eiZX~~ '
+0
+
+(3.~5)
+(3.16)
+
+sin 0 (Aw) ~ 0 (Aw) ~ i y f B1(t')eiZX~~ '
+0
+
+(3.17)
+
+3.1 EXCITATIONPULSES
+
+73
+
+(Although mathematically 0 and sin 0 can be either positive or negative,
+
+generally we chose the positive values because of the coordinate axis conven-
+
+tions that we have adopted.) Equation (3.17) states that, for small flip angles,
+
+the slice profile is approximately equal to the modulus of the inverse Fourier
+
+transform of the RF envelope. (Note the integration limits in Eq. 3.17 may
+
+be replaced by -cxD to cxz because B1 (t) is 0 except during the pulse.) Equa-
+
+tion (3.17) reduces to Eq. (3.1) on-resonance (i.e., when A~o = 0). The Fourier
+
+transform approximation (also called the linear approximation or the smallflip
+
+angle approximation) given by Eqs. (3.16) and (3.17) generally holds quite well
+
+for flip angles up to 0 = 30~ and severely breaks down only when 0 > 90 ~
+
+This robustness is due to the second-order dependence of cos 0 on 0, which
+
+is related to the key assumption in the Fourier transform approximation (i.e.,
+
+Mz ~ Mo). That is, from Eq. (3.9):
+
+( o2 )
+
+Mz--MocosO--Mo 1--~+-..
+
+(3.18)
+
+Because the Fourier transform is a linear operation, deviations from Eq. (3.17) are known as nonlinearity in the Bloch equations.
+For example, Figure 3.3 shows a windowed SINC (Section 2.2), which is a commonly used excitation pulse, along with its slice profile plotted versus frequency offset for three values of the flip angle. (The plots show the slice profiles for My (solid line) and Mx (dotted line), which are related to 0 by Eq. 3.16.) At 0 -- 30~ the magnetization response is essentially equal to the Fourier transform of the SINC excitation pulse. At the center of the slice profile My(Ao~ = O) = Mo sin 30 ~ = 0.5 M0, and Mx = 0, as predicted by Eq (3.7).
+At 0 = 90 ~ some nonlinearity in the Bloch equation emerges. There is a side lobe (marked with an arrow) near the transition band of the response. Still, the slice profile is reasonably uniform. At the center of the slice My(Aco = 0 ) -- M0 sin(90 ~ = M0, which is twice as large as the 0 = 30~ case, and Mx = O.
+At 0 = 150~ nonlinearity in the Bloch equations is quite pronounced. The shape of the slice profile is severely distorted. Also, a substantial amount of the magnetization lies outside the y z plane, as illustrated by the relatively high amplitude of Mx, denoted by the dotted line. Despite this nonlinearity, at the center of the slice M y ( A w = O) = Mo sin 150~ = 0.5 M0, and Mx = 0 as predicted by Eq. (3.7).
+To summarize, 0 is directly proportional to the amplitude B1 (t) of a nonadiabatic pulse under two conditions: on-resonance excitation (i.e., at the center of the slice profile) and small flip angle excitation. On the other hand, the transverse magnetization IM• is directly proportional to the amplitude of a nonadiabatic pulse only for small flip angles because sin 0 ~ 0 only when
+
+74
+
+CHAPTER 3 BASIC RADIOFREQUENCYPULSE FUNCTIONS
+
+Bl(t)
+
+t_ .
+
+30 ~
+Mo
+O.5Mo
+
+90 ~
+
+150 ~
+
+FIGURE 3.3 Nonlinearity of the Bloch equations. A windowed SINC excitation pulse is shown, along with the transverse magnetization responses (plotted versus angular frequency offset) at flip angles of 0 -- 30~ 90~ and 150~ The solid line represents My, and the dotted line represents Mx. At 0 -- 30~ the response is approximately equal to the inverse Fourier transform of the excitation pulse. At 90~ the effects of nonlinearity are emerging, as illustrated by the side lobe (arrow). At 150~, severe nonlinearity is apparent. At the center of the slice profile (on-resonance), the response given by M~- = 0 and My - Mo sin 0, even at 0 = 150~ (arrow).
+0 << 1 rad. Because of the Bloch equation nonlinearity, SLR (Section 2.3) or iterative numerical methods rather than Fourier methods are usually used for RF pulse design when high-quality slice profiles are needed.
+Excitation as Resonance The RF excitation process is a resonance phenomenon, which contributes the R to the acronyms NMR (nuclear magnetic resonance) and MRI. Mathematically, the resonance can be seen from Eq. (3.13). When the resonance offset Aco is large (in units of v B I ) , then the oscillation of the complex exponential in the integral causes cancellation, and hence zero M_L and no MR signal. This same effect can be appreciated qualitatively by considering the precession of the B1 field in relation to the precession of the magnetization. Only at or near resonance does B l precess at the same rate as the magnetization, so that the magnetization is efficiently tipped. Also, recall that in the rotating frame the magnetization precesses about the effective magnetic field (see Section 1.2, Eq. (1.73)). On-resonance, the effective field
+
+3.1 EXCITATIONPULSES
+
+75
+
+lies in the transverse plane and can effectively tip the magnetization away from the z axis. Far from resonance, however, the effective field is nearly aligned with the z axis and cannot create a large transverse component of the magnetization, regardless of the duration of the pulse. This property is exploited in adiabatic pulses to induce adiabatic excitation (Section 6.1).
+
+3.1.2 PRACTICAL IMPLEMENTATION
+Commonly used selective RF excitation pulses include SINC pulses (Section 2.2) and a variety of Shinnar-Le Roux (SLR) pulses (Section 2.3). Selective excitation pulses are used in conjunction with a slice-selection gradient (Section 8.3). Nonlinearity of the Bloch equations has an effect on the slice profiles of all of these pulses. SLR pulses account for that nonlinearity in their design, but it is important to remember that each SLR pulse is designed to be played at a specific flip angle and that if a different flip angle is selected the slice profile will deviate from its design. Short-duration rectangular hard pulses (Section 2.1) are also used when no slice-selection gradient is required, such as in some 3D volume acquisitions.
+In addition to the flip angle and RF bandwidth (see Section 8.3 on slice selection), an important parameter of a selective excitation pulse is its isodelay Ati. After the selective RF pulse is played along the x axis, the transverse magnetization at different spatial locations will generally not lie exactly along the y axis in the rotating frame because of precession caused by the sliceselection gradient. Instead there will be phase dispersion (or variation of the azimuthal angle 4)) across the slice. The isodelay is the effective precession or dephasing time that results in this phase dispersion. The purpose of the slicerephasing gradient pulse is to refocus this slice dispersion to the maximal extent possible (Hutchinson et al. 1978). The isodelay parameter Ati is used to calculate the optimal area of the slice-rephasing gradient. The isodelay is therefore the amount of time, measured from the end of the pulse, to include in the refocusing calculation. For example, in Figure 3.4:
+
+G _]"
+
+G-Atl + .... = AR
+
+"
+
+2
+
+(3.19)
+
+where AR is the area of the slice-rephasing lobe, including its ramps (shaded in Figure 3.4). Once the value of the area of the rephasing pulse is known, the details of its amplitude, plateau, and ramps can be determined using the methods of Section 7.1.
+Generally the isodelay corresponds to the amount of time from the peak to the end of the RF excitation pulse. For SINC and linear-phase SLR pulses the
+
+76
+
+C H A P T E R 3 BASIC RADIOFREQUENCY PULSE FUNCTIONS
+
+Gz
+
+,\~,~ ~,~,~
+9; . . . \ , ~
+
+Time
+A R
+
+FIGURE 3.4 The isodelay AtI is a parameter of an RF excitation pulse that is used in Eq. (3.19) to calculate the optimal area of rephasing gradient lobe (shaded). The isodelay is approximately equal to the time from the peak to the end of the RF excitation
+pulse.
+isodelay is nearly equal to one-half the RF pulse width. For minimum-phase SLR pulses the isode|ay is much smaller than one-half the pulse width, which allows for shorter slice-rephasing lobes and hence reduced minimum TE. On the other hand, for maximum-phase SLR pulses the isodelay is greater than one-half the pulse width. Because of the nonlinearity of the Bloch equations, isodelay can depend on flip angle. Because the variation is typically only on the order of tens of microseconds, this dependence is often neglected.
+SELECTED REFERENCES
+Hoult, D. I. 1980. NMR imaging rotating frame selective pulses. J. Magn. Reson. 38: 369-374. Hutchinson, J. M. S., Sutherland, R. J., and Mallard, J. R. 1978. NMR Imaging: Image recovery
+under magnetic fields with large non-uniformities. J. Phys. E. 11: 217-221. Joseph, P. M., Axel, L., and O'Donnell, M. 1984. Potential problems with selective pulses in
+NMR imaging systems. Med. Phys. 11: 772-777. Pauly, J., Le Roux, E, Nishimura, D., and Macovski, A. 1991. Parameter relations for the
+Shinnar-LeRoux selective excitation pulse design algorithm. IEEE Trans. Med. Imag. 10: 53-65.
+RELATED SECTIONS
+Section 1.2 Rotating Reference Frame Section 2.2 SINC Pulses Section 2.3 SLR Pulses Section 6.1 Adiabatic Excitation Pulses Section 8.3 Slice Selection Gradients
+
+3.2 INVERSIONPULSES
+
+77
+
+3.2 Inversion Pulses
+
+An inversion pulse nutates the magnetization vector from the direction
+of the main magnetic field B0 (i.e., the positive ,: axis by convention) to the
+negative B0 direction (Figure 3.5a). Although an inversion pulse nominally rotates the magnetization vector by 180~ about an axis in the transverse plane (i.e., the xy plane), the flip angle can be slightly larger or smaller either by design or due to system imperfections. A non-180 ~ pulse can still function as an inversion pulse, as long as it results in a magnetization vector whose z. component is negative at the end of the pulse.
+Inversion pulses can be categorized according to a variety of properties, such as pulse shape, spatial selectivity, spectral selectivity, and adiabaticity. These categories are not mutually exclusive. For example, a SINC-shaped inversion pulse can be used for spatial or spectral selection. Common inversion pulse shapes include SINC, minimum or linear phase SLR, rectangular, Gaussian, adiabatic hyperbolic secant, variable-rate, and composite. These pulse shapes are discussed individually in other sections of this book. The selectivity of an inversion pulse is determined by both its pulse shape and the pulse width. Inversion pulses with constant RF amplitude (i.e., rectangular or hard pulses) are typically nonselective, whereas amplitude modulated pulses are usually frequency selective. If a frequency selective inversion pulse
+
+(a)
+
+z
+
+(b)
+
+z
+
+M(O) %
+
+M (0) ~
+
+"
+\
+
+I
+
+Y
+
+!
+I J
+
+M(T) .
+
+" Y x
+
+My
+
+Y
+
+! t~' M(T)
+
+FIGURE 3.5 Time evolution of on-resonance magnetization during an inversion pulse in an RF rotating reference frame. The initial magnetization vector M(0) is aligned with the main magnetic field/}0, which lies along the - axis. An RF inversion pulse Bl (t) that is applied along the x axis rotates the magnetization vector in the vz. plane about the x axis. (a) At the end of the pulse (i.e., at time T), the magnetization M ( T ) is aligned along the negative - axis, provided that the flip angle is 180~ (b) When the flip angle deviates from 180~ the inversion is incomplete and a transverse magnetization M,. is produced.
+
+78
+
+CHAPTER 3 BASICRADIOFREQUENCYPULSEFUNCTIONS
+
+is played out concurrently with a slice-selection gradient, then it becomes spatially selective; otherwise, it exhibits spectral selectivity. In this section, we focus primarily on nonadiabatic inversion pulses; a discussion of adiabatic inversion pulses is given in Section 6.2.
+Inversion pulses share many properties with refocusing pulses; for example, their nominal flip angles are both 180~ Unlike the initial condition assumed for refocusing pulses, however, the magnetization vector is aligned along the z axis prior to an inversion pulse. Nonadiabatic, linear phase (e.g., SINC or linear phase SLR) inversion pulses and refocusing pulses are nearly interchangeable. For example, there is only a slight difference in frequency response between inversion and refocusing SLR pulses (Pauly et al. 1991). It is worth noting, however, that a refocusing pulse is typically accompanied by a crusher gradient pair (Section 10.2), whereas an inversion pulse is usually followed by a spoiler gradient to dephase any residual transverse magnetization (Section 10.5).
+Inversion and excitation pulses share the same initial condition (i.e., the magnetization is initially aligned with the B0 field). An excitation pulse, however, results in substantial transverse magnetization, whereas an ideal inversion pulse produces none (Figure 3.5a). A nonselective inversion pulse can be obtained by increasing the flip angle of a nonselective excitation pulse to 180~ A tailored selective inversion pulse (such an SLR pulse), on the other hand, usually cannot be obtained by simply increasing the flip angle of an excitation pulse.
+
+3.2.1 MATHEMATICALDESCRIPTION Consider a magnetization vector M at equilibrium with a magnitude of M0"
+
+M(0) -- M0
+
+(3.20)
+
+According to Eq. (3.5), the time evolution of M during an RF pulse applied along the x axis can be calculated by solving the following Bloch equations in the rotating reference frame:
+
+d M ~ , / d t | - - A c o 0 c~ y Bl
+
+0 -•
+
+0
+
+(3.21)
+
+where Am is the off-resonant frequency and B1 is the RF magnetic field of the pulse. In Eq. (3.21), we have neglected the relaxation effects, and assumed an RF rotating reference frame defined in Section 1.2.
+
+3.2 INVERSIONPULSES
+
+79
+
+As shown in Section 3.1, in the on-resonance case (Aw = 0) the magnetization simply precesses about the B l direction in the vz plane (Figure 3.5). The evolution of the magnetization can be described using the following equation:
+
+I1 0 0 lEil M(t) -- Mo 0 cos0(t) sin0(t)
+0 -sin0(t) cos0(t)
+
+(3.22)
+
+where:
+
+t
+o(,, - • f Bl (t')dt'
+0
+
+(3.23)
+
+The angle O(t) is the instantaneous flip angle during the RF pulse and is directly proportional to the time integral of the B1 field. At the end of an ideal inversion pulse (i.e., t = T), O(T) equals rr (or 180~ and the magnetization is inverted. When the flip angle deviates from 180~, the magnetization inversion is incomplete, resulting in nonzero transverse magnetization along the y axis (Figure 3.5b).
+Equations (3.22) and (3.23) are valid only for spins exactly on-resonance. For off-resonance spins (i.e., Am :/= 0), the evolution of the magnetization can be obtained by numerically solving the Bloch equations as outlined in Slichter (1989). With the off-resonance term, the time evolution of M~- now depends on M~. (i.e., d M ~ / d t = AwM~., as implied by Eq. 3.21). Because My is not zero throughout the inversion pulse, a nonzero M,- component is inevitably produced. This reduces the magnitude of the longitudinal magnetization at the end of the pulse.
+The off-resonant effect also can be graphically analyzed using the concept of effective magnetic field introduced in Section 1.2. With the off-resonance
+term, the effective magnetic field Beff is tilted away from the x axis toward
+the z axis (Figure 3.6). The magnetization vector rotates about Bell, instead of the x axis, resulting in a nonzero M~- component (Figure 3.6). A nonzero M~. component is also produced unless the flip angle at the end of the pulse (i.e., F f ~ Beff(t)dt) is exactly 180~
+The off-resonance term arises from a number of sources, including the slice-selection gradient, chemical shift, magnetic field inhomogeneity, and magnetic susceptibility variations. Although certain sources (e.g., magnetic field inhomogeneity) can be reduced through system calibration and compensation, sources such as the slice-selection gradient and chemical shift cannot be eliminated. Thus, the off-resonant effects should always be carefully examined when designing inversion pulses.
+
+80
+
+C H A P T E R 3 BASIC RADIOFREQUENCY PULSE FUNCTIONS
+
+M(O)
+
+So
+
+-|
+
+A,,~/,'~ Bef (t)
+
+~ ....
+
+~
+
+-- X
+"-/3,<t)
+
+.......... ......_..~.... a ( r )
+0
+
+FIGURE 3.6 The effect of resonance offset on an inversion pulse. With the offresonance term, (Aco/V) ^ (where ^ is a unit vector long the ~ axis), the effective magnetic field becomes Beff(t) - Bi (t) + (AoJ/V) ^. The magnetization vector rotates about Beff(t), resulting in a transverse component along the x axis even with a 180~ flip angle. The O and | symbols schematically represent the head and tail of an arrow, respectively, to illustrate the path of the magnetization vector. These symbols indicate that the precession is such that the head of M(0) moves into the page and the head of M (T) moves out of the page.
+
+3.2.2 PRACTICAL CONSIDERATIONS
+Selective hn,ersion Pulses The simplest approach to designing a selective inversion pulse is to choose the time-domain pulse shape as the Fourier transform of the desired spatial or spectral profile. For example, a SINC pulse (or a windowed SINC pulse as discussed in Section 2.2) together with a constant gradient can be used to approximate a rectangular slice profile. Due to the nonlinearity in the Bloch equations at large flip angles, however, the Fourier transform approximation produces errors in the targeted slice profile (Pauly et al. 1991 ). Although SINC inversion pulses are still used in some applications, they have been largely replaced by tailored RF pulses, such as SLR pulses (Pauly et al. 1991) and pulses generated using optimal control theory (Mao et al. 1986), or by selective adiabatic inversion pulses, such as the hyperbolic secant pulse (Silver et al. 1984).
+SLR inversion pulses can considerably improve the quality of slice (or spectral) profile and allow trade-offs among a number of parameters, including the width of the transition regions, ripples within the slice, and ripples outside
+the slice. The details on how to design SLR pulses are given in Section 2.3
+and Pauly et al. (1991). Once ihe pulse has been designed, the actual slice inversion profile can be obtained by numerically solving the Bloch equations
+
+3.2 INVERSIONPULSES
+(a) B1
+
+(b) M I-]
+
+81
+#
+
+0.05
+
+~
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+0
+
+.........
+0
+
+i .........
+1
+
+i .........
+2
+
+i ,
+3
+
+Time (ms)
+
+(c) B 1
+
+0.06
+
+-- ,, ........
+
+i ..................i..
+
+-2
+
+0
+
+2
+
+Frequency (kHz)
+
+(d) M z
+
+0.04 0 I ......................
+
+0.02
+
+0
+
+.....
+0
+
+' , , , i .........
+
+i ......
+
+1
+
+2
+
+Time (ms)
+
+,,,i ,
+3
+
+::l )
+
+-2
+
+0
+
+2
+
+Frequency (kHz)
+
+FIGURE 3.7 (a) A linear-phase SLR inversion pulse. (b) The frequency (or slice) profile of the SLR pulse. (c) A SINC inversion pulse with a symmetric Hamming window. (d) The frequency (or slice) profile of the SINC pulse. Both pulses have the same bandwidth of 1.28 kHz and the same pulse width of 3.2 ms. The SLR pulse is designed with passband ripple - 0.5c,~ and stopband ripple - 1%. The abscissa is displayed in kilohertz, but can be converted to distance (e.g., centimeters) if a sliceselection gradient with known amplitude is applied. The Bt field is in arbitrary units, and the M: axis is in units of M0.
+
+or by a forward SLR transform"
+
+M:(r)- M0(1-21/~12)
+
+(3.24)
+
+where /3 is one of the Cayley-Klein parameters defined in Section 2.3. An example of a linear-phase SLR inversion pulse and its slice profile is shown in Figure 3.7a-b. Its design parameters are pulse w i d t h - 3 . 2 m s , b a n d w i d t h - 1.28 kHz (full-width at M) - 0 ) , ripples in the p a s s b a n d - 0.5%, ripples in the stopband - 1%, and flip angle - 180~ Compared to a Hammingwindowed SINC inversion pulse with identical pulse width, bandwidth
+
+82
+
+CHAPTER 3 BASIC RADIOFREQUENCYPULSEFUNCTIONS
+
+(also defined as full-width at M : - 0 ) , and flip angle (Figure 3.7c-d), the SLR inversion pulse clearly produces a more uniform slice profile.
+The difference between the two pulses can be understood by recognizing that the SINC pulse is essentially the Fourier transform of an ideal rectangular profile. As such, the SINC pulse makes an effective excitation pulse because the slice profile in that case is proportional to [/~[. (Note that I/~Lis approximately proportional to the magnitude of the Fourier transform of an excitation RF pulse under the small flip angle approximation; Pauly et al. 1991.) The slice profile of an inversion pulse, however, is given by Eq. (3.24), which contains a 1/312term. The squaring operation tends to make the slice profile of the SINC more sharply peaked (i.e., pointy) as shown in Figure 3.7d. During the SLR design of an inversion pulse, however, the distortion of the profile due to squaring operation is accounted for in the design of/3, so the final profile has a flatter response over the inverted spatial region as shown in Figure 3.7b.
+Excellent slice profiles can also be obtained using a selective adiabatic inversion pulse. An example is the hyperbolic secant pulse discussed in Section 6.2. This pulse has a simple analytical form and exhibits a large degree of immunity to Bl field variations. This is in sharp contrast to SLR inversion pulses designed only for specific flip angles.
+Similar to selective excitation and refocusing pulses, the dimensionless time-bandwidth product (T Af ) is an important parameter for designing selective inversion pulses. T A r is typically chosen between 2 and 8. Increasing T A f improves the spectral or spatial profile, but results in a longer pulse width (with bandwidth fixed). If an inversion pulse is used for spatial selection, the required gradient amplitude can be calculated as shown in Example 3.2.
+Example 3.2 An SLR inversion pulse has a time-bandwidth product of 4 and a pulse width of 3.2 ms. If this pulse is used to invert a 5 mm slice, what is the amplitude of the slice-selection gradient?
+Answer The bandwidth of the pulse is A f -- 4/(3.2 ms) -- 1.25 kHz. The slice-selection gradient amplitude can be calculated using Eq. (8.52) (see Section 8.3)"
+
+2rr Af
+
+2rr x 1.25 kHz
+
+Gslice --
+
+--
+
+----5.87 mT/m
+
+g Az. 2rr x 42.57 kHz/mT x 0.005 m
+
+Nonselective ln~,ersion Pulses Nonselective inversion pulses, also known as hard pulses, are typically rectangular in shape with a short pulse width (e.g., from a few to several hundred microseconds) to ensure a broad frequency response. In practice, depending on the hardware, ramping up and
+
+3.2 INVERSIONPULSES
+
+83
+
+ramping down periods for the RF pulse also might be required, as discussed in Section 2.1. Because the area of the inversion pulse must satisfy"
+
+T
+y f BI (t)dt ~ rr o
+
+(3.25)
+
+a shorter pulse width requires a larger B1 amplitude. The minimum pulse width is typically determined by the maximum power that an RF coil can receive and sustain. It is interesting to note that the shortest hard pulse width also depends on the type of nucleus to be inverted. For spins other than protons, such as 23Na and 31p, the gyromagnetic ratio is considerably smaller than that of 1H. Thus, sodium or phosphorus imaging requires a longer pulse width to reach 180~ inversion.
+Example 3.3 An RF coil can produce a maximum Bi field of 250 IxT. What is the shortest pulse width for a rectangular nonselective pulse to invert proton and 23Na magnetization, respectively? (Neglect RF ramps on the hard pulse.)
+Answer According to Eq. (3.25), the pulse width for a rectangular inversion pulse is T = Jr/?, B1. For proton and 23Na spins, }I = 2rr x 0.04257 kHz/lxT and )I = 2rr x 0.01126 kHz/laT, respectively. Thus, the corresponding pulse widths are:
+
+TH -- rr/(2rr • 0.04257 kHz/txT • 250 IxT) - 47.0 txs TNa -- 7r/(2rr • 0.01126kHz/IxT • 250t, T) -- 1781xs
+
+3.2.3 APPLICATIONS
+Inversion pulses have many applications in MRI. An inversion pulse followed by a delay time TI can be appended to the front of an excitation pulse to nullify a specific tissue with a distinct T! relaxation time. This approach is employed in short tau inversion recovery (STIR) (Bydder and Young, 1985) and spectral inversion at lipids (SPECIAL) (Foo et al. 1994) to suppress lipid signals and in fluid attenuated inversion recovery (FLAIR) (Hajnal et al. 1992) to eliminate hyperintense signals from cerebrospinal fluid. An inversion pulse can also be incorporated into a pulse sequence to alter the Tl contrast in an image. This technique is sometimes referred to as inversion recovery preparation (IR-Prep) or magnetization preparation (MP) (Mugler and Brookeman 1990). In addition, inversion pulses are widely used in measuring the tissue Tl relaxation times and in tissue perfusion as described in Section 17.1,
+
+84
+
+C H A P T E R 3 BASIC RADIOFREQUENCY PULSE FUNCTIONS
+
+SELECTED REFERENCES
+Bydder, G. M., and Young, I. R. 1985. MR imaging: clinical use of the inversion recovery sequence. J. Comp. Assist. 7bmogr. 9: 659-675.
+Foo, T. K. F., Sawyer, A. M., Faulkner, W. H., and Mills, D. G. 1994. Inversion in the steadystate---contrast optimization and reduced imaging time with last 3-dimensional inversionrecovery-prepared GRE pulse sequences. Radiology 191: 85-90.
+Hajnol, J. V., De Coene, B., Lewis, P. D., Baudouin, C. J., Cowan, F. M., Pennock, J. M., Young, I. R., and Bydder, G. M. 1992. High signal regions in normal white matter shown by heavily T2-weighted CSF nulled IR sequences. J. Comp. Assist. Tomogl: 16: 506-513.
+Mao, J., Mareci, T. H., Scott, K. N., and Andrew, E. R. 1986. Selective inversion radio frequency pulses by optimal control theory. J. Magn. Reson. 70:310-318.
+Mugler, J. H., III, and Brookeman, J. R. 1990. Three-dimensional magnetization-prepared rapid gradient-echo imaging (3D MP-RAGE). Magn. Reson. MetL 15: 152-157.
+Pauly, J., Le Roux, P., Nishimura, D., and Macovski, A. 1991. Parameter relations for the Shinnar-Le Roux selective excitation pulse design algorithm. IEEE Trans. Med. hnag. 10: 53-65.
+Silver, M. S., Joseph, R. I., and Hoult, D. I. 1984. Highly selective re/2 and re pulse generation. J. Magn. Reson. 59:347-351.
+Slichter, C. P. 1989. Principles of magnetic resonance. Berlin: Springer-Verlag.
+
+RELATED SECTIONS
+Section 1.2 Rotating Reference Frame Section 2.1 Rectangular Pulses Section 2.2 SINC Pulses Section 2.3 Shinnar-Le Roux Pulses Section 3.1 Excitation Pulses Section 3.2 Refocusing Pulses Section 4.3 Spectrally Selective Pulses Section 6.2 Adiabatic Inversion Pulses Section 14.2 Inversion Recovery Section 17.1 Arterial Spin Tagging
+
+3.3 RefocusingPulses
+The transverse magnetization excited by an RF pulse usually consists of contributions from many spin isochromats. Due to applied imaging gradients, local magnetic field inhomogeneity, magnetic susceptibility variation, or chemical shift, these spin isochromats have a range of precession frequencies. Some precess faster than the average Larmor frequency, while others precess slower. This produces a phase dispersion (or fanning out) among the spin isochromats (Figure 3.8). A refocusing RF pulse rotates the dispersing spin isochromats about an axis in the transverse plane so that the magnetization vectors will rephase (or refocus) at a later time. The refocused magnetization is known as an RF spin echo, or simply a spin echo (Hahn 1950).
+
+3.3 REFOCUSINGPULSES
+
+85
+
+(a)
+
+z
+
+(b)
+
+z
+
+(c)
+
+(d)
+
+z
+
+X
+(e)
+
+~ ~= y (f)
+
+h' .~.~-~ ~y
+h
+
+B1 ,refocus ~,~y
+
+h ...-----~4 ~ y
+
+h ~ ~__. ~ y
+
+X
+FIGURE 3.8 Time evolution of two spin isochromats h and h' in the rotating reference frame, demonstrating the effect of the refocusing pulse. (a) The initial magnetization vectors for both spin isochromats are aligned with the main magnetic field B0 (i.e., the - axis). (b) After an RF excitation pulse Bl.ex(t) applied along the x axis, both magnetization vectors are rotated onto the v axis. (c) Because of off-resonance effects, h precesses faster than the frequency of the reference frame (i.e., clockwise rotation), while h' precessesslower (i.e., counter-clockwise rotation). (d) When a 180~refocusing pulse is applied, h and h' are rotated by 180~ about the v axis. (e) Following the refocusing_pulse,h and h' continue to precess as indicated by the arrows. (f) After a delay time, h and h' meet at the v axis, forming a spin echo. The transverse magnetization vectors are diminishing in size due to ~ decay.
+
+Refocusing RF pulses commonly have a flip angle of 180~ At this flip angle, the transverse magnetization is optimally refocused and the largest spin echo signal is produced. Pulses with flip angles other than 180~ are also capable of refocusing the transverse magnetization vectors, although the refocusing is only partial. When multiple non-180 ~ refocusing pulses are applied in a sequence, stimuhtted echoes can be produced. This phenomenon is described in Section 16.4.
+Many types of pulses can be used for refocusing, including, but not limited to, rectangular (hard), SINC, SLR, composite, adiabatic, or variable-rate pulses. A refocusing pulse can be spatially selective, spectrally selective, or nonselective. Common spatially selective pulses include SINC pulses and SLR pulses, whereas nonselective pulses are almost exclusively rectangular
+
+86
+
+CHAPTER 3 BASIC RADIOFREQUENCYPULSEFUNCTIONS
+
+in shape. These refocusing pulses are discussed later in this section. Adiabatic refocusing pulses belong to a special class of pulses that can provide excellent immunity to B l field variations, but require somewhat longer pulse widths (e.g., 8 ms) and typically deposit more RF power. They can be used as nonselective refocusing pulses, as detailed in Section 6.3.
+
+3.3.1 QUALITATIVE DESCRIPTION
+Figure 3.8a shows the magnetization vectors (h and h') associated with
+two spin isochromats. Immediately after a 90 ~ excitation pulse, h and h: are
+both nutated to the y axis, as shown in Figure 3.8b. Consider the time evolution
+of h and h: in a rotating reference frame whose frequency is set to the average
+Larmor frequency of h and h'. If h and h' both have the same Larmor frequency, they will appear stationary in this rotating frame. If, however, h precesses slightly faster and h ~slightly slower than the average Larmor frequency, the two vectors will precess in opposite directions as viewed from the rotating frame (Figure 3.8c). When a 180 ~ refocusing pulse B l is applied along the y axis, both h and h' will be rotated about the y axis by 180~ (Figure 3.8d). After the refocusing pulse is terminated, the two magnetization vectors continue to
+precess as before (Figure 3.8e) and rephase (or refocus) after a time delay as
+shown in Figure 3.8f. Therefore, an RF spin echo is produced. This discussion assumes that the refocusing RF pulse is applied along the
+y axis and has a flip angle of 180~ but refocusing pulses still function even if these assumptions are relaxed. For example, a refocusing pulse can be applied along the x axis, in which case the magnetization will be refocused along the negative y-axis instead. In fact, the refocusing pulse can be applied along any direction in the transverse plane as shown in Example 3.4. In addition, an RF spin echo can still be formed if the flip angle deviates from 180~ as quantitatively shown in the next subsection.
+Example 3.4 Assuming that a 90 ~ excitation and a 180~ refocusing pulse
+make angles oel and or2 with the positive x axis in the rotating reference frame, respectively, prove that magnetization is refocused along a direction at an angle 2ot2 - oel - 90 ~ with respect to the x axis.
+Answer Let us consider the magnetization vectors and the B1 field for the RF pulses in the transverse plane. Further, let us assume that both RF pulses are applied on resonance. At the end of the excitation pulse/}l,ex, the magnetization vector Mex is nutated to the transverse plane in a direction perpendicular to B|.ex, as shown in Figure 3.9a. Because Mex-LBl.ex, the angle between Mex and the v axis is also oti. From Figure 3.9b, it can be seen that the angle
+
+3.3 REFOCUSINGPULSES
+
+(a)
+
+(b)
+
+/
+
+Mex
+
+~x
+
+(c)
+V
+B1 ,refocus
+
+87 Bl,refocus
+
+B1 ,ex
+
+~erefocus
+
+}"X
+
+~'-X
+
+I' I
+
+-~
+
+X ~_
+
+FIGURE 3.9 A top view of the transverse plane, showing the transverse magnetization and B1 fields_,used in Example 3.4. (a) Magnetization vector Mex after the 90~ excitation pulse Bl,ex. (b) The 180~ refocusing pulse Bl,refocus in relation to the excited
+--.,
+magnetization Mex. (c) The refocused magnetization Mrefocusafter the refocusing pulse.
+
+between Mex and the refocusing B1 field Bl.refocus is:
+
+= c~l + (90 ~ - oe2)
+
+(3.26)
+
+._,
+
+._,
+
+At the end of the RF refocusing pulse, Mex is rotated by 180 ~ about Bl,refocus
+
+and the resultant magnetization vector becomes Mrefocus (Figure 3.9c). The
+
+angle between Mrefocus and the x axis is"
+
+~p = c~2 - ~
+
+(3.27)
+
+Combining Eqs. (3.26) and (3.27), we obtain:
+
+q) = 2oe2 - c~l - 90 ~
+
+(3.28)
+
+3.3.2 MATHEMATICAL DESCRIPTION
+
+Effects of a Refocusing Pulse on Magnetization In this subsection we analyze an isochromat of transverse magnetization as it undergoes excitation, precession, refocusing, and finally formation of an RF spin echo. Suppose the isochromat has magnetization M0 and resonance offset Aco -- c o - coref, where coref is the angular frequency of the rotating frame. The magnetization M0 can be expressed as"
+
+M0(Aco) -- m0.tota1f(Aco) N(Aco)
+
+(3.29)
+
+where f(Aco) is the normalized distribution function of the off-resonant frequency Aco (i.e., a spectrum of Aco) that satisfies"
+
+oo
+f f(Aco) d(Aco) -- 1
+--OC
+
+(3.30)
+
+88
+
+CHAPTER 3 BASICRADIOFREQUENCYPULSEFUNCTIONS
+
+and Mo.total is the total magnetization. Immediately after an excitation pulse
+
+(flip angle - 01) along the x axis, the magnetization of the spin isochromat
+
+can be described by:
+
+I~
+
+M(Am, t - - 0 ) - - M 0 sin01
+
+(3.31)
+
+[_cos 01
+
+(The argument of M0 is dropped for simplicity.) In general, M can have a different Larmor frequency co than the rotating frame frequency O)ref, leading to nonzero values of Am. Because of this resonance offset, M precesses about the z axis as described by"
+
+M(Aco, t) -- Mo
+
+e -t/~ sin01 cos(Acot)
+
+e -~/rj cos01 + (1 - e -r/r~)
+
+(3.32)
+
+where the exponential terms account for the Tl and T2 relaxation effects (see
+
+Eq. 1.67). If a refocusing RF pulse with a flip angle of 02 and a duration
+
+<< T2 is applied along the v axis, the magnetization immediately before
+
+_..,
+
+..-,
+
+(M (Am, r_)) and immediately after (M (Am, r+)) the refocusing pulse are
+
+related by a rotation matrix ".h,. (02)
+
+M(Aa), r+) --.h,.(02) a)(Aa), r_)
+
+(3.33)
+
+where r is the time between the isodelay points of the excitation and the refocusing pulses with subscripts - and + indicating immediately before and after reaching the isodelay point of the refocusing pulse, and 91r(02) denotes a rotation about the 3' axis by 02 tad. Equation (3.33) can be equivalently expressed as:
+
+Mx(r+)
+
+cos 02 0 - s i n 0 2 M~(r_)
+
+I ] [ lI :: 1 Mr(r+) -- 0 1 0
+
+(r_)
+
+M: (r+)
+
+sin 02 0 cos 02
+
+(r_)
+
+(3.34)
+
+Using Eq.(3.32), we have:
+
+1 [ e s'n~ 1 My(r_) -- Mo
+
+e -r/T- sin01 cos(Aoor)
+
+(3.35)
+
+M:(r_)
+
+e -r/T~ cos01 + (1 - e -r/T1)
+
+Because we are primarily interested in the transverse magnetization, let us define a complex quantity M• that includes both components of the transverse magnetization (see Section 1.2.):
+
+M• -- Mx + i Mr
+
+(3.36)
+
+3.3 REFOCUSINGPULSES
+
+89
+
+Using Eqs. (3.34)-(3.36), M• at t - r+ is found to be"
+
+M• r+) -- iMoe -r/~ sinOl (cos2(O2/2)e -iA~ + sin2(O2/2)e iA'~
+
+-Mosin02(1-(1-cosOl)e -r/T')
+
+(3.37)
+
+After the refocusing pulse, the transverse magnetization will continue to precess about the z axis, as described by
+
+M(AoJ, t) --
+I e-(t-r)/~ (M,.(r+)cos(A~o(t- r)) + M,.(r+)sin(Aco(t- r))) 1 e-('-r)/T2 (-Mx (r+) sin (Aco(t- r))+ M,.(r+)cos (Aco(t- r)))
+Mo(1 - e-~t-r)/T~ ) + M-(r+)e -(t-r)/T~
+(3.381
+
+where t is the total time elapsed since the isodelay point of the excitation
+
+pulse. Equation (3.38) indicates that the transverse magnetization continuously
+
+experiences T2 decay while freely precessing with a frequency Aco. This is
+
+equivalent to modulating M•
+
+r+) with an amplitude e-~t-r)/T2 and a
+
+phase e -i Aco(t-r ):
+
+M• t) -- M• r+)e-~t-r)/he -lAb~ = iMoe -t/T2 sin0i cos2(02/2) e-iA~~ + iMoe -t/~ sin01 sin2(02/2)e -izxc~ - Moe-(t-r)/~ ( 1 - (1-- cosO, )e-r/T' ) sinO2e-iA~
+(.3.39)
+
+Equation (3.39) has several implications. First, when 01 -- 90 ~ and 02 - 180~ the transverse magnetization becomes"
+
+M_t_(Am, t ) ] 0 1 = 9 0 o. 02=180 o - - i M o e - t / ~ e - i A w ( t - 2 r )
+
+(3.40)
+
+Thus, at t = 2r, all spin isochromats point along the r axis (i.e., the imaginary axis in the complex plane), irrespective of their off-resonance terms Aco. The magnetization is rephased, or refocused, to its initial orientation (see Eq. 3.31), with the only effect being the 7"2 relaxation. This indicates that a 180~ pulse can effectively refocus the transverse magnetization and form a spin echo. Second, even when the flip angle 02 is not 180~, refocusing can still occur at
+
+90
+
+CHAPTER 3 BASIC RADIOFREQUENCYPULSE FUNCTIONS
+
+t = 2r as long as 02 r n x 360 ~(n = 0, 4-1, 4-2 . . . . ), as can be seen from the second term of Eq. (3.39). When a non- 180 ~ refocusing pulse is used, however, the magnetization is only partially refocused because of the weighting factor sin 2 (02/2). For example, if 02 - 90 ~ a spin echo with 50% of the maximal amplitude is produced. Finally, the first term in Eq. (3.39) represents a freeinduction decay (FID) signal following the initial excitation pulse, whereas the third term originates from the longitudinal magnetization excited by the refocusing pulse when the flip angle is not 180 ~
+
+Off-Resonance Effects Although we have considered the off-resonance
+effect in magnetization dephasing and rephasing before and after the refocusing pulse, this effect has not been accounted for during the RF pulse itself. For offresonance spins, the effective magnetic field Beff (Section 1.2) is tilted away from the transverse plane towards the z axis (or the negative z axis, depending on the sign of the off-resonance term), as shown in Figure 3.10. In addition, the
+amplitudeoftheeffectivefield (l[~eff] --v/B~+(Aco/V)2) becomeslarger
+
+Z
+
+Bo
+t~(A,,), ~+)
+
+d~,,/:'2
+
+.(t)
+Bl(t)
+y
+M(A~,)r,_)
+
+FIGURE 3.10 Off-resonance effects on a refocusing pulse. With the off-resonance term, Aco/K2 (~ is a unit vector along the - axis), the effective magnetic field
+Beff(t) -- Bl(t) + Aco/y ^ is tilted away from the transverse plane and its amp-
+litude becomes larger than the applied B~ field. The magnetization vector rotates about Beff(t) by a flip angle 0, resulting in a longitudinal component even with 0 = 180~ flip angle. The gray vector labeled with M(Am. r_) represents an off-resonance spin isochromat immediately before the refocusing pulse, and the black vector labeled with M (Am, r+) shows the position of magnetization immediately after the pulse. Because the effective flip angle exceeds 180~, refocusing of the magnetization vector is in general incomplete.
+

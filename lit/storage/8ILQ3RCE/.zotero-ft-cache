@@ -1,0 +1,123 @@
+
+Close this dialog
+This website utilizes technologies such as cookies to enable essential site functionality, as well as for analytics, personalization, and targeted advertising purposes. You may change your settings at any time or accept the default settings. Privacy Policy
+Manage Preferences Accept All Reject All
+
+Close Cookie Preferences
+
+    Skip to Article Content
+    Skip to Article Information
+
+    Journals
+    Magazine
+
+Subscribe
+Analytical Science Journals
+Max Planck Institute for Biology Tuebingen
+Search within
+
+    Search term
+
+Login / Register
+
+    Publications
+    Topics
+    Author Resources
+
+    Webinars & Events
+
+NMR in Biomedicine
+Volume 35, Issue 6 e4669 NMR in Biomedicine
+RESEARCH ARTICLE
+Open Access
+High-resolution neural network-driven mapping of multiple diffusion metrics leveraging asymmetries in the balanced steady-state free precession frequency profile
+Florian Birk , 
+Felix Glang , 
+Alexander Loktyushin , 
+Christoph Birkl , 
+Philipp Ehses , 
+Klaus Scheffler , 
+Rahel Heule , 
+First published: 29 December 2021
+https://doi.org/10.1002/nbm.4669
+Citations: 1
+MPG/SFX Link Resolver
+
+Funding information: German Research Foundation; Max Planck Society
+Read the full text
+PDF PDF
+Tools
+Share
+Abstract
+
+We propose to utilize the rich information content about microstructural tissue properties entangled in asymmetric balanced steady-state free precession (bSSFP) profiles to estimate multiple diffusion metrics simultaneously by neural network (NN) parameter quantification. A 12-point bSSFP phase-cycling scheme with high-resolution whole-brain coverage is employed at 3 and 9.4 T for NN input. Low-resolution target diffusion data are derived based on diffusion-weighted spin-echo echo-planar-imaging (SE-EPI) scans, that is, mean, axial, and radial diffusivity (MD, AD, and RD), fractional anisotropy (FA), as well as the spherical coordinates (azimuth Φ and inclination ϴ) of the principal diffusion eigenvector. A feedforward NN is trained with incorporated probabilistic uncertainty estimation. The NN predictions yielded highly reliable results in white matter (WM) and gray matter structures for MD. The quantification of FA, AD, and RD was overall in good agreement with the reference but the dependence of these parameters on WM anisotropy was somewhat biased (e.g. in corpus callosum). The inclination ϴ was well predicted for anisotropic WM structures, while the azimuth Φ was overall poorly predicted. The findings were highly consistent across both field strengths. Application of the optimized NN to high-resolution input data provided whole-brain maps with rich structural details. In conclusion, the proposed NN-driven approach showed potential to provide distortion-free high-resolution whole-brain maps of multiple diffusion metrics at high to ultrahigh field strengths in clinically relevant scan times.
+Open Research
+Supporting Information
+REFERENCES
+Citing Literature
+
+Volume 35 , Issue 6
+
+June 2022
+
+e4669
+
+    Figures
+    References
+    Related
+    Information
+
+Recommended
+
+    Whole‐brain perfusion imaging with balanced steady‐state free precession arterial spin labeling
+    Paul Kyu Han ,  Jong Chul Ye ,  Eung Yeop Kim ,  Seung Hong Choi ,  Sung-Hong Park , 
+    NMR in Biomedicine
+
+    Phase imaging with multiple phase‐cycled balanced steady‐state free precession at 9.4 T
+    Jae-Woong Kim ,  Seong-Gi Kim ,  Sung-Hong Park , 
+    NMR in Biomedicine
+
+    Improved cine displacement‐encoded MRI using balanced steady‐state free precession and time‐adaptive sensitivity encoding parallel imaging at 3 T
+    Daniel Kim ,  Peter Kellman , 
+    NMR in Biomedicine
+
+    Multi‐parametric artificial neural network fitting of phase‐cycled balanced steady‐state free precession data
+    Rahel Heule ,  Jonas Bause ,  Orso Pusterla ,  Klaus Scheffler , 
+    Magnetic Resonance in Medicine
+
+    Optimization of 4D vessel‐selective arterial spin labeling angiography using balanced steady‐state free precession and vessel‐encoding
+    Thomas W. Okell ,  Peter Schmitt ,  Xiaoming Bi ,  Michael A. Chappell ,  Rob H. N. Tijssen ,  Fintan Sheerin ,  Karla L. Miller ,  Peter Jezzard , 
+    NMR in Biomedicine
+
+Download PDF
+back
+Additional links
+About Wiley Online Library
+
+    Privacy Policy
+    Terms of Use
+    About Cookies
+    Manage Cookies
+    Accessibility
+    Wiley Research DE&I Statement and Publishing Policies
+
+Help & Support
+
+    Contact Us
+    Training and Support
+    DMCA & Reporting Piracy
+
+Opportunities
+
+    Subscription Agents
+    Advertisers & Corporate Partners
+
+Connect with Wiley
+
+    The Wiley Network
+    Wiley Press Room
+
+Copyright © 1999-2024 John Wiley & Sons, Inc or related companies. All rights reserved, including rights for text and data mining and training of artificial technologies or similar technologies.
+
+Wiley Home Page
+

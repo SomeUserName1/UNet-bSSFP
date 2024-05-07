@@ -1,0 +1,3434 @@
+Invited Review
+
+JOURNAL OF MAGNETIC RESONANCE IMAGING 41:266–295 (2015)
+
+Extended Phase Graphs: Dephasing, RF Pulses, and Echoes - Pure and Simple
+Matthias Weigel, PhD1,2*
+
+The extended phase graph (EPG) concept represents a powerful tool for depicting and understanding the magnetization response of a broad variety of MR sequences. EPGs focus on echo generation as well as on classiﬁcation and use a Fourier based magnetization description in terms of “conﬁgurations states”. The effect of gradients, radiofrequency (RF) pulses, relaxation, and motion phenomena during the MR sequence is characterized as the action of a few matrix operations on these conﬁguration states. Thus, the EPG method allows for fast and precise quantitation of echo intensities even if several gradients and RF pulses are applied. EPG diagrams aid in the comprehension of different types of echoes and their corresponding echo time. Despite its several beneﬁts in regard to a large number of problems and issues, researchers and users still often refrain from applying EPGs. It seems that “phase graphing” is still seen as a kind of “magic.” The present review investigates the foundation of EPGs and sheds light on prerequisites for adding more advanced phenomena such as diffusion. The links between diagrams and calculations are discussed. A further focus is on limitations and simpliﬁcations as well recent extensions within the EPG concept. To make the review complete, representative software for EPG coding is provided.
+Key Words: extended phase graph; phase graph; Fourier space; dephasing; conﬁguration states; partitioning
+J. Magn. Reson. Imaging 2015;41:266–295. VC 2014 Wiley Periodicals, Inc.
+THE MAIN CHALLENGE: UNDERSTANDING ECHO GENERATION
+Modern MRI and MR spectroscopy (MRS) sequences use gradients and radiofrequency (RF) pulses abundantly. Figure 1a depicts a still simple example of a
+1Department of Radiology, Medical Physics, University Medical Center Freiburg, Freiburg, Germany. 2Radiological Physics, University of Basel Hospital, Basel, Switzerland. *Address reprint requests to: M.W., Radiological Physics, University of Basel Hospital, Petersgraben 4, 4031 Basel, Switzerland. E-mail: matthias.weigel@usb.ch Received February 19, 2013; Revised February 10, 2014; Accepted February 19, 2014. DOI 10.1002/jmri.24619 View this article online at wileyonlinelibrary.com.
+
+multi spin echo sequence based on the Carr-Purcell-
+
+Meiboom-Gill (CPMG) scheme (1–3). The CPMG
+
+scheme is the basis for the commonly used MR imag-
+
+ing sequence known as turbo spin echo (TSE), fast
+
+spin echo (FSE), or rapid acquisition with relaxation
+
+enhancement (RARE) (4).
+
+The general magnetization response to this CPMG
+
+sequence was simulated using the rotation operator
+
+algorithm (ROA) (5). The ROA represents the direct
+
+algorithmic conversion of the Bloch equation (6) into
+
+rotations of classical magnetization vectors (isochro-
+
+mats). Rotations around the z-axis by the phase angle
+
+w represent dephasing; rotations around the x-axis by
+
+the ﬂip angle a depict each RF pulse. RF pulses are
+
+commonly treated as instantaneous rotations (hard
+
+pulse approximation). Then, the rotation matrices
+
+0
+
+1
+
+10
+
+0
+
+RxðaÞ ¼ BB@ 0 cos a Àsin a CCA
+
+[1]
+
+0 sin a cos a
+
+and
+
+0
+
+1
+
+cos w Àsin w 0
+
+RzðwÞ ¼ BB@ sin w cos w 0 CCA
+
+[2]
+
+0
+
+01
+
+depict the effect of RF pulses and dephasing on an isochromat (Mx, My, Mz)T. To get a correct estimate of the “real” magnetization response to a given MR sequence, a whole ensemble of isochromats, each having a different dephasing angle w, has to be simulated. Figure 1b– d depicts the resulting magnetization response for different (so far unknown) points of time.
+A general RF pulse with azimuthal phase F relative to the x-axis can be described using the rotation matrix composition RFðaÞ ¼ RzðFÞ RxðaÞ RzðÀFÞ, which leads the general rotation back to a rotation around x (1,2).
+Figure 1 demonstrates that the ROA is well suited for graphical simulations of the Bloch equation (5); however, it is less practical for the quantitation of echo intensities. To attain the necessary accuracy, the evolution of typically thousands of isochromats has to be determined over time, i.e., by solving the Bloch equation. Finally, the vector sum of all isochromats has to be calculated. This is neither computationally efﬁcient nor an exact solution for the echo intensities.
+
+VC 2014 Wiley Periodicals, Inc.
+
+266
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+267
+
+Figure 1. a: Example of a CPMG sequence with constant ﬂip angle a ¼ 60 refocusing pulses. The magnetization response was simulated using the Bloch equation with 5000 isochromats. b–d: Three screenshots of the resulting magnetization response in position space are shown for different unknown points of time. It is rather unclear whether one or more screenshots represent an echo and, if so, what type of echo(es) with which intensity are observed.
+
+Also, intuitive insight remains very limited: It is difﬁcult to read the magnetization response from the sequence diagram or graphical Bloch simulation in Figure 1. Important questions that may arise include: When do echoes occur? If an echo occurs what type is it? Spin echo (SE)? Stimulated echo (STE)? Is there in fact a general way to identify types of echoes (echo classiﬁcation)?
+In the present context an echo means a nonvanishing macroscopic transverse magnetization component that develops during free precession. In reference to Figure 1c, a close look still reveals that all isochromats have nonnegative x-components. This asymmetry in isochromat distribution with respect to the y-z plane clearly hints at an echo. Using a similar argument in the opposite way, Figures 1b and d probably display fully dephased magnetization. However, there does not appear to be much hope of deducing further information from Figure 1b–d about echo intensity, time point, etc.
+Extended phase graphs (EPGs) (7–19) represent a powerful and elegant tool to answer the questions put forth above. In the following, the foundations of the EPG concept will be analyzed and explained in both a pictorial and a quantitative way. Recipes how to properly add effects of relaxation, coherent motion, or diffusion are provided. There is an additional focus on graphical representation, on a few common stumbling blocks, and also on the limita-
+
+tions and simpliﬁcations involved in this framework. The work is completed by representative examples and information on the availability of dedicated software.
+Describing Dephased Magnetization in an Efﬁcient Way
+Dephasing represents an important phenomenon in magnetic resonance. Particularly gradients — which realize spatial encoding, spoiler and crusher gradients, introduce motion sensitivity for diffusion and ﬂow, etc. — cause inevitable dephasing. Thus, most of the time the isochromat ensemble (“spin system”) is in a state of strong dephasing as shown in Figure 2. Coherence only occurs during the short period of echo generation. However, dealing with dephased magnetization in position space is an extensive task (Fig. 2), because for each isochromat the Bloch equation has to be solved.
+For an improved description of dephasing it makes sense to recall the basic effect of a gradient. First, the focus will be on transverse magnetization, i.e., coherent transverse magnetization after excitation as demonstrated in Figure 3: Using the rotating reference frame introduced by Rabi et al (20), the constant gradient G introduces a linearly position-dependent offresonance Larmor frequency v along its axis. A righthanded helix of isochromat endpoints evolves in
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+268
+
+Weigel
+
+Figure 2. Example of the conﬁguration of a strongly dephased isochromat ensemble. To get an idea of the “exact ensemble conﬁguration,” interpolation between thousands of isochromat supporting points had to be performed (light blue color). Drawing a fraction of these isochromats (dark blue color) demonstrates how much information content is needed to properly describe a dephased isochromat system after several applied RF pulses. 50 (a) and 500 (b) selected isochromats are shown. [Color ﬁgure can be viewed in the online issue, which is available at wileyonlinelibrary.com.]
+
+space, if the gradient is presumed to be along the zaxis (Fig. 3).1
+
+In the following, all pictorial sketches of isochromat
+
+helices (transverse magnetization) will presume a gra-
+
+dient in the z-direction. The reader should note that
+
+this assumption is without loss of generality for the
+
+later results, that magnetization distributions of spa-
+
+tial harmonics (helices) will evolve. Neither does this
+
+assumption have any inﬂuence on the ﬁnal quantita-
+
+tive results. It is merely for the sake of improved visu-
+
+alization and pictorial understanding of what a
+
+gradient’s effect is.
+
+The longer the gradient is turned on (Fig. 3), the
+
+more turns the helix will have, which is equivalent to
+
+higher spatial frequency or smaller wave length. To
+
+ﬁnd a more compact representation of such dephas-
+
+ing, a closer look at such a helix and a given single
+
+isochromat is provided in Figures 4a and b: The equa-
+
+tion of motion for a single isochromat with magnitude
+
+M ¼ jMj at off-center position r equals
+
+ Zt
+
+
+
+Mx ðrÞ ¼ M cos gr Gðt0Þ dt0 ¼ M cosðkrÞ
+
+[3a]
+
+0
+
+ Zt
+
+
+
+MyðrÞ ¼ M sin gr Gðt0Þ dt0 ¼ M sinðkrÞ : [3b]
+
+0
+
+Equations
+
+(3a)
+
+and
+
+(3b)
+
+used
+
+the
+
+phase
+
+angle
+
+fðrÞ
+
+¼
+
+Rt
+0
+
+gGðt0Þr dt0 and is deﬁned at a given time t; thus, there
+
+is no explicit time dependence in the equations given.
+
+The angular wave vector
+
+Zt
+
+kðtÞ ¼ g Gðt0Þ dt0
+
+[4]
+
+0
+
+was introduced (13–16,18), which describes the helix’s spatial frequency over time, its inverse times 2p being the pitch l of the helix. Therefore, k represents a quantitative measure for dephasing (“order of dephasing”) and is already well-known from the popular k-space concept (21,22).
+The dephasing effect of gradients generates timedependent harmonic (sine and cosine) magnetization
+
+1CONVENTION: A positive gradient will lead to a higher Larmor frequency on the positive side of the right-handed spatial coordinate system, which leads to a counterclockwise precessing isochromat, which corresponds to a mathematically positive sense of rotation and precession. Thus, a right-handed helix evolves due to dephasing with a positive gradient.
+
+components along the spatial axes (Eqs. (3a) and (3b)), which correspond to the helices in Figures 3 and 4 for a z-gradient. A change of basis from real Mx, My to the complex magnetization components (7)
+MþðrÞ ¼ Mx ðrÞ þ iMyðrÞ ¼ M eifðrÞ ¼ M eikr ¼ ðMÀÞÃ [5a]
+
+MÀðrÞ ¼ Mx ðrÞ À iMyðrÞ ¼ M eÀifðrÞ ¼ M eÀikr ¼ ðMþÞÃ [5b]
+
+allows a simpliﬁed description of transverse magnet-
+
+ization (Fig. 4c), thereby avoiding the distinction
+
+between x and y magnetization components that have
+
+mutual magnetization exchange over time. The sym-
+
+bol p“ﬃ*ﬃﬃﬃ”ﬃﬃﬃ denotes the complex conjugate operation; i ¼ À1 is the imaginary unit.
+
+The reader should note that MÀ directly corresponds to that magnetization if Mþ is ﬂipped (“refocused”) by a 180 RF pulse around the x-axis
+
+(Eqs. (5a) and (5b); Fig. 4c). From a notational point of view, the fact that the effect of a 180 RF pulse
+
+around the x-axis can be depicted by a single complex
+
+conjugate operation (Mþ)* ¼ MÀ is of highly practical value within the ﬁeld of MR. This property was
+
+already reported by Jaynes and Woessner (7,8) and
+
+will be of high importance throughout the text.
+
+Neglecting MÀ for the moment, the sum of all isochromats (i.e., the helix, Eq. (5a) and Fig. 4a) along
+
+the gradient’s direction represents the net magnetiza-
+
+tion. In Rthe continuous limit this corresponds to the integral M eikrd3r. Considering the integral as being
+
+evaluated over a macroscopically large sample (sub)
+
+volume V (c.f. chapter “Extensions, Limitations and
+
+Software Coding”), where, generally, various helices of
+
+different spatial frequency, wave vector or dephasing
+
+order k will be present, leads to the relation:
+
+F~
+
+þðkÞ
+
+¼
+
+R
+V
+
+ Mx
+
+ðrÞ
+
+þ
+
+ iMyðrÞ
+
+e Ài kr
+
+d3r
+
+R ¼ V MþðrÞ
+
+eÀikr
+
+d3r
+
+()
+
+Mx ðrÞ
+
+þ iMyðrÞ
+
+¼
+
+MþðrÞ
+
+¼
+
+R
+V
+
+F~
+
+þ
+
+ðkÞ
+
+e i kr d 3 k
+
+:
+
+[6]
+
+Equation (6) interprets transverse magnetization as a sum of complex spatial harmonics (helices) with different wave vectors k. However, Eq. (6) is nothing else than the Fourier decomposition of Mþ (r). Therefore, the Fourier transform F~þðkÞ depicts for each helix of
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+269
+
+Figure 3. Visualization of a z gradient’s dephasing effect on initially coherent transverse magnetization. The lowest isochromat is on-resonant (v ¼ 0) at the “isocenter”; the off-resonance frequency increases linearly with the distance from the imaginary isocenter. The 40 representative isochromats begin to form a helicoid and their endpoints a helix around the z-axis, as emphasized by the rainbow colored tube. With time, the right-handed helix turns more and more and its corresponding pitch decreases. For reasons of improved visualization, a gradient along the z-axis was presumed and its negative part omitted (c.f. text).
+
+wave vector k its amplitude (radius) and its phase (phase angle in the x0-y0-plane) in Eq. (6). Any possible scaling factor of the inverse or forward Fourier transform was included within Mþ or F~ þ in Eq. (6).
+The tilde notation is meant to emphasize that F~þðkÞ is deﬁned in Fourier space and provides Fourier components. Former publications used F at the same time for both Fourier (Eq. (6)) and non-Fourier based magnetization components, i.e., F and F* instead of Mþ and MÀ (8,11,15,17). Or, on the contrary, authors also used Mþ and MÀ notations for the Fourier space (8,11,15,17). This should be avoided by all means, because it leads to ambiguities and is prone to error. In this manuscript, M always refers to magnetization components in position space; F is always connected to Fourier space.
+Coming back to the helix-dephasing illustration in Figure 3, Figure 5 pin-points the elegance and efﬁciency of the Fourier approach: Magnetization is interpreted in terms of “conﬁguration states” (11) that are directly linked to the dephasing coordinate k. Particu-
+
+larly, a simple change of k means the corresponding change of dephasing of the whole isochromat ensemble’s transverse magnetization F~þðkÞ (10–16,18,23,24). This approach by means of conﬁguration states is so efﬁcient because we directly describe the gradient dephasing in a system of reference, which the gradients in a manner of speaking “generate themselves”: a sum of helices of isochromats.
+Conﬁguration states are also termed phase states, coherences, base states, partition states, etc. in the literature. They represent the ﬁrst of two key concepts within the EPG calculus. Now, the second key concept will be used to account for the effect of RF pulses on magnetization components and conﬁguration states in particular.
+Action of RF Pulses
+Partition State Method
+MR experiments consist of two basic probes: (i) gradients and (ii) RF pulses. After the ﬁrst signiﬁcant
+
+Figure 4. a: Example of an evolved helix of isochromats with the pitch 2p/ jkj along the z-axis. b: At a distance r from the isocenter along the gradient Gz, the equation of motion of the respective transverse magnetization vector M is analyzed in further detail. c: The change to a complex representation of transverse magnetization leads to simpliﬁcation and new physical insights as described in the text.
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+270
+
+Weigel
+
+Figure 5. In reference to Figure 3, the dephasing effect of gradient G (bottom) on transverse magnetization is quantiﬁed in terms of k (middle, here a 1D scalar), which increases linearly with time due to the constant (background) gradient. Directly connected to k is the corresponding helix F~þðkÞ, called conﬁguration state, which exactly depicts the conﬁguration of transverse magnetization present at that time. [Color ﬁgure can be viewed in the online issue, which is available at wileyonlinelibrary. com.]
+
+improvement in characterizing the effect of gradients
+
+on isochromat ensembles in terms of the conﬁgura-
+
+tion states (last chapter), describing the effect of RF
+
+pulses on magnetization components shall be
+
+improved now. This search leads back to the histori-
+
+cal beginnings of “phase graphing,” which was origi-
+
+nally published as the partition state method (8,9).
+
+The partition state method still investigated magnet-
+
+ization in position space (Eqs. (5a) and (5b)). In the
+
+following, the basic theory of and results from the
+
+partition state method are discussed and then com-
+
+bined with the concept of conﬁguration states to
+
+obtain the extended phase graphs, the way in which
+
+phase graphs are interpreted nowadays.
+
+The rotation matrices Rx and Rz used in the ROA
+
+approach from Eqs. (1) and (2) are solved for the com-
+
+plex transverse magnetization basis (8,9,11). A fast
+
+and elegant change between the two reference sys-
+
+tems is achieved by a pair of similarity (S and S21) or
+
+unitary (U and U21) transformation matrices:
+
+01
+
+23
+
+! Mx
+
+S or U r Mþ
+
+BB@ My CCA SÀ1 or UÀ1 664 r MÀ 775 r : Scaling factor for basis: [7]
+
+Mz
+
+Mz
+
+The exponent “À1” denotes the inverse transformation matrix. The deﬁnition in this text is that vectors and matrices referring to the real reference system are put in parentheses, whereas for the complex reference system brackets are used.
+
+Compared with the similarity transformation for which r ¼ 1 ipnﬃﬃﬃEq. (7), the unitary transformation for which r ¼ 1= 2 preserves the originqalﬃﬃﬃﬃnﬃﬃﬃoﬃﬃﬃrﬃﬃmﬃﬃﬃﬃﬃﬃﬃﬃoﬃﬃﬃfﬃﬃﬃﬃtﬃﬃhﬃﬃﬃﬃe magnetization vectors, which is jMj ¼ Mx2 þ My2 þ Mz2.
+This can be easily seen considering that both Mþ and MÀ contain Mx and My, but Mz occurs only once. Directly proving it is left as an exercise for the reader.
+Besides preserving the norm, the advantage of the unitary transformation is that it also preserves a rotation matrix as a rotation matrix, and the matrices U and U21 are a kind of “symmetrically deﬁned”:
+
+0
+
+1
+
+1 þi 0
+
+U
+
+¼
+
+p1ﬃﬃﬃ 2
+
+BB@
+
+1
+
+Ài
+
+0 pﬃﬃﬃ
+
+CCA
+
+[8a]
+
+00 2
+
+2
+
+3
+
+11 0
+
+UÀ1
+
+¼
+
+p1ﬃﬃﬃ 2
+
+664
+
+Ài
+
+þi
+
+0 pﬃﬃﬃ
+
+775:
+
+[8b]
+
+00 2
+
+For unitary matrices it is UU ¼ UUÀ1 ¼ 1, which makes it simple to ﬁnd the corresponding inverse as UÀ1 ¼ U . The symbol “ ” signiﬁes the Hermitian conjugate of vectors and matrices. The similarity trans-
+formation matrices are deﬁned as
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+271
+
+0
+
+1
+
+1 þi 0
+
+S ¼ BB@ 1 Ài 0 CCA
+
+[9a]
+
+001
+
+2
+
+3
+
+1 10
+
+SÀ1
+
+¼
+
+1 2
+
+664
+
+Ài
+
+þi
+
+0 775:
+
+[9b]
+
+0 02
+
+In some situations, such as in the investigation of tran-
+
+sient phase behavior of steady state sequences as per-
+
+formed by Ganter (25,26), the unitary transformation
+
+in Eqs. (8a) and (8b) may be more convenient; howevperﬃﬃ,ﬃ its disadvantage is that the scaling factor r ¼ 1= 2
+
+occurs in some components of all further vectors and
+
+operator matrices. Thus, the similarity transformation
+
+will be used further on for practical reasons. This is in
+
+accordance with the vast majority of publications
+
+which use Eqs. (9) directly or indirectly (7–
+
+18,23,24,27–29). If the reader should be interested in
+
+or in need of the more concise unitary transformation, he or she has to replace all the following S and SÀ1 matrices with U and UÀ1 matrices, respectively.
+
+According to linear algebra, the new RF pulse and
+
+dephasing matrices are deﬁned by means of T ¼ S R
+
+S21, thence (8,9,16)
+
+2 TxðaÞ ¼ 6666664
+
+cos2 / 2
+sin2 / 2
+i
+
+sin2 / 2
+cos2 / 2
+i
+
+3
+
+Ài þi
+
+sin sin
+
+/ /
+
+7777775
+
+[10]
+
+À sin / þ sin / cos /
+
+2
+
+2
+
+and
+
+2 e þi w
+
+3 00
+
+TzðwÞ ¼ 664 0
+
+eÀiw 0 775:
+
+[11]
+
+0
+
+01
+
+For Eq.
+
+(10) the trigonometric
+
+identities
+
+1 2
+
+ð1 þ cos /Þ
+
+¼
+
+cos2
+
+/ 2
+
+and
+
+1 2
+
+ð1
+
+À
+
+cos
+
+/Þ
+
+¼
+
+sin2
+
+/ 2
+
+were
+
+used,
+
+because
+
+these results allow a better intuitive insight. Tx does
+
+not have the property of a rotation matrix anymore
+
+because a nonunitary transformation was used. This
+
+fact was already noted by Hennig (11).
+
+Combining Eqs. (10) and (11) by means of TFðaÞ ¼ TzðFÞ TxðaÞ TzðÀFÞ gives the solution for general RF pulses with initial RF phase angles of F 6¼ 0, i.e., not
+
+rotating around the x-axis, which act on a complex
+
+magnetization vector (16)
+
+2 664
+
+Mþ MÀ Mz
+
+3þ 775
+
+¼
+
+2 6666664
+
+cos2 / 2
+eÀ2iF sin2 / 2
+À i eÀiF sin /
+
+2
+
+2 Mþ
+
+3À
+
+Á 664 MÀ 775 :
+
+Mz
+
+e2iF sin2 / 2
+cos2 / 2
+i eiF sin / 2
+
+3
+
+ÀieiF ieÀiF
+
+sin sin
+
+/ /
+
+7777775
+
+cos /
+
+[12]
+
+Figure 6. Partitioning effect of an arbitrary RF pulse as described by Kaiser et al (9) in the layout K. Schefﬂer presented several years ago: An isochromat MÀ before the RF pulse is split into three parts in dependence on the ﬂip angle a: One part is dephasing transverse magnetization Mþ, one part is rephasing transverse magnetization MÀ, and one part is a longitudinal component Mz. From the author’s experience, it should be said that partitioning is not just a “mathematical trick”; it is a wise choice of the system of reference that explains exactly what we see for low ﬂip angles a: They indeed refocus transverse magnetization but in an imperfect way, and they rotate magnetization into the longitudinal direction.
+The exponents “À” and “þ” signify the common notation of magnetization “before” and “after” the RF pulse was applied (11,13,15,17,18).
+Equation (12) has extraordinary implications for the ﬁeld of NMR and represents the essence of phase graph concepts in general (8,9): After an RF pulse has been applied, magnetization behaves like a composition or superposition of three different parts: (i) Dephasing transverse magnetization (Mþ component); (ii) Rephasing transverse magnetization that can produce an echo (MÀ component); (iii) Longitudinal magnetization (Mz component).
+This observation, known as the Woessner decomposition, was proven by Woessner, by means of the Schro€dinger equation, to be true for spin 1=2 particles (8). Kaiser et al introduced the term partitioning effect of an RF pulse (9); the term is frequently found in the literature or heard in oral presentations. Figure 6 illustrates this partitioning in a graphical way.
+In detail, the Woessner decomposition means that from the perspective of initial transverse Mþ magnetization, the ﬁrst part remains unaffected dephasing transverse magnetization (“0 pulse”), the second part is refocused (“180 pulse”) and the third part becomes longitudinal magnetization (“90 pulse”) (8,9). From the perspective of initial longitudinal Mz magnetization, the ﬁrst part becomes dephasing transverse magnetization, the second part becomes rephasing transverse magnetization and the third part stays unaffected in the longitudinal direction (8,9). However, if the investigated RF pulse is the ﬁrst in the sequence, no rephasing magnetization component is generated. In all cases the fractions of the three different parts depend on the ﬂip angle a.
+Here, the reader should note that descriptions like “0 pulse, 90 pulse, 180 pulse” are nice mnemonics but are only true from the perspective of transverse magnetization; otherwise they are nonsense — a 180 pulse would invert longitudinal z-magnetization, for instance.
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+272
+
+Weigel
+
+The observation of the partitioning effect is of such great value because it explains with a simple model that lower ﬂip angles lead to less refocusing of transverse magnetization (spin echoes) and that, generally, also longitudinal magnetization can take part in the formation of echoes (stimulated echoes). Additionally, a closer look at Eq. (12) reveals that no phase component has any inﬂuence on the quantitative partitioning; it solely depends on the ﬂip angle a. The RF phase F is only present in complex phase terms and the phase of the initial magnetization is not present at all. It is just contained within the initial magnetization vector, right side of Eq. (12). This observation makes sense because the partitioning should deﬁnitely not depend on the rotation of our coordinate system around the z-axis: the choice of the x-axis where the RF pulse rotates around is arbitrary. Furthermore, it must be said that we reside in the rotating reference frame anyway (20). So the phase of the initial magnetization and also of the RF pulse will only inﬂuence the phase of the resulting magnetization, including the generated spin and stimulated echoes. This will become more apparent later (c.f. Eqs. (16)).
+A sequence of RF pulses splits successively all present partitions into three further partitions each (Eq. (12), Fig. 6). This whole description is called the partition state method (8,9) and together with dedicated graphical diagrams it represents the original phase graph approach. In its full detail, the partition state method already allows the characterization of echo generation, the calculation of echo times and the quantitation of the corresponding echo intensities. Although obviously powerful, it must be said that the partition state method starts with one representative isochromat/magnetization vector of a deﬁned offresonance frequency. This is split according to Eq. (12) due to RF pulses. Thus, effects like the phase storage in the z-direction or diffusion are possible to model but nevertheless hard to understand, because these are effects of the whole isochromat ensemble. Thus, by combining the two key concepts of RF pulse partitioning and Fourier based conﬁguration states, a phase graph approach that depicts the evolution of a complete isochromat ensemble is created. This framework is called the extended phase graph (EPG) concept.
+
+Extended Phase Graphs
+
+The key concept of conﬁguration states was previously
+based on the Fourier decomposition of transverse
+magnetization. Now, the full complex system of reference [Mþ, MÀ, Mz]T is expressed by means of Fourier decompositions and transforms (10–19,24–26,28):
+
+F~
+
+þðkÞ
+
+¼
+
+R
+V
+
+ Mx
+
+ðrÞ
+
+þ
+
+ iMyðrÞ
+
+eÀikr
+
+d3r
+
+R ¼ V MþðrÞ
+
+eÀikr
+
+d3r
+
+()
+
+Mx ðrÞ
+
+þ iMyðrÞ
+
+¼
+
+MþðrÞ
+
+¼
+
+R
+V
+
+F~
+
+þ
+
+ðkÞ
+
+e i kr d 3 k ;
+
+[13a]
+
+F~
+
+ÀðkÞ
+
+¼
+
+R
+V
+
+ Mx
+
+ðrÞ
+
+À
+
+ iMyðrÞ
+
+eÀikr
+
+d3r
+
+R ¼ V MÀðrÞ
+
+eÀikr
+
+d3r
+
+()
+
+Mx ðrÞ À
+
+iMyðrÞ
+
+¼
+
+MÀðrÞ
+
+¼
+
+R
+V
+
+F~
+
+À
+
+ðkÞ
+
+e i kr d 3 k ;
+
+[13b]
+
+Z~ðkÞ
+
+R ¼ V MzðrÞ eÀikr d3r
+
+()
+
+Mz ðrÞ
+
+¼
+
+R
+V
+
+Z~
+
+ðkÞ
+
+e i kr d 3 k :
+
+[13c]
+
+Equations (13a) to (13c) closely follow the notation
+explained by Weigel et al to avoid ambiguities with
+complex conjugate operations (18). This is directly
+consistent with the notation of components Mþ and MÀ, which were already used by Jaynes (7); and it is in close agreement with other areas of physics such
+as quantum mechanics.
+Equations (13a) to (13c) deﬁne our new system of reference [F~ þ, F~ À, Z~]T using the concept of conﬁguration states for all magnetization components Mþ, MÀ, and Mz. F~þðkÞ denotes dephasing transverse magnetization and is already known from Eq. (6). It is based
+on Mþ and can be illustrated pictorially by a righthanded helix (Fig. 5). F~ÀðÀkÞ represents the pendant with reversed phase history and corresponds to a
+helix of opposite chirality (left-handed helix). It is
+based on the component MÀ being the rephasing part as explained earlier by the partition state method. Thus, F~ÀðÀkÞ must represent conﬁguration states of rephasing transverse magnetization components that
+are able to generate echoes.
+But, the Fourier transform of Mz in Eq. (13c) may be surprising; even more surprising is the fact that a
+complex Fourier transform is used, because longitu-
+dinal Mz magnetization is always real-valued. Gradients cause harmonic wave patterns of transverse magnetization as denoted by F~þðkÞ and F~ÀðÀkÞ. From the partition state method and other funda-
+mental physics of NMR it is known that RF pulses
+convert transverse into longitudinal magnetization
+components and vice versa. Thus, generated spatial harmonics of transverse magnetization F~þðkÞ and F~À ðÀkÞ with k6¼0 are rotated into the longitudinal direction to become so called modulated longitudinal magnetization Z~ðkÞ. Therefore, to obtain a complete Fourier representation it just makes sense to depict
+longitudinal magnetization in Fourier components as
+well (11,13–15,18). Another fundamental property of [F~ þ, F~ À, Z~]T to
+consider is that the change of reference system from
+initially three independent real magnetization compo-
+nents Mx, My, and Mz to three complex (Fourier) states F~þ, F~À, Z~ leads to an increase to 2*3 ¼ 6 components. Thus, dependencies must exist to account for
+the new redundancy involved (11,14,15,18):
+
+ F~
+
+Ã þðkÞ
+
+¼
+
+F~ ÀðÀkÞ;
+
+[14a]
+
+ Z~
+
+Ã ðkÞ
+
+¼
+
+Z~ ðÀkÞ:
+
+[14b]
+
+The relation between the dephasing F~þ and the rephasing F~À conﬁguration states (Eq. (14a)) often becomes important in EPG coding (c.f. chapter “Extensions, Limitations and Software Coding”) and will also be discussed in the chapter “Examples for MRI Sequences.”
+The symmetry in the Z~ states (Eq. (14b)) is the direct consequence of (complex) Fourier transforming the
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+273
+
+real-valued magnetization. It ensures that the Fourier based longitudinal magnetization remains real. Thus, longitudinal Z~ states should always be thought of as a pair of Z~ðkÞ and Z~ðÀkÞ. This corresponds to two counter-rotating circularly polarized waves or helices that represent together a linear harmonic magnetization modulation in the z-direction (11).
+But why is a complex Fourier transform for Mz used at all (Eq. (13c))? This question is a bit trickier and it can be justiﬁed by three arguments that are mutually linked: First, it is a matter of consistency. All components are treated equally and, thus, a uniform Fourier representation of magnetization components is obtained. Second, it is much easier to do analytical calculations with exponential functions than with sine or cosine functions. Regarding analytical calculations, it has to be considered that Eqs. (13a) to (13c) always allow the conversion of any given magnetization constellation into a set of conﬁguration states and vice versa at any time. And third, F~þðkÞ and F~ÀðÀkÞ carry both magnitude and phase information. The phase information describes a shift of the wave pattern in space relative to the origin and this shift is not lost if transverse harmonic components are rotated into longitudinal magnetization components, becoming modulated Z~ðkÞ states. So, both a phase and magnitude representation will be needed for the Z~ðkÞ states as well, which makes it highly advisable to use complex Fourier components. Consequently, regarding the basis function Z~ðkÞ in Eq. (13c), it would not be enough to use either a real-valued sine or a cosine transform to get the full information; both would be needed. Although combinations of a sine or cosine term with complex amplitudes are thinkable, this
+
+obviously leads more to confusion than to a concise and consistent representation. Thus, the reasoning leads back to the ﬁrst argument of a consistent representation. For this reason, all publications after Hennig’s original publications about EPGs used the full complex Fourier basis functions (14–19,24,25,28,30). The importance of possible phase storage in the longitudinal direction will be discussed in further detail further on below.
+Equations (13a) to (13c) continue to use a full three-dimensional (3D) representation with 3D space and dephasing coordinates. This is essential if multiple encoding directions are to be considered simultaneously or anisotropic diffusion effects are to be investigated (18). A 1D dephasing coordinate is normally sufﬁcient, however, for understanding the magnetization response of multi-pulse sequences. Thus, the literature almost exclusively deals with a 1D approach using the read/frequency encoding direction (10–17,19,23–29), and the same will be done here for reasons of simplicity. Thus, the vectors k and r reduce to the scalars k and r, respectively. All fundamental EPG-1D results, however, are also valid for the 3D approach. For further comments on using a full 3D approach the reader should refer to the chapter “Extensions, Limitations and Software Coding”.
+In the following, the effect of RF pulses on the conﬁguration states will be investigated, i.e., combining the partition state method with the conﬁguration theory. Thus, substituting the magnetization vectors Mþ, MÀ, and Mz in Eq. (12) with the Fourier transforms of Eqs. (13a) to (13c), an element-wise comparison (16,24) leads to the result how RF pulses affect the conﬁguration states (10–19,23–26,28):
+
+2 664
+
+F~ þðkÞ F~ ÀðÀkÞ
+Z~ ðk Þ
+
+3þ 775
+
+¼
+
+2 6666664
+
+cos2 / 2
+eÀ2iF sin2 / 2
+À i eÀiF sin /
+
+e2iF sin2 / 2
+cos2 / 2
+i eiF sin /
+
+3
+
+ÀieiF ieÀiF
+
+sin sin
+
+/ /
+
+77777752664
+
+F~ þðkÞ F~ ÀðÀkÞ
+Z~ ðk Þ
+
+3À 775
+
+:
+
+cos /
+
+[15]
+
+2
+
+2
+
+Indeed, the center TFðaÞ-matrix operator in Eq. (15) is exactly the same as in Eq. (12), because the Fourier
+transform is a linear transformation and T does not
+explicitly depend on k. As a result, RF pulses only mix conﬁguration states of equal dephasing order jkj, i.e., F~þðkÞ, F~ÀðÀkÞ, and Z~ðkÞ (10–18,23–26,28), because they realize the same rotation for all states.
+The last paragraphs already discussed the basic meaning of the different Fourier based states F~þðkÞ, F~ÀðÀkÞ, and Z~ðkÞ. Now, Figure 7 pin-points the meaning of Eqs. (13a) to (13c) and (15) by means of the
+already known helix representations. As was noted
+before, longitudinal magnetization distributions have
+to be visualized as linear, harmonic magnetization patterns (Fig. 7), because each longitudinal helix Z~ðkÞ
+has a “hidden” antisymmetric, complex conjugated partner Z~ðÀkÞ, i.e., a counter-rotating helix (Eq. (14b) and Refs. (11,15,18)). For k 6¼ 0, an RF pulse
+exchanges or mixes fractions of magnetization among
+
+the three mutual partners with identical jkj of dephasing F~þðkÞ and rephasing F~ÀðÀkÞ transverse components as well as modulated Z~ðkÞ longitudinal components. The fractions depend on the ﬂip angle and are deﬁned by the TFðaÞ-matrix operator in Eq. (15) (10–18,23–26,28). In the EPG representation, it is also said that the RF pulse exchanges populations between different conﬁguration states, the complexvalued populations carrying magnitude and phase information. From now on, all changes of these populations of the conﬁguration states will be performed by dedicated operators representing physical effects such as RF pulses, relaxation, diffusion and so on (17,18).
+In Figure 7, the opportunity is also taken to link the exchange of populations between the conﬁguration states with basic scientiﬁc MR terms such as refocusing or storing, which are also used in non-phase graph related literature. The EPG concept considerably aids in the understanding of the common MR term “storing
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+274
+
+Weigel
+
+Figure 7. Graphical interpretation of an RF pulse affecting the EPG conﬁguration states. Only the positive side from the isocenter of the helices (F~ states) and linear waves (Z~ states) is shown. Each RF pulse causes an exchange of magnetization between equal dephasing orders only. For k ¼ 0, F~þ and F~À are redundant states by mere complex conjugation (Eq. (14a)), thus denoted here as F~ (0). Conversion from Z~ (0) to F~ (0) represents an FID. For k 6¼ 0, magnetization is exchanged between F~þ, F~À, and Z~. Particularly important is magnetization as F~À, because it represents rephasing magnetization that can generate a spin or a stimulated echo, depending on its former magnetization history. Conversion from F~ to Z~ is usually called “storing”, but may also be seen as “ﬂip back” depending on the intention of the sequence programmer. It can also be a mere side effect of the ﬂip back intention F~ð0Þ ! Z~ð0Þ. Please note that, without loss of generality for the results but for an improved visualization, a gradient along the y-axis instead of the z-axis was chosen for the linear harmonic wave patterns of the Z~ states. [Color ﬁgure can be viewed in the online issue, which is available at wileyonlinelibrary.com.]
+magnetization in the z-direction”: The term derives from the fact that if non-coherent (i.e., k 6¼ 0) transverse magnetization components F~þðkÞ and F~ÀðÀkÞ are converted into longitudinal Z~ðkÞ states, they do not experience any phase evolution or dephasing anymore, i.e., their k remains constant. Modulated Z~ states denote position encoded dephasing patterns and are “frozen”. Additionally, being longitudinal magnetization, Z~ states experience T1 relaxation, which is usually much slower than T2 relaxation (27,31).
+As was already noted before, modulated zmagnetization can store a phase in terms of a shift of its modulation pattern in space (Fig. 7, c.f. chapter “Motion Phenomena”). The author still remembers an educational talk about phase graphs where the speaker claimed that the phase memory in the z-
+
+direction cannot be explained; it would be a kind of
+
+“magic” or “mystery.” On the contrary, it can be
+
+explained very well, as the present EPG concept dem-
+
+onstrates (10–17,23,27); it is just a phenomenon of
+
+the whole isochromat ensemble — it cannot be under-
+
+stood with one single isochromat only.
+
+After discussing the importance of the triple of dephased and modulated magnetizations F~þ, F~À, and Z~, the focus is now on the coherent, not modulated
+
+conﬁguration states with k ¼ 0 (Fig. 7). The longitudinal Z~ð0Þ-state directly signiﬁes equilibrium magnetization
+
+(11,13–15,18,27). It will be of particular importance in
+
+the section “Relaxation Effects.” Exciting this magnet-
+
+ization with an RF pulse means to transfer population from Z~ð0Þ to the coherent transverse magnetization component F~ð0Þ. Therefore, F~ð0Þ states represent
+
+“freshly excited”, coherent transverse magnetization,
+
+i.e., a free induction decay (FID) (Figs. 5 and 7). Maybe of even greater importance, F~ð0Þ states also represent
+
+echoes. Thus, if during the evolution of an NMR sequence an F~ð0Þ-state occurs (not directly after excita-
+
+tion; see above), this coherent transverse magnetization
+
+corresponds to an echo. And quantifying the population of such an F~ð0Þ-state immediately means knowing the
+
+echo’s intensity (the magnitude) and phase (the phase
+
+of the complex-valued population) (10–18). Thus, a very
+
+important assumption within the EPG framework is that all F~þ and F~À states with k ¼6 0 are fully dephased
+
+and, hence, do not contribute any signal to echo forma-
+
+tion (c.f. chapter “Extensions, Limitations and Software Coding”). As longitudinal magnetization, Z~ states will
+
+not contribute anyway.
+
+Although they are two coherent transverse states F~þð0Þ and F~Àð0Þ, only the F~ð0Þ-state has been referred
+
+to, so far. The reason is that both states represent
+
+exactly the same information, however, they are com-
+
+plex conjugated to each other. So in the domain of the
+
+EPG F~ Àð0Þ
+
+c¼oncF~eþpðt0, ÞbÃo.thThsistatceasn
+
+are be
+
+equivalent but seen from Eqs.
+
+it is (13a)
+
+and (13b) by deﬁning k ¼ 0. This small distinction is
+
+important to note, because it is one of the major rea-
+
+sons why people fail to use or program the EPG concept
+
+successfully, based on the experience of the author (c.f.
+
+chapter “Extensions, Limitations and Software Coding”).
+
+To make a short but important summary based on
+
+Eqs. (13a) to (13c) and (15) as well as Figure 7, the
+
+EPG concept explains that an SE will result from the phase reversal F~þðkÞ ! F~ÀðÀkÞ, and that an STE will
+
+result from the excitation or stimulation of Z~ðkÞ ! F~ÀðÀkÞ. In both cases k 6¼ 0. Frequently,
+
+measured echoes are a superposition of echoes of dif-
+
+ferent conﬁguration states (10–17,23–28).
+
+Based on the general T operator in Eq. (15), the
+
+phase of spin and stimulated echoes can also be
+
+determined quite quickly. If c is the phase of the ini-
+
+tial magnetization or state, and F1 and F2 are the phases of RF pulse 1 and 2, respectively, then (11)
+
+cSE ¼ Àc þ 2F1 and
+
+[16a]
+
+cSTE ¼ Àc þ F1 þ F2:
+
+[16b]
+
+Equations (13a) to (13c) represent the general continuous form of the EPG concept. Particularly for regular
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+275
+
+and periodic MR sequences with equidistant timing,
+
+such as variants of TSE (4), SSFP (13,15,32–34) and
+
+Burst (35–37), only a discrete set of k-values is gener-
+
+ated, if highly idealized conditions are presumed (c.f.
+
+chapter “Extensions, Limitations and Software
+
+Coding”). In this case, instead of using the spatial
+
+coordinate r, it is more practical to use a dephasing
+
+angle u ¼ u(r) for Fourier decomposition (24):
+
+MþðuÞ
+
+¼
+
+Mx
+
+ðuÞ
+
+þ
+
+iMyðuÞ
+
+¼
+
+X1
+k¼À1
+
+F~ k Á eiku
+
+[17a]
+
+MÀðuÞ
+
+¼ ¼
+
+MX x ðuÞ1 k¼ÀÀ1iMyF~ðuÃÀÞk¼Á eðiX ku 1 k¼À1
+
+F~ k Á eikuÞÃ
+
+[17b]
+
+Mz ðuÞ
+
+¼
+
+X1
+k¼À1
+
+Z~ k
+
+Á
+
+eiku
+
+¼
+
+RealðX1
+k¼0
+
+Z~k Á eikuÞ:
+
+[17c]
+
+Several publications only present Eq. (17a) for the
+
+transverse magnetization approach, but either use
+
+both Eqs. (17a) and (17b) or make direct use of the
+
+complex conjugation property and the symmetry rela-
+
+tions from Eqs. (14a) and (14b) (13–17,19,24,28). The
+
+latter approach, basically, combines Eq. (17a) for k ! 0
+
+and the right side of Eq. (17b) for k < 0. Because there
+
+are often no explicit comments on that, it is good
+
+advice to be aware of the full basis represented by Eqs.
+
+(17a) to (17c) and of the fact that there are symmetry
+
+relations. In the end, it is a matter of choice as to with
+
+which parts of the Fourier series one works (c.f. chap-
+
+ter “Extensions, Limitations and Software Coding”).
+
+Formulating [Eq. (15)] for the discrete k basis again,
+
+it is
+
+2 6664
+
+F~ k
+
+F~
+
+Ã Àk
+
+Z~ k
+
+3þ 7775
+
+¼
+
+2 66666664
+
+cos2 / 2
+eÀ2iF sin2 / 2
+À i eÀiF sin /
+
+2
+
+2 F~ k
+
+3À
+
+:6664
+
+F~
+
+Ã Àk
+
+7775
+
+:
+
+e2iF sin2 / 2
+cos2 / 2
+i eiF sin / 2
+
+3
+
+ÀieiF ieÀiF
+
+sin sin
+
+/ /
+
+77777775
+
+cos /
+
+Z~ k
+
+[18]
+
+In the deﬁnition of Eqs. (17a) to (17c) and (18), k rep-
+
+resents an integral number describing the state’s
+
+dephasing in units of 2p (over a voxel or a volume).
+
+This approach is really useful in practice, because the
+
+index k also depicts how many intervals of TR (for
+
+SSFP sequences), RFSP (for Burst sequences) or ESP/2 (for TSE sequences), magnetization is dephased (F~k
+
+states), magnetization will become coherent to generate
+
+an
+
+echo
+
+if
+
+left
+
+unaffected
+
+(F~
+
+Ã Àk
+
+states),
+
+or
+
+magnetization
+
+was dephasing or rephasing before it got longitudinal
+
+(Z~k states) (10–17,23,24,28).
+
+Figure 8 illustrates the direct graphical meaning of
+
+the discrete, integral conﬁguration states. Equation
+
+(18) depicts the exchange of populations due to RF
+
+pulses between the conﬁguration states of the same
+
+jkj (which are in the same column in Fig. 8). It also
+
+clariﬁes what sequence experts (“insiders”) exactly mean when they discuss F~À1 states, stimulated ech-
+
+oes deriving from Z~3 states, etc. It should be noted that all F~Àk states, i.e., k < 0, usually refer to the
+
+rephasing conﬁgurations in the literature, even if it
+
+does
+
+not
+
+explicitly
+
+say
+
+F~
+
+Ã Àk
+
+(typical
+
+discrete
+
+notation)
+
+or F~ÀðÀkÞ (concise general notation).
+
+In this work, the author refrains from applying dif-
+
+ferent notations for dimensionless, integral k and for
+
+real k according to Eq. (4) in the unit rad/m. As long
+
+as the k values are not used for calculating popula-
+
+tions of conﬁguration states directly, the integral ones
+
+can be used (c.f. section “Motion Phenomena”).
+
+Short Examples in Regard to the T-Operator
+
+To deepen the feeling for the partitioning effect of the T-matrix operator, the two special cases Txð180 Þ and Txð90 Þ are investigated. Without loss of generality for the partitioning effect, the magnetization is rotated
+
+around the x-axis:
+
+2
+
+1
+
+2 0
+Txð180 Þ ¼ 664 1 0
+
+1 0 0
+
+0 0 À1
+
+3 775
+
+and
+
+Txð90 Þ
+
+¼
+
+66666664
+
+2 1 2
+i
+
+À
+
+2
+
+3
+
+1 2 1 2 i
+
+Ài þi
+
+77777775:
+
+20
+
+[19]
+
+The T-matrices in Eq. (19) demonstrate that a 180 RF pulse swaps the populations of the F~ states (per-
+
+fect refocusing, full defocusing) and negates the sign of the Z~ states (inversion). By contrast, a 90 RF pulse
+keeps half of the population in each of both F~ states
+
+and swaps the other half between them (half refocusing and defocusing). It converts all Z~ into F~ magnet-
+
+ization (excitation, stimulated echo) and also converts
+
+half of the transverse into longitudinal magnetization
+
+(storage, ﬂip back). The latter is the reason that the basic stimulated echo sequence 90 -90 -90, already
+
+described by Hahn, has the relative signal intensity of
+
+1=2 only (1,38).
+
+Real Valued Representations Within the EPG
+In the EPG concept, transverse magnetization is depicted as complex F~þ and F~À due to its 2D properties. If all RF pulses used have the same RF phase, i.e., identical precession axes, and if the initial magnetization/the initial EPG states are either parallel or orthogonal in phase to all RF pulses, all successive spin and stimulated echoes are generated on the same axis in the x-y-plane (c.f. Eqs. (16a) and (16b)). The ﬁrst case is called in-phase refocusing and takes place in the popular CPMG sequence (1–3); the second case is called out-of-phase refocusing and takes place in the Carr-Purcell (CP) sequence (1,2) and in particular types of SSFP without RF spoiling (12,13,15).
+It should be noted that for the case of out-of-phase refocusing the SE and the STE are in antiphase with respect to each other, thus, one also refers to the antiCPMG component. This term will be used from now on.
+In both cases, the coordinate system can be rotated and redeﬁned such that magnetization always refocuses on the real-valued x-axis. As a result, a purely
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+276
+
+Weigel
+
+Figure 8. Graphical representation of the ﬁrst four discrete conﬁguration states with integral k. Each state has a dephasing of 2pk. In the ﬁrst row with k > 0 are the dephasing conﬁgurations, in the second row with k < 0 the corresponding counterrotated helices, the rephasing conﬁgurations. Both share one coherent F~0 state which is redundant by conjugation. All transverse states are perfectly dephased except for the F~0 state. The helix projections may be recognized from different previous publications by Hennig and Schefﬂer (11,15). The third row displays in each case the combination of both longitudinal con-
+ﬁguration pairs, being together a linear, harmonic wave pattern. Again, without loss of generality but for an improved visualization, a gradient along the y-axis instead of the z-axis was chosen for the linear harmonic wave patterns of the Z~ states.
+[Color ﬁgure can be viewed in the online issue, which is available at wileyonlinelibrary.com.]
+
+real representation for ~F 6ðkÞ and Z~ðkÞ conﬁguration
+
+states exists. This purely real representation has the
+
+advantage that one does not have to worry about com-
+
+plex conjugate operations anymore (c.f. chapter “Extensions, Limitations and Software Coding”). F~þðkÞ and F~ÀðkÞ become identical and degenerate to a F~ðkÞ.
+
+Hence, the population exchange takes place easily between F~ðþkÞ, F~ðÀkÞ, and Z~ðkÞ. Depending on the
+
+software implementation of the computer, the EPG
+
+concept may also become more simple to program.
+
+The only change necessary to achieve a real represen-
+
+tation is to ﬁnd the appropriate real-valued T opera-
+
+tor; as a consequence, all conﬁguration states will be
+
+real.
+
+To derive the anti-CPMG-representation, a thought
+
+experiment can be performed: Starting with (real)
+
+equilibrium magnetization using a i.e., deﬁning F ¼ 90 in Eq. (15),
+
+T90 ðaÞ operator, it can be shown
+
+that only EPG states ~F 6ðkÞ and Z~ðkÞ with pure real
+
+populations are generated in succession. Thus, all
+
+imaginary parts vanish permanently and the descrip-
+
+tion is consistent. Therefore, the resulting T operator
+
+to use is
+
+TantiÀCPMGðaÞ
+
+¼
+
+2 6666664
+
+cos2 / 2
+Àsin2 / 2
+À 1 sin /
+
+Àsin2 / 2
+cos2 / 2
+À 1 sin /
+
+3
+
+sin sin
+
+/ /
+
+7777775:
+
+cos /
+
+[20]
+
+2
+
+2
+
+Besides CP-based spin echo sequences, the TantiÀCPMG ðaÞ operator could be also used to simulate balanced
+
+SSFP with and without alternating phase (TrueFISP)
+
+and further steady state sequences without RF spoil-
+
+ing like FISP (12,13,15).
+
+For deriving the CPMG representation, a similar
+
+though experiment can be performed: As an initial
+
+condition, magnetization is solely present as trans-
+
+verse magnetization on the real x-axis. The longitudi-
+
+nal components are redeﬁned by means of
+
+Z~ðkÞ ! i Á Z~ðkÞ. deﬁning F ¼ 0
+
+Then, in Eq.
+
+using (15), it
+
+a T0 ðaÞ operator, can be shown that
+
+i.e., only
+
+EPG states ~F 6ðkÞ and Z~ðkÞ with pure real popula-
+
+tions are generated permanently in succession and
+
+that the description is consistent. Therefore, the
+
+resulting T operator to use is
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+277
+
+TCPMGðaÞ
+
+¼
+
+2 6666664
+
+cos2 / 2
+sin2 / 2
+À 1 sin /
+
+sin2 / 2
+cos2 / 2
+1 sin /
+
+3
+
+sin / Àsin /
+
+7777775:
+
+cos /
+
+[21]
+
+2
+
+2
+
+The CPMG scheme is the basis for the popular TSE sequence and its derivatives (4). Thus, the TCPMGðaÞ operator is used regularly for EPG based simulations of TSE-like sequences (10–12,23,27,29,31,35,38–42).
+Please note that the signs of the TCPMGðaÞ operator are not entirely correct in Ref. (23). Additionally, there is a contradiction between the 4-state EPG TCPMGðaÞ operators used in Refs. (10–12) (c.f. chapter “Graphical Representation”).
+
+Dephasing Due to Gradients
+
+Because the EPG concept is built on Fourier based dephasing states, dephasing effects caused by gradients are implemented by means of the shift operator S in a simple way (10–17,19,23–29):
+
+SðDkÞ : F~ k ! F~ kþDk and Z~k ! Z~k
+
+[22]
+
+if Dk
+
+¼thgeRtt0
+
+gradient ¼0 Gðt0Þ dt
+
+0
+
+.
+
+has This
+
+the 0th relation can
+
+moment be proven
+
+of by
+
+inserting the Fourier decompositions of Eqs. (13) or (17)
+
+into the Tz-matrix in Eq. (11), as demonstrated in Refs. (16,24).
+
+Equation (22) conﬁrms the well-known effect that
+only transverse F~6ðkÞ states experience phase evolution, whereas longitudinal Z~ðkÞ states do not.
+
+If periodic sequences are investigated, Dk can be
+
+merely an integral number, usually 1 or 2 depending
+
+on the timing character of the sequence (see Eqs. (17)
+
+and (18) with text above). Please note that this simpli-
+
+ﬁcation is only valid, if the EPG operators used do not
+
+depend on the absolute value of k. Otherwise further
+
+considerations have to be taken into account (c.f. sec-
+
+tion “Motion Phenomena”) (18).
+
+Relaxation Effects
+
+The EPG concept maintains the “natural anisotropy”
+
+between longitudinal and transverse magnetization in
+
+regard to dephasing, relaxation or diffusion effects.
+
+Thus, relaxation phenomena are included simply by
+
+the operator (10–12,15,17–19,23,27,29–31)
+
+2
+
+3
+
+E2 0 0
+
+Eðt; T1; T2Þ ¼ 664 0 E2 0 775
+
+[23]
+
+0 0 E1
+
+for k 6¼ 0 states. The common abbreviations E1 ¼ exp(Àt/T1) and E2
+¼ exp(Àt/T2) were used (15), with T1 and T2 being the relaxation times and t the time interval given. Please note that relaxation operator E is a fully signal destructive operator: All conﬁguration states with k ¼6 0, i.e., also longitudinal states, decay inevitably due to T1 or T2 relaxation, because these are off equilibrium.
+
+For k ¼ 0, additional T1 recovery toward thermal equilibrium magnetization M0 ¼ 1 has to be considered for Z~ð0Þ. Hence, Eq. (23) changes to the
+relation
+
+2 Fþ 3þ
+
+2 E2 0
+
+3 0
+
+2 Fþ 3À
+
+2
+
+0
+
+3
+
+664 FÀ 775 ¼ 664 0 E2 0 775 Á 664 FÀ 775 þ 664
+
+0
+
+775
+
+Z
+
+0 0 E1
+
+Z
+
+M0 ð1 À E1Þ
+
+[24]
+
+for k ¼ 0 states, where the full matrix-vector relation is written out
+such that an addition of the recovering magnetization is possible (last term on the right side) (15,18,23).
+
+Finalizing the Fundamental Extended Phase Graph Framework
+In practice, the complete ensemble magnetization is described as the sum of different conﬁguration states at any time during the NMR sequence (10– 19,25,25,28,28,43). This set of deﬁning conﬁguration states is usually stored in a state vector (11,18)
+F ¼ ÂF~ k0 ; F~ k1 ; F~ k2 ; . . . ; F~ Àk3 ; F~ Àk4 ; F~ Àk5 ; . . . ; Zk6 ; Zk7 ; Zk8 . . .ÃT [25]
+
+or, particularly for regular EPGs, in a state matrix (18,19)
+
+X
+
+¼
+
+2 664
+
+F~ 0
+
+F~
+
+Ã 0
+
+Z~ 0
+
+F~ 1
+
+F~
+
+Ã À1
+
+Z~ 1
+
+F~ 2
+
+F~
+
+Ã À2
+
+Z~ 2
+
+F~ 3
+
+F~
+
+Ã À3
+
+Z~ 3
+
+F~ 4
+
+F~
+
+Ã À4
+
+Z~ 4
+
+F~ 5
+
+F~
+
+Ã À5
+
+Z~ 5
+
+3 ÁÁÁ Á Á Á 775 ÁÁÁ
+
+[26]
+
+where X corresponds to a sequencing of the three base states along an increasing dephasing order k. Please note that in this representation F~0 occurs twice in the two modiﬁcations F~þ and F~À, so care is advised (c.f. chapter “Extensions, Limitations and Software Coding”). Whereas the latter state matrix (Eq. (26)) gives a better overview and already resembles the way a programmer would probably store and handle the data in a computer program for regular EPGs, the former column vector F (Eq. (25)) is more practical to build the two state evolution matrices
+
+0Ӈ
+
+ÄF
+
+¼
+
+BBBBBBBBBBBBBBB@
+
+F~ 2ðt0Þ
+
+F~ 1ðt0Þ
+
+F~ 0ðt0Þ
+
+F~
+
+Ã À1
+
+ðt0
+
+Þ
+
+F~
+
+Ã À2
+
+ðt0
+
+Þ
+
+Ӈ
+
+Ӈ
+
+F~ 2ðt1Þ
+
+F~ 1ðt1Þ
+
+F~ 0ðt1Þ
+
+F~
+
+Ã À1
+
+ðt1Þ
+
+F~
+
+Ã À2
+
+ðt1Þ
+
+Ӈ
+
+Ӈ
+
+F~ 2ðt2Þ
+
+F~ 1ðt2Þ
+
+F~ 0ðt2Þ
+
+F~
+
+Ã À1
+
+ðt2
+
+Þ
+
+F~
+
+Ã À2
+
+ðt2
+
+Þ
+
+Ӈ
+
+Ӈ
+
+F~ 2ðt3Þ
+
+F~ 1ðt3Þ
+
+F~ 0ðt3Þ
+
+F~
+
+Ã À1
+
+ðt3Þ
+
+F~
+
+Ã À2
+
+ðt3Þ
+
+Ӈ
+
+Ӈ1
+
+Á Á Á Á Á
+
+Á Á Á Á Á
+
+Á Á Á Á Á
+
+CCCCCCCCCCCCCCCA
+
+...
+
+[27a]
+
+and
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+278
+
+Weigel
+
+0Ӈ
+
+ÄZ
+
+¼
+
+BBBBBBBBBBBBBBB@
+
+Z~ Z~ Z~ Z~ Z~
+
+2
+1
+0 Ã 1 Ã 2
+
+ðt0 ðt0 ðt0 ðt0 ðt0
+
+Þ Þ Þ Þ Þ
+
+Ӈ
+
+Ӈ
+
+Z~ 2 ðt1 Þ Z~ 1 ðt1 Þ
+
+Z~ 0 ðt1 Þ
+
+Z~
+
+Ã 1
+
+ðt1
+
+Þ
+
+Z~
+
+Ã 2
+
+ðt1
+
+Þ
+
+Ӈ
+
+Ӈ
+
+Z~ 2 ðt2 Þ Z~ 1 ðt2 Þ
+
+Z~ 0 ðt2 Þ
+
+Z~
+
+Ã 1
+
+ðt2
+
+Þ
+
+Z~
+
+Ã 2
+
+ðt2
+
+Þ
+
+Ӈ
+
+Ӈ
+
+Z~ 2 ðt3 Þ Z~ 1 ðt3 Þ
+
+Z~ 0 ðt3 Þ
+
+Z~
+
+Ã 1
+
+ðt3
+
+Þ
+
+Z~
+
+Ã 2
+
+ðt3
+
+Þ
+
+Ӈ
+
+Ӈ1
+
+Á Á Á Á Á
+
+Á Á Á Á Á
+
+Á Á Á Á Á
+
+CCCCCCCCCCCCCCCA;
+
+...
+
+[27b]
+
+which depict the evolution of an NMR sequence within
+
+the EPG concept at discrete points of time. For rea-
+
+sons of consistency with regard to the ÄF state evolu-
+
+t“ipoanrtmneart”riZx~,ÃÀkÄ.ZThalesoevionlcultuiodnesofthae
+
+complex conjugated given NMR sequence
+
+is depicted by the different physical operators that
+
+modify F or X to account for effects such as dephas-
+
+ing, relaxation, and diffusion (18,19):
+
+FðtÞ ¼ . . . E S J D T E S J D T Fðt ¼ 0Þ [28a]
+
+XðtÞ ¼ . . . E S J D T E S J D T Xðt ¼ 0Þ: [28b]
+
+Hence, FðtÞ or XðtÞ is calculated by means of succes-
+
+sive operator matrix applications acting on an initial F~0 or Z~0 state, for instance. The operators E, J, and
+D used in Eqs. (28a) and (28b), representing relaxa-
+
+tion, ﬂow and diffusion, will be introduced later. Gen-
+
+erally, the operators do not commute; thus, one has
+
+to deﬁne carefully in which order they are to be used.
+
+Generally, with time the state vector and state
+
+matrix will increase in size so as to include states of
+
+higher order k that are generated. However, exactly
+
+speaking from a physical point of view, it is not that
+
+new conﬁguration states are generated or come into
+
+existence; it is more correct to say (and think) of the
+
+EPG evolution that it occupies states of higher order k
+
+with a non-zero population (18). The conﬁguration
+
+states are already there. In fact, the state vector and
+
+state matrix have inﬁnite size and contain all states
+
+that the sequence can access; however, they initially
+
+have a zero population (18). So these states are just
+
+omitted for reasons of simplicity and brevity (18).
+
+If magnetization decay effects such as relaxation or
+
+diffusion are omitted, the macroscopic net magnetiza-
+
+tion is preserved and, thus, the sum of the square of
+
+the absolute value of each conﬁguration state stays
+
+constant and is equal to the equilibrium magnetiza-
+
+tion M0 ¼ 1 (11,23):
+
+X1
+k¼À1
+
+jFk j2
+
+þ
+
+jZk j2
+
+¼
+
+jF0j2
+
+þ
+
+jZ0j2
+
+þ
+
+X1
+k¼1
+
+jFk j2
+
+þ
+
+jFÀk j2
+
+þ 2 Á jZk j2
+
+¼ 1:
+
+[29]
+
+The mathematical operation jj2 signiﬁes the square of the absolute value and is deﬁned as jrj2 ¼ r Á rÃ for a complex population r. The reader should note that Hennig’s original formulations (11,23) are only valid for real EPGs based on the TCPMGðaÞ operator from Eq. (21).
+At this point, the foundation of the EPG concept is complete: Magnetization is depicted by means of Fou-
+
+rier based conﬁguration states, gradients modify the dephasing order of these, and RF pulses exchange populations between these conﬁguration states of identical order k. As a result, Figure 9 presents how these achievements can be used to solve the original questions put forth in reference to Figure 1.
+As a historical side note, the word “extended” in the acronym EPG refers to Hennig’s reinterpretation of the partition state (original phase graph) method by means of Fourier based conﬁguration states (7–12). Although termed “extended” by Hennig some 20 years ago, it is rather a signiﬁcant discrimination than a mere extension. Often users are not aware of this signiﬁcant difference, because the graphical and mathematical representation of both phase graph interpretations looks very similar.
+While the focus of Woessner and Kaiser et al with the partition state and Fourier expansion method was on the understanding of diffusion weighting in multiecho sequences (8,9), the focus of Hennig was on the understanding of echo generation in imaging sequences (10–12). Actually, MRI had just arrived on the scene (44–46) when Kaiser published the partition state method (8,9).
+Graphical Representation: Extended Phase Diagrams
+Besides the analytical and numerical foundation of the EPG concept, there is signiﬁcant attention being focused on actually drawing the evolution of the conﬁguration states in extended phase diagrams. A set of conﬁguration states characterize the isochromat ensemble at a given time, but (magnetization) pathways connect these conﬁguration states to illustrate how these states evolve during the action of RF pulses as well as of dephasing due to gradients, etc., over time. The literature does frequently use the terms “state” and “pathway” interchangeably; yet, the focus lies on different aspects.
+For, so to speak, reading (or tracing) the magnetization response, the conﬁguration states are located on the y-axis and time on the x-axis (Fig. 10). The actual populations are not shown in this diagram; here of more interest are the possible conﬁgurations the system can occupy as a function of time. Presenting all available information of the Fourier based EPG concept F~þð6kÞ, F~Àð6kÞ, and Z~ð6kÞ in a graphical diagram leads merely to confusion than precise results (Fig. 10a). However, based on the symmetry relations in Eqs. (14a) and (14b) redundant information can be omitted. This redundancy is solved best for the diagrams by omitting all conﬁguration states that depend on Àk, because a given gradient should always act consistently on transverse magnetization over the whole range of dephasing displayed on the y-axis. Hence, at times when a solid line, representing transverse magnetization, intersects the x-axis, coherent magnetization exists, which corresponds to echo generation (F~ð0Þ state, Fig. 10b). The Z~ðÀkÞ states do not add new information to the diagram. This results in the extended phase diagram representation F~þðkÞ, F~ÀðkÞ, and Z~ðkÞ in Figure 10b as it is common today.
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+279
+
+Figure 9. Taking up the example of Figure 1, the presented isochromat ensemble conﬁgurations can be quantiﬁed simply
+and precisely by the populations of conﬁgurations states, as shown by the histograms. Because time increases from (a) to (c), states of higher order k are occupied. Now, a quick glance reveals that the F~0 state is not occupied in constellations (a) and (c); thus, these are completely dephased systems. So the constellations cannot represent a (partial) echo. The F~0 state in constellation (b), however, is occupied with 0.5, the echo intensity! Because the simulation was performed without relaxation effects, no T1 recovery is present, which leads to even Z~ states and every other F~ state being 0 (CPMG timing, see examples later). The Z~ states display the inherent symmetry based on the symmetry relations. Note that these simulations were performed with the real operator TCPMG in Eq. (21). With the previous knowledge of T1 ¼ T2 ¼ 1 and aconst ¼ 60 , even the interval of the sequence can be guessed by the maximal jkj occurring. [Color ﬁgure can be viewed in the online issue, which is
+available at wileyonlinelibrary.com.]
+
+As a side note, this diagram is very similar to the presentation one gets with the partition state method.
+It should be noted that EPG diagrams often ignore the intricacies of k(t) trajectories, i.e., they do not necessarily reﬂect the real trajectory. EPGs represent “dephasing” in a very general sense; thus, its source may be chemical shift, B0 inhomogeneities, Jcoupling, etc., besides the very frequent read gradient as a 1D dephasing axis (11). Hence, k should generally not be on the y-axis either. Regularly, the real gradient waveforms are ignored and replaced with a constant time-ﬁlling gradient of the same moment, thus leading to linear pathways in the diagram.
+
+Sodickson and Cory tagged EPGs as a “generalized k-space formalism” (14). Considering the facts discussed above, this does not seem to be really helpful, but rather leads to confusion. Besides, k-space has a different focus and is mostly concerned with imaging behavior rather than with echo generation. k-space ignores longitudinal magnetization and includes 180 pulses at most. However, if motion phenomena are to be included, correct calculations with exact k(t) trajectories become important (c.f. chapter “Motion Phenomena”).
+Generally, the splitting of RF pulses leads to an exponential increase of pathways with the number of
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+280
+
+Weigel
+
+Figure 10. Extended phase diagram of a two-pulse sequence that may be the beginning of a Burst sequence (35–37). F~ state pathways are represented by solid lines and their slope is proportional to the gradient strength. Z~ state pathways are signiﬁed by dashed lines. These are always horizontal, because they show no phase evolution. RF pulses are signiﬁed by a vertical line. They split each existing pathway and generate a new FID from residual and “freshly recovered” longitudinal magnetization (square markers). a:
+Showing all Fourier components of the EPG leads to a rather useless diagram. Considering that a gradient should always act on transverse magnetization in the same sense and one is used to increasing dephasing, i.e., increasing k, in the positive direction of the y-axis, results in the exclusion of the two redundant F~ components depending on Àk. Thus, dephasing transverse magnetization corresponds to the diagonal solid line above F~ð0Þ, i.e., the x-axis, and rephasing to those below the line F~ð0Þ. Therefore intersections with the x-axis denote the generation of an echo (disc marker, F~ð0Þ state). This procedure leads to the four-state diagram (F~þðþkÞ, F~ÀðþkÞ, Z~ðþkÞ, Z~ðÀkÞ) originally used by Hennig (10–12). However, Z~ðÀkÞ is also redundant; hence, it is taken out. b: The resulting diagram style common today (F~þðkÞ, F~ÀðkÞ, Z~ðkÞ). It may be a matter of discussion whether the spatial frequency k itself should be or even is allowed to be on the y-axis. Indeed, this direction represents dephasing, however, in a rather generalized sense (c.f. text). Thus, according to the view of the author, “k” should only be present if the extended phase diagram directly reﬂects the true k(t) trajectory. Corresponding examples are Figure 18 in this work and Figure 1 in Ref. (18). [Color ﬁgure can be viewed in the online issue,
+which is available at wileyonlinelibrary.com.]
+
+RF pulses N. Starting from one initial pathway, an RF pulse splits all pathways into three new parts and generates one new FID. Each successive RF pulse will split up each pathway again, including the former FID; and it will generate an FID of its own. Accordingly, the geometric series
+
+npathwaysðN Þ ¼ 3N þ 3NÀ1 þ . . . þ 31 þ 30 ¼
+
+XN 3l
+l¼0
+
+¼ 1 ð3Nþ1 À 1Þ N!À!NÀ1 1 ð3N À 1Þ
+
+2
+
+2
+
+[30]
+
+depicts the number of pathways n generated alto-
+gether, if the ﬁrst pulse is treated as the excitation
+pulse generating the initial pathway. Please note that the equilibrium conﬁguration state Z~0 is not regarded as a pathway.
+
+Classiﬁcation of Echoes
+One of the original questions put forth was whether a general classiﬁcation of echoes can be introduced. For this task, a generic SE sequence with three nonequidistant RF pulses with arbitrary ﬂip angles a1, a2, and a3 is investigated in Figure 11. The RF pulse phases do not matter, because they inﬂuence the echo phases only (see above).
+
+The EPG in Figure 11 beautifully demonstrates how the RF pulses split the pathways. In dependence on the magnetization history before the last RF pulse, an SE or an STE is present. It is suggested to further characterize the echoes by means of indexing here: The number of each RF pulse actively participating in the echo generation is noted as a successive subscript index, starting with the FID generating RF pulse. An FID directly acquires its corresponding RF pulse number. Thus, reading from either Figure 11 or the indexing method, it is immediately clear that at least three RF pulses are necessary to generate an STE, which becomes STE1-2-3: (i) FID1, (ii) storing as a modulated Z-state, (iii) stimulation to generate the STE1-2-3.
+Using the indexing method for spin echoes results in SE1-2-3, SE1-3, SE1-2 and SE2-3. Depending on whether the echoes trace back to FID1 (ﬁrst echo index is 1) or a later FID (ﬁrst echo index is greater than 1), the spin echo is sub-classiﬁed to be primary or secondary (Fig. 11). These terms originate from Hahn’s paper (1). With the EPG based indexing method these can be characterized more precisely.
+Examples for MRI Sequences
+After the thorough discussion of its basis and properties, the established EPG framework will be put into
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+281
+
+Figure 11. Extended phase graph for
+
+an arbitrary three-pulse spin echo
+
+sequence. Based on the EPG diagram,
+
+the identiﬁcation and classiﬁcation of
+
+echoes is intuitive and simple: The
+
+three RF pulses excite three new FIDs,
+
+generate one stimulated echo (STE)
+
+from a longitudinal pathway, and refo-
+
+cus four transverse pathways to spin
+
+echoes (SE). Applying the recom-
+
+mended indexing of echoes based on
+
+the RF pulses (see text) leads to the
+
+further sub-classiﬁcation into three pri-
+
+mary spin echoes (SE1-2, SE1-2-3, SE1-3)
+
+and one secondary spin echo (SE2-3).
+
+The corresponding echo times of gener-
+
+ation
+
+are
+
+clear.
+
+In
+
+the
+
+end
+
+1 2
+
+ð33 À 1Þ
+
+¼ 13 pathways are observed (Eq. (30)).
+
+practice. However, an in-depth discussion of the sequences and many possibilities using the EPG concept is beyond the scope of this review. It is obvious that multi-pulse sequences such as (and not restricted to) variants of TSE, SSFP, and Burst as well as DANTE approaches highly beneﬁt from the pre- and sented EPG framework. Thus, the reader is referred to the abundant dedicated literature such as Refs. (4,8– 19,23,25–27,29,31–43,47–62). Apart from reading the best way to get more insight into and, most importantly, to get an intuitive feeling for the EPG framework is to try out ideas and draw examples, calculate around, and deﬁnitely think about it.
+
+2
+
+3
+
+0:50 À0:50 1
+
+Tyð90 Þ ¼ 664 À0:50 0:50 1 775
+
+À0:50 À0:50 0
+
+Example: Simulating Turbo Spin Echo Sequences
+The basic magnetization response of a TSE (CPMG) sequence with constant 120 refocusing ﬂip angles and echo spacing ESP (4,10,11) is investigated neglecting relaxation effects (Fig. 12). The read encoding direction of the TSE sequence determines its basic magnetization response in regard to echo generation. It should be noted that EPGs are also feasible in other encoding directions such as the 2D phase or 3D partition encoding direction; Weigel and Hennig demonstrated this possibility by quantitating the inherent diffusion sensitivity of TSE sequences for the different encoding axes (58).
+As can be easily seen in Figure 12, TSE sequences recombine EPG pathways of equal order due to the regular timing and coherence conditions of gradients and RF pulses: An only linear increase of pathways with the number N of RF pulses can be observed in Figure 12 (11,15,16,18). This result is true for all NMR sequences of regular or periodic timing.
+In accordance with Figure 12, the magnetization evolution will be simulated based on the EPG framework using the state matrix of Eq. (26) and following Eq. (28b). At ﬁrst, the appropriate T operators are deﬁned. To obey the CPMG condition, the 90 excitation does have an RF phase of F ¼ 90 (y-axis), whereas all 120 refocusing pulses have F ¼ 0 (xaxis) (Eq. (15)):
+
+Figure 12. Extended phase diagram of a TSE sequence including a simpliﬁed sequence diagram of its read encoding direction (crusher and read out gradients are one). The ﬁrst RF pulse excites magnetization to become an FID (the primary echo pathway), which the successive RF pulses split. Only odd states are linked by the primary pathways at the times of the RF pulses (CPMG timing). The blue numbers denote the population of each pathway based on the example for constant 120 refocusing ﬂip angles and no relaxation effects. With T1 recovery present, each refocusing pulse would generate an FID that would lead to secondary SEs occurring at the time of the RF pulses. Thus, they cannot be observed in a TSE sequence. This strict separation of primary and secondary SE pathways leads to the inevitable decay of magnetization along the echo train. Imagine analyzing these behaviors without phase graphing!
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+282
+
+Weigel
+
+2
+
+3
+
+0:25 0:75 À0:87i
+
+Txð120 Þ ¼ 664 0:75 0:25 0:87i 775:
+
+[31]
+
+À0:43i 0:43i À0:50
+
+Starting with equilibrium magnetization (Fig. 12) the initial state matrix is Xðt < 0Þ ¼ ½0; 0; 1T. At t ¼ 0, the
+excitation pulse changes the state matrix to be
+
+2 3 23
+
+F0
+
+1
+
+Xðt ¼ 0Þ ¼ Tyð90 Þ Xðt < 0Þ ¼ 664 F0Ã 775 ¼ 664 1 775:
+
+[32]
+
+Z0
+
+0
+
+Again, it is emphasized that both F~0 are complex con-
+
+jugated partners, they are the same state in this rep-
+
+resentation (c.f. chapter “Extensions, Limitations and
+
+Software Coding.” The result of Eq. (32) corresponds
+
+to the expectation: The equilibrium magnetization is
+
+rotated to become positive x-magnetization com-
+
+pletely. Next, the S operator acts and shifts all states
+
+up, i.e. the positive dephasing gradient in the ﬁrst
+
+interval increases the k of all transverse states by 1
+
+(Fig. 12). Thus, the state matrix has to be increased to
+
+make room for the newly populated F~1 state:
+
+2
+
+3
+
+ Xt
+
+¼
+
+ 1 ESPÀ 2
+
+¼
+
+S
+
+Xðt
+
+¼
+
+0Þ
+
+¼
+
+0 664 0
+
+1 0 775:
+
+[33]
+
+00
+
+In Eq. (33), the superscript “À” means “directly before”, the later superscript “þ” will mean directly after. Because there is no T1 recovery, the Z~0 population remains 0.
+Now, the ﬁrst refocusing pulse represented by the Txð120 Þ operator is applied (Fig. 12), mixing states of equal dephasing order k:
+
+ Xt
+
+¼
+
+ 1 ESPþ 2
+
+¼
+
+Txð120 Þ 2
+
+
+Xt 3
+
+¼
+
+ 1
+
+À
+
+ESP
+
+2
+
+0 0:25
+
+¼ 664 0 0:75 775:
+
+[34]
+
+0 À0:43i
+
+The RF pulse partitions the former F~1 state into the fractions 0.25 of further dephasing magnetization, 0.75 of rephasing magnetization, and 0.43 of stored longitudinal magnetization. The additional factor Ài of Z~1 hints at the phase of the magnetization. Because no longitudinal magnetization is recovered, Z~0 ¼ 0, the RF pulse could not excite magnetization generating an FID (c.f. Fig. 11): the F~0 state remained with the population 0. As a consequence, no secondary SEs will be generated at all (c.f. Fig. 11) and these pathways were omitted in Figure 12. Generally, refocusing pulses generate FIDs in a TSE sequence that result in secondary SEs; however, these occur during the time of the refocusing pulses and are, therefore, never observed. Thus, these secondary pathways are seldom found in extended phase diagrams from TSE sequences (27).
+Next, the ﬁrst half of the readout gradient follows, denoted by the same shift operator from above:
+
+
+
+
+
+Xðt ¼ ESPÞ ¼ S X t ¼ 1 ESPþ
+
+2
+
+2
+
+3
+
+0:75 0 0:25
+
+¼ 664 0:75
+
+0
+
+0 775:
+
+[35]
+
+0 À0:43i 0
+
+Because no T1,2 relaxation is present, all states kept their population during the shift process and no
+
+longitudinal magnetization recovers either. Most importantly, an F~0 state of the population 0.75 occurs
+
+(in two complex conjugated modiﬁcations). Thus, the
+
+primary SE1-2 of the signal intensity 0.75 is measured. Another application of S and, subsequently, the sec-
+ond refocusing pulse Txð120 Þ leads to
+
+
+
+
+
+X t ¼ 3 ESPþ 2
+
+¼ Txð120 Þ S Xðt ¼ ESPÞ
+
+2
+
+3
+
+0 À0:19 0 0:06
+
+¼ 664 0 0:94 0 0:19 775: [36]
+
+0 À0:11i 0 À0:11i
+
+The reader should note that operators are always
+sequenced from the left — they do not commute in
+general. The RF pulse generated an F~À1 state of the popula-
+tion 0.94 (Fig. 12). It is a combination or sum of 0.56 from the former, partially refocused F~1 state (SE part) and 0.38 from the partially excited Z~1 state (STE part). A further shift of the transverse states by þ1
+leads to the set of conﬁguration states present at the
+second echo time:
+
+Xðt ¼ 2ESPÞ ¼
+
+S
+
+ Xt
+
+¼
+
+ 3
+
+þ
+
+ESP
+
+2
+
+2
+
+0:94 0 À0:19
+
+¼ 664 0:94
+
+0
+
+0:19
+
+0 À0:11i 0
+
+0 0 À0:11i
+
+3 0:06
+0 775: 0 [37]
+
+In a TSE sequence, primary SE pathways and STE pathways overlap and produce echoes at the same time due to the regular and coherent CPMG based structure. Using the suggested indexing method from the last chapter, SE1-2-3 and STE1-2-3 are simultaneously measured with the signal intensities 0.56 and 0.38, respectively.
+Another step through the simulation of a full echo spacing with the operator sequence S Txð120 Þ S produces the third echo state conﬁguration
+
+Xðt ¼ 3ESPÞ ¼ S Txð120 Þ S Xðt ¼ 2ESPÞ ¼
+
+2
+
+0:84 0
+
+0:28
+
+0 À0:14 0
+
+66664 0:84
+
+0
+
+À0:05
+
+0
+
+0:05
+
+0
+
+0 À0:27i 0 À0:14i 0 À0:03i
+
+3 0:02
+0 77775: 0 [38]
+
+As can be seen from Eq. (38), the echo intensities gradually approximate the pseudo steady state (PSS)
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+283
+
+Figure 13. Extended phase diagram of a FISP, GRASS, or FAST sequence including a simpliﬁed sequence diagram of its read encoding direction. With the beginning of the third TR, all RF pulses constantly mix refocusing pathways from the previous TRs with FIDs generated from “freshly recovered” magnetization (gray square marker). This can result in a true steady state provided TR is sufﬁciently short compared with T1 and T2 (and the RF ﬂip angles and phases satisfy particular conditions) (13,15,34,49). Directly after RF one easily counts n ¼ 3N-2 pathways evolving for this rapid GE sequence; thus, the number of pathways grows linearly with the number of RF pulses due to the regular timing. Note that the FISP sequence uses a gradient spoiler (included in the positive lobe of the read out gradient), which actually does not spoil the transverse magnetization component: As shown, subsequent RF pulses can always refocus the magnetization (13,15,34,49).
+value of sin(120 /2) ¼ 0.866. . . (10). If the TSE sequence should continue, the simulation has to be equally performed for the next echo spacings.
+It should be noted that EPGs for TSE sequences usually display the echo train within one repetition time TR, starting with equilibrium magnetization and, thus, suggesting something like an “eraser for magnetization” at the echo train end. This assumption often works thanks to sufﬁciently long TR (T1,2 relaxation issues); yet, if TR is short compared with the relaxation times, incomplete T1 recovery has to be considered. Additionally, T1 recovery may be boosted by low refocusing ﬂip angles as investigated by Weigel et al for inversion recovery prepared TSE sequences (27). A further noteworthy inter-TR effect represents residual (not T1 relaxed) modulated longitudinal magnetization that participates every second TR in TSE signal generation as well (27).
+Example: Simulating a Rapid Gradient Echo Sequence
+As an advanced second step now, a rapid GE sequence will be discussed. “Rapid” means that its TR
+
+is considerably shorter than both relaxation times. As a result, such a GE sequence necessitates relaxation and recovery effects to demonstrate true steady state behavior. Figure 13 shows the extended phase diagram of one type of rapid GE (SSFP) sequences, which uses gradient spoiling and no RF spoiling. As can be deduced from the diagram by following the pathways, this type of SSFP sequence directly reads out the FID (¼ ~F 0 state). Consequently, it is labeled as an F~0 type SSFP sequence and known as a FISP, GRASS, or FAST sequence (gradient spoiling but no RF spoiling) (12,13,15). The reader should note that the EPG creates a means for actually characterizing the NMR sequence here. For an in-depth discussion of this topic, the reader should study dedicated literature such as Refs. (12,13,15,60–62).
+Although the given FISP sequence represents a notably different NMR sequence than the TSE sequence (Figs. 12 and 13), the procedure for simulating the FISP sequence will be very similar to that of simulating the TSE sequence from before. This underlines the ﬂexibility and generality of the EPG concept.
+Presuming a constant ﬂip angle of 30 around the xaxis, the RF excitation pulse operator equals to (Eq. (15))
+
+2
+
+3
+
+0:93 0:07 À0:50i
+
+Txð30 Þ ¼ 664 0:07 0:93 0:50i 775:
+
+[39]
+
+À0:25i 0:25i 0:87
+
+For reasons of simplicity, the E1,2 relaxation terms
+
+will be directly deﬁned to be E1 ¼ 0.99 and E2 ¼ 0.9
+
+(Eqs. (23) and (24)):
+
+2 0:90 0
+
+3 0
+
+E ¼ 6664 0
+
+0:90
+
+0 7775 ;
+
+0 T1 recovery
+
+0 0:299 0
+term : 6664 0
+
+3 7775for k ¼ 0
+
+[40] states :
+
+0:01
+
+These parameter values roughly correspond to T1 ¼ 1000 ms and T2 ¼ 100 ms if the chosen repetition time TR is 10 ms.
+Starting with equilibrium magnetization the initial state matrix is Xðt < 0Þ ¼ ½0; 0; 1T. At t ¼ 0, the excita-
+
+tion pulse changes the state matrix to be
+
+Xðt
+
+¼
+
+0Þ
+
+¼
+
+Txð30 Þ
+
+Xðt
+
+<
+
+0Þ
+
+¼
+
+2 664
+
+F~ F~
+
+0 Ã 0
+
+3 775
+
+¼
+
+2
+
+3
+
+À0:5i
+
+664 0:5i 775
+
+[41]
+
+Z~ 0
+
+0:87
+
+It can be observed well in Eq. (41) that both F~0 states are complex conjugated partners, because the excita-
+
+tion pulse generates an FID of the signal intensity À1=2 on the imaginary y-axis.
+If one exactly followed the extended phase or sequence diagram in regard to the simulation, a shift of all states by À1 and then by þ1 would be necessary
+
+for mimicking the ﬁrst part of the GE readout now
+
+(Fig. 13). However, the EPG concept is a pragmatic if
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+284
+
+Weigel
+
+not a “lazy” approach: There is no need for applying
+
+both compensating gradient switches, because they
+
+have a net effect of Dk ¼ 0 on the conﬁguration states.
+
+Thus, the shift operator S will be used for the net gra-
+
+dient switching over the full TR, which includes the
+
+gradient spoiling moment to the end of the TR (Fig.
+
+13) (12,13,15). Here, it may be helpful to remind the
+
+reader that the integral k of the discrete EPG
+
+approach are merely “house numbers.” But what about the F~ð0Þ state whose population represents the
+
+echo intensity of the measured GE? This population is
+
+directly calculated from the previously generated FID and its corresponding F~ 0 state. However, T2/T2* relax-
+ation effects have still to be considered in dependence
+
+on the selected echo time TE. Thus, for the short TE
+
+of a FISP sequence the ﬁrst GE’s signal intensity is
+
+GE1 ¼ À0.50*exp(ÀTE/T2*) % À0.50*exp(ÀTE/T2), if T2,T2*)TE.
+The next step is using the S operator and the relax-
+
+ation operator E (Fig. 13): 2 0
+Xðt ¼ TRÀÞ ¼ E S Xðt ¼ 0Þ ¼ 664 0
+
+3 À0:45i
+0 775: [42]
+
+0:87 0
+
+The former FID (¼F~0 state) was dephased to become an F~1 state and it also experienced T2 decay. Additionally, the Z~0 population partially recovered. The
+
+subsequent RF pulse excites, refocuses, and stores
+
+magnetization as follows: 2 À0:43i
+Xðt ¼ TRþÞ ¼ Txð30 Þ XðTRÀÞ ¼ 664 0:43i
+
+3 À0:42i À0:03i 775:
+
+0:75 À0:11
+
+[43]
+
+An FID of signal intensity À0.43 is generated on the y-axis, which is measured with a second GE. Its signal intensity therefore corresponds to À0.43*exp(ÀTE/T2).
+Another application of the operators Txð30 Þ E S on the state matrix gives
+
+Xðt ¼ 2TRþÞ ¼ 2Txð30 Þ E S Xðt ¼ TRþÞ 3
+
+À0:35i À0:31i À0:35i
+
+¼ 664 0:35i À0:08i À0:03i 775
+
+[44]
+
+0:67 À0:19 À0:09
+
+which represents the state matrix after two TRs. It should be noted that the third RF pulse started to
+mix magnetization among “freshly recovered” and then excited magnetization and an SE generated by the ﬁrst two RF pulses (gray square marker in Fig. 13). The EPG representation perfectly demonstrates that all subsequent RF pulses act similarly. This mixin effect leads to the steady state response of the SSFP based FISP sequence (12,13,15). For this particular example, the steady state amplitude will be approximately 0.107. In contrast to TSE sequences, magnetization pathways of different history are mixed constantly (a TSE sequence has no true steady state or one could claim it is zero). Thus, echoes of complex signal weighting evolve (12,13,15).
+
+A further note of importance is that the EPG representation in Figure 13 nicely proves that a gradient spoiler cannot spoil or destroy transverse magnetization in practice. It merely dephases it. Increasing the spoiling moment would only mean increasing the dephasing. In fact, RF pulses are always able to refocus magnetization as long as it has not decayed due to irreversible effects such as relaxation or diffusion. These effects are true “spoilers.”
+The next TRs of the rapid GE sequence are simulated equally. Adding RF spoiling would necessitate using a different T operator in every TR due to the RF phase change. For reasons of brevity, the author refrained from doing this. In a computer program, however, it would be really simple: It is a just a matter of updating the T matrix accordingly.
+Motion Phenomena
+Generally, motion phenomena such as body motion, ﬂow or diffusion are of high importance within the ﬁeld of NMR. So there is great interest in assessing their impact on the conﬁguration states to understand quantitatively dedicated motion sensitization schemes as well as motion related artifacts. But how are the corresponding mathematical representations to be obtained?
+Before dedicated motion operators within the EPG concept are discussed, it is quite helpful to understand how these operators will generally affect the conﬁguration states. Considering the Fourier relationship between magnetization in position space and in the EPG framework, it can be learned from the Fourier shift theorem that motion phenomena will lead to phase and magnitude changes of the populations of conﬁguration states, depending on the type of motion. This fact itself does not represent any new effect. The (basic) EPG operators investigated so far, S, T, and E, do the same; however, they act in a more “global” way: S changes the k of all present F~k by one global Dk at a time, T only mixes populations in dependence on the global RF ﬂip angle a and introduces phase shifts dependent on the global RF phase F, and E is just a time dependent global weighting factor. These three basic EPG operators do not depend on the dephasing of magnetization, i.e., they do not change the population of the conﬁguration states in direct dependence on the state’s own k. With motion effects, however, this will be different. Why is that so?
+As depicted in the foundation of the EPG (Figs. 5 and 8), higher order conﬁguration states represent more ﬁnely pitched helices and harmonic wave patterns of magnetization, and these are affected by motion in a stronger way. The conﬁguration states carry position encoded information that is easier to destroy or alter for large spatial frequencies k, if the motion has a vector component parallel or antiparallel to the modulation of magnetization in space. Thus, to account for this higher sensitivity to motion for large k, the motion related operators will depend on k directly, i.e., they depend on the exact k-trajectory or phase history of the isochromat ensemble (14,18,58). Thus, it is clear that all motion operators will necessitate the real k that is generated by the gradients according to Eq. (4). This necessity can require
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+285
+
+Figure 14. a: The meaning of the displacement probability P ðrjr0; tÞ is displayed. As can be deduced from its name, it describes the probability that a particle or isochromat moves from the position r to r0 during the time interval Dt. b: A typical and important example for the application of the displacement probability is the description of free diffusion. In regard to diffusion, the displacement probability is called propagator frequently. Initially, the isochromat resides at a deﬁned position that is depicted by an inﬁnitely narrow Gaussian, i.e., a delta distribution. Within the time the Gaussian shaped diffusion propagator broadens more and more, depicting that the isochromat will move away from its initial position most probably. Because the stochastic motion of free diffusion has no preferred direction, the propagator is symmetric. [Color ﬁgure can be viewed in the online issue, which is available at wileyonlinelibrary.com.]
+considerably more effort in dependence on the complexity of the investigated MR sequence and the desired accuracy/precision of the simulation, because the exact timing of the gradient switching within the MR sequence may have to be taken into account.
+A further conclusion to be made is that any kdependent EPG operator must take different forms for transverse F~6ðkÞ and longitudinal Z~ðkÞ states, because any active gradient will further dephase the transverse magnetization, i.e., shift the F~6 states, parallel to the motion effects that are depicted by the k-dependent EPG operator.
+All of these effects will become more apparent in the examples below.
+Motion Operators by Means of the Convolution Theorem
+In the following, a general recipe for obtaining the representation of a broader class of EPG operators is derived and discussed, where the motion can be depicted using a spatially invariant displacement probability or propagator Pðrjr0; tÞ. Typical motion phenomena fulﬁlling this condition are rigid body motion, uniform ﬂow in a vessel or free diffusion in a medium. These important examples are also discussed in further detail below.
+The displacement probability Pðrjr0; DtÞ depicts the probability that an isochromat (or particle) will move from position r to position r0 within the time Dt as shown in Figure 14a. Frequently, Pðrjr0; DtÞ is a function of Dr ¼ r À r0 alone, i.e., the displacement probability P is spatially invariant; it only matters how far
+
+and in which direction the isochromat moves (Dr), but
+
+not from which position exactly it starts (r). In this
+
+case, the convolution theorem facilitates a quick solu-
+
+tion for such motion phenomena.
+
+In the beginning, the spatially invariant displacement probability Pðrjr0; tÞ is known. At time t ¼ 0, an
+
+arbitrary magnetization distribution M(r,0) is present
+
+in space. It consists of numerous isochromats that
+
+are all affected equally by the known displacement
+
+probability Pðrjr0; DtÞ (spatial invariance of P). Then,
+
+the convolution of Pðrjr0; DtÞ with M(r,0) leads to the
+
+motion affected magnetization in position space after
+
+the time Dt has expired (14,18): Z
+
+Mðr; DtÞ ¼ Pðr À r0; DtÞ Mðr0; 0Þd3r 0:
+
+[45]
+
+V
+
+As a side note: The spatially invariant propagator P depicts how the magnetization M(r,0) will evolve with time from any given spatial point r. Summing up all these contributions corresponds mathematically to the convolution integral given in Eq. (45) (c.f. a basic mathematical text book).
+Fourier transforming Eq. (45) converts the convolution integral into a mere product in Fourier space, which corresponds to exploiting the famous convolution theorem (14,18):
+
+M~ ðk; DtÞ ¼ P~ðk; DtÞ Á M~ ðk; 0Þ:
+
+[46]
+
+The last step is of great value, because Eq. (46)
+depicts the effect of motion on the magnetization in
+spatial Fourier space now. The EPG framework also
+depicts magnetization in spatial Fourier space (c.f. the
+foundation of the EPG concept above). Thus, the Fourier transforms of both magnetization distributions M~ ð k; 0Þ and M~ ðk; DtÞ correspond directly to the initial and motion affected magnetization represented as F~6 and Z~ states. Consequently, the Fourier transform of the displacement probability, P~ðk; DtÞ, is directly the
+EPG operator in search, which depicts the impact of
+such motion effects on the conﬁguration states
+(14,18). This important insight will be deepened by
+two important examples.
+
+Coherent Bulk Motion: Rigid Body and Uniform Flow
+From a physical point of view, rigid body motion and spatially uniform ﬂow represent phenomena of coherent macroscopic bulk motion with a given velocity jvj and direction v/jvj. Thus, from a qualitative point of view, it can already be understood that the whole magnetization distribution, which consists of spatial magnetization modulation patterns, will be moved coherently in space relative to the origin of our coordinate system. This coherent motion must result in phase shifts for all EPG conﬁguration states that have jkj 6¼ 0, if there is any motion component parallel or anti-parallel to the modulation pattern (Fig. 15). Hence, motion will not have any effect on the coherent F~ 0 and the equilibrium Z~0 state in general.
+A closer look at the different orders of harmonic wave patterns in Figure 15 immediately suggests that the acquired phase shift due to coherent motion will be proportional to the dephasing jkj of the conﬁguration
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+286
+
+Weigel
+
+Figure 15. a: A part of an EPG of a TSE sequence is displayed. The secondary echo paths were omitted for reasons of overview, therefore, odd conﬁguration states are shown only. b: Recalling in mind that all conﬁguration states represent spatial harmonic patterns of magnetization, an object displacement corresponds to a global, coherent shift of all harmonic patterns in space. c: In this example, the object displacement equals to half a wave length of an F~1 state. As a result, the higher orders of F~3, F~5, . . . acquire state dependent phase shifts of 3,5,. . . halves of their own wavelength. Hence, the acquired phase shift scales linearly with k and also with the object displacement, which is proportional to the object’s speed.
+
+state (14,30,39). Thus, the necessary phase adaptation directly depends on the state’s own dephasing — this fact was already predicted in the general considerations made in the section before last.
+The exact representation of the EPG operator for coherent macroscopic bulk motion can be obtained with the convolution approach introduced above; however, there is a simpler solution using the direct deﬁnition of k. The convolution approach will be used later for a validation of the result and to improve understanding.
+Equation (4) deﬁned the dephasing k as a spatial wave vector. It depicts the phase change per distance. This became apparent in Figure 4 where 2p=jkj represented the pitch of the helix, i.e., its wave length l in space. l corresponds directly to the phase shift of 2p for a full period. Hence, if the object is displaced by Dx, the fraction Dx=l must be equal to the acquired phase shift Df divided by 2p (Fig. 15):
+
+cal transport phenomenon ﬂux, the coherent motion operator is denoted J and is, therefore, deﬁned as:
+
+Jðk; DtÞ ¼ expðÀik Á v Á DtÞ:
+
+[49]
+
+This is not the ﬁnal form, yet, because the approach that led to Eq. (49) presumed without saying it that k is constant. However, for transverse F~ states this will not be the case if a gradient is turned on: It will change its dephasing and, therefore, its k while it simultaneously acquires additional phase due to motion. Before this effect is considered, the solution of Eq. (49) will be veriﬁed by the sophisticated method provided by means of the convolution theorem discussed above.
+Initially, the displacement probability Pcoherent motion is necessitated. It is represented by a delta distribution that depicts the move of an isochromat in space in dependence on time and speed (14,30)
+
+Dx ¼ Df ) Df ¼ 2p Dx ¼ jkj Á Dx:
+
+[47]
+
+l 2p
+
+l
+
+Presuming that the object moves with constant speed jvj within a time interval Dt and considering that the direction of motion v/jvj may not be parallel to the direction of the harmonic modulation pattern k/jkj, the acquired phase change due to motion equals to
+
+2p Dfcoherent motion ¼ l Dx ¼ k Á v Á Dt:
+
+[48]
+
+This phase term has to be added to the phase of a given conﬁguration state by the coherent motion operator. This is best done by multiplying a complex phase factor of the type expðÀiDfÞ. In the style of the physi-
+
+Pcoherent motionðr À r0; DtÞ ¼ dðr0 À v Á DtÞ:
+
+[50]
+
+Because Pcoherent motion fulﬁlls the condition for using the convolution theorem, which was to be spatially invariant, the recipe making use of the convolution theorem can be applied. Thus, Fourier transforming Eq. (50) leads directly to
+P~coherent motionðk; DtÞ ¼ expðÀik Á v Á DtÞ  Jðk; DtÞ [51]
+which is identical to the solution found in Eq. (49). To consider changes of k, the solution of Eq. (49) or
+Eq. (51) is presumed to be always valid for discrete but very short time intervals Dt only. Then, taking the limit
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+287
+
+Dt ! 0 allows one to account for continuous k(t) trajectories (14,18,30): An integration over the scalar product in inﬁnitesimal intervals dt is necessary. Consequently, the generalized J operator equals to
+
+
+
+
+
+ Zt
+
+
+
+J kðtÞ; v; t ¼ exp Ài kðtÞ Á v dt : [52]
+
+t¼0
+
+Equation (52) shows very clearly that the J operator
+
+depends on the precise k(t) trajectory, i.e., the precise
+
+switching of the gradients. In fact, this dependency
+
+was already predicted in the general thoughts in the
+
+beginning of this chapter.
+
+The integral operator in Eq. (52) needs a scalar
+
+product between dephasing and speed, because the
+
+direction of motion relative to the direction of the spa-
+
+tial wave pattern does matter. Because a 1D based
+
+EPG is meant to be used, the relation k v ¼ jkj jvj
+
+cos(b) will be used with b being the angle between
+
+both vectors. The simplest boundary condition for the
+
+precise k(t) trajectory is a constant (background) gra-
+
+dient (which can also be of zero amplitude). As a consequence, F~ states change their dephasing linearly
+
+from k1 to k2 within the time t in accordance with Eq. (4), whereas Z~ states remain their wave vector k1 (14,18). Evaluating the integral operator of Eq. (52)
+
+separately for longitudinal Z states and transverse F
+
+states with the mentioned boundary conditions, leads
+
+to the two coherent motion EPG operators (14,30,39)
+
+
+
+
+
+JT ¼ exp Ài k1 þ k2 v t cosðbÞ
+
+ 2 
+
+
+
+¼ exp
+
+Ài
+
+k1
+
+þ
+
+Dk 2
+
+v t cosðbÞ
+
+[53a]
+
+and
+
+
+
+
+
+JL ¼ exp Ài k1 v t cosðbÞ :
+
+[53b]
+
+JT is the dedicated coherent motion operator for the transverse F states, JL is the pendant for the longitu-
+
+dinal Z states. Finally, both representations are com-
+
+bined within one matrix operator
+
+2
+
+3
+
+JT 0 0
+
+J ¼ 664 0 ðJTÞÃ 0 775:
+
+[54]
+
+0 0 JL
+
+The coherent motion operator of Eqs. (53) to (54) still seems to be complex, but, it should be noted that for a regular, periodic sequence Dk ¼ k2–k1 is constant, i.e., k1 and k2 are multiples of Dk (equally spaced EPG). Thus, by calculating Dk by means of Eq. (4), the exponential phase factors become a function of the integral values of k used in the discrete EPG approach. Then, they are included in the framework similar to the others operators.
+By considering the speed as a function of time, v ¼ v(t) in Eq. (52), ﬂow or motion phenomena of higher order in t such as acceleration can also be described quantitatively. It is a matter of appropriately evaluating the integral alone.
+The coherence property of the presumed motion so far, does not result in any attenuation of the conﬁgu-
+
+ration states’ populations. However, this will be different for the next example: diffusion.
+
+Incoherent Motion: Free Isotropic Diffusion
+
+Diffusion effects in NMR have been studied for a long
+
+time due to permanent scientiﬁc and clinical interest.
+
+Thus, there are several publications that deal quanti-
+
+tatively with diffusion effects. Because diffusion prob-
+
+lems are frequently solved in Fourier space, these
+
+solutions can often be applied within the EPG calcu-
+
+lus (2,8,9,14,16–18,30,53,54,63–65).
+
+The most general EPG solution in regard to diffu-
+
+sion was published by Weigel et al (18). It considers
+
+anisotropic diffusion in 3D space and NMR sequences
+
+with arbitrary gradient shapes and directions as well
+
+as nonperiodic time intervals. Discussing the topic in
+
+this generality is beyond the scope of this work, how-
+
+ever, the concepts discussed above will considerably
+
+aid in the process of discussing 1D isotropic free dif-
+
+fusion with the diffusion coefﬁcient D.
+
+Before the appropriate calculations are discussed,
+
+Figure 16 is meant to give a notion what will happen to
+
+the conﬁguration states within the EPG framework.
+
+This pictorial presentation was suggested by Schefﬂer
+
+in an educational talk of the European Society for Mag-
+
+netic Resonance in Medicine and Biology (ESMRMB)
+
+several years ago. Because there is no net bulk motion
+
+of the whole isochromat ensemble, no net phase shifts will occur for the F~ and Z~ states. Contrary, due to the
+
+stochastic nature of the diffusional motion, each iso-
+
+chromat acquires an individual phase shift which leads
+
+to a blurring of the magnetization patterns in space
+
+(c.f. diffusion propagator in Fig. 14b). This destruction
+
+of the harmonic wave patterns results in the decay of
+
+macroscopic magnetization and is equivalent to the
+
+attenuation of the populations of the conﬁguration
+
+states. Thus, the diffusion operator will diminish EPG
+
+populations and this effect will be signiﬁcantly stronger
+
+for states of higher order k (Fig. 16).
+
+Starting with the common propagator for isotropic
+
+free diffusion in 1D (c.f. graphical sketch in Fig. 14b)
+
+(2,8,9,14,16–18,30,53,54,63–65)
+
+ Pðr; DtÞ ¼ pﬃﬃﬃﬃﬃﬃﬃﬃ1ﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ exp À
+
+r2
+
+
+
+[55]
+
+ð4p D DtÞ
+
+4DDt
+
+the convolution approach will be used immediately (Eqs. (45) and (46)) to obtain its Fourier representation and, thus, the EPG operator
+
+P~ðk; DtÞ ¼ expðÀDk2DtÞ :
+
+[56]
+
+It should already be noted that the diffusion operator in Eq. (56) represents a population attenuating operator that depends on the square of k. Thus, higher order conﬁguration states will be considerably more sensitive to the diffusional motion, which is in accordance with Figure 16.
+In an equivalent way to before, the limit Dt ! 0 of the former discrete time interval allows one to account for continuous k-space trajectories and deﬁne the EPG diffusion operator D for isotropic diffusion (14,17–19):
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+288
+
+Weigel
+
+Figure 16. A part of an EPG of a TSE sequence is displayed. a: The secondary echo paths were omitted for reasons of overview, therefore, odd conﬁguration states are shown only. All conﬁguration states representing spatial harmonic patterns of magnetization (b) are affected by the incoherent diffusional motion of the isochromats (c). All EPG states with k¼6 0 represent information that is destroyed due to the stochastic nature of diffusion. This results in a diffusion induced damping term. As can be observed well, states of higher spatial frequency k are considerably more affected than of low modulation frequency. In fact, the diffusion sensitivity is proportional to k2. The pictorial explanation in (c) was suggested and presented by Klaus Schefﬂer in an educational talk of the European Society of Magnetic Resonance in Medicine and Biology (ESMRMB) several years ago.
+
+
+
+
+
+Zt
+
+D1D kðtÞ; D; t ¼ expðÀbtDÞ with bt ¼
+
+k 2 ðt Þdt :
+
+t ¼0
+
+[57]
+
+The result of the isotropic diffusion operator, Eq. (57), was expressed in terms of the well-known diffusion weighting term expðÀbDÞ (18,66,67). The signiﬁcant difference, however, is that the deﬁned b-factor in Eq. (57) depends on each investigated conﬁguration state and pathway due to the k(t) dependence (2,8,9,14,16– 19,30,53,54,63–65). Consequently, multi-RF pulse sequences such as TSE or types of SSFP will exhibit a rather complicated diffusion sensitivity (18,19,58,68,69).
+As a side note, the b-factor in Eq. (57) consists of an integral that corresponds to solids of revolution. Ref. (18) gives an interesting graphical interpretation of this observation.
+Finally, the diffusion integral operator from Eq. (57) is evaluated for the boundary condition of a constant (background) gradient. This is done in the same way as for the coherent motion operator discussed above. As a result, the two dedicated isotropic diffusion operators correspond to (2,8,9,14,16–19,30,53,54,63–65)
+
+DT1D ¼ expðÀbtTDÞ
+
+with
+
+btT
+
+¼
+
+ðk1
+
+þ
+
+k2Þ2
+
+t 4
+
+þ
+
+ðk1
+
+À
+
+k2Þ2
+
+t 12
+
+¼
+
+ k1
+
+þ
+
+Dk2 t
+2
+
+þ
+
+ðDkÞ2 12
+
+t
+
+[58a]
+
+DL1D ¼ expðÀbtLDÞ with btL ¼ ðk1Þ2 t :
+
+[58b]
+
+DT1D is the dedicated free diffusion operator for the transverse F~ states, DL1D is the pendant for the longitudinal Z~ states. Finally, both representations are
+
+combined within one matrix operator
+
+2
+
+3
+
+DT 0 0
+
+D1D ¼ 664 0 DT 0 775:
+
+[59]
+
+0 0 DL
+
+The diffusion operator with its state/pathway speciﬁc b-factor (Eqs. (58) to (59)) seems to be rather complex; but, using the same argument from above, in a regular, periodic sequence Dk ¼ k2–k1 is constant, i.e., k1 and k2 are multiples of Dk (equally spaced EPG). Thus, by calculating Dk by means of Eq. (4), the exponential decay terms become a function of the integral values of k used in the discrete EPG approach. Then, they are included in the framework similar to the others operators. The reader may check on the EPG software the author provides to validate this (c.f. chapter coding).
+Equations (58) and (59) facilitate determining quantitative diffusion sensitivity in multi-pulse sequences and diffusion preparations, among them different types of SSFP sequences, long echo train TSE sequences with varying ﬂip angles, and superstimulated diffusion preparation schemes (38,43,58,70). For clinical applications, assessing an effective b-factor based on the EPG concept has proven valuable (58).
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+289
+
+Extensions, Limitations, and Software Coding
+
+It has been shown that the EPG is a very useful concept for depicting MR sequences for a broad range of applications. In recent years a broader theoretical understanding of the EPG concept has been achieved and further extensions of the concept have been developed. This last chapter explains additional extensions, possibilities, and applications, besides linking the topic to adjacent NMR techniques. Furthermore, the limitations are discussed and some worthwhile notes about the software coding are presented, including the availability of “ready-made” software.
+So far, all descriptions and applications presented within this review presumed that the ﬂip angle(s) of the RF pulses are known a priori. Hence, starting from a given initial magnetization or conﬁguration vector, all conﬁguration states are calculated successively over time. Particularly, all occurring F~0 states are quantiﬁed, representing the generated echoes and their intensities. However, Hennig et al. demonstrated that the EPG concept also facilitates the solution of the much more complex “inverse calculation” (23). The “inverse calculation” or “inverse problem” means that the RF ﬂip angles (and possibly RF phases) are unknown. On the contrary, all echo intensities throughout an echo train are initially deﬁned; or a targeted set of conﬁguration states from an NMR sequence is given a priori. Then, starting with a given magnetization constellation, what are the exact RF ﬂip angles needed to generate these targeted echo intensities or conﬁguration states (23)? This challenge is of great interest in practice, because the various echoes and their intensities have a direct impact on the later image properties such as signal intensities of tissue, contrasts between different tissues and point spread function(s) (PSF) (47). Thus, in predeﬁning such characteristic image and/or tissue properties, the EPG concept facilitates this inverse calculation to determine the appropriate set of ﬂip angles needed. For instance, several publications have made use of this possibility for TSE sequences with dedicated varying ﬂip angle schemes in recent years (23,27,29,31,39– 42,56). Apart from a full sequence design, this method can also be used to prepare speciﬁc magnetization conﬁgurations (38).
+Whereas for the forward calculation with known RF ﬂip angles and phases, the results for the echo intensities are unique, this is not true for the inverse calculation: Depending on the parameter constraints of the problem, the number of possible ﬂip angle solutions can be inﬁnite (!). This “bold statement” can be veriﬁed using a short example: From the T operator matrix (Eq. (15)), it can be seen that the relative intensity of a single spin echo equals to sin2(a/2). What refocusing ﬂip angle would be needed to refocus 1=4 ¼ 25%? Solving the equation for a immediately shows that already two solutions a1,2 ¼ 660 are possible. However, both ﬂip angle solutions are still modulo 360 . Furthermore, the phases of both magnetization and RF pulses were still neglected, which would become important if multi-pulse experiments are regarded, because the generated EPG pathways would
+
+Figure 17. The part of an EPG is presented demonstrating how the inverse calculation works. In the most general case of a regular and periodic NMR sequence the RF pulse of unknown ﬂip angle generates an echo from partially refocusing the previous echo (SE), partially exciting modulated zmagnetization (STE), and partially leaving rephasing magnetization unaffected. By initially solving the T operator for the ﬂip angle, it can be determined based on the previous state populations to generate the desired echo intensity. [Color ﬁgure can be viewed in the online issue, which is available at wileyonlinelibrary.com.]
+
+interfere differently, thus leading to different popula-
+
+tions and, eventually, different echo intensities.
+
+The simplest method of EPG based “inverse calcu-
+
+lation” is the so called “1-ahead algorithm” as illus-
+
+trated in Figure 17 (23). In the following, all
+
+conﬁguration states and the used RF pulse are meant
+
+to
+
+have
+
+the
+
+same
+
+phase
+
+w
+
+¼
+
+F
+
+¼
+
+
+0.
+
+One
+
+interval
+
+within a regular and periodic NMR sequence is inves-
+
+tigated that represents the most general case, because
+different coherence paths from transverse F~6 and longitudinal Z~ states will overlap to produce the targeted
+
+echo (Fig. 17). In this case, RF pulse #n, which gen-
+
+erates echo #n of intensity In, superposes fractions of
+
+three different pathways from interval n-1: It par-
+
+tially refocuses echo #n-1 of intensity In-1, it partially stimulates z-magnetization and it partially mixes in
+
+rephasing magnetization of interval (n-1) (higher
+
+order echo) (23), Figure 17. The fractions directly
+
+depend on the ﬂip angle an as depicted by T (Eq. (15)). Writing out this relation including T1,2 relaxa-
+
+tion gives (Fig. 17):
+
+In E2
+
+¼
+
+E2
+
+Á
+
+sin2an 2
+
+
+
+Á sinðanÞ Á Z~À:
+
+Á
+
+InÀ1
+
+þ
+
+E2
+
+Á
+
+cos2 an  2
+
+Á
+
+F~ À
+
+þ
+
+i
+
+Á
+
+E1
+
+[60]
+
+Equation (60) uses the E1,2 relaxation terms intro-
+
+duced in Eq. (23). Please note that the general com-
+
+plex T operator with F ¼ 0 from Eq. (15) was used
+
+here, whereas Hennig et al used the special TCMPG operator from Eq. (21).
+
+Equation (60) can be analytically solved for the
+
+desired ﬂip angle an if the appropriate trigonometric
+
+relations are used, which express the whole equation
+
+in
+
+terms
+
+of
+
+tan(an/2):
+
+sin2a
+
+¼
+
+1þtatna2nð2aðÞaÞ,
+
+cos2a
+
+¼
+
+1 1þtan2
+
+ðaÞ,
+
+290
+and sin2a ¼ 1þ2ttaannð2aðÞaÞ. Thus, solving Eq. (60) for an ¼ a(n) leads to the two solutions
+
+a1;2ðnÞ 0
+
+¼
+
+2
+
+arctan qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ1
+
+@ÀiE1E2Z À6
+
+ÀE12E22ðZ ÀÞ2 À ðE22F À E22InÀ1 À In
+
+À In ÞðE22InÀ1
+
+À InÞ
+
+A:
+
+[61a]
+
+The redeﬁnition Z~À ! i Á Z~À as well as the relations i2 ¼ À1 and ðiZ ÀÞ2 ¼ ÀðZ~ÀÞ2 give the solution for the real CPMG based EPG using the special TCMPG operator from Eq. (21):
+Real CPMG:
+
+a1;2ðnÞ 0
+
+¼
+
+2
+
+arctan qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ1
+
+@E1E2Z À6
+
+E12E22ðZ ÀÞ2 À ðE22F À E22InÀ1 À In
+
+À
+
+In ÞðE22InÀ1
+
+À
+
+In ÞA:
+
+[61b]
+
+It should be noted that Eq. (61b) does not completely
+
+agree with Hennig’s original solution (23), because he
+
+started the calculations with an erroneous TCMPG operator (c.f. section “Real Valued Representations
+
+within the EPG”).
+
+Now, the full recipe is to start with the desired
+
+intensities I1. . .IN from a given initial magnetization
+conﬁguration; e.g., “freshly excited” x-magnetization F~0 ¼ I0 ¼ 1. The ﬁrst ﬂip angle necessitated is calcu-
+lated by means of Eq. (61a) or Eq. (61b) to get the ﬁrst
+
+desired echo intensity I1 (“1-ahead inverse calculation”) (23). Because two solutions result, the one
+
+with the lower ﬂip angle should be used due to a
+
+lower RF power deposition and speciﬁc absorption
+
+rate (SAR) (23). Then, taking the ﬂip angle just calcu-
+
+lated, the EPG is computed forward to get all current
+
+EPG states. This is signiﬁcant because the residual,
+
+higher order states may become important in later
+
+intervals. Then, the second ﬂip angle solution is cal-
+
+culated inversely by means of Eq. (61a) again, the
+
+lower ﬂip angle from both solutions being taken that
+
+produces the second echo intensity I2, and so on successively — until all desired ﬂip angles are known
+
+(23). Ref. (23) also depicts the more sophisticated EPG
+
+based techniques for solving the inverse calculation,
+
+the “2-ahead algorithm” and the “3-ahead algorithm.”
+
+Equations (13a) to (13c) deﬁned the fundamental
+
+basis for the EPG concept. They represent a quite gen-
+
+eral basis in 3D Fourier and spatial space (18). How-
+
+ever, due to the effectiveness of the 1D-dephasing
+
+approach within the EPG concept, the literature
+
+almost exclusively deals with this type of EPGs (10–
+
+17,23–29). For a complete 3D EPG concept, k can be
+
+dRtte0¼ﬁ0nGendðt
+
+0
+
+component-wise Þ dt0, where n ¼
+
+by x,y,z
+
+means or any
+
+of knðtÞ ¼ g other orienta-
+
+tion of an orthogonal gradient system (18). Then, all
+
+conﬁguration states will depend on a full dephasing vector k: F~k and Z~k. Among the applications are MR
+sequences with three simultaneous encoding axes
+
+and the quantiﬁcation of anisotropic diffusion effects,
+
+i.e., a 3D anisotropic diffusion operator, as shown by
+
+Weigel
+Weigel et al (18). Important to note is that with the change to a 3D reference system, one very practical property of the scalar k, which becomes the vector k, is lost: Vectors do not have a sign; thus, the very practical sign based distinction of a transverse F~ state with k > 0 being dephased and with k < 0 being rephasing is lost. This is logical, because an arbitrary vector k will, generally, represent superpositions of dephasing and rephasing transverse magnetization along different dephasing axes.
+The fundamental basis from Eqs. (13a) to (13c) also allows for fractional, nonintegral values of k in nonequidistant steps. Indeed, this is of practical interest, because it facilitates the simulation of EPGs of magnetization preparation modules, for example, or of a nonequidistant EPG as was discussed in Figure 11. Due to the presence of several different gradients, such an EPG approach becomes essential if the exact diffusion sensitivity of an MRI sequence is meant to be assessed. Weigel and Hennig proved the feasibility by assessing the inherent diffusion sensitivity in terms of effective b-factors per encoding axis for different TSE sequences (58).
+Recently, the EPG framework was extended to a spatially resolved variant (SR-EPG) by Malik et al (71). In this sophisticated EPG approach, the RF ﬂip angle and its phase (T operator) as well as the tissue’s relaxation times (E operator) become spatially dependent to allow for rapid voxel-based signal estimations under inhomogeneity conditions (71). SR-EPGs were used successfully with parallel transmission to facilitate dynamic RF shimming over a whole RF pulse train in probes and in vivo (71).
+Generally, the EPG concept represents a stepwise or sequential method: To quantify the 100th echo of a common TSE sequence, the full EPG over the previous 99 echoes has to be quantiﬁed before. In this respect the EPG does not differ from a Bloch simulation that is performed in successive, discrete time intervals. However, Lukzen et al. demonstrated that analytical expressions for the conﬁguration states of, particularly, periodic RF pulse train sequences such as CPMG and FLASH are feasible (24,28). “Analytical expressions” means that an equation can be found that directly expresses the intensity of echo #n in a closed form. Speciﬁcally, the echo amplitudes of multiple spin echo sequences are represented by sums of Legendre polynomials (24,28) if relaxation is neglected. But, it should be noted that these analytical expressions still consist of series, i.e., sums of different mathematical terms, that are of the order n with n being the echo number (24,28). Hence, the length and complexity of the solutions increase with echo number n. Motion effects like diffusion cannot be considered (24,28).
+Further analytical developments are related to the improved theoretical depiction of RF spoiling as published by Ganter (25,26). Based on this expanded EPG approach, Ganter was able to derive an analytical solution for the transient response of steady-state free precession sequences (25,26).
+Beyond the quantitative and pictorial description of imaging sequences, the EPG concept can be used to
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+291
+
+Figure 18. a: A real, nonidealized object with tissue microstructure is represented by a spectrum of ﬁnite width dk$2p/resolution within k-space (vertical shaded ellipses around the conﬁguration states). The (here readout) gradient translates these kspectra into echoes and FIDs of ﬁnite duration (horizontal shaded ellipses); the EPG only marks the echo center. b: If the gradient and/or its dephasing moment are too weak, the conﬁguration states overlap in frequency space and thus their echoes interfere.
+
+generate or “imprint” speciﬁc magnetization patterns in a medium. This approach works very well, because conﬁguration states represent harmonic wave patterns of longitudinal and transverse magnetization in space — as was thoroughly discussed in this review. But, any desired pattern can be approximated by a sum of harmonic waves, which is what the EPG exactly represents regarding magnetization. So, to put it brieﬂy, Fourier transforming a desired magnetization pattern leads directly to its EPG representation in terms of populations of conﬁguration states. These EPG populations have to be generated by a combination of gradients and RF pulses, a possible magnetization preparation module. And targeting particular EPG populations can be achieved with the “inverse calculation” depicted above (23). In fact, the whole procedure can be regarded as a Fourier synthesis. Hennig et al exploited such a concept to improve the signal efﬁciency of the basic stimulated echo sequence to produce so called superstimulated echoes (38).
+It is also valuable to see the similarities between the EPG concept and other concepts; one example would be the shaping of soft RF pulses with the Shinnar-Le Roux algorithm (16,47,72), another manner of signal synthesis.
+Sadly, all these theoretical concepts are beyond the scope of this review and cannot be discussed in further detail, yet are mentioned to provide a broader overview of the subject.
+The EPG concept does also have limitations and prerequisites; however, these are often discussed only brieﬂy or not mentioned or considered at all. Within the EPG framework, RF pulses are usually treated as delta peaks, i.e., instantaneous rotations within a homogenous object. Any effects of off-resonance, line shapes, relaxation or diffusion during ﬁnite-duration RF pulses are therefore neglected (hard pulse approximation) (47)). For simulations, a convenient improvement consists of allocating to RF pulses a given duration where gradients, relaxation, and diffusion are considered. The instantaneous rotation takes place at the isodelay of the RF pulse (58). More sophisticated solutions for shaped soft RF pulses
+
+could be incorporated using a DANTE-like approach (14,30,50,51).
+Equivalent to the Bloch equation (8), the EPG concept presumes an uncoupled spin 1=2 spin system, of which the EPG actually is a complex Fourier representation. Possible ways to include coupling effects are demonstrated by Sodickson and Cory (14).
+When working with EPGs and SR-EPGs in particular (see above), it has to be kept in mind that, actually, voxel are not cuboid in shape. Thus, treating each voxel as independent like in the SR-EPG approach (71), is directly connected to a general EPG postulate suggested: All conﬁguration states except for F~0 shall not contribute any signal, i.e., are properly dephased (11,15) (Figs. 7 and 8). This is one of the major reasons that EPG literature commonly decomposes magnetization into discrete Fourier series and depicts magnetization by means of conﬁguration states of multiples of linear 2p dephasing per voxel or per object (10–17,23–29). Indeed, this postulate is true for most MR imaging and spectroscopy sequences, however, only under highly idealized conditions! The strict assumption is that the object is homogeneous in the dephasing coordinate direction – at least per voxel – such that it corresponds to a delta peak in spatial frequency space (private discussion with V. Kiselev and J. Leupold, Freiburg, Germany and C. Ganter, Munich, Germany). In fact, an object or medium of ﬁnite spatial extension with tissue microstructure, susceptibility effects and different diffusion coefﬁcients is imaged. Thus, the object or medium is represented by a continuous spectrum of ﬁnite, approximate width of dk$2p/resolution in frequency space. This results in a broadening of the EPG states and pathways, as illustrated in Figure 18 in a pictorial way. Thus, it is deduced that all conﬁguration states except for F~0 have to be sufﬁciently dephased at a given time of data acquisition, which is equivalent to saying that MR spoiler, crusher, diffusion, and other gradients of a minimal moment are needed to lead to a correct description with such approximated EPGs (Fig. 18). This observation is also in direct accordance with investigations by Leupold et al,
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+292
+
+Weigel
+
+Figure 19. a: Sequence diagram of a CPMG sequence that makes use of the Hyperecho mechanism with its antisymmetric ﬂip angle structure. At the end of this sequence all magnetization is refocused to generate the Hyperecho (HE). b: The corresponding effective EPG of the Hyperecho sequence is displayed. In this respect “effective” means that all vanishing longitudinal and transverse pathways have blue instead of black color and a different line style than usual, thus, it is easier to observe the symmetric structure with respect to the vertical line representing the 180 refocusing pulse. The ﬁnal F~0 state equals to the HE. c,d: Color display of the transverse (c) and longitudinal (d) state evolution matrix (Eqs. (27a) and (27b)) of such a Hyperecho sequence with 223 refocusing pulses of constant 10 ﬂip angle. The state evolution diagrams clearly reﬂect the symmetry and that all magnetization is refocused completely to become a HE of signal intensity 1. e,f: The same representation for a Hyperecho sequence with 101 refocusing pulses using a more sophisticated ﬂip angle scheme.
+
+which conclude that the mandatory 2p spoiler gradient in RF spoiled gradient echo imaging neither is justiﬁed nor can be fulﬁlled for real experiments (73). Hennig intentionally used such an effect for letting echoes mutually interfere in his “MR interferography” (74). In practice, the minimal dephasing moment per TR, ESP, or equivalent period depends on the object or medium.
+After the detailed discussion of the EPG concept, it seems to be rather straightforward to program a matrix operator based framework like the EPG into a computer. However, experience tells that people rather often fail nevertheless. In addition to obvious programming errors—according to the experience of the author—one common stumbling block is that the F~0 state exists in the two complex conjugated modiﬁcations F~þð0Þ and F~Àð0Þ. Neglecting this effect leads to the failure of the framework. In direct connection with this fact are the two complex conjugated transverse bases F~þ and F~À. Based on the discussion of the symmetry relations (Eqs. (13a) and (13b)) and in the chap-
+
+ter “Graphical Representation: Extended Phase
+Diagrams,” the half of both bases is redundant. This
+fact alone would not pose a problem; however as so to
+put it, RF pulses (T operator) and gradients (S operator)
+work in two different “natural” domains of these bases:
+The T-operator exchanges populations among the domains F~ þðþkÞ and F~ ÀðÀkÞ (or F~ þðÀkÞ and F~ ÀðþkÞ). This operation includes a complex conjugation of the
+population of a given conﬁguration state besides the
+inversion of its k. The S operator merely changes k in
+the domain of the given state. This effect becomes of eminent importance if the state is shifted across k ¼ 0, i.e., the F~ð0Þ state, because its population does not
+experience the complex conjugation. A short example: Given a state F~þðþ2Þ, a 180 RF pulse will convert it into an F~ÀðÀ2Þ state. The resulting net change in dephasing therefore is Dk ¼ À4. By contrast, a shift operator S(Dk ¼ À4) acting on the given F~þðþ2Þ state leads to an F~þðÀ2Þ state, thus, they are not the same.
+The solution to this challenge is to initially decide
+with which domains the programmer wants to work. If
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+293
+
+the programmer decides working with both F~þ and F~À, the populations of the conﬁguration states have to be complex conjugated when these are shifted across the coherent F~ð0Þ state. Basically, this procedure corresponds to an exchange between the two modiﬁcations F~þð0Þ and F~Àð0Þ. Based on a comment about the necessity for a complex conjugate operation for k ¼ 0 transitions, it appears that Malik et al used such an approach for the SR-EPG concept (71). If the programmer decides for either the full F~þð6kÞ or the full F~Àð6kÞ domain, the T operator has to be modiﬁed accounting for that. The advantage of this approach is that k ¼ 0 transitions do not matter and only one F~ð0Þ state exists. For reasons of consistency in regard to the T operator, the presented examples use the ﬁrst approach (c.f. chapter “Examples for MRI Sequences”).
+To make the manuscript complete, the author provides two representative EPG code implementations, which can be downloaded from http://epg.matthiasweigel.net/ or just email the author. Both codes are complementary in timing, data handling and mathematical representation: (i) an SSFP code similar to Ref. (15), yet with complex basis, RF spoiling (34), and a simple diffusion operator; (ii) a combined CP/ CPMG (TSE) simulator with real basis and compact conﬁguration state data storage. This code does include a simple diffusion operator as well.
+Regarding further ready to use software, Schefﬂer was the ﬁrst to publish an EPG coding for SSFP based sequences at all (15). Hargreaves provides code for simulating EPGs of different sequences which can be downloaded from http://bmr.stanford.edu/epg/ (19). Furthermore, Weigel et al suggested a more general approach for simulating EPGs with nonregular timing and dephasing (18); more information about his software framework “EPGspace” can be found on his Web page http://epg.matthias-weigel.net/.
+Finally, as a neat and helpful method, the author suggests and recommends the simulation of a Hyperecho based NMR sequence (75) as an excellent test for the validity of EPG software coding. Without considering any magnetization decay from relaxation, diffusion, and ﬂow, the Hyperecho mechanism ensures perfect refocusing for the last echo, provided that the Hyperecho symmetry relations for the RF ﬂip angles and phases and for the dephasing intervals are maintained (75). The mechanism’s response is identical to a perfect 180 refocusing pulse, although an arbitrary number of RF pulses with arbitrary ﬂip angles and phases can be used (75). Thus, any loss of signal intensity, split or unexpected phase change of the ﬁnal conﬁguration state must be due to a major ﬂaw in the programmed EPG framework (if the Hyperecho sequence is valid). The ﬁnal conﬁguration state has to be an F~0 state with the population of magnitude 1 and the same phase as a conventional, single SE would produce (75).
+Figure 19a depicts a representative example for a relatively short Hyperecho mechanism implemented in a common CPMG sequence. The corresponding EPG is displayed in Figure 19b. Such a Hyperecho sequence therefore considerably tests the functions of dephasing, RF pulses and recombination/superposi-
+
+tion of different conﬁguration states within the software. A shift of all RF phases (including the 90
+
+excitation pulse) by 690 will even test if the programmer has taken good care of correct complex conjugating between the F~þ and F~À states, because magnetization is then excited on the imaginary y-axis (initially F~0 ¼ 6i, see above).
+Particularly for sequences consisting of dozens of RF pulses, the Hyperecho mechanism also represents a very sensitive test in regard to the accuracy and precision of the calculated results, the source for deviations being quantization errors: It is sufﬁcient to subtract 1 from the ﬁnal F~0 population.
+Figure 19c–f shows the results of two representative Hyperecho sequence simulations in terms of state evolution diagrams (Eqs. (27a) and (27b)). The symmetry structure mirrored in the state populations with the inversion of the central 180 refocusing pulse can be observed excellently.
+And as a ﬁnal point, Figure 19 also demonstrates very well that EPGs can even produce some modest art.
+CONCLUSION
+The EPG concept represents a powerful tool for depicting and understanding magnetization response of several MRI and MRS sequences. It allows pictorial understanding of echo generation, simple but elegant classiﬁcation of echoes, and at the same time fast and accurate computation of echo intensities. It particularly demonstrates its advantages in the application for NMR sequences with multiple gradients and RF pulses. Motion effects such as rigid body motion, ﬂow or free diffusion can be considered as well. All in all, the EPG is a concept that is really worth studying particularly for, but not limited to, physicists, engineers, and users who want to get a deeper insight into the understanding and development of (modern) complex NMR sequences.
+ACKNOWLEDGMENTS
+The author is grateful to Ju€rgen Hennig, Valerij Kiselev, Jochen Leupold, and Marco Reisert from the University Medical Center Freiburg, Freiburg, Germany as well as to Carl Ganter, Klinikum rechts der Isar, Technische Universita€t Mu€nchen, Munich, Germany for interesting and energetic discussions about EPGs. A part of the arrows, waves, and helices were created using the MATLABVR (MathWorks, Natick, MA) toolboxes “arrow3D” and “tube3D” by Shawn Arseneau (available on the internet).
+REFERENCES
+1. Hahn EL. Spin echoes. Phys Rev 1950;80:580–594. 2. Carr HY, Purcell EM. Effects of diffusion on free precession in
+nuclear magnetic resonance experiments. Phys Rev 1954;94:630– 638. 3. Meiboom S, Gill D. Modiﬁed spin-echo method for measuring nuclear relaxation times. Rev Sci Instrum 1958;29:688–691. 4. Hennig J, Nauerth A, Friedburg H. RARE imaging: a fast imaging method for clinical MR. Magn Reson Med 1986;3:823–833. 5. Hore J. Solvent suppression in Fourier transform nuclear magnetic resonance. J Magn Reson 1983;55:283–300. 6. Bloch F. Nuclear induction. Phys Rev 1946;70:460–474.
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+294
+
+Weigel
+
+7. Jaynes ET. Matrix treatment of nuclear induction. Phys Rev 1955;98:1099–1105.
+8. Woessner DE. Effects of diffusion in nuclear magnetic resonance spin-echo experiments. J Chem Phys 1961;34:2057–2061.
+9. Kaiser R, Bartholdi E, Ernst RR. Diffusion and ﬁeld-gradient effects in NMR Fourier spectroscopy. J Chem Phys 1974;60: 2966–2979.
+10. Hennig J. Multiecho imaging sequences with low refocusing ﬂip angles. J Magn Reson 1988;78:397–407.
+11. Hennig J. Echoes - how to generate, recognize, use or avoid them in MR-imaging sequences. Part I. Concepts Magn Reson 1991;3: 125–143.
+12. Hennig J. Echoes - how to generate, recognize, use or avoid them in MR-imaging sequences. Part II. Concepts Magn Reson 1991;3: 179–192.
+13. Sobol WT, Gauntt DM. On the stationary states in gradient echo imaging. J Magn Reson Imaging 1996;6:384–398.
+14. Sodickson A, Cory DG. A generalized k-space formalism for treating the spatial aspects of a variety of NMR experiments. Prog Nucl Magn Reson Sp 1998;33:77–108.
+15. Schefﬂer K. A pictorial description of steady-states in rapid magnetic resonance imaging. Concepts Magn Reson 1999;11:291–304.
+16. Vlaardingerbroek MT, den Boer JA. Magnetic resonance imaging. Berlin: Springer Verlag; 2004.
+17. Zur Y. An algorithm to calculate the NMR signal of a multi spinecho sequence with relaxation and spin-diffusion. J Magn Reson 2004;171:97–106.
+18. Weigel M, Schwenk S, Kiselev VG, Schefﬂer K, Hennig J. Extended phase graphs with anisotropic diffusion. J Magn Reson 2010;205:276–285.
+19. Hargreaves BA, Miller KL. Using extended phase graphs: review and examples. In: Proceedings of the 21st Annual Meeting of ISMRM, Salt Lake City, 2013. (abstract 3718).
+20. Rabi II, Ramsey NF, Schwinger J. Use of rotating coordinates in magnetic resonance problems. Rev Mod Phys 1954;26:167–171.
+21. Ljunggren S. A simple graphical representation of Fourier-based imaging methods. J Magn Reson 1983;54:338–343.
+22. Twieg DB. The k-trajectory formulation of the NMR imaging process with applications in analysis and synthesis of imaging methods. Med Phys 1983;10:610–621.
+23. Hennig J, Weigel M, Schefﬂer K. Calculation of ﬂip angles for echo trains with predeﬁned amplitudes with the extended phase graph (EPG)-algorithm: principles and applications to hyperecho and TRAPS sequences. Magn Reson Med 2004;51:68–80.
+24. Lukzen NN, Savelov AA. Analytical derivation of multiple spin echo amplitudes with arbitrary refocusing angle. J Magn Reson 2007;185:71–76.
+25. Ganter C. Steady state of gradient echo sequences with radiofrequency phase cycling: analytical solution, contrast enhancement with partial spoiling. Magn Reson Med 2006;55:98–107.
+26. Ganter C. Analytical solution to the transient phase of steady-state free precession sequences. Magn Reson Med 2009;62:149–164.
+27. Weigel M, Zaitsev M, Hennig J. Inversion recovery prepared turbo spin echo sequences with reduced SAR using smooth transitions between pseudo steady states. Magn Reson Med 2007;57:631–637.
+28. Lukzen NN, Petrova MV, Koptyug IV, Savelov AA, Sagdeev RZ. The generating functions formalism for the analysis of spin response to the periodic trains of RF pulses. Echo sequences with arbitrary refocusing angles and resonance offsets. J Magn Reson 2009;196:164–169.
+29. Busse RF, Hariharan H, Vu A, Brittain JH. Fast spin echo sequences with very long echo trains: design of variable refocusing ﬂip angle schedules and generation of clinical T2 contrast. Magn Reson Med 2006;55:1030–1037.
+30. Kiselev VG. Calculation of diffusion effect for arbitrary pulse sequences. J Magn Reson 2003;164:205–211.
+31. Weigel M, Hennig J. Contrast behavior and relaxation effects of conventional and hyperecho-turbo spin echo sequences at 1.5 and 3T. Magn Reson Med 2006;55:826–835.
+32. Carr HY. Steady-state free precession in nuclear magnetic resonance. Phys Rev 1958;112:1693.
+33. Oppelt A, Graumann R, Barfuss H, Fischer H, Hartl W, Schajor W. FISP: Eine neue schnelle Pulssequenz fuer die Kernspintomographie. Electromedica 1986;54:15–18.
+34. Zur Y, Wood ML, Neuringer LJ. Spoiling of transverse magnetization in steady-state sequences. Magn Reson Med 1991;21:251–263.
+
+35. Hennig J, Hodapp M. Burst imaging. Magn Reson Mater Phys 1993;1:39–48.
+36. Lowe IJ, Wysong RE. DANTE Ultrafast Imaging Sequence (DUFIS). J Magn Reson 1993;101:106–109.
+37. Heid O, Deimling M, Huk WJ. Ultra-rapid gradient echo imaging. Magn Reson Med 1995;33:143–149.
+38. Hennig J, Il’yasov KA, Weigel M. Imaging with positive T1contrast using superstimulated echoes. Magn Reson Med 2012; 68:1157–1165.
+39. Busse RF, Brau AC, Vu A, et al. Effects of refocusing ﬂip angle modulation and view ordering in 3D fast spin echo. Magn Reson Med 2008;60:640–649.
+40. Weigel M, Hennig J. Development and optimization of T2 weighted methods with reduced RF power deposition (Hyperecho-TSE) for magnetic resonance imaging. Z Med Phys 2008;18:151–161.
+41. Mugler JP, Bao S, Mulkern RV, et al. Optimized single-slab threedimensional spin-echo MR imaging of the brain. Radiology 2000; 216:891–899.
+42. Mugler JP, Kiefer B, Brookeman JR. Three-dimensional T2weighted imaging of the brain using very long spin-echo trains. In: Proceedings of the 8th Scientiﬁc Meeting of ISMRM, Denver, 2000. (abstract 687).
+43. Bieri O, Ganter C, Welsch GH, Trattnig S, Mamisch TC, Schefﬂer K. Fast diffusion-weighted steady state free precession imaging of in vivo knee cartilage. Magn Reson Med 2012:691–700.
+44. Lauterbur PC. Image formation by induced local interactions. Examples employing nuclear magnetic resonance. Nature 1973; 242:190–191.
+45. Mansﬁeld P, Grannell PK. NMR diffraction in solids. J Phys C 1973;6:422.
+46. Damadian R. Tumor detection by nuclear magnetic resonance. Science 1971;171:1151–1153.
+47. Bernstein MA, King KF, Zhou XJ. Handbook of MRI pulse sequences. New York: Elsevier Academic Press; 2004.
+48. Zur Y, Stokar S. A phase-cycling technique for cancelling spurious echoes in NMR imaging. J Magn Reson 1987;71:212–228.
+49. Zur Y, Stokar S, Bendel P. An analysis of fast imaging sequences with steady-state transverse magnetization refocusing. Magn Reson Med 1988;6:175–193.
+50. Bodenhausen G, Freeman R, Morris GA. A simple pulse sequence for selective excitation in Fourier transform NMR. J Magn Reson 1976;23:171–175.
+51. Morris GA, Freeman R. Selective excitation in fourier transform nuclear magnetic resonance. J Magn Reson 1978;29:433–462.
+52. Lee KJ, Zahneisen B, Hennig J, Weigel M, Leupold J. Multiplex RARE: a simultaneous multislice spin-echo sequence that fulﬁls CPMG conditions. Magn Reson Med 2010;64:299–305.
+53. Freed DE, Scheven UM, Zielinski LJ, Sen PN, Hurlimann MD. Steady-state free precession experiments and exact treatment of diffusion in a uniform gradient. J Chem Phys 2001;115: 4249–4258.
+54. Freed DE, Hurlimann MD, Scheven UM. The equivalence between off-resonance and on-resonance pulse sequences and its application to steady-state free precession with diffusion in inhomogeneous ﬁelds. J Magn Reson 2003;162:328–335.
+55. Rodriguez I, Perez de Alejo R, Ruiz-Cabello J. Pathway selection by pulsed ﬁeld gradients. Magn Reson Med 2002;48:540–542.
+56. Lebel RM, Wilman AH. Time-efﬁcient fast spin echo imaging at 4.7 T with low refocusing angles. Magn Reson Med 2009;62:96–105.
+57. Schefﬂer K, Heid O, Hennig J. Magnetization preparation during the steady state: fat-saturated 3D TrueFISP. Magn Reson Med 2001;45:1075–1080.
+58. Weigel M, Hennig J. Diffusion sensitivity of turbo spin echo sequences. Magn Reson Med 2012;67:1528–1537.
+59. Stocker T, Shah NJ. MP-SAGE: a new MP-RAGE sequence with enhanced SNR and CNR for brain imaging utilizing square-spiral phase encoding and variable ﬂip angles. Magn Reson Med 2006; 56:824–834.
+60. Markl M, Leupold J. Gradient echo imaging. J Magn Reson Imaging 2012;35:1274–1289.
+61. Hargreaves B. Rapid gradient-echo imaging. J Magn Reson Imaging 2012;36:1300–1313.
+62. Bieri O, Schefﬂer K. Fundamentals of balanced steady state free precession MRI. J Magn Reson Imaging 2013;38:2–11.
+63. Hurlimann MD. Diffusion and relaxation effects in general stray ﬁeld NMR experiments. J Magn Reson 2001;148:367–378.
+
+15222586, 2015, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24619 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Extended Phase Graphs
+
+295
+
+64. Song YQ, Hurlimann MD, Flaum C. A method for rapid characterization of diffusion. J Magn Reson 2003;161:222–233.
+65. Carney CE, Wong ST, Patz S. Analytical solution and veriﬁcation of diffusion effect in SSFP. Magn Reson Med 1991;19:240–246.
+66. Le Bihan D, Mangin JF, Poupon C, et al. Diffusion tensor imaging: concepts and applications. J Magn Reson Imaging 2001;13: 534–546.
+67. Basser PJ, Mattiello J, LeBihan D. Estimation of the effective self-diffusion tensor from the NMR spin echo. J Magn Reson B 1994;103:247–254.
+68. Bieri O, Ganter C, Welsch GH, Trattnig S, Mamisch TC, Schefﬂer K. Fast diffusion-weighted steady state free precession imaging of in vivo knee cartilage. Magn Reson Med 2012:691–700.
+69. McNab JA, Miller KL. Steady-state diffusion-weighted imaging: theory, acquisition and analysis. NMR Biomed 2010;23:781–793.
+70. Larson PE, Kerr AB, Reed GD, et al. Generating super stimulated-echoes in MRI and their application to hyperpolarized
+
+C-13 diffusion metabolic imaging. IEEE Trans Med Imaging 2012;31:265–275. 71. Malik SJ, Padormo F, Price AN, Hajnal JV. Spatially resolved extended phase graphs: modeling and design of multipulse sequences with parallel transmission. Magn Reson Med 2012;68: 1481–1494. 72. Pauly J, Le Roux P, Nishimura D, Macovski A. Parameter relations for the Shinnar-Le Roux selective excitation pulse design algorithm. IEEE Trans Med Imaging 1991;10:53–65. 73. Leupold J, Hennig J, Schefﬂer K. Moment and direction of the spoiler gradient for effective artifact suppression in RFspoiled gradient echo imaging. Magn Reson Med 2008;60: 119–127. 74. Hennig J. Generalized MR interferography. Magn Reson Med 1990;16:390–402. 75. Hennig J, Schefﬂer K. Hyperechoes. Magn Reson Med 2001;46: 6–12.
+

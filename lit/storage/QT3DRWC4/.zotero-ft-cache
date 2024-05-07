@@ -1,0 +1,3846 @@
+Deep Learning
+Ian Goodfellow Yoshua Bengio and Aaron Courville
+The MIT Press Cambridge, Massachusetts London, England
+
+c 2016 Massachusetts Institute of Technology
+This book was set in SFRM1095 by diacriTech, Chennai.
+Printed and bound in the United States of America.
+Library of Congress Cataloging-in-Publication Data
+Names: Goodfellow, Ian, author. | Bengio, Yoshua, author. | Courville, Aaron, author.
+Title: Deep learning / Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Description: Cambridge, MA : MIT Press, [2017] | Series: Adaptive computation
+and machine learning series | Includes bibliographical references and index. Identiﬁers: LCCN 2016022992 | ISBN 9780262035613 (hardcover : alk. paper) Subjects: LCSH: Machine learning, Classiﬁcation: LCC Q325.5 .G66 2017 | DDC 006.3/1–dc23 LC record available at https://lccn.loc.gov/2016022992
+
+Contents
+
+Website
+
+xiii
+
+Notation
+
+xix
+
+1 Introduction
+
+1
+
+1.1 Who Should Read This Book? . . . . . . . . . . . . . . . . . . . . 8
+
+1.2 Historical Trends in Deep Learning . . . . . . . . . . . . . . . . . . 12
+
+I Applied Math and Machine Learning Basics
+
+27
+
+2 Linear Algebra
+
+29
+
+2.1 Scalars, Vectors, Matrices and Tensors . . . . . . . . . . . . . . . . 29
+
+2.2 Multiplying Matrices and Vectors . . . . . . . . . . . . . . . . . . 32
+
+2.3 Identity and Inverse Matrices . . . . . . . . . . . . . . . . . . . . . 34
+
+2.4 Linear Dependence and Span . . . . . . . . . . . . . . . . . . . . . 35
+
+2.5 Norms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+
+2.6 Special Kinds of Matrices and Vectors . . . . . . . . . . . . . . . . 38
+
+2.7 Eigendecomposition . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+
+2.8 Singular Value Decomposition . . . . . . . . . . . . . . . . . . . . 42
+
+2.9 The Moore-Penrose Pseudoinverse . . . . . . . . . . . . . . . . . . 43
+
+2.10 The Trace Operator . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+
+2.11 The Determinant . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+
+2.12 Example: Principal Components Analysis . . . . . . . . . . . . . . 45
+
+3 Probability and Information Theory
+
+51
+
+3.1 Why Probability? . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+
+3.2 Random Variables . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+
+3.3 Probability Distributions . . . . . . . . . . . . . . . . . . . . . . . 54
+
+3.4 Marginal Probability . . . . . . . . . . . . . . . . . . . . . . . . . . 56
+
+3.5 Conditional Probability . . . . . . . . . . . . . . . . . . . . . . . . 57
+
+3.6 The Chain Rule of Conditional Probabilities . . . . . . . . . . . . 57
+
+3.7 Independence and Conditional Independence . . . . . . . . . . . . 58
+
+3.8 Expectation, Variance and Covariance . . . . . . . . . . . . . . . . 58
+
+3.9 Common Probability Distributions . . . . . . . . . . . . . . . . . . 60
+
+3.10 Useful Properties of Common Functions . . . . . . . . . . . . . . . 65
+
+3.11 Bayes’ Rule . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 68
+
+3.12 Technical Details of Continuous Variables . . . . . . . . . . . . . . 68
+
+3.13 Information Theory . . . . . . . . . . . . . . . . . . . . . . . . . . 70
+
+3.14 Structured Probabilistic Models . . . . . . . . . . . . . . . . . . . 74
+
+4 Numerical Computation
+
+77
+
+4.1 Overﬂow and Underﬂow . . . . . . . . . . . . . . . . . . . . . . . . 77
+
+4.2 Poor Conditioning . . . . . . . . . . . . . . . . . . . . . . . . . . . 79
+
+4.3 Gradient-Based Optimization . . . . . . . . . . . . . . . . . . . . . 79
+
+4.4 Constrained Optimization . . . . . . . . . . . . . . . . . . . . . . . 89
+
+4.5 Example: Linear Least Squares . . . . . . . . . . . . . . . . . . . . 92
+
+5 Machine Learning Basics
+
+95
+
+5.1 Learning Algorithms . . . . . . . . . . . . . . . . . . . . . . . . . . 96
+
+5.2 Capacity, Overﬁtting and Underﬁtting . . . . . . . . . . . . . . . . 107
+
+5.3 Hyperparameters and Validation Sets . . . . . . . . . . . . . . . . 117
+
+5.4 Estimators, Bias and Variance . . . . . . . . . . . . . . . . . . . . 119
+
+5.5 Maximum Likelihood Estimation . . . . . . . . . . . . . . . . . . . 128
+
+5.6 Bayesian Statistics . . . . . . . . . . . . . . . . . . . . . . . . . . . 132
+
+5.7 Supervised Learning Algorithms . . . . . . . . . . . . . . . . . . . 136
+
+5.8 Unsupervised Learning Algorithms . . . . . . . . . . . . . . . . . . 142
+
+5.9 Stochastic Gradient Descent . . . . . . . . . . . . . . . . . . . . . 147 5.10 Building a Machine Learning Algorithm . . . . . . . . . . . . . . . 149 5.11 Challenges Motivating Deep Learning . . . . . . . . . . . . . . . . 151
+
+II Deep Networks: Modern Practices
+
+161
+
+6 Deep Feedforward Networks
+
+163
+
+6.1 Example: Learning XOR . . . . . . . . . . . . . . . . . . . . . . . 166
+
+6.2 Gradient-Based Learning . . . . . . . . . . . . . . . . . . . . . . . 171
+
+6.3 Hidden Units . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 185
+
+6.4 Architecture Design . . . . . . . . . . . . . . . . . . . . . . . . . . 191
+
+6.5 Back-Propagation and Other Diﬀerentiation Algorithms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 197
+
+6.6 Historical Notes . . . . . . . . . . . . . . . . . . . . . . . . . . . . 217
+
+7 Regularization for Deep Learning
+
+221
+
+7.1 Parameter Norm Penalties . . . . . . . . . . . . . . . . . . . . . . 223
+
+7.2 Norm Penalties as Constrained Optimization . . . . . . . . . . . . 230
+
+7.3 Regularization and Under-Constrained Problems . . . . . . . . . . 232
+
+7.4 Dataset Augmentation . . . . . . . . . . . . . . . . . . . . . . . . . 233
+
+7.5 Noise Robustness . . . . . . . . . . . . . . . . . . . . . . . . . . . 235
+
+7.6 Semi-Supervised Learning . . . . . . . . . . . . . . . . . . . . . . . 236
+
+7.7 Multitask Learning . . . . . . . . . . . . . . . . . . . . . . . . . . 237
+
+7.8 Early Stopping . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 239
+
+7.9 Parameter Tying and Parameter Sharing . . . . . . . . . . . . . . 246
+
+7.10 Sparse Representations . . . . . . . . . . . . . . . . . . . . . . . . 247
+
+7.11 Bagging and Other Ensemble Methods . . . . . . . . . . . . . . . 249
+
+7.12 Dropout . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 251
+
+7.13 Adversarial Training . . . . . . . . . . . . . . . . . . . . . . . . . . 261
+
+7.14 Tangent Distance, Tangent Prop and Manifold Tangent Classiﬁer . 263
+
+8 Optimization for Training Deep Models
+
+267
+
+8.1 How Learning Diﬀers from Pure Optimization . . . . . . . . . . . 268
+
+8.2 Challenges in Neural Network Optimization . . . . . . . . . . . . . 275 8.3 Basic Algorithms . . . . . . . . . . . . . . . . . . . . . . . . . . . . 286 8.4 Parameter Initialization Strategies . . . . . . . . . . . . . . . . . . 292 8.5 Algorithms with Adaptive Learning Rates . . . . . . . . . . . . . . 298 8.6 Approximate Second-Order Methods . . . . . . . . . . . . . . . . . 302 8.7 Optimization Strategies and Meta-Algorithms . . . . . . . . . . . 309
+
+9 Convolutional Networks
+
+321
+
+9.1 The Convolution Operation . . . . . . . . . . . . . . . . . . . . . . 322
+
+9.2 Motivation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 324
+
+9.3 Pooling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 330
+
+9.4 Convolution and Pooling as an Inﬁnitely Strong Prior . . . . . . . 334
+
+9.5 Variants of the Basic Convolution Function . . . . . . . . . . . . . 337
+
+9.6 Structured Outputs . . . . . . . . . . . . . . . . . . . . . . . . . . 347
+
+9.7 Data Types . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 348
+
+9.8 Eﬃcient Convolution Algorithms . . . . . . . . . . . . . . . . . . . 350
+
+9.9 Random or Unsupervised Features . . . . . . . . . . . . . . . . . . 351
+
+9.10 The Neuroscientiﬁc Basis for Convolutional Networks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 353
+
+9.11 Convolutional Networks and the History of Deep Learning . . . . . 359
+
+10 Sequence Modeling: Recurrent and Recursive Nets
+
+363
+
+10.1 Unfolding Computational Graphs . . . . . . . . . . . . . . . . . . 365
+
+10.2 Recurrent Neural Networks . . . . . . . . . . . . . . . . . . . . . . 368
+
+10.3 Bidirectional RNNs . . . . . . . . . . . . . . . . . . . . . . . . . . 383
+
+10.4 Encoder-Decoder Sequence-to-Sequence Architectures . . . . . . . 385
+
+10.5 Deep Recurrent Networks . . . . . . . . . . . . . . . . . . . . . . . 387
+
+10.6 Recursive Neural Networks . . . . . . . . . . . . . . . . . . . . . . 388
+
+10.7 The Challenge of Long-Term Dependencies . . . . . . . . . . . . . 390
+
+10.8 Echo State Networks . . . . . . . . . . . . . . . . . . . . . . . . . . 392
+
+10.9 Leaky Units and Other Strategies for Multiple Time Scales . . . . 395
+
+10.10 The Long Short-Term Memory and Other Gated RNNs . . . . . . 397
+
+10.11 Optimization for Long-Term Dependencies . . . . . . . . . . . . . 401 10.12 Explicit Memory . . . . . . . . . . . . . . . . . . . . . . . . . . . . 405
+
+11 Practical Methodology
+
+409
+
+11.1 Performance Metrics . . . . . . . . . . . . . . . . . . . . . . . . . . 410
+
+11.2 Default Baseline Models . . . . . . . . . . . . . . . . . . . . . . . . 413
+
+11.3 Determining Whether to Gather More Data . . . . . . . . . . . . . 414
+
+11.4 Selecting Hyperparameters . . . . . . . . . . . . . . . . . . . . . . 415
+
+11.5 Debugging Strategies . . . . . . . . . . . . . . . . . . . . . . . . . 424
+
+11.6 Example: Multi-Digit Number Recognition . . . . . . . . . . . . . 428
+
+12 Applications
+
+431
+
+12.1 Large-Scale Deep Learning . . . . . . . . . . . . . . . . . . . . . . 431
+
+12.2 Computer Vision . . . . . . . . . . . . . . . . . . . . . . . . . . . . 440
+
+12.3 Speech Recognition . . . . . . . . . . . . . . . . . . . . . . . . . . 446
+
+12.4 Natural Language Processing . . . . . . . . . . . . . . . . . . . . . 448
+
+12.5 Other Applications . . . . . . . . . . . . . . . . . . . . . . . . . . . 465
+
+III Deep Learning Research
+
+475
+
+13 Linear Factor Models
+
+479
+
+13.1 Probabilistic PCA and Factor Analysis . . . . . . . . . . . . . . . 480
+
+13.2 Independent Component Analysis (ICA) . . . . . . . . . . . . . . . 481
+
+13.3 Slow Feature Analysis . . . . . . . . . . . . . . . . . . . . . . . . . 484
+
+13.4 Sparse Coding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 486
+
+13.5 Manifold Interpretation of PCA . . . . . . . . . . . . . . . . . . . 489
+
+14 Autoencoders
+
+493
+
+14.1 Undercomplete Autoencoders . . . . . . . . . . . . . . . . . . . . . 494
+
+14.2 Regularized Autoencoders . . . . . . . . . . . . . . . . . . . . . . . 495
+
+14.3 Representational Power, Layer Size and Depth . . . . . . . . . . . 499
+
+14.4 Stochastic Encoders and Decoders . . . . . . . . . . . . . . . . . . 500
+
+14.5 Denoising Autoencoders . . . . . . . . . . . . . . . . . . . . . . . . 501 14.6 Learning Manifolds with Autoencoders . . . . . . . . . . . . . . . 506 14.7 Contractive Autoencoders . . . . . . . . . . . . . . . . . . . . . . . 510 14.8 Predictive Sparse Decomposition . . . . . . . . . . . . . . . . . . . 514 14.9 Applications of Autoencoders . . . . . . . . . . . . . . . . . . . . . 515
+
+15 Representation Learning
+
+517
+
+15.1 Greedy Layer-Wise Unsupervised Pretraining . . . . . . . . . . . . 519
+
+15.2 Transfer Learning and Domain Adaptation . . . . . . . . . . . . . 526
+
+15.3 Semi-Supervised Disentangling of Causal Factors . . . . . . . . . . 532
+
+15.4 Distributed Representation . . . . . . . . . . . . . . . . . . . . . . 536
+
+15.5 Exponential Gains from Depth . . . . . . . . . . . . . . . . . . . . 543
+
+15.6 Providing Clues to Discover Underlying Causes . . . . . . . . . . . 544
+
+16 Structured Probabilistic Models for Deep Learning
+
+549
+
+16.1 The Challenge of Unstructured Modeling . . . . . . . . . . . . . . 550
+
+16.2 Using Graphs to Describe Model Structure . . . . . . . . . . . . . 554
+
+16.3 Sampling from Graphical Models . . . . . . . . . . . . . . . . . . . 570
+
+16.4 Advantages of Structured Modeling . . . . . . . . . . . . . . . . . 572
+
+16.5 Learning about Dependencies . . . . . . . . . . . . . . . . . . . . . 572
+
+16.6 Inference and Approximate Inference . . . . . . . . . . . . . . . . . 573
+
+16.7 The Deep Learning Approach to Structured Probabilistic Models . 575
+
+17 Monte Carlo Methods
+
+581
+
+17.1 Sampling and Monte Carlo Methods . . . . . . . . . . . . . . . . . 581
+
+17.2 Importance Sampling . . . . . . . . . . . . . . . . . . . . . . . . . 583
+
+17.3 Markov Chain Monte Carlo Methods . . . . . . . . . . . . . . . . . 586
+
+17.4 Gibbs Sampling . . . . . . . . . . . . . . . . . . . . . . . . . . . . 590
+
+17.5 The Challenge of Mixing between Separated Modes . . . . . . . . 591
+
+18 Confronting the Partition Function
+
+597
+
+18.1 The Log-Likelihood Gradient . . . . . . . . . . . . . . . . . . . . . 598
+
+18.2 Stochastic Maximum Likelihood and Contrastive Divergence . . . 599
+
+18.3 Pseudolikelihood . . . . . . . . . . . . . . . . . . . . . . . . . . . . 607 18.4 Score Matching and Ratio Matching . . . . . . . . . . . . . . . . . 609 18.5 Denoising Score Matching . . . . . . . . . . . . . . . . . . . . . . . 611 18.6 Noise-Contrastive Estimation . . . . . . . . . . . . . . . . . . . . . 612 18.7 Estimating the Partition Function . . . . . . . . . . . . . . . . . . 614
+
+19 Approximate Inference
+
+623
+
+19.1 Inference as Optimization . . . . . . . . . . . . . . . . . . . . . . . 624
+
+19.2 Expectation Maximization . . . . . . . . . . . . . . . . . . . . . . 626
+
+19.3 MAP Inference and Sparse Coding . . . . . . . . . . . . . . . . . . 627
+
+19.4 Variational Inference and Learning . . . . . . . . . . . . . . . . . . 629
+
+19.5 Learned Approximate Inference . . . . . . . . . . . . . . . . . . . . 642
+
+20 Deep Generative Models
+
+645
+
+20.1 Boltzmann Machines . . . . . . . . . . . . . . . . . . . . . . . . . . 645
+
+20.2 Restricted Boltzmann Machines . . . . . . . . . . . . . . . . . . . 647
+
+20.3 Deep Belief Networks . . . . . . . . . . . . . . . . . . . . . . . . . 651
+
+20.4 Deep Boltzmann Machines . . . . . . . . . . . . . . . . . . . . . . 654
+
+20.5 Boltzmann Machines for Real-Valued Data . . . . . . . . . . . . . 667
+
+20.6 Convolutional Boltzmann Machines . . . . . . . . . . . . . . . . . 673
+
+20.7 Boltzmann Machines for Structured or Sequential Outputs . . . . 675
+
+20.8 Other Boltzmann Machines . . . . . . . . . . . . . . . . . . . . . . 677
+
+20.9 Back-Propagation through Random Operations . . . . . . . . . . . 678
+
+20.10 Directed Generative Nets . . . . . . . . . . . . . . . . . . . . . . . 682
+
+20.11 Drawing Samples from Autoencoders . . . . . . . . . . . . . . . . 701
+
+20.12 Generative Stochastic Networks . . . . . . . . . . . . . . . . . . . 704
+
+20.13 Other Generation Schemes . . . . . . . . . . . . . . . . . . . . . . 706
+
+20.14 Evaluating Generative Models . . . . . . . . . . . . . . . . . . . . 707
+
+20.15 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 710
+
+Bibliography
+
+711
+
+Index
+
+767
+
+Website
+www.deeplearningbook.org
+This book is accompanied by the above website. The website provides a variety of supplementary material, including exercises, lecture slides, corrections of mistakes, and other resources that should be useful to both readers and instructors.
+
+Notation
+This section provides a concise reference describing the notation used throughout this book. If you are unfamiliar with any of the corresponding mathematical concepts, we describe most of these ideas in chapters 2–4.
+Numbers and Arrays a A scalar (integer or real) a A vector A A matrix A A tensor In Identity matrix with n rows and n columns I Identity matrix with dimensionality implied by
+context e(i) Standard basis vector [0, . . . , 0, 1, 0, . . . , 0] with a
+1 at position i diag(a) A square, diagonal matrix with diagonal entries
+given by a a A scalar random variable a A vector-valued random variable A A matrix-valued random variable
+
+A
+
+A set
+
+Sets and Graphs
+
+R
+
+The set of real numbers
+
+{0, 1} The set containing 0 and 1
+
+{0, 1, . . . , n} The set of all integers between 0 and n
+
+[a, b]
+
+The real interval including a and b
+
+(a, b]
+
+The real interval excluding a but including b
+
+A\B
+
+Set subtraction, i.e., the set containing the ele-
+
+ments of A that are not in B
+
+G
+
+A graph
+
+P aG(xi) The parents of xi in G
+
+Indexing ai Element i of vector a, with indexing starting at 1 a−i All elements of vector a except for element i Ai,j Element i, j of matrix A Ai,: Row i of matrix A A:,i Column i of matrix A Ai,j,k Element (i, j, k) of a 3-D tensor A A:,:,i 2-D slice of a 3-D tensor ai Element i of the random vector a
+
+Linear Algebra Operations A Transpose of matrix A A+ Moore-Penrose pseudoinverse of A A B Element-wise (Hadamard) product of A and B det(A) Determinant of A
+
+Calculus dy
+Derivative of y with respect to x dx
+
+∂y Partial derivative of y with respect to x
+∂x
+
+∇xy
+
+Gradient of y with respect to x
+
+∇X y
+
+Matrix derivatives of y with respect to X
+
+∇Xy
+∂f ∂x ∇2xf (x) or H(f )(x)
+
+Tensor containing derivatives of y with respect to X Jacobian matrix J ∈ Rm×n of f : Rn → Rm
+The Hessian matrix of f at input point x
+
+f (x)dx
+
+Deﬁnite integral over the entire domain of x
+
+f (x)dx
+S
+
+Deﬁnite integral with respect to x over the set S
+
+Probability and Information Theory
+
+a⊥b
+
+The random variables a and b are independent
+
+a⊥b | c
+
+They are conditionally independent given c
+
+P (a)
+
+A probability distribution over a discrete variable
+
+p(a)
+
+A probability distribution over a continuous vari-
+
+able, or over a variable whose type has not been
+
+speciﬁed
+
+a∼P
+
+Random variable a has distribution P
+
+Ex∼P [f (x)] or Ef (x) Expectation of f (x) with respect to P (x)
+
+Var(f (x))
+
+Variance of f (x) under P (x)
+
+Cov(f (x), g(x)) Covariance of f (x) and g(x) under P (x)
+
+H (x)
+
+Shannon entropy of the random variable x
+
+DKL(P Q)
+
+Kullback-Leibler divergence of P and Q
+
+N (x; µ, Σ)
+
+Gaussian distribution over x with mean µ and covariance Σ
+
+Functions f : A → B The function f with domain A and range B
+
+f ◦ g Composition of the functions f and g
+
+f (x; θ)
+
+A function of x parametrized by θ. (Sometimes we write f (x) and omit the argument θ to lighten notation)
+
+log x σ(x) ζ (x)
+
+Natural logarithm of x 1
+Logistic sigmoid, 1 + exp(−x)
+Softplus, log(1 + exp(x))
+
+||x||p ||x|| x+
+
+Lp norm of x L2 norm of x Positive part of x, i.e., max(0, x)
+
+1condition is 1 if the condition is true, 0 otherwise
+Sometimes we use a function f whose argument is a scalar but apply it to a vector, matrix, or tensor: f (x), f (X), or f (X). This denotes the application of f to the array element-wise. For example, if C = σ(X), then Ci,j,k = σ(Xi,j,k) for all valid values of i, j and k.
+
+pdata
+
+Datasets and Distributions The data generating distribution
+
+pˆdata
+
+The empirical distribution deﬁned by the training set
+
+X x(i) y(i) or y(i)
+
+A set of training examples
+The i-th example (input) from a dataset The target associated with x(i) for supervised learning
+
+X
+
+The m × n matrix with input example x(i) in row
+
+Xi,:
+
+1
+Introduction
+Inventors have long dreamed of creating machines that think. This desire dates back to at least the time of ancient Greece. The mythical ﬁgures Pygmalion, Daedalus, and Hephaestus may all be interpreted as legendary inventors, and Galatea, Talos, and Pandora may all be regarded as artiﬁcial life (Ovid and Martin, 2004; Sparkes, 1996; Tandy, 1997).
+When programmable computers were ﬁrst conceived, people wondered whether such machines might become intelligent, over a hundred years before one was built (Lovelace, 1842). Today, artiﬁcial intelligence (AI) is a thriving ﬁeld with many practical applications and active research topics. We look to intelligent software to automate routine labor, understand speech or images, make diagnoses in medicine and support basic scientiﬁc research.
+In the early days of artiﬁcial intelligence, the ﬁeld rapidly tackled and solved problems that are intellectually diﬃcult for human beings but relatively straightforward for computers—problems that can be described by a list of formal, mathematical rules. The true challenge to artiﬁcial intelligence proved to be solving the tasks that are easy for people to perform but hard for people to describe formally—problems that we solve intuitively, that feel automatic, like recognizing spoken words or faces in images.
+This book is about a solution to these more intuitive problems. This solution is to allow computers to learn from experience and understand the world in terms of a hierarchy of concepts, with each concept deﬁned through its relation to simpler concepts. By gathering knowledge from experience, this approach avoids the need for human operators to formally specify all the knowledge that the computer needs. The hierarchy of concepts enables the computer to learn complicated concepts by building them out of simpler ones. If we draw a graph showing how these concepts
+
+CHAPTER 1
+are built on top of each other, the graph is deep, with many layers. For this reason, we call this approach to AI deep learning.
+Many of the early successes of AI took place in relatively sterile and formal environments and did not require computers to have much knowledge about the world. For example, IBM’s Deep Blue chess-playing system defeated world champion Garry Kasparov in 1997 (Hsu, 2002). Chess is of course a very simple world, containing only sixty-four locations and thirty-two pieces that can move in only rigidly circumscribed ways. Devising a successful chess strategy is a tremendous accomplishment, but the challenge is not due to the diﬃculty of describing the set of chess pieces and allowable moves to the computer. Chess can be completely described by a very brief list of completely formal rules, easily provided ahead of time by the programmer.
+Ironically, abstract and formal tasks that are among the most diﬃcult mental undertakings for a human being are among the easiest for a computer. Computers have long been able to defeat even the best human chess player but only recently have begun matching some of the abilities of average human beings to recognize objects or speech. A person’s everyday life requires an immense amount of knowledge about the world. Much of this knowledge is subjective and intuitive, and therefore diﬃcult to articulate in a formal way. Computers need to capture this same knowledge in order to behave in an intelligent way. One of the key challenges in artiﬁcial intelligence is how to get this informal knowledge into a computer.
+Several artiﬁcial intelligence projects have sought to hard-code knowledge about the world in formal languages. A computer can reason automatically about statements in these formal languages using logical inference rules. This is known as the knowledge base approach to artiﬁcial intelligence. None of these projects has led to a major success. One of the most famous such projects is Cyc (Lenat and Guha, 1989). Cyc is an inference engine and a database of statements in a language called CycL. These statements are entered by a staﬀ of human supervisors. It is an unwieldy process. People struggle to devise formal rules with enough complexity to accurately describe the world. For example, Cyc failed to understand a story about a person named Fred shaving in the morning (Linde, 1992). Its inference engine detected an inconsistency in the story: it knew that people do not have electrical parts, but because Fred was holding an electric razor, it believed the entity “FredWhileShaving” contained electrical parts. It therefore asked whether Fred was still a person while he was shaving.
+The diﬃculties faced by systems relying on hard-coded knowledge suggest that AI systems need the ability to acquire their own knowledge, by extracting patterns from raw data. This capability is known as machine learning. The
+2
+
+INTRODUCTION
+introduction of machine learning enabled computers to tackle problems involving knowledge of the real world and make decisions that appear subjective. A simple machine learning algorithm called logistic regression can determine whether to recommend cesarean delivery (Mor-Yosef et al., 1990). A simple machine learning algorithm called naive Bayes can separate legitimate e-mail from spam e-mail.
+The performance of these simple machine learning algorithms depends heavily on the representation of the data they are given. For example, when logistic regression is used to recommend cesarean delivery, the AI system does not examine the patient directly. Instead, the doctor tells the system several pieces of relevant information, such as the presence or absence of a uterine scar. Each piece of information included in the representation of the patient is known as a feature. Logistic regression learns how each of these features of the patient correlates with various outcomes. However, it cannot inﬂuence how features are deﬁned in any way. If logistic regression were given an MRI scan of the patient, rather than the doctor’s formalized report, it would not be able to make useful predictions. Individual pixels in an MRI scan have negligible correlation with any complications that might occur during delivery.
+This dependence on representations is a general phenomenon that appears throughout computer science and even daily life. In computer science, operations such as searching a collection of data can proceed exponentially faster if the collection is structured and indexed intelligently. People can easily perform arithmetic on Arabic numerals but ﬁnd arithmetic on Roman numerals much more time consuming. It is not surprising that the choice of representation has an enormous eﬀect on the performance of machine learning algorithms. For a simple visual example, see ﬁgure 1.1.
+Many artiﬁcial intelligence tasks can be solved by designing the right set of features to extract for that task, then providing these features to a simple machine learning algorithm. For example, a useful feature for speaker identiﬁcation from sound is an estimate of the size of the speaker’s vocal tract. This feature gives a strong clue as to whether the speaker is a man, woman, or child.
+For many tasks, however, it is diﬃcult to know what features should be extracted. For example, suppose that we would like to write a program to detect cars in photographs. We know that cars have wheels, so we might like to use the presence of a wheel as a feature. Unfortunately, it is diﬃcult to describe exactly what a wheel looks like in terms of pixel values. A wheel has a simple geometric shape, but its image may be complicated by shadows falling on the wheel, the sun glaring oﬀ the metal parts of the wheel, the fender of the car or an object in the foreground obscuring part of the wheel, and so on.
+3
+
+CHAPTER 1
+
+Cartesian coordinates
+
+Polar coordinates
+
+y µ
+
+x
+
+r
+
+Figure 1.1: Example of diﬀerent representations: suppose we want to separate two categories of data by drawing a line between them in a scatterplot. In the plot on the left, we represent some data using Cartesian coordinates, and the task is impossible. In the plot on the right, we represent the data with polar coordinates and the task becomes simple to solve with a vertical line. (Figure produced in collaboration with David Warde-Farley.)
+
+One solution to this problem is to use machine learning to discover not only the mapping from representation to output but also the representation itself. This approach is known as representation learning. Learned representations often result in much better performance than can be obtained with hand-designed representations. They also enable AI systems to rapidly adapt to new tasks, with minimal human intervention. A representation learning algorithm can discover a good set of features for a simple task in minutes, or for a complex task in hours to months. Manually designing features for a complex task requires a great deal of human time and eﬀort; it can take decades for an entire community of researchers.
+The quintessential example of a representation learning algorithm is the autoencoder. An autoencoder is the combination of an encoder function, which converts the input data into a diﬀerent representation, and a decoder function, which converts the new representation back into the original format. Autoencoders are trained to preserve as much information as possible when an input is run through the encoder and then the decoder, but they are also trained to make the new representation have various nice properties. Diﬀerent kinds of autoencoders aim to achieve diﬀerent kinds of properties.
+When designing features or algorithms for learning features, our goal is usually to separate the factors of variation that explain the observed data. In this context, we use the word “factors” simply to refer to separate sources of inﬂuence; the factors are usually not combined by multiplication. Such factors are often not quantities that are directly observed. Instead, they may exist as either unobserved
+4
+
+INTRODUCTION
+objects or unobserved forces in the physical world that aﬀect observable quantities. They may also exist as constructs in the human mind that provide useful simplifying explanations or inferred causes of the observed data. They can be thought of as concepts or abstractions that help us make sense of the rich variability in the data. When analyzing a speech recording, the factors of variation include the speaker’s age, their sex, their accent and the words they are speaking. When analyzing an image of a car, the factors of variation include the position of the car, its color, and the angle and brightness of the sun.
+A major source of diﬃculty in many real-world artiﬁcial intelligence applications is that many of the factors of variation inﬂuence every single piece of data we are able to observe. The individual pixels in an image of a red car might be very close to black at night. The shape of the car’s silhouette depends on the viewing angle. Most applications require us to disentangle the factors of variation and discard the ones that we do not care about.
+Of course, it can be very diﬃcult to extract such high-level, abstract features from raw data. Many of these factors of variation, such as a speaker’s accent, can be identiﬁed only using sophisticated, nearly human-level understanding of the data. When it is nearly as diﬃcult to obtain a representation as to solve the original problem, representation learning does not, at ﬁrst glance, seem to help us.
+Deep learning solves this central problem in representation learning by introducing representations that are expressed in terms of other, simpler representations. Deep learning enables the computer to build complex concepts out of simpler concepts. Figure 1.2 shows how a deep learning system can represent the concept of an image of a person by combining simpler concepts, such as corners and contours, which are in turn deﬁned in terms of edges.
+The quintessential example of a deep learning model is the feedforward deep network, or multilayer perceptron (MLP). A multilayer perceptron is just a mathematical function mapping some set of input values to output values. The function is formed by composing many simpler functions. We can think of each application of a diﬀerent mathematical function as providing a new representation of the input.
+The idea of learning the right representation for the data provides one perspective on deep learning. Another perspective on deep learning is that depth enables the computer to learn a multistep computer program. Each layer of the representation can be thought of as the state of the computer’s memory after executing another set of instructions in parallel. Networks with greater depth can execute more instructions in sequence. Sequential instructions oﬀer great power because later instructions can refer back to the results of earlier instructions.
+5
+
+CHAPTER 1
+
+CAR
+
+PERSON
+
+ANIMAL
+
+Output (object identity)
+
+3rd hidden layer (object parts)
+2nd hidden layer (corners and contours)
+1st hidden layer (edges)
+
+Visible layer (input pixels)
+Figure 1.2: Illustration of a deep learning model. It is diﬃcult for a computer to understand the meaning of raw sensory input data, such as this image represented as a collection of pixel values. The function mapping from a set of pixels to an object identity is very complicated. Learning or evaluating this mapping seems insurmountable if tackled directly. Deep learning resolves this diﬃculty by breaking the desired complicated mapping into a series of nested simple mappings, each described by a diﬀerent layer of the model. The input is presented at the visible layer, so named because it contains the variables that we are able to observe. Then a series of hidden layers extracts increasingly abstract features from the image. These layers are called “hidden” because their values are not given in the data; instead the model must determine which concepts are useful for explaining the relationships in the observed data. The images here are visualizations of the kind of feature represented by each hidden unit. Given the pixels, the ﬁrst layer can easily identify edges, by comparing the brightness of neighboring pixels. Given the ﬁrst hidden layer’s description of the edges, the second hidden layer can easily search for corners and extended contours, which are recognizable as collections of edges. Given the second hidden layer’s description of the image in terms of corners and contours, the third hidden layer can detect entire parts of speciﬁc objects, by ﬁnding speciﬁc collections of contours and corners. Finally, this description of the image in terms of the object parts it contains can be used to recognize the objects present in the image. Images reproduced with permission from Zeiler and Fergus (2014).
+
+6
+
+INTRODUCTION
+
+According to this view of deep learning, not all the information in a layer’s activations necessarily encodes factors of variation that explain the input. The representation also stores state information that helps to execute a program that can make sense of the input. This state information could be analogous to a counter or pointer in a traditional computer program. It has nothing to do with the content of the input speciﬁcally, but it helps the model to organize its processing.
+There are two main ways of measuring the depth of a model. The ﬁrst view is based on the number of sequential instructions that must be executed to evaluate the architecture. We can think of this as the length of the longest path through a ﬂow chart that describes how to compute each of the model’s outputs given its inputs. Just as two equivalent computer programs will have diﬀerent lengths depending on which language the program is written in, the same function may be drawn as a ﬂowchart with diﬀerent depths depending on which functions we allow to be used as individual steps in the ﬂowchart. Figure 1.3 illustrates how this choice of language can give two diﬀerent measurements for the same architecture.
+Another approach, used by deep probabilistic models, regards the depth of a model as being not the depth of the computational graph but the depth of the graph describing how concepts are related to each other. In this case, the depth
+
+Element Set
++ ⇥
+
++ ⇥⇥
+
+Element Set
+
+Logistic Regression
+
+Logistic Regression
+
+w1
+
+x1
+
+w2
+
+x2
+
+w x
+
+Figure 1.3: Illustration of computational graphs mapping an input to an output where each node performs an operation. Depth is the length of the longest path from input to output but depends on the deﬁnition of what constitutes a possible computational step. The computation depicted in these graphs is the output of a logistic regression model, σ(wT x), where σ is the logistic sigmoid function. If we use addition, multiplication and logistic sigmoids as the elements of our computer language, then this model has depth three. If we view logistic regression as an element itself, then this model has depth one.
+
+7
+
+CHAPTER 1
+of the ﬂowchart of the computations needed to compute the representation of each concept may be much deeper than the graph of the concepts themselves. This is because the system’s understanding of the simpler concepts can be reﬁned given information about the more complex concepts. For example, an AI system observing an image of a face with one eye in shadow may initially see only one eye. After detecting that a face is present, the system can then infer that a second eye is probably present as well. In this case, the graph of concepts includes only two layers—a layer for eyes and a layer for faces—but the graph of computations includes 2n layers if we reﬁne our estimate of each concept given the other n times.
+Because it is not always clear which of these two views—the depth of the computational graph, or the depth of the probabilistic modeling graph—is most relevant, and because diﬀerent people choose diﬀerent sets of smallest elements from which to construct their graphs, there is no single correct value for the depth of an architecture, just as there is no single correct value for the length of a computer program. Nor is there a consensus about how much depth a model requires to qualify as “deep.” However, deep learning can be safely regarded as the study of models that involve a greater amount of composition of either learned functions or learned concepts than traditional machine learning does.
+To summarize, deep learning, the subject of this book, is an approach to AI. Speciﬁcally, it is a type of machine learning, a technique that enables computer systems to improve with experience and data. We contend that machine learning is the only viable approach to building AI systems that can operate in complicated real-world environments. Deep learning is a particular kind of machine learning that achieves great power and ﬂexibility by representing the world as a nested hierarchy of concepts, with each concept deﬁned in relation to simpler concepts, and more abstract representations computed in terms of less abstract ones. Figure 1.4 illustrates the relationship between these diﬀerent AI disciplines. Figure 1.5 gives a high-level schematic of how each works.
+1.1 Who Should Read This Book?
+This book can be useful for a variety of readers, but we wrote it with two target audiences in mind. One of these target audiences is university students (undergraduate or graduate) learning about machine learning, including those who are beginning a career in deep learning and artiﬁcial intelligence research. The other target audience is software engineers who do not have a machine learning or statistics background but want to rapidly acquire one and begin using deep learning in their product or platform. Deep learning has already proved useful in many soft-
+8
+
+INTRODUCTION
+
+Deep learning
+Example: MLPs
+
+Example: Shallow autoencoders
+
+Representation learning Machine learning
+
+Example: Logistic regression
+
+Example: Knowledge
+bases
+
+AI
+
+Figure 1.4: A Venn diagram showing how deep learning is a kind of representation learning, which is in turn a kind of machine learning, which is used for many but not all approaches to AI. Each section of the Venn diagram includes an example of an AI technology.
+ware disciplines, including computer vision, speech and audio processing, natural language processing, robotics, bioinformatics and chemistry, video games, search engines, online advertising and ﬁnance.
+This book has been organized into three parts to best accommodate a variety of readers. Part I introduces basic mathematical tools and machine learning concepts. Part II describes the most established deep learning algorithms, which are essentially solved technologies. Part III describes more speculative ideas that are widely believed to be important for future research in deep learning.
+Readers should feel free to skip parts that are not relevant given their interests or background. Readers familiar with linear algebra, probability, and fundamental machine learning concepts can skip part I, for example, while those who just want
+9
+
+CHAPTER 1
+
+Output
+
+Output
+
+Output
+
+Mapping from features
+
+Output
+
+Mapping from features
+
+Mapping from features
+
+Additional layers of more
+abstract features
+
+Handdesigned program
+
+Handdesigned features
+
+Features
+
+Simple features
+
+Input
+
+Input
+
+Input
+
+Input
+
+Rule-based systems
+
+Classic machine learning
+
+Deep learning Representation learning
+
+Figure 1.5: Flowcharts showing how the diﬀerent parts of an AI system relate to each other within diﬀerent AI disciplines. Shaded boxes indicate components that are able to learn from data.
+
+to implement a working system need not read beyond part II. To help choose which chapters to read, ﬁgure 1.6 provides a ﬂowchart showing the high-level organization of the book.
+
+10
+
+INTRODUCTION
+
+1. Introduction
+
+Part I: Applied Math and Machine Learning Basics
+
+2. Linear Algebra
+
+3. Probability and Information Theory
+
+4. Numerical Computation
+
+5. Machine Learning Basics
+
+Part II: Deep Networks: Modern Practices 6. Deep Feedforward Networks
+
+7. Regularization
+
+8. Optimization
+
+9. CNNs
+
+10. RNNs
+
+11. Practical Methodology
+
+12. Applications
+
+Part III: Deep Learning Research
+
+13. Linear Factor Models
+
+14. Autoencoders
+
+15. Representation Learning
+
+16. Structured Probabilistic Models
+
+17. Monte Carlo Methods
+
+19. Inference
+
+18. Partition Function
+
+20. Deep Generative Models
+Figure 1.6: The high-level organization of the book. An arrow from one chapter to another indicates that the former chapter is prerequisite material for understanding the latter.
+11
+
+CHAPTER 1
+We do assume that all readers come from a computer science background. We assume familiarity with programming, a basic understanding of computational performance issues, complexity theory, introductory level calculus and some of the terminology of graph theory.
+1.2 Historical Trends in Deep Learning
+It is easiest to understand deep learning with some historical context. Rather than providing a detailed history of deep learning, we identify a few key trends:
+• Deep learning has had a long and rich history, but has gone by many names, reﬂecting diﬀerent philosophical viewpoints, and has waxed and waned in popularity.
+• Deep learning has become more useful as the amount of available training data has increased.
+• Deep learning models have grown in size over time as computer infrastructure (both hardware and software) for deep learning has improved.
+• Deep learning has solved increasingly complicated applications with increasing accuracy over time.
+1.2.1 The Many Names and Changing Fortunes of Neural Networks
+We expect that many readers of this book have heard of deep learning as an exciting new technology, and are surprised to see a mention of “history” in a book about an emerging ﬁeld. In fact, deep learning dates back to the 1940s. Deep learning only appears to be new, because it was relatively unpopular for several years preceding its current popularity, and because it has gone through many diﬀerent names, only recently being called “deep learning.” The ﬁeld has been rebranded many times, reﬂecting the inﬂuence of diﬀerent researchers and diﬀerent perspectives.
+A comprehensive history of deep learning is beyond the scope of this textbook. Some basic context, however, is useful for understanding deep learning. Broadly speaking, there have been three waves of development: deep learning known as cybernetics in the 1940s–1960s, deep learning known as connectionism in the 1980s–1990s, and the current resurgence under the name deep learning beginning in 2006. This is quantitatively illustrated in ﬁgure 1.7.
+12
+
+INTRODUCTION
+
+Frequency of Word or Phrase
+
+0.000250 0.000200 0.000150
+
+cybernetics (connectionism + neural networks)
+
+0.000100
+
+0.000050
+
+0.000000 1940
+
+1950
+
+1960
+
+1970 1980 Year
+
+1990
+
+2000
+
+Figure 1.7: Two of the three historical waves of artiﬁcial neural nets research, as measured by the frequency of the phrases “cybernetics” and “connectionism” or “neural networks,” according to Google Books (the third wave is too recent to appear). The ﬁrst wave started with cybernetics in the 1940s–1960s, with the development of theories of biological learning (McCulloch and Pitts, 1943; Hebb, 1949) and implementations of the ﬁrst models, such as the perceptron (Rosenblatt, 1958), enabling the training of a single neuron. The second wave started with the connectionist approach of the 1980–1995 period, with back-propagation (Rumelhart et al., 1986a) to train a neural network with one or two hidden layers. The current and third wave, deep learning, started around 2006 (Hinton et al., 2006; Bengio et al., 2007; Ranzato et al., 2007a) and is just now appearing in book form as of 2016. The other two waves similarly appeared in book form much later than the corresponding scientiﬁc activity occurred.
+
+Some of the earliest learning algorithms we recognize today were intended to be computational models of biological learning, that is, models of how learning happens or could happen in the brain. As a result, one of the names that deep learning has gone by is artiﬁcial neural networks (ANNs). The corresponding perspective on deep learning models is that they are engineered systems inspired by the biological brain (whether the human brain or the brain of another animal). While the kinds of neural networks used for machine learning have sometimes been used to understand brain function (Hinton and Shallice, 1991), they are generally not designed to be realistic models of biological function. The neural perspective on deep learning is motivated by two main ideas. One idea is that the brain provides a proof by example that intelligent behavior is possible, and a conceptually straightforward path to building intelligence is to reverse engineer the computational principles behind the brain and duplicate its functionality. Another perspective is that it would be deeply interesting to understand the brain and the principles that underlie human intelligence, so machine learning models that shed light on these basic scientiﬁc questions are useful apart from their ability to solve engineering applications.
+13
+
+CHAPTER 1
+The modern term “deep learning” goes beyond the neuroscientiﬁc perspective on the current breed of machine learning models. It appeals to a more general principle of learning multiple levels of composition, which can be applied in machine learning frameworks that are not necessarily neurally inspired.
+The earliest predecessors of modern deep learning were simple linear models motivated from a neuroscientiﬁc perspective. These models were designed to take a set of n input values x1, . . . , xn and associate them with an output y. These models would learn a set of weights w1, . . . , wn and compute their output f (x, w) = x1w1 + · · · + xnwn. This ﬁrst wave of neural networks research was known as cybernetics, as illustrated in ﬁgure 1.7.
+The McCulloch-Pitts neuron (McCulloch and Pitts, 1943) was an early model of brain function. This linear model could recognize two diﬀerent categories of inputs by testing whether f (x, w) is positive or negative. Of course, for the model to correspond to the desired deﬁnition of the categories, the weights needed to be set correctly. These weights could be set by the human operator. In the 1950s, the perceptron (Rosenblatt, 1958, 1962) became the ﬁrst model that could learn the weights that deﬁned the categories given examples of inputs from each category. The adaptive linear element (ADALINE), which dates from about the same time, simply returned the value of f (x) itself to predict a real number (Widrow and Hoﬀ, 1960) and could also learn to predict these numbers from data.
+These simple learning algorithms greatly aﬀected the modern landscape of machine learning. The training algorithm used to adapt the weights of the ADALINE was a special case of an algorithm called stochastic gradient descent. Slightly modiﬁed versions of the stochastic gradient descent algorithm remain the dominant training algorithms for deep learning models today.
+Models based on the f (x, w) used by the perceptron and ADALINE are called linear models. These models remain some of the most widely used machine learning models, though in many cases they are trained in diﬀerent ways than the original models were trained.
+Linear models have many limitations. Most famously, they cannot learn the XOR function, where f ([0, 1], w) = 1 and f ([1, 0], w) = 1 but f ([1, 1], w) = 0 and f ([0, 0], w) = 0. Critics who observed these ﬂaws in linear models caused a backlash against biologically inspired learning in general (Minsky and Papert, 1969). This was the ﬁrst major dip in the popularity of neural networks.
+Today, neuroscience is regarded as an important source of inspiration for deep learning researchers, but it is no longer the predominant guide for the ﬁeld.
+14
+
+INTRODUCTION
+The main reason for the diminished role of neuroscience in deep learning research today is that we simply do not have enough information about the brain to use it as a guide. To obtain a deep understanding of the actual algorithms used by the brain, we would need to be able to monitor the activity of (at the very least) thousands of interconnected neurons simultaneously. Because we are not able to do this, we are far from understanding even some of the most simple and well-studied parts of the brain (Olshausen and Field, 2005).
+Neuroscience has given us a reason to hope that a single deep learning algorithm can solve many diﬀerent tasks. Neuroscientists have found that ferrets can learn to “see” with the auditory processing region of their brain if their brains are rewired to send visual signals to that area (Von Melchner et al., 2000). This suggests that much of the mammalian brain might use a single algorithm to solve most of the diﬀerent tasks that the brain solves. Before this hypothesis, machine learning research was more fragmented, with diﬀerent communities of researchers studying natural language processing, vision, motion planning and speech recognition. Today, these application communities are still separate, but it is common for deep learning research groups to study many or even all these application areas simultaneously.
+We are able to draw some rough guidelines from neuroscience. The basic idea of having many computational units that become intelligent only via their interactions with each other is inspired by the brain. The neocognitron (Fukushima, 1980) introduced a powerful model architecture for processing images that was inspired by the structure of the mammalian visual system and later became the basis for the modern convolutional network (LeCun et al., 1998b), as we will see in section 9.10. Most neural networks today are based on a model neuron called the rectiﬁed linear unit. The original cognitron (Fukushima, 1975) introduced a more complicated version that was highly inspired by our knowledge of brain function. The simpliﬁed modern version was developed incorporating ideas from many viewpoints, with Nair and Hinton (2010) and Glorot et al. (2011a) citing neuroscience as an inﬂuence, and Jarrett et al. (2009) citing more engineeringoriented inﬂuences. While neuroscience is an important source of inspiration, it need not be taken as a rigid guide. We know that actual neurons compute very diﬀerent functions than modern rectiﬁed linear units, but greater neural realism has not yet led to an improvement in machine learning performance. Also, while neuroscience has successfully inspired several neural network architectures, we do not yet know enough about biological learning for neuroscience to oﬀer much guidance for the learning algorithms we use to train these architectures.
+Media accounts often emphasize the similarity of deep learning to the brain. While it is true that deep learning researchers are more likely to cite the brain as an inﬂuence than researchers working in other machine learning ﬁelds, such as kernel
+15
+
+CHAPTER 1
+machines or Bayesian statistics, one should not view deep learning as an attempt to simulate the brain. Modern deep learning draws inspiration from many ﬁelds, especially applied math fundamentals like linear algebra, probability, information theory, and numerical optimization. While some deep learning researchers cite neuroscience as an important source of inspiration, others are not concerned with neuroscience at all.
+It is worth noting that the eﬀort to understand how the brain works on an algorithmic level is alive and well. This endeavor is primarily known as “computational neuroscience” and is a separate ﬁeld of study from deep learning. It is common for researchers to move back and forth between both ﬁelds. The ﬁeld of deep learning is primarily concerned with how to build computer systems that are able to successfully solve tasks requiring intelligence, while the ﬁeld of computational neuroscience is primarily concerned with building more accurate models of how the brain actually works.
+In the 1980s, the second wave of neural network research emerged in great part via a movement called connectionism, or parallel distributed processing (Rumelhart et al., 1986c; McClelland et al., 1995). Connectionism arose in the context of cognitive science. Cognitive science is an interdisciplinary approach to understanding the mind, combining multiple diﬀerent levels of analysis. During the early 1980s, most cognitive scientists studied models of symbolic reasoning. Despite their popularity, symbolic models were diﬃcult to explain in terms of how the brain could actually implement them using neurons. The connectionists began to study models of cognition that could actually be grounded in neural implementations (Touretzky and Minton, 1985), reviving many ideas dating back to the work of psychologist Donald Hebb in the 1940s (Hebb, 1949).
+The central idea in connectionism is that a large number of simple computational units can achieve intelligent behavior when networked together. This insight applies equally to neurons in biological nervous systems as it does to hidden units in computational models.
+Several key concepts arose during the connectionism movement of the 1980s that remain central to today’s deep learning.
+One of these concepts is that of distributed representation (Hinton et al., 1986). This is the idea that each input to a system should be represented by many features, and each feature should be involved in the representation of many possible inputs. For example, suppose we have a vision system that can recognize cars, trucks, and birds, and these objects can each be red, green, or blue. One way of representing these inputs would be to have a separate neuron or hidden unit
+16
+
+INTRODUCTION
+that activates for each of the nine possible combinations: red truck, red car, red bird, green truck, and so on. This requires nine diﬀerent neurons, and each neuron must independently learn the concept of color and object identity. One way to improve on this situation is to use a distributed representation, with three neurons describing the color and three neurons describing the object identity. This requires only six neurons total instead of nine, and the neuron describing redness is able to learn about redness from images of cars, trucks and birds, not just from images of one speciﬁc category of objects. The concept of distributed representation is central to this book and is described in greater detail in chapter 15.
+Another major accomplishment of the connectionist movement was the successful use of back-propagation to train deep neural networks with internal representations and the popularization of the back-propagation algorithm (Rumelhart et al., 1986a; LeCun, 1987). This algorithm has waxed and waned in popularity but, as of this writing, is the dominant approach to training deep models.
+During the 1990s, researchers made important advances in modeling sequences with neural networks. Hochreiter (1991) and Bengio et al. (1994) identiﬁed some of the fundamental mathematical diﬃculties in modeling long sequences, described in section 10.7. Hochreiter and Schmidhuber (1997) introduced the long short-term memory (LSTM) network to resolve some of these diﬃculties. Today, the LSTM is widely used for many sequence modeling tasks, including many natural language processing tasks at Google.
+The second wave of neural networks research lasted until the mid-1990s. Ventures based on neural networks and other AI technologies began to make unrealistically ambitious claims while seeking investments. When AI research did not fulﬁll these unreasonable expectations, investors were disappointed. Simultaneously, other ﬁelds of machine learning made advances. Kernel machines (Boser et al., 1992; Cortes and Vapnik, 1995; Schölkopf et al., 1999) and graphical models (Jordan, 1998) both achieved good results on many important tasks. These two factors led to a decline in the popularity of neural networks that lasted until 2007.
+During this time, neural networks continued to obtain impressive performance on some tasks (LeCun et al., 1998b; Bengio et al., 2001). The Canadian Institute for Advanced Research (CIFAR) helped to keep neural networks research alive via its Neural Computation and Adaptive Perception (NCAP) research initiative. This program united machine learning research groups led by Geoﬀrey Hinton at University of Toronto, Yoshua Bengio at University of Montreal, and Yann LeCun at New York University. The multidisciplinary CIFAR NCAP research initiative was also included neuroscientists and experts in human and computer vision.
+17
+
+CHAPTER 1
+At this point, deep networks were generally believed to be very diﬃcult to train. We now know that algorithms that have existed since the 1980s work quite well, but this was not apparent circa 2006. The issue is perhaps simply that these algorithms were too computationally costly to allow much experimentation with the hardware available at the time.
+The third wave of neural networks research began with a breakthrough in 2006. Geoﬀrey Hinton showed that a kind of neural network called a deep belief network could be eﬃciently trained using a strategy called greedy layer-wise pretraining (Hinton et al., 2006), which we describe in more detail in section 15.1. The other CIFAR-aﬃliated research groups quickly showed that the same strategy could be used to train many other kinds of deep networks (Bengio et al., 2007; Ranzato et al., 2007a) and systematically helped to improve generalization on test examples. This wave of neural networks research popularized the use of the term “deep learning” to emphasize that researchers were now able to train deeper neural networks than had been possible before, and to focus attention on the theoretical importance of depth (Bengio and LeCun, 2007; Delalleau and Bengio, 2011; Pascanu et al., 2014a; Montufar et al., 2014). At this time, deep neural networks outperformed competing AI systems based on other machine learning technologies as well as hand-designed functionality. This third wave of popularity of neural networks continues to the time of this writing, though the focus of deep learning research has changed dramatically within the time of this wave. The third wave began with a focus on new unsupervised learning techniques and the ability of deep models to generalize well from small datasets, but today there is more interest in much older supervised learning algorithms and the ability of deep models to leverage large labeled datasets.
+1.2.2 Increasing Dataset Sizes
+One may wonder why deep learning has only recently become recognized as a crucial technology even though the ﬁrst experiments with artiﬁcial neural networks were conducted in the 1950s. Deep learning has been successfully used in commercial applications since the 1990s but was often regarded as being more of an art than a technology and something that only an expert could use, until recently. It is true that some skill is required to get good performance from a deep learning algorithm. Fortunately, the amount of skill required reduces as the amount of training data increases. The learning algorithms reaching human performance on complex tasks today are nearly identical to the learning algorithms that struggled to solve toy problems in the 1980s, though the models we train with these algorithms have undergone changes that simplify the training of very deep architectures. The most
+18
+
+INTRODUCTION
+
+important new development is that today we can provide these algorithms with the resources they need to succeed. Figure 1.8 shows how the size of benchmark datasets has expanded remarkably over time. This trend is driven by the increasing digitization of society. As more and more of our activities take place on computers, more and more of what we do is recorded. As our computers are increasingly networked together, it becomes easier to centralize these records and curate them into a dataset appropriate for machine learning applications. The age of “Big Data” has made machine learning much easier because the key burden of statistical estimation—generalizing well to new data after observing only a small amount
+
+Dataset size (number examples)
+
+109
+
+108
+
+Canadian Hansard
+
+WMT Sports-1M
+
+107
+
+ImageNet10k
+
+106
+
+Public SVHN
+
+105
+
+Criminals
+
+ImageNet
+
+ILSVRC 2014
+
+104
+
+MNIST CIFAR-10
+
+103
+
+102
+
+T vs. G vs. F
+
+Rotated T vs. C
+
+101
+
+Iris
+
+100 1900
+
+1950
+
+1985 2000 2015
+
+Figure 1.8: Increasing dataset size over time. In the early 1900s, statisticians studied datasets using hundreds or thousands of manually compiled measurements (Garson, 1900; Gosset, 1908; Anderson, 1935; Fisher, 1936). In the 1950s through the 1980s, the pioneers of biologically inspired machine learning often worked with small synthetic datasets, such as low-resolution bitmaps of letters, that were designed to incur low computational cost and demonstrate that neural networks were able to learn speciﬁc kinds of functions (Widrow and Hoﬀ, 1960; Rumelhart et al., 1986b). In the 1980s and 1990s, machine learning became more statistical and began to leverage larger datasets containing tens of thousands of examples, such as the MNIST dataset (shown in ﬁgure 1.9) of scans of handwritten numbers (LeCun et al., 1998b). In the ﬁrst decade of the 2000s, more sophisticated datasets of this same size, such as the CIFAR-10 dataset (Krizhevsky and Hinton, 2009), continued to be produced. Toward the end of that decade and throughout the ﬁrst half of the 2010s, signiﬁcantly larger datasets, containing hundreds of thousands to tens of millions of examples, completely changed what was possible with deep learning. These datasets included the public Street View House Numbers dataset (Netzer et al., 2011), various versions of the ImageNet dataset (Deng et al., 2009, 2010a; Russakovsky et al., 2014a), and the Sports-1M dataset (Karpathy et al., 2014). At the top of the graph, we see that datasets of translated sentences, such as IBM’s dataset constructed from the Canadian Hansard (Brown et al., 1990) and the WMT 2014 English to French dataset (Schwenk, 2014), are typically far ahead of other dataset sizes.
+
+19
+
+CHAPTER 1
+Figure 1.9: Example inputs from the MNIST dataset. The “NIST” stands for National Institute of Standards and Technology, the agency that originally collected this data. The “M” stands for “modiﬁed,” since the data has been preprocessed for easier use with machine learning algorithms. The MNIST dataset consists of scans of handwritten digits and associated labels describing which digit 0–9 is contained in each image. This simple classiﬁcation problem is one of the simplest and most widely used tests in deep learning research. It remains popular despite being quite easy for modern techniques to solve. Geoﬀrey Hinton has described it as “the drosophila of machine learning,” meaning that it enables machine learning researchers to study their algorithms in controlled laboratory conditions, much as biologists often study fruit ﬂies. of data—has been considerably lightened. As of 2016, a rough rule of thumb is that a supervised deep learning algorithm will generally achieve acceptable performance with around 5,000 labeled examples per category and will match or exceed human performance when trained with a dataset containing at least 10 million labeled examples. Working successfully with datasets smaller than this is
+20
+
+INTRODUCTION
+an important research area, focusing in particular on how we can take advantage of large quantities of unlabeled examples, with unsupervised or semi-supervised learning.
+1.2.3 Increasing Model Sizes
+Another key reason that neural networks are wildly successful today after enjoying comparatively little success since the 1980s is that we have the computational resources to run much larger models today. One of the main insights of connectionism is that animals become intelligent when many of their neurons work together. An individual neuron or small collection of neurons is not particularly useful.
+Biological neurons are not especially densely connected. As seen in ﬁgure 1.10, our machine learning models have had a number of connections per neuron within an order of magnitude of even mammalian brains for decades.
+In terms of the total number of neurons, neural networks have been astonishingly small until quite recently, as shown in ﬁgure 1.11. Increasing neural network size over time. Since the introduction of hidden units, artiﬁcial neural networks have doubled in size roughly every 2.4 years. This growth is driven by faster computers with larger memory and by the availability of larger datasets. Larger networks are able to achieve higher accuracy on more complex tasks. This trend looks set to continue for decades. Unless new technologies enable faster scaling, artiﬁcial neural networks will not have the same number of neurons as the human brain until at least the 2050s. Biological neurons may represent more complicated functions than current artiﬁcial neurons, so biological neural networks may be even larger than this plot portrays.
+In retrospect, it is not particularly surprising that neural networks with fewer neurons than a leech were unable to solve sophisticated artiﬁcial intelligence problems. Even today’s networks, which we consider quite large from a computational systems point of view, are smaller than the nervous system of even relatively primitive vertebrate animals like frogs.
+The increase in model size over time, due to the availability of faster CPUs, the advent of general purpose GPUs (described in section 12.1.2), faster network connectivity and better software infrastructure for distributed computing, is one of the most important trends in the history of deep learning. This trend is generally expected to continue well into the future.
+21
+
+CHAPTER 1
+
+Connections per neuron
+
+104
+
+103
+
+2
+
+102 1
+
+6
+
+97
+
+4
+
+5
+
+10
+
+8 3
+
+Human Cat
+Mouse
+Fruit ﬂy
+
+101 1950
+
+1985
+
+2000
+
+2015
+
+Year
+Figure 1.10: Number of connections per neuron over time. Initially, the number of connec-
+
+tions between neurons in artiﬁcial neural networks was limited by hardware capabilities.
+
+Today, the number of connections between neurons is mostly a design consideration. Some
+
+artiﬁcial neural networks have nearly as many connections per neuron as a cat, and it
+
+is quite common for other neural networks to have as many connections per neuron as
+
+smaller mammals like mice. Even the human brain does not have an exorbitant amount
+
+of connections per neuron. Biological neural network sizes from Wikipedia (2015).
+
+1. Adaptive linear element (Widrow and Hoﬀ, 1960) 2. Neocognitron (Fukushima, 1980) 3. GPU-accelerated convolutional network (Chellapilla et al., 2006) 4. Deep Boltzmann machine (Salakhutdinov and Hinton, 2009a) 5. Unsupervised convolutional network (Jarrett et al., 2009) 6. GPU-accelerated multilayer perceptron (Ciresan et al., 2010) 7. Distributed autoencoder (Le et al., 2012) 8. Multi-GPU convolutional network (Krizhevsky et al., 2012) 9. COTS HPC unsupervised convolutional network (Coates et al., 2013) 10. GoogLeNet (Szegedy et al., 2014a)
+
+1.2.4 Increasing Accuracy, Complexity and Real-World Impact
+Since the 1980s, deep learning has consistently improved in its ability to provide accurate recognition and prediction. Moreover, deep learning has consistently been applied with success to broader and broader sets of applications.
+The earliest deep models were used to recognize individual objects in tightly cropped, extremely small images (Rumelhart et al., 1986a). Since then there has been a gradual increase in the size of images neural networks could process. Modern object recognition networks process rich high-resolution photographs and do not have a requirement that the photo be cropped near the object to be recognized
+22
+
+INTRODUCTION
+
+Number of neurons (logarithmic scale)
+
+1011 1010 109 108 107 106 105 104 103 102 101 100 10−1 10−2
+
+12 1950
+
+17
+14 8 11 3
+
+16 19 20 18
+
+1985
+
+13
+
+6
+
+12 15 5 9 10
+
+4
+
+7
+
+2000 2015
+
+Human Octopus Frog
+Bee Ant
+Leech Roundworm
+2056 Sponge
+
+Year
+Figure 1.11: Increasing neural network size over time. Since the introduction of hidden
+
+units, artiﬁcial neural networks have doubled in size roughly every 2.4 years. Biological
+
+neural network sizes from Wikipedia (2015).
+
+1. Perceptron (Rosenblatt, 1958, 1962) 2. Adaptive linear element (Widrow and Hoﬀ, 1960) 3. Neocognitron (Fukushima, 1980) 4. Early back-propagation network (Rumelhart et al., 1986b) 5. Recurrent neural network for speech recognition (Robinson and Fallside, 1991) 6. Multilayer perceptron for speech recognition (Bengio et al., 1991) 7. Mean ﬁeld sigmoid belief network (Saul et al., 1996) 8. LeNet-5 (LeCun et al., 1998b) 9. Echo state network (Jaeger and Haas, 2004) 10. Deep belief network (Hinton et al., 2006) 11. GPU-accelerated convolutional network (Chellapilla et al., 2006) 12. Deep Boltzmann machine (Salakhutdinov and Hinton, 2009a) 13. GPU-accelerated deep belief network (Raina et al., 2009) 14. Unsupervised convolutional network (Jarrett et al., 2009) 15. GPU-accelerated multilayer perceptron (Ciresan et al., 2010) 16. OMP-1 network (Coates and Ng, 2011) 17. Distributed autoencoder (Le et al., 2012) 18. Multi-GPU convolutional network (Krizhevsky et al., 2012) 19. COTS HPC unsupervised convolutional network (Coates et al., 2013) 20. GoogLeNet (Szegedy et al., 2014a)
+
+(Krizhevsky et al., 2012). Similarly, the earliest networks could recognize only two kinds of objects (or in some cases, the absence or presence of a single kind of object), while these modern networks typically recognize at least 1,000 diﬀerent categories of objects. The largest contest in object recognition is the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) held each year. A dramatic moment in the meteoric rise of deep learning came when a convolutional network
+
+23
+
+CHAPTER 1
+
+won this challenge for the ﬁrst time and by a wide margin, bringing down the state-of-the-art top-5 error rate from 26.1 percent to 15.3 percent (Krizhevsky et al., 2012), meaning that the convolutional network produces a ranked list of possible categories for each image, and the correct category appeared in the ﬁrst ﬁve entries of this list for all but 15.3 percent of the test examples. Since then, these competitions are consistently won by deep convolutional nets, and as of this writing, advances in deep learning have brought the latest top-5 error rate in this contest down to 3.6 percent, as shown in ﬁgure 1.12.
+Deep learning has also had a dramatic impact on speech recognition. After improving throughout the 1990s, the error rates for speech recognition stagnated starting in about 2000. The introduction of deep learning (Dahl et al., 2010; Deng et al., 2010b; Seide et al., 2011; Hinton et al., 2012a) to speech recognition resulted in a sudden drop in error rates, with some error rates cut in half. We explore this history in more detail in section 12.3.
+Deep networks have also had spectacular successes for pedestrian detection and image segmentation (Sermanet et al., 2013; Farabet et al., 2013; Couprie et al., 2013) and yielded superhuman performance in traﬃc sign classiﬁcation (Ciresan et al., 2012).
+At the same time that the scale and accuracy of deep networks have increased, so has the complexity of the tasks that they can solve. Goodfellow et al. (2014d) showed that neural networks could learn to output an entire sequence of characters transcribed from an image, rather than just identifying a single object. Previously,
+
+0.30
+
+ILSVRC classiﬁcation error rate
+
+0.25
+
+0.20
+
+0.15
+
+0.10
+
+0.05
+
+0.00 2010
+
+2011
+
+2012
+
+2013
+
+Year
+
+2014
+
+2015
+
+Figure 1.12: Decreasing error rate over time. Since deep networks reached the scale necessary to compete in the ImageNet Large Scale Visual Recognition Challenge, they have consistently won the competition every year, yielding lower and lower error rates each time. Data from Russakovsky et al. (2014b) and He et al. (2015).
+
+24
+
+INTRODUCTION
+it was widely believed that this kind of learning required labeling of the individual elements of the sequence (Gülçehre and Bengio, 2013). Recurrent neural networks, such as the LSTM sequence model mentioned above, are now used to model relationships between sequences and other sequences rather than just ﬁxed inputs. This sequence-to-sequence learning seems to be on the cusp of revolutionizing another application: machine translation (Sutskever et al., 2014; Bahdanau et al., 2015).
+This trend of increasing complexity has been pushed to its logical conclusion with the introduction of neural Turing machines (Graves et al., 2014a) that learn to read from memory cells and write arbitrary content to memory cells. Such neural networks can learn simple programs from examples of desired behavior. For example, they can learn to sort lists of numbers given examples of scrambled and sorted sequences. This self-programming technology is in its infancy, but in the future it could in principle be applied to nearly any task.
+Another crowning achievement of deep learning is its extension to the domain of reinforcement learning. In the context of reinforcement learning, an autonomous agent must learn to perform a task by trial and error, without any guidance from the human operator. DeepMind demonstrated that a reinforcement learning system based on deep learning is capable of learning to play Atari video games, reaching human-level performance on many tasks (Mnih et al., 2015). Deep learning has also signiﬁcantly improved the performance of reinforcement learning for robotics (Finn et al., 2015).
+Many of these applications of deep learning are highly proﬁtable. Deep learning is now used by many top technology companies, including Google, Microsoft, Facebook, IBM, Baidu, Apple, Adobe, Netﬂix, NVIDIA, and NEC.
+Advances in deep learning have also depended heavily on advances in software infrastructure. Software libraries such as Theano (Bergstra et al., 2010; Bastien et al., 2012), PyLearn2 (Goodfellow et al., 2013c), Torch (Collobert et al., 2011b), DistBelief (Dean et al., 2012), Caﬀe (Jia, 2013), MXNet (Chen et al., 2015), and TensorFlow (Abadi et al., 2015) have all supported important research projects or commercial products.
+Deep learning has also made contributions to other sciences. Modern convolutional networks for object recognition provide a model of visual processing that neuroscientists can study (DiCarlo, 2013). Deep learning also provides useful tools for processing massive amounts of data and making useful predictions in scientiﬁc ﬁelds. It has been successfully used to predict how molecules will interact in order to help pharmaceutical companies design new drugs (Dahl et al., 2014), to search for subatomic particles (Baldi et al., 2014), and to automatically parse microscope
+25
+
+CHAPTER 1
+images used to construct a 3-D map of the human brain (Knowles-Barley et al., 2014). We expect deep learning to appear in more and more scientiﬁc ﬁelds in the future.
+In summary, deep learning is an approach to machine learning that has drawn heavily on our knowledge of the human brain, statistics and applied math as it developed over the past several decades. In recent years, deep learning has seen tremendous growth in its popularity and usefulness, largely as the result of more powerful computers, larger datasets and techniques to train deeper networks. The years ahead are full of challenges and opportunities to improve deep learning even further and to bring it to new frontiers.
+26
+
+I
+Applied Math and Machine Learning Basics
+
+PART I
+This part of the book introduces the basic mathematical concepts needed to understand deep learning. We begin with general ideas from applied math that enable us to deﬁne functions of many variables, ﬁnd the highest and lowest points on these functions, and quantify degrees of belief.
+Next, we describe the fundamental goals of machine learning. We describe how to accomplish these goals by specifying a model that represents certain beliefs, designing a cost function that measures how well those beliefs correspond with reality, and using a training algorithm to minimize that cost function.
+This elementary framework is the basis for a broad variety of machine learning algorithms, including approaches to machine learning that are not deep. In the subsequent parts of the book, we develop deep learning algorithms within this framework.
+28
+
+2
+Linear Algebra
+Linear algebra is a branch of mathematics that is widely used throughout science and engineering. Yet because linear algebra is a form of continuous rather than discrete mathematics, many computer scientists have little experience with it. A good understanding of linear algebra is essential for understanding and working with many machine learning algorithms, especially deep learning algorithms. We therefore precede our introduction to deep learning with a focused presentation of the key linear algebra prerequisites.
+If you are already familiar with linear algebra, feel free to skip this chapter. If you have previous experience with these concepts but need a detailed reference sheet to review key formulas, we recommend The Matrix Cookbook (Petersen and Pedersen, 2006). If you have had no exposure at all to linear algebra, this chapter will teach you enough to read this book, but we highly recommend that you also consult another resource focused exclusively on teaching linear algebra, such as Shilov (1977). This chapter completely omits many important linear algebra topics that are not essential for understanding deep learning.
+2.1 Scalars, Vectors, Matrices and Tensors
+The study of linear algebra involves several types of mathematical objects:
+• Scalars: A scalar is just a single number, in contrast to most of the other objects studied in linear algebra, which are usually arrays of multiple numbers. We write scalars in italics. We usually give scalars lowercase variable names. When we introduce them, we specify what kind of number they are. For
+
+CHAPTER 2
+
+example, we might say “Let s ∈ R be the slope of the line,” while deﬁning a real-valued scalar, or “Let n ∈ N be the number of units,” while deﬁning a natural number scalar.
+
+• Vectors: A vector is an array of numbers. The numbers are arranged in order. We can identify each individual number by its index in that ordering. Typically we give vectors lowercase names in bold typeface, such as x. The elements of the vector are identiﬁed by writing its name in italic typeface, with a subscript. The ﬁrst element of x is x1, the second element is x2, and so on. We also need to say what kind of numbers are stored in the vector. If each element is in R, and the vector has n elements, then the vector lies in the set formed by taking the Cartesian product of R n times, denoted as Rn. When we need to explicitly identify the elements of a vector, we write them as a column enclosed in square brackets:
+
+ x1 
+
+ x2 
+
+x=  
+
+...
+
+.  
+
+xn
+
+(2.1)
+
+We can think of vectors as identifying points in space, with each element giving the coordinate along a diﬀerent axis.
+Sometimes we need to index a set of elements of a vector. In this case, we deﬁne a set containing the indices and write the set as a subscript. For example, to access x1, x3 and x6, we deﬁne the set S = {1, 3, 6} and write xS. We use the − sign to index the complement of a set. For example x−1 is the vector containing all elements of x except for x1, and x−S is the vector containing all elements of x except for x1, x3 and x6.
+• Matrices: A matrix is a 2-D array of numbers, so each element is identiﬁed by two indices instead of just one. We usually give matrices uppercase variable names with bold typeface, such as A. If a real-valued matrix A has a height of m and a width of n, then we say that A ∈ Rm×n. We usually identify the elements of a matrix using its name in italic but not bold font, and the indices are listed with separating commas. For example, A1,1 is the upper left entry of A and Am,n is the bottom right entry. We can identify all the numbers with vertical coordinate i by writing a “:” for the horizontal coordinate. For example, Ai,: denotes the horizontal cross section of A with vertical coordinate i. This is known as the i-th row of A. Likewise, A:,i is
+
+30
+
+LINEAR ALGEBRA
+
+the i-th column of A. When we need to explicitly identify the elements of a matrix, we write them as an array enclosed in square brackets:
+
+A1,1 A1,2 A2,1 A2,2
+
+.
+
+(2.2)
+
+Sometimes we may need to index matrix-valued expressions that are not just a single letter. In this case, we use subscripts after the expression but do not convert anything to lowercase. For example, f (A)i,j gives element (i, j) of the matrix computed by applying the function f to A.
+• Tensors: In some cases we will need an array with more than two axes. In the general case, an array of numbers arranged on a regular grid with a variable number of axes is known as a tensor. We denote a tensor named “A” with this typeface: A. We identify the element of A at coordinates (i, j, k) by writing Ai,j,k.
+
+One important operation on matrices is the transpose. The transpose of a matrix is the mirror image of the matrix across a diagonal line, called the main diagonal, running down and to the right, starting from its upper left corner. See ﬁgure 2.1 for a graphical depiction of this operation. We denote the transpose of a matrix A as A , and it is deﬁned such that
+
+(A )i,j = Aj,i.
+
+(2.3)
+
+Vectors can be thought of as matrices that contain only one column. The transpose of a vector is therefore a matrix with only one row. Sometimes we deﬁne a vector by writing out its elements in the text inline as a row matrix, then using the transpose operator to turn it into a standard column vector, for example x = [x1, x2, x3] .
+A scalar can be thought of as a matrix with only a single entry. From this, we can see that a scalar is its own transpose: a = a .
+
+2 A1,1
+A = 4 A2,1 A3,1
+
+A1,2 A2,2 A3,2
+
+3
+
+
+
+5 ) A> =
+
+A1,1 A1,2
+
+A2,1 A2,2
+
+A3,1 A3,2
+
+Figure 2.1: The transpose of the matrix can be thought of as a mirror image across the main diagonal.
+
+31
+
+CHAPTER 2
+
+We can add matrices to each other, as long as they have the same shape, just by adding their corresponding elements: C = A + B where Ci,j = Ai,j + Bi,j.
+We can also add a scalar to a matrix or multiply a matrix by a scalar, just by performing that operation on each element of a matrix: D = a · B + c where Di,j = a · Bi,j + c.
+In the context of deep learning, we also use some less conventional notation. We allow the addition of matrix and a vector, yielding another matrix: C = A + b, where Ci,j = Ai,j + bj. In other words, the vector b is added to each row of the matrix. This shorthand eliminates the need to deﬁne a matrix with b copied into each row before doing the addition. This implicit copying of b to many locations is called broadcasting.
+
+2.2 Multiplying Matrices and Vectors
+
+One of the most important operations involving matrices is multiplication of two
+
+matrices. The matrix product of matrices A and B is a third matrix C. In order
+
+for this product to be deﬁned, A must have the same number of columns as B has
+
+rows. If A is of shape m × n and B is of shape n × p, then C is of shape m × p.
+
+We can write the matrix product just by placing two or more matrices together,
+
+for example,
+
+C = AB.
+
+(2.4)
+
+The product operation is deﬁned by
+
+Ci,j = Ai,kBk,j .
+k
+
+(2.5)
+
+Note that the standard product of two matrices is not just a matrix containing the product of the individual elements. Such an operation exists and is called the element-wise product, or Hadamard product, and is denoted as A B.
+
+The dot product between two vectors x and y of the same dimensionality is the matrix product x y. We can think of the matrix product C = AB as computing Ci,j as the dot product between row i of A and column j of B.
+
+Matrix product operations have many useful properties that make mathemat-
+
+ical analysis of matrices more convenient. For example, matrix multiplication is
+
+distributive:
+
+A(B + C) = AB + AC.
+
+(2.6)
+
+It is also associative:
+
+A(BC) = (AB)C.
+
+(2.7)
+
+32
+
+LINEAR ALGEBRA
+
+Matrix multiplication is not commutative (the condition AB = BA does not
+
+always hold), unlike scalar multiplication. However, the dot product between two
+
+vectors is commutative:
+
+x y = y x.
+
+(2.8)
+
+The transpose of a matrix product has a simple form:
+
+(AB) = B A .
+
+(2.9)
+
+This enables us to demonstrate equation 2.8 by exploiting the fact that the value of such a product is a scalar and therefore equal to its own transpose:
+
+x y = x y = y x.
+
+(2.10)
+
+Since the focus of this textbook is not linear algebra, we do not attempt to develop a comprehensive list of useful properties of the matrix product here, but the reader should be aware that many more exist.
+
+We now know enough linear algebra notation to write down a system of linear
+
+equations:
+
+Ax = b
+
+(2.11)
+
+where A ∈ Rm×n is a known matrix, b ∈ Rm is a known vector, and x ∈ Rn is a vector of unknown variables we would like to solve for. Each element xi of x is one of these unknown variables. Each row of A and each element of b provide another constraint. We can rewrite equation 2.11 as
+
+A1,:x = b1
+
+(2.12)
+
+or even more explicitly as
+
+A2,:x = b2 ...
+Am,:x = bm
+
+(2.13) (2.14) (2.15)
+
+A1,1x1 + A1,2x2 + · · · + A1,nxn = b1 A2,1x1 + A2,2x2 + · · · + A2,nxn = b2
+... Am,1x1 + Am,2x2 + · · · + Am,nxn = bm.
+
+(2.16) (2.17) (2.18) (2.19)
+
+Matrix-vector product notation provides a more compact representation for equations of this form.
+33
+
+CHAPTER 2
+
+2.3 Identity and Inverse Matrices
+
+Linear algebra oﬀers a powerful tool called matrix inversion that enables us to analytically solve equation 2.11 for many values of A.
+
+To describe matrix inversion, we ﬁrst need to deﬁne the concept of an identity matrix. An identity matrix is a matrix that does not change any vector when we multiply that vector by that matrix. We denote the identity matrix that preserves n-dimensional vectors as In. Formally, In ∈ Rn×n, and
+
+∀x ∈ Rn, Inx = x.
+
+(2.20)
+
+The structure of the identity matrix is simple: all the entries along the main
+
+diagonal are 1, while all the other entries are zero. See ﬁgure 2.2 for an example.
+
+The matrix inverse of A is denoted as A−1, and it is deﬁned as the matrix
+
+such that
+
+A−1A = In.
+
+(2.21)
+
+We can now solve equation 2.11 using the following steps:
+
+Ax = b A−1Ax = A−1b
+Inx = A−1b x = A−1b.
+
+(2.22) (2.23) (2.24) (2.25)
+
+Of course, this process depends on it being possible to ﬁnd A−1. We discuss the conditions for the existence of A−1 in the following section.
+When A−1 exists, several diﬀerent algorithms can ﬁnd it in closed form. In theory, the same inverse matrix can then be used to solve the equation many times for diﬀerent values of b. A−1 is primarily useful as a theoretical tool, however, and should not actually be used in practice for most software applications. Because A−1 can be represented with only limited precision on a digital computer, algorithms that make use of the value of b can usually obtain more accurate estimates of x.
+
+1 0 0 0 1 0
+001
+Figure 2.2: Example identity matrix: This is I3.
+34
+
+LINEAR ALGEBRA
+
+2.4 Linear Dependence and Span
+
+For A−1 to exist, equation 2.11 must have exactly one solution for every value of
+
+b. It is also possible for the system of equations to have no solutions or inﬁnitely
+
+many solutions for some values of b. It is not possible, however, to have more than
+
+one but less than inﬁnitely many solutions for a particular b; if both x and y are
+
+solutions, then
+
+z = αx + (1 − α)y
+
+(2.26)
+
+is also a solution for any real α.
+To analyze how many solutions the equation has, think of the columns of A as specifying diﬀerent directions we can travel in from the origin (the point speciﬁed by the vector of all zeros), then determine how many ways there are of reaching b. In this view, each element of x speciﬁes how far we should travel in each of these directions, with xi specifying how far to move in the direction of column i:
+
+Ax = xiA:,i.
+i
+
+(2.27)
+
+In general, this kind of operation is called a linear combination. Formally, a linear combination of some set of vectors {v(1), . . . , v(n)} is given by multiplying each vector v(i) by a corresponding scalar coeﬃcient and adding the results:
+
+civ(i).
+i
+
+(2.28)
+
+The span of a set of vectors is the set of all points obtainable by linear combination of the original vectors.
+Determining whether Ax = b has a solution thus amounts to testing whether b is in the span of the columns of A. This particular span is known as the column space, or the range, of A.
+In order for the system Ax = b to have a solution for all values of b ∈ Rm, we therefore require that the column space of A be all of Rm. If any point in Rm is excluded from the column space, that point is a potential value of b that has no solution. The requirement that the column space of A be all of Rm implies immediately that A must have at least m columns, that is, n ≥ m. Otherwise, the dimensionality of the column space would be less than m. For example, consider a 3 × 2 matrix. The target b is 3-D, but x is only 2-D, so modifying the value of x at best enables us to trace out a 2-D plane within R3. The equation has a solution if and only if b lies on that plane.
+
+35
+
+CHAPTER 2
+
+Having n ≥ m is only a necessary condition for every point to have a solution. It is not a suﬃcient condition, because it is possible for some of the columns to be redundant. Consider a 2 × 2 matrix where both of the columns are identical. This has the same column space as a 2 × 1 matrix containing only one copy of the replicated column. In other words, the column space is still just a line and fails to encompass all of R2, even though there are two columns.
+Formally, this kind of redundancy is known as linear dependence. A set of vectors is linearly independent if no vector in the set is a linear combination of the other vectors. If we add a vector to a set that is a linear combination of the other vectors in the set, the new vector does not add any points to the set’s span. This means that for the column space of the matrix to encompass all of Rm, the matrix must contain at least one set of m linearly independent columns. This condition is both necessary and suﬃcient for equation 2.11 to have a solution for every value of b. Note that the requirement is for a set to have exactly m linear independent columns, not at least m. No set of m-dimensional vectors can have more than m mutually linearly independent columns, but a matrix with more than m columns may have more than one such set.
+For the matrix to have an inverse, we additionally need to ensure that equation 2.11 has at most one solution for each value of b. To do so, we need to make certain that the matrix has at most m columns. Otherwise there is more than one way of parametrizing each solution.
+Together, this means that the matrix must be square, that is, we require that m = n and that all the columns be linearly independent. A square matrix with linearly dependent columns is known as singular.
+If A is not square or is square but singular, solving the equation is still possible, but we cannot use the method of matrix inversion to ﬁnd the solution.
+So far we have discussed matrix inverses as being multiplied on the left. It is also possible to deﬁne an inverse that is multiplied on the right:
+
+AA−1 = I.
+
+(2.29)
+
+For square matrices, the left inverse and right inverse are equal.
+
+2.5 Norms
+Sometimes we need to measure the size of a vector. In machine learning, we usually measure the size of vectors using a function called a norm. Formally, the Lp norm
+36
+
+LINEAR ALGEBRA
+
+is given by
+
+||x||p =
+
+1 p
+|xi|p
+i
+
+(2.30)
+
+for p ∈ R, p ≥ 1.
+
+Norms, including the Lp norm, are functions mapping vectors to non-negative values. On an intuitive level, the norm of a vector x measures the distance from the origin to the point x. More rigorously, a norm is any function f that satisﬁes
+
+the following properties:
+
+• f (x) = 0 ⇒ x = 0
+
+• f (x + y) ≤ f (x) + f (y) (the triangle inequality)
+
+• ∀α ∈ R, f (αx) = |α|f (x)
+
+The L2 norm, with p = 2, is known as the Euclidean norm, which is simply the Euclidean distance from the origin to the point identiﬁed by x. The L2 norm
+is used so frequently in machine learning that it is often denoted simply as ||x||,
+with the subscript 2 omitted. It is also common to measure the size of a vector using the squared L2 norm, which can be calculated simply as x x.
+
+The squared L2 norm is more convenient to work with mathematically and computationally than the L2 norm itself. For example, each derivative of the squared L2 norm with respect to each element of x depends only on the corresponding element of x, while all the derivatives of the L2 norm depend on the entire vector. In many contexts, the squared L2 norm may be undesirable because it increases
+
+very slowly near the origin. In several machine learning applications, it is important
+
+to discriminate between elements that are exactly zero and elements that are small
+
+but nonzero. In these cases, we turn to a function that grows at the same rate in all locations, but that retains mathematical simplicity: the L1 norm. The L1 norm
+
+may be simpliﬁed to
+
+||x||1 = |xi|.
+
+(2.31)
+
+i
+
+The L1 norm is commonly used in machine learning when the diﬀerence between
+zero and nonzero elements is very important. Every time an element of x moves away from 0 by , the L1 norm increases by .
+
+We sometimes measure the size of the vector by counting its number of nonzero elements. Some authors refer to this function as the “L0 norm,” but this is incorrect
+terminology. The number of nonzero entries in a vector is not a norm, because
+
+37
+
+CHAPTER 2
+
+scaling the vector by α does not change the number of nonzero entries. The L1 norm is often used as a substitute for the number of nonzero entries.
+One other norm that commonly arises in machine learning is the L∞ norm, also known as the max norm. This norm simpliﬁes to the absolute value of the element with the largest magnitude in the vector,
+
+||x||∞ = max |xi|.
+i
+
+(2.32)
+
+Sometimes we may also wish to measure the size of a matrix. In the context
+
+of deep learning, the most common way to do this is with the otherwise obscure
+
+Frobenius norm:
+
+||A||F =
+
+A2i,j ,
+i,j
+
+(2.33)
+
+which is analogous to the L2 norm of a vector.
+
+The dot product of two vectors can be rewritten in terms of norms. Speciﬁcally,
+
+x y = ||x||2||y||2 cos θ,
+
+(2.34)
+
+where θ is the angle between x and y.
+
+2.6 Special Kinds of Matrices and Vectors
+Some special kinds of matrices and vectors are particularly useful.
+Diagonal matrices consist mostly of zeros and have nonzero entries only along the main diagonal. Formally, a matrix D is diagonal if and only if Di,j = 0 for all i = j. We have already seen one example of a diagonal matrix: the identity matrix, where all the diagonal entries are 1. We write diag(v) to denote a square diagonal matrix whose diagonal entries are given by the entries of the vector v. Diagonal matrices are of interest in part because multiplying by a diagonal matrix is computationally eﬃcient. To compute diag(v)x, we only need to scale each element xi by vi. In other words, diag(v)x = v x. Inverting a square diagonal matrix is also eﬃcient. The inverse exists only if every diagonal entry is nonzero, and in that case, diag(v)−1 = diag([1/v1, . . . , 1/vn] ). In many cases, we may derive some general machine learning algorithm in terms of arbitrary matrices but obtain a less expensive (and less descriptive) algorithm by restricting some matrices to be diagonal.
+Not all diagonal matrices need be square. It is possible to construct a rectangular diagonal matrix. Nonsquare diagonal matrices do not have inverses, but we can
+38
+
+LINEAR ALGEBRA
+
+still multiply by them cheaply. For a nonsquare diagonal matrix D, the product Dx will involve scaling each element of x and either concatenating some zeros to the result, if D is taller than it is wide, or discarding some of the last elements of the vector, if D is wider than it is tall.
+A symmetric matrix is any matrix that is equal to its own transpose:
+
+A=A .
+
+(2.35)
+
+Symmetric matrices often arise when the entries are generated by some function of two arguments that does not depend on the order of the arguments. For example, if A is a matrix of distance measurements, with Ai,j giving the distance from point i to point j, then Ai,j = Aj,i because distance functions are symmetric.
+A unit vector is a vector with unit norm:
+
+||x||2 = 1.
+
+(2.36)
+
+A vector x and a vector y are orthogonal to each other if x y = 0. If both vectors have nonzero norm, this means that they are at a 90 degree angle to each other. In Rn, at most n vectors may be mutually orthogonal with nonzero norm. If the vectors not only are orthogonal but also have unit norm, we call them orthonormal.
+An orthogonal matrix is a square matrix whose rows are mutually orthonormal and whose columns are mutually orthonormal:
+
+A A = AA = I.
+
+(2.37)
+
+This implies that
+
+A−1 = A ,
+
+(2.38)
+
+so orthogonal matrices are of interest because their inverse is very cheap to compute. Pay careful attention to the deﬁnition of orthogonal matrices. Counterintuitively, their rows are not merely orthogonal but fully orthonormal. There is no special term for a matrix whose rows or columns are orthogonal but not orthonormal.
+
+2.7 Eigendecomposition
+Many mathematical objects can be understood better by breaking them into constituent parts, or ﬁnding some properties of them that are universal, not caused by the way we choose to represent them.
+39
+
+CHAPTER 2
+
+For example, integers can be decomposed into prime factors. The way we represent the number 12 will change depending on whether we write it in base ten or in binary, but it will always be true that 12 = 2 × 2 × 3. From this representation we can conclude useful properties, for example, that 12 is not divisible by 5, and that any integer multiple of 12 will be divisible by 3.
+Much as we can discover something about the true nature of an integer by decomposing it into prime factors, we can also decompose matrices in ways that show us information about their functional properties that is not obvious from the representation of the matrix as an array of elements.
+One of the most widely used kinds of matrix decomposition is called eigendecomposition, in which we decompose a matrix into a set of eigenvectors and eigenvalues.
+An eigenvector of a square matrix A is a nonzero vector v such that multiplication by A alters only the scale of v:
+
+Av = λv.
+
+(2.39)
+
+The scalar λ is known as the eigenvalue corresponding to this eigenvector. (One can also ﬁnd a left eigenvector such that v A = λv , but we are usually concerned with right eigenvectors.)
+If v is an eigenvector of A, then so is any rescaled vector sv for s ∈ R, s = 0. Moreover, sv still has the same eigenvalue. For this reason, we usually look only for unit eigenvectors.
+Suppose that a matrix A has n linearly independent eigenvectors {v(1), . . . , v(n)} with corresponding eigenvalues {λ1, . . . , λn}. We may concatenate all the eigenvectors to form a matrix V with one eigenvector per column: V = [v(1), . . . , v(n)]. Likewise, we can concatenate the eigenvalues to form a vector λ = [λ1, . . . , λn] . The eigendecomposition of A is then given by
+
+A = V diag(λ)V −1.
+
+(2.40)
+
+We have seen that constructing matrices with speciﬁc eigenvalues and eigenvectors enables us to stretch space in desired directions. Yet we often want to decompose matrices into their eigenvalues and eigenvectors. Doing so can help us analyze certain properties of the matrix, much as decomposing an integer into its prime factors can help us understand the behavior of that integer.
+Not every matrix can be decomposed into eigenvalues and eigenvectors. In some cases, the decomposition exists but involves complex rather than real numbers.
+
+40
+
+LINEAR ALGEBRA
+
+Fortunately, in this book, we usually need to decompose only a speciﬁc class of
+
+matrices that have a simple decomposition. Speciﬁcally, every real symmetric
+
+matrix can be decomposed into an expression using only real-valued eigenvectors
+
+and eigenvalues:
+
+A = QΛQ ,
+
+(2.41)
+
+where Q is an orthogonal matrix composed of eigenvectors of A, and Λ is a diagonal matrix. The eigenvalue Λi,i is associated with the eigenvector in column i of Q, denoted as Q:,i. Because Q is an orthogonal matrix, we can think of A as scaling space by λi in direction v(i). See ﬁgure 2.3 for an example.
+While any real symmetric matrix A is guaranteed to have an eigendecomposition, the eigendecomposition may not be unique. If any two or more eigenvectors share the same eigenvalue, then any set of orthogonal vectors lying in their span are also eigenvectors with that eigenvalue, and we could equivalently choose a Q using those eigenvectors instead. By convention, we usually sort the entries of Λ in descending order. Under this convention, the eigendecomposition is unique only if all the eigenvalues are unique.
+
+3
+
+Before multiplication
+
+2
+
+3
+
+After multiplication
+
+2
+
+¸1 v(1)
+
+1
+
+v(1)
+
+1
+
+v(1)
+
+0
+
+0 v(2)
+
+¸2vv((22))
+
+−1
+
+−1
+
+−2
+
+−2
+
+−3−3 −2 −1 0
+
+1
+
+2
+
+3 −3−3 −2 −1 0
+
+1
+
+2
+
+3
+
+x0
+
+x00
+
+Figure 2.3: Eﬀect of eigenvectors and eigenvalues. An example of the eﬀect of eigenvectors and eigenvalues. Here, we have a matrix A with two orthonormal eigenvectors, v(1) with eigenvalue λ1 and v(2) with eigenvalue λ2. (Left)We plot the set of all unit vectors u ∈ R2
+as a unit circle. (Right)We plot the set of all points Au. By observing the way that A distorts the unit circle, we can see that it scales space in direction v(i) by λi.
+
+x1 x 01
+
+41
+
+CHAPTER 2
+
+The eigendecomposition of a matrix tells us many useful facts about the matrix. The matrix is singular if and only if any of the eigenvalues are zero. The eigendecomposition of a real symmetric matrix can also be used to optimize quadratic expressions of the form f (x) = x Ax subject to ||x||2 = 1. Whenever x is equal to an eigenvector of A, f takes on the value of the corresponding eigenvalue. The maximum value of f within the constraint region is the maximum eigenvalue and its minimum value within the constraint region is the minimum eigenvalue.
+A matrix whose eigenvalues are all positive is called positive deﬁnite. A matrix whose eigenvalues are all positive or zero valued is called positive semideﬁnite. Likewise, if all eigenvalues are negative, the matrix is negative deﬁnite, and if all eigenvalues are negative or zero valued, it is negative semideﬁnite. Positive semideﬁnite matrices are interesting because they guarantee that ∀x, x Ax ≥ 0. Positive deﬁnite matrices additionally guarantee that x Ax = 0 ⇒ x = 0.
+
+2.8 Singular Value Decomposition
+
+In section 2.7, we saw how to decompose a matrix into eigenvectors and eigenvalues. The singular value decomposition (SVD) provides another way to factorize a matrix, into singular vectors and singular values. The SVD enables us to discover some of the same kind of information as the eigendecomposition reveals; however, the SVD is more generally applicable. Every real matrix has a singular value decomposition, but the same is not true of the eigenvalue decomposition. For example, if a matrix is not square, the eigendecomposition is not deﬁned, and we must use a singular value decomposition instead.
+
+Recall that the eigendecomposition involves analyzing a matrix A to discover
+
+a matrix V of eigenvectors and a vector of eigenvalues λ such that we can rewrite
+
+A as
+
+A = V diag(λ)V −1.
+
+(2.42)
+
+The singular value decomposition is similar, except this time we will write A as a product of three matrices:
+
+A = UDV .
+
+(2.43)
+
+Suppose that A is an m × n matrix. Then U is deﬁned to be an m × m matrix, D to be an m × n matrix, and V to be an n × n matrix.
+
+42
+
+LINEAR ALGEBRA
+
+Each of these matrices is deﬁned to have a special structure. The matrices U and V are both deﬁned to be orthogonal matrices. The matrix D is deﬁned to be a diagonal matrix. Note that D is not necessarily square.
+The elements along the diagonal of D are known as the singular values of the matrix A. The columns of U are known as the left-singular vectors. The columns of V are known as as the right-singular vectors.
+We can actually interpret the singular value decomposition of A in terms of the eigendecomposition of functions of A. The left-singular vectors of A are the eigenvectors of AA . The right-singular vectors of A are the eigenvectors of A A. The nonzero singular values of A are the square roots of the eigenvalues of A A. The same is true for AA .
+Perhaps the most useful feature of the SVD is that we can use it to partially generalize matrix inversion to nonsquare matrices, as we will see in the next section.
+
+2.9 The Moore-Penrose Pseudoinverse
+
+Matrix inversion is not deﬁned for matrices that are not square. Suppose we want to make a left-inverse B of a matrix A so that we can solve a linear equation
+
+Ax = y
+
+(2.44)
+
+by left-multiplying each side to obtain
+
+x = By.
+
+(2.45)
+
+Depending on the structure of the problem, it may not be possible to design a unique mapping from A to B.
+If A is taller than it is wide, then it is possible for this equation to have no solution. If A is wider than it is tall, then there could be multiple possible solutions.
+The Moore-Penrose pseudoinverse enables us to make some headway in these cases. The pseudoinverse of A is deﬁned as a matrix
+
+A+ = lim (A A + αI)−1A .
+α0
+
+(2.46)
+
+Practical algorithms for computing the pseudoinverse are based not on this deﬁnition, but rather on the formula
+
+A+ = V D+U ,
+
+(2.47)
+
+43
+
+CHAPTER 2
+
+where U , D and V are the singular value decomposition of A, and the pseudoinverse D+ of a diagonal matrix D is obtained by taking the reciprocal of its nonzero elements then taking the transpose of the resulting matrix.
+When A has more columns than rows, then solving a linear equation using the pseudoinverse provides one of the many possible solutions. Speciﬁcally, it provides the solution x = A+y with minimal Euclidean norm ||x||2 among all possible solutions.
+When A has more rows than columns, it is possible for there to be no solution. In this case, using the pseudoinverse gives us the x for which Ax is as close as possible to y in terms of Euclidean norm ||Ax − y||2.
+
+2.10 The Trace Operator
+
+The trace operator gives the sum of all the diagonal entries of a matrix:
+
+Tr(A) = Ai,i.
+i
+
+(2.48)
+
+The trace operator is useful for a variety of reasons. Some operations that are diﬃcult to specify without resorting to summation notation can be speciﬁed using matrix products and the trace operator. For example, the trace operator provides an alternative way of writing the Frobenius norm of a matrix:
+
+||A||F = Tr(AA ).
+
+(2.49)
+
+Writing an expression in terms of the trace operator opens up opportunities to manipulate the expression using many useful identities. For example, the trace operator is invariant to the transpose operator:
+
+Tr(A) = Tr(A ).
+
+(2.50)
+
+The trace of a square matrix composed of many factors is also invariant to moving the last factor into the ﬁrst position, if the shapes of the corresponding matrices allow the resulting product to be deﬁned:
+
+Tr(ABC) = Tr(CAB) = Tr(BCA)
+
+(2.51)
+
+or more generally,
+
+n
+
+n−1
+
+Tr( F (i)) = Tr(F (n) F (i)).
+
+i=1
+
+i=1
+
+44
+
+(2.52)
+
+LINEAR ALGEBRA
+
+This invariance to cyclic permutation holds even if the resulting product has a diﬀerent shape. For example, for A ∈ Rm×n and B ∈ Rn×m, we have
+
+Tr(AB) = Tr(BA)
+
+(2.53)
+
+even though AB ∈ Rm×m and BA ∈ Rn×n. Another useful fact to keep in mind is that a scalar is its own trace: a = Tr(a).
+
+2.11 The Determinant
+The determinant of a square matrix, denoted det(A), is a function that maps matrices to real scalars. The determinant is equal to the product of all the eigenvalues of the matrix. The absolute value of the determinant can be thought of as a measure of how much multiplication by the matrix expands or contracts space. If the determinant is 0, then space is contracted completely along at least one dimension, causing it to lose all its volume. If the determinant is 1, then the transformation preserves volume.
+
+2.12 Example: Principal Components Analysis
+One simple machine learning algorithm, principal components analysis (PCA), can be derived using only knowledge of basic linear algebra.
+Suppose we have a collection of m points {x(1), . . . , x(m)} in Rn and we want to apply lossy compression to these points. Lossy compression means storing the points in a way that requires less memory but may lose some precision. We want to lose as little precision as possible.
+One way we can encode these points is to represent a lower-dimensional version of them. For each point x(i) ∈ Rn we will ﬁnd a corresponding code vector c(i) ∈ Rl. If l is smaller than n, storing the code points will take less memory than storing the original data. We will want to ﬁnd some encoding function that produces the code for an input, f (x) = c, and a decoding function that produces the reconstructed input given its code, x ≈ g(f (x)).
+PCA is deﬁned by our choice of the decoding function. Speciﬁcally, to make the decoder very simple, we choose to use matrix multiplication to map the code back into Rn. Let g(c) = Dc, where D ∈ Rn×l is the matrix deﬁning the decoding.
+45
+
+CHAPTER 2
+
+Computing the optimal code for this decoder could be a diﬃcult problem. To keep the encoding problem easy, PCA constrains the columns of D to be orthogonal to each other. (Note that D is still not technically “an orthogonal matrix” unless l = n.)
+With the problem as described so far, many solutions are possible, because we can increase the scale of D:,i if we decrease ci proportionally for all points. To give the problem a unique solution, we constrain all the columns of D to have unit norm.
+In order to turn this basic idea into an algorithm we can implement, the ﬁrst thing we need to do is ﬁgure out how to generate the optimal code point c∗ for each input point x. One way to do this is to minimize the distance between the input point x and its reconstruction, g(c∗). We can measure this distance using a norm. In the principal components algorithm, we use the L2 norm:
+
+c∗ = arg min ||x − g(c)||2.
+c
+
+(2.54)
+
+We can switch to the squared L2 norm instead of using the L2 norm itself because both are minimized by the same value of c. Both are minimized by the same value of c because the L2 norm is non-negative and the squaring operation is monotonically increasing for non-negative arguments.
+
+c∗ = arg min ||x − g(c)||22.
+c
+
+(2.55)
+
+The function being minimized simpliﬁes to
+
+(x − g(c)) (x − g(c))
+
+(2.56)
+
+(by the deﬁnition of the L2 norm, equation 2.30)
+
+= x x − x g(c) − g(c) x + g(c) g(c)
+
+(2.57)
+
+(by the distributive property)
+
+= x x − 2x g(c) + g(c) g(c)
+
+(2.58)
+
+(because the scalar g(c) x is equal to the transpose of itself).
+We can now change the function being minimized again, to omit the ﬁrst term, since this term does not depend on c:
+
+c∗ = arg min −2x g(c) + g(c) g(c).
+c
+46
+
+(2.59)
+
+LINEAR ALGEBRA
+
+To make further progress, we must substitute in the deﬁnition of g(c):
+
+c∗ = arg min −2x Dc + c D Dc
+c
+
+(2.60)
+
+= arg min −2x Dc + c Ilc
+c
+(by the orthogonality and unit norm constraints on D)
+
+(2.61)
+
+= arg min −2x Dc + c c.
+c
+
+(2.62)
+
+We can solve this optimization problem using vector calculus (see section 4.3 if you do not know how to do this):
+
+∇c(−2x Dc + c c) = 0 − 2D x + 2c = 0 c = D x.
+
+(2.63) (2.64) (2.65)
+
+This makes the algorithm eﬃcient: we can optimally encode x using just a matrix-vector operation. To encode a vector, we apply the encoder function
+
+f (x) = D x.
+
+(2.66)
+
+Using a further matrix multiplication, we can also deﬁne the PCA reconstruction
+
+operation:
+
+r(x) = g (f (x)) = DD x.
+
+(2.67)
+
+Next, we need to choose the encoding matrix D. To do so, we revisit the idea of minimizing the L2 distance between inputs and reconstructions. Since we will use the same matrix D to decode all the points, we can no longer consider the points in isolation. Instead, we must minimize the Frobenius norm of the matrix of errors computed over all dimensions and all points:
+
+D∗ = arg min
+D
+
+x(ji) − r(x(i))j
+
+2
+subject to D
+
+D = Il.
+
+i,j
+
+(2.68)
+
+To derive the algorithm for ﬁnding D∗, we start by considering the case where l = 1. In this case, D is just a single vector, d. Substituting equation 2.67 into equation 2.68 and simplifying D into d, the problem reduces to
+
+d∗ = arg min ||x(i) − dd x(i)||22 subject to ||d||2 = 1.
+
+d
+
+i
+
+47
+
+(2.69)
+
+CHAPTER 2
+
+The above formulation is the most direct way of performing the substitution but is not the most stylistically pleasing way to write the equation. It places the scalar value d x(i) on the right of the vector d. Scalar coeﬃcients are conventionally written on the left of vector they operate on. We therefore usually write such a formula as
+
+d∗ = arg min ||x(i) − d x(i)d||22 subject to ||d||2 = 1,
+
+d
+
+i
+
+or, exploiting the fact that a scalar is its own transpose, as
+
+(2.70)
+
+d∗ = arg min ||x(i) − x(i) dd||22 subject to ||d||2 = 1.
+
+d
+
+i
+
+(2.71)
+
+The reader should aim to become familiar with such cosmetic rearrangements.
+
+At this point, it can be helpful to rewrite the problem in terms of a single
+design matrix of examples, rather than as a sum over separate example vectors. This will enable us to use more compact notation. Let X ∈ Rm×n be the matrix deﬁned by stacking all the vectors describing the points, such that Xi,: = x(i) . We can now rewrite the problem as
+
+d∗ = arg min ||X − Xdd ||2F subject to d d = 1.
+d
+
+(2.72)
+
+Disregarding the constraint for the moment, we can simplify the Frobenius norm
+
+portion as follows:
+
+arg min ||X − Xdd ||2F
+d
+
+(2.73)
+
+= arg min Tr
+d
+(by equation 2.49)
+
+X − Xdd
+
+X − Xdd
+
+(2.74)
+
+= arg min Tr(X X − X Xdd − dd X X + dd X Xdd ) (2.75)
+d
+= arg min Tr(X X) − Tr(X Xdd ) − Tr(dd X X) + Tr(dd X Xdd )
+d
+(2.76) = arg min − Tr(X Xdd ) − Tr(dd X X) + Tr(dd X Xdd ) (2.77)
+d
+(because terms not involving d do not aﬀect the arg min)
+
+= arg min −2 Tr(X Xdd ) + Tr(dd X Xdd )
+d
+
+(2.78)
+
+48
+
+LINEAR ALGEBRA
+
+(because we can cycle the order of the matrices inside a trace, equation 2.52)
+
+= arg min −2 Tr(X Xdd ) + Tr(X Xdd dd )
+d
+(using the same property again). At this point, we reintroduce the constraint:
+
+(2.79)
+
+arg min −2 Tr(X Xdd ) + Tr(X Xdd dd ) subject to d d = 1 (2.80)
+d
+
+= arg min −2 Tr(X Xdd ) + Tr(X Xdd ) subject to d d = 1
+d
+(due to the constraint)
+
+(2.81)
+
+= arg min − Tr(X Xdd ) subject to d d = 1
+d
+
+(2.82)
+
+= arg max Tr(X Xdd ) subject to d d = 1
+d
+
+(2.83)
+
+= arg max Tr(d X Xd) subject to d d = 1.
+d
+
+(2.84)
+
+This optimization problem may be solved using eigendecomposition. Speciﬁcally, the optimal d is given by the eigenvector of X X corresponding to the largest eigenvalue.
+
+This derivation is speciﬁc to the case of l = 1 and recovers only the ﬁrst principal component. More generally, when we wish to recover a basis of principal components, the matrix D is given by the l eigenvectors corresponding to the largest eigenvalues. This may be shown using proof by induction. We recommend writing this proof as an exercise.
+Linear algebra is one of the fundamental mathematical disciplines necessary to understanding deep learning. Another key area of mathematics that is ubiquitous in machine learning is probability theory, presented next.
+
+49
+
+3
+Probability and Information Theory
+In this chapter, we describe probability theory and information theory. Probability theory is a mathematical framework for representing uncertain
+statements. It provides a means of quantifying uncertainty as well as axioms for deriving new uncertain statements. In artiﬁcial intelligence applications, we use probability theory in two major ways. First, the laws of probability tell us how AI systems should reason, so we design our algorithms to compute or approximate various expressions derived using probability theory. Second, we can use probability and statistics to theoretically analyze the behavior of proposed AI systems.
+Probability theory is a fundamental tool of many disciplines of science and engineering. We provide this chapter to ensure that readers whose background is primarily in software engineering, with limited exposure to probability theory, can understand the material in this book.
+While probability theory allows us to make uncertain statements and to reason in the presence of uncertainty, information theory enables us to quantify the amount of uncertainty in a probability distribution.
+If you are already familiar with probability theory and information theory, you may wish to skip this chapter except for section 3.14, which describes the graphs we use to describe structured probabilistic models for machine learning. If you have absolutely no prior experience with these subjects, this chapter should be suﬃcient to successfully carry out deep learning research projects, but we do suggest that you consult an additional resource, such as Jaynes (2003).
+
+CHAPTER 3
+3.1 Why Probability?
+Many branches of computer science deal mostly with entities that are entirely deterministic and certain. A programmer can usually safely assume that a CPU will execute each machine instruction ﬂawlessly. Errors in hardware do occur but are rare enough that most software applications do not need to be designed to account for them. Given that many computer scientists and software engineers work in a relatively clean and certain environment, it can be surprising that machine learning makes heavy use of probability theory.
+Machine learning must always deal with uncertain quantities and sometimes stochastic (nondeterministic) quantities. Uncertainty and stochasticity can arise from many sources. Researchers have made compelling arguments for quantifying uncertainty using probability since at least the 1980s. Many of the arguments presented here are summarized from or inspired by Pearl (1988).
+Nearly all activities require some ability to reason in the presence of uncertainty. In fact, beyond mathematical statements that are true by deﬁnition, it is diﬃcult to think of any proposition that is absolutely true or any event that is absolutely guaranteed to occur.
+There are three possible sources of uncertainty:
+1. Inherent stochasticity in the system being modeled. For example, most interpretations of quantum mechanics describe the dynamics of subatomic particles as being probabilistic. We can also create theoretical scenarios that we postulate to have random dynamics, such as a hypothetical card game where we assume that the cards are truly shuﬄed into a random order.
+2. Incomplete observability. Even deterministic systems can appear stochastic when we cannot observe all the variables that drive the behavior of the system. For example, in the Monty Hall problem, a game show contestant is asked to choose between three doors and wins a prize held behind the chosen door. Two doors lead to a goat while a third leads to a car. The outcome given the contestant’s choice is deterministic, but from the contestant’s point of view, the outcome is uncertain.
+3. Incomplete modeling. When we use a model that must discard some of the information we have observed, the discarded information results in uncertainty in the model’s predictions. For example, suppose we build a robot that can exactly observe the location of every object around it. If the robot discretizes space when predicting the future location of these objects,
+52
+
+PROBABILITY AND INFORMATION THEORY
+then the discretization makes the robot immediately become uncertain about the precise position of objects: each object could be anywhere within the discrete cell that it was observed to occupy.
+In many cases, it is more practical to use a simple but uncertain rule rather than a complex but certain one, even if the true rule is deterministic and our modeling system has the ﬁdelity to accommodate a complex rule. For example, the simple rule “Most birds ﬂy” is cheap to develop and is broadly useful, while a rule of the form, “Birds ﬂy, except for very young birds that have not yet learned to ﬂy, sick or injured birds that have lost the ability to ﬂy, ﬂightless species of birds including the cassowary, ostrich and kiwi. . . ” is expensive to develop, maintain and communicate and, after all this eﬀort, is still brittle and prone to failure.
+While it should be clear that we need a means of representing and reasoning about uncertainty, it is not immediately obvious that probability theory can provide all the tools we want for artiﬁcial intelligence applications. Probability theory was originally developed to analyze the frequencies of events. It is easy to see how probability theory can be used to study events like drawing a certain hand of cards in a poker game. These kinds of events are often repeatable. When we say that an outcome has a probability p of occurring, it means that if we repeated the experiment (e.g., drawing a hand of cards) inﬁnitely many times, then proportion p of the repetitions would result in that outcome. This kind of reasoning does not seem immediately applicable to propositions that are not repeatable. If a doctor analyzes a patient and says that the patient has a 40 percent chance of having the ﬂu, this means something very diﬀerent—we cannot make inﬁnitely many replicas of the patient, nor is there any reason to believe that diﬀerent replicas of the patient would present with the same symptoms yet have varying underlying conditions. In the case of the doctor diagnosing the patient, we use probability to represent a degree of belief, with 1 indicating absolute certainty that the patient has the ﬂu and 0 indicating absolute certainty that the patient does not have the ﬂu. The former kind of probability, related directly to the rates at which events occur, is known as frequentist probability, while the latter, related to qualitative levels of certainty, is known as Bayesian probability.
+If we list several properties that we expect common sense reasoning about uncertainty to have, then the only way to satisfy those properties is to treat Bayesian probabilities as behaving exactly the same as frequentist probabilities. For example, if we want to compute the probability that a player will win a poker game given that she has a certain set of cards, we use exactly the same formulas as when we compute the probability that a patient has a disease given that she
+53
+
+CHAPTER 3
+has certain symptoms. For more details about why a small set of common sense assumptions implies that the same axioms must control both kinds of probability, see Ramsey (1926).
+Probability can be seen as the extension of logic to deal with uncertainty. Logic provides a set of formal rules for determining what propositions are implied to be true or false given the assumption that some other set of propositions is true or false. Probability theory provides a set of formal rules for determining the likelihood of a proposition being true given the likelihood of other propositions.
+3.2 Random Variables
+A random variable is a variable that can take on diﬀerent values randomly. We typically denote the random variable itself with a lowercase letter in plain typeface, and the values it can take on with lowercase script letters. For example, x1 and x2 are both possible values that the random variable x can take on. For vector-valued variables, we would write the random variable as x and one of its values as x. On its own, a random variable is just a description of the states that are possible; it must be coupled with a probability distribution that speciﬁes how likely each of these states are.
+Random variables may be discrete or continuous. A discrete random variable is one that has a ﬁnite or countably inﬁnite number of states. Note that these states are not necessarily the integers; they can also just be named states that are not considered to have any numerical value. A continuous random variable is associated with a real value.
+3.3 Probability Distributions
+A probability distribution is a description of how likely a random variable or set of random variables is to take on each of its possible states. The way we describe probability distributions depends on whether the variables are discrete or continuous.
+3.3.1 Discrete Variables and Probability Mass Functions
+A probability distribution over discrete variables may be described using a probability mass function (PMF). We typically denote probability mass functions with a capital P . Often we associate each random variable with a diﬀerent probability
+54
+
+PROBABILITY AND INFORMATION THEORY
+
+mass function and the reader must infer which PMF to use based on the identity of the random variable, rather than on the name of the function; P (x) is usually not the same as P (y).
+The probability mass function maps from a state of a random variable to the probability of that random variable taking on that state. The probability that x = x is denoted as P (x), with a probability of 1 indicating that x = x is certain and a probability of 0 indicating that x = x is impossible. Sometimes to disambiguate which PMF to use, we write the name of the random variable explicitly: P (x = x). Sometimes we deﬁne a variable ﬁrst, then use ∼ notation to specify which distribution it follows later: x ∼ P (x).
+Probability mass functions can act on many variables at the same time. Such a probability distribution over many variables is known as a joint probability distribution. P (x = x, y = y) denotes the probability that x = x and y = y simultaneously. We may also write P (x, y) for brevity.
+To be a PMF on a random variable x, a function P must satisfy the following properties:
+
+• The domain of P must be the set of all possible states of x.
+• ∀x ∈ x, 0 ≤ P (x) ≤ 1. An impossible event has probability 0, and no state can be less probable than that. Likewise, an event that is guaranteed to happen has probability 1, and no state can have a greater chance of occurring.
+• x∈x P (x) = 1. We refer to this property as being normalized. Without this property, we could obtain probabilities greater than one by computing the probability of one of many events occurring.
+
+For example, consider a single discrete random variable x with k diﬀerent states. We can place a uniform distribution on x—that is, make each of its states equally likely—by setting its PMF to
+
+1 P (x = xi) = k
+
+(3.1)
+
+for all i. We can see that this ﬁts the requirements for a probability mass function.
+
+The
+
+value
+
+1 k
+
+is
+
+positive
+
+because
+
+k
+
+is
+
+a
+
+positive
+
+integer.
+
+We
+
+also
+
+see
+
+that
+
+1k
+
+P (x = xi) =
+
+= = 1, kk
+
+i
+
+i
+
+(3.2)
+
+so the distribution is properly normalized.
+
+55
+
+CHAPTER 3
+
+3.3.2 Continuous Variables and Probability Density Functions
+
+When working with continuous random variables, we describe probability distributions using a probability density function (PDF) rather than a probability mass function. To be a probability density function, a function p must satisfy the following properties:
+
+• The domain of p must be the set of all possible states of x. • ∀x ∈ x, p(x) ≥ 0. Note that we do not require p(x) ≤ 1. • p(x)dx = 1.
+
+A probability density function p(x) does not give the probability of a speciﬁc state directly; instead the probability of landing inside an inﬁnitesimal region with volume δx is given by p(x)δx.
+
+We can integrate the density function to ﬁnd the actual probability mass of a
+
+set of points. Speciﬁcally, the probability that x lies in some set S is given by the
+
+integral of p(x) over that set. In the univariate example, the probability that x lies
+
+in the interval [a, b] is given by [a,b] p(x)dx.
+
+For an example of a PDF corresponding to a speciﬁc probability density over
+
+a continuous random variable, consider a uniform distribution on an interval of
+
+the real numbers. We can do this with a function u(x; a, b), where a and b are the
+
+endpoints of the interval, with b > a. The “;” notation means “parametrized by”; we
+
+consider x to be the argument of the function, while a and b are parameters that
+
+deﬁne the function. To ensure that there is no probability mass outside the interval,
+
+we
+
+say
+
+u(x; a, b)
+
+=
+
+0
+
+for
+
+all
+
+x
+
+∈
+
+[a, b].
+
+Within
+
+[a, b],
+
+u(x; a, b)
+
+=
+
+1 b−a
+
+.
+
+We
+
+can
+
+see
+
+that this is non-negative everywhere. Additionally, it integrates to 1. We often
+
+denote that x follows the uniform distribution on [a, b] by writing x ∼ U (a, b).
+
+3.4 Marginal Probability
+
+Sometimes we know the probability distribution over a set of variables and we want to know the probability distribution over just a subset of them. The probability distribution over the subset is known as the marginal probability distribution.
+For example, suppose we have discrete random variables x and y, and we know P (x, y). We can ﬁnd P (x) with the sum rule:
+
+∀x ∈ x, P (x = x) = P (x = x, y = y).
+y
+
+(3.3)
+
+56
+
+PROBABILITY AND INFORMATION THEORY
+
+The name “marginal probability” comes from the process of computing marginal probabilities on paper. When the values of P (x, y) are written in a grid with diﬀerent values of x in rows and diﬀerent values of y in columns, it is natural to sum across a row of the grid, then write P (x) in the margin of the paper just to the right of the row.
+For continuous variables, we need to use integration instead of summation:
+
+p(x) = p(x, y)dy.
+
+(3.4)
+
+3.5 Conditional Probability
+
+In many cases, we are interested in the probability of some event, given that some other event has happened. This is called a conditional probability. We denote the conditional probability that y = y given x = x as P (y = y | x = x). This conditional probability can be computed with the formula
+
+P (y = y, x = x)
+
+P (y = y | x = x) =
+
+.
+
+P (x = x)
+
+(3.5)
+
+The conditional probability is only deﬁned when P (x = x) > 0. We cannot compute the conditional probability conditioned on an event that never happens.
+It is important not to confuse conditional probability with computing what would happen if some action were undertaken. The conditional probability that a person is from Germany given that they speak German is quite high, but if a randomly selected person is taught to speak German, their country of origin does not change. Computing the consequences of an action is called making an intervention query. Intervention queries are the domain of causal modeling, which we do not explore in this book.
+
+3.6 The Chain Rule of Conditional Probabilities
+
+Any joint probability distribution over many random variables may be decomposed into conditional distributions over only one variable:
+
+P (x(1), . . . , x(n)) = P (x(1))Πni=2P (x(i) | x(1), . . . , x(i−1)).
+
+(3.6)
+
+This observation is known as the chain rule, or product rule, of probability. It follows immediately from the deﬁnition of conditional probability in equation 3.5.
+57
+
+CHAPTER 3
+
+For example, applying the deﬁnition twice, we get
+P (a, b, c) = P (a | b, c)P (b, c) P (b, c) = P (b | c)P (c)
+P (a, b, c) = P (a | b, c)P (b | c)P (c).
+
+3.7 Independence and Conditional Independence
+Two random variables x and y are independent if their probability distribution can be expressed as a product of two factors, one involving only x and one involving only y:
+
+∀x ∈ x, y ∈ y, p(x = x, y = y) = p(x = x)p(y = y).
+
+(3.7)
+
+Two random variables x and y are conditionally independent given a random variable z if the conditional probability distribution over x and y factorizes in this way for every value of z:
+
+∀x ∈ x, y ∈ y, z ∈ z, p(x = x, y = y | z = z) = p(x = x | z = z)p(y = y | z = z). (3.8)
+We can denote independence and conditional independence with compact notation: x⊥y means that x and y are independent, while x⊥y | z means that x and y are conditionally independent given z.
+
+3.8 Expectation, Variance and Covariance
+
+The expectation, or expected value, of some function f (x) with respect to a probability distribution P (x) is the average, or mean value, that f takes on when x is drawn from P . For discrete variables this can be computed with a summation:
+
+Ex∼P [f (x)] = P (x)f (x),
+x
+while for continuous variables, it is computed with an integral:
+
+(3.9)
+
+Ex∼p[f (x)] = p(x)f (x)dx.
+
+(3.10)
+
+58
+
+PROBABILITY AND INFORMATION THEORY
+
+When the identity of the distribution is clear from the context, we may simply write the name of the random variable that the expectation is over, as in Ex[f (x)]. If it is clear which random variable the expectation is over, we may omit the subscript entirely, as in E[f (x)]. By default, we can assume that E[·] averages over the values of all the random variables inside the brackets. Likewise, when there is no ambiguity, we may omit the square brackets.
+Expectations are linear, for example,
+
+Ex[αf (x) + βg(x)] = αEx[f (x)] + βEx[g(x)],
+
+(3.11)
+
+when α and β are not dependent on x.
+The variance gives a measure of how much the values of a function of a random variable x vary as we sample diﬀerent values of x from its probability distribution:
+
+Var(f (x)) = E (f (x) − E[f (x)])2 .
+
+(3.12)
+
+When the variance is low, the values of f (x) cluster near their expected value. The square root of the variance is known as the standard deviation.
+The covariance gives some sense of how much two values are linearly related to each other, as well as the scale of these variables:
+
+Cov(f (x), g(y)) = E [(f (x) − E [f (x)]) (g(y) − E [g(y)])] .
+
+(3.13)
+
+High absolute values of the covariance mean that the values change very much and are both far from their respective means at the same time. If the sign of the covariance is positive, then both variables tend to take on relatively high values simultaneously. If the sign of the covariance is negative, then one variable tends to take on a relatively high value at the times that the other takes on a relatively low value and vice versa. Other measures such as correlation normalize the contribution of each variable in order to measure only how much the variables are related, rather than also being aﬀected by the scale of the separate variables.
+The notions of covariance and dependence are related but distinct concepts. They are related because two variables that are independent have zero covariance, and two variables that have nonzero covariance are dependent. Independence, however, is a distinct property from covariance. For two variables to have zero covariance, there must be no linear dependence between them. Independence is a stronger requirement than zero covariance, because independence also excludes nonlinear relationships. It is possible for two variables to be dependent but have zero covariance. For example, suppose we ﬁrst sample a real number x from a uniform distribution over the interval [−1, 1]. We next sample a random variable s.
+59
+
+CHAPTER 3
+
+With
+
+probability
+
+1 2
+
+,
+
+we
+
+choose
+
+the
+
+value
+
+of
+
+s
+
+to
+
+be
+
+1.
+
+Otherwise,
+
+we
+
+choose
+
+the
+
+value of s to be −1. We can then generate a random variable y by assigning
+
+y = sx. Clearly, x and y are not independent, because x completely determines
+
+the magnitude of y. However, Cov(x, y) = 0.
+
+The covariance matrix of a random vector x ∈ Rn is an n × n matrix, such
+
+that
+
+Cov(x)i,j = Cov(xi, xj).
+
+(3.14)
+
+The diagonal elements of the covariance give the variance:
+
+Cov(xi, xi) = Var(xi).
+
+(3.15)
+
+3.9 Common Probability Distributions
+Several simple probability distributions are useful in many contexts in machine learning.
+
+3.9.1 Bernoulli Distribution
+
+The Bernoulli distribution is a distribution over a single binary random variable. It is controlled by a single parameter φ ∈ [0, 1], which gives the probability of the random variable being equal to 1. It has the following properties:
+
+P (x = 1) = φ
+
+(3.16)
+
+P (x = 0) = 1 − φ P (x = x) = φx(1 − φ)1−x
+Ex[x] = φ Varx(x) = φ(1 − φ)
+
+(3.17) (3.18) (3.19) (3.20)
+
+3.9.2 Multinoulli Distribution
+The multinoulli, or categorical, distribution is a distribution over a single discrete variable with k diﬀerent states, where k is ﬁnite.1 The multinoulli distribution
+1 “Multinoulli” is a term that was recently coined by Gustavo Lacerdo and popularized by Murphy (2012). The multinoulli distribution is a special case of the multinomial distribution. A multinomial distribution is the distribution over vectors in {0, . . . , n}k representing how many times each of the k categories is visited when n samples are drawn from a multinoulli distribution. Many texts use the term “multinomial” to refer to multinoulli distributions without clarifying that they are referring only to the n = 1 case.
+60
+
+PROBABILITY AND INFORMATION THEORY
+
+is parametrized by a vector p ∈ [0, 1]k−1, where pi gives the probability of the i-th state. The ﬁnal, k-th state’s probability is given by 1 − 1 p. Note that we must constrain 1 p ≤ 1. Multinoulli distributions are often used to refer to distributions over categories of objects, so we do not usually assume that state 1 has numerical value 1, and so on. For this reason, we do not usually need to compute the expectation or variance of multinoulli-distributed random variables.
+The Bernoulli and multinoulli distributions are suﬃcient to describe any distribution over their domain. They are able to describe any distribution over their domain not so much because they are particularly powerful but rather because their domain is simple; they model discrete variables for which it is feasible to enumerate all the states. When dealing with continuous variables, there are uncountably many states, so any distribution described by a small number of parameters must impose strict limits on the distribution.
+
+3.9.3 Gaussian Distribution
+The most commonly used distribution over real numbers is the normal distribution, also known as the Gaussian distribution:
+
+N (x; µ, σ2) =
+
+1 2πσ2 exp
+
+−
+
+1 2σ2
+
+(x
+
+−
+
+µ)2
+
+.
+
+(3.21)
+
+See ﬁgure 3.1 for a plot of the normal distribution density function.
+The two parameters µ ∈ R and σ ∈ (0, ∞) control the normal distribution. The parameter µ gives the coordinate of the central peak. This is also the mean of the distribution: E[x] = µ. The standard deviation of the distribution is given by σ, and the variance by σ2.
+When we evaluate the PDF, we need to square and invert σ. When we need to frequently evaluate the PDF with diﬀerent parameter values, a more eﬃcient way of parametrizing the distribution is to use a parameter β ∈ (0, ∞) to control the precision, or inverse variance, of the distribution:
+
+N (x; µ, β−1) =
+
+β exp
+
+− 1 β(x − µ)2
+
+.
+
+2π
+
+2
+
+(3.22)
+
+Normal distributions are a sensible choice for many applications. In the absence of prior knowledge about what form a distribution over the real numbers should take, the normal distribution is a good default choice for two major reasons.
+
+61
+
+CHAPTER 3
+
+0.40
+
+0.35
+
+0.30
+
+Maximum at x = µ
+
+p(x)
+
+0.25
+
+Inﬂection points at
+
+0.20
+
+x=µ±σ
+
+0.15
+
+0.10
+
+0.05
+
+0.00 −2.0 −1.5 −1.0 −0.5 0.0 0.5 1.0 1.5 2.0
+Figure 3.1: The normal distribution. The normal xdistribution N (x; µ, σ2) exhibits a classic
+“bell curve” shape, with the x coordinate of its central peak given by µ, and the width of its peak controlled by σ. In this example, we depict the standard normal distribution, with µ = 0 and σ = 1.
+
+First, many distributions we wish to model are truly close to being normal distributions. The central limit theorem shows that the sum of many independent random variables is approximately normally distributed. This means that in practice, many complicated systems can be modeled successfully as normally distributed noise, even if the system can be decomposed into parts with more structured behavior.
+Second, out of all possible probability distributions with the same variance, the normal distribution encodes the maximum amount of uncertainty over the real numbers. We can thus think of the normal distribution as being the one that inserts the least amount of prior knowledge into a model. Fully developing and justifying this idea requires more mathematical tools and is postponed to section 19.4.2.
+The normal distribution generalizes to Rn, in which case it is known as the multivariate normal distribution. It may be parametrized with a positive deﬁnite symmetric matrix Σ:
+
+N (x; µ, Σ) =
+
+1 (2π)ndet(Σ) exp
+
+1 − (x − µ)
+
+Σ−1(x − µ)
+
+2
+
+.
+
+(3.23)
+
+The parameter µ still gives the mean of the distribution, though now it is vector valued. The parameter Σ gives the covariance matrix of the distribution.
+62
+
+PROBABILITY AND INFORMATION THEORY
+
+As in the univariate case, when we wish to evaluate the PDF several times for many diﬀerent values of the parameters, the covariance is not a computationally eﬃcient way to parametrize the distribution, since we need to invert Σ to evaluate the PDF. We can instead use a precision matrix β:
+
+N (x; µ, β−1) =
+
+det(β)
+
+1
+
+(2π)n exp
+
+− (x − µ) β(x − µ) 2
+
+.
+
+(3.24)
+
+We often ﬁx the covariance matrix to be a diagonal matrix. An even simpler version is the isotropic Gaussian distribution, whose covariance matrix is a scalar times the identity matrix.
+
+3.9.4 Exponential and Laplace Distributions
+
+In the context of deep learning, we often want to have a probability distribution
+
+with a sharp point at x = 0. To accomplish this, we can use the exponential
+
+distribution:
+
+p(x; λ) = λ1x≥0 exp (−λx) .
+
+(3.25)
+
+The exponential distribution uses the indicator function 1x≥0 to assign probability zero to all negative values of x.
+
+A closely related probability distribution that allows us to place a sharp peak of probability mass at an arbitrary point µ is the Laplace distribution
+
+1
+
+|x − µ|
+
+Laplace(x; µ, γ) = exp −
+
+.
+
+2γ
+
+γ
+
+(3.26)
+
+3.9.5 The Dirac Distribution and Empirical Distribution
+
+In some cases, we wish to specify that all the mass in a probability distribution clusters around a single point. This can be accomplished by deﬁning a PDF using the Dirac delta function, δ(x):
+
+p(x) = δ(x − µ).
+
+(3.27)
+
+The Dirac delta function is deﬁned such that it is zero valued everywhere except 0, yet integrates to 1. The Dirac delta function is not an ordinary function that associates each value x with a real-valued output; instead it is a diﬀerent kind of mathematical object called a generalized function that is deﬁned in terms of its properties when integrated. We can think of the Dirac delta function as being the
+63
+
+CHAPTER 3
+
+limit point of a series of functions that put less and less mass on all points other than zero.
+
+By deﬁning p(x) to be δ shifted by −µ we obtain an inﬁnitely narrow and inﬁnitely high peak of probability mass where x = µ.
+
+A common use of the Dirac delta distribution is as a component of an empirical
+
+distribution,
+
+1 pˆ(x) =
+
+m
+δ(x − x(i))
+
+m
+
+i=1
+
+(3.28)
+
+which
+
+puts
+
+probability
+
+mass
+
+1 m
+
+on
+
+each
+
+of
+
+the
+
+m
+
+points
+
+x(1), . . . , x(m),
+
+forming
+
+a given data set or collection of samples. The Dirac delta distribution is only
+
+necessary to deﬁne the empirical distribution over continuous variables. For discrete
+
+variables, the situation is simpler: an empirical distribution can be conceptualized
+
+as a multinoulli distribution, with a probability associated with each possible
+
+input value that is simply equal to the empirical frequency of that value in the
+
+training set.
+
+We can view the empirical distribution formed from a dataset of training examples as specifying the distribution that we sample from when we train a model on this dataset. Another important perspective on the empirical distribution is that it is the probability density that maximizes the likelihood of the training data (see section 5.5).
+
+3.9.6 Mixtures of Distributions
+
+It is also common to deﬁne probability distributions by combining other simpler probability distributions. One common way of combining distributions is to construct a mixture distribution. A mixture distribution is made up of several component distributions. On each trial, the choice of which component distribution should generate the sample is determined by sampling a component identity from a multinoulli distribution:
+
+P (x) = P (c = i)P (x | c = i),
+i
+
+(3.29)
+
+where P (c) is the multinoulli distribution over component identities.
+We have already seen one example of a mixture distribution: the empirical distribution over real-valued variables is a mixture distribution with one Dirac component for each training example.
+
+64
+
+PROBABILITY AND INFORMATION THEORY
+
+The mixture model is one simple strategy for combining probability distributions to create a richer distribution. In chapter 16, we explore the art of building complex probability distributions from simple ones in more detail.
+The mixture model allows us to brieﬂy glimpse a concept that will be of paramount importance later—the latent variable. A latent variable is a random variable that we cannot observe directly. The component identity variable c of the mixture model provides an example. Latent variables may be related to x through the joint distribution, in this case, P (x, c) = P (x | c)P (c). The distribution P (c) over the latent variable and the distribution P (x | c) relating the latent variables to the visible variables determines the shape of the distribution P (x), even though it is possible to describe P (x) without reference to the latent variable. Latent variables are discussed further in section 16.5.
+A very powerful and common type of mixture model is the Gaussian mixture model, in which the components p(x | c = i) are Gaussians. Each component has a separately parametrized mean µ(i) and covariance Σ(i). Some mixtures can have more constraints. For example, the covariances could be shared across components via the constraint Σ(i) = Σ, ∀i. As with a single Gaussian distribution, the mixture of Gaussians might constrain the covariance matrix for each component to be diagonal or isotropic.
+In addition to the means and covariances, the parameters of a Gaussian mixture specify the prior probability αi = P (c = i) given to each component i. The word “prior” indicates that it expresses the model’s beliefs about c before it has observed x. By comparison, P (c | x) is a posterior probability, because it is computed after observation of x. A Gaussian mixture model is a universal approximator of densities, in the sense that any smooth density can be approximated with any speciﬁc nonzero amount of error by a Gaussian mixture model with enough components.
+Figure 3.2 shows samples from a Gaussian mixture model.
+
+3.10 Useful Properties of Common Functions
+
+Certain functions arise often while working with probability distributions, especially the probability distributions used in deep learning models.
+
+One of these functions is the logistic sigmoid:
+
+1
+
+σ(x) =
+
+.
+
+1 + exp(−x)
+
+(3.30)
+
+65
+
+CHAPTER 3
+
+σ(x) x2
+
+x1
+Figure 3.2: Samples from a Gaussian mixture model. In this example, there are three components. From left to right, the ﬁrst component has an isotropic covariance matrix, meaning it has the same amount of variance in each direction. The second has a diagonal covariance matrix, meaning it can control the variance separately along each axis-aligned direction. This example has more variance along the x2 axis than along the x1 axis. The third component has a full-rank covariance matrix, enabling it to control the variance separately along an arbitrary basis of directions.
+
+1.0
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0.0
+
+−10
+
+−5
+
+0
+
+5
+
+10
+
+Figure 3.3: The logistic sigmoid function.
+
+The logistic sigmoid is commonly used to produce the φ parameter of a Bernoulli distribution because its range is (0, 1), which lies within the valid range of values for the φ parameter. See ﬁgure 3.3 for a graph of the sigmoid function. The sigmoid function saturates when its argument is very positive or very negative, meaning that the function becomes very ﬂat and insensitive to small changes in its input.
+
+Another commonly encountered function is the softplus function (Dugas
+
+et al., 2001):
+
+ζ(x) = log (1 + exp(x)) .
+
+(3.31)
+
+66
+
+PROBABILITY AND INFORMATION THEORY
+
+The softplus function can be useful for producing the β or σ parameter of a normal distribution because its range is (0, ∞). It also arises commonly when manipulating expressions involving sigmoids. The name of the softplus function comes from the fact that it is a smoothed, or “softened,” version of
+
+x+ = max(0, x).
+
+(3.32)
+
+See ﬁgure 3.4 for a graph of the softplus function.
+
+The following properties are all useful enough that you may wish to memorize
+
+them:
+
+exp(x) σ(x) =
+exp(x) + exp(0)
+
+(3.33)
+
+d σ(x) = σ(x)(1 − σ(x))
+dx 1 − σ(x) = σ(−x)
+
+(3.34) (3.35)
+
+log σ(x) = −ζ(−x)
+
+(3.36)
+
+d ζ(x) = σ(x)
+dx ∀x ∈ (0, 1), σ−1(x) = log x
+1−x
+∀x > 0, ζ−1(x) = log (exp(x) − 1)
+x
+ζ(x) = σ(y)dy
+−∞
+ζ(x) − ζ(−x) = x
+
+(3.37) (3.38) (3.39) (3.40) (3.41)
+
+ζ(x)
+
+10
+
+8
+
+6
+
+4
+
+2
+
+0
+
+−10
+
+−5
+
+0
+
+5
+
+10
+
+Figure 3.4: The softplus function.
+
+67
+
+CHAPTER 3
+
+The function σ−1(x) is called the logit in statistics, but this term is rarely used in machine learning.
+Equation 3.41 provides extra justiﬁcation for the name “softplus.” The softplus function is intended as a smoothed version of the positive part function, x+ = max{0, x}. The positive part function is the counterpart of the negative part function, x− = max{0, −x}. To obtain a smooth function that is analogous to the negative part, one can use ζ(−x). Just as x can be recovered from its positive part and its negative part via the identity x+ − x− = x, it is also possible to recover x using the same relationship between ζ(x) and ζ(−x), as shown in equation 3.41.
+
+3.11 Bayes’ Rule
+
+We often ﬁnd ourselves in a situation where we know P (y | x) and need to know
+
+P (x | y). Fortunately, if we also know P (x), we can compute the desired quantity
+
+using Bayes’ rule:
+
+P (x)P (y | x)
+
+P (x | y) =
+
+.
+
+P (y)
+
+(3.42)
+
+Note that while P (y) appears in the formula, it is usually feasible to compute P (y) = x P (y | x)P (x), so we do not need to begin with knowledge of P (y).
+Bayes’ rule is straightforward to derive from the deﬁnition of conditional probability, but it is useful to know the name of this formula since many texts refer to it by name. It is named after the Reverend Thomas Bayes, who ﬁrst discovered a special case of the formula. The general version presented here was independently discovered by Pierre-Simon Laplace.
+
+3.12 Technical Details of Continuous Variables
+A proper formal understanding of continuous random variables and probability density functions requires developing probability theory in terms of a branch of mathematics known as measure theory. Measure theory is beyond the scope of this textbook, but we can brieﬂy sketch some of the issues that measure theory is employed to resolve.
+In section 3.3.2, we saw that the probability of a continuous vector-valued x lying in some set S is given by the integral of p(x) over the set S. Some choices of set S can produce paradoxes. For example, it is possible to construct two sets S1 and S2 such that p(x ∈ S1) + p(x ∈ S2) > 1 but S1 ∩ S2 = ∅. These sets are generally constructed making very heavy use of the inﬁnite precision of real numbers, for
+68
+
+PROBABILITY AND INFORMATION THEORY
+
+example by making fractal-shaped sets or sets that are deﬁned by transforming the set of rational numbers.2 One of the key contributions of measure theory is to provide a characterization of the set of sets we can compute the probability of without encountering paradoxes. In this book, we integrate only over sets with relatively simple descriptions, so this aspect of measure theory never becomes a relevant concern.
+
+For our purposes, measure theory is more useful for describing theorems that apply to most points in Rn but do not apply to some corner cases. Measure theory provides a rigorous way of describing that a set of points is negligibly small. Such a set is said to have measure zero. We do not formally deﬁne this concept in this textbook. For our purposes, it is suﬃcient to understand the intuition that a set of measure zero occupies no volume in the space we are measuring. For example, within R2, a line has measure zero, while a ﬁlled polygon has positive measure. Likewise, an individual point has measure zero. Any union of countably many sets that each have measure zero also has measure zero (so the set of all the rational numbers has measure zero, for instance).
+
+Another useful term from measure theory is almost everywhere. A property that holds almost everywhere holds throughout all space except for on a set of measure zero. Because the exceptions occupy a negligible amount of space, they can be safely ignored for many applications. Some important results in probability theory hold for all discrete values but hold “almost everywhere” only for continuous values.
+
+Another technical detail of continuous variables relates to handling continuous random variables that are deterministic functions of one another. Suppose we have two random variables, x and y, such that y = g(x), where g is an invertible, continuous, diﬀerentiable transformation. One might expect that py(y) = px(g−1(y)). This is actually not the case.
+
+As a simple example, suppose we have scalar random variables x and y.
+
+Suppose
+
+y
+
+=
+
+x 2
+
+and
+
+x
+
+∼
+
+U (0, 1).
+
+If
+
+we
+
+use
+
+the
+
+rule
+
+py (y)
+
+=
+
+px(2y)
+
+then
+
+py
+
+will
+
+be
+
+0
+
+everywhere
+
+except
+
+the
+
+interval
+
+[0,
+
+1 2
+
+],
+
+and
+
+it
+
+will
+
+be
+
+1
+
+on
+
+this
+
+interval.
+
+This
+
+means
+
+1
+
+py (y)dy
+
+=
+
+, 2
+
+(3.43)
+
+which violates the deﬁnition of a probability distribution. This is a common mistake. The problem with this approach is that it fails to account for the distortion of space introduced by the function g. Recall that the probability of x lying in an inﬁnitesimally small region with volume δx is given by p(x)δx. Since g can expand
+
+2The Banach-Tarski theorem provides a fun example of such sets.
+
+69
+
+CHAPTER 3
+
+or contract space, the inﬁnitesimal volume surrounding x in x space may have diﬀerent volume in y space.
+
+To see how to correct the problem, we return to the scalar case. We need to
+
+preserve the property
+
+|py(g(x))dy| = |px(x)dx|.
+
+(3.44)
+
+Solving from this, we obtain
+
+py(y) = px(g−1(y))
+
+∂x ∂y
+
+(3.45)
+
+or equivalently
+
+∂g(x) px(x) = py(g(x)) ∂x .
+
+(3.46)
+
+In higher dimensions, the derivative generalizes to the determinant of the Jacobian
+
+matrix—the
+
+matrix
+
+with
+
+Ji,j
+
+=
+
+∂xi ∂yj
+
+.
+
+Thus,
+
+for
+
+real-valued
+
+vectors
+
+x
+
+and
+
+y,
+
+∂g(x) px(x) = py(g(x)) det ∂x .
+
+(3.47)
+
+3.13 Information Theory
+Information theory is a branch of applied mathematics that revolves around quantifying how much information is present in a signal. It was originally invented to study sending messages from discrete alphabets over a noisy channel, such as communication via radio transmission. In this context, information theory tells how to design optimal codes and calculate the expected length of messages sampled from speciﬁc probability distributions using various encoding schemes. In the context of machine learning, we can also apply information theory to continuous variables where some of these message length interpretations do not apply. This ﬁeld is fundamental to many areas of electrical engineering and computer science. In this textbook, we mostly use a few key ideas from information theory to characterize probability distributions or to quantify similarity between probability distributions. For more detail on information theory, see Cover and Thomas (2006) or MacKay (2003).
+The basic intuition behind information theory is that learning that an unlikely event has occurred is more informative than learning that a likely event has occurred. A message saying “the sun rose this morning” is so uninformative as to be unnecessary to send, but a message saying “there was a solar eclipse this morning” is very informative.
+70
+
+PROBABILITY AND INFORMATION THEORY
+
+We would like to quantify information in a way that formalizes this intuition.
+
+• Likely events should have low information content, and in the extreme case, events that are guaranteed to happen should have no information content whatsoever.
+• Less likely events should have higher information content.
+• Independent events should have additive information. For example, ﬁnding out that a tossed coin has come up as heads twice should convey twice as much information as ﬁnding out that a tossed coin has come up as heads once.
+
+To satisfy all three of these properties, we deﬁne the self-information of an
+
+event x = x to be
+
+I(x) = − log P (x).
+
+(3.48)
+
+In this book, we always use log to mean the natural logarithm, with base e. Our
+
+deﬁnition of I(x) is therefore written in units of nats. One nat is the amount of
+
+information
+
+gained
+
+by
+
+observing
+
+an
+
+event
+
+of
+
+probability
+
+1 e
+
+.
+
+Other
+
+texts
+
+use
+
+base-2
+
+logarithms and units called bits or shannons; information measured in bits is
+
+just a rescaling of information measured in nats.
+
+When x is continuous, we use the same deﬁnition of information by analogy, but some of the properties from the discrete case are lost. For example, an event with unit density still has zero information, despite not being an event that is guaranteed to occur.
+
+Self-information deals only with a single outcome. We can quantify the amount of uncertainty in an entire probability distribution using the Shannon entropy,
+
+H(x) = Ex∼P [I(x)] = −Ex∼P [log P (x)],
+
+(3.49)
+
+also denoted H(P ). In other words, the Shannon entropy of a distribution is the expected amount of information in an event drawn from that distribution. It gives a lower bound on the number of bits (if the logarithm is base 2, otherwise the units are diﬀerent) needed on average to encode symbols drawn from a distribution P . Distributions that are nearly deterministic (where the outcome is nearly certain) have low entropy; distributions that are closer to uniform have high entropy. See ﬁgure 3.5 for a demonstration. When x is continuous, the Shannon entropy is known as the diﬀerential entropy.
+If we have two separate probability distributions P (x) and Q(x) over the same random variable x, we can measure how diﬀerent these two distributions are using
+
+71
+
+CHAPTER 3
+
+0.7
+
+Shannon entropy in nats
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+0.0
+
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+Figure 3.5: Shannon entropy of a binary randompvariable. This plot shows how distributions
+
+that are closer to deterministic have low Shannon entropy while distributions that are close
+
+to uniform have high Shannon entropy. On the horizontal axis, we plot p, the probability of
+
+a binary random variable being equal to 1. The entropy is given by (p−1) log(1−p)−p log p.
+
+When p is near 0, the distribution is nearly deterministic, because the random variable is
+
+nearly always 0. When p is near 1, the distribution is nearly deterministic, because the
+
+random variable is nearly always 1. When p = 0.5, the entropy is maximal, because the
+
+distribution is uniform over the two outcomes.
+
+the Kullback-Leibler (KL) divergence:
+
+P (x)
+
+DKL(P Q) = Ex∼P
+
+log Q(x)
+
+= Ex∼P [log P (x) − log Q(x)] .
+
+(3.50)
+
+In the case of discrete variables, it is the extra amount of information (measured in bits if we use the base-2 logarithm, but in machine learning we usually use nats and the natural logarithm) needed to send a message containing symbols drawn from probability distribution P , when we use a code that was designed to minimize the length of messages drawn from probability distribution Q.
+The KL divergence has many useful properties, most notably being nonnegative. The KL divergence is 0 if and only if P and Q are the same distribution in the case of discrete variables, or equal “almost everywhere” in the case of continuous variables. Because the KL divergence is non-negative and measures the diﬀerence between two distributions, it is often conceptualized as measuring some sort of distance between these distributions. It is not a true distance measure because it is not symmetric: DKL(P Q) = DKL(Q P ) for some P and Q. This asymmetry means that there are important consequences to the choice of whether to use DKL(P Q) or DKL(Q P ). See ﬁgure 3.6 for more detail.
+72
+
+PROBABILITY AND INFORMATION THEORY
+
+q∗ = argminqDKL(p q)
+p(x) q∗(x)
+
+q∗ = argminqDKL(q p)
+p(x) q∗(x)
+
+Probability Density Probability Density
+
+x
+
+x
+
+Figure 3.6: The KL divergence is asymmetric. Suppose we have a distribution p(x) and wish to approximate it with another distribution q(x). We have the choice of minimizing either DKL(p q) or DKL(q p). We illustrate the eﬀect of this choice using a mixture of two Gaussians for p, and a single Gaussian for q. The choice of which direction of the KL divergence to use is problem dependent. Some applications require an approximation that usually places high probability anywhere that the true distribution places high probability, while other applications require an approximation that rarely places high probability anywhere that the true distribution places low probability. The choice of the direction of the KL divergence reﬂects which of these considerations takes priority for each application. (Left)The eﬀect of minimizing DKL(p q). In this case, we select a q that has high probability where p has high probability. When p has multiple modes, q chooses to blur the modes together, in order to put high probability mass on all of them. (Right)The eﬀect of minimizing DKL(q p). In this case, we select a q that has low probability where p has low probability. When p has multiple modes that are suﬃciently widely separated, as in this ﬁgure, the KL divergence is minimized by choosing a single mode, to avoid putting probability mass in the low-probability areas between modes of p. Here, we illustrate the outcome when q is chosen to emphasize the left mode. We could also have achieved an equal value of the KL divergence by choosing the right mode. If the modes are not separated by a suﬃciently strong low-probability region, then this direction of the KL divergence can still choose to blur the modes.
+
+A quantity that is closely related to the KL divergence is the cross-entropy
+
+H(P, Q) = H(P ) + DKL(P Q), which is similar to the KL divergence but lacking
+
+the term on the left:
+
+H(P, Q) = −Ex∼P log Q(x).
+
+(3.51)
+
+Minimizing the cross-entropy with respect to Q is equivalent to minimizing the KL divergence, because Q does not participate in the omitted term.
+
+When computing many of these quantities, it is common to encounter expressions of the form 0 log 0. By convention, in the context of information theory, we treat these expressions as limx→0 x log x = 0.
+
+73
+
+CHAPTER 3
+
+3.14 Structured Probabilistic Models
+
+Machine learning algorithms often involve probability distributions over a very large number of random variables. Often, these probability distributions involve direct interactions between relatively few variables. Using a single function to describe the entire joint probability distribution can be very ineﬃcient (both computationally and statistically).
+Instead of using a single function to represent a probability distribution, we can split a probability distribution into many factors that we multiply together. For example, suppose we have three random variables: a, b and c. Suppose that a inﬂuences the value of b, and b inﬂuences the value of c, but that a and c are independent given b. We can represent the probability distribution over all three variables as a product of probability distributions over two variables:
+
+p(a, b, c) = p(a)p(b | a)p(c | b).
+
+(3.52)
+
+These factorizations can greatly reduce the number of parameters needed to describe the distribution. Each factor uses a number of parameters that is exponential in the number of variables in the factor. This means that we can greatly reduce the cost of representing a distribution if we are able to ﬁnd a factorization into distributions over fewer variables.
+We can describe these kinds of factorizations using graphs. Here, we use the word “graph” in the sense of graph theory: a set of vertices that may be connected to each other with edges. When we represent the factorization of a probability distribution with a graph, we call it a structured probabilistic model, or graphical model.
+There are two main kinds of structured probabilistic models: directed and undirected. Both kinds of graphical models use a graph G in which each node in the graph corresponds to a random variable, and an edge connecting two random variables means that the probability distribution is able to represent direct interactions between those two random variables.
+Directed models use graphs with directed edges, and they represent factorizations into conditional probability distributions, as in the example above. Speciﬁcally, a directed model contains one factor for every random variable xi in the distribution, and that factor consists of the conditional distribution over xi given the parents of xi, denoted P aG(xi):
+
+p(x) = p (xi | P aG(xi)) .
+i
+74
+
+(3.53)
+
+PROBABILITY AND INFORMATION THEORY
+
+a
+
+b
+
+c
+
+d
+
+e
+
+Figure 3.7: A directed graphical model over random variables a, b, c, d and e. This graph corresponds to probability distributions that can be factored as
+
+p(a, b, c, d, e) = p(a)p(b | a)p(c | a, b)p(d | b)p(e | c).
+
+(3.54)
+
+This graphical model enables us to quickly see some properties of the distribution. For example, a and c interact directly, but a and e interact only indirectly via c.
+
+See ﬁgure 3.7 for an example of a directed graph and the factorization of probability distributions it represents.
+Undirected models use graphs with undirected edges, and they represent factorizations into a set of functions; unlike in the directed case, these functions are usually not probability distributions of any kind. Any set of nodes that are all connected to each other in G is called a clique. Each clique C(i) in an undirected model is associated with a factor φ(i)(C(i)). These factors are just functions, not probability distributions. The output of each factor must be non-negative, but there is no constraint that the factor must sum or integrate to 1 like a probability distribution.
+The probability of a conﬁguration of random variables is proportional to the product of all these factors—assignments that result in larger factor values are more likely. Of course, there is no guarantee that this product will sum to 1. We therefore divide by a normalizing constant Z, deﬁned to be the sum or integral over all states of the product of the φ functions, in order to obtain a normalized probability distribution:
+
+1 p(x) =
+
+φ(i) C(i) .
+
+Z
+
+i
+
+(3.55)
+
+See ﬁgure 3.8 for an example of an undirected graph and the factorization of probability distributions it represents.
+
+75
+
+CHAPTER 3
+
+a
+
+b
+
+c
+
+d
+
+e
+
+Figure 3.8: An undirected graphical model over random variables a, b, c, d and e. This graph corresponds to probability distributions that can be factored as
+
+p(a, b, c, d, e) = 1 φ(1)(a, b, c)φ(2)(b, d)φ(3)(c, e). Z
+
+(3.56)
+
+This graphical model enables us to quickly see some properties of the distribution. For example, a and c interact directly, but a and e interact only indirectly via c.
+
+Keep in mind that these graphical representations of factorizations are a language for describing probability distributions. They are not mutually exclusive families of probability distributions. Being directed or undirected is not a property of a probability distribution; it is a property of a particular description of a probability distribution, but any probability distribution may be described in both ways.
+Throughout parts I and II of this book, we use structured probabilistic models merely as a language to describe which direct probabilistic relationships diﬀerent machine learning algorithms choose to represent. No further understanding of structured probabilistic models is needed until the discussion of research topics, in part III, where we explore structured probabilistic models in much greater detail.
+This chapter has reviewed the basic concepts of probability theory that are most relevant to deep learning. One more set of fundamental mathematical tools remains: numerical methods.
+
+76
+
+4
+Numerical Computation
+Machine learning algorithms usually require a high amount of numerical computation. This typically refers to algorithms that solve mathematical problems by methods that update estimates of the solution via an iterative process, rather than analytically deriving a formula to provide a symbolic expression for the correct solution. Common operations include optimization (ﬁnding the value of an argument that minimizes or maximizes a function) and solving systems of linear equations. Even just evaluating a mathematical function on a digital computer can be diﬃcult when the function involves real numbers, which cannot be represented precisely using a ﬁnite amount of memory.
+4.1 Overﬂow and Underﬂow
+The fundamental diﬃculty in performing continuous math on a digital computer is that we need to represent inﬁnitely many real numbers with a ﬁnite number of bit patterns. This means that for almost all real numbers, we incur some approximation error when we represent the number in the computer. In many cases, this is just rounding error. Rounding error is problematic, especially when it compounds across many operations, and can cause algorithms that work in theory to fail in practice if they are not designed to minimize the accumulation of rounding error.
+One form of rounding error that is particularly devastating is underﬂow. Underﬂow occurs when numbers near zero are rounded to zero. Many functions behave qualitatively diﬀerently when their argument is zero rather than a small positive number. For example, we usually want to avoid division by zero (some software environments will raise exceptions when this occurs, others will return a
+
+CHAPTER 4
+
+result with a placeholder not-a-number value) or taking the logarithm of zero (this is usually treated as −∞, which then becomes not-a-number if it is used for many further arithmetic operations).
+
+Another highly damaging form of numerical error is overﬂow. Overﬂow occurs when numbers with large magnitude are approximated as ∞ or −∞. Further arithmetic will usually change these inﬁnite values into not-a-number values.
+
+One example of a function that must be stabilized against underﬂow and
+
+overﬂow is the softmax function. The softmax function is often used to predict
+
+the probabilities associated with a multinoulli distribution. The softmax function
+
+is deﬁned to be
+
+softmax(x)i =
+
+exp(xi)
+
+n j=1
+
+exp(xj
+
+)
+
+.
+
+(4.1)
+
+Consider what happens when all the xi are equal to some constant c. Analytically,
+
+we
+
+can
+
+see
+
+that
+
+all
+
+the
+
+outputs
+
+should
+
+be
+
+equal
+
+to
+
+1 n
+
+.
+
+Numerically,
+
+this
+
+may
+
+not
+
+occur when c has large magnitude. If c is very negative, then exp(c) will underﬂow.
+
+This means the denominator of the softmax will become 0, so the ﬁnal result is
+
+undeﬁned. When c is very large and positive, exp(c) will overﬂow, again resulting in
+
+the expression as a whole being undeﬁned. Both of these diﬃculties can be resolved
+
+by instead evaluating softmax(z) where z = x − maxi xi. Simple algebra shows
+
+that the value of the softmax function is not changed analytically by adding or
+
+subtracting a scalar from the input vector. Subtracting maxi xi results in the largest
+
+argument to exp being 0, which rules out the possibility of overﬂow. Likewise, at
+
+least one term in the denominator has a value of 1, which rules out the possibility
+
+of underﬂow in the denominator leading to a division by zero.
+
+There is still one small problem. Underﬂow in the numerator can still cause the expression as a whole to evaluate to zero. This means that if we implement log softmax(x) by ﬁrst running the softmax subroutine then passing the result to the log function, we could erroneously obtain −∞. Instead, we must implement a separate function that calculates log softmax in a numerically stable way. The log softmax function can be stabilized using the same trick as we used to stabilize the softmax function.
+
+For the most part, we do not explicitly detail all the numerical considerations involved in implementing the various algorithms described in this book. Developers of low-level libraries should keep numerical issues in mind when implementing deep learning algorithms. Most readers of this book can simply rely on lowlevel libraries that provide stable implementations. In some cases, it is possible to implement a new algorithm and have the new implementation automatically stabilized. Theano (Bergstra et al., 2010; Bastien et al., 2012) is an example
+
+78
+
+NUMERICAL COMPUTATION
+
+of a software package that automatically detects and stabilizes many common numerically unstable expressions that arise in the context of deep learning.
+
+4.2 Poor Conditioning
+
+Conditioning refers to how rapidly a function changes with respect to small changes in its inputs. Functions that change rapidly when their inputs are perturbed slightly can be problematic for scientiﬁc computation because rounding errors in the inputs can result in large changes in the output.
+Consider the function f (x) = A−1x. When A ∈ Rn×n has an eigenvalue decomposition, its condition number is
+
+max λi . i,j λj
+
+(4.2)
+
+This is the ratio of the magnitude of the largest and smallest eigenvalue. When this number is large, matrix inversion is particularly sensitive to error in the input.
+
+This sensitivity is an intrinsic property of the matrix itself, not the result of rounding error during matrix inversion. Poorly conditioned matrices amplify pre-existing errors when we multiply by the true matrix inverse. In practice, the error will be compounded further by numerical errors in the inversion process itself.
+
+4.3 Gradient-Based Optimization
+Most deep learning algorithms involve optimization of some sort. Optimization refers to the task of either minimizing or maximizing some function f (x) by altering x. We usually phrase most optimization problems in terms of minimizing f (x). Maximization may be accomplished via a minimization algorithm by minimizing −f (x).
+The function we want to minimize or maximize is called the objective function, or criterion. When we are minimizing it, we may also call it the cost function, loss function, or error function. In this book, we use these terms interchangeably, though some machine learning publications assign special meaning to some of these terms.
+We often denote the value that minimizes or maximizes a function with a superscript ∗. For example, we might say x∗ = arg min f (x).
+We assume the reader is already familiar with calculus but provide a brief review of how calculus concepts relate to optimization here.
+79
+
+CHAPTER 4
+
+Suppose we have a function y = f (x), where both x and y are real numbers.
+
+The
+
+derivative
+
+of
+
+this
+
+function
+
+is
+
+denoted
+
+as
+
+f
+
+(x)
+
+or
+
+as
+
+dy dx
+
+.
+
+The
+
+derivative
+
+f
+
+(x)
+
+gives the slope of f (x) at the point x. In other words, it speciﬁes how to scale
+
+a small change in the input to obtain the corresponding change in the output:
+
+f (x + ) ≈ f (x) + f (x).
+
+The derivative is therefore useful for minimizing a function because it tells us how to change x in order to make a small improvement in y. For example, we know that f (x − sign(f (x))) is less than f (x) for small enough . We can thus reduce f (x) by moving x in small steps with the opposite sign of the derivative. This technique is called gradient descent (Cauchy, 1847). See ﬁgure 4.1 for an example of this technique.
+
+When f (x) = 0, the derivative provides no information about which direction to move. Points where f (x) = 0 are known as critical points, or stationary points. A local minimum is a point where f (x) is lower than at all neighboring points, so it is no longer possible to decrease f (x) by making inﬁnitesimal steps. A local maximum is a point where f (x) is higher than at all neighboring points, so it is not possible to increase f (x) by making inﬁnitesimal steps. Some critical points are neither maxima nor minima. These are known as saddle points. See ﬁgure 4.2 for examples of each type of critical point.
+
+2.0
+
+1.5
+
+Global minimum at x = 0.
+
+Since f (x) = 0, gradient
+
+1.0
+
+descent halts here.
+
+0.5
+
+0.0 −0.5
+
+For x < 0, we have f (x) < 0,
+so we can decrease f by moving rightward.
+
+For x > 0, we have f (x) > 0,
+so we can decrease f by moving leftward.
+
+−1.0 −1.5
+
+f (x)
+
+=
+
+1 2
+
+x2
+
+f (x) = x
+
+−2.0 −2.0 −1.5 −1.0 −0.5 0.0 0.5 1.0 1.5 2.0
+
+x
+
+Figure 4.1: Gradient descent. An illustration of how the gradient descent algorithm uses the derivatives of a function can be used to follow the function downhill to a minimum.
+
+80
+
+NUMERICAL COMPUTATION Minimum
+
+Maximum
+
+Saddle point
+
+Figure 4.2: Types of critical points. Examples of the three types of critical points in one dimension. A critical point is a point with zero slope. Such a point can either be a local minimum, which is lower than the neighboring points; a local maximum, which is higher than the neighboring points; or a saddle point, which has neighbors that are both higher and lower than the point itself.
+
+f (x)
+
+This local minimum performs nearly as well as the global one, so it is an acceptable halting point.
+
+Ideally, we would like to arrive at the global minimum, but this might not be possible.
+
+This local minimum performs poorly and should be avoided.
+
+x
+Figure 4.3: Approximate minimization. Optimization algorithms may fail to ﬁnd a global minimum when there are multiple local minima or plateaus present. In the context of deep learning, we generally accept such solutions even though they are not truly minimal, so long as they correspond to signiﬁcantly low values of the cost function.
+
+A point that obtains the absolute lowest value of f (x) is a global minimum. There can be only one global minimum or multiple global minima of the function. It is also possible for there to be local minima that are not globally optimal. In the context of deep learning, we optimize functions that may have many local minima that are not optimal and many saddle points surrounded by very ﬂat regions. All of this makes optimization diﬃcult, especially when the input to the function is multidimensional. We therefore usually settle for ﬁnding a value of f that is very low but not necessarily minimal in any formal sense. See ﬁgure 4.3 for an example.
+We often minimize functions that have multiple inputs: f : Rn → R. For the concept of “minimization” to make sense, there must still be only one (scalar) output.
+
+81
+
+CHAPTER 4
+
+For functions with multiple inputs, we must make use of the concept of partial
+
+derivatives.
+
+The
+
+partial
+
+derivative
+
+∂ ∂xi
+
+f
+
+(x)
+
+measures
+
+how
+
+f
+
+changes
+
+as
+
+only
+
+the
+
+variable xi increases at point x. The gradient generalizes the notion of derivative
+
+to the case where the derivative is with respect to a vector: the gradient of f is
+
+the vector containing all the partial derivatives, denoted ∇xf (x). Element i of the
+
+gradient is the partial derivative of f with respect to xi. In multiple dimensions,
+
+critical points are points where every element of the gradient is equal to zero.
+
+The directional derivative in direction u (a unit vector) is the slope of the
+
+function f in direction u. In other words, the directional derivative is the derivative
+
+of the function f (x + αu) with respect to α, evaluated at α = 0. Using the chain
+
+rule,
+
+we
+
+can
+
+see
+
+that
+
+∂ ∂α
+
+f
+
+(x
+
++
+
+αu)
+
+evaluates
+
+to
+
+u
+
+∇xf (x) when α = 0.
+
+To minimize f , we would like to ﬁnd the direction in which f decreases the
+
+fastest. We can do this using the directional derivative:
+
+min u ∇xf (x)
+u,u u=1
+
+(4.3)
+
+= min ||u||2||∇xf (x)||2 cos θ
+u,u u=1
+
+(4.4)
+
+where θ is the angle between u and the gradient. Substituting in ||u||2 = 1 and ignoring factors that do not depend on u, this simpliﬁes to minu cos θ. This is minimized when u points in the opposite direction as the gradient. In other words, the gradient points directly uphill, and the negative gradient points directly downhill. We can decrease f by moving in the direction of the negative gradient. This is known as the method of steepest descent, or gradient descent.
+
+Steepest descent proposes a new point
+
+x = x − ∇xf (x)
+
+(4.5)
+
+where is the learning rate, a positive scalar determining the size of the step. We can choose in several diﬀerent ways. A popular approach is to set to a small constant. Sometimes, we can solve for the step size that makes the directional derivative vanish. Another approach is to evaluate f (x − ∇xf (x)) for several values of and choose the one that results in the smallest objective function value. This last strategy is called a line search.
+Steepest descent converges when every element of the gradient is zero (or, in practice, very close to zero). In some cases, we may be able to avoid running this iterative algorithm and just jump directly to the critical point by solving the equation ∇xf (x) = 0 for x.
+
+82
+
+NUMERICAL COMPUTATION
+
+Although gradient descent is limited to optimization in continuous spaces, the general concept of repeatedly making a small move (that is approximately the best small move) toward better conﬁgurations can be generalized to discrete spaces. Ascending an objective function of discrete parameters is called hill climbing (Russel and Norvig, 2003).
+
+4.3.1 Beyond the Gradient: Jacobian and Hessian Matrices
+
+Sometimes we need to ﬁnd all the partial derivatives of a function whose input
+
+and output are both vectors. The matrix containing all such partial derivatives is
+
+known as a Jacobian matrix. Speciﬁcally, if we have a function f : Rm → Rn,
+
+then
+
+the
+
+Jacobian
+
+matrix
+
+J
+
+∈
+
+Rn×m
+
+of
+
+f
+
+is
+
+deﬁned
+
+such
+
+that
+
+Ji,j
+
+=
+
+∂ ∂xj
+
+f
+
+(x)i.
+
+We are also sometimes interested in a derivative of a derivative. This is known
+
+as a second derivative. For example, for a function f : Rn → R, the derivative
+
+with
+
+respect
+
+to
+
+xi
+
+of
+
+the
+
+derivative
+
+of
+
+f
+
+with
+
+respect
+
+to
+
+xj
+
+is
+
+denoted
+
+as
+
+∂
+
+∂2 xi∂
+
+xj
+
+f
+
+.
+
+In a single dimension, we can denote
+
+d2 dx2
+
+f
+
+by f
+
+(x). The second derivative tells
+
+us how the ﬁrst derivative will change as we vary the input. This is important
+
+because it tells us whether a gradient step will cause as much of an improvement
+
+as we would expect based on the gradient alone. We can think of the second
+
+derivative as measuring curvature. Suppose we have a quadratic function (many
+
+functions that arise in practice are not quadratic but can be approximated well
+
+as quadratic, at least locally). If such a function has a second derivative of zero,
+
+then there is no curvature. It is a perfectly ﬂat line, and its value can be predicted
+
+using only the gradient. If the gradient is 1, then we can make a step of size
+
+along the negative gradient, and the cost function will decrease by . If the second
+
+derivative is negative, the function curves downward, so the cost function will
+
+actually decrease by more than . Finally, if the second derivative is positive,
+
+the function curves upward, so the cost function can decrease by less than . See
+
+ﬁgure 4.4 to see how diﬀerent forms of curvature aﬀect the relationship between
+
+the value of the cost function predicted by the gradient and the true value.
+
+When our function has multiple input dimensions, there are many second derivatives. These derivatives can be collected together into a matrix called the Hessian matrix. The Hessian matrix H(f )(x) is deﬁned such that
+
+∂2 H(f )(x)i,j = ∂xi∂xj f (x). Equivalently, the Hessian is the Jacobian of the gradient.
+
+(4.6)
+
+83
+
+CHAPTER 4 Negative curvature No curvature Positive curvature
+
+f (x) f (x) f (x)
+
+x
+
+x
+
+x
+
+Figure 4.4: The second derivative determines the curvature of a function. Here we show quadratic functions with various curvature. The dashed line indicates the value of the cost function we would expect based on the gradient information alone as we make a gradient step downhill. With negative curvature, the cost function actually decreases faster than the gradient predicts. With no curvature, the gradient predicts the decrease correctly. With positive curvature, the function decreases more slowly than expected and eventually begins to increase, so steps that are too large can actually increase the function inadvertently.
+
+Anywhere that the second partial derivatives are continuous, the diﬀerential operators are commutative; that is, their order can be swapped:
+
+∂2
+
+∂2
+
+f (x) =
+
+f (x).
+
+∂xi∂xj
+
+∂ xj ∂ xi
+
+(4.7)
+
+This implies that Hi,j = Hj,i, so the Hessian matrix is symmetric at such points. Most of the functions we encounter in the context of deep learning have a symmetric Hessian almost everywhere. Because the Hessian matrix is real and symmetric, we can decompose it into a set of real eigenvalues and an orthogonal basis of eigenvectors. The second derivative in a speciﬁc direction represented by a unit vector d is given by d Hd. When d is an eigenvector of H, the second derivative in that direction is given by the corresponding eigenvalue. For other directions of d, the directional second derivative is a weighted average of all the eigenvalues, with weights between 0 and 1, and eigenvectors that have a smaller angle with d receiving more weight. The maximum eigenvalue determines the maximum second derivative, and the minimum eigenvalue determines the minimum second derivative.
+The (directional) second derivative tells us how well we can expect a gradient descent step to perform. We can make a second-order Taylor series approximation
+
+84
+
+NUMERICAL COMPUTATION
+
+to the function f (x) around the current point x(0):
+
+f (x) ≈ f (x(0)) + (x − x(0))
+
+g
+
++
+
+1 (x
+
+−
+
+x(0))
+
+H(x − x(0)),
+
+2
+
+(4.8)
+
+where g is the gradient and H is the Hessian at x(0). If we use a learning rate of , then the new point x will be given by x(0) − g. Substituting this into our
+approximation, we obtain
+
+f (x(0) −
+
+g) ≈ f (x(0)) −
+
+g
+
+1 g+
+
+2g
+
+Hg.
+
+2
+
+(4.9)
+
+There are three terms here: the original value of the function, the expected
+
+improvement due to the slope of the function, and the correction we must apply
+
+to account for the curvature of the function. When this last term is too large, the
+
+gradient descent step can actually move uphill. When g Hg is zero or negative,
+
+the Taylor series approximation predicts that increasing forever will decrease f
+
+forever. In practice, the Taylor series is unlikely to remain accurate for large , so
+
+one must resort to more heuristic choices of in this case. When g Hg is positive,
+
+solving for the optimal step size that decreases the Taylor series approximation of
+
+the function the most yields
+
+∗=
+
+gg .
+
+g Hg
+
+(4.10)
+
+In the worst case, when g aligns with the eigenvector of H corresponding to the
+
+maximal
+
+eigenvalue
+
+λmax,
+
+then
+
+this
+
+optimal
+
+step
+
+size
+
+is
+
+given
+
+by
+
+1 λmax
+
+.
+
+To
+
+the
+
+extent that the function we minimize can be approximated well by a quadratic
+
+function, the eigenvalues of the Hessian thus determine the scale of the learning
+
+rate.
+
+The second derivative can be used to determine whether a critical point is a local maximum, a local minimum, or a saddle point. Recall that on a critical point, f (x) = 0. When the second derivative f (x) > 0, the ﬁrst derivative f (x) increases as we move to the right and decreases as we move to the left. This means f (x − ) < 0 and f (x + ) > 0 for small enough . In other words, as we move right, the slope begins to point uphill to the right, and as we move left, the slope begins to point uphill to the left. Thus, when f (x) = 0 and f (x) > 0, we can conclude that x is a local minimum. Similarly, when f (x) = 0 and f (x) < 0, we can conclude that x is a local maximum. This is known as the second derivative test. Unfortunately, when f (x) = 0, the test is inconclusive. In this case x may be a saddle point or a part of a ﬂat region.
+
+In multiple dimensions, we need to examine all the second derivatives of the function. Using the eigendecomposition of the Hessian matrix, we can generalize
+
+85
+
+CHAPTER 4
+the second derivative test to multiple dimensions. At a critical point, where ∇xf (x) = 0, we can examine the eigenvalues of the Hessian to determine whether the critical point is a local maximum, local minimum, or saddle point. When the Hessian is positive deﬁnite (all its eigenvalues are positive), the point is a local minimum. This can be seen by observing that the directional second derivative in any direction must be positive, and making reference to the univariate second derivative test. Likewise, when the Hessian is negative deﬁnite (all its eigenvalues are negative), the point is a local maximum. In multiple dimensions, it is actually possible to ﬁnd positive evidence of saddle points in some cases. When at least one eigenvalue is positive and at least one eigenvalue is negative, we know that x is a local maximum on one cross section of f but a local minimum on another cross section. See ﬁgure 4.5 for an example. Finally, the multidimensional second derivative test can be inconclusive, just as the univariate version can. The test is inconclusive whenever all the nonzero eigenvalues have the same sign but at least one eigenvalue is zero. This is because the univariate second derivative test is inconclusive in the cross section corresponding to the zero eigenvalue.
+In multiple dimensions, there is a diﬀerent second derivative for each direction at a single point. The condition number of the Hessian at this point measures how much the second derivatives diﬀer from each other. When the Hessian has a poor condition number, gradient descent performs poorly. This is because in one
+
+f(x1 ;x2 )
+
+500 0 −500
+
+−15 x1 0
+
+15
+
+15 −15 0 x 2
+
+Figure 4.5: A saddle point containing both positive and negative curvature. The function in this example is f (x) = x21 − x22. Along the axis corresponding to x1, the function curves upward. This axis is an eigenvector of the Hessian and has a positive eigenvalue. Along the axis corresponding to x2, the function curves downward. This direction is an eigenvector of the Hessian with negative eigenvalue. The name “saddle point” derives from the saddle-like shape of this function. This is the quintessential example of a function with a saddle point. In more than one dimension, it is not necessary to have an eigenvalue of 0 to get a saddle point: it is only necessary to have both positive and negative eigenvalues. We can think of a saddle point with both signs of eigenvalues as being a local maximum within one cross section and a local minimum within another cross section.
+
+86
+
+NUMERICAL COMPUTATION
+
+direction, the derivative increases rapidly, while in another direction, it increases slowly. Gradient descent is unaware of this change in the derivative, so it does not know that it needs to explore preferentially in the direction where the derivative remains negative for longer. Poor condition number also makes choosing a good step size diﬃcult. The step size must be small enough to avoid overshooting the minimum and going uphill in directions with strong positive curvature. This usually means that the step size is too small to make signiﬁcant progress in other directions with less curvature. See ﬁgure 4.6 for an example.
+This issue can be resolved by using information from the Hessian matrix to guide the search. The simplest method for doing so is known as Newton’s method. Newton’s method is based on using a second-order Taylor series expansion to approximate f (x) near some point x(0):
+
+f (x) ≈ f (x(0))+(x−x(0))
+
+∇xf
+
+(x(0))+
+
+1 2
+
+(x−x(0)
+
+)
+
+H(f )(x(0))(x−x(0)).
+
+(4.11)
+
+x2
+
+20
+10
+0
+−10
+−20
+−30 −30 −20 −10 0 10 20 x1
+Figure 4.6: Gradient descent fails to exploit the curvature information contained in the Hessian matrix. Here we use gradient descent to minimize a quadratic function f (x) whose Hessian matrix has condition number 5. This means that the direction of most curvature has ﬁve times more curvature than the direction of least curvature. In this case, the most curvature is in the direction [1, 1] , and the least curvature is in the direction [1, −1] . The red lines indicate the path followed by gradient descent. This very elongated quadratic function resembles a long canyon. Gradient descent wastes time repeatedly descending canyon walls because they are the steepest feature. Since the step size is somewhat too large, it has a tendency to overshoot the bottom of the function and thus needs to descend the opposite canyon wall on the next iteration. The large positive eigenvalue of the Hessian corresponding to the eigenvector pointed in this direction indicates that this directional derivative is rapidly increasing, so an optimization algorithm based on the Hessian could predict that the steepest direction is not actually a promising search direction in this context.
+87
+

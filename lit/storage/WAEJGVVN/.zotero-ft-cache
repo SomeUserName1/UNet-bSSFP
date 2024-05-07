@@ -1,0 +1,367 @@
+Review
+
+JOURNAL OF MAGNETIC RESONANCE IMAGING 38:2–11 (2013)
+
+Fundamentals of Balanced Steady State Free Precession MRI
+Oliver Bieri, PhD1, and Klaus Scheffler, PhD2,3*
+
+Balanced steady state free precession (balanced SSFP) has become increasingly popular for research and clinical applications, offering a very high signal-to-noise ratio and a T2/T1-weighted image contrast. This review article gives an overview on the basic principles of this fast imaging technique as well as possibilities for contrast modiﬁcation. The ﬁrst part focuses on the fundamental principles of balanced SSFP signal formation in the transient phase and in the steady state. In the second part, balanced SSFP imaging, contrast, and basic mechanisms for contrast modiﬁcation are revisited and contemporary clinical applications are discussed. J. Magn. Reson. Imaging 2013;38:2–11. VC 2013 Wiley Periodicals, Inc.
+SINCE ITS INTRODUCTION more than half a century ago, the use of steady state free precession (SSFP) has become increasingly popular, and a huge number of SSFP imaging methods have been described so far (e.g., see Handbook of MRI Pulse Sequences) (1). In general, the term “SSFP” imbeds all steady state sequences and variants thereof, because it just denotes the most basic SSFP principle, as introduced in 1958 by Carr (2): a fast train of radiofrequency (RF) pulses interleaved by periods of so-called “free precession,” indicating the absence of a driving RF excitation ﬁeld. As a result, all rapid gradient echo sequences (with TR ( T2 T1) are SSFP sequences, but different steady states may be established by different gradient switching patterns (applied within the free precession period, relating to the amount of spin dephasing within TR), or as a function of the RF pulse phase changes, or both.
+1Division of Radiological Physics, Department of Radiology, University of Basel Hospital, Basel, Switzerland 2MRC Department, Max Planck Institute for Biological Cybernetics, Tu€bingen, Germany 3Department of Biomedical Magnetic Resonance, University of Tu€bingen, Tu€bingen, Germany *Address reprint requests to: K.S., MRC Department, MPI for Biological Cybernetics, Spemannstrasse 41, D-72076 Tu€bingen, Germany. E-mail: klaus.schefﬂer@tuebingen.mpg.de Received December 7, 2011; Accepted March 12, 2013 DOI 10.1002/jmri.24163 View this article online at wileyonlinelibrary.com.
+
+The most important basic types of SSFP sequences are: the RF spoiled SSFP (with acronyms FLASH, SPGR, T1-FFE), the gradient dephased, i.e., nonbalanced, SSFP-FID (FISP, GRASS, FFE), its time reversed version, the gradient spoiled, i.e., nonbalanced, SSFP-Echo (PSIF, T2-FFE), and ﬁnally, the balanced SSFP (TrueFISP, FIESTA, balanced FFE) sequence. This article is dedicated to a review of the theory and imaging sequences of balanced SSFP. Signal formation in balanced SSFP will be traced following the multi-pulse approach, as historically introduced by Carr (2), and the basic principles and signal properties of balanced SSFP will be revisited for the transient phase and in the steady state. After elucidation of the underlying theoretical principles, imaging with balanced SSFP will be described and possibilities to modify the generic contrast will be presented, followed by a short overview on contemporary balanced SSFP imaging applications.
+THEORY OF SIGNAL FORMATION IN BALANCED SSFP
+Carr’s work and experimental approach to steady state free precession is in the context of this review on balanced SSFP not only of fundamental historical relevance but also offers a highly valuable concept to understand the most basic principles of signal formation in SSFP. As a result, we will, from a presentday perspective, tread a rather unconventional way in the description of SSFP and follow the mathematical analysis of SSFP experiments, as presented by Carr (2).
+For the description of spin dynamics, we make use of the matrix representation theory of spin dynamics proposed by Jaynes in 1954 (3) and follow the formal mathematical treatment of multi-pulse experiments, as introduced by Woessner in 1961 (4). In general, the duration (TRF) of the excitation pulses is assumed to be short as compared to the overall relaxation processes (T1,2) to separate the Bloch equations (5) into repetitive basic units of RF pulses and interpulse delays. Overall, this leads to piece-wise constant Bloch equations that can be explicitly solved and successively applied. If not otherwise stated, the signal of balanced SSFP will be analyzed at TE ¼ TR/2.
+
+VC 2013 Wiley Periodicals, Inc.
+
+2
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Fundamentals of Balanced SSFP MRI
+
+3
+
+Figure 1. Train of equally spaced (TR), phase coherent (here: constant), RF excitation pulses (shown as black bars) with ﬂip angle a, interleaved by periods of free precession (cf. Fig. 2 by Carr) (2). For reasons of simplicity, quasi-instantaneous RF pulses are assumed (i.e., TRF $ 0). At time t < 0, the magnetization M is presumed to be in thermal equilibrium (M0). The magnetization is allowed to accumulate a constant precession angle (f) during TR, i.e., due to static variations in the main magnetic ﬁeld (f $ gDB0t). The magnetization immediately preceding (proceeding) the RF pulse is labeled with a superﬁx “À” (“þ”): MxyÀ (Mxyþ).
+
+Within the boundary condition of TR ( T2 T1, the quick succession of RF pulses hinders the magnetization from returning to the thermal equilibrium state M0 and each RF pulse acts, therefore, on both the remaining transversal and the remaining longitudinal magnetization. The magnetization in such a multipulse experiment is thus a mixture or superposition of different transversal and longitudinal states and results in beautiful but rather complex patterns even after a few RF pulses (see Fig. 2) but approaches after sufﬁcient repetitions a steady state or sometimes called “dynamic equilibrium” (meaning that the properties of the magnetization is unchanging with time). In the following, we will trace the time evolution of the spin magnetization in such a multi-pulse experiment and analyze the signal behavior in the transient, as well as in the steady state.
+Time Evolution of Magnetization
+
+A Fast Train of RF Pulses
+The standard scheme of a steady state free precession experiment is shown in Figure 1 (cf. Fig. 2 in Carr’s article) and is given by a series of equally spaced (TR), phase coherent, and quasi-instantaneous RF pulses with ﬂip angle a. In general, the magnetization is allowed to accumulate a constant phase advance (f) within any TR, due to ﬁeld inhomogeneities, local susceptibility gradients or chemical shift effects.
+
+For the multi-pulse experiment shown in Figure 1, the magnetization approaches by itself a steady state after sufﬁcient TR periods (see also Fig. 2). In Figure 3, the time evolution of the magnetization is shown as a function of the off-resonance related precession angle: for f ¼ 0 (on-resonant case) and for f ¼ 90 and f ¼ 180 (covering the relevant range of off-resonances) (simulation parameters are given in the Figure caption). It can be observed, that independently of the off-resonance related precession angle, the
+
+Figure 2. Time evolution of the magnetization in a multi-pulse experiment as shown in Figure 1 at TE ¼ TR/2 for the ﬁrst few TR periods and after a few hundred TR periods and as a function of the offresonance related precession in the interval f ¼ [À180 , 180 ] (black line: tip of magnetization vectors; black circle: f ¼ 0 ; gray circle: f ¼ 90 ; white circle: f ¼ 180 ). Note that the magnetization is shown at TE ¼ TR / 2 and thus only reveals a phase advance of f/2 (e.g., see TR(1)). After sufﬁcient waiting time, a steady state in the magnetization is attained, suggesting that the conﬁguration of the magnetization in space is unchanging from TR to TR. Simulation parameters: TR/T2/ T1 ¼ 10 ms / 100 ms / 200 ms; a ¼ 90 .
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+4
+
+Bieri and Schefﬂer
+
+(3) in combination with an eigenvector formalism, ini-
+
+tially proposed by Hargreaves et al (6). Analytical sol-
+
+utions to the transient response of SSFP were ﬁrst
+
+derived by Schefﬂer (7) and have been further adapted
+
+to include off-resonance effects by Ganter (8). As
+
+noted by Hargreaves et al (6), there are always one
+
+real and two complex conjugate eigenvectors that
+
+determine the transient response. Using perturbation
+
+theory, Ganter (8) demonstrated that in leading order,
+
+the complex conjugate eigenvectors are perpendicular
+
+to the real one which is parallel to the steady state
+
+magnetization (Mss). The real eigenvalue (associated with the real eigenvector) deﬁnes a relaxation rate (cf.
+
+Eq. [11] in Ganter (8)) parallel to Mss, given by:
+
+!
+
+1 Rk % N 2 Á
+
+cos 2 a 2
+
+Á sin 2 f 2
+
+Á
+
+R1
+
+þ
+
+sin
+
+2
+
+a 2
+
+Á
+
+R2
+
+(1)
+
+where R1,2 :¼ 1/T1,2 and
+
+rﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+
+N :¼ cos 2 a Á sin 2 f þ sin 2 a
+
+(2)
+
+2
+
+2
+
+2
+
+Figure 3. Time evolution of the magnetization for the multi-
+pulse experiment shown in Figure 1 for an off-resonance related precession within any TR of f ¼ 0 (a), f ¼ 90 (b), and f ¼ 180 (c). Simulation parameters: TR/T2/T1 ¼ 10 ms/100 ms/200 ms; a ¼ 90 .
+
+(in general, the results require R2ÁTR(1; for details, however, see Ref (8)). The two complex conjugate eigenvalues yield an effective relaxation rate for the perpendicular components (cf. Eq. [13] in Ganter (8)).
+
+
+
+!
+
+1 R? % 2N 2 Á
+
+sin
+
+2
+
+a 2
+
+Á
+
+R1
+
+þ
+
+N 2 þ cos 2 a Á sin 2 f
+
+2
+
+2
+
+Á R2 :
+
+(3)
+
+magnetization approaches after some transient phase a steady state, i.e., a stationary value in the amplitude. The magnetization does not evolve to the same stationary value, but the steady state magnetization (Mss) shows a strong modulation as a function of the off-resonance (Mss,xy(f¼0 ) $ 0.025, Mss,xy(f ¼ 90 ) $ 0.283, Mss,xy(f ¼ 180 ) $ 0.333; it is of some interest here to point out that the maximum steady state signal is not achieved at on-resonance, but with f ¼ 180 ; this peculiarity has direct practical implications, as explained later, cf. “Imaging with Balanced Steady State Free Precession”). Similarly, the transient phase (sometimes also referred to as “transient response” or “transient state”) is affected from off-resonance but shows in addition a strong oscillatory behavior. Because overall the magnetization is a mixture or superposition of different transversal and longitudinal states (see Fig. 2), the measured signal from fast imaging sequences will generally depend not only on the off-resonance related precession angle (f) but will also be a function of intrinsic tissue properties, such as relaxation (T1,2), as well as of extrinsic sequence related parameters, such as the repetition time (TR), the echo time (TE), and the ﬂip angle (a).
+The Transient State
+The time evolution of the magnetization in the transient phase of SSFP can be mathematically analyzed based on the matrix representations given by Jaynes
+
+The expression given in Eq. (1) converges to the results found by Schefﬂer (cf. Eq. (7) in Ref. (7)) for f ¼ 180 .
+It is found that the relaxation rate of both components depends not only on the ﬂip angle (a) and on the relaxation rates (R1,2) but also on the off-resonance related precession angle (f). The transient component in the magnetization parallel to the steady state magnetization (Mss) shows a smooth decay, whereas the perpendicular components causes the oscillatory behavior in the transient phase (see Fig. 3).
+In general, the transition to steady-state from thermal equilibrium is completed after 5ÁT1. However, this often is not an acceptable waiting time for a rapid imaging method and typically signal acquisition starts within the transient phase. Imaging in the transient phase, however, due to the oscillatory behavior of the perpendicular components (see Fig. 3) is prone to generate artifacts. As a result, several preparation methods have been proposed to facilitate, enhance, or smooth this transition. The transition to steady state is shown in Figure 4 for the frequently used single (a/ 2 – TR/2) preparation proposed by Deimling and Heid (9) and a simple saturation recovery, i.e., starting balanced SSFP (bSSFP) after a 90 degrees pulse and spoiler gradient. With the (a/2 – TR/2) preparation, the magnetization is initially brought very near to the ﬁnal steady state. In general, saturation recovery shows a smooth transition over the complete range of off-resonances, whereas residual signal oscillations
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Fundamentals of Balanced SSFP MRI
+
+5
+
+whereas the signal regions close to zero are associated with a “stop-band,” i.e., signal voids (having a width of approximately 1/3, i.e., 120 of the periodicity of the frequency response). In general, it is observed that the steady state amplitude decreases with decreasing T2/T1 (Fig. 5a) and that the optimum ﬂip angle (yielding maximum steady state amplitude) decreases with decreasing T2/T1 (Fig. 5b). Of interest, the maximum signal for some given T2/T1 can be preserved but is shifted toward the stop-band for ﬂip angles a < aopt (see Fig. 5c). This is in contrast to the signal that can be achieved with ﬂip angles a > aopt (Fig. 5d) leading to an overall decrease in the steady state signal over the complete range of off-resonance related precession angles.
+The steady state amplitude (i.e., the transverse magnetization component) immediately after the RF pulse as a function of TR, TE, the ﬂip angle a, relaxation times T1,2, and off-resonances (f) is given by (see Refs. (14–16)).
+
+Msþs;xy
+
+¼
+
+M0
+
+ð1
+
+À
+
+E1
+
+À Þ1
+
+À
+
+E2eÀifÁsin
+
+Ccos f þ D
+
+a
+
+(4)
+
+where E1,2 :¼ exp(2T1,2/TR) and
+
+C :¼ E2ðE1 À 1Þð1 þ cos aÞ D :¼ ð1 À E1cos aÞ À ðE1 À cos aÞE22
+
+(5)
+
+Figure 4. Oscillations in the transient phase (see Fig. 3) can be smoothed using magnetization preparation schemes: a/2 – TR/2 (a) and saturation recovery (b). Simulation parameters: TR/T2/T1 ¼ 5 ms/100 ms/200 ms; a ¼ 90 .
+can still be present with the (a/2 – TR/2) preparation approach. As a result, more sophisticated solutions have been proposed and developed to accelerate the transition toward the steady state (6,9–13), or to modify its contrast behavior (cf. the Possibilities to Modify the BSSFP Contrast section).
+The Steady State
+The signal properties in the steady state were already described by Carr (cf. Eq. [10] in Ref (2)) assuming T2 ¼ T1 and subsequently further developed to the more general case of T2 < T1 by Ernst and Anderson in 1966 (14) and Freeman and Hill in 1971 (15) and many others (16–22). Similar to what is observed in the transient state, the steady state shows not only a prominent sensitivity to off-resonances (Fig. 5a; see also Fig. 3), but shows also a strong dependence on the ﬂip angle (Fig. 5b) and on the relaxation time ratio T2/T1 (see Figs. 5a and 5b). Off-resonances (see Fig. 5a) lead to a pronounced and periodic modulation in the steady state amplitude frequently referred to as the “frequency response” of balanced SSFP. The high signal regions are commonly referred to as “passband” regions (61/(3TR), having a width of approximately 2/(3TR), i.e., 240 , see Schefﬂer et al) (23),
+
+The distribution of the magnetization components in steady state are shown in Figure 6a for Mþ (i.e., for t ! 0; see Eq. (4)), for t ¼ TR/2, that is for a centered echo, and for MÀ (i.e., for t ! TR). Because the steady state signal drops close to zero for pixels with off-resonance frequencies relating to a phase advance close to f ¼ 6 nÁ360 (n ʦ N0), giving rise to dark bands or “banding artifacts” in images (see Fig. 6b).
+Imaging With Balanced Steady State Free Precession
+The simple multi-pulse scheme (Fig. 7a) used to derive the signal properties of SSFP has to be the translated into an imaging sequence. The phase advance f within TR was associated with off-resonance effects and reﬂects, thus, a global phase for all the spins within some given voxel. As a result, gradient moments have to be fully balanced between consecutive excitation pulses. A fully balanced SSFP imaging technique (see Fig. 7b) was already proposed in 1986 by Oppelt et al (24), but has become feasible only with the introduction of very fast, strong, and precise gradient systems. In contrast to the scheme proposed by Carr for spectroscopy (see Figs. 1 and 7a), RF phase alternation (6a, i.e., a coherent phase advance of 180 within TR) is commonly applied with balanced SSFP imaging techniques (see Fig. 7b) to generate a global 180 phase shift f ! f þ180 . As a result, the center of the pass-band is shifted from f ¼ 180 (for nonalternating RF phases) to f ¼ 0 (for alternating RF phases), i.e., to on-resonance. With state-of-the-art hardware components, it is now easily
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+6
+
+Bieri and Schefﬂer
+
+Figure 5. a–d: Steady state magnetization (readout after 300TR periods) as a function of off-resonance and relaxation T2/T1. Simulation parameters: TR ¼ 10 ms; T2/T1¼ 1 ¼ 100 ms/100 ms; T2/T1 ¼ 0.5 ¼ 100 ms/200 ms; T2/T1 ¼ 0.1 ¼ 100 ms/1000 ms.
+Figure 6. a: Distribution of steady state magnetization for the SSFP scheme, as presented in Figure 1, as a function of offresonance (0 f 360 ), immediately preceding the RF pulse (Mþ shown in blue; see Eq. (4)), for a centered echo, i.e., at TE ¼ TR/2 (M shown in black) and immediately preceding the RF pulse (MÀ shown in red). The pass-band (60 f 300 ; see Fig. 5) is indicated by thickened lines. The ﬂip angle a (around the x-axis connects) links the two conﬁgurations Mþ(t ! 0) and MÀ (t ! TR), as indicated by the dashed arrow. Off-resonances f lead to precession of the magnetization around the zaxis, as indicated by the dotted arrow in the plot. As a result, the magnetization at TE ¼ TR/2 (M; shown in black) becomes refocused, i.e., having a low phase dispersion. (b) Illustrative SSFP steady state image (a $ 40 , TR ( T1,2) of spherical phantom (with T2 $ T1 $ 300 ms), revealing the prominent signal modulation from off-resonances (see also Fig. 5c): signal voids perceived as dark bands appear at f $ 6 nÁ360 (with n ¼ 0, 1, 2, . . .). (Simulation parameters: TR/T2/T1 ¼ 5 ms/300 ms/300 ms; a ¼ 40 ).
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Fundamentals of Balanced SSFP MRI
+
+7
+from Eq, (4). This relatively complicated formula can be signiﬁcantly simpliﬁed taking into account that T1 and T2 relaxation times in biological tissue at ﬁeld strength between 0.5T and 4T are much larger than the typical repetition time of balanced SSFP. Thus, for TR < T2 T1, and incorporating alternating excitation pulses gives the simpliﬁed balanced SSFP signal (see Eq. (4)) (20,30).
+
+Msþs;xy
+
+¼
+
+M0
+
+1
+
+À
+
+ð1 À E1Þsin a ðE1 À E2Þcos a À
+
+E1E2
+
+:
+
+(6)
+
+Figure 7. a: According to Fig. 1, balanced SSFP requires all gradient dephasing moments to be rewinded before the next excitation pulse (formally indicated by the time-integral of the gradient over TR). b: Balanced SSFP imaging sequence (2D variant) as proposed by Oppelt et al in 1986 (24). In the illustrated scheme, the echo of balanced SSFP, sampled by the ADC, is centered between the RF pulses, i.e., at 2ÁTE ¼ TR (see also Fig. 6a).
+possible to achieve very short repetition times (TR $ 3–6 ms, see Schefﬂer and Lehnhardt) (25), which is a precondition for successful, i.e., artifact free, balanced SSFP imaging. Because all gradient moments have to be fully balanced within each TR, bSSFP is very sensitive to any source of imperfection that disturbs the perfectly balanced acquisition scheme (see Fig. 7b), such as variable phase accruals from residual eddy currents (26), but in general shows quite some robustness against ﬂow or motion (27).
+The steady state amplitude, as given by Eq. (4), relates to the magnetization immediately after the RF pulse. The echo amplitude at TE ¼ TR/2, however, is not additionally weighted by a factor of exp(ÀTE/T2*), as for the conventional RF-spoiled SSFP sequence, but gets nearly completely refocused, leading to the formation of a spin echo rather than a gradient echo (28), and interestingly the signal shows only marginal variations with TR, as long as, TR ( T2 T1 (29).
+CONTRAST AND SNR OF BSSFP
+Balanced SSFP imaging is implemented with alternating excitation pulses to conﬁne imaging at the highsignal pass band as shown in Figure 5. Figure 5 also shows that the pass band is relatively ﬂat if used in combination with high ﬂip angles around 30 to 90 . Therefore, application of alternating excitation pulses ensures a relatively homogenous signal intensity for possible deviation of the local resonance frequency due to susceptibility, shim or chemical shift effects. According to Figure 5 local phase advances are within one repetition time of approximately 6120 is acceptable without signiﬁcant signal deviations, which translates into a range of acceptable local frequency deviations of approximately 700 Hz/TR(ms). As a result, the repetition time of balanced SSFP always should be as short as possible, and is usually around 3 ms to 6 ms in conventional clinical applications to minimize banding artifacts.
+The resulting steady state contrast of balanced SSFP for such short repetition times can be derived
+
+This equation demonstrates that, for short repetition
+
+times, the contrast of balanced SSFP is essentially
+
+T2/T1-weighted, a new and interesting dependence on T1 and T2 that generates images far away from the established and known solely T1- or T2-weighted contrast. In addition to T1 and T2, this formula still has a dependence on the ﬂip angle. It can be shown
+
+that, for given T1 and T2, the highest signal can be achieved at the ﬂip angle aopt given by (30).
+
+
+
+
+
+
+
+
+
+aopt ¼ cos À1
+
+E1 À E2 1 À E1E2
+
+% cos À1
+
+T1=T2 À 1 T1=T2 þ 1
+
+:
+
+(7)
+
+The corresponding peak signal is then given by:
+
+Msþs;xy
+
+
+a¼aopt
+
+¼
+
+sﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+
+1 2 M0
+
+1 À E12 1 À E22
+
+%
+
+rﬃﬃﬃﬃﬃ
+
+1 2 M0
+
+T2 T1
+
+(8)
+
+again revealing the T2/T1-weighted contrast. This is an important and remarkable formula if
+seen in the context of relaxation times of biological tissue. For example, water or liquids (and also tissues like fat) have a T1 relaxation time similar to T2 (i.e., T1 $ T2), resulting in an optimal ﬂip angle of 90 and signal of 0.5M0. This is exceptional! A gradient echo sequence with short repetition time and 90 ﬂip angle produces a steady state signal of 50% of the total available equilibrium magnetization M0; and this forever, without getting progressively saturated, as long as the sequence is not turned off. To date, no other type of sequence (ﬂip-back sequences are closely related to balanced SSFP) is known that produces a higher steady state signal. For more common combinations of T2/T1 ( 1, the optimal signal is around 10–30% of M0 and still signiﬁcantly higher than for FLASH sequences (to be qmﬃoﬃﬃrﬃﬃeﬃﬃﬃﬃﬃﬃpﬃﬃﬃrﬃ ecise, it is always higher by a factor of 1= 1 À E22 than FLASH), as shown in Figure 8. The signal-to-noise efﬁciency, which is proportional to the square root of the repetition time divided by the time period of signal reception, is similar to other sequences with spin warpbased Cartesian k-space sampling, as the time needed to travel in k-space without signal reception is comparable.
+In addition to its unconventional T2/T1-weighted contrast, it is important to analyze contrast as a function of ﬂip angle and repetition time. For FLASH, these parameters critically determine the T1-weighting
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+8
+
+Bieri and Schefﬂer
+
+Figure 8. Steady-state signal for FLASH and balanced SSFP (TR ¼ 10 ms, TE ¼ 0) for different combinations of T1 and T2 using optimized ﬂip angles. Because TE ¼ 0, the FLASH signal does not depend on T2.
+and often produce changes in contrast if, for example, TR is increased to achieve a higher resolution. As shown in Figure 9 balanced SSFP reveals a signal that is virtually independent of TR, as long as TR is kept short compared with T1 and T2, even for a 300% increase in TR. As a result, balanced SSFP contrast is robust against changes in TR, and for example against changes in image resolution which is always related to changes in TR (for optimized sequences).
+
+Figure 9. Dependence of the steady state transverse magnetization of FLASH and bSSFP on the repetition time TR for different combinations of T1 and T2. For both sequences, the ﬂip angle was constant and corresponds to the optimal ﬂip angle at TR ¼ 7 ms. For bSSFP, the signal is virtually independent of TR.
+POSSIBILITIES TO MODIFY THE BSSFP CONTRAST Modifying the Flip Angles
+Preparation of the initial equilibrium magnetization is a common approach to modify image contrast or to stabilize the transient phase of sequences. As shown above, balanced SSFP not only has a different
+
+Figure 10. Transient phase of different preparation schemes. The dots indicate the tip of the on-resonance magnetization
+vector along the RF pulse train indicated by arrows, all starting at equilibrium magnetization Mz ¼ 1 and My ¼ 0 (see Fig. 1). a:
+no preparation. b: a/2-TR/2 preparation. Linear increasing ﬂip angles in 7 steps, (d) as (c) but in 40 steps, T2-TIDE preparation consisting of an initial 90 -TR/2 preparation followed by several alternating 180 pulses to enhance T2-weighting and then a linear decrease to the ﬁnal ﬂip angle (e), and double steady state (f) (70 and 35 ). The ellipse indicates the steady state position for ﬂip angles a between À180 and 180 . For all simulations, the ﬁnal ﬂip angle was 70 , TR ¼ 5 ms, T1 ¼ 80 ms,
+T2¼ 20 ms (except for f) T1 ¼ 280 ms, T2¼ 80 ms).
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Fundamentals of Balanced SSFP MRI
+
+9
+the TIDE technique for improved T2-weighting and/or intrinsic fat suppression, as shown in Figure 10e (11,31,32). Figure 10f shows a dual steady state that also can be used for fat suppression (33).
+In general, the SSFP signal or contrast as stated in Eqs. (4–8), is valid only for ideal systems and conditions. Only recently, it was realized that, for common SSFP protocols, the signal from tissues can be strongly affected by magnetization transfer (MT) effects (29), leading to prominent deviations (up to 50%, or even more) from the common signal model (see Eq. (6)). Furthermore, the condition of quasi-instantaneous RF excitation pulses with respect to their repetition time is for contemporary SSFP protocols frequently not granted. Typically, with fast imaging protocols, the duration of the excitation pulses elongates over a considerable fraction of the TR time. As a result, the approximation of quasi-instantaneous RF excitation breaks down, leading to an overall increase in the steady state signal (34), however, without affecting the prominent T2/T1 contrast (35).
+
+Figure 11. a: The T2-preparation image (T2-TIDE) has been achieved by a TIDE preparation that initially uses high ﬂip angles up to 180 degrees (to produce a T2-contrast similar to the TSE technique) followed by decreasing ﬂip angles. b: A conventional 3D bSSFP image that shows the T2/T1weighted steady state contrast and hence no grey-white matter contrast. c: An example of a T2-weighted resolution enhanced T1-insensitive steady-state imaging (RE-TOSSI) produced by the application of nonuniformely spaced inversion pulses. d: Compared with the conventional 2D bSSFP image, no fatty structures are visible in RE-TOSSI. The signiﬁcant contrast difference of the transient and steady state phase of bSSFP is clearly demonstrated in (b) and (d). As (b) is a 3D acquisition the contrast is in the steady state and thus T2/T1-weighte, whereas in (d) the partially T2-weighted transient contrast is visible. T2-Tide and 3D bSSFP are copied from: Paul D, Markl M, Fautz HP, Hennig J. T2-Weighted Balanced SSFP Imaging (T2-TIDE) Using Variable Flip Angles. MRM 56:82–93 (2006). Figure 9 b and c. Left: T2TIDE, right 3D bSSFP. RE-TOSSI and 2D bSSFP are copied from: Derakhshan JJ, Nour SG, Sunshine JL, Griswold MA, Duerk JL. Resolution Enhanced T1-Insensitive Steady-State Imaging. MRM 68:421–429 (2012), Fig. 6. Left: RE-TOSSI, right bSSFP.
+
+Preparation Techniques
+As for most other sequences, balanced SSFP can be combined with a preceding magnetization preparation module, for example, to suppress fat with frequency selective saturation pulses or with inversion pulses to null the signal of speciﬁc tissue or to sample the recovery of magnetization for T1 quantiﬁcation (9). An interesting preparation variant that is composed of several inversion pulses is the recently developed TOSSI technique (36). Application of nonuniformly spaced inversion pulses aligns the magnetization parallel and anti-parallel to B0 and produces a pure T2 contrast.
+In contrast to other sequences, balanced SSFP allows the possibility to apply preparation pulses
+
+contrast within the transient phase but also requires preparation pulses to suppress signal oscillation for a smooth approach to the steady state. The well-known a/2 – TR/2 preparation invented by Deimling and Heid (9) is an effective and simple technique to bring the magnetization to the desired position on the relaxation cone, as shown in Figure 10b. However, it can be shown that this simple technique is sensitive to local off-resonance frequencies, and thus several other preparation techniques have been described (6,12,13). In many commercial implementations, a slow increase (linear or other) of the initial ﬂip angles is implemented that signiﬁcantly reduces signal oscillation within the transient phase, as shown in Figure 10c and 10d for 7 and 40 linear steps to the ﬁnal ﬂip angle. Other preparation schemes with the combined goal of signal stabilization (or catalyzation) and contrast modiﬁcation have been proposed, for example,
+
+Figure 12. From Stuber et al shows SSFP coronary MRA of the right (a) and left (b) coronary systems of two healthy adult subjects, acquired using free-breathing, navigators and T2-preparation, but without contrast agent. Ao ¼ ascending aorta; RV ¼ right ventricle; LV ¼ left ventricle; LAD ¼ left anterior descending; RCA ¼ right coronary artery. From: Stuber M, Weiss RG. Coronary Magnetic Resonance Angiography. JMRI 26:219–234 (2007) Fig. 7. SSFP coronary MRA of the right (a) and left (b) coronary systems of two healthy adult subjects, acquired using free-breathing and navigators. The use of SSFP leads to high SNR, CNR, and vessel conspicuity. Ao ¼ ascending aorta; RV ¼ right ventricle; LV ¼ left ventricle; LAD ¼ left anterior descending; RCA ¼ right coronary artery.
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+10
+
+Bieri and Schefﬂer
+
+within the running train of pulses without disturbance of the fragile steady state. A ﬂip back TR/2 – a/ 2 module that is identical to the time-reversed a/2 – TR/2 preparation stores the current steady state magnetization in the longitudinal direction, and, after application of a magnetization preparation module, is reused and reintroduced by means of the a/2 – TR/2 preparation into the balanced SSFP pulse train (23). This allows an effective and ﬂexible way of combining magnetization preparation with balanced SSFP, and so far, a similar technique for FLASH has not been discovered.
+CLINICAL APPLICATIONS
+A common feature of rapid SSFP sequences (whether balanced or not) is their mixed T1 and T2 contrast given by 1=2M0(T2/T1)1=2 (20). Unfortunately, the T2/T1weighted contrast is not optimal for diagnostic purposes. As described above, novel techniques, such as T2-TIDE and TOSSI (see Fig. 11a and 11b, and Fig. 11c and 11d), have been developed which produce a contrast that is closely related to T2, but their robustness and advances compared with TSE-based T2 techniques still has to be proven. Thus, major clinical applications have focused on rapid morphological imaging, especially of the beating heart (see Fig. 12), i.e., to assess ejection fractions, to evaluate ventricular function, to detect infarcted myocardium, and to image renal and coronary arteries (37,38). For these applications, the T2/T1-weighted signal generates a high contrast between blood and myocardium or vessel wall. In addition, cardiac imaging beneﬁts from the intrinsic ﬂow compensation of balanced SSFP along the phase and slice directions (for the twodimensional [2D] version), which reduces artifacts and enhances the signal of inﬂowing blood. Likewise, the high temporal resolution and robustness against motion and ﬂow is also beneﬁcial for interventional procedures where the movement of catheters, guidewires, or needles is monitored under MR guidance (39).
+SUMMARY
+Among all SSFP sequences, balanced SSFP offers the highest signal-to-noise, but has limited clinical application for diagnostic imaging due to the mixed T2/T1 contrast behavior. As a result, several magnetization preparation techniques were proposed over the years to yield, for speciﬁc applications, a more diagnostically relevant contrast. In contrast to nonbalanced SSFP, bSSFP is quite robust against motion or ﬂow and has thus become a valuable tool for functional or morphological imaging, such as for cardio-vascular applications.
+REFERENCES
+1. Bernstein M, King K, Zhou X. Handbook of MRI pulse sequences. Amsterdam: Elsevier Academic Press; 2004.
+2. Carr HY. Steady-state free precession in nuclear magnetic resonance. Phys Rev 1958;112:1693–1701.
+
+3. Jaynes ET. Matrix treatment of nuclear induction. Phys Rev 1954;98:1099–1105.
+4. Woessner DE. Effects of diffusion in nuclear magnetic resonance spin-echo experiments. J Chem Phys 1961;34:2057–2061.
+5. Bloch F. Nuclear induction. Phys Rev 1946;70:460–474. 6. Hargreaves BA, Vasanawala SS, Pauly JM, Nishimura DG. Char-
+acterization and reduction of the transient response in steadystate MR imaging. Magn Reson Med 2001;46:149–158. 7. Schefﬂer K. On the transient phase of balanced SSFP sequences. Magn Reson Med 2003;49:781–783. 8. Ganter C. Off-resonance effects in the transient response of SSFP sequences. Magn Reson Med 2004;52:368–375. 9. Deimling M, Heid O. Magnetization prepared true FISP imaging. In: Proceedings of the 2nd Scientiﬁc Meeting of ISMRM, San Francisco, California USA, 1994. (abstract 495). 10. Mugler JP, Epstein FH, Brookeman JR. Shaping the signal response during the approach to steady state in three-dimensional magnetization-prepared rapid gradient-echo imaging using variable ﬂip angles. Magn Reson Med 1992;28:165–185. 11. Hennig J, Speck O, Schefﬂer K. Optimization of signal behavior in the transition to driven equilibrium in steady-state free precession sequences. Magn Reson Med 2002;48:801–809. 12. Deshpande VS, Chung YC, Zhang Q, Shea SM, Li D. Reduction of transient signal oscillations in true-FISP using a linear ﬂip angle series magnetization preparation. Magn Reson Med 2003;49:151–157. 13. Le Roux P. Simpliﬁed model and stabilization of SSFP sequences. J Magn Reson 2003;163:23–37. 14. Ernst RR, Anderson WA. Application of Fourier transform spectroscopy to magnetic resonance. Rev Sci Instrum 1966;37:93– 102. 15. Freeman R, Hill H. Phase and intensity anomalies in fourier transform NMR. J Magn Reson 1971;4:366–383. 16. Hinshaw WS. Image formation by nuclear magnetic resonance: the sensitive point method. J Appl Phys 1976;47:3709–3721. 17. Zur Y, Stokar S, Bendel P. An analysis of fast imaging sequences with steady-state transverse magnetization refocusing. Magn Reson Med 1988;6:175–193. 18. Zur Y, Wood ML, Neuringer LJ. Spoiling of transverse magnetization in steady-state sequences. Magn Reson Med 1991;21:251–263. 19. Sobol WT, Gauntt DM. On the stationary states in gradient echo imaging. J Magn Reson Imaging 1996;6:384–398. 20. Haacke E, Brown R, Thompson M, Venkatesan R. Magnetic resonance imaging: physical principles and sequence design. New York: Wiley and Sons; 1999. 21. Gyngell ML. The steady-state signals in short-repetition-time sequences. J Magn Reson 1989;81:474–483. 22. Mizumoto CT, Yoshitome E. Multiple echo SSFP sequences. Magn Reson Med 1991;18:244–250. 23. Schefﬂer K, Heid O, Hennig J. Magnetization preparation during the steady state: fat-saturated 3D TrueFISP. Magn Reson Med 2001;45:1075–1080. 24. Oppelt A, Graumann R, Barfuss H, Fischer H, Hartl W, Schajor W. FISP: eine neue schnelle Pulssequenz fu€r die Kernspintomographie. Electromedia 1986;54:15–18. 25. Schefﬂer K, Lehnhardt S. Principles and applications of balanced SSFP techniques. Eur Radiol 2003;13:2409–2418. 26. Bieri O, Markl M, Schefﬂer K. Analysis and compensation of eddy currents in balanced SSFP. Magn Reson Med 2005;54:129–137. 27. Bieri O, Schefﬂer K. Flow compensation in balanced SSFP sequences. Magn Reson Med 2005;54:901–907. 28. Schefﬂer K, Hennig J. Is TrueFISP a gradient-echo or a spin-echo sequence? Magn Reson Med 2003;49:395–397. 29. Bieri O, Schefﬂer K. On the origin of apparent low tissue signals in balanced SSFP. Magn Reson Med 2006;56:1067–1074. 30. Sekihara K. Steady-state magnetizations in rapid NMR imaging using small ﬂip angles and short repetition intervals. IEEE Trans Med Imaging 1987;MI6:157–164. 31. Paul D, Hennig J, Zaitsev M. Intrinsic fat suppression in TIDE balanced steady-state free precession imaging. Magn Reson Med 2006;56:1328–1335. 32. Paul D, Markl M, Fautz HP, Hennig J. T2-weighted balanced SSFP imaging (T2-TIDE) using variable ﬂip angles. Magn Reson Med 2006;56:82–93. 33. Absil J, Denolin V, Metens T. Fat attenuation using a dual steady-state balanced-SSFP sequence with periodically variable ﬂip angles. Magn Reson Med 2006;55:343–351.
+
+15222586, 2013, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24163 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Fundamentals of Balanced SSFP MRI
+
+11
+
+34. Bieri O, Schefﬂer K. SSFP signal with ﬁnite RF pulses. Magn Reson Med 2009;62:1232–1241.
+35. Bieri O. An analytical description of balanced steady state free precession with ﬁnite radio-frequency excitation. Magn Reson Med 2011;65:422–431.
+36. Schmitt P, Jakob PM, Haase A, Griswold MA. T-One Insensitive Steady State Imaging (TOSSI): Obtaining TrueFISP images with pure T2 contrast. In: Proceedings 11th Scientiﬁc Meeting of ISMRM, Toronto, Canada, 2003. (abstract 551).
+
+37. Herborn CU, Watkins DM, Runge VM, Gendron JM, Montgomery ML, Naul LG. Renal arteries: comparison of steady-state free precession MR angiography and contrast-enhanced MR angiography. Radiology 2006;239:263–268.
+38. Stuber M, Weiss RG. Coronary magnetic resonance angiography. J Magn Reson Imaging 2007;26:219–234.
+39. Mekle R, Hofmann E, Schefﬂer K, Bilecen D. A polymer-based MR-compatible guidewire: a study to explore new prospects for interventional peripheral magnetic resonance angiography (ipMRA). J Magn Reson Imaging 2006;23:145–155.
+

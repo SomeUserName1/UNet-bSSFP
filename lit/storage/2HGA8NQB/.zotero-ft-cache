@@ -1,0 +1,1043 @@
+A Pictorial Description of Steady-States in Rapid Magnetic Resonance Imaging
+KLAUS SCHEFFLER MR–Center and Biocenter, University of Basel, Switzerland; E-mail: ksch@ukl.uni-freiburg.de
+
+ABSTRACT: Magnetic resonance imaging in biochemical and clinical research requires
+rapid imaging sequences. Time-resolved imaging of heart movement and the acquisition of a three-dimensional image block within the circulation time of a contrast agent bolus are two typical examples. Rapid imaging sequences are characterized by a very fast train of radiofrequency (rf) and gradient pulses. Between these rf pulses, the excited magnetization is unable to return to its thermal equilibrium. As a consequence, further rf pulses will inﬂuence both the remaining transversal and the remaining equilibrium state. The steady-state magnetization of a multi-rf pulse and gradient pulse experiment is thus a mixture or superposition of different transversal and longitudinal states and the acquired image amplitude becomes a complex function of the investigated tissue’s relaxation properties. Based on the works of Woessner, Kaiser, and Hennig, this article intends to give a pictorial description of rapid multipulse imaging experiments. It also provides an extension of this theory applied to modern imaging sequences such as TRUE FISP and rf-spoiled techniques. © 1999 John Wiley & Sons, Inc. Concepts Magn Reson 11: 291–304, 1999.
+KEY WORDS: rapid imaging; refocusing; steady-state; phase–graph description; rf spoiling
+
+INTRODUCTION
+Most clinically relevant magnetic resonance imaging (MRI) techniques are multipulse techniques which acquire the inverse image space or k-space in a row-by-row sampling pattern. The amplitude of the measured signal deﬁnes the image contrast. First, it depends on the intrinsic tissue relaxation times T1 and T2, and on diffusion effects. Second,
+
+Received 4 January 1999; revised 3 March 1999; accepted 16 March 1999.
+
+Concepts in Magnetic Resonance, Vol. 11(5) 291–304 (1999)
+
+© 1999 John Wiley & Sons, Inc.
+
+CCC 1043-7347/99/050291-14
+
+it is a function of the parameters of the imaging sequence such as the repetition time TR, the echo time TE, the ﬂip angle of the radiofrequency (rf) excitation pulse , and the gradient waveform design.
+It is commonly accepted that a short repetition time of consecutive rf pulses will increase the saturation of longitudinal magnetization, and thus will decrease the amplitude of the free-induction decay (FID) for long T1 species. This principle is best described by the well-known Ernst formula (1)
+
+MT
+
+=
+
+M0
+
+1
+
+1 −
+
+− E1
+
+E1 cos
+
+sin
+
+[1]
+
+291
+
+292 SCHEFFLER
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+which provides an analytical relation between the signal intensity of the FID (MT ) as a function of the relaxation parameter E1 = e−TR/T1 , and the ﬂip angle by which the initial magnetization M0 is moved away from its equilibrium position along the z axis. For a conventional pulse-and-acquired experiment Eq. [1] demonstrates that a rapid excitation of the spin system by intense rf pulses will easily lead to saturation and will drastically reduce the amplitude of the FID.
+However, a completely different behavior is observed in almost all types of rapid imaging sequences. This is based on the fact that besides excitation of longitudinal magnetization each rf pulse will refocus transversal magnetization (like a pulse), which then signiﬁcantly contributes to the measured signal amplitude.
+A typical example is shown in Fig. 1. The stomach of a normal volunteer was ﬁlled with 500 mL water, which has T1 and T2 values of about 1 s at 1.5 T. Images were acquired with a gradient echo sequence using a TR of 6 ms and a ﬂip angle of 70◦.
+According to the Ernst formula [1] water should be almost completely saturated with these imaging parameters. However, Fig. 1 demonstrates a very intense water signal. This surprising result can be understood by the fact that Eq. [1] is valid only in the case of purely longitudinal interference (1). Tissues with long spin–spin relaxation times T2 (compared to TR) additionally generate a steady state transverse interference: Residual transverse magnetization at the end of the TR interval will be refocused by the next rf pulse and may appear as a spin echo or higher-order echo in the next acquisition window. This inﬂuences the signal intensity by constructive or destructive
+Figure 1 Transaxial slice showing an intense signal of a water-ﬁlled human stomach. The image was acquired with a gradient echo sequence (TRUE FISP (14)) using a repetition time TR of 6 ms and a ﬂip angle of 70◦.
+
+interferences. Such effects become more signiﬁcant if TR is about T2 of the investigated tissue or even less. Modern state-of-the-art gradient coil and gradient ampliﬁer systems are able to switch all relevant gradients needed to acquire a single row in k-space within 3–5 ms. The boundary condition to investigate the inﬂuence of rapid pulse trains on a spin system is therefore given by
+
+TR T2 < T1
+
+[2]
+
+The analysis of the ﬂow of magnetization from one excitation pulse to the next by means of the Bloch equations is not very helpful for a pictorial understanding. There is no doubt that the Bloch equations can describe the trajectory of each magnetization vector within the imaging plane for an arbitrarily sophisticated imaging experiment. However, this approach provides little insight into the effects of rf pulses and gradient pulses on the spin ensemble, and is not helpful for understanding imaging artifacts or the design of new imaging sequences.
+The following article introduces the basics of the phase–graph formalism. This is a very elegant tool with which to understand and calculate the ﬂow of magnetization between consecutive rf pulses. Based on this formalism, the principles of echo generation and the calculation of echo amplitudes are greatly simpliﬁed compared to the direct approach of the application of the Bloch equation separately to each spin.
+
+EXCITATION PULSES AND GRADIENT PULSES
+One pulse
+The basic experiment in Fourier MR is the excitation of the sample (for example, water) by a short
+pulse. Relaxation during rf excitation will be neglected throughout this article and the behavior of the magnetization will be discussed exclusively in the rotating x y -frame (i.e., the Larmor frequency is equal to the frequency of the receiver synthesizer). The effect of the pulse is to tip the equilibrium longitudinal magnetization M0 toward the transverse x y plane. The resultant magnetization just after an pulse applied along the x axis is composed of a transversal part My = −M0 sin and a remaining longitudinal part Mz = M0 cos .
+Next, the transversal magnetization of the water sample will dephase, owing to ﬁeld inhomogeneities, susceptibility effects, or, more importantly, switched imaging gradients. Such a gra-
+
+A PICTORIAL DESCRIPTION OF STEADY-STATES 293
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Figure 2 The pure transversal magnetization after the rf excitation pulse (black bar) dephases by the applied gradient pulse (gray bar). For 256 sampling points, the dephasing of the outermost voxel will be 256 . After the gradient pulse, the magnetization is evenly distributed on a disk in the x y plane, called F1 conﬁguration.
+dient, for example in the x direction, as shown in Fig. 2, enables the calculation of the projection of the sample in x direction by applying a Fourier transformation to the FID.
+In a typical imaging experiment which acquires a 256 × 256 matrix, each projection step samples 256 complex data points under the read gradient. According to the sampling theorem, a dephasing by at least 128 full turns will occur to the outermost voxels of the sample. To a very good approximation, this ﬁnal dephased state can therefore be described by transversal magnetization vectors which are evenly distributed over the transversal plane. The detectable net magnetization at the end of the gradient pulse is zero. This is indicated by the triangle in Fig. 2, depicting the inﬁnite extend of isochromats dephasing at different positions along the x axis.
+To analyze multipulse experiments, it is essential to understand in more detail the ﬁnal state of transversal magnetization. This state is symbolically described by a disk of vectors surrounded by the circular arrow in Fig. 2. The measurable signal is zero because the vector sum of all isochromats is zero. However, the amplitude of each isochromat is still M0 sin , decreased by the factor e−TR/T2 due to spin–spin relaxation, which is small for the previously deﬁned condition TR T2. For further discussion, it is sufﬁcient to characterize this dephased state by F1, where the index 1 stands for one dephasing period induced by the applied imaging gradient.
+Several possibilities exist for converting such a dephased transversal state into a measurable net magnetization (or into an echo). A common procedure is to apply a reversed gradient pulse resulting in a complete refocusing of all isochromats to the y axis (gradient echo). Another mechanism to refocus dephased magnetization is the application of a second rf pulse just after the ﬁrst gradient
+
+pulse. A 180◦ pulse is known to invert the phase history of all isochromats leading to the spin echo. However, as will be discussed in more detail below, each rf pulse with an arbitrary ﬂip angle is able to refocus dephased spins. This was proven already by E. L. Hahn’s spin-echo experiment in 1950, in which the echo was created by two 90◦ pulses rather than by a 90◦–180◦ combination (2).
+Two pulses The pulse timing and the resulting dephased states are shown in Fig. 3. The second pulse will rotate the transversal conﬁguration F1 around the x axis. The result is a disk of magnetization vectors which is tilted by the angle out of the x y plane. This state, just after the second rf pulse, can be split into a transversal and a longitudinal component. The transversal part, which is a projection of the tilted disk onto the x y plane, has the shape of an ellipse. The longitudinal component consists of different vectors along the z direction and the amplitude of these vectors are given by a sine function. To simplify further discussion, the new transversal component will be divided into more practical conﬁgurations.
+The elliptic distribution of transversal magnetization can be written as the sum of two dephased states: namely, an F1+ state and an F−+1 state. The plus sign indicates the states just after the rf pulses, and the negative index −1 denotes the complex conjugate state of F1, i.e., an inversion of the y components of all transversal magnetization vectors. Both states are fully dephased
+Figure 3 The second rf pulse rotates the transversal F1 conﬁguration into a new elliptical transversal state and into a longitudinal state. The new transversal part is a sum of two circularly distributed, transversal states with different amplitudes, F1+ and F−+1. The phase history of these states is reversed to each other and F−+1 can thus be rephased by a second gradient pulse into a spin echo (F0).
+
+294 SCHEFFLER
+
+transversal states (F−+1 has a reversed phase history) and the vector sum of the disks will exactly
+
+give the ellipse if the amplitudes (or populations) of the states F1+ and F−+1 are correctly adjusted. At the moment, the distribution of longitudinal magnetization Z1+ is not important since it does not evolve in time (it only relaxes by T1 effects).
+As known from Hahn’s experiment, one trans-
+
+verse conﬁguration must exist which can be re-
+
+focused to form the spin echo. Since the phase
+
+history of compared
+
+ttohethnaetwofF−F+11+,coFn−+ﬁ1gwurilaltiroenfoicsusreevxearcsteldy
+
+at the end of the second gradient pulse (if the ﬁrst
+
+and second gradient pulse have the same areas).
+
+This is the spin echo produced by two arbitrary
+
+pulses. The amplitude of this echo is given by the population of the F−+1 state. It can be seen immediately that a 180◦ pulse will transfer all magnetipzaotpiounlaftrioonmotfheF1+F1wsitlal tbeeinzteoroth. e F−+1 state and the
+Besides the manipulation of the F1 state, the second pulse will also act on the pure longi-
+
+tudinal magnetization Mz (which is decreased to Mz = M0 cos from the ﬁrst pulse). Mz will be ﬂipped into the transversal plane leading to an or-
+
+dinary FID just after the pulse. This pure transver-
+
+sal magnetization will then be dephased into an F1 state at the end of the second gradient pulse. Accordingly, the newly created states F1+ and F−+1 will evolve into an F2 and an F0 (the spin-echo) state, respectively.
+
+Three Pulses
+
+For the two-pulse experiment, the induced ellip-
+
+tical transversal magnetization was expressed as
+
+a sum of and F−+1
+
+two fully dephased, counterrotating F1+ states. The double-dephased F2 state at
+
+the end of the second gradient pulse in Fig. 3 will
+
+be converted again into an elliptical conﬁguration
+
+by the third pulse, which then can be separated again into an F2+ and F−+2 state.
+The sine-shaped distribution of longitudinal
+
+magnetization Z1 will be tipped into the transversal plane by the third pulse as shown in Fig. 4.
+
+The third pulse will create a transversal conﬁgu-
+
+ration where all tips of the magnetization vectors
+
+are aligned in ±y direction and a remaining, reduced longitudinal conﬁguration Z1+.
+The net magnetization of the new transversal
+
+conﬁguration is zero, but a certain fraction can be
+
+refocused by the gradient pulse into a stimulated
+
+echo. Once more, the trick is to decompose the
+
+aligned vectors into a pair of dephased states, one
+
+Figure 4 The third rf pulse transfers the longitudinal
+Z1 conﬁguration into a transversal part and a remaining longitudinal part. Both conﬁgurations consist of si-
+nusodial alignments of magnetization vectors along y
+and z direction. The transversal part can be split into two circular conﬁgurations, F1+ and F−+1, one being the complex conjugate of the other. F−+1 is refocused to the stimulated echo (F0) after the third gradient pulse.
+
+being the complex conjugate of the other. These
+
+states have the same amplitudes (or same diam-
+
+eters of the circle); otherwise their vector sum
+
+would create an ellipse as demonstrated in Fig. 3,
+
+and not, a sum of vectors aligned in the ±y direc-
+
+tion. This decomposition is equivalent to the de-
+
+scription of a linearly polarized wave as the sum
+
+of two counterrotating, circularly polarized waves.
+
+The phase history of these states was created by
+
+the ﬁrst gradient pulse, and we thus can call them F1+ and F−+1. The F−+1 state will be refocused by the third gradient pulse to form the stimulated echo,
+
+described ent pulse
+
+as F0 in Fig. would force
+
+4. A negative, F1+ to refocus
+
+third as a
+
+gradistimu-
+
+lated echo.
+
+All relevant mechanisms have now been de-
+
+scribed to understand multiple-pulse experiments.
+
+All possible distributions of transversal magnetiza-
+
+tion vectors can be decomposed into Fn and F−n states, where n indicates the phase history of the
+
+conﬁguration (the number of gradient pulses ex-
+
+posed to the conﬁgurations). Possible distributions
+
+of longitudinal magnetization are characterized by
+
+sine-shaped alignment of vectors in the z direction
+
+(the z components of the tilted disk in Fig. 3).
+
+They are called Zn states, depending on the previous Fn state.
+However, the representation of all possible Zn and Fn states by magnetization vectors distributed on disks or aligned along z direction becomes very
+
+complex for an increasing number of rf pulses. A
+
+more practical and pictorial description of the cre-
+
+ation and ﬂow of states from one excitation pulse
+
+to the next offers the extended phase–graph tech-
+
+nique based on the works of Kaiser et al. (4) and
+
+Hennig (5).
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+A PICTORIAL DESCRIPTION OF STEADY-STATES 295
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+THE PHASE–GRAPH DESCRIPTION
+
+Transfer and Evolution of States
+
+An easy and illustrative way to display the cre-
+
+ation and evolution of the Fn, Fn∗, and Zn states is the two-dimensional phase–graph technique (5).
+
+Figure 5 describes the stimulated echo experiment
+
+(2, 6) and gives a pictorial description of the origin
+
+of the different echoes beside the stimulated echo.
+
+The creation of new states is indicated by small ar-
+
+rows which connect corresponding pre- and post-
+
+pZu1+ls(eZsn+tastteast—esfaopr peexaarmapslber, oFk1enwliitnhesF)1+f,orFt−+h1e,
+
+and sec-
+
+ond rf pulse. In this example, the area of the gradi-
+
+ent pulses and the rf pulse spacing is not constant.
+
+This allows the observation of all echo paths. The
+
+dephasing or the gradient pulse area between the
+
+ﬁrst and second rf pulse is 1, and is 4 between the
+
+second and third rf pulse. A primary spin echo is
+
+formed between the ﬁrst and second rf pulse by a refocused F−+1 state, which is indicated by a small circle (it goes without saying that we do not need
+
+a 180◦ pulse for refocusing). The position of the echo coincides with the zero-crossing of the F−+1 line, which is then an F0 state showing measurable, pure magnetization in the y direction.
+
+If the second gradient pulse had a negative po-
+
+larity, an echo would be created by the refocus-
+
+ing of the phase into
+
+F1+ state and F−+1 F−5. However, the
+
+would further F1+ state was
+
+denot
+
+created by the refocusing mechanism of the sec-
+
+ond rf pulse. Thus, in the case of a negative second
+
+gradient pulse, the echo should be actually called
+
+a gradient echo, however, with reduced intensity
+
+compared to a conventional gradient echo. This is
+
+because F−+1 and
+
+parts of the Z1+ states.
+
+F1
+
+state
+
+are
+
+transferred
+
+into
+
+Figure 5 Five echoes can be generated with a three
+pulse experiment. A spin echo appears after the second rf pulse owing to the refocused F−+1 component. The F1+, F0+, and F−+1 conﬁgurations after the second rf pulse will then dephase into F1+4, F0+4, and F−1+4 conﬁgurations. The third rf pulse converts these conﬁgurations into nine new Fn conﬁgurations, but only F−+5, F−+4, F−+3, and F−+1 will refocus into a stimulated echo and higherorder echoes. Note the varying slope of the phase graph
+according to the different gradient amplitudes.
+
+The F5, F0+
+
+sinectoonFd4,gFra−+d1ieinnttopFul3s,eawndillZd1+eprheamseaiFn1s+
+
+into con-
+
+stant and is called Z1 before the third rf pulse.
+
+The third rf pulse partially converts the Fn states into F−+5, F−+4, F−+3, and Z1 into F1+ and F−+1. The
+
+last gradient pulse rephases these conﬁgurations
+
+into a stimulated for F−+3, F−+4, and
+
+echo F−+5.
+
+for F−+1, and spin echoes In the case of equidistant
+
+rf pulses and identical gradient areas the stimu-
+
+lated echo and the third spin echo will collapse
+
+into one echo. Depending on the phases of the rf
+
+pulses (which will be investigated in detail later),
+
+these echoes can add up either constructively or
+
+destructively.
+
+It is important to note that the zero-crossing
+
+of the phase graph coincides with the position of
+
+the center of the corresponding echo. Depending
+
+on the strength of the readout gradient, the de-
+
+tected echo signal extends to the left and right of
+
+the zero-crossing. This can lead to interference be-
+
+tween neighboring echoes; a practical application
+
+of this phenomenon is MR interferography to de-
+
+tect ﬂow or motion (7).
+
+The phase graph of the stimulated echo exper-
+
+iment is still valid in the presence of B0 inhomogeneities. A B0 offset during the three pulse experiment just shifts the base frequency of each
+
+isochromat; the echo positions will be unaffected.
+
+The last missing tool for a full description of mul-
+
+tipulse experiments is the calculation of the am-
+
+plitudes of the echoes, or, equivalently, the popu-
+
+lation of all possible Fn and Zn states.
+
+Population of the States
+The calculation of echo amplitudes closely follows the formalism given by Jaynes and Woessner (8, 3). Introducing the complex magnetization F = Mx + iMy, the effect of an rf pulse with ﬂip angle and phase is equivalent to a vector rotation. It can be expressed by the complex Bloch equation
+
+F + = cos2 2 F + e2i sin2 2 F ∗
+
+− iei sin Mz
+
+Mz+
+
+=
+
+−
+
+i 2
+
+e−i
+
+sin
+
+F
+
++
+
+i 2
+
+ei
+
+sin
+
+[3] F∗
+
++ cos Mz
+
+where F∗ is the complex conjugate of F. These equations describe how rf pulses act on pure magnetizations.
+
+296 SCHEFFLER
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+However, we are interested in the effect of rf
+pulses on fully dephased Fn states and longitudinal Zn states. An Fn state is a sum over dephased spins located at different spatial positions. The
+phase evolution of spins at position r induced by n identical gradient lobes is ein␾Gr. ␾G is the area of the gradient pulses switched between the rf pulses
+and it is given by GT , where G is the gradient
+amplitude in T/m and T the duration of the gradient pulse1. An n-fold dephased transversal state
+can thus be written as a sum or integral over all
+positions
+
+transversal state = Fn ein␾Grdr
+
+[4]
+
+r
+
+The magnitude of the complex number Fn is the amplitude or population of this state and the
+phase of Fn is the angle in the x y plane. Accordingly, the Zn state, which consists of a sinusodial and cosinusodial distribution of magnetization
+along the z direction, can be expressed as
+
+longitudinal state = Zn ein␾Grdr
+
+[5]
+
+r
+
+As shown in the previous examples, the magnetization after several rf pulses is a sum of different dephased states Fn. This can be expressed as
+
+∞
+
+F=
+
+Fn ein␾Grdr
+
+n=−∞
+
+r
+
+∞
+
+[6]
+
+Z=
+
+Zn ein␾Grdr
+
+n=−∞
+
+r
+
+Since longitudinal magnetization is a real value, it follows that Zn = Z−∗ n. Inserting these equations into the complex Bloch equation [3] will
+
+ﬁnally give
+
+ 
+
+Fn F−∗ n
+
++ 
+
+Zn
+
+ = 
+
+cos2 2 e−2i sin2
+
+2
+
+− 
+
+i 2
+
+e−i sin 
+
+·
+
+
+
+Fn F−∗ n
+
+
+
+e2i sin2 2 cos2 2
+
+−iei sin ie−i sin
+
+ 
+
+i 2
+
+ei
+
+sin
+
+cos
+
+[7]
+
+Zn
+
+1 G is composed of the three Cartesian components
+
+(Gx Gy Gz). For time-varying gradient pulses G t , the gradi-
+
+ent area is given by ␾G =
+
+T 0
+
+G
+
+t
+
+dt.
+
+This expression describes the transition from prepulse to postpulse states for each n. The spatial integrals over r in Eqs. [4] and [5] are canceled since the transition rule applies for all positions r. Inspection of the matrix equation [7] yields an exact mathematical analogy to the phase–graph representation in Fig. 5: Each rf pulse creates three magnetization components: two transversal states with complementary phase evolution (Fn, F−n) and one longitudinal state (Zn). The small arrows between pre- and postpulse states shown in Fig. 5 are graphically analogous to the transition matrix [7].
+In addition, we need a rule for the evolution of states between rf and gradient pulses. Beside CPMG-type sequences (18), all rapid imaging sequences are multipulse experiments with constant rf pulse spacing and constant net dephasing between rf pulses. A constant net dephasing requires constant readout and slice selection gradient pulses and a balanced or rewound phase-encoding gradient. The schematic timing diagram, partially adapted from (16), is depicted in Fig. 6. Detailed readout and phase encoding gradient lobes are shown in Figs. 8 and 9. Since the amount of dephasing is restricted to multiples of one readout block, the creation and evolution of different Fn and Zn states is strongly restricted.
+According to Fig. 6, the evolution of states between rf pulses is given by:
+
+Fn+ −→ Fn+1 = E2Fn+
+
+Zn+
+
+−→
+
+Zn for
+
+dephasing = E1Zn+ n=0
+
+and  
+
+T2
+
+relaxation
+
+[8]
+
+Z0+
+
+−→
+
+Z0 = E1Z0+ + M0 1 − E1
+
+
+
+T1 relaxation
+
+Figure 6 Basic template of a multipulse imaging se-
+quence. Between consecutive rf pulses (black bars), the gradient pulses (gray bars) dephase the transversal Fn+ states into Fn+1 states. Since all gradient pulses have the same area GT , the generation of new states increases
+linearly with increasing rf pulse number. After several rf pulses, the pure transversal magnetization F0+ becomes a sum of refocused F−n states and the FID.
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+A PICTORIAL DESCRIPTION OF STEADY-STATES 297
+
+The parameters E1 = e−TR/T1 and E2 = e−TR/T2 attenuate these conﬁgurations owing to T1 and T2 relaxation effects.
+
+Again, the rules in Eq. [8] cannot be applied to
+
+varying gradient pulses and rf pulse spacings, as
+
+shown in the stimulated echo example in Fig. 5.
+
+For equally spaced pulses (and constant gradient
+
+integrals in between), the number of states in-
+
+creases linearly (Fig. 6) but can grow exponentially
+
+in the worst case (15, 19).
+
+As an exercise, we calculate the amplitude of a
+
+spin echo generated by two rf pulses 1 and 2 around the x axis ( = 0). Starting with equi-
+
+−mlibiarsgiiunnmeti1zm,atFaigo0+nn∗et=aifztaeitrsiiontnheM1,ﬁ0arsn=tdpMZul0+zse==wiZcllo0sb=e1.F10T+thh=ies corresponds to pure transversal magnetization in
+
+−y direction with amplitude sin 1 and a remain-
+
+ing longitudinal magnetization of cos 1. Accord-
+
+ing to the dephasing and relaxation rules given in
+
+Eq. and
+
+[8], F0+∗
+
+F0+ will evolve into into E2F1∗ = iE2 sin
+
+E2F1 = −iE2 sin 1 1, all other transver-
+
+sal states are zero. Inserting this into the transition
+
+matrix [7] for the second rf pulse (n = 1) gives
+
+F1+ = iE2 cos2
+
+2 sin 2
+
+1
+
+and
+
+[9]
+
+F−+1∗ = E2 sin2
+
+2 sin 2
+
+1
+
+i.e., the population of
+
+is E2 sin2
+
+2
+2
+
+sin
+
+1. For
+
+F−+1 which forms the the conventional spin
+
+echo echo
+
+experiment with 1 = /2 and 2 = the result would be 1 0 · E2. For the Hahn spin echo with
+1 = 2 = /2 the resulting echo amplitude will be 0 5 · E2.
+Toward the Steady State
+In a typical imaging experiment, 200–500 consecutive excitation pulses and readout gradient pulses (several thousand for three-dimensional encoding) are used to acquire the k-space data. After N pulses the state of the spin ensemble can be described by 2N + 1 Fn and N + 1 Zn conﬁgurations. The population of these states depends on the ﬂip angle and phase of the rf pulses and on the relaxation times T1 and T2. Under certain conditions that are listed below, a steady state of all conﬁgurations can be reached. Constant echo amplitudes during the imaging experiment are essential to obtain artifact-free images, since any modulations during k-space encoding can produce ghosting or interference effects.
+The formulas given in Eqs. [7] and [8] can be used to calculate or to simulate the evolution of states for a multipulse experiment. The corresponding C program is listed in the Appendix. An example for the evolution of Fn states is shown in Fig. 7 for the parameters TR = 0 025 · T1 = 0 05 · T2, and ﬂip angle = 70◦. The gray values on the left panel are proportional to the populations or amplitudes of the Fn conﬁgurations. The
+
+Figure 7 (Left) Generation and ﬂow of transversal Fn states during a multipulse experiment. The gray values are proportional to the magnitude of Fn. The spreading velocity of the peripheral wave depends on the ﬂip angle of the rf pulse. The refocusing mechanism is
+dominant for high ﬂip angles and thus results in a small spreading velocity. For low ﬂip
+angles, most of the magnetization ﬂows to the higher-order Fn states. (Right) Time course of the F0+ and F−+1 state as a function of the rf pulse number. The strong amplitude oscillation at the beginning of the rf pulse train converges to a steady state after about 100 rf pulses. The
+ﬁnal steady-state echo amplitudes are signiﬁcantly stronger compared to the Ernst amplitude (F0+ for T2 = 0).
+
+298 SCHEFFLER
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+right plot in Fig. 7 depicts the amplitude course of the F0+ state (pure transversal magnetization after the rf pulse) as a function of the rf pulse number n. The curve at the bottom also shows the evolution of the F0+ state for T2 being equal to zero. For this case, no transversal magnetization can be refocused and thus does not contribute to subsequent Fn states. Therefore, the steady-state amplitude coincides with the Ernst formula [1] for purely longitudinal interference F0 T2 = 0 = 0 0348. The dotted line shows the population of the F−+1 state which can be converted into a measurable gradient echo by a reversed readout gradient lobe, as described in the next section.
+A reduction of the rf ﬂip angle will attenuate the refocusing mechanism of the rf pulse. According to Eq. [7], a ﬂip angle of = 20◦, for example, will excite sin 20◦ = 34% of the longitudinal magnetization, but only sin2 20◦/2 = 3% of the transversal magnetiztion will be refocused. Therefore, the steady-state amplitude is very close to the Ernst amplitude for low ﬂip angles, but differs signiﬁcantly for high ﬂip angles and long spin–spin relaxation times T2.
+The oscillating signal amplitudes at the beginning of the rf pulse train relax into the steady state after roughly 5 · T2/TR excitation pulses. In most clinical and biological applications, the steady state will be reached after about 50–100 rf pulses (T2 ∼ 100–200 ms at 1.5 T, Tr ∼ 10 ms) or even less for small ﬂip angles ( ∼ 10◦–20◦). Since the ﬁrst acquisitions usually correspond to the outermost part of k-space, imaging artifacts are strongly suppressed. High ﬂip angles prolong the approach to constant amplitudes and can produce ringing or ghosting artifacts in the image. One common approach to suppress these effects is a set of prescans to reach equilibrum before data acquisition, or using variable ﬂip angles during the start of acquisition (20). In the next section, an analysis of the population of the conﬁgurations after having reached the steady state is made and an analytical expression of their amplitude as a function of T1, T2, and ﬂip angle is given.
+THE STEADY STATE
+Until now it has not been discussed whether a steady state of magnetization can be reached. Under certain assumptions, it is easy to obtain some rules that guarantee an approach to equilibrum. However, it is also straightforward to generate
+
+some kind of limit cycles or even noise in the magnetization using, for example, stochastic rf phases or ﬂip angles.
+Necessary Conditions to Reach the Steady State
+Since most samples are composed of different compartments, the signal amplitudes have to reach the steady state for any given relaxation times T1 and T2. From this, it follows immediately that the ﬂip angle of the rf pulses and the rf pulse spacing TR must be constant. In addition, the dephasing of spins during TR must be constant (or zero) to ensure proper refocusing and establish a stationary transversal magnetization. The remaining free parameter is the phase of the rf pulse, meaning the angle of the rotation axis in the x y plane. Equation [7] shows that a phase offset of the rf pulse will rotate all transversal states by 2 around the z axis, which then results in a destructive interaction of different states.
+It is remarkable and very useful to modify the contrast behavior of the sequence, that the phase of the rf pulse can vary quadratically as a function of the pulse number without disturbing the stationary state. In summary, the following conditions are sufﬁcient and necessary to produce stationary states:
+• The dephasing of states between rf pulses must be constant.
+• The time TR between rf pulses must be constant.
+• The ﬂip angle of rf pulses must be constant. • The phases of the rf pulses must satisfy the
+equation: n = a + bn + cn2.
+A rigorous proof of these conditions can be found in Sobol et al. (17) and Zur et al. (21).
+Steady-State Amplitudes of the Transversal Conﬁgurations: Three Approaches
+First Approach. Biological tissues show a large and speciﬁc variety in T1 and T2 relaxation times. In terms of clinical applications and tissue characterization, it is important to know the image contrast as a function of these relaxation parameters. Equation [7] gives the recipe to calculate the amplitudes of all conﬁgurations Fn and Zn after n excitation pulses. Application of the rf pulse matrix and evolution of states given by Eq. [8] ﬁnally
+
+A PICTORIAL DESCRIPTION OF STEADY-STATES 299
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+gives the steady-state amplitudes after sufﬁcient iteration steps; an example is shown in Fig. 7 for the F0+ and F−+1 state.
+If we are not interested in the evolution of all states starting from the ﬁrst rf pulse (which, however, gives an excellent idea of the working mechanism of the sequence), two further approaches are derived to calculate the stationary amplitudes.
+
+Second Approach. Under the assumptions that a steady state has been reached and that all phases of the rf pulses are constant, it can be shown that the complex transversal magnetization F = Mx + iMy is given by (22–24)
+
+F t T1 T2
+
+= M0
+
+1 − E1 sin p − q cos
+
+e−t/T2 Gt
+
+· 1 − E2e−i G t
+
+[10]
+
+where
+
+p = 1 − E1 cos − E22 E1 − cos
+
+[11]
+
+q = E2 1 − E1 1 + cos
+
+G t is the accumulated precession angle or the dephasing over the gradient pulse period TR, and t denotes the time evolution of F between two
+rf pulses (t = 0 · · · TR). The denominator 1/ p − q cos G can be expanded into a geometrical series by grouping of echoes with equal phase evo-
+lution G t and Eq. [10] can be written as
+
+F t T1 T2
+
+= M0
+
+1 − E1
+
+sin p
+
+e−t/T2
+
+∞
+
+·
+
+un − E2vn Fn
+
+[12]
+
+n=−∞
+
+with
+
+∞ 2m + n
+
+un =
+m=0
+
+m
+
+q 2m+n 2p
+
+[13]
+
+∞ 2m + n + 1
+
+vn =
+m=0
+
+m
+
+q 2m+n+1 2p
+
+Equations [12] and [13] are a more compact ver-
+
+sion of the original expression of Gyngell and
+
+Mizumoto et al. (11, 12) using the convention
+
+that
+
+n k
+
+= 0 for 0 ≤ n < k, and by identifying
+
+ein G t with Fn. The amplitudes just after the rf
+
+pulse (Fn+ states) are given for t = 0 in Eq. [12]
+
+and amplitudes just before rf excitation by setting
+t = TR (Fn states). Since we are in the steady state we have an inﬁnite amount of Fn states ranging from n = −∞ to ∞. The amplitudes are given by
+un − E2vn, and we thus have an analytical relation between Fn amplitudes and T1, T2, and ﬂip angle
+. Numerical evaluation of the sums in Eq. [13]
+exactly gives identical Fn amplitudes as for the iterative result using the ﬁrst approach based on
+the transition matrix.
+
+Third Approach. A third and equivalent result us-
+ing a slightly different technique was found by Zur
+et al. for the stationary amplitudes of the F0 and F−1 state (13). By integrating G t in Eq. [10] over a full 2 period, they proved that the ampli-
+tude can be expressed as
+
+sin
+
+F0 = 1 + cos 1 − E E1 − cos
+
+[14]
+
+sin
+
+F−1
+
+=
+
+− E2
+
+1 + cos
+
+· 1 − E 1 − E1 cos
+
+[15]
+
+where E is given by
+
+1 − E22
+
+1 2
+
+1 − E12E22 − 2E1
+
+1 − E22
+
+cos
+
++ E12 − E22 cos2
+
+−
+
+1 2
+
+[16]
+
+Again, the result coincides with the transfer matrix technique and the approach of Gyngell and Mizumoto et al. Apparently, Mizumoto et al. derived a closed expression for the population of all Fn conﬁgurations in the steady state. However, the Mizumoto et al. and the Zur et al. approach do not handle the case of quadratically increasing phases of the rf pulses. It is still best calculated by the iterative phase–graph description.
+
+RAPID STEADY-STATE IMAGING SEQUENCES
+Rapid imaging sequences or steady-state free precession (SSFP) sequences acquire k-space data in a steady state of all transversal and longitudinal components. The conditions for reaching the stationary state are known, as well as the relationship between the amplitudes of transversal coherences and the tissue parameters T1 and T2, and the ﬂip angle . Keeping these rules in mind, a gradient
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+300 SCHEFFLER
+
+switching pattern can be designed to select one of the Fn states for data acquisition. The resulting image contrast can be calculated by one of the three techniques described above.
+F0 and F−1 Sequences
+Most rapid steady-state sequences use the F0 or F−1 state for k-space acquisition. The corresponding timing diagrams are shown in Fig. 8. The acronyms for these sequences are FAST, GRASS, or FISP (9) (upper panel), and CE–FAST or PSIF (10) (lower panel). It is obvious that the phaseencoding gradient (one for two-dimensional and two for three-dimensional imaging) must be rewound prior to the next rf pulse. Otherwise, the total dephasing of spins (or the gradient area) between rf pulses is not constant and thus will disturb the steady state. In both sequence types, the net dephasing between pulses is equal and the distribution of magnetization onto the Fn states is equivalent.
+
+The particular lobe of the readout gradient determines which Fn state is selected for imaging, yielding different image contrasts as shown in the corresponding images in Fig. 8. The cerebrospinal ﬂuid (CSF) has T1 and T2 values of about 1200/200 ms, and white matter has a T1 and T2 of about 500/70 ms at 1.5 T. For the imaging parameters of = 40◦ and TR = 11 ms, it follows from Eqs. [14–16] that the CE–FAST sequence shows an increased ratio between CSF and white-matter signal corresponding to a T2-like contrast. A smaller ﬂip angle will reduce transversal refocusing and thus will signiﬁcantly decrease the signal amplitude of the long T2 CSF.
+F|n|>1 Sequences
+Beside the distinct difference in the contrast behavior of higher-order Fn sequences ( n > 1), a signiﬁcant drawback is the strongly reduced intensity of these states compared to the most intense F0 state. Numerical evaluation of the power series expansion given in Eq. [13] shows that the amplitudes of Fn states decrease exponentially as a function of n. Since noise in nuclear magnetic resonance (NMR) experiments does not decrease, the signal-to-noise ratio for high-order Fn sequences is drastically reduced. Figure 9 shows a sequence which selects the F−2 path for imaging. The parameters used in this experiment were
+= 40◦ and TR = 15 ms. Figure 9 demonstrates an increased signal ratio between long and short T2 tissues compared to the FAST or CE–FAST sequence, since the contribution of high-order echoes to the image signal is emphasized for the F−2 path.
+
+Figure 8 (Top) FAST, GRASS, or FISP sequence.
+(Bottom) CE–FAST or PSIF sequence. Compared to
+the FAST sequence, the readout gradient of CE–FAST is time reversed. F0+ will be refocused to the acquisition echo for the FAST sequence and F−+1 for the CE–FAST sequence. The CE–FAST image is stronger T2-weighted compared to the FAST image, since F−+1 is mainly composed of spin echo signals.
+
+Figure 9 The long readout gradient refocuses both the F−+1 and F−+2 state, but only the second echo is acquired for image formation. The resulting image shows a re-
+duced signal-to-noise ratio compared to the previous
+examples. In addition, through-plane dephasing artifacts
+are visible at the frontal region of the brain induced by
+local ﬁeld inhomogeneities.
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+A PICTORIAL DESCRIPTION OF STEADY-STATES 301
+
+Rf Spoiling: Ernst Angle Revisited
+
+The previous examples are based on rf pulses with
+
+a constant phase angle. This results in a construc-
+
+tive addition of Fn states and the amplitude of the stationary F0 state is much higher than would be expected from pure longitudinal interferences
+
+(Ernst formula [1], E2 = 0, or no refocusing of transversal components). As ﬁrst described by Zur
+
+et al. (21), a quadratic increment of the rf pulse
+
+phases can produce destructive interferences be-
+
+tween different states, and in the ideal case only
+
+the pure FID after the rf pulse contributes to the
+
+image signal. The resulting T1-weighted imaging sequences are of great importance in clinical prac-
+
+tice: for example, in displaying vessels in contrast-
+
+enhanced angiography techniques (25).
+
+Figure 10 shows the intensity of the F0+ signal
+
+for different quadratic phase increments c ( n =
+
+n
+
+n=2−160c◦),.
+
+and The
+
+for TR = 0 02 · T1 = 0 02 · dotted line at the bottom of
+
+T2 the
+
+and left
+
+panel depicts the intensity according to the Ernst
+
+formula for E2 = 0 or for pure longitudinal interference without refocusing of transversal compo-
+
+nents. For certain quadratic increments c (some
+
+manufacturers use 50◦ or 117◦). the “rf-spoiled”
+
+signal will approximate this value, but it may be
+
+even less than the Ernst amplitude.
+
+One goal in the design of robust rf-spoiled se-
+
+quences is to achieve a consistent T1 contrast for all relevant T1, T2, and values. The gray value coded image on the right panel in Fig. 10 shows the rf-spoiled steady-state amplitude of the F0+ signal ( = 60◦) as a function of T2 T1 = 50TR and
+
+the quadratic increment c. For certain values of c, F0+ is consistently close to the ideal spoiled Ernst value, independent of T2.
+It is very interesting and informative to look at the evolution of the Fn conﬁgurations during an rf-spoiled sequence. Figure 11 displays the boomerang-shaped creation of Fn states during rf excitation for different quadratic phase increments c. In contrast to the example shown in Fig. 7, the Fn conﬁgurations are forced to travel back toward the center, where they interact with the dominating, central F0 state. After several hundreds of excitation pulses, they destructively contribute to the center line and cause a cancellation of steady-state transversal components. The numerical simulations shown in Figs. 7, 10, and 11 are based on the C program given in the Appendix.
+Completely Balanced Sequences: TRUE FISP
+In all previous discussions and examples, we assumed that the transversal magnetization will dephase between rf pulses owing to the applied readout gradient. The dephasing is necessary to read out the fully encoded echo, but it can be rephased by a reversed gradient pulse into pure magnetization, as depicted in the diagram in Fig. 12. This type of sequence was originally called FISP (14), but was not in clinical use for several years owing to high requirements on ﬁeld homogeneity and gradient performance. It has now been implemented on state-of-the-art scan-
+
+Figure 10 Steady-state F0+ amplitude of an rf-spoiled sequence as a function of the quadratic rf pulse phase increment c. The dotted line depicts the Ernst amplitude (pure FID signal) for the parameters T1 = T2 = 50 TR and rf ﬂip angle = 60◦. The right panel is a grayvalue coded plot of the steady-state amplitude as a function of the phase increment c and
+T2 T1 = 50TR . The spoiled steady-state amplitude obviously depends on T2 and T1 but is approximately constant for different quadratic phase increments such as 50◦, 80◦, 103◦, 117◦, 124◦, or 142◦.
+
+302 SCHEFFLER
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Figure 11 Evolution of transversal Fn states during an rf-spoiled sequence. In contrast to constant or linear rf pulse phases, the peripheral wave returns back to the central F0 line and starts a sinusodial oscillation of spreading and conﬂuence. The oscillation frequency increases
+with increased quadratic phase increment c.
+
+Figure 12 Completely balanced protocol of the TRUE FISP sequence (14). Both phase-encoding and readout gradients are rephased between rf pulses and no higherorder dephased Fn states are being generated. The sequence offers a very high signal-to-noise ratio and shows essentially a T1/T2 contrast.
+
+ners and renamed “TRUE FISP.” The T2-like contrast and an excellent signal-to-noise ratio makes
+it useful for several clinical applications as shown,
+for example, in Fig. 1.
+The most remarkable point is that beside the F0 state, no higher-order Fn states will be created, at least in the ideal case. The resultant phase–graph
+shown in Fig. 12 consists of a single zigzag line
+and no conﬁgurations with higher dephasing are
+being formed. It is important to use alternating rf
+pulses for excitation (i.e., linear phase increment
+of n = n ) to avoid the refocused signal having an opposed phase to the primary echo. An image
+slice positioned identical to all previous examples
+is shown in the right panel of Fig. 12.
+The signal intensity as a function of T1 T2, and ﬂip angle can be derived from Eq. [14] and is
+given by (13)
+
+F0 = 1 −
+
+1 − E1 E1 − E2
+
+E2 sin cos − E1E2
+
+[17]
+
+if the echo is centered between the rf pulses. For liquids where T1 ∼ T2 and for a repetition time TR ≤ T1, the amplitude of F0 reaches the value of 0.5M0, which is much higher than previous steadystate sequences.
+The completely balanced imaging protocol of TRUE FISP is very sensitive to ﬁeld inhomogeneities, susceptibility effects, and varying eddy currents induced by the stepped phase-encoding gradient. Some authors claim that this sequence is not able to generate artifact-free images on clinical scanners (13, 16, 17), which is certainly not true even on high ﬁeld systems. The crucial point in TRUE FISP imaging is that the F0 state consists of a superposition of the primary echo and of several rf pulse-rephased states that probably show slight phase differences caused by gradient imperfections or ﬁeld inhomogeneities. High-performance gradient systems (rise times of about 50 T/m/s) are able to reduce the repetition time TR to 5 ms for a pixel resolution of 1 × 1 mm, and appropriate shimming can reduce the residual ﬁeld variation to 1 ppm. Phase differences between consecutive rf pulses can therefore be minimized and a homogeneous intensity across the entire image slice can be obtained, as shown in Figs. 1 and 12.
+SUMMARY
+The interaction between spins, rf ﬁelds, and gradient ﬁelds can be described by the classical Bloch equations. Both the rf ﬁeld and gradient ﬁeld simply rotate the magnetization vector of the spin ensemble. A consecutive application of these rotations can create the described range
+
+A PICTORIAL DESCRIPTION OF STEADY-STATES 303
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+of different mechanisms of echo formation. It was demonstrated, however, that the description of multipulse imaging experiments based on isolated magnetization vectors, and Bloch rotations is not adequate for a pictorial understanding of the stimulated echo. It is also by no means able to illustrate the appearance of all higher-order echoes.
+The basic concept was to substitute the common single-spin vector model for the beneﬁt of a more appropriate description of magnetization. The introduction of dephased states with zero net magnetization as a fundamental building block of multipulse experiments enabled a universal and clearly arranged deﬁnition of the instantaneous conﬁguration of the magnetization. The transition and ﬂow between different magnetization states is controlled by the transition matrix (the complex Bloch equation applied to dephased states) and the timing or phase evolution between rf pulses. The resulting conﬁguration and superposition of different magnetization states were used to calculate the echo amplitude, and thus the image contrast. The most practical and delightful approach to calculate and display the creation of magnetization states is a numerical simulation of an imaging sequence based on Eqs. [7] and [8]. Some results have been shown in Figs. 7, 10, and 11, and the reader is encouraged to simulate the destiny of magnetization states for more sophisticated imaging techniques such as nonrefocused FLASH sequences, multiecho BURST sequences, or rf-spoiled projection sequences. The C program listed in the Appendix may be helpful to transfer the relevant equations into an executable code.
+APPENDIX
+Numerical Simulation of Steady States
+The C program listed below simulates the evolution of transversal and longitudinal states for a multipulse experiment with constant rf pulse spacing TR and constant dephasing. The complex transversal states Fn and Fn+ are stored as (fx[np + n],fy[np + n]) and (pfx[np + n], pfy[np + n]) for n = −np · · · np − 1. The Zn and Zn+ states are given by (zx[n],zy[n]) and (pzx[n],pzy[n]) for n = 0 · · · np − 1. The program prints the F0+ and F−1 states after each rf pulse. The T1, T2, and rf pulse parameters correspond to the simulation shown in Fig. 7.
+
+#include <stdio.h> #include <math.h>
+
+#define np 500 #define TR 1.0
+
+/* number of RF pulses */
+
+int main() {
+int i,j,k,n,m; double fx[2*np],fy[2*np],zx[np],zy[np];
+/* pre pulse configurations */ double pfx[2*np],pfy[2*np],pzx[np],pzy[np];
+/* post pulse configurations */ double a,b,c,d,e,f,g,h,hb,gb,ec,fc; double phi,alpha,e1,e2,T1,T2;
+
+T1 = TR/0.025; T2 = TR/0.05; /* set relaxation parameters */
+e1 = exp(-TR/T1); e2 = exp(-TR/T2);
+
+for (i=0;i<2*np;i++) /* initialize all states */ {
+fx[i] = 0.0; if (i<np) zx[i] = 0.0; fy[i] = 0.0; if (i<np) zy[i] = 0.0; } zx[0] = 1.0;
+/* equilibrium magnetization M0=1 */
+
+for (j=0;j<np-1;j++) /* outer pulse loop */
+{ alpha = 70.0*M_PI/180.0; /* setting of RF parameters and matrix coefficients */ phi = 0.0; /* RF pulse phase set to zero */
+
+a = cos(alpha/2); a *= a; /* set coefficients of transition matrix */
+b = sin(alpha/2); b *= b; c = sin(alpha); d = cos(alpha); e = sin(phi); f = cos(phi); g = sin(2.0*phi); h = cos(2.0*phi); hb = h*b; gb = g*b; ec = e*c; fc = f*c;
+
+for (i=0;i<j+1;i++) /* application of RF rotation matrix on all states */
+{ n = np + i; m = np - i;
+
+pfx[n] = a*fx[n] + hb*fx[m] + gb*fy[m] + ec*zx[i] + fc*zy[i];
+pfy[n] = a*fy[n] - hb*fy[m] + gb*fx[m] - fc*zx[i] + ec*zy[i];
+pfx[m] = hb*fx[n] + gb*fy[n] + a*fx[m] + ec*zx[i] - fc*zy[i];
+pfy[m] = gb*fx[n] - hb*fy[n] + a*fy[m] - fc*zx[i] - ec*zy[i];
+pzx[i] = (-ec*fx[n] + fc*fy[n] - ec*fx[m] + fc*fy[m] + 2.0*d*zx[i])/2.0;
+
+304 SCHEFFLER
+
+10990534, 1999, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+pzy[i] = (-fc*fx[n] - ec*fy[n] + fc*fx[m] + ec*fy[m] + 2.0*d*zy[i])/2.0;
+} printf("pulse %d: F0+: %f %f",j,pfx[np],pfy[np]);
+
+for (i=-j;i<j+1;i++)
+
+/* time evolution and relaxation of all states */
+
+{
+
+n = np + i;
+
+fx[n+1] = pfx[n]*e2;
+
+fy[n+1] = pfy[n]*e2;
+
+if (i>0) zx[i]
+
+= pzx[i]*e1;
+
+if (i==0) zx[i]
+
+= pzx[i]*e1 + 1.0 - e1;
+
+if (i>=0) zy[i]
+
+= pzy[i]*e1;
+
+}
+
+printf(", F-1: %f %f\n",fx[np],fy[np]);
+
+}
+
+exit(0);
+
+}
+
+ACKNOWLEDGMENTS
+The author acknowledges the considerable contributions to this ﬁeld by current collaborators, particularly Reta Haselhorst, Oliver Heid, Ju¨rgen Hennig, and Joachim Seelig. He is also grateful for ﬁnancial support by the Swiss National Science Foundation under Grant 31–49758.96
+
+REFERENCES
+1. Ernst RR, Bodenhausen G, Wokaun A. Principles of nuclear magnetic resonance in one and two dimensions. Oxford: Clarendon; 1987. p 125–148.
+2. Hahn EL. Spin echoes. Phys Rev 1950; 89: 580–594. 3. Woessner DE. Effects of diffusion in nuclear mag-
+netic resonance spin–echo experiments. J Chem Phys 1961; 34: 2057–2061. 4. Kaiser R, Bartholdi E, Ernst RR. Diffusion and ﬁeld–gradient effects in NMR Fourier spectroscopy. J Chem Phys 1974; 60: 2966–2979. 5. Hennig J. Multiecho imaging sequences with low refocusing ﬂip angles. J Magn Reson 1988; 78: 397– 407. 6. Frahm J, Merboldt KD, H¨anicke W, Haase A. Stimulated echo imaging. J Magn Reson 1985; 64: 81– 93. 7. Hennig J. Generalized MR interferography. Magn Reson Med 1990; 16: 390–402. 8. Jaynes ET. Matrix treatment of nuclear induction. Phys Rev 1955; 98: 1099. 9. Gyngell ML, Palmer ND, Eastwood LM. The application of steady–state free precession (SFP) in 2D–FT MR imaging. In: Proceedings, SMRM, 5th annual meeting; 1986. p 666. 10. Hawkes RC, Patz S. Rapid Fourier imaging using steady–state free precession. Magn Reson Med 1987; 4: 9–23.
+
+11. Gyngell ML. The steady–states signals in short– repetition–time sequences. J Magn Reson 1989; 81: 474–483.
+12. Mizumoto CT, Yoshitome E. Multiple echo SSFP sequences. Magn Reson Med 1991; 18: 244–250.
+13. Zur Y, Stokar S, Bendel P. An analysis of fast imaging sequences with steady–state transverse magnetization refocusing. Magn Reson Med 1988; 6: 175– 193.
+14. Oppelt A, Graumann R, BarfußH, Fischer H, Hartl W, Schajor W. FISP: eine neue schnelle Pulssequenz fu¨r die Kernspintomographie. Electromedica 1986; 54: 15–18.
+15. Hennig J. Echoes—how to generate, recognize, use or avoid them in MR–imaging sequneces: Part 1. Concepts Magn Reson 1991; 3: 125–143.
+16. Hennig J. Echoes—how to generate, recognize, use or avoid them in MR–imaging sequneces: Part 2. Concepts Magn Reson 1991; 3: 179–192.
+17. Sobol WT, Gauntt DM. On the stationary states in gradient echo imaging. J Magn Reson Imag 1996; 6: 384–398.
+18. Meiboom S, Gill D. Modiﬁed spin–echo method for measuring nuclear relaxation times. Rev Sci Instrum 1958; 29: 688.
+19. Heid O, Deimling M. QUEST—a quick echo split imaging technique. In: Proceedings, SMRM, 11th annual meeting; 1992. p 433.
+20. Mugler JP, Epstein FH, Brookeman JR. Shaping the signal response during the approach to steady– state in three–dimensinal magnetization–prepared rapid gradient–echo imaging using variable ﬂip angles. Magn Reson Med 1992; 28: 165–185.
+21. Zur Y, Wood ML, Neuringer LJ. Spoiling of transverse magnetization in steady–state sequences. Magn Reson Med 1991; 21: 251–263.
+22. Freeman R, Hill HDW. Phase and intensity anomalies in Fourier transform NMR. J Magn Reson 1971; 4: 366–383.
+23. Ernst RR, Anderson WA. Application of Fourier transformation spectroscopy to magnetic resonance. Rev Sci Instrum 1996; 37: 93–102.
+24. Hinshaw WS. Image formation by nuclear magnetic resonance: The sensitive point method. J Appl Phys 1976; 47: 3709–3721.
+25. Heid O. Die T1–gewichtete zerebrale Kernspin– Serienangiotomographie. MD thesis, University of Bern, Switzerland, 1998.
+
+metallurgy.
+
+Klaus Schefﬂer received his diploma in theoretical physics from the University of Freiburg, Germany, and his Ph.D. in Biophysical Chemistry from the University of Basel, Switzerland, in 1995. He is currently a staff associate at the University Hospital of Freiburg, Germany. His research interests include stochastic imaging, ultrafast imaging, and
+

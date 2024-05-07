@@ -1,0 +1,418 @@
+FULL PAPER
+
+Magnetic Resonance in Medicine 78:518–526 (2017)
+
+Motion-Insensitive Rapid Configuration Relaxometry
+
+Damien Nguyen1,2* and Oliver Bieri1,2
+
+Purpose: Triple echo steady state (TESS) uses the lowest steady state configuration modes for rapid relaxometry. Due to its unbalanced gradient scheme, however, TESS is inherently motion-sensitive. The purpose of this work is to merge TESS with a balanced acquisition scheme for motion-insensitive rapid configuration relaxometry, termed MIRACLE. Methods: The lowest order steady state free precession (SSFP) configurations are retrieved by Fourier transformation of the frequency response of N frequency-shifted balanced SSFP (bSSFP) scans and subsequently processed for relaxometry, as proposed with TESS. Accuracy of MIRACLE is evaluated from simulations, phantom studies as well as in vivo brain and cartilage imaging at 3T. Results: Simulations and phantom results revealed no conceptual flaw, and artifact-free configuration imaging was achieved in vivo. Overall, relaxometry results were accurate in phantoms and in good agreement for cartilage and for T2 in the brain, but apparent low T1 values were observed for brain white matter; reflecting asymmetries in the bSSFP profile. Conclusion: Rapid T1 and T2 mapping with MIRACLE offers analogous properties as TESS while successfully mitigating its motionsensitivity. As a result of the Fourier transformation, relaxometry becomes sensitive to the voxel frequency distribution, which may contain useful physiologic information, such as structural brain integrity. VC 2016 International Society for Magnetic Resonance in Medicine. Magn Reson Med 78:518–526, 2017. VC 2016 International Society for Magnetic Resonance in Medicine
+Key words: T1 mapping; T2 mapping; balanced Steady State Free Precession (bSSFP); relaxometry
+
+this context, SSFP-based imaging techniques (1) have shown compelling results thanks to their short scan times and high signal-to-noise ratios, e.g., for relaxation time mapping (2–8), for measuring molecular proton diffusion (9–13), for the assessment of magnetization transfer effects (14–16), or for the characterization of flow or motion (17–19).
+Generally, relaxation occupies a central role within the context of NMR: it not only defines contrast in conventional MRI but also reflects the interaction of water on a molecular level. Historically, longitudinal relaxation (T1) has been estimated by sampling the inversion-recovery curve of the longitudinal magnetization using spin-echo sequences, while the transverse relaxation (T2) time has been estimated from the decay curve of the transverse magnetization using single-echo or, more frequently, multiecho spin-echo (SE) methods. Quantification based on the functional dependencies of the steady state, however, is much faster. One common attribute of SSFP methods is their mixed T2=T1 imaging contrast (20); being a natural consequence of a pulse repetition time (TR) that is much shorter than T2. Consequently, accurate quantification of relaxation times using SSFP-based imaging techniques is usually hampered by a T2-related bias in T1 estimates for radio-frequency (RF) spoiled SSFP (21,22), or by a T1related bias in T2, as observed with balanced SSFP (bSSFP) (23), partially spoiled SSFP (8), and double echo
+
+steady SSFP (7). Moreover, all previously mentioned
+
+methods are sensitive to transmit field (B1) inhomogeneities, whereas some of them show, in addition, some sensi-
+
+INTRODUCTION
+
+tivity to off-resonances (24) or motion (7,8). Recently, Heule et al (25), proposed to tackle the mutual
+
+Quantification is thought to represent an important step toward significant improvements of the diagnostic potential of MRI, such as for the early detection of subtle or diffuse pathological changes with high specificity and sensitivity, for an unbiased assessment of treatment or drug effects, as well as for clinical trials in drug research across different sites and machines. Quantitative imaging, however, is rather time consuming and typically becomes an issue in the clinical environment, where the overall success and applicability of quantitative MRI strongly depends on the overall acquisition speed. In
+
+interference of T1 and T2 of coherent SSFP methods by using a triple echo steady state (TESS) imaging approach. To this end, TESS acquires the three lowest SSFP configuration modes within a single acquisition (or TR) yielding two independent ratios for simultaneous rapid quantification of both T1 and T2 using a golden section search. Quite remarkably, TESS achieves an almost completely B1-unbiased estimation of T2, and showed good prospects for rapid threedimensional (3D) T2 mapping of articular cartilage imaging in the clinical setting (26). Generally, TESS is also insensitive to B0 inhomogeneities but the nonbalanced gradient scheme introduces some motion sensitivity that can be softened with
+
+1Division of Radiological Physics, Department of Radiology, University of Basel Hospital, Basel, Switzerland. 2Department of Biomedical Engineering, University of Basel, Basel, Switzerland.
+Grant sponsor: the Swiss National Science Foundation; Grant number: SNF 325230-153332.
+*Correspondence to: Damien Nguyen, M.Sc., Division of Radiological Physics, Department of Radiology, University of Basel Hospital, Petersgraben 4, 4031 Basel, Switzerland. E-mail: damien.nguyen@unibas.ch
+Received 17 February 2016; revised 19 July 2016; accepted 26 July 2016
+DOI 10.1002/mrm.26384 Published online 8 September 2016 in Wiley Online Library (wileyonlinelibrary.com).
+
+a single-slice version of TESS providing high quality T2 maps in the human brain even at ultra-high fields (27). More recently, a simultaneous multislice TESS sequence (28) was proposed to decrease scan time without loss of image quality.
+In this work, we aim to replace the unbalanced gradient scheme of TESS by a balanced one leading to “motioninsensitive rapid configuration relaxometry”, termed MIRACLE (29), that indirectly retrieves the basic SSFP modes from a series of bSSFP scans. The accuracy of MIRACLEbased relaxometry is evaluated from simulations and
+
+VC 2016 International Society for Magnetic Resonance in Medicine
+
+518
+
+15222594, 2017, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.26384 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Motion-Insensitive Rapid Configuration Relaxometry
+
+519
+
+phantom experiments. The feasibility of high-resolution volumetric T1- and T2-mapping is demonstrated in vivo for the human brain and for articular cartilage at 3T.
+METHODS MIRACLE
+
+
+
+2p
+
+1 NXÀ1
+
+Ài
+
+Gðp; tÞ
+
+¼
+
+N
+
+Mþðwj; tÞe
+j¼0
+
+N
+
+jp
+
+
+
+[7]
+
+2p
+
+1 NXÀ1 X þ1
+
+i
+
+¼
+
+N
+
+MnðF; tÞe
+j¼0 n¼À1
+
+N
+
+jðnÀpÞ
+
+In the following analysis, we consider an equidistant train of RF pulses with constant flip angles a and con- and because
+
+stant RF phase increment w in combination with balanced gradient moments. Finite RF pulse and diffusion effects are considered to be negligible. Immediately after the RF pulse (counterclockwise rotation around x-axis), the complex steady state magnetization Mþðt ¼ 0Þ is giv-
+
+NXÀ1 eið2NpÞjðnÀpÞ
+j¼0
+
+¼
+
+8 <N; : 0;
+
+if
+
+n
+
+À N
+
+p
+
+is
+
+otherwise
+
+an
+
+integer
+
+[8]
+
+en by (e.g., following Ganter) (30)
+
+this yields
+
+Mþðt ¼ 0Þ  Mxðt ¼ 0Þ þ iMy ðt ¼ 0Þ
+
+¼
+
+À
+
+i D
+
+Á
+
+ð1
+
+À
+
+E1Þsinað1
+
+À
+
+E2 eÀi# Þ
+
+[1]
+
+D :¼ ð1 À E1cosaÞð1 À E2cos#Þ À ðE1 À cosaÞðE2 À cos#ÞE2
+
+[2]
+
+
+
+Gðp; tÞ ¼ eÀt=T2 eifðtÞ FpeipF þ Fp6N eiðp6NÞF
+
+þ Fp62N eiðp62NÞF þ . . . :
+
+[9]
+
+where Ei :¼ expðÀTR=TiÞ and # :¼ F À w denotes the phase difference between the off-resonance related phase F accumulated during each repetition time (TR) interval (and is assumed to be constant in time), and the RF pulse phase increment w. At a time t after the RF pulse, the magnetization is given by
+
+MþðtÞ ¼ Mþðt ¼ 0ÞeÀt=T2 eifðtÞ
+
+[3]
+
+As a result of the finite number of scans (N), aliasing occurs (see Eq. [9]). Generally, however, the mode amplitudes decrease rapidly with increasing mode order jpj and thus for large enough N,
+
+Gðp; tÞ % eÀTt2 eifðtÞ Fp eipF :
+
+[10]
+
+And, therefore,
+
+where fðtÞ :¼ t=TR Á F. Generally, the steady state as given in Equations [1,2] is periodic in w and can be expressed as a sum over all configuration orders Fn (30,31):
+
+X þ1
+
+Mþðw; tÞ ¼ eÀt=T2 eiFt=TR
+
+FneinðFÀwÞ :
+
+[4]
+
+n¼À1
+
+As shown previously in a seminal work by Zur et al (31), it is possible to retrieve the basic SSFP configurations or modes Fn (see Eq. [4]) from a discrete Fourier transformation of the complex bSSFP frequency response. To this end, we proceed as follows:
+(1) We perform N scans with an RF phase increment of
+
+wj
+
+:¼
+
+À 2p j; N
+
+j ¼ 0; 1; . . . N À 1
+
+[5]
+
+where j enumerates the scan. As a result, the magnetization in Equation [4] is modified to take the form
+
+X þ1
+
+Mþðwj; tÞ ¼
+
+eÀt=T2 eiFt=TR Fn einFeÀinwj
+
+n¼À1
+
+ X þ1 MnðF; tÞeið2NpÞnj :
+
+[6]
+
+n¼À1
+
+(2) We calculate the N-point Fourier transform of the Mþðwj; tÞ magnetizations
+
+jGðp; tÞj % eÀTt2 jFpj:
+
+[11]
+
+Following the approach of Heule et al (25), estimation of the relaxation times T1 and T2 was then performed based on a golden-section search algorithm (32) using the two signal ratios
+
+jGð1; jGð0;
+
+tÞj tÞj
+
+%
+
+jF1j jF0j
+
+[12]
+
+jGðÀ1; tÞj jGð0; tÞj À jGð1;
+
+tÞj
+
+%
+
+jFÀ1j jF0j À jF1j
+
+[13]
+
+in an iterative approach relying on the fact that both ratios show different dependencies on T1 and T2 as was shown in Heule et al (25). From Equation [10] and in the limit where the amplitudes of higher-order Fn modes are negligible (i.e., for large enough N), only the phase of the SSFP modes depends on the local off-resonance F. As a result, the signal ratios used for estimation of T1 (cf. Eq. [12]) and T2 (cf. Eq. [13]) are off-resonance insensitive. A global initial estimate of T1 ¼ 1000 ms was used for all simulations and experiments and a tolerance of 0.1 ms was assumed as convergence criteria for the iterative search. Similarly to TESS relaxometry, we expect T1 estimates to have some remaining B1-bias, while T2 is anticipated to be largely free of any B1 bias.
+
+Simulations and Imaging
+All numerical simulations, data analysis and visualizations were done using MATLAB 8.5 (The MathWorks
+
+15222594, 2017, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.26384 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+520
+
+Nguyen and Bieri
+
+FIG. 1. a: Simulation of the bSSFP steady state signal, as a function of the RF phase increment w (simulation parameters: T1/ T2/TR ¼ 860/70/5.76 ms, a ¼ 15 , proposed optimal for TESS imaging (25)). b: Derived modes Fp from N-point Fourier transform using Equation [10] (dots: N ¼ 8 RF phases wj, see Equation [5]; solid line: continuous RF w; a continuous line is shown in 1b that connects the derived mode amplitudes for improved visualization). Relative mode (c) and relaxation estimation error (d) as a function of the number N of bSSFP scans performed using the same parameter set as above.
+
+Inc., Natick, MA). Measurements and calibrations were actively shielded magnetic field gradient coils. Acquisiperformed on a clinical 3 Tesla (T) whole body system tions were performed using the standard 20-channel (Siemens MAGNETOM Prisma, Erlangen, Germany) with head coil and a 15-channel Tx/Rx knee coil. Gibb’s
+FIG. 2. MIRACLE estimation error eðTiÞ ¼ jTi MIRACLE À Tij as a function of the simulated T1 (a) and T2 (b) for a fixed N ¼ 8. The delimited region (red) shows typical parameter ranges for human tissues (for simulation parameters: see Figure 1).
+
+15222594, 2017, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.26384 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Motion-Insensitive Rapid Configuration Relaxometry
+
+521
+
+FIG. 3. Coefficient of variation (CV) for T1 and T2 as a function of the flip angle a, estimated by a Monte-Carlo simulation for a N ¼ 8 MIRACLE acquisition with 1% noise added to the bSSFP signal (for simulation parameters: see Figure 1).
+ringing was removed from base data as recently proposed by Kellner et al (33).
+Simulations of the bSSFP signal were performed for a T1=T2-ratio $ 12 using sets of 4 to 12 scans with a TR/ echo time (TE) of 5.76/2.88 ms and RF phase increments w, as given by Equation [5]. Evaluation of the accuracy of the proposed method for a range of T1 and T2 with an eight-point sampling scheme was performed using the same set of parameters. The influence of the flip angle on the estimation of the relaxation parameters was evaluated by performing a Monte-Carlo simulation with 100,000 independent runs for a N ¼ 8 phase cycling scheme with flip angles between 1  and 60  and the addition of 1% Gaussian white noise to simulate experimental conditions. For each flip angle, the coefficient of variation (CV) for both relaxation parameters was calculated (defined as the ratio of the standard deviation and the mean over all runs; CVðTiÞ :¼ DTi=Ti ; i ¼ 1; 2).
+Phantom experiments were performed on a manganesedoped spherical phantom composed of 0.125 mM MnCl2
+
+dissolved in water (with nominal T1/T2 values of 860/70 ms (25) and approximately 14 cm in diameter using an eight-point 3D MIRACLE scheme with the following protocol parameters: TR/TE ¼ 5.10/2.55 ms, a ¼ 15 , a resolution of 1 Â 1 Â 2 mm3 (image matrix: 208 Â 162 Â 80), a bandwidth of 401 Hz/px, elliptical scanning and RF phase increments w as given by Equation [5]. With this setup, an overall scan time of approximately 7 min was obtained. The 3D TESS relaxometry was realized using the same parameters, except for TR/TE 6.19/3.17 ms, 2 averages and a bandwidth of 800 Hz/px for a total scan time of 8 min. Reference T1 relaxometry was realized using a single-slice inversion-recovery turbo spin-echo (IR-TSE) sequence with a TR/TE of 5000/13 ms, and inversion times (TI) of 50, 100, 200, 400, 800, 1600, 3200 ms. Estimation of T1 was obtained from a nonlinear fit of the recovery curve (34). Further scanning parameters include turbo factor (TF) 7, a ¼ 180 , an in-plane resolution of 1 mm2 (image matrix: 208 Â 168), slice thickness 2 mm, a bandwidth of 130 Hz/ px, GRAPPA 2 with 34 reference lines for a scan time of 1:17 min (8:59 min total). Furthermore, reference T2 relaxometry was performed using single echo spin-echo (SE) sequence with a TR of 1500 ms, and a TE of 10, 20, 40, 80, 150, 250 ms, a ¼ 180 , an in-plane resolution of 1 mm2 (image matrix: 208 Â 168), slice thickness 2 mm, a bandwidth of 201 Hz/px, GRAPPA 2 with 34 reference lines resulting in 1:30 min/acquisition (9:00 min total). T2 mapping was performed using a maximum likelihood estimator approach, as described by Golub et al (35).
+Exemplary in vivo human brain imaging using a 3D slab of 36 axial slices located inside the brain was performed using a 12-points bSSFP cycling scheme with a TR/TE of 5.10/2.55 ms, a ¼ 15 , a resolution of 1 Â 1 Â 2 mm3 (image matrix: 192 Â 150 Â 36), a bandwidth of 400 Hz/px, elliptical scanning and RF phase increments w following Equation [5], resulting in a total scan time of approximately 5:30 min. Reference T1 data were acquired using a 2D single-slice IR-TSE with identical
+
+FIG. 4. Relative deviation between the estimated and simulated T1 and T2 as a function of the B1 homogeneity. Note the different scaling for T2, which is virtually unaffected by B1 (for simulation parameters: see Figure 1).
+
+15222594, 2017, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.26384 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+522
+
+Nguyen and Bieri
+
+Table 1 Estimated Relaxation Parameters from 3D MIRACLE, 3D TESS, and 2D Single Slice Reference Measurements (IR-TSE and SE) in Phantom and In Vivo
+
+Tissue Phantom
+Brain white matter
+Brain gray matter
+Cartilage Muscle Fat
+
+Method
+MIRACLE TESS (3D) Reference MIRACLE Reference MIRACLE Reference MIRACLE MIRACLE MIRACLE
+
+T1 [ms]
+835 6 16 823 6 38 850 6 9 532 6 56 840 6 28 1061 6 169 1352 6 69 1194 6 436 846 6 130 307 6 23
+
+T2 [ms]
+70 6 2 65 6 9 67 6 1 44 6 5 51 6 2 63 6 12 57 6 3 42 6 9 33 6 10 102 6 13
+
+For each series of scans, additional patient-specific B1 maps were acquired using the method proposed by Ganter et al (36). Registration of B1 data onto the on-resonant
+
+FIG. 5. Illustration of MIRACLE relaxometry calculations using an
+N ¼ 8 phase cycling scheme for a manganese-doped probe. a: Source bSSFP magnitude images. b: Derived three lowest SSFP
+mode images F1; F0; FÀ1. c: Estimated T1 and T2 maps (initial guess of T1 ¼ 1s, precision enforced: 0.1 ms). d: Relaxation parameters were assessed for a region of interest, as indicated in
+the relaxation maps by the circles. (imaging parameters: N ¼ 8 of 1 Â 1 Â 2 mm3 and TR/TE 5.00/2.50 ms).
+
+sequence parameters as for the phantom scans, but with a resolution of 1 mm2 (image matrix: 192 Â 150) leading to a scan time of 1:12 min (8:24 min total). Additionally, reference T2 data was obtained from a single echo 2D SE scan with 1 mm2 in-plane resolution (image matrix: 192 Â 150) but otherwise identical to the phantom case, resulting in 1:57 min/acquisition (11:42 min total). High resolution images of the right knee were realized in axial orientations using a similar protocol with a TR/TE of 6.46/3.23 ms, a resolution of 0.6 Â 0.6 Â 3mm3 (image matrix: 368 Â 220 Â 20), and a bandwidth of 300 Hz/px and elliptical scanning yielding a scan time of around 5:40 min.
+
+FIG. 6. Illustrative volumetric MIRACLE brain imaging of a healthy
+volunteer. a: Axial sample images from the derived three lowest
+SSFP mode volumes F0; F1; FÀ1 (note the different scaling for F1). b: Corresponding T1 (ms) map. c: Corresponding T2 (ms) map. (Imaging parameters: N ¼ 12, resolution: 1 Â 1 Â 2 mm3, TR/ TE ¼ 5.76/2.88 ms)
+
+15222594, 2017, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.26384 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Motion-Insensitive Rapid Configuration Relaxometry
+
+523
+
+FIG. 7. Illustrative T1 and T2 maps (in ms), as derived from a 3D axial MIRACLE knee scan of a healthy volunteer. Note the typical decrease in both T1 and T2 for patellar cartilage from superficial to deep layers. (Imaging parameters: N ¼ 12, resolution: 0.6 Â 0.6 Â 3 mm3 TR/TE ¼ 6.46/ 3.23 ms)
+
+image of each MIRACLE dataset was accomplished before B1 correction using routines from the FSL libraries (37,38) for brain images or by using the elastix registration program (39,40) in other cases.
+RESULTS
+A noise-free simulation of the complex bSSFP frequency response (cf. Eqs. [1,2]) is presented in Figure 1a for a tissue mimicking a T1=T2-ratio of approximately 12 for a N ¼ 8 point phase cycling scheme and in the limit of a continuous RF phase increment. The corresponding Fourier transforms (cf. Eq. [9]) are shown in Figure 1b. Aliasing in the case of a finite N becomes evident and generally leads to a systematic deviation between the true mode amplitudes and the ones using N-point Fourier transform; especially for higher configuration orders (p) (see Figure 1b). As expected, increasing the number N of RF phases wi improves the overall accuracy of the mode amplitude estimates (cf. Figure 1c), and do not exceed 1.2% for the lowest order modes (p ¼ À1; 0; 1) for N ! 8. The resulting T1 and T2 estimation error follows a similar trend (cf. Figure 1d), and is in the absence of noise below 0.01% for a T1=T2 $ 12 in combination with phase cycling acquisition schemes using N ! 8.
+Analysis of the estimation error eðTiÞ :¼ jTi MIRACLE ÀTi j, as a function of T1 and T2, is presented in Figure 2 for a fixed N ¼ 8 MIRACLE acquisition scheme. The overall error is in general much larger for T2 than for T1, indicating the need to acquire more than 8 phase-cycles for T2 values exceeding roughly 100 ms.
+Generally, the decay of the modes (FpÞ with increasing mode order jpj, e.g., as observed in Figure 1b, not only depends on the relaxation, but also on the flip angle a (cf. Eqs. [2,12] in Ganter) (41). As a result, different flip angle settings might be required for MIRACLE as compared to TESS. In line with the flip angle optimization results for TESS, however, Monte-Carlo simulations also revealed for MIRACLE a clear optimum for flip angles around 15  (see Figure 3). Consequently, this flip angle
+
+was used for all subsequent acquisitions. Moreover, in complete analogy to TESS imaging, the estimation of T2 is found to be largely insensitive to B1, whereas the T1 estimates retain the usual B1 dependency. The bias in both T1 and T2, as introduced by flip angle miscalibrations is shown in Figure 4. For a fixed T1, the error in T1 scales approximately linearly with relative B1 values ranging from 0.5 to 1.5, whereas the bias in T2 from B1 (for fixed T1 values) is less than 0.1 ms over the whole investigated B1-range.
+Motion-insensitive SSFP mode imaging and subsequent relaxometry is now exemplarily illustrated in Figure 5 at 3T for a manganese-doped spherical probe. Figure 5a depicts the original N ¼ 8 phase-cycled bSSFP images, Figure 5b shows the resulting mode images for F0, F1; and FÀ1, and Figures 5c,d present the estimated T1 and T2 maps from 3D MIRACLE, 3D TESS, IR-TSE, and SE measurements. Both MIRACLE-T2 and TESS-T2 exhibit no spatial variations across the whole imaging volume. MIRACLE-T1 and TESS-T1 estimates have already been corrected for B1 inhomogeneities by using the separately acquired B1 map, which results in flat T1 profiles over the whole field-of-view. Overall, very good agreement is found between all three methods for both T1 and T2. Evaluation of relaxation parameters within the indicated region-of-interest (ROI) are collected in Table 1 for all three methods.
+High resolution in vivo 3D brain T1 and T2 mapping with MIRACLE and reference measurements is demonstrated in Figure 6 at 3T in axial slice orientation. In contrast to 3D TESS, no pulsation artifacts are noticeable in the derived base mode images (Fig. 6a and Supporting Fig. S1, which is available online, for 3D TESS brain images) and, as a result, successful T1 and T2 mapping is demonstrated in 3D (Figs. 6b,c) using motion-insensitive SSFP (31). For comparison, reference IR-TSE and SE results are also presented for the same slice. Evaluation of relaxation parameters inside highlighted ROIs can be found inside Table 1.
+
+15222594, 2017, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.26384 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+524
+
+Nguyen and Bieri
+
+FIG. 8. Exemplary bSSFP frequency response for gray (a) and white (b) brain matter (for the definition of ROIs, see Figure 6), as well as, for patellar cartilage (c) and muscle tissues (d) (for the definition of ROIs, see Figure 7). Note the increased asymmetry in the case of white versus gray brain matter.
+
+Finally, 3D MIRACLE imaging is demonstrated in the knee joint (Fig. 7) at 3T in axial slice orientation. See Table 1 for the evaluation of T1 and T2 within marked ROIs. Zonal variation in patellar cartilage T1 and T2 is clearly visible with a decrease in both T1 and T2 values from superficial to deep layers, as typically expected and observed for healthy cartilage (see insets, Figure 7).
+DISCUSSION
+Indirect estimation of the lowest order SSFP modes for rapid T1 and T2 mapping from a set of phase-cycled bSSFP scans using a Fourier transformation yields similar properties as TESS relaxometry. Furthermore, due to the balanced gradients used in the present case, MIRACLE relaxometry is expected to be less sensitive to diffusive effects than TESS, particularly in fluids (27). Still, it is important to remember that the accuracy of the presented method relies on the ability to correctly retrieve the SSFP mode amplitudes FÀ1, F0, and F1 from the bSSFP profile. This not only depends on the number N of RF phase increments used, but also on how fast the configurations decay with increasing order jpj (e.g., see Figure 1b). For TR ( T1;2, the decay of the mode amplitudes becomes a function of the flip angle a and the relaxation time ratio T1=T2 (41). As a result, aliasing becomes more and more an issue with decreasing T1=T2, e.g., as observed in Figure 4, where the error in T2 increases with increasing T2 (for a constant T1). Consequently, accurate relaxometry of fluids might not be granted, even for N ¼ 12. Nonetheless, the phantom data show that MIRACLE is in very good agreement with both 3D TESS and reference IR-TSE and SE methods for tissue-like T1=T2 ratios. In addition to the aforementioned effects, patient movements between phase-cycles may affect the success of MIRACLE relaxometry, although adequate fixation and image registration could be used to mitigate such effects.
+
+Typical T1-values reported in the literature for white and gray brain matter are approximately 950–1000 ms (42) and 1300–1500 ms (43,44), respectively, which are similar to what was obtained during our reference measurements. Interestingly, and in contrast to the simulations as well as phantom and cartilage experiments, in vivo brain imaging with MIRACLE demonstrates a systematic underestimation of T1 even after B1 correction. This bias is likely linked to the asymmetric shape of the bSSFP frequency response, as exemplified in Figure 8 for brain tissue, but more prominently for white as compared to gray matter. Those asymmetries have already been discussed in some details by Miller et al (45,46) and are believed to be due to an inhomogeneous intra-voxel frequency content. This is not unexpected as brain tissues contain microstructural boundaries, compartments or chemical shifts that might not be properly characterized by a single pair of relaxation parameters and thus by a single-compartment signal behavior as assumed by Equations [1,2]. To further investigate these effects, noise-free simulations of the bSSFP signal in the case of a two-components model assuming Lorentzian line shapes were performed. As was initially proposed by Miller et al (46), we assume identical T1 and T2 (830/80 ms) for both components, a fixed line width of G1 ¼ 0.1 Hz for the first component, and a volume fraction of 0.15 for the second component. Corresponding MIRACLET1 and -T2 values as a function of the second component’s width (G2) and frequency shift (Df ) are shown in Figure 9a. Because this results in an overestimation rather than an underestimation of T1, this model fails to describe the observed MIRACLE brain data.
+Generally, the constraint of having the same relaxation properties for both components might be too restrictive. Deoni et al (47) suggested a two-component system with a volume fraction of roughly 0.28 for white matter, where the dominating component has a rather low T1=T2-ratio of 900/120 ms, in contrast to a rather high T1/T2-ratio of
+
+15222594, 2017, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.26384 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Motion-Insensitive Rapid Configuration Relaxometry
+
+525
+
+In summary, T1 and T2 mapping with MIRACLE offers analogous properties as TESS while successfully mitigating its motion-sensitivity. In contrast to the literature, however, apparent low T1 values are observed for brain white matter; reflecting the asymmetry in the bSSFP signal profile. As a result, a configuration-based relaxometry, as suggested with MIRACLE, becomes sensitive to changes in the underlying frequency spectrum and content, and might, therefore, offer improved sensitivity to diffuse pathophysiological changes in the brain. Future work will aim to explore this new frequency-sensitive relaxometry method.
+
+CONCLUSIONS
+A rapid motion-insensitive configuration-based steady state relaxometry method was presented. Compared with most SSFP methods, it offers accurate and robust T2 quantification of human tissues, even in the presence of substantial B0 and B1 field inhomogeneities, as demonstrated in the scope of this work. In contrast to contemporary single component relaxometry methods, however, our results and preliminary modelling indicate that MIRACLE becomes sensitive to the T1 and T2 intra-voxel frequency dispersion.
+
+ACKNOWLEDGMENT We thank Rahel Heule for proofreading the manuscript.
+
+FIG. 9. Estimated MIRACLE T1 and T2 from a simulated twocomponent system with identical T1=T2 values of 830/80 ms and a volume fraction of 0.15 (a), and T1=T2 values of 900/120 ms and 380/ 10 ms (b), respectively, as well as a volume fraction of 0.28. The inset in (a) depicts the parameter space investigated: the first component is assumed to be on-resonant with a width G1 ¼ 0.1 Hz, whereas the values for the width G2 and frequency shift Df of the second component are varied as shown above. Typical values reported by Miller et al (46) for white matter are Df ¼ 17–23 Hz and G2 ¼ 19–22 Hz (depending on the orientation).
+380/10 ms for the smaller component, reflecting myelin. Note that contrary to the aforementioned study, we do not consider exchanges between species in the present case. We now repeat the analysis done previously and show the corresponding MIRACLE results in Figure 9b. Within this framework, we observe a shift to apparent low T1 values in combination with typical T2 values that are in good agreement with the MIRACLE-T1 and -T2 values from our experiments. Consequently, the low T1 values observed in vivo are likely to originate from the presence of a myelin-like second component with different frequency distribution, in line with the observation that the resulting bias in T1 is much less pronounced for gray matter, where lower myelin contents are expected. The aforementioned suspected sensitivity of MIRACLE to tissue heterogeneity and frequency asymmetry is further corroborated by the results observed for articular cartilage. Here, the observed T1 and T2 values are in very good agreement to previously published values (25,48), which is expected because cartilage is known to be much less heterogeneous (49).
+
+REFERENCES
+1. Carr HY. Steady-state free precession in nuclear magnetic resonance. Phys Rev 1958;112:1693–1701.
+2. Look DC, Locker DR. Time saving in measurement of NMR and EPR relaxation times. Rev Sci Instrum 1970;41:250–251.
+3. Homer J, Beevers MS. Driven-equilibrium single-pulse observation of T1 relaxation. A reevaluation of a rapid ‘new’ method for determining NMR spin-lattice relaxation times. J Magn Reson 1985;63:287–297.
+4. Scheffler K, Hennig J. T1 quantification with inversion recovery TrueFISP. Magn Reson Med 2001;45:720–723.
+5. Deoni SCL, Rutt BK, Peters TM. Rapid combined T1 and T2 mapping using gradient recalled acquisition in the steady state. Magn Reson Med 2003;49:515–526.
+6. Schmitt P, Griswold MA, Jakob PM, Kotas M, Gulani V, Flentje M, Haase A. Inversion recovery TrueFISP: quantification of T(1), T(2), and spin density. Magn Reson Med 2004;51:661–667.
+7. Welsch GH, Scheffler K, Mamisch TC, Hughes T, Millington S, Deimling M, Trattnig S. Rapid estimation of cartilage T2 based on double echo at steady state (DESS) with 3 Tesla. Magn Reson Med 2009;62:544–549.
+8. Bieri O, Scheffler K, Welsch GH, Trattnig S, Mamisch TC, Ganter C. Quantitative mapping of T2 using partial spoiling. Magn Reson Med 2011;66:410–418.
+9. Miller KL, Hargreaves BA, Gold GE, Pauly JM. Steady-state diffusionweighted imaging of in vivo knee cartilage. Magn Reson Med 2004; 51:394–398.
+10. Deoni SC, Peters TM, Rutt BK. Quantitative diffusion imaging with steady-state free precession. Magn Reson Med 2004;51:428–433.
+11. Bieri O, Ganter C, Welsch GH, Trattnig S, Mamisch TC, Scheffler K. Fast diffusion-weighted steady state free precession imaging of in vivo knee cartilage. Magn Reson Med 2012;67:691–700.
+12. Bieri O, Ganter C, Scheffler K. Quantitative in vivo diffusion imaging of cartilage using double echo steady-state free precession. Magn Reson Med 2012;68:720–729.
+13. Staroswiecki E, Granlund KL, Alley MT, Gold GE, Hargreaves BA. Simultaneous estimation of T(2) and apparent diffusion coefficient in human articular cartilage in vivo with a modified three-dimensional double echo steady state (DESS) sequence at 3 T. Magn Reson Med 2012;67:1086–1096.
+
+15222594, 2017, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.26384 by Max Planck Institute for Biology Tuebingen, Wiley Online Library on [10/04/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+526
+
+Nguyen and Bieri
+
+14. Bieri O, Mamisch TC, Trattnig S, Scheffler K. Steady state free precession magnetization transfer imaging. Magn Reson Med 2008;60: 1261–1266.
+15. Gloor M, Scheffler K, Bieri O. Quantitative magnetization transfer imaging using balanced SSFP. Magn Reson Med 2008;60:691–700.
+16. Gloor M, Scheffler K, Bieri O. Nonbalanced SSFP-based quantitative magnetization transfer imaging. Magn Reson Med 2010;64:149–156.
+17. Markl M, Alley MT, Elkins CJ, Pelc NJ. Flow effects in balanced steady state free precession imaging. Magn Reson Med 2003;50:892– 903.
+18. Santini F, Wetzel SG, Bock J, Markl M, Scheffler K. Time-resolved three-dimensional (3D) phase-contrast (PC) balanced steady-state free precession (bSSFP). Magn Reson Med 2009;62:966–974.
+19. Stalder AF, Russe MF, Frydrychowicz A, Bock J, Hennig J, Markl M. Quantitative 2D and 3D phase contrast MRI: optimized analysis of blood flow and vessel wall parameters. Magn Reson Med 2008;60: 1218–1231.
+20. H€anicke W, Vogel HU. An analytical solution for the SSFP signal in MRI. Magn Reson Med 2003;49:771–775.
+21. Yarnykh VL. Optimal radiofrequency and gradient spoiling for improved accuracy of T1 and B1 measurements using fast steadystate techniques. Magn Reson Med 2010;63:1610–1626.
+22. Heule R, Ganter C, Bieri O. Variable flip angle T1 mapping in the human brain with reduced T2 sensitivity using fast radiofrequencyspoiled gradient echo imaging. Magn Reson Med 2016;75:1413–1422.
+23. Deoni SCL, Peters TM, Rutt BK. High-resolution T1 and T2 mapping of the brain in a clinically acceptable time with DESPOT1 and DESPOT2. Magn Reson Med 2005;53:237–241.
+24. Deoni SCL, Ward HA, Peters TM, Rutt BK. Rapid T2 estimation with phase-cycled variable nutation steady-state free precession. Magn Reson Med 2004;52:435–439.
+25. Heule R, Ganter C, Bieri O. Triple echo steady-state (TESS) relaxometry. Magn Reson Med 2014;71:230–237.
+26. Juras V, Bohndorf K, Heule R, Kronnerwetter C, Szomolanyi P, Hager B, Bieri O, Zbyn S, Trattnig S. A comparison of multi-echo spin-echo and triple-echo steady-state T2 mapping for in vivo evaluation of articular cartilage. Eur Radiol 2016;26:1905–1912.
+27. Heule R, Bar P, Mirkes C, Scheffler K, Trattnig S, Bieri O. Tripleecho steady-state T2 relaxometry of the human brain at high to ultrahigh fields. NMR Biomed 2014;27:1037–1045.
+28. Pusterla O, Santini F, Heule R, Oliver B. T2-Snapshots imaging with simultaneous multislice TESS acquisition. In Proceedings of the 23rd Scientific Meeting of ISMRM, Toronto; 2015. Abstract 441.
+29. >Nguyen D, Bieri O. MIRACLE: Motion-Insensitive RApid Configuration reLaxomEtry. In Proceedings 23rd Scientific Meeting of ISMRM, Toronto; 2015. Abstract 3238.
+30. Ganter C. Steady state of gradient echo sequences with radiofrequency phase cycling: analytical solution, contrast enhancement with partial spoiling. Magn Reson Med 2006;55:98–107.
+31. Zur Y, Wood ML, Neuringer LJ. Motion-insensitive, steady-state free precession imaging. Magn Reson Med 1990;16:444–459.
+32. Press WH, Teukolsky SA, Vetterling WT, Flannery BP. Numerical recipes. The art of scientific computing. 3rd ed. New York, NY: Cambridge University Press; 2007.
+33. Kellner E, Dhital B, Kiselev VG, Reisert M. Gibbs-ringing artifact removal based on local subvoxel-shifts. Magn Reson Med 2016;76: 1574–1581.
+
+34. Pfeuffer J, Merkle H, Beyerlein M, Steudel T, Logothetis NK. Anatomical and functional MR imaging in the macaque monkey using a vertical large-bore 7 Tesla setup. Magn Reson Imaging 2004;22:1343–1359.
+35. Golub F, Potter LC, Ash JN, Blank A, Ahmad R. Estimation of spinecho relaxation time. 2013;237:17–22.
+36. Ganter C, Settles M, Dregely I, Santini F, Scheffler K, Bieri O. B1þmapping with the transient phase of unbalanced steady-state free precession. Magn Reson Med 2013;70:1515–1523.
+37. Jenkinson M, Smith S. A global optimisation method for robust affine registration of brain images. Med Image Anal 2001;5:143–156.
+38. Jenkinson M, Beckmann CF, Behrens TE, Woolrich MW, Smith SM. FSL. Neuroimage 2012;62:782–790.
+39. Klein S, Staring M, Murphy K, Viergever MA, Pluim JPW. Elastix: a toolbox for intensity-based medical image registration. IEEE Trans Med Imaging 2010;29:196–205.
+40. Shamonin DP, Bron EE, Lelieveldt BPF, Smits M, Klein S, Staring M. Fast parallel image registration on CPU and GPU for diagnostic classification of Alzheimer’s disease. Front Neuroinform 2013;7:50.
+41. Ganter C. Static susceptibility effects in balanced SSFP sequences. Magn Reson Med 2006;56:687–691.
+42. Stikov N, Boudreau M, Levesque IR, Tardif CL, Barral JK, Pike GB. On the accuracy of T1 mapping: searching for common ground. Magn Reson Med 2014;522:514–522.
+43. Ethofer T, Mader I, Seeger U, Helms G, Erb M, Grodd W, Ludolph A, Klose U. Comparison of longitudinal metabolite relaxation times in different regions of the human brain at 1.5 and 3 Tesla. Magn Reson Med 2003;50:1296–1301.
+44. Preibisch C, Deichmann R. Influence of RF spoiling on the stability and accuracy of T1 mapping based on spoiled FLASH with varying flip angles. Magn Reson Med 2009;61:125–135.
+45. Miller KL. Asymmetries of the balanced SSFP profile. Part I: theory and observation. Magn Reson Med 2010;63:385–395.
+46. Miller KL, Smith SM, Jezzard P. Asymmetries of the balanced SSFP profile. Part II: white matter. Magn Reson Med 2010;63:396–406.
+47. Deoni SCL, Rutt BK, Arun T, Pierpaoli C, Jones DK. Gleaning Multicomponent T1 and T2 Information from Steady-State Imaging Data. Magn Reson Med 2008;60:1372–1387.
+48. Bengtsson Mostro€m E, Lammentausta E, Finnbogason T, Weidenhielm L, Janarv P-M, Tiderius CJ. Pre- and postcontrast T1 and T2 mapping of patellar cartilage in young adults with recurrent patellar dislocation. Magn Reson Med 2015;74:1363–1369.
+49. Liu F, Chaudhary R, Hurley SA, Munoz Del Rio A, Alexander AL, Samsonov A, Block WF, Kijowski R. Rapid multicomponent T2 analysis of the articular cartilage of the human knee joint at 3.0T. J Magn Reson Imaging 2014;39:1191–1197.
+SUPPORTING INFORMATION
+Additional Supporting Information may be found in the online version of this article
+Fig. S1. Illustrative volumetric 3D-TESS and 3D-MIRACLE brain imaging of a healthy volunteer. a: Axial sample images of the three lowest SSFP mode volumes F1, F0 and F-1 acquired by TESS (note the different scaling for F1). Arrows indicate the most pronounced pulsation artifacts. b: Similar images derived from a MIRACLE acquisition. c: Corresponding T1 maps (ms) from TESS and MIRACLE. d: Corresponding T2 maps (ms) from TESS and MIRACLE (MIRACLE imaging parameters identical as Figure 6; TESS imaging parameters: resolution 1 3 1 3 2 mm3, FA 15, TR/TE 5 5.93/3.03 ms, 2 avg.).
+

@@ -1,0 +1,2818 @@
+"Frontmatter" The Transform and Data Compression Handbook Ed. K. R. Rao and P.C. Yip. Boca Raton, CRC Press LLC, 2001
+© 2001 CRC Press LLC
+
+THE TRANSFORM
+AND DATA COMPRESSION
+HANDBOOK
+© 2001 CRC Press LLC
+
+THE ELECTRICAL ENGINEERING AND SIGNAL PROCESSING SERIES Edited by Alexander Poularikas and Richard C. Dorf
+Handbook of Antennas in Wireless Communications Lal Chand Godara
+Propagation Data Handbook for Wireless Communications Robert Crane
+The Digital Color Imaging Handbook Guarav Sharma
+Handbook of Neural Network Signal Processing Yu Hen Hu and Jeng-Neng Hwang
+Handbook of Multisensor Data Fusion David Hall
+The Advanced Signal Processing Handbook: Theory and Implementation for Radar, Sonar,
+and Medical Imaging Real Time Systems Stergios Stergiopoulos
+The Transform and Data Compression Handbook K.R. Rao and P.C. Yip
+The Encyclopedia of Signal Processing Alexander Poularikas
+Applications in Time Frequency Signal Processing Antonia Papandreou-Suppappola
+© 2001 CRC Press LLC
+
+THE TRANSFORM
+AND DATA COMPRESSION
+HANDBOOK
+Edited by
+K.R. RAO
+University of Texas at Arlington
+AND
+P.C. YIP
+McMaster University
+CRC Press Boca Raton London New York Washington, D.C.
+© 2001 CRC Press LLC
+
+Library of Congress Cataloging-in-Publication Data
+
+The transform and data compression handbook / editors, P.C. Yip, K.R. Rao. p. cm.--(Electrical engineering and signal processing series)
+Includes bibliographical references and index. ISBN 0-8493-3692-9 (alk. paper) 1. Data transmission systems--Handbooks, manuals, etc.. 2. Data compression (Telecommunication)--Handbooks, manuals, etc. I. Yip, P.C. (Pat C.) II. Rao, K. Ramamohan (Kamisetty Ramamohan) III. Series
+
+TK5105 .T72 2000 621.382--dc21
+
+00-057149
+
+This book contains information obtained from authentic and highly regarded sources. Reprinted material is quoted with permission, and sources are indicated. A wide variety of references are listed. Reasonable efforts have been made to publish reliable data and information, but the author and the publisher cannot assume responsibility for the validity of all materials or for the consequences of their use.
+Neither this book nor any part may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopying, microﬁlming, and recording, or by any information storage or retrieval system, without prior permission in writing from the publisher.
+All rights reserved. Authorization to photocopy items for internal or personal use, or the personal or internal use of speciﬁc clients, may be granted by CRC Press LLC, provided that $.50 per page photocopied is paid directly to Copyright Clearance Center, 222 Rosewood Drive, Danvers, MA 01923 USA. The fee code for users of the Transactional Reporting Service is ISBN 0-8493-36929/00/$0.00+$.50. The fee is subject to change without notice. For organizations that have been granted a photocopy license by the CCC, a separate system of payment has been arranged.
+The consent of CRC Press LLC does not extend to copying for general distribution, for promotion, for creating new works, or for resale. Speciﬁc permission must be obtained in writing from CRC Press LLC for such copying.
+Direct all inquiries to CRC Press LLC, 2000 N.W. Corporate Blvd., Boca Raton, Florida 33431.
+Trademark Notice: Product or corporate names may be trademarks or registered trademarks, and are used only for identiﬁcation and explanation, without intent to infringe.
+
+© 2001 by CRC Press LLC
+No claim to original U.S. Government works International Standard Book Number 0-8493-3692-9
+Library of Congress Card Number 00-057149 Printed in the United States of America 1 2 3 4 5 6 7 8 9 0
+Printed on acid-free paper
+
+© 2001 CRC Press LLC
+
+Preface
+While this handbook is an exposition of different discrete transforms and their everexpanding applications in the general area of signal processing, the overriding task is to maintain the continuity and connectivity among the chapters. This task is accomplished by the common theme of data compression. The handbook seeks to provide the reader with a wealth of information regarding the transforms (some have been widely used while others have great potential) as well as a demonstration of their power and practicality in data compression. Such compression is a necessary and desirable ingredient in today’s world of massive data storage and data transmission. By providing a plethora of Web sites, ftp locations, and references to general review papers, the chapter authors have expanded the usefulness of this handbook for the common reader. The clear and concise presentations of the ideas and concepts, as well as the detailed descriptions of the algorithms, provide important insights into the applications and their limitations. With the understanding of these concepts, readers can apply the techniques presented in this handbook to their own areas of interest and improve on the performance by marrying this with their own expertise. We are conﬁdent that this handbook will be a valuable addition to the bookshelf of anyone actively engaged in or studying the art and science of signal processing.
+The Transform and Data Compression Handbook is aimed at providing a description of various discrete transforms and their applications in different disciplines. In view of the proliferation of digital data (images, video, text, documents, audio, music, graphics, etc.), it is imperative that the data be mapped from the data domain (in which there are usually redundancies) to a different one (the transform domain) for efﬁcient and economical storage and/or transmission. Transforms by themselves do not provide any compression. However, by reallocation of the energy in the data, transforms provide the possibilities for compression. Techniques such as adaptive quantization and entropy coding applied to the transform coefﬁcients can result in signiﬁcant reduction in bit rates. Depending on the quality levels required by the end user, other parameters such as human visual/acoustic sensitivity, adaptive scanning, statistical modeling, and variable length coding would further contribute to the bit rate reduction. Generally transforms, wavelet transforms in particular, are well suited for scalable coding (in spatial or temporal domains, or in SNR). This concept facilitates data transmission in embedded bit-stream format, providing for multi-resolution (spa-
+© 2001 CRC Press LLC
+
+tial/temporal) and multiquality (SNR) end products, subject to bandwidth limitation, processing power, and cost constraints.
+Many international standards relating to audio, video, and data, such as JPEG, H.261, H.262, MPEG-1, MPEG-2, MPEG-4, HDTV, and JPEG-2000, utilize transforms in their overall compression schemes. A number of consumer and commercial products, such as video-CD, DVD, videophone, set-top boxes, digital TV, and digital camera/VCR, have been made possible because of signal compression. Other electronic innovations, such as MP3, video-streaming, and wireless PCS, are completely dependent on the reduction of bit rates made possible by compression. It is not exaggerating to say that data compression is one of the main contributing factors in the explosive growth in information technology.
+While different coding schemes can accomplish an amazing amount of compression, the cornerstone is still undoubtedly the underlying transform. It is for this reason that the deﬁnitions and properties for each of the transforms dealt with in this handbook are presented with such care and detail. The bibliography sections and Web sites provide further sources of information.
+Outline of Chapters
+Chapter 1 The Karhunen-Loève Transform
+The ﬁrst transform described in this handbook is the Karhunen-Loève transform (KLT). It takes its rightful place as the leadoff transform to be discussed. Dony does an excellent job of interpreting this statistically optimal transform. The simple and yet elegant explanation of rotation of axes in the data domain to achieve the “principal components” representation underscores the signiﬁcant energy compaction provided by this transform. Other properties of the transform follow, and the chapter is rounded off with descriptions of applications in chest radiographs and other monochrome and color images. Web sites and software download locations are listed as well.
+Chapter 2 The Discrete Fourier Transform
+Discrete Fourier transform (DFT), the best known and arguably the most universally applied transform, is presented by Selesnick and Schuller. Following an exposition of the deﬁnitions and properties of the DFT, it is shown that by a symmetric extension of the sequence, the DFT can lead to the discrete cosine transform (DCT), another favorite transform described in Chapter 4. The authors then go on to develop the fast Fourier transform (FFT) algorithms, a catalyst for all DFT applications. A novel feature of this chapter is the linkage provided by the authors between DFT and ﬁlterbanks, which are used extensively in audio coders. Cosine-modulated ﬁlter-banks and complex DFT-based ﬁlter-banks are the byproducts of the DFT that are used in Moving Picture Expert Group (MPEG) audio coders. There is an extensive list of Web sites providing information for available software, algorithms, and applications, as well as other related links.
+© 2001 CRC Press LLC
+
+Chapter 3
+
+Comparametric Transforms for Transmitting Eye Tap Video with Picture Transfer Protocol (PTP)
+
+This is a unique, challenging, and provocative chapter written by Mann, the inventor of the wearable computer (WearComp), the Eye Tap camera, and reality mediator. This chapter takes us to the forefront of the multimedia revolution with a new computational/communications device that subsumes the functionality of the videophone, digital camera, and other wireless personal electronics innovations. Mann’s invention functions as a true extension of the mind and body and causes the eye to function as if it were a camera. His invention has given rise to a whole new philosophical and mathematical approach to image compression and image storage, and it gives a refreshingly new deﬁnition of functionality in image transmission and processing. The new Eye Tap genre of video is best processed and compressed by comparametric equations, essentially equations representing projections and tone scale adjustments of images. Traditionally image compression has been directed to ensure a certain minimum quality or reliability (e.g., worst case scenario). The author instead makes a compelling argument in favour of “best case” scenario; Mann argues that being able to broadcast even intermittent still images to the Internet can provide a measure of security unmatched by conventional “robust” security systems. These arguments are based on a deﬁnition of “fear of functionality,” a completely novel approach to the idea of security. The author has set up a Web site from which computer programs can be freely downloaded. Such a generous spirit is to be commended. It is also interesting to note that this chapter was typeset using LaTex running on a small wearable computer designed and built by the author.
+
+Chapter 4 Discrete Cosine and Sine Transforms
+Next to the DFT, discrete cosine transform (DCT) is probably the most used transform in digital signal processing work. DCT is one of a family of trigonometric transforms including the discrete sine transform (DST). In this chapter, Britanak presents a uniﬁed treatment of the family of DCTs and DSTs starting with the definitions, properties, and fast algorithms. This chapter is particularly relevant as the DCT has been adopted in several international standards for image/video coding. In modiﬁed form, both DCT and DST have been used in MDCT/MDST audio coding. Computer programs in C (listed in Sections 4.3 and 4.4) that can be implemented to perform the transforms are very useful in all signal processing applications. The chapter concludes with a speciﬁc application in a Joint Photographic Experts Group (JPEG) base line system (Fig. 4.3) using the standard test image of Lena.
+
+Chapter 5 Lapped Transforms for Image Compression
+Lapped transforms (LTs), developed originally to eliminate or reduce the blocking artifacts of block transforms such as DCT in low bit rate image/video coding, are presented by de Queiroz and Tran. Several versions of the LTs, such as orthogonal and nonorthogonal LTs, tree-structured hierarchical, symmetric, bi-orthogonal, and variable length LTs, are deﬁned, and their properties and factorization schemes are
+
+© 2001 CRC Press LLC
+
+described. Generalized versions of the lapped orthogonal transform (LOT), called GenLOT, are developed in Sections 5.6.3–4 while cosine-modulated LTs, otherwise known as MLT or ELT, are discussed in Section 5.8. To demonstrate the promise and potential for LTs in image coding, well known image compression algorithms are applied to standard test images, with DCT or the wavelet transform replaced by LTs. Comparative analysis shows the elimination of ringing and blocking artifacts that are characteristic of the DCT based coders and also performance rivaling that of the wavelet transforms.
+Chapter 6 Wavelet-Based Image Compression
+This is another highly valuable chapter as it addresses wavelet-based image compression. Wavelet-based transforms give a time-frequency decomposition of the signal, which has multi-resolution characteristics. The transforms have superior energy compaction and compatibility with Human Visual System (HVS). They make possible the embedded bit-stream coding corresponding to various subbands (the basis for fast browsing of images or databases over the Internet). Discrete wavelet transforms (DWT) and its variants have been adopted both by the FBI in the use of ﬁngerprint image compression and the international standards groups (JPEG-2000 and MPEG-4 still frame image coding). It is highly possible that wavelets may eventually replace DCT in all the coders. Walker and Nguyen provide a clear explanation of the multiresolution aspects of DWT and its implementation using a 2-channel ﬁlter bank. Some of the recent enhancements of the basic DWT, such as EZW, SPIHT, WDR, and ASWDR, are enumerated, followed by their implementation in image coding and subsequent evaluation. Various Web sites that provide software, literature, simulation results, and innumerable other details further strengthen the chapter’s utility.
+Chapter 7 Fractal-Based Image and Video Compression
+The concepts and techniques of fractal-based image/video compression are introduced in this chapter by Lu. The seminal work by Mandelbrot forms the basis of many treatises of fractal applications, made popular by movie scenes generated graphically by the use of fractals. Fractal-based signal analysis is currently at the forefront of research. Although compression techniques based on afﬁne transforms or iterated function systems (IFS) may not have caught the attention of every researcher, their attractive properties making possible high compression ratios and asymmetric coding certainly deserve further study. With the advent of super HDTV, wireless cellular multimedia phones, and interactive services on the Internet, fractal transform and its variants such as IFS, QPIFS, and PIFS will ﬁnd their rightful place in the compression arena. Starting with the basic properties of fractals, Lu demonstrates the compression property of fractals using the encoding/decoding procedures. The capabilities of fractals are illustrated using images and video. As with the other chapters, Web and ftp sites, mostly maintained by universities, provide access to software, literature, products, R&D, and applications to the interested readers.
+© 2001 CRC Press LLC
+
+Chapter 8 Compression of Wavelet Transform Coefﬁcients The concluding chapter presents a philosophical and thoughtful argument for the
+effectiveness of transforms in general and wavelets in particular for bandwidth reduction. The superiority of wavelet transform over others, including the widely used DCT, is clearly demonstrated by the characteristics of the DWT. From the chapter’s title, the reader may get a wrong impression of duplication with Chapter 6. On the contrary, this chapter complements the topics in Chapter 6 by a clear exposition of the superior performance of the DWT over other transforms. The subband decomposition inherent in dyadic wavelet transform, preservation of spatial signal features in subbands of different scales, and self similarities among subbands of the spatial orientation are some of the reasons for this superiority. These self-similarities are conducive to statistical context modeling and adaptive entropy coding of wavelet coefﬁcients. By a lucid presentation of these concepts aided by implementation on test images, Wu convincingly demonstrates the validity of the DWT adopted in JPEG2000 and MPEG-4 and the bright future it has in other applications.
+Acknowledgements The editors have been entrusted with the organizational and administrative process
+in compiling this handbook. Needless to say, without the expertise and efforts of the individual chapter authors, this handbook would never have seen the light of day. The editors sincerely acknowledge the energetic contributions from the chapter authors, whose uniform excellence has made this an outstanding volume. The editors thank the authors for their prompt and timely responses in spite of their heavy commitments in their daily academic or professional lives. It is hoped that the completion of this handbook will elicit a sense of pride and accomplishment, a well-earned and welldeserved reward for their efforts. The editors would also like to thank their families for the patience and perseverance they showed during the months of preparation of this handbook.
+© 2001 CRC Press LLC
+
+List of Acronyms
+
+AFB ASPEC ASWDR bpp CREW DCT DFT DPCM DSP DST DTFT DWP DWT ECECOW ECG ELT EZC EZW FAQ FFT FIR FLT FoF FPGA GenLOT GNU GNUX H.261 H.263 HDTV HLT HSI HV HVS IDFT IFS
+
+Analysis ﬁlter bank Audio spectral perceptual entropy coding Adaptively scanned wavelet difference reduction Bits per pixel Compression by reversible embedded wavelets Discrete cosine transform Discrete Fourier transform Differential pulse code modulation Digital signal processing Discrete sine transform Discrete time Fourier transform Discrete wavelet packet Discrete wavelet transform Embedded conditional entropy coding of wavelet Electrocardiogram Extended lapped transform Embedded zerotree coding Embedded zerotree wavelet Frequently asked questions Fast Fourier transform Finite impulse response Fast lapped transform Fear of functionality Field programmable gate array Generalized LOT GNU’s Not Unix GNU-Linux Standard for compression of videotelephony and teleconferencing Standard for visual communication via telephone lines High deﬁnition TV Hierarchical lapped transform Hue, saturation, intensity Horizontal vertical Human visual system Inverse discrete Fourier transform Iterated function systems
+
+© 2001 CRC Press LLC
+
+ISO ITU JBIG JPEG JPEG-LS KLT LBT LOT LT LZC MC MDCT MDST MIMO MLT MOS MP3 MPEG MPEG-AAC MSE PAC PCA PIFS PR PSD PSNR PTM PTP QCLS QM QPIFS RGB RLC RLD ROI RTT SDF SFB SPIHT STW SVD TDAC TF VLC VLD VQ WDR YIQ
+
+International Standards Organization International Telecommunication Union Joint Binary Image Group Joint Photographic Experts Group JPEG-Lossless Karhunen-Loève transform Lapped bi-orthogonal transform Lapped orthogonal transform Lapped transform Layered zero coding Motion compensated Modiﬁed discrete cosine transform Modiﬁed discrete sine transform Multi-input multi-output Modulated lapped transform Mean opinion score MPEG-Layer 3 Moving Pictures Expert Group MPEG advanced audio coder Mean squares error Perceptual audio coder Principal component analysis Partitioned iterated function systems Perfect reconstruction Personal safety device Peak signal to noise ratio Polyphase transfer matrix Picture transfer protocol Quadratic-constrained least squares Cute sound Quadtree partitioned iterated function systems Red, green, and blue Run-length coding Run-length decoder Region of interest Round trip time Symmetric delay factorization Synthesis ﬁlter bank Set partitioning of hierarchical tree Spatial orientation tree wavelet Singular value decomposition Time domain aliasing cancellation Time-frequency Variable-length coding Variable-length decoder Vector quantization Wavelet difference reduction Luminance, in-phase, and quadrature-phase chrominance
+
+© 2001 CRC Press LLC
+
+Contributors
+Vladimir Britanak Institute of Control Theory and Robotics, Slovak Academy of Sciences, Bratislava, Slovak Republic
+Ricardo L. de Queiroz Digital Imaging Technology Center, Xerox Corporation, Webster, New York
+R.D. Dony School of Engineering, University of Guelph, Guelph, Ontario, Canada
+Guojun Lu Gippsland School of Computing and Information Technology, Monash University, Churchill, Victoria, Australia
+Steve Mann Department of Electrical and Computer Engineering, University of Toronto, Toronto, Ontario, Canada
+Truong Q. Nguyen Department of Electrical and Computer Engineering, Boston University, Boston, Massachusetts
+Gerald Schuller Bell Labs, Lucent Technologies, Murray Hill, New Jersey Ivan W. Selesnick Department of Electrical Engineering, Polytechnic Uni-
+versity, Brooklyn, New York Trac D. Tran Department of Electrical and Computer Engineering, The
+Johns Hopkins University, Baltimore, Maryland James S. Walker Department of Mathematics, University of Wisconsin-Eau
+Claire, Eau Claire, Wisconsin Xiaolin Wu Department of Computer Science, University of Western On-
+tario, London, Ontario, Canada
+© 2001 CRC Press LLC
+
+Contents
+1 Karhunen-Loève Transform 1.1 Introduction 1.2 Data Decorrelation 1.2.1 Calculation of the KLT 1.3 Performance of Transforms 1.3.1 Information Theory 1.3.2 Quantization 1.3.3 Truncation Error 1.3.4 Block Size 1.4 Examples 1.4.1 Calculation of KLT 1.4.2 Quantization and Encoding 1.4.3 Generalization 1.4.4 Markov-1 Solution 1.4.5 Medical Imaging 1.4.6 Color Images 1.5 Summary References
+2 The Discrete Fourier Transform 2.1 Introduction 2.2 The DFT Matrix 2.3 An Example 2.4 DFT Frequency Analysis 2.5 Selected Properties of the DFT 2.5.1 Symmetry Properties 2.6 Real-Valued DFT-Based Transforms 2.7 The Fast Fourier Transform 2.8 The DFT in Coding Applications 2.9 The DFT and Filter Banks 2.9.1 Cosine-Modulated Filter Banks 2.9.2 Complex DFT-Based Filter Banks
+© 2001 CRC Press LLC
+
+2.10 Conclusion 2.11 FFT Web sites References
+3 Comparametric Transforms for Transmitting Eye Tap Video with Picture Transfer Protocol (PTP) 3.1 Introduction: Wearable Cybernetics 3.1.1 Historical Overview of WearComp 3.1.2 Eye Tap Video 3.2 The Edgertonian Image Sequence 3.2.1 Edgertonian versus Nyquist Thinking 3.2.2 Frames versus Rows, Columns, and Pixels 3.3 Picture Transfer Protocol (PTP) 3.4 Best Case Imaging and Fear of Functionality 3.5 Comparametric Image Sequence Analysis 3.5.1 Camera, Eye, or Head Motion: Common Assumptions and Terminology 3.5.2 VideoOrbits 3.6 Framework: Comparameter Estimation and Optical Flow 3.6.1 Feature-Based Methods 3.6.2 Featureless Methods Based on Generalized Cross-Correlation 3.6.3 Featureless Methods Based on Spatio-Temporal Derivatives 3.7 Multiscale Projective Flow Comparameter Estimation 3.7.1 Four Point Method for Relating Approximate Model to Exact Model 3.7.2 Overview of the New Projective Flow Algorithm 3.7.3 Multiscale Repetitive Implementation 3.7.4 Exploiting Commutativity for Parameter Estimation 3.8 Performance/Applications 3.8.1 A Paradigm Reversal in Resolution Enhancement 3.8.2 Increasing Resolution in the “Pixel Sense” 3.9 Summary 3.10 Acknowledgements References
+4 Discrete Cosine and Sine Transforms 4.1 Introduction 4.2 The Family of DCTs and DSTs 4.2.1 Deﬁnitions of DCTs and DSTs 4.2.2 Mathematical Properties 4.2.3 Relations to the KLT 4.3 A Uniﬁed Fast Computation of DCTs and DSTs 4.3.1 Deﬁnitions of Even-Odd Matrices 4.3.2 DCT-II/DST-II and DCT-III/DST-III Computation 4.3.3 DCT-I and DST-I Computation
+© 2001 CRC Press LLC
+
+4.3.4 DCT-IV/DST-IV Computation 4.3.5 Implementation of the Uniﬁed Fast Computation of DCTs
+and DSTs 4.4 The 2-D DCT/DST Universal Computational Structure
+4.4.1 The Fast Direct 2-D DCT/DST Computation 4.4.2 Implementation of the Direct 2-D DCT/DST Computation 4.5 DCT and Data Compression 4.5.1 DCT-Based Image Compression/Decompression 4.5.2 Data Structures for Compression/Decompression 4.5.3 Setting the Quantization Table 4.5.4 Standard Huffman Coding/Decoding Tables 4.5.5 Compression of One Sub-Image Block 4.5.6 Decompression of One Sub-Image Block 4.5.7 Image Compression/Decompression 4.5.8 Compression of Color Images 4.5.9 Results of Image Compression 4.6 Summary References
+5 Lapped Transforms for Image Compression 5.1 Introduction 5.1.1 Notation 5.1.2 Brief History 5.1.3 Block Transforms 5.1.4 Factorization of Discrete Transforms 5.1.5 Discrete MIMO Linear Systems 5.1.6 Block Transform as a MIMO System 5.2 Lapped Transforms 5.2.1 Orthogonal Lapped Transforms 5.2.2 Nonorthogonal Lapped Transforms 5.3 LTs as MIMO Systems 5.4 Factorization of Lapped Transforms 5.5 Hierarchical Connection of LTs: An Introduction 5.5.1 Time-Frequency Diagram 5.5.2 Tree-Structured Hierarchical Lapped Transforms 5.5.3 Variable-Length LTs 5.6 Practical Symmetric LTs 5.6.1 The Lapped Orthogonal Transform: LOT 5.6.2 The Lapped Bi-Orthogonal Transform: LBT 5.6.3 The Generalized LOT: GenLOT 5.6.4 The General Factorization: GLBT 5.7 The Fast Lapped Transform: FLT 5.8 Modulated LTs 5.9 Finite-Length Signals 5.9.1 Overall Transform
+© 2001 CRC Press LLC
+
+5.9.2 Recovering Distorted Samples 5.9.3 Symmetric Extensions 5.10 Design Issues for Compression 5.11 Transform-Based Image Compression Systems 5.11.1 JPEG 5.11.2 Embedded Zerotree Coding 5.11.3 Other Coders 5.12 Performance Analysis 5.12.1 JPEG 5.12.2 Embedded Zerotree Coding 5.13 Conclusions References
+6 Wavelet-Based Image Compression 6.1 Introduction 6.2 Dyadic Wavelet Transform 6.2.1 Two-Channel Perfect-Reconstruction Filter Bank 6.2.2 Dyadic Wavelet Transform, Multiresolution Representation 6.2.3 Wavelet Smoothness 6.3 Wavelet-Based Image Compression 6.3.1 Lossy Compression 6.3.2 EZW Algorithm 6.3.3 SPIHT Algorithm 6.3.4 WDR Algorithm 6.3.5 ASWDR Algorithm 6.3.6 Lossless Compression 6.3.7 Color Images 6.3.8 Other Compression Algorithms 6.3.9 Ringing Artifacts and Postprocessing Algorithms References
+7 Fractal-Based Image and Video Compression 7.1 Introduction 7.2 Basic Properties of Fractals and Image Compression 7.3 Contractive Afﬁne Transforms, Iterated Function Systems, and Image Generation 7.4 Image Compression Directly Based on the IFS Theory 7.5 Image Compression Based on IFS Library 7.6 Image Compression Based on Partitioned IFS 7.6.1 Image Partitions 7.6.2 Distortion Measure 7.6.3 A Class of Discrete Image Transformation 7.6.4 Encoding and Decoding Procedures 7.6.5 Experimental Results 7.7 Image Coding Using Quadtree Partitioned IFS (QPIFS)
+© 2001 CRC Press LLC
+
+7.7.1 RMS Tolerance Selection 7.7.2 A Compact Storage Scheme 7.7.3 Experimental Results 7.8 Image Coding by Exploiting Scalability of Fractals 7.8.1 Image Spatial Sub-Sampling 7.8.2 Decoding to a Larger Image 7.8.3 Experimental Results 7.9 Video Sequence Compression using Quadtree PIFS 7.9.1 Deﬁnitions of Types of Range Blocks 7.9.2 Encoding and Decoding Processes 7.9.3 Storage Requirements 7.9.4 Experimental Results 7.9.5 Discussion 7.10 Other Fractal-Based Image Compression Techniques 7.10.1 Segmentation-Based Coding Using Fractal Dimension 7.10.2 Yardstick Coding 7.11 Conclusions References
+8 Compression of Wavelet Transform Coefﬁcients 8.1 Introduction 8.2 Embedded Coefﬁcient Coding 8.3 Statistical Context Modeling of Embedded Bit Stream 8.4 Context Dilution Problem 8.5 Context Formation 8.6 Context Quantization 8.7 Optimization of Context Quantization 8.8 Dynamic Programming for Minimum Conditional Entropy 8.9 Fast Algorithms for High-Order Context Modeling 8.9.1 Context Formation via Convolution 8.9.2 Shared Modeling Context for Signs and Textures 8.10 Experimental Results 8.10.1 Lossy Case 8.10.2 Lossless Case 8.11 Summary References
+© 2001 CRC Press LLC
+
+R. D. Dony "Karhunen-Loève Transform" The Transform and Data Compression Handbook Ed. K. R. Rao and P.C. Yip. Boca Raton, CRC Press LLC, 2001
+© 20001 CRC Press LLC
+
+Chapter 1
+Karhunen-Loève Transform
+R.D. Dony
+University of Guelph
+1.1 Introduction
+The goal of image compression is to store an image in a more compact form, i.e., a representation that requires fewer bits for encoding than the original image. This is possible for images because, in their “raw” form, they contain a high degree of redundant data. Most images are not haphazard collections of arbitrary intensity transitions. Every image we see contains some form of structure. As a result, there is some correlation between neighboring pixels. If one can ﬁnd a reversible transformation that removes the redundancy by decorrelating the data, then an image can be stored more efﬁciently. The Karhunen-Loève Transform (KLT) is the linear transformation that accomplishes this.
+In Section 1.2 we show how pixels are correlated in typical images. With the pixel values forming the axes of a vector space, a rotation of this space can remove this correlation. The basis vectors of the new space deﬁne the linear transformation of the data. The basis vectors of the KLT are the eigenvectors of the image covariance matrix. Its effect is to diagonalize the covariance matrix, removing the correlation of neighboring pixels.
+As presented in Section 1.3, the KLT minimizes the theoretical bound on bit rate as given by the signal entropy. The entropy for both discrete random variables and continuous random processes is deﬁned. The KLT also maximizes the coding gain deﬁned as the ratio of the arithmetic mean of the coefﬁcient variances to their geometric mean. Further, the effects of truncation, block size, and interblock correlation are also presented. Section 1.4 presents the results of using the KLT for a number of examples.
+© 2001 CRC Press LLC
+
+1.2 Data Decorrelation
+
+Data from neighboring pixels are highly correlated for most images. Fig. 1.1 shows a typical gray scale image. The image is 512 × 512 pixels in size with each gray level brightness value of pixel being represented by an 8-bit value for a range of [0–255]. This particular image is commonly used in evaluations and is often referred to as the Lena image. Even with a large degree of detail in many regions, the gray level value of any given pixel tends to be similar to its neighboring pixels. To illustrate this relationship, one can plot the gray level values of pairs of adjacent pixels as shown in Fig. 1.2. Each dot represents a pixel in the image with the x coordinate being its gray level value and the y coordinate being the gray level value of its neighbor to the right. The strong diagonal relationship about the x = y line clearly shows the strong correlation between neighboring pixels.
+If we were to block the image into nonoverlapping 1 × 2 pixel blocks as shown in Fig. 1.3, we can represent an image by a collection of two-dimensional vectors xi. The scatter plot of this collection is equivalent to Fig. 1.2. Looking at the distributions of the values for each of the two components as shown in Fig. 1.4, we see that they are relatively wide and cover most of the 0–255 range. In fact, the distributions of each component would be quite similar to the overall distribution of individual pixels in the image.
+Now, what would happen if we rotated the distribution shown in Fig. 1.2 by 45◦ about the center? The result is shown in Fig. 1.5. The two components are now decorrelated, i.e., knowing the value of the ﬁrst component does not help in estimating the value of the second. The distributions of the new componen√ts are shown in Fig. 1.6. The ﬁrst component, save for the shift and a scaling factor of 2, is still quite similar to the previous distributions — quite broad and covering most of the dynamic range of the original individual pixels. The second component, however, is quite different. It is much narrower, with a strong peak at 0. Because it has a smaller dynamic range, we could encode its value with fewer bits. So even with a decorrelation by a simple rotation of the axis, we can reduce the number of bits required for encoding an image.
+In general, a process is decorrelated when, for zero mean random variables xi and xj , the expectation of their product, the covariance, is zero if i = j , i.e.,
+
+E xi xj =
+
+0 i=j, σi2 i = j ,
+
+(1.1)
+
+where E(·) is the expectation operator. Using vector notations, we may deﬁne the vector of the values of an image block of N pixels as
+
+x = [x1 x2 . . . xN ]T .
+
+(1.2)
+
+We can then deﬁne the covariance matrix as
+
+[C]x = E (x − m) (x − m)T ,
+
+(1.3)
+
+© 2001 CRC Press LLC
+
+FIGURE 1.1 Example “Lenai”mage. Reproduced by Special Permission of zine. Copyright©1972, 2000 by Playboy.
+
+Playboy maga-
+
+where m = E(x) is the mean. For notational convenience, we will assume zero mean input for the rest of this chapter. In practice, the mean can simply be removed from
+the data before processing. We wish to ﬁnd a linear transformation matrix, [W], whose transpose, [W]T , will
+rotate x to produce a diagonal covariance matrix for the transformed variable y,
+
+y = [W]T x .
+
+(1.4)
+
+Each column vector, wi, of [W] is a basis vector of the new space. So, alternatively, each element, yi, of y is calculated as
+
+yi = wiT x .
+
+(1.5)
+
+© 2001 CRC Press LLC
+
+FIGURE 1.2 Scatter plot of adjacent pixel value pairs.
+
+For simple rotations with no scaling, the matrix [W] must be orthonormal, that is
+
+[W]T [W] = [I] = [W][W]T
+
+(1.6)
+
+where [I] is the identity matrix. This means that the column vectors of the matrix are
+mutually orthogonal and are of unit norm. From Eq. (1.6), it follows that the inverse of an orthonormal matrix is simply its transpose, [W]T = [W]−1. The inverse
+transformation is then calculated as
+
+x = [W]y .
+
+(1.7)
+
+© 2001 CRC Press LLC
+
+FIGURE 1.3 Image blocking with 1 × 2 pixel nonoverlapping blocks.
+
+Further, the total energy under the transformation is preserved
+
+y 2 = yT y = [W]T x T [W]T x
+= xT [W][W]T x = xT x = x2,
+
+(1.8)
+
+where x is the norm of the vector x deﬁned as
+
+x = xT x
+
+N
+
+=
+
+xi2 .
+
+i=1
+
+(1.9)
+
+For the above example where N = 2, by inspection, the matrix [W] is simply a
+
+© 2001 CRC Press LLC
+
+FIGURE 1.4 Distributions for each component.
+
+rotation by 45◦
+
+[W] =
+
+cos 45◦ − sin 45◦ sin 45◦ cos 45◦
+
+.
+
+(1.10)
+
+For an arbitrary covariance matrix, the problem of ﬁnding the appropriate transfor-
+
+mation is the orthonormal eigenvector problem. Since the covariance matrix is real
+
+and symmetric, we can ﬁnd its real eigenvalues and corresponding eigenvectors. Let [C]y be the desired diagonal covariance matrix of the transformed variable y which will be of the form
+
+
+
+λ1
+
+[C]y = 
+
+...
+
+ 0
+ ,
+
+(1.11)
+
+0
+
+λN
+
+where the diagonal elements are the variances of the transformed data. The diagonal
+
+© 2001 CRC Press LLC
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+FIGURE 1.5 Scatter plot of pixel value pairs rotated by 45◦.
+
+matrix can be calculated from the original covariance matrix, [C]x, as
+
+[C]y = E yyT = E [W]T x
+
+[W]T x T
+
+or equivalently,
+
+= E [W]T xxT [W] = [W]T [C]x[W] ,
+
+[C]x[W] = [W][C]y .
+
+(1.12) (1.13)
+
+© 2001 CRC Press LLC
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+FIGURE 1.6 Distributions for each component of the rotated pixel value pairs.
+
+Since the desired [C]y is diagonal, Eq. (1.13) can be rewritten for each column vector, wi, of [W] as
+
+[C]x wi = λi wi .
+
+(1.14)
+
+The solutions for λi and wi with i = 1, . . . , N in Eq. (1.14) are the N eigenvalue, eigenvector pairs of the matrix [C]x of dimension N × N . That is, each column vector of [W] is an eigenvector of the covariance matrix, [C]x, of the original data. To ensure that [W] is orthonormal, Gram-Schmidt orthogonalization may be applied to the eigenvectors as they are obtained.
+This transformation deﬁned by the eigenvalues of the covariance matrix is the Karhunen-Loève transform (KLT), named after Karhunen [17] and Loève [19] who developed the continuous version of the transformation for decorrelating signals. Earlier, Hotelling [15] had developed a “method of principal components” for removing the correlation from the discrete elements of a random variable. As a result, the method is also referred to as the Hotelling transform or principal components analysis (PCA).
+
+© 2001 CRC Press LLC
+
+1.2.1 Calculation of the KLT
+
+Estimation of Covariance
+
+The calculation of the KLT is typically performed by ﬁnding the eigenvectors of the covariance matrix, which, of course, requires an estimate of the covariance matrix. If the entire signal is available, as is the case for coding a single image, the covariance matrix can be estimated from n data samples as
+
+[C]x
+
+=
+
+1 n
+
+n
+xi xiT
+i=1
+
+,
+
+(1.15)
+
+where xi is a sample data vector. If only portions of the signal are available, care must be taken to ensure that the estimate is representative of the entire signal. In the extreme, if only one data vector is used then only one nonzero eigenvalue exists, and its eigenvector is simply the scaled version of the data vector. For typical images, it is rarely the case that their covariance matrix has any zero eigenvalues. For a data vector of dimension N , a good rule of thumb is that at least 10 × N representative samples from the various regions within an image be used to ensure a good estimate if it is not feasible to use the entire image.
+
+Calculation of Eigenvectors
+
+While it is beyond the scope of this chapter to provide a detailed discussion of the algorithms for extracting the eigenvalues and eigenvectors, we will present a brief overview of the general methods commonly used. The reader is referred to [16, 28] for more detailed explanations. For actual implementations of the methods, many numerical packages such as LAPACK [22] (which is based on EISPACK [21] and LINPACK [23]), MATLAB [20], IDL [31], and Octave [11], and the routines in “cookbooks,” such as that by Press et al. [28], provide routines for the solution of eigensystems.
+A simple approach is the Jacobi method. It develops a sequence of rotation matrices, [P]i, that diagonalizes [C] as
+
+[D] = [V]T [C][V] ,
+
+(1.16)
+
+where [D] is the desired diagonal matrix and [V] = [P]1[P]2[P]3 · · · . Each [P]i rotates in one plane to remove one of the off-diagonal elements. It is an iterative technique which is terminated when the off-diagonal values are close to zero within some tolerance. Upon termination, the matrix [D] contains the eigenvalues on the diagonals and the columns of [V] are the basis vectors of the KLT.
+While this technique is quite simple, for larger matrices it can take a large number of calculations for convergence. A more efﬁcient approach for larger, symmetric matrices divides the problem into two stages. The Householder algorithm can be applied to reduce a symmetric matrix into a tridiagonal form in a ﬁnite number of steps. Once the matrix is in this simpler form, an iterative method such as QL factorization can be used to generate the eigenvalues and eigenvectors. The advantage
+
+© 2001 CRC Press LLC
+
+of this approach is that the factorization on the simpliﬁed tridiagonal matrix typically requires fewer iterations than the Jacobi method.
+Recently, there has been some interest in iterative methods of principal components extraction that do not require the calculation of a covariance matrix [7, 14, 26]. These techniques update the estimate of the eigenvectors for each input training vector. One such method developed by Oja [25] is of the form
+
+wˆ (t + 1) = wˆ (t) + α y(t)x(t) − y2(t)wˆ (t) ,
+
+(1.17)
+
+where x is an input vector, wˆ (t) is the current estimate of the basis vector, y = wT x is the coefﬁcient value, and α is a learning-rate parameter. Eq. (1.17) has been shown to converge to the largest principal component [14, 27]. This algorithm can be generalized through deﬂation to extract any or all of the principal components [7, 33]. Also, adaptive schemes have been based on this method [8]. While these algorithms have some advantages over covariance-based methods, there are still some concerns over stability and convergence [3, 4, 35].
+
+Markov-1 Solution
+
+The calculation of the eigenvectors for an arbitrary covariance matrix can still require a large number of computations. However, there is a special class of matrix that has an analytical solution for its eigenvectors and eigenvalues [29, 30]. If a process were to have a covariance function of the form
+
+[C]ij = σ 2ρ|i−j| ,
+
+(1.18)
+
+where ρ is the correlation coefﬁcient such that 0 < ρ < 1, such a process is referred to as a ﬁrst order stationary Markov process or simply Markov-1. The solution for the ith element of the j th basis vector for N -dimensional data is given by
+
+wij =
+
+2 N + µj
+
+1/2
+
+sin
+
+rj
+
+(i + 1) − (N + 1) 2
+
++ (j + 1) π 2
+
+,
+
+(1.19)
+
+where µj is the j th eigenvalue calculated as
+
+µj = 1 − ρ2 1 − 2 cos rj + ρ2 ,
+
+(1.20)
+
+and rj is the j th real positive root of the transcendental equation
+
+1 − ρ2 sin (r)
+
+tan
+
+(N r)
+
+=
+
+− cos
+
+(r )
+
+−
+
+2ρ
+
++
+
+ρ2
+
+cos
+
+(r )
+
+.
+
+(1.21)
+
+To extend this to two-dimensional data, one can assume a separable transform. The horizontal and vertical correlation coefﬁcients, ρH and ρV , are estimated from the image to calculate a horizontal basis set, wi(jH ), and vertical basis set, wi(jV ), respectively.
+
+© 2001 CRC Press LLC
+
+Then, the i, j element of the kth two-dimensional basis vector, wijk, is calculated as the product of the two:
+
+wij k = wi(kH )wj(Vk ) .
+
+(1.22)
+
+As many images exhibit a Markov-1 structure, this solution to the KLT can be quite useful due to its ease of generation.
+
+1.3 Performance of Transforms
+On its own, an orthonormal transformation does not effect data compression. The blocks of pixels are simply transformed from one set of values to another and, for reversible transformations, back again on reconstruction. To reduce the number of bits for representing an image, the coefﬁcients are quantized, incurring some irreversible loss, and then encoded for more efﬁcient representation. By decorrelating the data before these steps using the KLT, more data compaction can be achieved.
+To examine the effects of this extra efﬁciency, we can make use of Shannon’s information measures [34].
+
+1.3.1 Information Theory
+The information conveyed by an observation of some random process is related to its probability of occurrence. If an observation were all but certain to occur, i.e., its probability were close to 1, it would not be very informative. However, if it were quite unexpected, the observation would convey much more information. Shannon formalized this relationship between the probability of an event, P (x), and its information content, I (x), as
+
+I (x) = − log P (x) .
+
+(1.23)
+
+If the logarithm is taken with respect to base 2, the information, I (x), is measured in units of bits.
+A random variable, x, is a collection of all possible events and their associated probabilities. The average information for a random variable can be calculated as
+
+H (x) = P (xi) I (xi)
+i
+= − P (xi) log P (xi) ,
+i
+
+(1.24)
+
+where the sum is taken through all possible events. The average information is called the entropy of the process.
+
+© 2001 CRC Press LLC
+
+Entropy is useful in determining theoretical performance measures of compression methods. Shannon showed that entropy gives a lower bound on the average number of bits required to encode the events of a random process without introducing error. In other words, one needs at least as many bits per event, on average, as the entropy to represent a set of observations.
+However, these measures are not directly applicable to the coefﬁcients of an arbitrary transformation. They are deﬁned for discrete events whereas the coefﬁcients, since they are ﬂoating-point values, must be considered real-valued samples of continuous distributions. Since the probability of any such real-valued sample is zero, the (discrete) entropy is undeﬁned. Instead, we deﬁne the differential entropy [13] as
+
+∞
+h(x) = − p(s) log p(s)ds .
+−∞
+
+(1.25)
+
+For simple distributions such as the Gaussian, uniform, or Laplacian distributions the differential entropy is of the form
+
+h(x)
+
+=
+
+1 2
+
+log σx2
+
++
+
+k
+
+,
+
+(1.26)
+
+where σx2 is the variance of the random variable and k is a distribution-dependent
+
+constant
+
+(e.g.,
+
+for
+
+a
+
+Gaussian,
+
+k
+
+=
+
+1 2
+
+log2
+
+2π e)
+
+[1].
+
+A good transformation, then, should minimize the sum of the differential entropies
+
+for the resulting coefﬁcients. Due to the logarithmic term, this is equivalent to mini-
+
+mizing the product of the variances of the coefﬁcients. However, recall that for any
+
+orthonormal transformation, the total energy is preserved, so the sum of the coefﬁ-
+
+cient variances is ﬁxed. One measure of the efﬁciency of the transform is the coding
+
+gain [10] deﬁned as the ratio between the algebraic mean of the variances, which
+
+is independent of the transform, and the geometric mean of the variances, which is
+
+transform dependent:
+
+GW =
+
+1 N
+
+N
+
+σy2i
+
+i=1 N
+
+1/N .
+
+σy2i
+
+i=1
+
+(1.27)
+
+For the raw signal, before any transformation, all the variances are approximately equal giving a unity coding gain. Any increase in one of the coefﬁcient variances must be matched by an equal decrease in one or more of the other variances for an orthonormal transform. The arithmetic mean is therefore the same, but the geometric mean decreases resulting in a coding gain of greater than one.
+For a given energy of the signal, minimizing the product of the variances maximizes the coding gain. Conversely, maximizing the coding gain minimizes the lower bound on the number of bits required to encode the image. So, to minimize the product of the variances given a ﬁxed sum, one should maximize the variance of the ﬁrst
+
+© 2001 CRC Press LLC
+
+coefﬁcient. Next, subject to the orthonormality constraint, maximize the variance of the second coefﬁcient, and so on. This procedure is nothing more than extracting the principal components or, equivalently, generating the KLT. Therefore, the KLT, by decorrelating the data, produces a set of coefﬁcients that minimizes the differential entropy of the data.
+
+1.3.2 Quantization
+
+In transform coding, the transform coefﬁcients are quantized to effect the data reduction. While the transformation is reversible, quantization is not, and therefore introduces error. Let yˆ be the set of quantized coefﬁcient values for a block. On reconstruction, the block is calculated as
+
+xˆ = [W]yˆ .
+
+(1.28)
+
+The squared error for the block is calculated as
+
+ε2 = xˆ − x 2 = xˆ − x T xˆ − x = [W]yˆ − [W]y T [W]yˆ − [W]y = yˆ − y T [W]T [W] yˆ − y = yˆ − y T yˆ − y = yˆ − y 2 .
+
+(1.29)
+
+So, the squared error on reconstruction is the same as the squared error of the coefﬁcients for orthonormal transformations.
+The quantized coefﬁcients are typically encoded using a lossless method, such as arithmetic coding or Huffman coding. These methods can, at best, reduce the average number of bits to the entropy of the quantized coefﬁcients.
+To illustrate the advantage of performing the KLT before quantization, we calculate the total entropy for a number of quantization intervals on both the original data and the transformed data. For this example, a midstep, uniform quantizer is used where the quantized value is calculated as
+
+yˆ = q round (y/q) ,
+
+(1.30)
+
+based on the width of the quantization interval, q, where the function round(x) returns the nearest integer to the real value x. The results are shown in Fig. 1.7. For a given squared error due to quantization, the entropy in bits per pixel is less for the transformed data than for the original data.
+
+1.3.3 Truncation Error
+
+Another approach to reducing the data and hence introducing error is the complete removal of a number of the coefﬁcients before quantization. Say only M of the N coefﬁcients were to be retained. The resulting expected squared error is calculated as
+
+© 2001 CRC Press LLC
+
+FIGURE 1.7 Plot of mean squared error (MSE) versus entropy in bits per pixel for a number of quantization widths.
+
+E ε2
+
+=
+
+E
+
+1N N
+
+yi − yˆi 2
+
+ i=1
+
+
+
+=
+
+1 N
+
+E
+
+M
+
+i=1
+
+(yi
+
+−
+
+yi )2
+
++
+
+N
+(yi
+i =M +1
+
+−
+
+0)2
+
+
+
+
+
+=
+
+1 N
+
+E
+
+N
+
+i=M
+
++1
+
+yi2
+
+=
+
+1 N
+
+N
+σi2
+i =M +1
+
+.
+
+(1.31)
+
+Recall that for the KLT the variances of the coefﬁcients, σi2, are the eigenvalues, λi, of the covariance matrix. To minimize the expected squared error, the M coefﬁcients corresponding to the M largest eigenvalues should be kept.
+
+© 2001 CRC Press LLC
+
+Notice that the above minimization is valid for any transformation whose M basis vectors span the M-dimensional subspace deﬁned by the M largest principal components (eigenvectors for the M largest eigenvalues). However, only the KLT ensures that the remaining coefﬁcients can be coded with the minimum number of bits since it minimizes the differential entropy of the coefﬁcients. To illustrate this point, let us generate the 64 KLT basis vectors for an 8 × 8 blocking of the test image and keep only the ﬁrst four. The variances of the resulting coefﬁcients are shown in the ﬁrst column of Table 1.1. The MSE due to the removal of the 60 lowest variance coefﬁcients is 96.1. Now, let us generate another set of 4 basis vectors by taking random linear combinations of the ﬁrst 4 KLT basis vectors. The new set still spans the space deﬁned by the original 4 KLT basis vectors. As a result, the MSE due to truncation and the sum of the remaining variances are identical to those of the KLT bases. However, the product of the variances is much higher, and, as a result, the coding gain is much smaller than for the KLT bases. This means that the representation is less efﬁcient and will require more bits to encode the coefﬁcients for the same degree of distortion.
+
+Table 1.1 Performance Differences Between First Four Basis Vectors of KLT and a Random Combination of Them
+KLT bases Random span
+
+σ12
+
+113995
+
+20876
+
+σ22
+
+6880
+
+18236
+
+σ32
+
+2727
+
+79310
+
+σ42
+
+1691
+
+6873
+
+4
+σi2
+i=1 64
+σi2
+i=5
+Truncation MSE
+4
+σi2
+i=1
+Coding gain
+
+125294
+6147 96.1 3.6 × 1015 4.04
+
+125294
+6147 96.1 207.5 × 1015 1.47
+
+1.3.4 Block Size
+The question remains of what size to use for the image blocks. The larger the block, the greater the decorrelation, hence the greater the coding gain. However, the number
+
+© 2001 CRC Press LLC
+
+of arithmetic operations for the forward and inverse transformations increases linearly with the number of pixels in the block. Furthermore, the size of the covariance matrix is the square of the number of pixels. Not only does the calculation of the eigenvectors require more resources, but the number of samples to get a reasonable estimate of the covariance matrix increases signiﬁcantly. As well, if the set of KLT basis vectors is to be kept with the image for reconstruction, the size of the basis set is also of concern. Therefore, there is a trade-off between computational requirements and the degree of decorrelation in determining the block size.
+Fig. 1.8 shows the coding gain as a function of block size for the test image. It clearly shows that the use of larger block sizes results in larger coding gains. For example, increasing the block size from 4 × 4 to 8 × 8 increases the gain from 27 to 39. However, the number of ﬂoating point operations per pixel increases by a factor of four from 32 to 128.
+FIGURE 1.8 Coding gain as a function of block size for test image.
+© 2001 CRC Press LLC
+
+Of course, using a block the same size as the image results in a perfect coding gain since the entire image can be represented by a single component. Unfortunately, this representation is so image speciﬁc that the transform basis itself must also be included with the compressed image to enable reconstruction. Since the basis vector is the image, one is no further ahead. However, such full-frame transform coding may be appropriate for sequences or collections of similar images.
+Interblock Correlation
+The KLT produces decorrelated coefﬁcients within the image blocks. There is no assurance, however, that the coefﬁcients from block-to-block are also decorrelated. In fact, for most images there is a signiﬁcant correlation between the ﬁrst coefﬁcients for adjacent blocks. For example, Fig. 1.9 shows the scatter plot of adjacent pairs of the ﬁrst coefﬁcient for the 8 × 8 KLT of the test image. Note the strong correlation between the adjacent values. In contrast, Fig. 1.10 shows little if any correlation between adjacent second coefﬁcients.
+A simple method of reducing such correlation is to encode only the difference between adjacent coefﬁcients after initially encoding the ﬁrst. This method is known as differential pulse code modulation (DPCM). The use of DPCM on the ﬁrst coefﬁcients signiﬁcantly increases the overall coding efﬁciency by reducing the variance of the coefﬁcient. For example, performing DPCM on the ﬁrst coefﬁcient of the above 8 × 8 KLT coefﬁcients reduces the variance from 113995 to 51676. The resulting scatter plot of the adjacent pairs of differences is shown in Fig. 1.11. The use of DPCM has removed the correlation between adjacent values of the ﬁrst coefﬁcient.
+1.4 Examples 1.4.1 Calculation of KLT
+To calculate the KLT of an image, the covariance matrix is ﬁrst estimated. The estimate is calculated from the set of sequential nonoverlapping blocks for the image. For the following examples, blocks of 8 × 8 pixels are used. For the “Lena” image, this results in 4096 blocks. The eigenvalues and the corresponding eigenvectors are extracted from the covariance matrix. Because the matrix is symmetric, the eigenvalues and eigenvectors can be calculated using the tridiagonalization and QL factorization approach.
+The resulting 64 basis vectors are shown in Fig. 1.12 as two-dimensional basis images or blocks. The bases are in order from the largest variance at the top left to the lowest at the bottom right. Dark pixels represent negative values and light pixels represent positive values. The ﬁrst basis is almost ﬂat due to the similarity of pixel values within most blocks. As was the case for the two-dimensional scatter plot of Fig. 1.2, the 64-dimensional scatter plot would show a strong concentration of points along the diagonal line x1 = x2 = · · · = x64. As this is true for most images, the
+© 2001 CRC Press LLC
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+FIGURE 1.9 Scatter plot of adjacent pairs of the ﬁrst coefﬁcient.
+
+ﬁrst component of the KLT tends to be constant or d.c. As the variance increases, the degree of variation, or frequency, increases. This relationship generally agrees with the form of the KLT solution for a Markov-1 process as shown in Eq. (1.19) where the frequency increases as the basis index increases. Again, as most images have an approximate Markov-1 structure, the form of the KLT bases are similar.
+1.4.2 Quantization and Encoding
+Once the coefﬁcients are calculated, they are quantized and then losslessly encoded. There are numerous such methods, but a discussion and comparison of them would be beyond the scope of this chapter. For illustrative purposes, we will use an encoding scheme similar to that adopted by the JPEG standard [36]. The coefﬁcients are quantized by a midstep uniform quantizer as deﬁned in Eq. (1.30). For simplicity, the
+
+© 2001 CRC Press LLC
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+FIGURE 1.10 Scatter plot of adjacent pairs of the second coefﬁcient.
+
+same quantization step size, q, is used for all coefﬁcients, unlike the JPEG standard that varies the degree of quantization for each coefﬁcient according to the visibility of error as judged by human observers. Each quantized coefﬁcient is encoded ﬁrst by a Huffman encoded value for the number of bits required by the coefﬁcient followed by the minimum number of bits for the coefﬁcient value itself. Zero-valued coefﬁcients from adjacent blocks are run-length encoded for further compaction.
+The results for various degrees of quantization are shown in Table 1.2. As the coarseness of quantization increases, the size of the ﬁle decreases resulting in greater compression. The equivalent average number of bits per pixel is also shown. For comparison to show the efﬁciency of the coefﬁcient encoding, the entropy of the quantized coefﬁcient values is also shown. The actual bit rate and the entropy are very similar. At high compression the actual bit rate is slightly lower than the entropy because of the run-length encoding of zero values.
+
+© 2001 CRC Press LLC
+
+-
+
+-
+
+-
+
+--
+
+-
+
+-
+
+-
+
+FIGURE 1.11 Scatter plot of adjacent pairs of differences of the ﬁrst coefﬁcient.
+
+As the bit-rate decreases, distortion increases. Table 1.2 shows the distortion in two equivalent common measures [6]. The mean squared error (MSE) is deﬁned as
+
+MSE = E x − xˆ 2 ,
+
+(1.32)
+
+where x is the original pixel value and xˆ is the reconstructed value. The peak signalto-noise ratio (PSNR) is a logarithmic measure of distortion given in decibels (dB) and is deﬁned as
+
+PSNR = 10 log10 E
+
+(255)2 x − xˆ 2
+
+,
+
+(1.33)
+
+where 255 is the peak value of an 8-bit image. The larger the PSNR value, the better the accuracy of reconstruction. The plot of the distortion as PSNR versus the bit
+
+© 2001 CRC Press LLC
+
+FIGURE 1.12 KLT basis images for “Lena” image.
+
+rate is shown in Fig. 1.13. From rate-distortion theory, for a stationary memoryless Gaussian source, the bit rate, R, as a function of the squared error distortion, ε2, is
+given by [1]
+
+R(ε) =
+
+1 2
+
+log2
+
+σ 2/ε2
+
+0
+
+0 ≤ ε2 < σ 2 , σ 2 ≤ ε2 .
+
+(1.34)
+
+For high bit rates, the rate-distortion curve follows the logarithmic relationship between the squared error and the bit rate. As the quantization interval increases, the distortion overtakes the variance for more coefﬁcients. As a result, the curve begins to drop sharply as the distortion increases without a corresponding further reduction in bit rate. In the limit as the quantization interval increases, the bit rate becomes zero
+
+© 2001 CRC Press LLC
+
+Table 1.2 Compression of “Lena” Image Using KLT
+
+Quantizer File Size Bits/pixel Entropy MSE PSNR
+
+Width (bytes)
+
+(bits)
+
+(dB)
+
+2 139948
+
+4 109141
+
+8 78820
+
+16 42245
+
+24 27196
+
+36 18375
+
+48 13893
+
+64 10548
+
+92
+
+7547
+
+128
+
+5492
+
+192
+
+3797
+
+256
+
+2831
+
+512
+
+1457
+
+4.27 4.08 0.42 51.95 3.33 3.11 1.42 46.62 2.41 2.18 5.19 40.98 1.29 1.28 15.01 36.37 0.83 0.90 23.78 34.37 0.56 0.64 36.27 32.54 0.42 0.50 48.45 31.28 0.32 0.39 64.70 30.02 0.23 0.28 93.68 28.41 0.17 0.21 130.19 26.98 0.12 0.15 199.21 25.14 0.09 0.11 273.42 23.76 0.04 0.06 638.18 20.08
+
+and the squared error is then simply the variance. Fig. 1.14 shows the reconstructed image after a compression of 10:1 (0.8 bits per
+pixel). Overall, very little distortion is visible. Areas of constant brightness, edges, lines, and textured regions are all reproduced quite faithfully. Even on closer examination, little distortion is evident, as shown by comparing Figs. 1.15(a) and (b). At 10:1 compression, some minor distortion is seen as spurious texture in the background. As well, the lone feather piece in the center-left region is somewhat distorted. As the compression ratio increases, though, the distortion becomes more apparent, as shown by Figs. 1.15(c) and (d) for ratios of 20:1 and 40:1, respectively. The texture of the hat is lost in areas at 20:1, while artifacts in the background region are more pronounced. The edges of the hat, however, are still rather crisp and the textured region of the feathers on the brim does not seem as distorted as the hat texture. Because the set of bases is image speciﬁc, certain features, such as these, may be well represented and be somewhat resistant to distortion at moderate compression ratios. By 40:1, though, the image is quite distorted. This type of distortion is sometimes referred to as “block effect distortion” because the block boundaries used in block transform coding are visible.
+1.4.3 Generalization
+In theory, the transform basis set for the KLT is speciﬁc to a particular image. However, in practice the statistics of images at the block-size level of detail tend to be similar. As a result, the KLT computed from one set of image data performs quite well on another set. For example, the above results were based on the KLT computed from the covariance matrix of the set of sequential, nonoverlapping blocks from the image. These blocks are the exact data that are used to encode the image. If the covariance
+
+© 2001 CRC Press LLC
+
+FIGURE 1.13 Plot of distortion (PSNR) versus bit rate showing both the entropy and actual coding rates.
+matrix were to be calculated from randomly chosen blocks from arbitrary locations on the image, the data for generating the KLT would be different from the data used in encoding the image. Fig. 1.16 shows the results for both the KLT generated from the sequential set of blocks and a set of 4096 randomly chosen blocks. While the transform generated from the same data to be coded performs better, the improvement is not signiﬁcant.
+What happens if the KLT is generated based on an image completely different from the one being encoded? A second test image, “Goldhill,” is shown in Fig. 1.17. This image was encoded using the KLT generated from the image and the KLT originally generated from the “Lena” image. The rate-distortion curves are shown for both cases in Fig. 1.18. As expected, using the same data for generating the transform as for encoding results in better performance than using different data to generate the transform. However, as the ﬁgure shows, this increase is only minor. In this case, the transformation based on the “Lena” image generalizes well to the other image.
+© 2001 CRC Press LLC
+
+FIGURE 1.14 Image after compression of 10:1, MSE = 24.8, PSNR = 34.2 dB. Reproduced by Special Permission of Playboy magazine. Copyright ©1972, 2000 by Playboy.
+1.4.4 Markov-1 Solution To compare the usefulness of the Markov-1 solution to the KLT, we ﬁrst look at
+the autocorrelation of the image. As shown in Table 1.3, the autocorrelation does appear to follow the Markov-1 model of E[xixj ] = E[x2]ρ|i−j| with ρH = 0.9543 for horizontally neighboring pixels. A similar relationship also holds for vertically neighboring pixels with ρV = 0.9768. For simplicity we will assume a separable, isotropic distribution and choose ρ = 0.9543 for both directions. The resulting KLT bases are shown in Fig. 1.19. Note the strong sinusoidal nature of the basis images. The rate-distortion results for using this set of KLT bases are shown in Fig. 1.20 along with the original results for the KLT generated from the image itself. Since the two
+© 2001 CRC Press LLC
+
+FIGURE 1.15 Details of image before and after 10:1, 20:1, and 40:1 compression. (a) Original, (b) Compressed 10:1, (c) Compressed 20:1, (d) Compressed 40:1. Reproduced by Special Permission of Playboy magazine. Copyright ©1972, 2000 by Playboy.
+curves are almost identical, the savings in computational resources from having a closed form solution for the Markov-1 case incurs little if any cost in performance. 1.4.5 Medical Imaging
+One of the most demanding application areas for the use of image compression is the compression of medical images. The implications of introducing any sort of distortion in this class of images are grave. There are numerous legal and regulatory issues which consequently are of concern [37]. As a result, there is an argument for
+© 2001 CRC Press LLC
+
+FIGURE 1.16 Plot of distortion versus bit rate for KLT calculated from both randomly chosen blocks and sequential blocks.
+the use of lossless compression in this ﬁeld; however, such an approach is of limited usefulness due to the theoretical limits on the maximum allowable compression.
+The question, of course, is how much compression can be achieved? For lossy image compression methods, this is the same as asking how much distortion can be introduced in the reconstructed image. To answer this question, the end-use of the images must properly be deﬁned. For the following example, as originally presented in Dony et al. [9], the application is for educational use. Currently, radiology residents acquire their diagnostic skills through examining actual clinical images of normal patients as well as those with various pathologies. With the growth in digital imaging, it is now possible to store such a library of images digitally in a computer database. The residents would be free to call up any of the images and examine them at their convenience. The evaluation criteria for this environment are quite different from, say, a diagnostic environment. In the educational environment, the diagnosis or pathology is given beforehand. It is sufﬁcient that an image show clearly the pathology in question or the characteristics of a normal image. So, it is the overall quality of the image and the visibility of the pathology as judged by an experienced radiologist which must be measured.
+© 2001 CRC Press LLC
+
+FIGURE 1.17 Second test image, “Goldhill.”
+Nine digital chest radiographs (X-rays) obtained for clinical reasons were selected for evaluation as being representative of both normal anatomy and pathology. A sample image is shown in Fig. 1.21. Each of the nine images was compressed using an adaptive variation of the KLT at 10:1, 20:1, 30:1, and 40:1, and the ﬁve versions of each image were presented simultaneously to each of seven radiologists, in random order and without the evaluator knowing the degree of compression. The radiologists were asked to rank image quality and visibility of pathology in the context of their suitability for educational use. Possible ratings varied from excellent, good, and fair — acceptable — and poor or bad — unacceptable. A mean opinion score (MOS) was calculated by assigning a numeric value to each rating, e.g., excellent scored 5 points and bad 1 point [24].
+© 2001 CRC Press LLC
+
+FIGURE 1.18 Distortion versus bit rate for “Goldhill” image using KLT from both “Goldhill” image and “Lena” image.
+The results of evaluation are summarized in Fig. 1.22 which shows the plot of the mean opinion score for both scoring criteria. The ﬁgure shows that the MOS at the various degrees of compression remains quite close to that of the original. For image quality, the MOS for the original is 4.28 and drops only to 4.01 at 40:1. The MOS for the pathology visibility is 4.33 for the original and 4.10 for the 40:1 compression ratio. Therefore the use of a compression method based on the KLT results in usable images at even relatively high compression.
+1.4.6 Color Images Another application of the decorrelation abilities of the KLT is the compression
+of color images. Color images can be represented by three color components per pixel. Typically these are the three primary colors, red, green, and blue (RGB), corresponding to the responses of the three color receptors in the retina of the human eye. Similarly, in most color vision systems, three color ﬁlters of red, green, and blue are used to produce, respectively, the three color components per pixel. From the original RGB data, there are numerous transformations that can represent color values
+© 2001 CRC Press LLC
+
+Table 1.3 Correlation Between First 8
+
+Neighboring Pixels on the Rows
+
+E[xi xj ] E[xi xj ]/E[xi−1xj ]
+
+|i − j | = 0 2657
+
+-
+
+|i − j | = 1 2589
+
+0.9744
+
+|i − j | = 2 2472
+
+0.9546
+
+|i − j | = 3 2338
+
+0.9460
+
+|i − j | = 4 2223
+
+0.9510
+
+|i − j | = 5 2111
+
+0.9492
+
+|i − j | = 6 2010
+
+0.9524
+
+|i − j | = 7 1914
+
+0.9523
+
+in different coordinate spaces [18]. Some, for example HSI, express the components in a form that follows more closely the human perceptions of color qualities such as hue, saturation, and intensity. Others, for example YIQ, attempt to decorrelate the chromatic and intensity information. For the following example, we will explore the use of the decorrelation property of the KLT on the raw RGB data.
+A simple approach to compression would be to treat each of the three RGB components as separate images. However, this method does not exploit the correlation between the three color values at each pixel. An alternative is to include all three component pixel values within a block. For example, an 8 × 8 block will contain 192 individual values. The KLT can then decorrelate the component values allowing improved coding.
+To show the difference in coding performance between combining and not combining the three component values, the image shown in Fig. 1.23 is used as a test image. The image is 512 × 768 pixels in size and each pixel has 3 RGB values of 8 bits each for a total of 24 bits per pixel. For the separate encoding, three transforms were calculated and applied, one for each component. The resulting rate-distortion relationship is shown as the dashed curve in Fig. 1.24. The bit rate combines the ﬁle sizes of all three components and the distortion is the mean across the components. For the combined method, the image was divided into blocks of 8 × 8 pixels × 3 components for a total input dimension of 192. The performance of the KLT generated from this data is shown by the solid curve of Fig. 1.24. The ﬁgure shows that the difference in performance is substantial. For example, at a compression of 12:1 (2 bits per pixel), allowing the transform to decorrelate the RGB components results in a 4 dB increase in ﬁdelity. Again, this example shows that the greater the decorrelation, the better the performance of the transform.
+
+© 2001 CRC Press LLC
+
+FIGURE 1.19 KLT basis images for Markov-1 model, ρ = 0.9543.
+1.5 Summary
+The Karhunen-Loève transform (KLT) is deﬁned as the linear transformation whose basis vectors are the eigenvectors of the covariance matrix of the data. As it diagonalizes the covariance matrix, it decorrelates the data. The resulting set of coefﬁcients can be encoded with fewer bits for a given distortion than the raw data.
+The KLT is the optimal transformation in terms of minimizing the bit rate. The use of eigenvectors as the basis vectors ensures that the variance of the ﬁrst coefﬁcient is maximized, and, subject to the orthogonality of basis vectors, all subsequent coefﬁcient variances are maximized in order. Maximizing each variance means that
+© 2001 CRC Press LLC
+
+FIGURE 1.20 Plot of distortion (PSNR) versus bit rate for the KLT from the image covariance matrix and the KLT generated from the Markov-1 model.
+the product of all the variances is minimized due to the energy preserving nature of any orthonormal transformation. Since the total differential entropy for the blocks increases with the product of the variances, the KLT minimizes the entropy thereby minimizing the bound on the bit rate.
+The transform has a number of important performance characteristics for image compression. At moderate compression ratios, very little distortion is visible. As the compression ratio increases, more distortion becomes evident. However, because the transform is based on data from the image, some areas remain faithfully reproduced at even relatively low bit rates. The most prominent feature of the distortion as the compression ratio increases is the blocking effects of using ﬁnite sized blocks. While the KLT is calculated from the covariance matrix of an image and the covariances of different images are rarely identical, the transform based on one image can still perform well on a different image since the second order statistics of many images are rather similar. Even the use of the quite general Markov-1 model for the covariance results in performance almost as effective as the strictly image-speciﬁc transformation. As well, the decorrelating property of the transform can be used successfully on pixel
+© 2001 CRC Press LLC
+
+FIGURE 1.21 Sample chest radiograph for medical image compression evaluation.
+data with more than one component, such as the three RGB components in color images.
+While the KLT has the theoretically optimal decorrelation property, it has seldom been used in practice. While the transform can generalize well, the basis vectors must accompany an image or set of images for reconstruction if the Markov-1 model is not used. There are also the additional computational requirements of estimating the covariance and solving the eigensystem to extract the principal components. Further, the computation of the forward and inverse transform is considered “slow,” requiring an order of O(N 2) operations per block of N pixels or O(N × p) for an image of p pixels. Finally, while the transform may be optimal from an information-theoretic basis, the distortion criterion may not correspond well with our visual perception of distortion. For example, the block effect distortion is quite visible at high compression
+© 2001 CRC Press LLC
+
+FIGURE 1.22 Mean opinion score across all images and evaluators.
+FIGURE 1.23 Color test image, “Monarch.”
+© 2001 CRC Press LLC
+
+FIGURE 1.24 Distortion versus bit rate for “Monarch” image for encoding the RGB components separately and together. ratios, yet it is not accounted for in the distortion criteria. A full frame KLT is theoretically possible, but it is only practical for sets of quite small images.
+References
+[1] Berger, T., Rate Distortion Theory, Prentice-Hall, Englewood Cliffs, NJ, 1971. [2] Castleman, K.R., Digital Image Processing, Prentice-Hall, Englewood Cliffs,
+NJ, 1996. [3] Chatterjee, C., Roychowdhury, V.P., and Chong, E.K.P., On relative conver-
+gence properties of principal component analysis algorithms, IEEE Trans. Neural Networks, 9(2):319–329, 1998.
+© 2001 CRC Press LLC
+
+[4] Chen, T., Hua, Y., and Yan, W.-Y., Global convergence of Oja’s subspace algorithm for principal component extraction, IEEE Trans. Neural Networks, 9(1):58–67, 1998.
+[5] Clarke, R.J., Transform Coding of Images, Academic Press, San Diego, CA, 1985.
+[6] Clarke, R.J., Digital Compression of Still Images and Video, Academic Press, San Diego, CA, 1995.
+[7] Diamantaras, K.I. and Kung, S.Y., Principal Component Neural Networks: Theory and Applications, John Wiley & Sons, New York, 1996.
+[8] Dony, R.D. and Haykin, S., Optimally adaptive transform coding, IEEE Trans. Image Processing, 4(10):1358–1370, 1995.
+[9] Dony, R.D., Haykin, S., Coblentz, C., and Nahmias, C., Compression of digital chest radiographs using a mixture of principal components neural network: an evaluation of performance, RadioGraphics, 16, 1996.
+[10] Gersho, A. and Gray, R.M., Vector Quantization and Signal Compression, Kluwer Academic Publishers, Norwell, MA, 1992.
+[11] GNU Octave, http://www.che.wisc.edu/octave. [12] Gonzalez, R.C. and Woods, R.E., Digital Image Processing, Addison-Wesley,
+Reading, MA, 1993. [13] Gray, R.M., Source Coding Theory, Kluwer Academic Publishers, Norwell,
+MA, 1990. [14] Haykin, S., Neural Networks: A Comprehensive Foundation, Macmillan, New
+York, 1994. [15] Hotelling, H., Analysis of a complex of statistical variables into principal
+components, J. Educ. Psychol., 24:417–447, 498–520, 1933. [16] Jolliffe, I., Principal Component Analysis, Springer-Verlag, New York, 1986. [17] Karhunen, K., Über lineare methoden in der wahrscheinlich-keitsrechnung.
+Ann. Acad. Sci. Fennicea, Ser. A137, 1947. (Translated by Selin, I. in “On Linear Methods in Probability Theory,” Doc. T-131, The RAND Corp., Santa Monica, CA, 1960.) [18] Levkowitz, H., Color Theory and Modeling for Computer Graphics, Visualization, and Multimedia Applications, Kluwer Academic Publishers, Norwell, MA, 1997. [19] Loève, M., Fonctions Aléatoires de second order, In Lévy, P., Ed., Processus Stochastiques et Movement Brownien, Hermann, Paris, 1948. [20] MathWorks, http://www.mathworks.com. [21] Netlib Repository, http://www.netlib.org/eispack.
+© 2001 CRC Press LLC
+
+[22] Netlib Repository, http://www.netlib.org/lapack. [23] Netlib Repository, http://www.netlib.org/linpack. [24] Netravali, A.N. and Haskell, B.G., Digital Pictures: Representation and Com-
+pression, Plenum Press, New York, 1988. [25] Oja, E., A simpliﬁed neuron model as a principal component analyzer, J. Math.
+Biology, 15:267–273, 1982. [26] Oja, E., Neural networks, principal components, and subspaces, Int. J. Neural
+Systems, 1(1):61–68, 1989. [27] Oja, E. and Karhunen, J., On stochastic approximation of the eigenvectors
+and eigenvalues of the expectation of a random matrix, J. Math. Analysis and Applications, 106:69–84, 1985. [28] Press, W.H., Flannery, B.P., Teukolsky, S.A., and Vetterling, W.T., Numerical Recipes in C: The Art of Scientiﬁc Computing, Cambridge University Press, Cambridge, UK, 1988. [29] Rao, K.R. and Yip, P., Discrete Cosine Transform: Algorithms, Advantages, Applications, Academic Press, New York, 1990. [30] Ray, W. and Driver, R.M., Further decomposition of the Karhunen-Loève series representation of a stationary random process, IEEE Trans. Information Theory, IT-16:663–668, 1970. [31] Research Systems, http://www.rsinc.com. [32] Rosenfeld, A. and Kak, A.C., Digital Picture Processing, Vol. I & II, 2nd ed., Academic Press, San Diego, CA, 1982. [33] Sanger, T.D., Optimal unsupervised learning in a single-layer linear feedforward neural network, Neural Networks, 2:459–473, 1989. [34] Shannon, C.E., A mathematical theory of communication, The Bell System Technical J., 27(3):379–423, 623–656, 1948. [35] Solo, V. and Kong, X., Performance analysis of adaptive eigenanalysis algorithms, IEEE Trans. Signal Processing, 46(3):636–645, 1998. [36] Wallace, G.K., The JPEG still image compression standard, Communications of the ACM, 34(4):30–44, 1991. [37] Wong, S., Zaremba, L., Gooden, D., and Huang, H.K., Radiologic image compression — A review, Proc. IEEE, 83(2):194–219, 1995.
+© 2001 CRC Press LLC
+
+Ivan W. Selesnick et al. "The Discrete Fourier Transform" The Transform and Data Compression Handbook Ed. K. R. Rao et al. Boca Raton, CRC Press LLC, 2001
+© 20001 CRC Press LLC
+
+Chapter 2
+The Discrete Fourier Transform
+
+Ivan W. Selesnick
+Polytechnic University
+Gerald Schuller
+Bell Labs
+
+2.1 Introduction
+
+The discrete Fourier transform (DFT) is a fundamental transform in digital signal processing, with applications in frequency analysis, fast convolution, image processing, etc. Moreover, fast algorithms exist that make it possible to compute the DFT very efﬁciently. The algorithms for the efﬁcient computation of the DFT are collectively called fast Fourier transforms (FFTs). The historic paper by Cooley and Tukey [15] made well known an FFT of complexity N log2 N , where N is the length of the data vector. A sequence of early papers [3, 11, 13, 14, 15] still serves as a good reference for the DFT and FFT. In addition to texts on digital signal processing, a number of books devote special attention to the DFT and FFT [4, 7, 10, 20, 28, 33, 36, 39, 48].
+The importance of Fourier analysis in general is put forth very well by Leon Cohen [12]:
+
+. . . Bunsen and Kirchhoff, observed (around 1865) that light spectra can be used for recognition, detection, and classiﬁcation of substances because they are unique to each substance.
+This idea, along with its extension to other waveforms and the invention of the tools needed to carry out spectral decomposition, certainly ranks as one of the most important discoveries in the history of mankind.
+
+The kth DFT coefﬁcient of a length N sequence {x(n)} is deﬁned as
+
+N −1
+X(k) = x(n) WNkn,
+n=0
+
+k = 0, . . . , N − 1
+
+(2.1)
+
+© 2001 CRC Press LLC
+
+where
+
+WN = e−j2π/N = cos
+
+2π N
+
+− j sin
+
+2π N
+
+is the principal N -th root of unity. Because WNnk as a function of k has a period of N , the DFT coefﬁcients {X(k)} are periodic with period N when k is taken outside the range k = 0, . . . , N − 1. The original sequence {x(n)} can be retrieved by the inverse discrete Fourier transform (IDFT)
+
+x(n)
+
+=
+
+1 N
+
+N −1
+X(k) WN−kn,
+
+k=0
+
+n = 0, . . . , N − 1 .
+
+The inverse DFT can be veriﬁed by using a simple observation regarding the principal N -th root of unity WN . Namely,
+
+N −1
+WNnk = N · δ(k),
+n=0
+
+k = 0, . . . , N − 1 ,
+
+where δ(k) is the Kronecker delta function deﬁned as
+
+δ(n) =
+
+1 0
+
+n=0 n=0.
+
+For example, with N = 5 and k = 0, the sum gives
+
+1+1+1+1+1=5.
+
+For k = 1, the sum gives
+
+1 + W5 + W52 + W53 + W54 = 0 which can be graphically illustrated as:
+
+© 2001 CRC Press LLC
+
+The sums can also be visualized by looking at the illustration of the DFT matrix in Fig. 2.1. Because WNnk as a function of k is periodic with period N , we can write
+
+N −1
+WNnk = N · δ ( k N )
+n=0
+
+where k N denotes the remainder when k is divided by N , i.e., k N is k modulo N . To verify the inversion formula, we can substitute the DFT into the expression for
+the IDFT:
+
+x(n) = 1 N−1 N
+
+N −1
+x(l) WNkl
+
+WN−kn ,
+
+k=0 l=0
+
+=
+
+1 N
+
+N −1
+
+N −1
+
+x(l)
+
+WNk(n−l)
+
+,
+
+l=0
+
+k=0
+
+=
+
+1 N
+
+N −1
+x(l) N
+
+δ(
+
+n−l
+
+N)
+
+,
+
+l=0
+
+= x(n) .
+
+(2.2) (2.3) (2.4) (2.5)
+
+2.2 The DFT Matrix
+
+The DFT of a length N sequence {x(n)} can be represented as a matrix-vector
+
+product. For example, a length 5 DFT can be represented as
+
+
+
+
+
+
+
+
+
+X(0)
+
+11 1 1 1
+
+x(0)
+
+
+
+X(1) X(2) X(3)
+
+
+
+=
+
+
+
+1 1 1
+
+W W2 W3
+
+W2 W4 W6
+
+W3 W6 W9
+
+W4 W8 W 12
+
+ 
+
+x(1) x(2) x(3)
+
+
+
+X(4)
+
+1 W 4 W 8 W 12 W 16
+
+x(4)
+
+where W = W5, or as
+
+X = FN · x ,
+
+where FN is the N × N DFT matrix whose elements are given by (FN )l,m = WNlm 0 ≤ l, m ≤ N − 1 .
+
+As the IDFT and DFT formulae are very similar, the IDFT represented as a matrix is closely related to FN ,
+
+FN−1
+
+=
+
+1 N
+
+FN∗
+
+© 2001 CRC Press LLC
+
+where FN∗ represents the complex conjugate of FN . It is very useful to illustrate the entries of the matrix FN as in Fig. 2.1, where each
+complex value is shown as a vector. In Fig. 2.1, it can be seen that in the kth row of the matrix the elements consist of a vector rotating clockwise with a constant increment of 2π k/N. In the ﬁrst row k = 0 and the vector rotates in increments of 0. In the second row k = 1 and the vector rotates in increments of 2π/N .
+FIGURE 2.1 The 16-point DFT matrix.
+2.3 An Example
+The DFT is especially useful for efﬁciently representing signals that are comprised of a few frequency components. For example, the length 2048 signal shown in Fig. 2.2 is an electrocardiogram (ECG) recording from a dog1. The DFT of this real signal, shown in Fig. 2.2, is greatest at speciﬁc frequencies corresponding to the fundamental frequency and its harmonics. Clearly, the signal {x(n)} can be represented well even when many of the small DFT {X(k)} coefﬁcients are set to zero. By discarding, or coarsely quantizing, the DFT coefﬁcients that are small in absolute value, one obtains a
+1The dog ECG data is available from the Signal Processing Information Base (SPIB) at URL http://spib.rice.edu/.
+© 2001 CRC Press LLC
+
+more efﬁcient representation of {x(n)}. Fig. 2.3 illustrates the DFT coefﬁcients when the 409 coefﬁcients that are largest in absolute value are kept, and the remaining 1639 DFT coefﬁcients are set to zero. Fig. 2.3 also shows the signal reconstructed from this truncated DFT. It can be seen that the reconstructed signal is a fairly accurate depiction of the original signal {x(n)}. For signals that are made up primarily of a few strong frequency components, the DFT is even more suitable for compression purposes.
+FIGURE 2.2 2048 samples recorded of a dog heart and its DFT coefﬁcients. The magnitudes of the DFT coefﬁcients are shown (see property 1 in Section 2.5.1).
+2.4 DFT Frequency Analysis
+To formalize the type of frequency analysis accomplished by the DFT, it is useful to view each DFT value {X(k)} as the output of a length N FIR ﬁlter hk(n). The
+© 2001 CRC Press LLC
+
+FIGURE 2.3 The truncated DFT coefﬁcients and the time signal reconstructed from the truncated DFT.
+
+output of the ﬁlter is given by the convolution sum
+
+l
+yk(l) = x(n) hk(l − n) .
+n=0
+When the output yk(l) is evaluated at time l = N − 1, one has
+
+N −1
+yk(N − 1) = x(n) hk(N − 1 − n) .
+n=0
+
+If the ﬁlter coefﬁcients hk(n) are deﬁned as
+
+hk(n) =
+
+WNk(N −1−n) 0
+
+0 ≤ n ≤ N −1 otherwise
+
+(2.6)
+
+© 2001 CRC Press LLC
+
+then one has
+
+N −1
+yk(N − 1) = x(n) WNkn ,
+n=0
+= X(k) .
+
+(2.7) (2.8)
+
+Note that hk(n) = WNk(N−1−n) represents a reversal of the values WNkn for n = 0, . . . , N − 1, which in turn is the k-th row of the DFT matrix. Therefore, the DFT of a length N sequence {x(n)} can be interpreted as the output of a bank of N FIR ﬁlters each of length N sampled at time l = N − 1.
+Moreover, the impulse responses hk(n) are directly related to each other through DFT-modulation:
+
+hk(n) = WNk(N−1−n) · p(n)
+
+where the ﬁlter h0(n) = p(n) is given by
+
+p(n) =
+
+1 0
+
+0≤n≤N −1 otherwise .
+
+(2.9)
+
+This ﬁlter is called a rectangular window as it is not tapered at its ends. It follows that the Z-transforms of the ﬁlters are also simply related:
+
+N −1
+Hk(z) = hk(n) z−n
+
+n=0
+
+N −1
+
+=
+
+WNk(N−1−n) p(n) z−n
+
+n=0
+
+N −1
+
+= WN−k
+
+WN−kn p(n) z−n
+
+n=0
+
+N −1
+
+= WN−k
+
+p(n)
+
+WNk z
+
+−n
+
+n=0
+
+= WN−k P WNk z
+
+(2.10) (2.11) (2.12) (2.13) (2.14)
+
+where P (z) =
+
+N −1 n=0
+
+p(n)
+
+z−n
+
+.
+
+That is, if each ﬁlter hk(n) in an N -channel ﬁl-
+
+ter bank is taken to be the time-ﬂip of the k-th row of the DFT matrix, then their
+
+Z-transforms are given by Hk(z) = WN−kP (WNk z). H0(z) = P (z), H1(z) = WN−1P (WN z), etc. It is instructive to view the frequency responses of the N ﬁl-
+
+ters hk(n), as the frequency responses of the ﬁlters Hk(z) indicate the effect of the
+
+DFT on a sequence. The magnitude of the frequency response of Hk(z) and the zero
+
+plot in the z-plane are given in Fig. 2.4. Note that the zeros of Hk(z) in the z-plane
+
+are simply rotated by 2π/N , and that the frequency responses are shifted by the same
+
+© 2001 CRC Press LLC
+
+FIGURE 2.4 The magnitude of the frequency response of the ﬁlters hk(n) for k = 0, . . . , 5, corresponding to a 6-point DFT. Shown on the right are the zeros of Hk(z).
+© 2001 CRC Press LLC
+
+amount. The ﬁgure makes clear the way in which the DFT performs a frequency
+decomposition of a signal. The frequency response of the ﬁlter hk is given by Hk(ejω), the discrete-time
+Fourier transform (DTFT) of the impulse response:
+
+N −1
+Hk(ejω) = hk(n) e−jωn .
+n=0
+The frequency response of the rectangular window p(n) is given by
+
+(2.15)
+
+N −1
+
+P ejω =
+
+1 · e−jωn
+
+n=0
+1 − e−jNω = 1 − e−jω
+e−j ωN/2 ej ωN/2 − e−j ωN/2 = e−j ω/2 ej ω/2 − e−j ω/2
+
+=
+
+e−j ω(N−1)/2
+
+·
+
+sin
+
+N 2
+
+ω
+
+sin
+
+1 2
+
+ω
+
+.
+
+(2.16) (2.17) (2.18) (2.19)
+
+The
+
+function
+
+sin
+
+(
+
+N 2
+
+ω)/
+
+sin
+
+(
+
+1 2
+
+ω)
+
+is
+
+called
+
+the
+
+digital
+
+sinc
+
+function,
+
+for
+
+its
+
+resemblance
+
+to the usual sinc function.
+
+2.5 Selected Properties of the DFT
+Of the many properties the DFT possesses, the symmetry properties are some of the most useful when using the DFT for compression.
+Because the DFT operates on ﬁnite-length data sequences, it is useful to deﬁne two types of symmetries as follows. When {x(n)} is periodically extended outside the range n = 0, . . . , N − 1, the following deﬁnitions for symmetric and anti-symmetric sequences are consistent with their usual deﬁnitions for sequences that are not ﬁnite in length.
+Symmetry: Let {x(n)} be a real-valued length N data sequence, for n = 0, . . . , N − 1, then {x(n)} is symmetric if
+x(N − n) = x(n), n = 1, . . . , N − 1 .
+Note that an even-length N symmetric sequence {x(n)} is fully described by its ﬁrst N/2 + 1 values. For example, a length 6 symmetric sequence is fully determined by its ﬁrst 4 values as illustrated in Fig. 2.5. On the other hand, an odd-length N symmetric sequence {x(n)} is fully described by its ﬁrst (N + 1)/2 values. For
+
+© 2001 CRC Press LLC
+
+-
+FIGURE 2.5 Illustration of even-length symmetric sequence.
+-
+FIGURE 2.6 Illustration of odd-length symmetric sequence.
+example, a length 7 symmetric sequence is fully determined by its ﬁrst 4 values as illustrated in Fig. 2.6. For both even- and odd-length sequences, the number of values that determine a length N symmetric sequence is N/2 + 1 where k denotes the greatest integer smaller than or equal to k.
+Anti-symmetry: A real-valued length N data sequence is anti-symmetric if x(0) = 0 and x(N − n) = −x(n), n = 1, . . . , N − 1 .
+Note that an even-length N anti-symmetric sequence {x(n)} is fully described by N/2 − 1 values. For example, a length 6 anti-symmetric sequence is fully determined by 2 values (see Fig. 2.7). On the other hand, an odd-length N anti-symmetric sequence {x(n)} is fully described by (N − 1)/2 values. For example, a length 7 anti-symmetric sequence is fully determined by 3 values (see Fig. 2.8). For both even- and odd-length sequences, the number of values that determine a length N anti-symmetric sequence is N/2 − 1 where k denotes the smallest integer greater than or equal to k.
+© 2001 CRC Press LLC
+
+-
+FIGURE 2.7 Illustration of even-length anti-symmetric sequence.
+
+-
+FIGURE 2.8 Illustration of odd-length anti-symmetric sequence.
+
+2.5.1 Symmetry Properties
+
+To state the symmetry properties of the DFT, it is useful to introduce the notation
+{Xr (k)} and {Xi(k)} for the real and imaginary parts of {X(k)}. Similarly, {xr (n)} and {xi(n)} are used to denote the real and imaginary parts of {x(n)}.
+If {x(n)} is a length N data vector and . . .
+
+1. if {x(n)} is real-valued, then X(k) = X∗(N − k),
+
+k = 1, . . . , N − 1 ,
+
+i.e., the real part of {X(k)} is symmetric, and the imaginary part of {X(k)} is anti-symmetric.
+
+2. if {x(n)} is real-valued and symmetric, then
+
+X(k) = Xr (k) = Xr (N − k), k = 1, . . . , N − 1 ,
+
+i.e., {X(k)} is purely real and symmetric.
+
+3. if {x(n)} is real-valued and anti-symmetric, then
+
+X(k) = j Xi(k) = −j Xi(N − k), k = 1, . . . , N − 1 ,
+
+© 2001 CRC Press LLC
+
+i.e., {X(k)} is purely imaginary and anti-symmetric.
+
+4. if {x(n)} is purely imaginary, then X(k) = −X∗(N − k),
+
+k = 1, . . . , N − 1 ,
+
+i.e., the real part of {X(k)} is anti-symmetric, and the imaginary part of {X(k)} is symmetric.
+
+5. if {x(n)} is purely imaginary and {xi(n)} is symmetric, then
+
+X(k) = j Xi(k) = j Xi(N − k), k = 1, . . . , N − 1 ,
+
+i.e., {X(k)} is purely imaginary and symmetric.
+
+6. if {x(n)} is purely imaginary and {xi(n)} is anti-symmetric, then
+
+X(k) = Xr (k) = −Xr (N − k), k = 1, . . . , N − 1 ,
+
+i.e., {X(k)} is purely real and anti-symmetric.
+
+These properties are summarized in Table 2.1.
+
+These properties explain why the total number of parameters needed to describe the original data sequence {x(n)} is the same after the DFT is performed. For example, consider a real-valued length 6 sequence {x(n)} and its DFT:
+
+
+
+1
+
+x=
+
+
+
+3 5 6 7
+
+
+
+2
+
+
+
+
+
+
+
+24.0000
+
+0
+
+X = 
+
+−8.5000 −1.5000
+2.0000 −1.5000
+
+ + j 
+
+0.8660 −2.5981
+0 2.5981
+
+
+
+.
+
+−8.5000
+
+−0.8660
+
+It is clear that there are a total of 6 distinct values in the DFT coefﬁcients {X(k)} for
+this example. In general, for a length N real-valued sequence {x(n)}, the symmetric {Xr (k)} is
+determined by N/2 + 1 values, and the anti-symmetric {Xi(k)} is determined by N/2 − 1 values. Therefore, even though the DFT {X(k)} of a length N real-valued sequence {x(n)} is complex-valued, it is fully determined by exactly N values. The number of parameters is the same in both {x(n)} and {X(k)}.
+Recall that an even-length real-valued symmetric sequence {x(n)} is determined by its ﬁrst N/2 + 1 values. By the symmetry property above, the same is true for the DFT {X(k)}. An odd-length real-valued symmetric sequence {x(n)} is determined by its ﬁrst (N + 1)/2 values. By the symmetry property above, the same is true for the DFT {X(k)}. The symmetry properties for real-valued symmetric sequences are
+especially useful because they can be used to develop useful DFT-based transforms
+that yield real-valued coefﬁcients.
+
+© 2001 CRC Press LLC
+
+Table 2.1 DFT Symmetry Properties
+x is purely real
+
+x is purely real,
+
+xr is symmetric
+
+x is purely real,
+
+xr is anti-symmetric
+
+x is purely imaginary
+
+x is purely imaginary, xi is symmetric
+
+x is purely imaginary, xi is anti-symmetric
+
+Xr is symmetric, Xr is symmetric, X is purely imaginary, Xr is anti-symmetric, X is purely imaginary, Xr is anti-symmetric,
+
+Xi is anti-symmetric X is purely real
+Xi is anti-symmetric Xi is symmetric Xi is symmetric X is purely real
+
+-
+FIGURE 2.9 Illustration of DFT symmetry property for an even-length sequence.
+
+-
+FIGURE 2.10 Illustration of DFT symmetry property for an odd-length sequence.
+2.6 Real-Valued DFT-Based Transforms
+In most applications the data are real-valued. For this reason, it can be beneﬁcial to use the DFT in a specialized way so that it gives real values. This can be accomplished by suitably extending the given data sequence {x(n)} so that it exhibits the necessary symmetry that makes the DFT {X(k)} real-valued.
+For example, given a length N real-valued sequence {x(n)}, which does not necessarily possess any symmetries, one can construct a symmetric sequence by symmetrically extending {x(n)}. There is more than one way to symmetrically extend a given sequence, depending on how the end points are treated. Different symmetric
+
+© 2001 CRC Press LLC
+
+extensions give rise to the different types of DFT-based signal transforms that map real-valued sequences to real-valued sequences. One class of DFT-based real transforms is the discrete cosine and sine transforms. In fact, 16 different cosine and sine transforms are described in [32].
+One way to symmetrically extend a ﬁnite length N sequence is illustrated in Fig. 2.11. The result is a symmetric sequence {x1(n)} of even length 2N −2. {X1(k)},
+FIGURE 2.11 Illustration of symmetric extension. the DFT of {x1(n)}, is therefore real-valued symmetric and is determined by its ﬁrst N values (see Fig. 2.12). Because {X1(k)} is determined by its ﬁrst N values, this procedure gives an N-point real transform. The inverse of this transform is obtained by performing the same steps in reverse sequence. Given the ﬁrst N values of {X1(k)}, construct a symmetric extension as above to obtain a length 2N −2 sequence {X1(k)}, take the inverse DFT of the resulting sequence to obtain the length 2N − 2 sequence {x1(n)}, from which {x(n)} can be extracted.
+FIGURE 2.12 Illustration of symmetric extension.
+© 2001 CRC Press LLC
+
+The transform formulae can be found explicitly using the DFT formulae together with the symmetric extension.
+
+X1(k) = DFT {x1(n)}
+
+2N −3
+
+=
+
+x1(n) W2kNn −2
+
+n=0
+
+N −2
+
+= x(0) +
+
+x(n)
+
+W2nNk −2 + W22NN−−22−n
+
++
+
+x(N
+
+−
+
+1)
+
+W2(NN
+
+−1)k −2
+
+n=1
+
+N −2
+= x(0) + 2 x(n) cos
+
+nkπ N −1
+
++ (−1)kx(N − 1)
+
+n=1
+
+(2.20) (2.21) (2.22) (2.23)
+
+where we have used the simpliﬁcation W2kN(2−N√2−2−n) = W2−Nn−k 2. Often the ﬁrst and last values, x(0) and x(N − 1), are scaled by 2 so that the transform is orthogonal. The inverse can also be derived in a similar way.
+It is very interesting to look at the type of frequency analysis this type of discrete cosine transform (DCT) [1, 42, 61] performs, as was done for the DFT in Fig. 2.4. In Fig. 2.13, the frequency responses corresponding to this DCT are shown. Note that the plots of zeros in the z-plane are especially simple.
+Another way to symmetrically extend a ﬁnite length N sequence is illustrated in Fig. 2.14. The result is a symmetric sequence {x2(n)} of odd length 2N − 1. {X2(k)}, the DFT of {x2(n)}, is therefore real-valued symmetric and is determined by its ﬁrst N values (see Fig. 2.15). Because {X2(k)} is determined by its ﬁrst N values, this procedure gives an N -point real transform. The inverse of this transform is obtained by performing the same steps in reverse sequence. Given the ﬁrst N values of {X2(k)}, construct a symmetric extension as above to obtain a length 2N −1 sequence {X2(k)}, and take the inverse DFT of the resulting sequence to obtain the length 2N −1 sequence {x2(n)}, from which {x(n)} can be extracted.
+Now consider a symmetric extension by simply mirroring the entire length N sequence,
+
+{x1(n)} = [x(0), . . . , x(N − 1), x(N − 1), . . . , x(0)]
+
+© 2001 CRC Press LLC
+
+FIGURE 2.13 The discrete cosine transform (I) basis vectors illustrated in the frequency domain and in the z-plane. N = 6.
+© 2001 CRC Press LLC
+
+FIGURE 2.14 Illustration of DFT symmetry property.
+
+FIGURE 2.15 Illustration of DFT symmetry property.
+
+for 0 ≤ n ≤ 2N − 1 (a length 2N sequence). The DFT of this sequence becomes
+
+X1(k) = DFT {x1(n)}
+
+2N −1
+
+=
+
+x1(n)W2kNn
+
+n=0
+
+N −1
+
+=
+
+x(n) W2kNn + W2kN(2N−1−n)
+
+n=0
+
+N −1
+
+=
+
+x(n)W2−N0.5k W2kN(n+0.5) + W2kN(2N−0.5−n)
+
+n=0
+
+=
+
+N −1
+
+W2−N0.5k
+
+x(n) cos
+
+π N
+
+·k
+
+·
+
+(n + 0.5)
+
+n=0
+
+(2.24) (2.25) (2.26) (2.27) (2.28)
+
+The phase factor W2−N0.5k can be neglected in applications since it carries no information about the signal. Since the transform length is N , the frequency index has the range k = 0, . . . , N − 1, so that a quadratic cosine transform matrix is obtained. The
+
+© 2001 CRC Press LLC
+
+DCT thus obtained is a so-called DCT type II. Its transform matrix is
+
+DII (k, n) :=
+
+2/N cos
+
+π N
+
+k(n
+
+−
+
+0.5)
+
+for n, k = 0, . . . , N − 1. To make this transform matrix orthogonal, its ﬁrst row is usually scaled to
+
+DII (0, n) := 1/N
+
+for k = 0. This transform divides the frequency axis as illustrated in Fig. 2.16. It can be seen that the width of the resulting frequency bins or bands is π/N , except for the lowest band for k = 0, as it is centered around DC. This results in a lowpass ﬁlter bandwidth of 1/(2N ). The highest band for k = N − 1 is centered at π(1 − 1/N ), which means the required bandwidth to cover the entire frequency axis up to π is 2/N . This means that for the design of ﬁlter banks with uniform frequency width for all bands, a shift of the frequency grid by 1/2 would be suitable, so that the lowest
+band covers more bandwidth, and the highest band needs to cover less, as illustrated
+in Fig. 2.17. This results in a DCT type IV; its orthogonal transform matrix is
+
+π DIV (k, n) := 2/N cos N (k + 0.5)(n + 0.5) .
+
+(2.29)
+
+Similarly a discrete sine transform of types II and IV are obtained by applying a DFT to the sequence
+
+{x1} = [x(0), . . . , x(N − 1), −x(N − 1), . . . , −x(0)]
+
+for 0 ≤ n ≤ 2N − 1. The resulting transform matrix for a DST type IV is
+
+SIV (k, n) :=
+
+2/N sin
+
+π N
+
+(k
+
++
+
+0.5)(n
+
++
+
+0.5)
+
+.
+
+(2.30)
+
+Efﬁcient ways to obtain DCTs with the help of FFTs can be found, for example, in Malvar [31].
+
+FIGURE 2.16
+The distribution of bands with a DCT II. Horizontally is the normalized frequency /π . The band edges are marked with long vertical lines, and the band centers with short lines.
+
+© 2001 CRC Press LLC
+
+FIGURE 2.17 The distribution of bands with a DCT IV. The band edges are again marked with long vertical lines, and the band centers with short lines.
+
+2.7 The Fast Fourier Transform
+
+A fast Fourier transform (FFT) is any fast algorithm for computing the DFT. As stated earlier, FFT algorithms have a tremendous impact on computational aspects of signal processing. To introduce the FFT, recall the deﬁnition of the DFT in Eq. (2.1) and suppose the data vector {x(n)} is of even length N . The basic derivation of the FFT begins by splitting the sum into two parts — one part for the even-indexed values {x(2n)} and one part for the odd-indexed values {x(2n + 1)}
+
+N −1
+
+N −1
+
+X(k) =
+
+x(n) WNnk +
+
+x(n) WNnk
+
+n=0
+n even
+
+n=0
+n odd
+
+which can be written as
+
+or as
+
+N /2−1
+
+N /2−1
+
+X(k) =
+
+x(2n) WN2nk +
+
+x(2n + 1) WN(2n+1)k
+
+n=0
+
+n=0
+
+N /2−1
+
+N /2−1
+
+X(k) =
+
+x(2n) WN2nk + WNk
+
+x(2n + 1) WN2nk .
+
+n=0
+
+n=0
+
+Note that WN2nk can be rewritten as follows:
+
+WN2nk = e−j 2π(2nk)/N = e−j 2π(nk)/(N/2)
+= WNnk/2 .
+
+Hence the DFT values {X(k)} can be written as
+
+(2.31) (2.32) (2.33)
+
+N /2−1
+
+N /2−1
+
+X(k) =
+
+x(2n) WNnk/2 + WNk
+
+x(2n + 1) WNnk/2 .
+
+n=0
+
+n=0
+
+© 2001 CRC Press LLC
+
+Note that the ﬁrst sum is the length N/2 DFT of the sequence {x(2n)} and the second sum is the length N/2 DFT of the sequence {x(2n + 1)}. Deﬁning these sequences as {x0(n)} = {x(2n)} and {x1(n)} = {x(2n + 1)} for n = 0, . . . , N − 1 makes them both sequences of length N/2. Then one has
+X(k) = X0(k) + WNk X1(k), k = 0, . . . , N − 1 ,
+where {X0(k)} and {X1(k)} are the DFTs of {x0(n)} and {x1(n)}, respectively. It should be noted that in the deﬁnition of the length N DFT, {X(k)} was deﬁned for k = 0, . . . N − 1. As {x0(n)} is a sequence of length N/2, its DFT is also of length N/2, and therefore {X0(k)} would be deﬁned for k = 0, . . . , N/2 − 1. However, as noted in Section 2.1, when k is taken outside this range, the DFT coefﬁcients are periodic — so X0(k) = X0(k − N/2) for values of k from N/2 to N − 1. Likewise for X1(k).
+This expression shows how a length N DFT can be computed using two length N/2 DFTs. After taking the two length N/2 DFTs it remains only to multiply the result of the second DFT with the terms WNk and to add the results. The multipliers WNk are known as twiddle factors.
+If N/2 can be further divided by 2, then the same procedure can be used to calculate the length N/2 DFTs. To determine the arithmetic complexity of this algorithm for computing the DFT, let A(N ) denote the number of complex additions for computing the DFT of a length N complex sequence {x(n)}. Let N be a power of 2, N = 2K . Then, according to the above procedure, one has
+
+A(N ) = 2 A(N/2) + N
+
+as N complex additions are required to put the two length N/2 DFTs back together. Note that a length 2 DFT is simply a sum and difference:
+
+X(0) = x(0) + x(1) X(1) = x(0) − x(1) .
+
+Hence, the starting condition is A(2) = 2. [Or one can use A(1) = 0.] Then solving the recursive equation yields
+
+A(N ) = N log2 N complex additions. Similarly, one has a recursive formula for complex multiplications:
+
+M(N ) = 2 M(N/2) + N/2
+
+which gives
+
+M(N )
+
+=
+
+N 2
+
+log2
+
+N
+
+complex multiplications.
+
+In fact, this number can be reduced by a more careful examination of the multipliers WNk (the twiddle factors). In particular, the numbers 1, −1, j , and −j will be among
+
+© 2001 CRC Press LLC
+
+the twiddle factors WNk , when k is a multiple of N/4 — and so these multiplications need not be performed. Taking this into account, one has the following formulae for
+the number of real additions and real multiplications of the DFT of a sequence whose
+length is a power of 2:
+
+Ar (N )
+
+=
+
+N 7
+2
+
+log2
+
+N
+
+−
+
+5N
+
++
+
+8
+
+Mr (N )
+
+=
+
+N 3
+2
+
+log2
+
+N
+
+−
+
+5N
+
++
+
+8
+
+(2.34) (2.35)
+
+where a complex addition counts as two real additions, and a complex multiplication counts as three real additions and three real multiplications.
+The advantage of the efﬁcient algorithm for computing the DFT is a reduction from an arithmetic complexity of N 2 for direct calculation to a complexity of N log2 N . This is a fundamental improvement in the complexity, and historically it led to many new developments in signal processing that would not otherwise have been possible or practical. Due to its fundamental quickening in calculating the DFT, the efﬁcient algorithm for its computation is called the fast Fourier transform or FFT.
+Many variations and enhancements of this basic algorithm have been developed in the literature and used in practice, and they are collectively called FFTs. Of particular note is the split radix FFT [16, 50, 56], which is a reﬁnement of the algorithm that attains the lowest computational complexity of practical FFT variants for lengths that are powers of 2. FFT algorithms can be developed for lengths that are not powers of 2. Some types of FFTs, called prime factor FFTs, do not require the use of twiddle factors [9, 52, 53] and therefore have a reduced computational complexity (this is possible when the length N is factored into relatively prime integers. It is not applicable for lengths that are powers of 2). Implementations of the FFT for real-valued data are described in Sorenson et al. [51]. Most FFT algorithms depend on the ability to factor N , the length of the data vector {x(n)}; for prime-length DFTs a separate approach is needed to combine shorter FFTs. The algorithms for primelength FFTs are based on work by Rader and Winograd [40, 60, 59]. FFT programs for prime lengths are discussed in several publications [25, 29, 46]. Descriptions of the different types of FFTs are available in several books [4, 7, 20, 10, 33, 35, 36, 54, 28] and book chapters [8, 18, 19, 49]. The complexity theory associated with the FFT is described in Winograd [60] and Heideman [22]. A comparison of different FFT implementations on DSP chips is described in Meyer and Schwarz [34].
+A relevant issue in practice is the trade-off between computational complexity and implementation complexity. The right balance must be obtained for the best results and some FFT algorithms with improved computational complexity are more complex to implement than others. Moreover, for the fastest results, the variant of the FFT chosen should be matched to the hardware on which it will run. Methods for choosing the best variant of the FFT from among a family of FFTs have been the subject of recent research [23, 24, 21].
+
+© 2001 CRC Press LLC
+
+2.8 The DFT in Coding Applications
+In coding applications the DFT is used in two broad classes — in power spectrum estimation and in subband coding, where it is used in the implementation of complex-, cosine- or sine-modulated ﬁlter banks. As an illustration, audio coding will be considered in the following.
+In audio coding, the real-valued audio signal is decomposed into a number of subbands with a ﬁlter bank. The subband signals are then adaptively quantized and encoded [47, 6]. The subband decomposition has the purpose of obtaining a more efﬁcient description of the signal (redundancy reduction) and applying a psycho-acoustic model to control the quantization noise such that it will be inaudible (irrelevance reduction); see Fig. 2.18.
+FIGURE 2.18 Audio coding based on ﬁlter banks, AFB: analysis ﬁlter bank, SFB: synthesis ﬁlter bank.
+In audio coding, the subband decomposition is usually obtained with a ﬁlter bank called modiﬁed discrete cosine transform MDCT. It can often be switched between differing numbers of bands, for example, between 128 and 1024 bands. The MDCT is used, for example, in ASPEC, MPEG, MUSICAM, and PAC audio coders [30]. ASPEC and MUSICAM were later combined into MPEG-1 layer III, also known as MP3.
+One way in which the DFT is used in subband coding is for the implementation of ﬁlter banks. Since the ﬁlters hk(n) = ej2πkn/N , n = 0, . . . , N −1, k = 0, . . . , N −1, can be seen as a rectangular window of length N multiplied with the exponential, the
+© 2001 CRC Press LLC
+
+frequency localization is not very good, as can be seen in Fig. 2.4. Since this frequency localization is very important in coding applications, the DFT is used only indirectly in coding applications, e.g., for implementing the MDCT. The output of the MDCT is real valued for real-valued inputs, and its subband ﬁlter impulse responses hk(n) are longer and have a nonrectangular shape, such that the frequency localization is better than for the DFT. The MDCT ﬁlter bank can be implemented using a DCT of length N, which in turn can be implemented using FFTs of length N/2 [31].
+In audio coding the DFT is also used as a complex ﬁlter bank. The psycho-acoustic model, used to control the quantization step size, needs to detect and estimate signals (sinusoids) in the subbands, i.e., it needs a reliable estimate of the time-varying power spectrum, with a time and frequency resolution as similar to the MDCT as possible. This is most reliably done with a complex valued spectral decomposition because it provides the phase and magnitude of signals in the subbands at every time step. To estimate the spectrum, only the magnitude of the subband signal is needed.
+This would not be possible with a real-valued ﬁlter bank because in such a ﬁlter bank a sinusoid in a subband is still a sinusoid after ﬁltering, which will pass through zero at certain times — so it may not be detected. That is, the estimated power of the signal at that frequency and time would be lower than it should be. That is why some audio coders [e.g., MPEG-AAC (Advanced Audio Coder) [30]] possess an FFT parallel to the MDCT as input to the psycho-acoustic model. But a problem is the insufﬁcient frequency localization of the FFT, which reduces the accuracy of the psycho-acoustic model.
+The so called Balian-Low theorem states that the rectangular window of the DFT gives rise to the only orthogonal FIR ﬁlter bank with complex Fourier modulation and critical sampling [57] (every N input samples produce N output samples). However, for the time-varying spectral estimation required for the psycho-acoustic model, critical sampling is not a constraint. That is why, for example, in the perceptual audio coder (PAC) [30] the input of the psycho-acoustic model is a complex signal, which is taken from two ﬁlter banks. The real part of the signal is the output of the real-valued MDCT ﬁlter bank with a cosine modulation function. Hence, only an appropriate imaginary part corresponding to this signal is needed to obtain a complete complex subband signal — which will have improved frequency localization and therefore a more accurate psycho-acoustic model. This imaginary part of the subband signal can be obtained by using a second ﬁlter bank which is based on the same window function as the MDCT, but with a sine modulation function instead of a cosine modulation function. Interestingly, this sine-modulated ﬁlter bank alone is again a perfect reconstruction (PR) ﬁlter bank, as is the cosine-modulated MDCT ﬁlter bank. These two ﬁlter banks, in parallel, can be seen as one complex ﬁlter bank which is twice oversampled. Hence the limitation the Balian-Low theorem no longer applies, as the ﬁlter bank system is not critically sampled.
+© 2001 CRC Press LLC
+
+2.9 The DFT and Filter Banks
+
+Because the frequency content of many signals changes with time, it is often more
+
+desirable to ﬁrst partition a signal into blocks and then apply the DFT to each block
+
+individually. This block-wise DFT leads to a point of view based on ﬁlter banks. If
+
+the independent variable of the input signal is time (e.g., an audio signal), then this
+
+results in a time-frequency representation. If the input data is arranged in a matrix
+
+
+
+x(0)
+
+x = 
+
+x(1) ...
+
+x(N ) x(N + 1)
+
+x(2N ) x(2N + 1)
+
+ ··· · · · 
+
+x(N − 1) x(2N − 1) x(3N − 1) · · ·
+
+and FN is the DFT matrix, then the block-wise DFT can be written as X = FN · x
+
+(2.36)
+
+where each column of the matrix X is a DFT spectrum. Clearly this operation is easily inverted with
+
+x = (FN )−1 · X .
+
+(2.37)
+
+Depending on the amount of data, the matrices for X and x can be quite large. To
+
+simplify the mathematical description and to obtain a more general formulation, the
+
+Z-transform can be used. Then each block, or time frame, of X and x is associated with a power of z−1, and the data becomes a vector of polynomials in z−1,
+
+ x(0) + x(N ) z−1 + x(2N ) z−2 + · · ·
+
+
+
+x(z) = 
+
+x(1) + x(N + 1) z−1 + x(2N + 1) z−2 + · · · ...
+
+ .
+
+x(N − 1) + x(N + N − 1) z−1 + x(2N + N − 1) z−2 + · · ·
+
+This leads to
+
+X(z) = FN · x(z)
+
+(2.38)
+
+and
+
+x(z) = (FN )−1 · X(z) .
+
+(2.39)
+
+These equations are quite similar to Eqs. (2.36) and (2.37), but now the data x and X are in the form of a simple vector instead of a possibly inﬁnite matrix. The operation of applying the DFT to blocks of the signal can now also be viewed as a ﬁlter bank, as seen in Fig. 2.19. The symbol ↓ N means a downsampling operation, i.e., only every N -th sample is let through. This ﬁgure shows an analysis ﬁlter bank on the left which
+
+© 2001 CRC Press LLC
+
+corresponds to Eq. (2.36), and a synthesis ﬁlter bank on the right which corresponds to Eq. (2.37). Since the DFT is invertible, the signal {x(n)} can be directly obtained from the block-wise DFT coefﬁcients using the inverse DFT on each block. This inverse can also be interpreted in terms of ﬁlter banks as illustrated by the synthesis ﬁlter bank in Fig. 2.19.
+
+FIGURE 2.19
+An N-channel ﬁlter bank with critical downsampling, perfect reconstruction, and a system delay of nd samples.
+
+Because the analysis ﬁlter bank is invertible, it is said to have the perfect reconstruction (PR) property. Because the total number of samples in the input signal {x(n)} equals the total number of samples in the subbands (the N channels), it is said to be critically sampled. In coding applications, critical downsampling is important because it leads to an accurate and complete description of a signal with the least possible number of samples, and it leads to computationally efﬁcient implementations. The analysis ﬁlter bank is used in the encoder, and the synthesis ﬁlter bank in the decoder.
+To see that the matrix formulation can also be represented by a ﬁlter bank structure (see also Vaidyanathan [55]), consider the following. For simplicity, we assume a time-shifted sequence {x(n + N − 1)}. The ﬁltering (convolution) and downsampling operation can be written as
+
+yk(m) = hk(n) · x(mN + N − 1 − n),
+n
+On the other hand, Eq. (2.36) can also be written as
+
+0≤k≤N −1.
+
+(2.40)
+
+N −1
+Xk,m = WNkn · x(mN + n),
+n=0
+
+0≤k≤N −1.
+
+(2.41)
+
+If this equation is compared to Eq. (2.40), it can be seen by a substitution of the index variable that they are identical if the ﬁlters {hk(n)} are deﬁned as
+
+hk(n) = WNk(N−1−n) = WN−kWN−kn for n = 0, . . . N − 1
+
+and
+
+hk(n) = 0 otherwise
+
+© 2001 CRC Press LLC
+
+[see also Eq. (2.6)]. It was noted in Section 2.4 that these ﬁlters are complexmodulated versions of the rectangular window function. The resulting frequency responses of {hk(n)} are frequency-shifted versions of the frequency response of the rectangular window function p(n), as can also be seen in Fig. 2.4. The block-wise interpretation of this DFT-modulated ﬁlter bank leads to an efﬁcient algorithm for its implementation using an FFT.
+The rectangular window does not have a good frequency localization because of its limited length and its rectangular shape. Fig. 2.4 shows that the main lobe of the frequency response (its passband) is quite wide, and the side lobes are not very low — the stopband attenuation is not very high. A solution is to increase the window length and to give it a different shape, such that the passband becomes more narrow and the stopband attenuation is improved (see Bellanger [2]). To this end, ﬁrst consider a general window function {p(n)} of length N , the shape of which is not necessarily rectangular. ({p(n)} denotes the analysis prototype ﬁlter or window function; the synthesis prototype ﬁlter will be denoted by {q(n)}.) The ﬁlters {hk(n)} in this case are given by
+
+hk(n) = WN−k · WN−kn · p(n)
+
+(2.42)
+
+or in terms of Z-transforms, as
+
+Hk(z) = WN−k Ha WNk z .
+
+The analysis equation can then be written using a diagonal matrix as
+
+ p(N − 1)
+
+0
+
+···
+
+X(z) = FN · 
+
+0 ...
+
+p(N − 2) ...
+
+ 0 ...  · x(z) .
+
+0
+
+···
+
+p(0)
+
+(2.43)
+
+The diagonal matrix is also called a ﬁlter matrix, denoted by Fa for the analysis. The inverse gives the equation for the synthesis stage
+
+ 1/p(N − 1)
+
+0
+
+···
+
+ 0
+
+x(z) = 
+
+0 ...
+
+1/p(N − 2) ...
+
+...
+
+ · FN−1 · X(z) .
+
+0
+
+···
+
+1/p(0)
+
+(2.44)
+
+The analysis window function p(n) leads to a synthesis window function of 1/p(n), e.g., the synthesis window is the point-wise inverse of the analysis window. Consequently, a window with improved frequency localization properties in the analysis stage can lead to worse frequency localization in the synthesis stage, which is often not desired. Also, the limited length of N of the window still is an important limiting factor in the design of better window functions.
+
+© 2001 CRC Press LLC
+
+When the ﬁlter p(n) is longer than N , say LN , then Eq. (2.41) becomes
+
+LN −1
+
+Xk,m =
+
+WNkn · p(LN − 1 − n) x(mN + n) .
+
+n=0
+
+Since WNk(n+N) = WNkn, we can replace n by lN + n to obtain
+
+N −1
+
+L
+
+Xk,m = WNkn · p(LN − 1 − n − lN ) x(mN + n + lN ) .
+
+n=0
+
+l=0
+
+The inner sum can be interpreted as a convolution, which is written as a product in the z-domain, with
+
+L−1
+Pn(z) = p(n + lN ) · z−l
+l=0 ∞
+Xn(z) = x(n + lN ) · z−l .
+l=0
+
+This leads to
+
+N −1
+
+Xk(z) =
+
+WNkn · PN−1−n(z) · Xn(z)
+
+n=0
+
+so that Eq. (2.43) becomes
+
+
+
+PN −1 (z)
+
+0
+
+0
+
+X(z) = FN · 
+
+0 ...
+
+PN−2(z) 0
+
+ ··· · · ·  · x(z) .
+
+0
+
+· · · 0 P0(z)
+
+(2.45)
+
+At this point it becomes clear that the synthesis requires the inverse functions 1/Pn(z), which represent IIR ﬁlters, whose stability is difﬁcult to control. Consequently, a critically sampled ﬁlter bank based on ﬁlters {hk(n)} that are related through DFT modulation, as in Eq. (2.42), can have the perfect reconstruction property with
+FIR ﬁlters in both the analysis stage and the synthesis stage only if the ﬁlters are not longer than the downsampling rate N and have no overlap in time with neighboring blocks. To obtain FIR synthesis for longer ﬁlters, the ﬁlter bank must have a different
+structure.
+
+2.9.1 Cosine-Modulated Filter Banks
+We saw that a discrete cosine transform is obtained by applying a DFT to a symmetrically extended real valued signal. This suggests that a DCT would lead to a different
+
+© 2001 CRC Press LLC
+
+ﬁlter matrix Fa, with elements off the diagonal. In many applications, as in video, audio, or speech coding, the signal is indeed represented as real values. Now it would
+be interesting to see the shape of the resulting ﬁlter matrix for a ﬁlter bank based on a DCT IV modulation [compare to Eq. (2.2√9)]. In this case, the ﬁlters {hk(n)} are modulated with cosine functions (the factor 2/N is neglected for simplicity),
+
+hk(n) = cos
+
+π N
+
+(k
+
++
+
+0.5)(n
+
++
+
+0.5)
+
+· p(LN − 1 − n) ,
+
+(2.46)
+
+and the transform (the subband signals) can be written as
+
+LN −1
+
+Xk,m =
+
+cos
+
+π N
+
+(k
+
++
+
+0.5)(n
+
++
+
+0.5)
+
+· p(LN − 1 − n) x(mN + n) .
+
+(2.47)
+
+n=0
+
+We will exploit the symmetries embodied in the identities
+
+cos
+
+π N
+
+(k
+
++
+
+0.5)((n
+
++
+
+N
+
+)
+
++
+
+0.5)
+
+= − cos
+
+π N
+
+(k
+
++
+
+0.5)((N
+
+−
+
+1
+
+−
+
+n)
+
++
+
+0.5)
+
+(2.48)
+
+and
+
+cos
+
+π N
+
+(k
+
++
+
+0.5)((n
+
++
+
+2N
+
+)
+
++
+
+0.5)
+
+= − cos
+
+π N
+
+(k
+
++
+
+0.5)(n
+
++
+
+0.5)
+
+(2.49)
+
+This means that every second block of N input samples “reverses the direction” of the cosine transform. A close examination of these symmetries and replacing n by n + 2lN and n + N + 2lN shows that the analysis equation (2.47) can be written as a type of folding operation followed by a cosine transform, as can be seen in the following.
+Again the ﬁltering can be written more easily in the z-domain, with
+
+L−1
+Pn(z) = p(n + 2lN ) · z−l
+l=0
+with n = 0, . . . , N − 1,
+
+∞
+Xn(z) = x(n + lN ) · z−l .
+l=0
+with n = 0, . . . , 2N − 1. Using DIV as the DCT IV matrix leads to
+
+X(z) = DIV · Fa(z) · x(z)
+
+© 2001 CRC Press LLC
+
+where
+
+
+
+z−1P2N−1 −z2
+
+
+
+0
+
+PN−1 −z2
+
+Fa(z) =
+
+0
+
+...
+
+z−1PN+N/2 −z2
+
+PN/2−1 −z2
+
+PN/2 −z2
+
+z−1PN+N/2−1 −z2
+
+...
+
+0
+
+
+
+P0 −z2
+
+... ...
+
+0
+
+ .
+
+z−1PN −z2
+
+(2.50)
+
+This form of Fa(z) assumes that the window length factor L is even, which can always be obtained by appending zeros. The ﬁlter matrix Fa(z) has a bi-diagonal structure, i.e., it has nonzero elements not only on the diagonal but also on the antidi-
+agonal. This means a window function can be designed such that the inverse of the
+ﬁlter matrix leads to FIR ﬁlters. An example is the classical MDCT or TDAC ﬁlter bank [37]. It results from inserting an additional phase shift of N/2 in the modulating cosine function:
+
+2N −1
+
+Xk,m =
+
+cos
+
+π N
+
+(k
+
++
+
+0.5)(n
+
++
+
+0.5
+
++
+
+N /2)
+
+· p(LN − 1 − n) x(mN + n) .
+
+n=0
+
+This phase shift leads to a shift of the structure of the ﬁlter matrix downwards by N/2. For example, for a window function p(n) for n = 0, . . . , 2N − 1, the ﬁlter matrix has the following form,
+
+ 0
+
+z−1p(1.5N )
+
+Fa(z) = 
+
+z−1p(2N − 1) p(N − 1)
+
+... ...
+
+0
+
+p(N /2)
+
+z−1p(1.5N − 1)
+
+ 0
+
+0
+
+... ...
+
+z−1p(N ) −p(0)
+
+
+
+− p(N/2 − 1)
+
+0
+
+The inverse for the synthesis matrix is
+
+
+0
+
+q(0) z−1q(N )
+
+
+0
+
+z−1Fa−1(z) = 
+
+q(N/2 − 1) q (N /2)
+
+... ...
+
+0
+
+q(N − 1)
+
+0
+
+... ...
+
+z−1q(1.5N − 1) −z−1q(1.5N )
+
+
+
+− z−1q(2N − 1)
+
+0
+
+© 2001 CRC Press LLC
+
+with
+
+q (n)
+
+=
+
+p(2N
+
+−
+
+1
+
+−
+
+n)p(n)
+
+p(n) + p(N
+
+−
+
+1
+
+−
+
+n)p(N
+
++
+
+n)
+
+q (N
+
++
+
+n)
+
+=
+
+p(2N
+
+−
+
+1
+
+−
+
+p(N + n) n)p(n) + p(N −
+
+1
+
+−
+
+n)p(N
+
++
+
+n)
+
+where n = 0, . . . , N −1. This inverse is used in the synthesis ﬁlter bank to reconstruct the signal, e.g., in a decoder. The synthesis side has a ﬁlter matrix with the same shape as the analysis side, so the synthesis ﬁlter bank is again a cosine-modulated ﬁlter bank, with q(n) as its window function. Observe that q(n) = p(n) if the denominator for the computation of the inverse becomes one.
+The DCT leads to a ﬁlter matrix which has a form enabling us to design ﬁlter banks with critical sampling and FIR ﬁlters for analysis as well as for the synthesis. Therefore ﬁlter banks based on DCTs are the predominant tools for time-frequency decomposition in audio coding.
+To design ﬁlter banks with longer ﬁlters and more freedom in the design process, the ﬁlter matrix Eq. (2.50) can be written as a product of simpler matrices. These simpler matrices can be unitary, such that the product is a unitary matrix, whose inverse is then obtained by simply transposing it and replacing z by z−1 [31]. Or these simpler matrices can be bi-orthogonal, so that the resulting ﬁlter bank is bi-orthogonal [45]. The latter is a more general solution, which enables us to design, for example, ﬁlter banks with a lower end-to-end delay than unitary or orthogonal ﬁlter banks [43, 44].
+
+2.9.2 Complex DFT-Based Filter Banks
+
+A disadvantage of the DCT is that it delivers no phase or magnitude information, as the DFT does. For example, in audio coding the magnitudes of the subband signals are needed as inputs to psycho-acoustic models which control the quantization process, as seen in Fig. 2.18. Such is the basic structure of, for example, the PAC audio coder. The DCT can be seen as the real part of a DFT of a real valued signal, so what is needed is the imaginary part to obtain complex subband signals and hence their magnitudes. The imaginary part can be obtained by using a ﬁlter bank based on a DST. For a cosine-modulated ﬁlter bank with a DCT IV, the corresponding sine-modulated ﬁlter bank uses a DST IV (2.30). The equality
+
+sin
+
+π N
+
+(k
+
++
+
+0.5)(n
+
++
+
+0.5)
+
+= cos
+
+π N
+
+(k
+
++
+
+0.5)(n
+
+−
+
+N
+
++
+
+0.5)
+
+shows, that the sine modulation function has the same symmetries in time n as the cosine modulation function [Eqs. (2.48) and (2.49)] but is shifted by N samples. This leads to the same conditions on the window function for perfect reconstruction, so the same window function can be used for the cosine- and the sine-modulated ﬁlter banks, hence for the real and imaginary parts of the resulting complex valued ﬁlter bank. This is important for obtaining the precise magnitude and phase information of a signal.
+
+© 2001 CRC Press LLC
+
+In audio coding, the signal consists of real values. If the input signal to the complex ﬁlter bank consists of complex values, as in applications such as synthetic aperture radar (SAR) [30], the ﬁlter bank needs to cover positive as well as negative frequencies to obtain perfect reconstruction. If AF BC is the output of the cosine-modulated analysis ﬁlter bank, and AF BS is the output of the sine-modulated ﬁlter bank, then the positive frequencies are obtained by taking AF BC − j AF BS and the negative frequencies by AF BC + j AF BS, similar to the DFT. This means the analysis ﬁlter bank consists of 2N bands
+[AF BC − j AF BS, AF BC + j AF BS] .
+The synthesis ﬁlter bank for perfect reconstruction has an analogous structure,
+[SF BC + j SF BS, SF BC − j SF BS] ,
+where SF BC, SF BS are the outputs of the synthesis ﬁlter banks. It is easy to see that this synthesis ﬁlter bank leads to perfect reconstruction if the
+cosine and sine ﬁlter banks have the perfect reconstruction property of their own. Observe that this is not the only solution for perfect reconstruction since the ﬁlter bank is, in effect, oversampled at twice the rate. But this solution for the synthesis has an advantage because it has an analogous structure, hence similar properties, as the analysis part, which is often desirable in coding applications.
+Figs. 2.21–2.23 show a comparison of the frequency responses of the window functions of a direct FFT approach, as used in the MPEG-AAC audio coder as input for the psycho-acoustic model, and the complex ﬁlter bank. Fig. 2.22 shows the frequency response of a 1024 band FFT ﬁlter bank, and Fig. 2.21 shows the frequency response of a complex low-delay ﬁlter bank with 1024 bands, an analysis/synthesis delay of 2047 samples, and ﬁlter length of 4096 taps. Figs. 2.23 and 2.24 show an enlargement with the passband on the left. The passband of the complex ﬁlter bank is narrower, and the stopband attenuation is much higher than with the direct FFT application.
+Figs. 2.25–2.27 show an application example for a stereo audio signal that is encoded and decoded at two different bit rates. Fig. 2.25 shows a piece of the original audio signal (jazz music), the left channel, sampled at 32000 samples/s. In this uncompressed representation, each sample is represented with a 16 bit integer number, which leads to a bit rate of 16 · 2 · 32000 = 1024 kb/s. Fig. 2.26 shows that signal, but coded and decoded with a bit rate of 67 kb/s for the stereo signal (i.e., 35 kb/s per channel, or a compression ratio of over 14). The resulting audio quality is comparable to FM radio. It can be seen that there are slight differences to the original, but most of the differences are still inaudible because of the application of the psycho-acoustic model. Fig. 2.27 shows the signal at 30 kb/s stereo (a compression ratio of over 34). The resulting quality is comparable to AM radio. There are now more pronounced differences to the original; it is much smoother, which means it contains fewer high frequencies. Here the difference to the original is easy to hear, but the psycho-acoustic model is used such that the audible distortions are minimized.
+© 2001 CRC Press LLC
+
+FIGURE 2.20 Audio coding based on ﬁlter banks, AFB: analysis ﬁlter bank, SFB: synthesis ﬁlter bank.
+2.10 Conclusion
+This chapter introduced the DFT and some of its basic properties. Even though it is a complex-valued transform, because of its symmetry properties, the DFT of a real-valued N -point signal can be represented again by N real values. A set of real-valued discrete cosine transforms can be derived using the DFT. The derivation of a fast algorithm for computing the DFT (the FFT) was also described here.
+The DFT has many applications in coding. For example, the FFT is used for the efﬁcient implementation of DCTs, the MDCT, and low delay ﬁlter banks. Furthermore, the complex output is used for power spectrum estimation, in particular, to drive psycho-acoustic models in audio coding, and it can be used to implement complex-valued ﬁlter banks for improved power spectrum estimation.
+© 2001 CRC Press LLC
+
+d B
+
+0 -20 -40 -60 -80 -100 -120 -140
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+FIGURE 2.21 Magnitude of the frequency response of the rectangular window of a DFT of length 1024.
+
+FIGURE 2.22 Magnitude of the frequency response of the window of a low delay ﬁlter bank with 1024 bands and ﬁlter length 4096.
+© 2001 CRC Press LLC
+
+– – – – – – –
+
+FIGURE 2.23 Enlargement of the ﬁrst part of the magnitude of the frequency response of the rectangular window of the DFT.
+
+d B
+
+0
+
+-20
+
+-40
+
+-60
+
+-80
+
+-100
+
+-120
+
+-140
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.1
+
+FIGURE 2.24 Enlargement of the ﬁrst part of the magnitude of the frequency response of the window of the low delay ﬁlter bank.
+
+© 2001 CRC Press LLC
+
+– –
+– –
+FIGURE 2.25 A piece of an example audio signal, sampled at 32 khz. Shown is the left channel of the stereo signal.
+FIGURE 2.26 The stereo audio signal, coded and decoded with 67 kb/s. The left channel is shown.
+© 2001 CRC Press LLC
+
+– –
+– –
+FIGURE 2.27 The left channel of the stereo audio signal, coded and decoded, but with 30 kb/s.
+2.11 FFT Web sites
+The following list reﬂects some of the available software and information on Web sites devoted to the FFT (September 1999).
+• FFTW http://www.fftw.org/index.html http://www.fftw.org/benchfft/doc/ffts.html
+• FFTPACK http://www.netlib.org/fftpack/
+• FFT for Pentium (Bernstein) ftp://koobera.math.uic.edu/www/djbfft.html
+• FFT software (comp.speech FAQ Q2.4) http://svr-www.eng.cam.ac.uk/comp.speech/ Section2/Q2.4.html
+• One-dimensional real fast Fourier transforms http://www.hr/josip/DSP/fft.html
+© 2001 CRC Press LLC
+
+• FXT package FFT code (Arndt) http://www.jjj.de/fxt/
+• FFT (Don Cross) http://www.intersrv.com/˜dcross/fft.html
+• Public domain FFT code http://risc1.numis.nwu.edu/ftp/pub/transforms/ http://risc1.numis.nwu.edu/fft/
+• DFT (Paul Bourke) http://www.swin.edu.au/astronomy/pbourke/ sigproc/dft/
+• FFT code for TMS320 processors ftp://ftp.ti.com/mirrors/tms320bbs/
+• Fast Fourier Transforms (Kifowit) http://ourworld.compuserve.com/homepages/ steve_kifowit/fft.htm
+• Nielsen’s MIXFFT page http://home.get2net.dk/jjn/fft.htm
+• Parallel FFT homepage http://www.arc.unm.edu/Workshop/FFT/fft/fft.html
+• FFT public domain algorithms http://www.arc.unm.edu/Workshop/FFT/fft/fft.html
+• Numerical recipes http://www.nr.com/
+• General purpose FFT package http://momonga.t.u-tokyo.ac.jp/õoura/fft.html
+• FFT links http://momonga.t.u-tokyo.ac.jp/õoura/fftlinks.html
+• FFT, performance, accuracy, and code (Mayer) http://www.geocities.com/ResearchTriangle/8869/ fft_summary.html
+• Prime-length FFT http://www.dsp.rice.edu/software/RU-FFT/ pfft/pfft.html
+• Notes on the FFT (Burrus) http://www.dsp.rice.edu/research/fft/fftnote.asc
+© 2001 CRC Press LLC
+
+• Yahoo FFT Web site list http://dir.yahoo.com/Science/Mathematics/Software/ Fast_Fourier_Transform__FFT_/
+References
+[1] Ahmed, N., Natarajan, T., and Rao, K.R., Discrete cosine transform, IEEE Trans. Comput., 23:90–93, 1974, also in [41].
+[2] Bellanger, M., Digital Processing of Signals, Theory and Practice, John Wiley & Sons, Chichester, NY, 1989.
+[3] Bergland, G.D., A guided tour of the fast Fourier transform, IEEE Spectrum, 6:41–52, 1969, also in [39].
+[4] Blahut, R.E., Fast Algorithms for Digital Signal Processing. Addison-Wesley, Reading, MA, 1985.
+[5] Bracewell, R.N., The Fourier Transform and its Applications, McGraw Hill, Reading, MA, 1986.
+[6] Brandenburg, K. and Bosi, M., Overview of MPEG audio: current and future standards for low bit rate audio coding, J. Audio Eng. Soc., 45(1/2):4–21, 1997.
+[7] Brigham, E.O., The Fast Fourier Transform and its Applications, Prentice-Hall, Englewood Cliffs, NJ, 1988.
+[8] Burrus, C.S., Efﬁcient Fourier transform and convolution algorithms, in Lim, J.S. and Oppenheim, A.V., Eds., Advanced Topics in Signal Processing, Prentice-Hall, Englewood Cliffs, NJ, 1988.
+[9] Burrus, C.S. and Eschenbacher, P.W., An in-place, in-order prime factor FFT algorithm, IEEE Trans. on Acoust., Speech, Signal Proc., 29(4):806–817, 1981.
+[10] Burrus, C.S. and Parks, T.W., DFT/FFT and Convolution Algorithms, John Wiley & Sons, Chichester, NY, 1985.
+[11] Cochran, J.W., Favin, D.L., Helms, H.D., Kaenel, R.A., Lang, W.W., Maling, G.C., Nelson, D.E., Rader, C.M., and Welch, P.D., What is the fast Fourier transform?, IEEE Trans. Audio Electroacoust., 15:45–55, 1967, also in [39].
+[12] Cohen, L., Time-Frequency Analysis. Prentice-Hall, Englewood Cliffs, NJ, 1995.
+[13] Cooley, J.W., Lewis, P.A.W., and Welch, P.D., Historical notes on the fast Fourier transform, IEEE Trans. Audio Electroacoust., 15:76–79, 1967, also in [39].
+© 2001 CRC Press LLC
+
+[14] Cooley, J.W., Lewis, P.A.W., and Welch, P.D., The ﬁnite Fourier transform, IEEE Trans. Audio Electroacoust., 17:77–85, 1969, also in [39].
+[15] Cooley, J.W. and Tukey, J.W., An algorithm for the machine calculation of complex Fourier series, Mathematics of Computation, 19(90):297–301, 1965, also in [39].
+[16] Duhamel, P., Implementation of “split radix” FFT algorithm, IEEE Trans. on Acoust., Speech, Signal Proc., 34(2):285–295, 1986.
+[17] Duhamel, P. and Vetterli, M., Fast Fourier transforms: a tutorial review and a state of the art, Signal Processing, 19:259–299, 1990, also in [18].
+[18] Duhamel, P. and Vetterli, M., Fast Fourier transforms: a tutorial review and a state of the art, in Madisetti, V.K. and Williams, D.B., Eds., The Digital Signal Processing Handbook, chapter 7, CRC Press, 1998, also appears as [17].
+[19] Elliott, D.F., Fast Fourier transforms, in Elliott, D.F., Ed., Handbook of Digital Signal Processing, Chapter 7, pages 527–631, Academic Press, New York, 1987.
+[20] Elliott, D.F. and Rao, K.R., Fast Transforms: Algorithms, Analyses, Applications, Academic Press, New York, 1982.
+[21] Frigo, M. and Johnson, S.G., FFTW, FFT software developed at MIT, http://www.fftw.org/index.html.
+[22] Heideman, M.T., Multiplicative Complexity, Convolution, and the DFT, Springer-Verlag, New York, Berlin, 1988.
+[23] Johnson, H.W. and Burrus, C.S., The design of optimal DFT algorithms using dynamic programming, IEEE Trans. on Acoust., Speech, Signal Proc., 31(2):378–387, 1983.
+[24] Johnson, J., Automatic implementation and generation of FFT algorithms, SIAM parallel processing FFT session, March 1999, see SPIRAL webpage http://www.ece.cmu.edu/˜spiral/.
+[25] Jones, K.J., Prime number DFT computation via parallel circular convolvers, IEE Proceedings, Part F, 137(3):205–212, 1990.
+[26] Karp, T. and Fliege, N.J., MDFT ﬁlter banks with perfect reconstruction, in IEEE International Symposium on Circuits and Systems, Seattle, WA, 1995.
+[27] Lim, J.S. and Oppenheim, A.V., Advanced Topics in Signal Processing, Prentice-Hall, Englewood Cliffs, NJ, 1988.
+[28] Van Loan, C., Computational Frameworks for the Fast Fourier Transform, SIAM, Philadelphia, PA, 1992.
+[29] Lu, C., Cooley, J.W., and Tolimieri, R., FFT algorithms for prime transform sizes and their implementations on VAX, IBM3090VF, and IBM RS/6000, IEEE Trans. on Acoust., Speech, Signal Proc., 41(2):638–648, 1993.
+© 2001 CRC Press LLC
+
+[30] Madisetti, V.K. and Williams, D.B., The Digital Signal Processing Handbook, CRC Press and IEEE Press, Boca Raton, FL, 1997.
+[31] Malvar, H., Signal Processing with Lapped Transforms, Artech House, Boston, MA, London, 1992.
+[32] Martucci, S., Symmetric convolution and the discrete sine and cosine transforms, IEEE Trans. on Signal Processing, 42:1038–1051, 1994.
+[33] McClellan, J.H. and Rader, C.M., Number Theory in Digital Signal Processing, Prentice-Hall, Englewood Cliffs, NJ, 1979.
+[34] Meyer, R. and Schwarz, K., FFT implementation on DSP-chips, theory and practice, in Proc. IEEE Int. Conf. Acoust., Speech, Signal Processing (ICASSP), 1503–1506, April 1990.
+[35] Myers, D.G., Digital Signal Processing: Efﬁcient Convolution and Fourier Transform Techniques, Prentice-Hall, Englewood Cliffs, NJ, 1990.
+[36] Nussbaumer, H.J., Fast Fourier Transform and Convolution Algorithms, Springer-Verlag, New York, Berlin, 1982.
+[37] Princen, J.P. and Bradley, A.B., Analysis/synthesis ﬁlter bank design based on time domain aliasing cancellation, IEEE Trans. on Signal Processing, 34(10):1153–1161, 1986.
+[38] Proakis, J.G., Rader, C.M., Ling, F., and Nikias, C.L., Advanced Digital Signal Processing, Macmillan, New York, 1992.
+[39] Rabiner, L.R. and Rader, C.M., Eds., Digital Signal Processing, IEEE Press, Piscataway, NJ, 1972.
+[40] Rader, C.M., Discrete Fourier transform when the number of data samples is prime, Proc. IEEE, 56(6):1107–1108, 1968.
+[41] Rao, K.R., Ed., Discrete Transforms and Their Applications, Krieger, Malabar, FL, 1990.
+[42] Rao, K.R. and Yip, P., Discrete Cosine Transform: Algorithms, Advantages, Applications, Academic Press, New York, 1990.
+[43] Schuller, G., Time-varying ﬁlter banks with variable system delay, in Proc. IEEE ICASSP, Vol. 3, 2469–2472, Munich, Germany, 1997.
+[44] Schuller, G. and Karp, T., Modulated ﬁlter banks with arbitrary system delay: efﬁcient implementations and the time-varying case, IEEE Trans. on Signal Processing, 48(3), 2000.
+[45] Schuller, G.D.T. and Smith, M.J.T., New framework for modulated perfect reconstruction ﬁlter banks, IEEE Trans. on Signal Processing, 44(8):1942– 1954, 1996.
+© 2001 CRC Press LLC
+
+[46] Selesnick, I.W. and Burrus, C.S., Automatic generation of prime length FFT programs, IEEE Trans. on Signal Processing, 44(1):14–24, 1996.
+[47] Sinha, D., Johnston, J.D., Dorward, S., and Quackenbush, S., The perceptual audio coder (PAC), in Madisetti, V. and Williams, D.B., Eds., The Digital Signal Processing Handbook, chapter 42, CRC Press and IEEE Press, Boca Raton, FL, 1997.
+[48] Smith, W.W. and Smith, J.M., Handbook of Real-Time Fast Fourier Transforms, IEEE Press, Piscataway, NJ, 1995.
+[49] Sorensen, H.V. and Burrus, C.S., Fast DFT and convolution algorithms, in Mitra, S.K. and Kaiser, J.F., Eds., Handbook For Digital Signal Processing, chapter 8, 491–610, John Wiley & Sons, New York, 1993.
+[50] Sorenson, H.V., Heideman, M.T., and Burrus, C.S., On computing the splitradix FFT, IEEE Trans. on Acoust., Speech, Signal Proc., 34(1):152–156, 1986.
+[51] Sorenson, H.V., Jones, D.L., Heideman, M.T., and Burrus, C.S., Real-valued fast Fourier transform algorithms, IEEE Trans. on Acoust., Speech, Signal Proc., 35(6):849–863, 1987.
+[52] Temperton, C., Implementation of a self-sorting in-place prime factor FFT algorithm, J. of Computational Physics, 58:283–299, 1985.
+[53] Temperton, C., Self-sorting in-place fast Fourier transforms, SIAM J. on Scientiﬁc and Statistical Computing, 12(4):808–823, 1991.
+[54] Tolimieri, R., An, M., and Lu, C., Algorithms for Discrete Fourier Transform and Convolution, Springer-Verlag, New York, Berlin, 1989.
+[55] Vaidyanathan, P.P., Multirate Systems and Filter Banks, Prentice-Hall, Englewood Cliffs, NJ, 1992.
+[56] Vetterli, M. and Duhamel, P., Split-radix algorithms for length-pm DFTs, IEEE Trans. on Acoust., Speech, Signal Proc., 37(1):57–64, 1989.
+[57] Vetterli, M. and Kovacˇevic´, J., Wavelets and Subband Coding, Prentice-Hall, Englewood Cliffs, NJ, 1995.
+[58] Wickershauser, M.L., Adapted Wavelet Analysis from Theory to Software, A.K. Peters, Wellesley, MA, 1994.
+[59] Winograd, S., Some bilinear forms whose multiplicative complexity depends on the ﬁeld of constants, Mathematical Systems Theory, 10:169–180, 1977.
+[60] Winograd, S., Arithmetic Complexity of Computations, SIAM, Philadelphia, PA, 1980.
+[61] Yip, P. and Rao, K.R., Fast discrete transforms, in Elliott, D.F., Ed., Handbook of Digital Signal Processing, chapter 6, 481–525, Academic Press, New York, 1987.
+© 2001 CRC Press LLC
+
+W. Steve G. Mann "Comparametric Transforms for Transmitting ..." The Transform and Data Compression Handbook Ed. K. R. Rao et al. Boca Raton, CRC Press LLC, 2001
+© 20001 CRC Press LLC
+
+Chapter 3
+Comparametric Transforms for Transmitting Eye Tap Video with Picture Transfer Protocol (PTP)
+W. Steve G. Mann
+University of Toronto
+Eye Tap video is a new genre of video imaging facilitated by and for the apparatus of the author’s eyeglass-based “wearable computer” invention [1]. This invention gives rise to a new genre of video that is best processed and compressed by way of comparametric equations, and comparametric image processing. These new methods are based on an Edgertonian philosophy, in sharp departure from the traditional Nyquist philosophy of signal processing. A new technique is given for estimating the comparameters (relative parameters between successive frames of an image sequence) taken with a camera (or Eye Tap device) that is free to pan, tilt, rotate about its optical axis, and zoom. This technique solves the problem for two cases of static scenes: images taken from the same location of an arbitrary 3-D scene and images taken from arbitrary locations of a ﬂat scene, where it is assumed that the gaze pattern of the eye sweeps on a much faster time scale than the movement of the body (e.g., an assumption that image ﬂow across the retina induced by change in eye location is small compared to that induced by gaze pattern).
+3.1 Introduction: Wearable Cybernetics
+Wearable cybernetics is based on the WearComp invention of the 1970s, originally intended as a wearable electronic photographer’s assistant [2].
+© 2001 CRC Press LLC
+
+3.1.1 Historical Overview of WearComp A goal of the author’s WearComp/WearCam (wearable computer and personal
+imaging) inventions of the 1970s and early 1980s (Fig. 3.1) was to make the metaphor of technology as an extension of the mind and body into a reality. In some sense, these inventions transformed the body into not just a camera, but also a networked cybernetic entity. The body thus became part of a system always seeking the best picture, in all facets of ordinary day-to-day living. These systems served to illustrate the concept of the camera as a true extension of the mind and body of the wearer.
+FIGURE 3.1 Personal Imaging in the 1970s and 1980s: Early embodiments of the author’s WearComp invention that functioned as a “photographer’s assistant” for use in the ﬁeld of personal imaging. (a) Author’s early headgear. (b) Author’s early “smart clothing” including cybernetic jacket and cybernetic pants (continued). 3.1.2 Eye Tap Video
+Eye Tap video [3] is video captured from the pencil of rays that would otherwise pass through the center of the lens of the eye. The Eye Tap device is typically worn like eyeglasses.
+© 2001 CRC Press LLC
+

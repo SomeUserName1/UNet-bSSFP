@@ -1,0 +1,569 @@
+
+JavaScript is disabled on your browser. Please enable JavaScript to use all the features on this page. Skip to main content Skip to article
+Elsevier logo ScienceDirect
+
+    Journals & Books 
+
+    Search 
+
+Register Sign in
+
+    View  PDF
+    Download full issue 
+
+Outline
+
+    Keywords
+    Introduction
+    Functional MRI analysis research
+    Structural MRI analysis research
+    FDT—diffusion and white matter connectivity analysis
+    MR physics-related research
+    FSL—FMRIB's software library
+    Acknowledgments
+    References 
+
+Show full outline
+Cited by (10601)
+Figures (12)
+
+    Fig. 1. Relative efficiency when using prewhitening or coloring for dealing with…
+    Fig. 2. Example FEAT GUI snapshots
+    Fig. 3. Samples from the HRF basis set: (a) unconstrained and (b) constrained
+    Fig. 4. GLM, classical ICA, and PICA analyses of visual stimulus FMRI data: (a) GLM…
+    Fig. 5. Additional PICA maps from the visual activation data: (a) head motion…
+    Fig. 6. RSNs found in 2 × 1
+
+Show 6 more figures
+Elsevier
+NeuroImage
+Volume 23, Supplement 1 , 2004, Pages S208-S219
+NeuroImage
+Advances in functional and structural MR image analysis and implementation as FSL
+Author links open overlay panel Stephen M. Smith a , Mark Jenkinson a , Mark W. Woolrich a b , Christian F. Beckmann a , Timothy E.J. Behrens a , Heidi Johansen-Berg a , Peter R. Bannister a , Marilena De Luca a , Ivana Drobnjak a , David E. Flitney a , Rami K. Niazy a , James Saunders a , John Vickers a , Yongyue Zhang a , Nicola De Stefano b , J. Michael Brady c , Paul M. Matthews a
+Show more
+Add to Mendeley
+Share
+Cite
+https://doi.org/10.1016/j.neuroimage.2004.07.051 Get rights and content
+
+The techniques available for the interrogation and analysis of neuroimaging data have a large influence in determining the flexibility, sensitivity, and scope of neuroimaging experiments. The development of such methodologies has allowed investigators to address scientific questions that could not previously be answered and, as such, has become an important research area in its own right.
+
+In this paper, we present a review of the research carried out by the Analysis Group at the Oxford Centre for Functional MRI of the Brain (FMRIB). This research has focussed on the development of new methodologies for the analysis of both structural and functional magnetic resonance imaging data. The majority of the research laid out in this paper has been implemented as freely available software tools within FMRIB's Software Library (FSL).
+
+    Previous article in issue
+    Next article in issue 
+
+Keywords
+FMRI
+Structural MR image analysis
+FSL
+Introduction
+
+In recent years, magnetic resonance imaging and functional MRI have played an increasingly important role in the investigation of brain structure, function, development, and pathologies. The increasing flexibility and power of MRI and FMRI to answer scientifically interesting and clinically relevant questions have led to a demand for analysis techniques that allow investigators to interrogate their data in as flexible, scientifically informative, and convenient a manner as is possible. This paper presents an overview of research carried out with this aim in the Analysis Group at the Oxford Centre for Functional MRI of the Brain (FMRIB).
+
+The broadest distinction that can be drawn between MRI experiments in the brain is between structural experiments, which are sensitive to biophysical properties of local brain tissue, and functional experiments, which are sensitive to temporally changing neural activity. The two types of MRI data require very different analysis techniques and are grouped into separate sections in this paper, but the relationship between structure and function is fundamental to brain organization. The data analysis techniques and tools described in Functional MRI analysis research and Structural MRI analysis research allow investigators not only to learn from each source of information, but also to combine data from functional and structural experiments to better inform neuropsychological inference. FDT—diffusion and white matter connectivity analysis is an example of this interdependence between structure and function, investigating the influence of structural connectivity on brain function. Fundamental to the ability to draw inference from data is a thorough understanding of the processes involved in the data's creation. The research outlined in MR physics-related research gives examples of how to improve this understanding via direct modeling of the MR image acquisition process. Crucially, this allows investigators to increase the sensitivity of their MRI experiments through both improved experimental design and the reduction of acquisition-related image artefacts. Finally, FSL—FMRIB's software library describes briefly the freely available FSL software package, within which most of the research covered in this paper has been implemented.
+Functional MRI analysis research
+
+The fundamental challenge in the analysis of functional MRI experiments is to identify voxels that show signal changes varying with changing brain states. This is a difficult problem: firstly because the signal to noise ratio is generally poor, with the activation signal being often no larger than the noise level; secondly, the neurophysiology that couples the underlying brain activity to the measured response in FMRI is complex and generally poorly understood; and thirdly, the noise consists of a complex blend of spatiotemporal deterministic and stochastic components due to physiological and scanner-based artefacts.
+
+Advances in data modeling have the potential to greatly increase our ability to detect neural activations and investigate brain function using FMRI. This section reviews research carried out by FMRIB to tackle these issues. This includes our research within the model-based voxel-wise general linear model (GLM) for modeling single-session data (FILM) and the Bayesian method for analyzing multiple sessions/subjects (FLAME). FEAT is a complete GUI-based tool for model-based FMRI analysis, built around FILM and FLAME, as well as other low-level tools such as FLIRT image registration.
+
+Complementary to model-based analyses, MELODIC uses independent component analysis (ICA) to carry out “temporal model-free” exploratory analysis. This approach is able to identify signal and structured noise in FMRI data without needing to be given a temporal model.
+
+We complete this section with recent development in the area of inference (“thresholding”) using spatial mixture modeling to address some of the limitations associated with the current common practice of linear data smoothing and null hypothesis testing.
+FILM—voxel-wise time series analysis
+
+In FMRI statistical analysis, there are problems with accounting for temporal autocorrelation (the intrinsic smoothness in each voxel's time series). Unless this is correctly accounted for, the time series analysis is at best inefficient (in terms of sensitivity to true activation) and at worst statistically invalid. Commonly, techniques have utilized temporal filtering strategies to either shape these autocorrelations or remove them. Shaping or “coloring” attempts to negate the effects of not accurately knowing the intrinsic autocorrelations by imposing known autocorrelation via further smoothing. Removing the autocorrelation or “prewhitening” gives the best linear unbiased estimator if the autocorrelation can be accurately estimated.
+
+In Woolrich et al. (2001) , we demonstrated that when using block designs, coloring can be used with minimal loss of efficiency. However, as shown in Fig. 1 for single-event designs with randomized intervals, jittering, or just very short intervals, coloring is much less efficient and hence prewhitening is desirable. It had previously been suggested that sufficiently accurate estimates of the autocorrelation are currently not available to give prewhitening acceptable accuracy ( Friston et al., 2000 ). To overcome this, we developed the following methodology for accurate voxel wise autocorrelation estimation. Firstly, high-pass filtering needs to be performed as a preprocessing step to remove the worst of the large-scale, nonstationary components and low frequency noise. Secondly, we investigated various methods of initial estimation (and regularization) of the autocorrelation coefficients, finding that applying a Tukey taper to the raw estimates (to smoothly “roll off” higher lags) gave the best results. Thirdly, spatial smoothing of the resulting autocorrelation estimates was found to be important in further reducing bias. The autocorrelation was found to vary considerably between matter types (with higher autocorrelation in the grey matter than in white). Therefore, we apply nonlinear spatial smoothing ( Smith and Brady, 1997 ) to the autocorrelation coefficients, only smoothing within matter type.
+
+    Download : Download full-size image 
+
+Fig. 1 . Relative efficiency when using prewhitening or coloring for dealing with temporal autocorrelation for four different types of regressor (SE = single event, ISI = interstimulus interval).
+
+Using the above approach, we were able to demonstrate close to zero bias at probability levels as low as 0.00001 ( Woolrich et al., 2001 ). We thus obtain optimally efficient estimation of the model parameters, giving greater sensitivity to activation than if coloring were used. Furthermore, even with this more flexible model, we are able to find the autocorrelation function at a voxel level, that is, do not need to rely, to obtain robustness, on relatively inaccurate global estimation. This approach has been implemented as FMRIB's Improved Linear Model (FILM), the time series modeling tool used within FEAT.
+FLAME—multilevel modeling for group analysis
+
+FMRI studies are typically used to address questions about activation effects in populations of subjects. This involves a multisubject or multisession approach where data are analyzed in such a way as to allow for hypothesis tests at the group level ( Holmes and Friston, 1998 ). To be able to generate results that accurately extend to the wider population, we need to account for the fact that these limited samples from the population are random quantities with associated random effects variances. We can formulate the problem of group statistics hierarchically ( Beckmann et al., 2003a ); the different levels of the hierarchy could be separate GLMs at within-session level, within-subject–cross-session level, and cross-subject level.
+
+In Friston et al. (2002) , the hierarchical model is approached using all time series data as input to a single “all-in-one” analysis. However, in neuroimaging, where the human and computational costs involved in data analysis are relatively high, it is desirable to be able to make top-level inferences using the results of separate lower-level analyses without the need to reanalyze the lower-level data, an approach commonly called the summary statistics approach to FMRI analysis ( Holmes and Friston, 1998 ). In Beckmann et al. (2003a) , we showed that top-level inference using the “split-level summary statistics” approach can be made exactly equivalent to an all-in-one approach if we feed up the correct summary statistics (in particular, the covariances from lower levels). It was demonstrated that by taking into account lower-level covariances and heterogeneity, a substantial increase in higher-level z statistic is possible. Another reason for wanting to carry up lower-level covariances to higher-level analyses is that it is not then necessary for lower-level design matrices to be identical (i.e., “balanced designs”—for example having the same number of time points or events).
+
+The investigations covered in Beckmann et al. (2003a) assume that all variance components are known; taking this work further, in Woolrich et al. (2004a) , using a fully Bayesian approach, we show the split-level model equivalence taking into account that the variance components are unknown.
+
+There are three main contributions presented in Woolrich et al. (2004a) . Firstly, “reference priors” were introduced to neuroimaging; due to the typically small numbers of sessions or subjects in neuroimaging the choice of prior is critical. Secondly, two practical inference techniques were developed for multilevel hierarchies: a fast approach using a maximum posterior estimates and a slower, more accurate approach using Markov Chain Monte Carlo (MCMC). Thirdly, it was shown that we can infer on the top level of multilevel hierarchies by inferring on the split levels separately and passing summary statistics (multivariate noncentral t distributions) between them. The use of the lower-level covariance information contained in these summary statistics overcomes the “negative variance” problem experienced using previous approaches to split-level analyses ( Holmes and Friston, 1998 ).
+
+This research has been implemented as FMRIB's Local Analysis of Mixed Effects (FLAME), the higher-level modeling tool used inside FEAT. One additional advantage of using FLAME is that it is easy to model and estimate different variances for different groups of subjects in the model. For example, an unpaired two-group comparison (e.g., between controls and patients) can be analyzed with separate estimates of variance for each group.
+FEAT—a complete tool for model-based FMRI analysis
+
+FEAT is an advanced GLM-based FMRI analysis tool with a straightforward but powerful graphical user interface (GUI) carrying out data preprocessing (including slice timing correction and MCFLIRT motion correction—see below); first-level GLM time series analysis with prewhitening (FILM); registration to subject-specific structural images and standard space (FLIRT); and fully generalized mixed-effects group analysis using Bayesian estimation techniques (FLAME) ( Fig. 2 ).
+
+    Download : Download full-size image 
+
+Fig. 2 . Example FEAT GUI snapshots. Top left: main GUI, with preprocessing section exposed. Bottom left: simple model wizard for regular block or single-event designs. Center: model setup GUI for more complex designs enabling the selection of any number of covariates, various stimulus timing options, a variety of HRF convolution options (including basis functions), covariate orthogonalization, and any number of contrasts and f tests. Right: design matrix and contrasts display showing covariates as the main columns with contrasts below.
+
+FEAT has been developed with two goals in mind; to use the most sophisticated image processing/statistical methodologies available (FILM, FLAME, FLIRT, etc.), while at the same time making the user interface as intuitive and simple as possible, though allowing fully general/flexible analysis design. Complete analysis for a single simple FMRI experiment can often be set up in less than 1 min, while a highly complex experiment typically takes no longer than 5 min to set up. The FEAT programs then typically take 10–30 min to run (per first-level session), producing a web page analysis report (including activation overlay images, activation cluster tables, time-course plots of data vs. model, registration overlay images, and an “Analysis Methods” paragraph describing the exact analysis carried out, including references). Multiple experiments having the same design can be analyzed with a single setup. A complete setup can be saved to file, for easy reloading, amendment, and rerunning later, or to be used in script-based analysis of multiple experiments.
+
+In Smith et al. (2004) , 33 supposedly identical FMRI sessions from the same subject were analyzed, partly to investigate the nature of session variability (as a follow-up to the original investigation using these data; McGonigle et al., 2000 ) and partly to compare the different preprocessing, registration, and time series statistical options in FEAT and SPM. The general conclusion (regarding the latter issue) was that both with respect to preprocessing/registration and time series modeling, less “extra” apparent session variability was induced by the FEAT processing modules, suggesting higher accuracy. Similar results were reported in Bianciardi et al. (2003) .
+Bayesian inference on constrained linear basis sets for HRF models
+
+FMRI analysis ideally requires flexible hemodynamic response function (HRF) modeling, with the HRF being allowed to vary spatially and between subjects. To achieve this flexibility, in Woolrich et al. (2004d) , we proposed voxel-wise HRF modeling using a parameterised HRF consisting of several joined half-cosines. This was embedded in a fully Bayesian framework, incorporating nonseparable spatiotemporal noise modeling. A fully Bayesian approach allows for the uncertainties in the noise and signal modeling to be incorporated together to provide full posterior distributions of the HRF parameters.
+
+However, inference on such parameterised HRF models is slow. A more practical approach to voxel-wise HRF modeling is to use basis functions. This allows us to proceed in the more manageable GLM framework. The problem with this is that, as shown in Fig. 3 a, a large amount of the subspace spanned by the basis functions produces nonsensical HRF shapes. Therefore, in Woolrich et al. (2004c) , we proposed a technique for choosing a basis set, and then, importantly, the means to constrain the subspace spanned by the basis set to only include sensible HRF shapes. The choice of the basis set can be driven by a standard parametric HRF or a physiologically informed model such as the balloon model ( Buxton et al., 1998 ). Using the GLM in a Bayesian framework we can then use priors on the basis function regression parameters to constrain the linear combinations of HRFs to sensible HRF shapes, as shown in Fig. 3 b. This was augmented with spatially regularized autoregressive noise modeling.
+
+    Download : Download full-size image 
+
+Fig. 3 . Samples from the HRF basis set: (a) unconstrained and (b) constrained. Below is the difference in voxel classification between the constrained HRF model and the unconstrained HRF model for a single-event pain stimulus data set. Red voxels are active for both models, yellow voxels are active for just the constrained HRF model, and blue voxels are active for just the unconstrained HRF model. Data courtesy of Tracey and Wise.
+
+Inference was carried out using Variational Bayes (an efficient alternative to MCMC for posterior distribution estimation, making simplifying assumptions about the form of the posterior). As shown in Fig. 3 , constraining the subspace spanned by the basis set allows for superior separation of activating voxels from nonactivating voxels in FMRI data. This approach will be included in future versions of FEAT.
+MELODIC—probabilistic independent component analysis for FMRI
+
+Independent component analysis (ICA) is becoming a popular exploratory method for analyzing complex data such as that from FMRI experiments. ICA attempts to decompose the data into (statistically) independent spatial maps (and associated time courses), which ideally each represent different artefacts or activation patterns. By using all of the 4D data set together in the analysis, this kind of approach does not need a (temporal) model in the way that the above research does. The application of such “model-free” methods, however, has been restricted both by the view that results can be uninterpretable and by the lack of ability to quantify statistical significance for estimated spatial maps.
+
+In Beckmann and Smith (2004a) , we proposed a probabilistic ICA (PICA) model for FMRI that models the observations as mixtures of spatially non-Gaussian signals and artefacts in the presence of Gaussian noise. We demonstrated that using an objective estimation of the amount of Gaussian noise through Bayesian analysis of the number of activation and (non-Gaussian) noise sources, the problem of “overfitting” can be overcome. The approach proposed for estimating a suitable model order (i.e., how many ICA components to find) also allows for a unique decomposition of the data and reduces problems of interpretation, as each final component is more likely to be due to only one physical or physiological process ( Fig. 4 , Fig. 5 ). The model also advanced standard ICA with other improvements, such as voxel-wise temporal prewhitening, variance normalization of time series, and the use of prior information about the spatiotemporal nature of the source processes. Finally, to statistically infer areas of activation from the estimated PICA maps, we used an alternative-hypothesis testing approach based on a nonspatial Gaussian–Gamma mixture model ( Beckmann et al., 2003b ). The above methodology is implemented as Multivariate Exploratory Linear Optimized Decomposition into Independent Components (MELODIC).
+
+    Download : Download full-size image 
+
+Fig. 4 . GLM, classical ICA, and PICA analyses of visual stimulus FMRI data: (a) GLM results using GRF-based inference. (b–e) IC maps from classical ICA having temporal correlation >0.3 with GLM model; the secondary maps are uninterpretable. (f) Eigenspectrum of the data covariance matrix and PICA estimate of the latent dimensionality. (g and h) PICA maps; the secondary map is postulated as V3–MT and is reliably found by PICA in such data.
+
+    Download : Download full-size image 
+
+Fig. 5 . Additional PICA maps from the visual activation data: (a) head motion (translation in Z), (b) sensory/motor activation, (c) signal fluctuations in areas close to the sinuses (possibly due to interaction of field inhomogeneity with head motion), (d) high frequency MR ’ghost’, and (e) ’resting-state’ fluctuations/physiological noise.
+
+As an application of this exploratory approach, we have applied PICA to find resting state networks (RSNs) without the need for “seeding”. RSNs are low-frequency (<0.1 Hz) spatially distributed networks with self-consistent time course that have previously been identified in resting FMRI data using correlation with a seed pixel's time course ( Biswal et al., 1995 ). Their underlying cause is not yet proven, though it has been postulated that they reflect functional networks (as opposed to being physiologically based but functionally uninteresting). We have attempted to further characterize these networks using resting FMRI, both because of their potentially interesting nature and because they represent a major cause of (currently unmodeled) structured “noise” in FMRI data.
+
+The PICA approach appears to successfully separate different RSNs from each other and from other (physiological and scanner-related) components in resting (and even activation) FMRI data. Using low-TR data (<0.1 s) to avoid aliasing of cardiac-related and breathing-related components (and therefore to be able to unambiguously separate these components in the data), we have shown that RSNs are indeed not directly related to these components ( De Luca et al., 2002 ). Using high resolution (2 × 1.5 × 1.75 mm) data we have separated “true” RSNs ( Fig. 6 a), which do indeed appear to lie purely within grey matter, from other networks having similar power spectra (<0.1 Hz), which appear to lie in larger blood vessels ( De Luca et al., 2002 ).
+
+    Download : Download full-size image 
+
+Fig. 6 . RSNs found in 2 × 1.5 × 1.75 mm resting FMRI data (a) and four RSN spatial maps identified as consistent across seven subjects (b).
+
+We have further investigated whether the number and spatial localization of RSNs are consistent across different subjects. We have identified four RSNs that appear to have high repeatability when analyzed across seven subjects (posited as V1, spatial association and V2, motor area and attention area, see Fig. 6 b) ( De Luca et al., 2004 ).
+
+The PICA methodology is further extended in Beckmann and Smith (2004b) to the analysis of multisession/multisubject FMRI data via a novel exploratory probabilistic tensor-ICA model that provides a trilinear decomposition and estimates the signal characteristics in the temporal, spatial, and subject/session domain. The resulting data representation provides a rich source of information with which to infer not only on the spatial characteristics of activation but also to enable learning about the variability across sessions/subjects.
+Inference via spatial mixture modeling
+
+Commonly in FMRI, null hypothesis testing is used on a GLM to label voxels or clusters of voxels as being “active” if they reject the null hypothesis at a given false positive rate (FPR). This depends on knowing the null distribution for the relevant statistic (e.g., regression parameter, t statistic, or pseudo- t ) under the null hypothesis. An alternative approach for inference is to use mixture modeling on the statistic of interest ( Everitt and Bullmore, 1999 ). This involves fitting a mixture of distributions to the histogram of the statistic of interest; in our case, we use a Gaussian for the central nonactivation part of the data and a gamma for the activation (and possibly another for “deactivation”).
+
+A well-known problem in null hypothesis testing of FMRI is that if enough observations are made, then every voxel in the brain will reject the null hypothesis. This is because in practice all voxels will show some response to the stimulus, if only due to modeling inadequacies such as unmodeled stimulus-correlated motion. By using mixture modeling, instead of asking the question “Is the activation zero or not?”, we ask the question “Is the activation bigger than the overall background ‘signal’?”. Adaptability in modeling the nonactivating (“null”) part of the distribution can also help to protect against violations of the modeling assumptions, such as poorly modeled noise structure. Mixture modeling also provides us with far more inference flexibility compared with null hypothesis testing. We can either control FPRs or true positive rates (TPRs) by using the “nonactivating” or “activating” distributions, respectively. Controlling the TPR may be of real importance when using FMRI for presurgery planning. Nonspatial mixture modeling is already used in FSL for statistically inferring areas of “activation” in MELODIC.
+
+In null hypothesis testing, one can incorporate spatial information by using smoothing in combination with Gaussian Random Field Theory ( Worsley et al., 1992 ). However, this requires the arbitrary setting of parameters (the t / z threshold for forming clusters, and the amount of spatial smoothing) which makes the resulting inference hard to interpret. In contradistinction, we can incorporate spatial information into mixture modeling by encoding the prior belief that we expect to find areas of activation next to other areas of activation. In Woolrich et al. (in press) , we describe a novel way to do this with the amount of spatial regularization determined adaptively from the data using a discrete-labels Markov Random Field (MRF) prior on the classification. Heuristic tuning of control parameters is no longer required. All parameters in the model are adaptively determined from the data, and hence we can infer regions of brain activity completely objectively. Fig. 7 shows the spatial mixture model applied to a single-event pain stimulus experiment.
+
+    Download : Download full-size image 
+
+Fig. 7 . Results of applying the spatial mixture modeling on a single-event pain stimulus experiment. (Top left) z statistic parametric map. (Bottom left) Probability of being in the activation class. (Right) Mixture model fit to histogram of pseudo- z statistics. Data courtesy of Tracey and Wise.
+Structural MRI analysis research
+
+This section presents an overview of our research into the analysis of structural MRI data. The tools resulting from this research provide the means for making quantitative measurements of physiologically or clinically relevant parameters. For example, the combination in SIENA of brain extraction, tissue-type segmentation, and robust affine registration allows for the accurate measurement of temporal brain-volume change. However, these tools are also of crucial importance in the processing stream in functional neuroimaging experiments. BET and FLIRT not only allow functional results to be interpreted in the context of the anatomy visible in structural images, but also allow data from different individuals and groups of individuals to be compared directly.
+BET—brain–nonbrain segmentation
+
+There are many applications related to brain imaging that either require or benefit from the ability to accurately segment brain from nonbrain tissue. For example, in the registration of functional images to high-resolution MR images, both FMRI and PET functional images often contain little nonbrain tissue because of the nature of the imaging, whereas the high-resolution MR image will probably contain a considerable amount—eyes, skin, fat, muscle, etc.— and thus registration robustness is improved if these nonbrain parts of the image can be automatically removed before registration. Also, many tissue-type segmentation approaches (such as FAST, see below) require brain–nonbrain segmentation to have been carried out before they can function well.
+
+We have developed a tool for fully automated brain extraction that runs robustly on a variety of MR modalities (tested on T1-weighted, T2-weighted, proton density, EPI, etc.) called Brain Extraction Tool (BET) ( Smith, 2002 ). At the core of the algorithm, a triangular tessellation of a spherical surface is initialized inside the brain, and allowed to slowly deform, one vertex at a time, following forces that keep the surface well spaced and smooth, while attempting to move toward the brain's edge (defined in terms of the local intensity structure to reduce the effects of image bias field). If a suitably clean solution is not arrived at then the whole process is rerun with a higher smoothness constraint. Finally, if required, the outer surface of the skull can be estimated. See Fig. 8 for example BET output.
+
+    Download : Download full-size image 
+
+Fig. 8 . Example BET and FAST output. Middle: extracted brain and external skull surface points from BET. Right: CSF, white-matter, and grey-matter partial volume color overlays from FAST.
+FAST—tissue-type segmentation and bias field correction
+
+Following brain–nonbrain segmentation, tissue-type segmentation can be performed, that is, classification of each voxel into grey-matter, white-matter, or cerebrospinal fluid (CSF), and possibly pathology (e.g., lesion). It is common to segment purely using voxel intensity, once intensity thresholds have been found to optimally distinguish between the different tissue classes. This can be considered as an analysis of the image histogram, where the different classes appear (ideally) as separate peaks, which have a spread caused by factors such as image noise, motion artefacts, partial-volume effect, bias field (intensity fluctuations across the image caused by inhomogeneities in the radio frequency field), and true within-class variation. This spread can cause serious mislabeling of voxels, particularly if the bias field is strong.
+
+A central problem is that robust and accurate estimation of the bias field ideally requires perfect knowledge of the segmentation, while obtaining a perfect segmentation requires that the bias field be known and corrected. This circularity of dependence means that a sensible approach to both problems is to solve the two problems together, in practice iterating between estimating the segmentation and the bias field, until convergence. This is the approach taken in FMRIB's Automated Segmentation Tool (FAST) ( Zhang et al., 2001 ). The histogram is modeled as a mixture of Gaussians (one for each class), giving each class's mean (and variance) intensity. Each voxel is then labeled by taking into account not only its intensity with respect to the estimated class means, but also the labeling of its local neighbors—a Markov random field (MRF) is placed on the labeling, causing spatial regularization (i.e., smoothness of segmentation). This greatly reduces the effect of noise on the segmentation. The segmentation allows an idealized reconstruction of the image; subtracting this from the real image (and smoothing) gives an estimate of the bias field. This whole process is then iterated several times.
+
+If required, FAST also models the partial volume effect (PVE) at each voxel. The voxel's intensity with respect to the global class (tissue-type) means and variances is used to estimate the PVE, and this is augmented with an MRF on the PVE to spatially regularize with local voxels.
+
+The above approach easily generalizes to “multichannel segmentation”, that is, if more than one input modality (image type) is available. For example, if both T1-weighted and proton density images are available, the input can be thought of as a vector image instead of just a scalar. FAST allows for two or more input images, which can give improved results, for example, in the deep grey structures where T1-only segmentation often has problems due to the intermediate (between white and cortical grey) intensities of some subcortical “grey” matter.
+
+FAST does not use segmentation priors (images in standard space of the expected distribution of the tissue types, averaged over many subjects) by default, as the prior segmentation images tend to be very blurred, and therefore not very informative. However, this option can be turned on, for example, to aid the initial segmentation in the case of very bad bias field.
+FLIRT—affine intermodal image registration
+
+Robust automated intensity-based image registration is a core capability needed for most brain image analysis applications. Ideally, it provides a fast, accurate, robust, and objective way to align images of the same or different MR modalities, crucial for many applications such as localizing functional activations within a subject's own neuroanatomy and for allowing group comparisons via the registration to a standard image. However, a common problem is that registration methods sometimes fail to produce “sensible” results, with gross misalignment clearly visible. These failures often occur when the images being registered are initially in different orientations. For automated analysis methods that rely on registration (e.g., FMRI analysis and atrophy analysis), such failures are very problematic.
+
+The standard framework for intensity-based registration involves the minimization of a cost function (which quantitates how well aligned two images are) as the registration parameters (such as rotation and translation) are varied. Consequently, the cause of misregistrations arises from either nonideal cost functions (which return minimum values for poor alignments) or from nonideal optimization methods that fail to find the (global) minimum value of the cost function. Much work has gone into proposing suitable cost functions for image registration, for example, using information theory ( Viola and Wells, 1997 ). However, little work has been done on improving optimization methods for image registration, even though “getting stuck” in a local minimum is the main cause of failure for many registration methods.
+
+The research conducted at FMRIB in affine registration ( Jenkinson and Smith, 2001 , Jenkinson et al., 2002 ) has concentrated on trying to eliminate the occurrence of gross misalignments (increasing robustness) by using a multistart, multiresolution global optimization method. This optimization starts with a large-scale search strategy (e.g., trying a wide range of possible initial rotations) at an 8-mm image resolution, followed by a series of multistart local optimizations at 4-mm resolution (based on perturbations of the best candidate alignments found at the 8-mm stage), and finishes with a progressive sequence of local optimizations at 2- and 1-mm resolutions to refine the final alignment. This strategy is considerably more robust than optimization based purely on local minimization (even if a multiresolution approach is used). A major advantage of this optimization method versus generic global optimization methods is that it is specifically designed for affine image registration, incorporating knowledge of the expected and achievable parameter changes. As a consequence it is more efficient in searching the parameter space, allowing it to run significantly faster than would be possible using other techniques such as Simulated Annealing or Genetic Algorithms.
+
+In addition to the work on the global optimization method, modifications of the standard cost functions to down-weight voxels at the edge of the common overlapping field-of-view and use fuzzy-binning techniques for histogram estimation have been applied to reduce the number of local cost function minima present. As well as standard within-modality cost functions such as normalized correlation, we have implemented intermodal cost functions such as mutual information ( Viola and Wells, 1997 ) and correlation ratio ( Roche et al., 1998 ), which allow the robust registration of images with different contrasts such as FMRI to structural MRI or PET to MRI. The combination of the optimization technique and cost function modifications has led to the development of FMRIB's Linear Image Registration Tool (FLIRT), which has been proven to be highly robust ( Jenkinson and Smith, 2001 , Jenkinson et al., 2002 ) and is incorporated in many fully automated image analysis methods (e.g., SIENA and FEAT).
+MCFLIRT and FORCE—head motion correction
+
+Motion correction is an important issue in FMRI analysis as even the slightest patient motion can induce significant motion artefacts (potentially of greater magnitude than the BOLD effect itself), particularly at tissue boundaries, at the edge of the brain or near major vessels. A rigid-body motion correction tool was developed based on the affine registration tool in FSL (FLIRT, see above). This method (MCFLIRT) applies the same cost function regularization techniques as FLIRT but does not need the multistart optimization techniques because movement from one volume to another within an FMRI sequence is small, giving good initialization. Instead, the tool was specifically customized to be highly accurate for typical FMRI data ( Jenkinson et al., 2002a ).
+
+Motion correction, however, is an inherently nonrigid problem because the volume is not acquired at a single instant, but each slice is acquired at a different time. Consequently, when the head is moving, each slice is transformed by a slightly different rigid-body transformation, making whole-volume rigid-body correction oversimplistic. Furthermore, the fact that each slice has slightly shifted timing with respect to each other is incompatible with the assumptions of subsequent temporal analysis. This is often dealt with by applying a slice-timing correction (interpolation within each voxel's time series) either before or after rigid-body motion correction. Applying rigid-body motion correction and slice-timing corrections separately (in either order) is imperfect, as the two problems arise simultaneously and therefore need to be solved in a single integrated approach.
+
+To this end, we have developed a limited degree of freedom (DOF) model of the slice transformation process, assuming smooth motion within each TR. (This model is an approximation to the real situation where any sudden small motion could occur during a TR; using a more general model would be problematic as it introduces extra degrees of freedom, requiring rigid-body registration of a single slice to a reference volume, which is nonrobust and inaccurate.) Cost functions are generalized from the 3D case to include the entire 4D data set because it is unlikely that any single volume can be relied upon to provide a sufficiently accurate (motion-free) reference volume. Initial results using this approach (called FORCE–FMRIB's Optimized Retrospective Correction Environment) indicate that it is possible to reduce final motion-related error in comparison with separated rigid-body correction and slice-timing correction ( Bannister et al., 2002 ).
+SIENA—brain change analysis
+
+Quantitative measurement of change in brain size and shape (for example, to estimate atrophy) is an important tool for analysis of clinical imaging data. Structural Image Evaluation using Normalization of Atrophy (SIENA; Smith et al., 2001 , Smith et al., 2002 ) is a fully automated method for finding temporal brain change, taking as input two MR images taken at different points in time, and giving as output a “change” image, along with a global estimate of percentage brain volume change. SIENA uses BET to segment brain from nonbrain in each image and also estimate the external surface of the skull in each. Next, the two brain images are registered with FLIRT using the skull images to constrain scaling and skew; this corrects for changes in imaging geometry over time. Brain surface points (including at the ventricle edges) are then found with FAST and the surface motion (between the two time points) estimated (using correlation of profiles from the original images) at these points to subvoxel accuracy. The mean perpendicular edge motion across the entire brain surface can then be converted into a percentage brain volume change estimate. In a range of validations, SIENA was shown to be accurate to better than 0.2% brain volume change.
+
+SIENA has also been extended to a single-time-point method (SIENAX; Smith et al., 2002 ) that estimates atrophy state rather than atrophy rate. SIENAX uses brain extraction and tissue-type segmentation to find brain volume and then brain-and-skull-based registration (similar to that used by SIENA) to normalize (for head size) to standard space (using the skull image for the scaling) and to reduce intersubject variability. SIENAX is accurate to better than 1% error in normalized brain volume ( Fig. 9 ).
+
+    Download : Download full-size image 
+
+Fig. 9 . Example SIENA/SIENAX outputs. Left: SIENA edge motion estimation (blue = atrophy, red = “growth”). Top middle: voxel-wise multisubject SIENA analysis showing significant atrophy voxels in a group of MS patients. Top right: brain mask as generated by SIENAX, with upper and lower field-of-view limits automatically imposed in an objective way via standard-space registration (needed to make all subjects' data comparable if some subjects in a study were not scanned with complete field-of-view). Bottom right: SIENAX estimation of cortical grey volume (standard-space masks automatically used to exclude noncortical grey matter).
+
+More recently ( De Stefano et al., 2003 ), SIENA has been extended to allow voxel-wise statistical analysis of brain change across multiple subjects. This allows, for example, local estimation of group-wise atrophy, or even local estimation of where atrophy correlates with other variables such as age, drug treatment, or disease duration.
+
+A similar method has been proposed for voxel-wise statistical analysis of magnetization transfer ratio (MTr) images ( Smith and De Stefano, 2002 ). Because MTr is dependent on tissue type (as well as factors of interest, such as pathology), it is not possible to simply transform MTr images into standard space to carry out voxel-wise statistics across subjects. Instead, the raw MTr image is split into (sparse) grey and white MTr images (using the output from FAST), which are dilated to “fill in the gaps”. These are then transformed into standard space before being masked by standard grey and white matter masks and recombined. Thus, for any given standard space grey (or white) voxel, the MTr value at this point is taken from the subject's MTr value at the nearest true grey (or white) voxel. Voxel-wise cross-subject statistics are then possible.
+FDT—diffusion and white matter connectivity analysis
+
+The self-diffusion of water molecules in the brain is a sensitive probe of biological tissue microstructure and micro-biophysics. Among the tissue properties that contribute to the local diffusion characteristics is the local orientational structure of the tissue; most interestingly, diffusion is anisotropic in white matter, being greater in the direction of white matter tracts. By sensitizing the magnitude of the NMR spin-echo to local diffusion and by making assumptions about the structure of local diffusion, it is possible to recover the dominant orientation of diffusion in each MR imaging voxel ( Basser et al., 1994 ), known as the principal diffusion direction (PDD). Under the assumption that these PDDs correspond well with the mean local fiber orientation in white matter voxels, it has been possible to trace pathways through the vector field of PDDs to reconstruct major white matter pathways in the living human brain ( Conturo et al., 1999 ). However, the sensitivity of this “diffusion tractography” process to, for example, image noise, partial volume effects, and incomplete signal modeling, has meant that, in general, tractography has been limited to major white matter pathways that are easily found in postmortem dissection. Furthermore, the deterministic nature of tractography approaches to date has meant that the descriptions of the estimated fiber trajectories have been entirely qualitative. With no measure of either confidence in or strength of the recovered connections, the interpretation of the trajectories as true fiber pathways has been limited and it has not been possible to compare results between subjects in a quantitative fashion.
+
+Research at FMRIB has concentrated on developing a statistical framework in which to address the tractography problem. By considering the fitting of voxel-wise models of diffusion in the presence of image noise and incomplete signal modeling, we are able to construct probability density functions (pdfs) on the voxel-wise PDD (local mean fiber orientation) ( Behrens et al., 2003a ). With these local pdfs on fiber direction, it is no longer sensible to perform tractography by tracing deterministic pathways through the data field. Instead, we have developed a generalization of diffusion tractography to the case where there is uncertainty in local fiber orientation ( Behrens et al., 2003a ). We estimate a pdf on the location of the fiber trajectory (a connectivity distribution). We are able to quantify our belief in the location of the pathway and hence quantify our belief in the existence of axonal connections between brain regions. By removing the need to make a deterministic decision at every step in the tractography process, we are able to trace beyond regions of low diffusion anisotropy and deep into grey matter structures (see Fig. 10 a) ( Behrens et al., 2003b ). This methodology has been implemented as FMRIB's Diffusion Toolbox (FDT).
+
+    Download : Download full-size image 
+
+Fig. 10 . (a) Connectivity distribution from mediodorsal thalamus. Consistent with macaque data, the distribution terminates in prefrontal cortex and anterior temporal cortex. (b) Major connection zones of the thalamic nuclei ascertained from the macaque literature; the cortical zones used for the connectivity-based segmentation of thalamus. (c) Inset: prediction from macaque data of the major connections of the thalamic nuclei. Main: connectivity-based segmentation of human thalamus. (d) Functional validation. The outer grey surface defines thalamus. The inner grey surface defines the region in which at least 4 out of 11 subjects had a greater than 25% chance of connection to prefrontal cortex. Red spheres are the centers of thalamic activation in 27 executive memory tasks that also activated the prefrontal cortex.
+
+The availability of such a rich source of connectivity information has allowed us to address new questions with diffusion tractography. It is possible, by examining connectivity patterns derived from diffusion tractography, to identify functionally distinct subunits in the brain. For example, by generating connectivity distributions from every voxel in thalamus, we have been able to compute the probability of connection from every thalamic voxel to each of seven predefined cortical zones. We have used this information to segment thalamus into putative thalamic nuclei from connectivity information alone ( Behrens et al., 2003b ) ( Figs. 10 b and c). These connectivity-defined regions form the basis of an atlas of thalamocortical connectivity ( www.fmrib.ox.ac.uk/connect ) that we have used to provide the first functional–anatomical validation of diffusion tractography ( Johansen-Berg et al., in press ). For example, in Fig. 10 d, the thalamic region defined by a high probability of connection with prefrontal cortex corresponds well with the location of previously reported (FMRI/PET) activation centers in executive memory tasks.
+MR physics-related research
+PRELUDE and FUGUE—EPI distortion correction
+
+Distortion of EPI-based functional images is a particular problem for high-field (3T and higher) MR scanners. The inhomogeneities in the magnetic field caused by susceptibility differences at air–tissue interfaces (predominantly near air-filled sinuses) result in both signal loss and geometric distortion of images. Such artefacts are particularly noticeable in the inferior temporal and frontal lobes, and restrict the use of standard FMRI or diffusion imaging techniques in these areas. In addition, the distortions can also lead to global errors in registration, if not accounted for, causing errors in the spatial localization of activations (or white matter tracts) from any brain region, including those where there is little or no distortion present.
+
+One approach to solving this problem is to use a measured field-map to “unwarp” the distorted images by performing pixel shifts in the phase-encode direction ( Jezzard and Balaban, 1995 ) (see Fig. 11 ); although this cannot restore lost signal (intensity), it can correct for local geometric distortion. Such methods require the acquisition of a B0 field map that we obtain from a phase-difference image. This first requires “phase unwrapping” to compensate for the fact that MR phase measurements are wrapped within the range 0:2π. A general N -dimensional phase-unwrapping technique ( Jenkinson, 2003 ) was developed for this task based on optimizing a global cost function that penalizes large, spatially localized phase changes. To improve speed and robustness, an efficient implementation (PRELUDE—Phase Region Expanding Labeler for Unwrapping Discrete Estimates) using region-based labeling and merging techniques was created. This technique has proved to be robust and reliable over a wide range of MR phase images, including high-resolution venogram studies.
+
+    Download : Download full-size image 
+
+Fig. 11 . An example of field-map-based distortion correction for EPI: structural image, field map, original EPI, unwarped EPI.
+
+Following phase unwrapping, the field map values are used to determine the pixel shift in the phase-encode direction. However, noise or artefacts in the field map are highly problematic for pixel shift methods such as this, and in our implementation (FUGUE—FMRIB's Utility for Geometrically Unwarping EPIs), a range of regularization options are available. Initial tests have showed that simple Gaussian smoothing is usually adequate ( Jenkinson, 2001 ), but this is dependent on the field map sequence and SNR. More recent research at FMRIB has been investigating applications of the field map as a cost function weighting for registration. In addition, alternative approaches, which do not require a field map, are being examined. We have been exploring a physical model-based method that calculates a field map from a structural MR image using a perturbation solution of Maxwell's equations ( Jenkinson et al., 2004 ). This approach would allow studies where no field maps are available to benefit from the above distortion correction approaches, while still being derived from the individual subject's own anatomy. Such constraints could also be beneficial in other data-driven approaches to distortion correction within time series, such as Andersson et al. (2001) , and integration of these techniques is being explored.
+MRI simulation
+
+There is a need for quantitative simulation of functional imaging experiments to (1) validate existing analysis methods; (2) improve understanding of the interactions between acquisition and analysis; and (3) provide forward models for artefact-reduction techniques. Physics-Oriented Simulated Scanner for Understanding MRI (POSSUM) is a simulation project designed to simulate the MR signal, starting from the fundamental physics. The inputs are in the form of general “pulse sequence” and “motion” files that specify gradients, RF pulses, sampling points, and orientation as a function of time. Currently, the simulator uses the BrainWeb digital brain phantom ( Kwan et al., 1999 ) as the object model, but can use any sufficiently detailed voxel-based object model.
+
+Our main research interest in the POSSUM simulator is in modeling the interaction of motion and acquisition to further understand motion artefacts in FMRI and develop methods for removing these artefacts. To do this, the simulator has been designed so that it incorporates bulk motion directly at the Bloch equation level, allowing within-scan motion, spin-history effects, and B0 motion interaction to be accurately modeled ( Fig. 12 ).
+
+    Download : Download full-size image 
+
+Fig. 12 . Example of simulated functional MR images showing modeled artefacts: within-scan motion, ghosting, B0 inhomogeneities.
+
+A consortium has recently been formed (with research groups at the Montreal Neurological Institute ( Kwan et al., 1999 ) and the University of Pittsburgh ( Stenger et al., 2003 ) who have complementary areas of expertise in physiological and instrumentational aspects of FMRI modeling) to create a unified and comprehensive FMRI simulation environment named MR Imaging Data Acquisition Simulator (MIDAS: www.midas-online.org ). Future work through this collaborative project will develop a simulator that incorporates the major sources of variation present in an FMRI acquisition: acquisition type (e.g., EPI, spiral-EPI, anatomical spin-echo), susceptibility artefacts, RF inhomogeneities, physiological noise, random noise, motion, and activation. This simulator will be freely available to the FMRI community to aid researchers in validating their data processing streams and to provide insight into MRI physics.
+FSL—FMRIB's software library
+
+Most of the research carried out by the FMRIB Analysis Group has been made available to the wider community as a single integrated software package, FMRIB's Software Library (FSL). FSL is available as both source code and as self-contained binary distributions for Linux, MacOS X (Apple), Windows XP (under Cygwin), Solaris (Sun), and IRIX (Silicon Graphics). It is freely available for academic (noncommercial) use. Almost all tools can be run both from the command line and via GUIs. The FSL binary distributions come with all necessary third-party software bundled, making installation and setup extremely easy. FSL is in active use in over 1000 laboratories worldwide.
+
+Most FSL tools come with web-based documentation, and the most complex tools (such as FEAT) include comprehensive “bubble-popup help” in the GUI. Example data are supplied in a separate download named FSL Evaluation and Example Data Suite (FEEDS), which as well as providing example data for trying out the various FSL tools includes a script that runs the core tools automatically and tests the results against supplied results to check that FSL is running correctly. Further support on using FSL is offered via the FSL email list at www.jiscmail.ac.uk/lists/fsl.html .
+
+As well as the research-derived tools described in this review paper, FSL also includes a series of command-line image utilities, including a program for extracting a range of image statistics from 3D/4D images, and a “calculator” utility with a wide range of mathematical operations for 3D/4D image manipulation. FSL also includes an intuitive yet powerful 3D/4D image display tool FSLView that allows multiple color overlays, multiple orthogonal or lightbox views, time series display (graph-based and movie-based), image editing, vector-field diffusion direction display (color-coded or arrows), and histogram viewing.
+Acknowledgments
+
+We are grateful for financial support from the UK Medical Research Council, the UK Engineering and Physical Sciences Research Council, The Wellcome Trust, GlaxoSmithKline, and the Medical Images and Signals Inter-disciplinary Research Consortium (MIAS IRC). We also acknowledge vital collaborations with the many individuals listed at www.fmrib.ox.ac.uk/fsl/contributors.html .
+References
+
+    Andersson et al., 2001
+    J.L.R. Andersson, C. Hutton, J. Ashburner, R. Turner, K. Friston
+    Modelling geometric distortions in EPI time series
+    NeuroImage, 13 (5) (2001), pp. 903-919
+    View PDF View article View in Scopus Google Scholar
+    Bannister et al., 2002
+    P.R. Bannister, S.M. Smith, M. Brady, M. Jenkinson
+    Spatio-temporal realignment of FMRI data
+    Eighth Int. Conf. on Functional Mapping of the Human Brain (2002)
+    Google Scholar
+    Basser et al., 1994
+    P.J. Basser, J. Matiello, D. Le Bihan
+    Estimation of the effective self-diffusion tensor from the NMR spin echo
+    J. Magn. Reson., B, 103 (1994), pp. 247-254
+    View PDF View article View in Scopus Google Scholar
+    Beckmann and Smith, 2004a
+    C.F. Beckmann, S.M. Smith
+    Probabilistic independent component analysis for functional magnetic resonance imaging
+    IEEE Trans. Med. Imag., 23 (2) (2004 (February)), pp. 137-152
+    View in Scopus
+    Beckmann and Smith, 2004b
+    C.F. Beckmann, S.M. Smith
+    Tensorial extensions to independent component analysis for multi-subject/session FMRI data
+    Tenth Int. Conf. on Functional Mapping of the Human Brain (2004)
+    Google Scholar
+    Beckmann et al., 2003a
+    C.F. Beckmann, M. Jenkinson, S.M. Smith
+    General multi-level linear modelling for group analysis in FMRI
+    NeuroImage, 20 (2003), pp. 1052-1063
+    View PDF View article View in Scopus Google Scholar
+    Beckmann et al., 2003b
+    C.F. Beckmann, M.W. Woolrich, S.M. Smith
+    Gaussian/Gamma mixture modelling of ICA/GLM spatial maps
+    Ninth Int. Conf. on Functional Mapping of the Human Brain (2003)
+    Google Scholar
+    Behrens et al., 2003a
+    T.E.J. Behrens, M.W. Woolrich, M. Jenkinson, H. Johansen-Berg, R.G. Nunes, S. Clare, P.M. Matthews, J.M. Brady, S.M. Smith
+    Characterization and propagation of uncertainty in diffusion-weighted MR imaging
+    Magn. Reson. Med., 50 (5) (2003), pp. 1077-1088
+    (Nov)
+    View in Scopus Google Scholar
+    Behrens et al., 2003b
+    T.E.J. Behrens, H. Johansen-Berg, M.W. Woolrich, S.M. Smith, C.A.M. Wheeler-Kingshott, P.A. Boulby, G.J. Barker, E.L. Sillery, K. Sheehan, O. Ciccarelli, A.J. Thompson, J.M. Brady, P.M. Matthews
+    Non-invasive mapping of connections between human thalamus and cortex using diffusion imaging
+    Nat. Neurosci., 6 (7) (2003), pp. 750-757
+    View in Scopus Google Scholar
+    Bianciardi et al., 2003
+    M. Bianciardi, A. Cerasa, G. Hagberg
+    How experimental design and first-level filtering influence efficiency in second-level analysis of event-related fMRI data
+    Ninth Int. Conf. on Functional Mapping of the Human Brain (2003)
+    Google Scholar
+    Biswal et al., 1995
+    B. Biswal, F.Z. Yetkin, V.M. Haughton, J.S. Hyde
+    Functional connectivity in the motor cortex of resting human brain using echo-planar MRI
+    Magn. Reson. Med., 34 (1995), pp. 537-541
+    CrossRef View in Scopus Google Scholar
+    Buxton et al., 1998
+    R.B. Buxton, E.C. Wong, L.R. Frank
+    Dynamics of blood flow and oxygenation changes during brain activation: the balloon model
+    Magn. Reson. Med., 39 (1998), pp. 855-864
+    CrossRef View in Scopus Google Scholar
+    Conturo et al., 1999
+    T. Conturo, N. Lori, T. Cull
+    Tracking neuronal fiber pathways in the living human brain
+    Proc. Natl. Acad. Sci. U. S. A., 96 (1999), pp. 10422-10427
+    View in Scopus Google Scholar
+    De Luca et al., 2002
+    M. De Luca, C.F. Beckmann, T. Behrens, S. Clare, P.M. Matthews, N. De Stefano, M. Woolrich, S.M. Smith
+    Low frequency signals in FMRI—“resting state networks” and the “intensity normalisation problem”
+    Proc. Int. Soc. of Magnetic Resonance in Medicine (2002)
+    Google Scholar
+    De Luca et al., 2004
+    M. De Luca, P.M. Matthews, N. De Stefano
+    Spatial consistency of resting state networks across sessions and across subjects
+    Proc. Int. Soc. of Magnetic Resonance in Medicine (2004)
+    Google Scholar
+    De Stefano et al., 2003
+    N. De Stefano, M. Jenkinson, L. Guidi, M.L. Bartolozzi, A. Federico, S.M. Smith
+    Voxel-level cross-subject statistical analysis of brain atrophy in early relapsing remitting MS patients
+    Proc. Int. Soc. Magn. Reson. Med. (2003), p. 2625
+    Google Scholar
+    Everitt and Bullmore, 1999
+    B.S. Everitt, E.T. Bullmore
+    Mixture model mapping of brain activation in functional magnetic resonance images
+    Hum. Brain Mapp., 7 (1999), pp. 1-14
+    Google Scholar
+    Friston et al., 2000
+    K.J. Friston, O. Josephs, E. Zarahn, A.P. Holmes, S. Rouquette, J.-B. Poline
+    To smooth or not to smooth?
+    NeuroImage, 12 (2000), pp. 196-208
+    View PDF View article View in Scopus Google Scholar
+    Friston et al., 2002
+    K.J. Friston, W. Penny, C. Phillips, S. Kiebel, G. Hinton, J. Ashburner
+    Classical and Bayesian inference in neuroimaging: theory
+    NeuroImage, 16 (2002), pp. 465-483
+    View PDF View article View in Scopus Google Scholar
+    Holmes and Friston, 1998
+    A.P. Holmes, K.J. Friston
+    Generalisability, random effects and population inference
+    Fourth Int. Conf. on Functional Mapping of the Human Brain, NeuroImage, vol. 7 (1998), p. S754
+    View PDF View article View in Scopus Google Scholar
+    Jenkinson, 2001
+    M. Jenkinson
+    Improved unwarping of EPI volumes using regularised B0 maps
+    Seventh Int. Conf. on Functional Mapping of the Human Brain (2001)
+    Google Scholar
+    Jenkinson, 2003
+    M. Jenkinson
+    A fast, automated, n-dimensional phase unwrapping algorithm
+    Magn. Reson. Med., 49 (1) (2003), pp. 193-197
+    View in Scopus Google Scholar
+    Jenkinson and Smith, 2001
+    M. Jenkinson, S.M. Smith
+    A global optimisation method for robust affine registration of brain images
+    Med. Image Anal., 5 (2) (2001), pp. 143-156
+    (June)
+    View PDF View article View in Scopus Google Scholar
+    Jenkinson et al., 2002
+    M. Jenkinson, P.R. Bannister, J.M. Brady, S.M. Smith
+    Improved optimisation for the robust and accurate linear registration and motion correction of brain images
+    NeuroImage, 17 (2) (2002), pp. 825-841
+    View PDF View article View in Scopus Google Scholar
+    Jenkinson et al., 2004
+    M. Jenkinson, J. Wilson, P. Jezzard
+    A perturbation for magnetic field calculations of non-conductive objects
+    Magn. Reson. Med. (2004)
+    (in press)
+    Google Scholar
+    Jezzard and Balaban, 1995
+    P. Jezzard, R.S. Balaban
+    Correction for geometric distortion in echo planar images from B0 field variations
+    Magn. Reson. Med., 34 (1995), pp. 65-73
+    CrossRef View in Scopus Google Scholar
+    Johansen-Berg et al., 2004
+    H. Johansen-Berg, T.E.J. Behrens, E.L. Sillery, C.A.M. Wheeler-Kingshott, A.J. Thompson, S.M. Smith, P.M. Matthews
+    Functional anatomical validation and individual variation of diffusion tractography-based segmentation of the human thalamus
+    Cereb. Cortex (2004)
+    (in press)
+    Google Scholar
+    Kwan et al., 1999
+    R.K.S. Kwan, A.C. Evans, G.B. Pike
+    Mri simulation-based evaluation of image processing and classification methods
+    IEEE Trans. Med. Imag., 18 (11) (1999), pp. 1085-1097
+    (November)
+    View in Scopus Google Scholar
+    McGonigle et al., 2000
+    D.J. McGonigle, A.M. Howseman, B.S. Athwal, K.J. Friston, R.S.J. Frackowiak, A.P. Holmes
+    Variability in fMRI: an examination of intersession differences
+    NeuroImage, 11 (2000), pp. 708-734
+    View PDF View article View in Scopus Google Scholar
+    Roche et al., 1998
+    A. Roche, G. Malandain, X. Pennec, N. Ayache
+    The correlation ratio as a new similarity measure for multimodal image registration
+    Proc. of First Int. Conf. on Medical Image Computing and Computer-Assisted Intervention (MICCAI'98), vol. 1496 of LNCS, Springer Verlag, Cambridge, USA (1998), pp. 1115-1124
+    October
+    View in Scopus Google Scholar
+    Smith, 2002
+    S.M. Smith
+    Fast robust automated brain extraction
+    Hum. Brain Mapp., 17 (3) (2002), pp. 143-155
+    (November)
+    View in Scopus Google Scholar
+    Smith and Brady, 1997
+    S.M. Smith, J.M. Brady
+    SUSAN—A new approach to low level image processing
+    Int. J. Comput. Vis., 23 (1) (1997), pp. 45-78
+    (May)
+    View in Scopus Google Scholar
+    Smith and De Stefano, 2002
+    S.M. Smith, N. De Stefano
+    Spatial statistical analysis of MTr images in different populations
+    Proc. Int. Soc. of Magn. Reson. Med. (2002)
+    Google Scholar
+    Smith et al., 2001
+    S.M. Smith, N. De Stefano, M. Jenkinson, P.M. Matthews
+    Normalised accurate measurement of longitudinal brain change
+    J. Comput. Assist. Tomogr., 25 (3) (2001), pp. 466-475
+    (May/June)
+    View in Scopus Google Scholar
+    Smith et al., 2002
+    S.M. Smith, Y. Zhang, M. Jenkinson, J. Chen, P.M. Matthews, A. Federico, N. De Stefano
+    Accurate, robust and automated longitudinal and cross-sectional brain change analysis
+    NeuroImage, 17 (1) (2002), pp. 479-489
+    View PDF View article Google Scholar
+    Smith et al., 2004
+    S.M. Smith, C.F. Beckmann, N. Ramnani, M.W. Woolrich, P.R. Bannister, M. Jenkinson, P.M. Matthews, D.J. McGonigle
+    Variability in fMRI: a re-examination of intersession differences
+    Hum. Brain Mapp. (2004)
+    (in press)
+    Google Scholar
+    Stenger et al., 2003
+    V.A. Stenger, H. Shi, D. Shroff, W. Eddy, D.C. Noll
+    FMRI acquisition informatics tool
+    Hum. Brain Mapp. (2003)
+    (Poster 951)
+    Google Scholar
+    Viola and Wells, 1997
+    P. Viola, W.M. Wells
+    Alignment by maximization of mutual information
+    Int. J. Comput. Vis., 24 (2) (1997), pp. 137-154
+    View in Scopus Google Scholar
+    Woolrich et al., 2001
+    M.W. Woolrich, B.D. Ripley, J.M. Brady, S.M. Smith
+    Temporal autocorrelation in univariate linear modelling of FMRI data
+    NeuroImage, 14 (6) (2001), pp. 1370-1386
+    View PDF View article View in Scopus Google Scholar
+    Woolrich et al., 2004a
+    M.W. Woolrich, T.E.J. Behrens, C.F. Beckmann, M. Jenkinson, S.M. Smith
+    Multi-level linear modelling for FMRI group analysis using Bayesian inference
+    NeuroImage, 21 (4) (2004), pp. 1732-1747
+    View PDF View article View in Scopus Google Scholar
+    Woolrich et al., 2004b
+    M.W. Woolrich, T.E.J. Behrens, C.F. Beckmann, S.M. Smith
+    Mixture models with adaptive spatial regularisation for segmentation with an application to FMRI data
+    IEEE Trans. Med. Imag. (2004)
+    (in press)
+    Google Scholar
+    Woolrich et al., 2004c
+    M.W. Woolrich, T.E.J. Behrens, S.M. Smith
+    Constrained linear basis sets for HRF modelling using Variational Bayes
+    NeuroImage, 21 (4) (2004), pp. 1748-1761
+    View PDF View article View in Scopus Google Scholar
+    Woolrich et al., 2004d
+    M.W. Woolrich, M. Jenkinson, J.M. Brady, S.M. Smith
+    Fully Bayesian spatio-temporal modelling of FMRI data
+    IEEE Trans. Med. Imag., 23 (2) (2004), pp. 213-231
+    View in Scopus Google Scholar
+    Worsley et al., 1992
+    K.J. Worsley, A.C. Evans, S. Marrett, P. Neelin
+    A three-dimensional statistical analysis for CBF activation studies in human brain
+    J. Cereb. Blood Flow Metab., 12 (1992), pp. 900-918
+    CrossRef View in Scopus Google Scholar
+    Zhang et al., 2001
+    Y. Zhang, M. Brady, S. Smith
+    Segmentation of brain MR images through a hidden Markov random field model and the expectation maximization algorithm
+    IEEE Trans. Med. Imag., 20 (1) (2001), pp. 45-57
+    View in Scopus Google Scholar
+
+Cited by (10601)
+
+    CycleFormer: Brain tissue segmentation in the presence of Multiple Sclerosis lesions and Intensity Non-Uniformity artifact
+    2024, Biomedical Signal Processing and Control
+    Show abstract
+    Volumetric brain MRI signatures of heart failure with preserved ejection fraction in the setting of dementia
+    2024, Magnetic Resonance Imaging
+    Show abstract
+    Post-mortem changes of anisotropic mechanical properties in the porcine brain assessed by MR elastography
+    2024, Brain Multiphysics
+    Show abstract
+    Analysis of the pattern of microstructural changes in the brain after mTBI with diffusion tensor imaging and subject-specific FE models
+    2024, Brain Multiphysics
+    Show abstract
+    Neural correlates of inhibitory control in the context of infant cry and paternal postpartum mental health
+    2024, Behavioural Brain Research
+    Show abstract
+    From brain to body: exploring the connection between altered reward processing and physical fitness in schizophrenia
+    2024, Psychiatry Research
+    Show abstract
+
+View all citing articles on Scopus
+View Abstract
+Copyright © 2004 Elsevier Inc. All rights reserved.
+Part of special issue
+Mathematics in Brain Imaging
+Edited by
+P.M. Thompson, M.I. Miller, T. Ratnanather, R.A. Poldrack and T.E. Nichols
+Download full issue
+Other articles from this issue
+
+    Mapping cortical change in Alzheimer's disease, brain development, and schizophrenia
+    2004
+    Paul M. Thompson , …, Arthur W. Toga
+    View PDF
+    Computational anatomy: shape, growth, and atrophy comparison via diffeomorphisms
+    2004
+    Michael I. Miller
+    View PDF
+    Geometric strategies for neuroanatomic analysis from MRI
+    2004
+    James S. Duncan , …, Lawrence H. Staib
+    View PDF
+
+View more articles
+Recommended articles
+Article Metrics
+Citations
+
+    Citation Indexes: 10045
+    Patent Family Citations: 6
+    Policy Citations: 4 
+
+Captures
+
+    Readers: 4833 
+
+Mentions
+
+    Blog Mentions: 5
+    News Mentions: 1 
+
+plumX logo
+View details
+Elsevier logo with wordmark
+
+    About ScienceDirect
+    Remote access
+    Shopping cart
+    Advertise
+    Contact and support
+    Terms and conditions
+    Privacy policy 
+
+Cookies are used by this site. Cookie Settings
+
+All content on this site: Copyright © 2024 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those for text and data mining, AI training, and similar technologies. For all open access content, the Creative Commons licensing terms apply.
+RELX group home page
+Feedback 

@@ -1,0 +1,802 @@
+
+
+Dive into Deep Learning
+search
+Quick search
+code
+Show Source
+Preview Version PyTorch MXNet Notebooks Courses GitHub 中文版
+Dive into Deep Learning
+Table Of Contents
+
+    Preface
+    Installation
+    Notation
+
+    1. Introduction
+    2. Preliminaries keyboard_arrow_down
+    3. Linear Neural Networks for Regression keyboard_arrow_down
+    4. Linear Neural Networks for Classification keyboard_arrow_down
+    5. Multilayer Perceptrons keyboard_arrow_down
+    6. Builders’ Guide keyboard_arrow_down
+    7. Convolutional Neural Networks keyboard_arrow_down
+    8. Modern Convolutional Neural Networks keyboard_arrow_down
+    9. Recurrent Neural Networks keyboard_arrow_down
+    10. Modern Recurrent Neural Networks keyboard_arrow_down
+    11. Attention Mechanisms and Transformers keyboard_arrow_down
+    12. Optimization Algorithms keyboard_arrow_down
+    13. Computational Performance keyboard_arrow_down
+    14. Computer Vision keyboard_arrow_down
+    15. Natural Language Processing: Pretraining keyboard_arrow_down
+    16. Natural Language Processing: Applications keyboard_arrow_down
+    17. Reinforcement Learning keyboard_arrow_down
+    18. Gaussian Processes keyboard_arrow_down
+    19. Hyperparameter Optimization keyboard_arrow_down
+    20. Generative Adversarial Networks keyboard_arrow_down
+    21. Recommender Systems keyboard_arrow_down
+    22. Appendix: Mathematics for Deep Learning keyboard_arrow_down
+    23. Appendix: Tools for Deep Learning keyboard_arrow_down
+
+    References
+
+Dive into Deep Learning
+Table Of Contents
+
+    Preface
+    Installation
+    Notation
+
+    1. Introduction
+    2. Preliminaries keyboard_arrow_down
+    3. Linear Neural Networks for Regression keyboard_arrow_down
+    4. Linear Neural Networks for Classification keyboard_arrow_down
+    5. Multilayer Perceptrons keyboard_arrow_down
+    6. Builders’ Guide keyboard_arrow_down
+    7. Convolutional Neural Networks keyboard_arrow_down
+    8. Modern Convolutional Neural Networks keyboard_arrow_down
+    9. Recurrent Neural Networks keyboard_arrow_down
+    10. Modern Recurrent Neural Networks keyboard_arrow_down
+    11. Attention Mechanisms and Transformers keyboard_arrow_down
+    12. Optimization Algorithms keyboard_arrow_down
+    13. Computational Performance keyboard_arrow_down
+    14. Computer Vision keyboard_arrow_down
+    15. Natural Language Processing: Pretraining keyboard_arrow_down
+    16. Natural Language Processing: Applications keyboard_arrow_down
+    17. Reinforcement Learning keyboard_arrow_down
+    18. Gaussian Processes keyboard_arrow_down
+    19. Hyperparameter Optimization keyboard_arrow_down
+    20. Generative Adversarial Networks keyboard_arrow_down
+    21. Recommender Systems keyboard_arrow_down
+    22. Appendix: Mathematics for Deep Learning keyboard_arrow_down
+    23. Appendix: Tools for Deep Learning keyboard_arrow_down
+
+    References
+
+Dive into Deep Learning
+Dive into Deep Learning
+
+Interactive deep learning book with code, math, and discussions
+
+Implemented with PyTorch , NumPy/MXNet , JAX , and TensorFlow
+
+Adopted at 500 universities from 70 countries
+
+Star
+Follow @D2L_ai
+
+    [Feb 2023] The book is forthcoming on Cambridge University Press ( order ). The Chinese version is the best seller at the largest Chinese online bookstore. Follow D2L's open-source project for the latest updates.
+    [Dec 2022] JAX implementation is available! New topics of reinforcement learning , Gaussian processes , and hyperparameter optimization are added!
+    [Jul 2022] Check out our new API for implementation and new topics like generalization in classification and deep learning , ResNeXt , CNN design space , and transformers for vision and large-scale pretraining .
+    [May 2022] Join us to improve ongoing translations in Portuguese , Turkish , Vietnamese , Korean , and Japanese .
+    [Dec 2021] We added a new option to run this book for free: check out SageMaker Studio Lab .
+    [May 2021] Slides, Jupyter notebooks, assignments, and videos of the Berkeley course can be found at the syllabus page .
+
+Authors
+Aston Zhang
+
+Amazon
+Zack C. Lipton
+
+CMU and Amazon
+Mu Li
+
+Amazon
+Alex J. Smola
+
+Amazon
+Vol.2 Chapter Authors
+Pratik Chaudhari
+
+UPenn and Amazon
+Reinforcement Learning
+Rasool Fakoor
+
+Amazon
+Reinforcement Learning
+Kavosh Asadi
+
+Amazon
+Reinforcement Learning
+Andrew Gordon Wilson
+
+NYU and Amazon
+Gaussian Processes
+Aaron Klein
+
+Amazon
+Hyperparameter Optimization
+Matthias Seeger
+
+Amazon
+Hyperparameter Optimization
+Cedric Archambeau
+
+Amazon
+Hyperparameter Optimization
+Shuai Zhang
+
+Amazon
+Recommender Systems
+Yi Tay
+
+Google
+Recommender Systems
+Brent Werness
+
+Amazon
+Mathematics for Deep Learning
+Rachel Hu
+
+Amazon
+Mathematics for Deep Learning
+Framework Adaptation Authors
+Anirudh Dagar
+
+Amazon
+PyTorch Adaptation
+JAX Adaptation
+Yuan Tang
+
+Akuity
+TensorFlow Adaptation
+We thank all the community contributors
+for making this open source book better for everyone.
+Contribute to the book
+Each section is an executable Jupyter notebook
+
+You can modify the code and tune hyperparameters to get instant feedback to accumulate practical experiences in deep learning.
+
+Run
+locally
+
+Amazon SageMaker
+Studio Lab
+
+Amazon
+SageMaker
+
+Google
+Colab
+Mathematics + Figures + Code
+
+We offer an interactive learning experience with mathematics, figures, code, text, and discussions, where concepts and techniques are illustrated and implemented with experiments on real data sets.
+Active community support
+
+You can discuss and learn with thousands of peers in the community through the link provided in each section.
+D2L as a textbook or a reference book
+[+] Click here to show the incomplete list.
+Abasyn University, Islamabad Campus
+Alexandria University
+Amirkabir University of Technology
+Amity University
+Amrita Vishwa Vidyapeetham University
+Anna University
+Anna University Regional Campus Madurai
+Ateneo de Naga University
+Australian National University
+Bar-Ilan University
+Barnard College
+Beijing Foresty University
+Birla Institute of Technology and Science, Hyderabad
+Birla Institute of Technology and Science, Pilani
+BML Munjal University
+Boston College
+Boston University
+Brac University
+Brandeis University
+Brown University
+Brunel University London
+Cairo University
+California State University, Northridge
+Cankaya University
+Carnegie Mellon University
+Center for Research and Advanced Studies of the National Polytechnic Institute
+Chalmers University of Technology
+Chennai Mathematical Institute
+Chouaib Doukkali University
+Chulalongkorn University
+City College of New York
+City University of Hong Kong
+City University of Science and Information Technology
+College of Engineering Pune
+Columbia University
+Cornell University
+Cyprus Institute
+Deakin University
+Diponegoro University
+Dresden University of Technology
+Duke University
+Durban University of Technology
+Eastern Mediterranean University
+Ecole Nationale Supérieure d'Informatique
+Ecole Nationale Supérieure de Cognitique
+École Nationale Supérieure de Techniques Avancées
+Eindhoven University of Technology
+Emory University
+Eötvös Loránd University
+Escuela Politécnica Nacional
+Escuela Superior Politecnica del Litoral
+Federal University Lokoja
+Feng Chia University
+Fisk University
+Florida Atlantic University
+FPT University
+Fudan University
+Ganpat University
+Gayatri Vidya Parishad College of Engineering (Autonomous)
+Gazi Üniversitesi
+Gdańsk University of Technology
+George Mason University
+Georgetown University
+Georgia Institute of Technology
+Gheorghe Asachi Technical University of Iaşi
+Golden Gate University
+Great Lakes Institute of Management
+Gwangju Institute of Science and Technology
+Habib University
+Hamad Bin Khalifa University
+Hangzhou Dianzi University
+Hangzhou Dianzi University
+Hankuk University of Foreign Studies
+Harare Institute of Technology
+Harbin Institute of Technology
+Harvard University
+Hasso-Plattner-Institut
+Hebrew University of Jerusalem
+Heinrich-Heine-Universität Düsseldorf
+Henan Institute of Technology
+Hertie School
+Higher Institute of Applied Science and Technology of Sousse
+Hiroshima University
+Ho Chi Minh City University of Foreign Languages and Information Technology
+Hochschule Bremen
+Hochschule für Technik und Wirtschaft
+Hochschule Hamm-Lippstadt
+Hong Kong University of Science and Technology
+Houston Community College
+Huazhong University of Science and Technology
+Humboldt-Universität zu Berlin
+İbn Haldun Üniversitesi
+Icahn School of Medicine at Mount Sinai
+Imperial College London
+IMT Mines Alès
+Indian Institute of Technology Bombay
+Indian Institute of Technology Hyderabad
+Indian Institute of Technology Jodhpur
+Indian Institute of Technology Kanpur
+Indian Institute of Technology Kharagpur
+Indian Institute of Technology Mandi
+Indian Institute of Technology Ropar
+Indian School of Business
+Indira Gandhi National Open University
+Indraprastha Institute of Information Technology, Delhi
+Institut catholique d'arts et métiers (ICAM)
+Institut de recherche en informatique de Toulouse
+Institut Supérieur d'Informatique et des Techniques de Communication
+Institut Supérieur De L'electronique Et Du Numérique
+Institut Teknologi Bandung
+Instituto Federal de Educação, Ciência e Tecnologia de São Paulo, Campus Salto
+Instituto Politécnico Nacional
+Instituto Tecnológico Autónomo de México
+Instituto Tecnológico de Buenos Aires
+Islamic University of Medina
+İstanbul Teknik Üniversitesi
+IT-Universitetet i København
+Ivan Franko National University of Lviv
+Jeonbuk National Univerity
+Johns Hopkins University
+Julius-Maximilians-Universität Würzburg
+Keio University
+King Abdullah University of Science and Technology
+King Fahd University of Petroleum and Minerals
+King Faisal University
+Kongu Engineering College
+Korea Aerospace University
+KPR Institute of Engineering and Technology
+Kyungpook National University
+Lancaster University
+Leading Unviersity
+Leibniz Universität Hannover
+Leuphana University of Lüneburg
+London School of Economics & Political Science
+M.S.Ramaiah University of Applied Sciences
+Make School
+Masaryk University
+Massachusetts Institute of Technology
+Maynooth University
+McGill University
+Menoufia University
+Milwaukee School of Engineering
+Minia University
+Mississippi State University
+Missouri University of Science and Technology
+Mohammad Ali Jinnah University
+Mohammed V University in Rabat
+Monash University
+Multimedia University
+Murdoch University
+Nanjing University
+Nanchang Hangkong University
+Nanjing Medical University
+Nanjing University
+National Chung Hsing University
+National Institute of Technical Teachers Training & Research
+National Institute of Technology Trichy
+National Institute of Technology, Warangal
+National Sun Yat-sen University
+National Taichung University of Science and Technology
+National Taiwan University
+National Technical University of Athens
+National Technical University of Ukraine
+National United University
+National University of Sciences and Technology
+National University of Singapore
+Nazarbayev University
+New Jersey Institute of Technology
+New Mexico Institute of Mining and Technology
+New Mexico State University
+New York University
+Newman University
+North Ossetian State University
+NorthCap University
+Northeastern University
+Northwestern Polytechnical University
+Northwestern University
+Ohio University
+Pakuan University
+Peking University
+Pennsylvania State University
+Pohang University of Science and Technology
+Politechnika Białostocka
+Politecnico di Milano
+Politeknik Negeri Semarang
+Pomona College
+Pontificia Universidad Católica de Chile
+Pontificia Universidad Católica del Perú
+Portland State University
+Punjabi University
+Purdue University
+Purdue University Northwest
+Quaid-e-Azam University
+Queen Mary University of London
+Queen's University
+Radboud Universiteit
+Radboud University
+Rajiv Gandhi Institute of Petroleum Technology
+Rensselaer Polytechnic Institute
+Rowan University
+Rutgers, The State University of New Jersey
+RVS Institute of Management Studies and Research
+RWTH Aachen University
+Sant Longowal Institute of Engineering Technology
+Santa Clara University
+Sapienza Università di Roma
+Seoul National University
+Seoul National University of Science and Technology
+Shanghai Jiao Tong University
+Shanghai University of Electric Power
+Shanghai University of Finance and Economics
+Shantilal Shah Engineering College
+Sharif University of Technology
+Shenzhen University
+Shivaji University, Kolhapur
+Simon Fraser University
+Singapore University of Technology and Design
+Sogang University
+Sookmyung Women's University
+Southern Connecticut State University
+Southern New Hampshire University
+St. Pölten University of Applied Sciences
+Stanford University
+State University of New York at Albany
+State University of New York at Binghamton
+State University of New York at Fredonia
+Stellenbosch University
+Stevens Institute of Technology
+Sungkyunkwan University
+Technion - Israel Institute of Technology
+Technische Universität Berlin
+Technische Universität München
+Technische Universiteit Delft
+Tecnológico de Monterrey, Campus Guadalajara
+Tekirdağ Namık Kemal Üniversitesi
+Télécom Paris
+Telkom University
+Texas A&M University
+Thapar Institute of Engineering and Technology
+Tsinghua University
+Tufts University
+Umeå University
+Universidad Carlos III de Madrid
+Universidad de Ibagué
+Universidad de Ingeniería y Tecnología - UTEC
+Universidad de Salamanca
+Universidad de Zaragoza
+Universidad del Norte, Colombia
+Universidad Icesi
+Universidad Militar Nueva Granada
+Universidad Nacional Agraria La Molina
+Universidad Nacional Autónoma de México
+Universidad Nacional de Colombia Sede Manizales
+Universidad Nacional de Tierra del Fuego
+Universidad Politécnica de Chiapas
+Universidad Politécnica de Valencia
+Universidad Politécnica Salesiana, Cuenca
+Universidad Rafael Landivar
+Universidad Rey Juan Carlos
+Universidad San Francisco de Quito
+Universidad Tecnológica de Pereira
+Universidad Tecnológica Nacional
+Universidade Católica de Brasília
+Universidade Estadual de Campinas
+Universidade Federal de Goiás
+Universidade Federal de Minas Gerais
+Universidade Federal de Ouro Preto
+Universidade Federal de Pernambuco
+Universidade Federal de São Carlos
+Universidade Federal de Viçosa
+Universidade Federal do Pampa
+Universidade Federal do Rio Grande
+Universidade NOVA de Lisboa
+Universidade Presbiteriana Mackenzie
+Universidade Tecnológica Federal do Paraná
+Università Cattolica del Sacro Cuore
+Università degli Studi di Bari Aldo Moro
+Università degli Studi di Brescia
+Università degli Studi di Catania
+Università degli Studi di Padova
+Universitas Andalas, Padang
+Universitas Indonesia
+Universitas Negeri Yogyakarta
+Universitas Udayana
+Universität Bremen
+Universitat de Barcelona
+Universitat de València
+Universität Heidelberg
+Universität Leipzig
+Universitat Politècnica de Catalunya
+Universitatea Babeș-Bolyai
+Universitatea de Vest din Timișoara
+Université Abderrahmane Mira de Béjaïa
+Université Clermont Auvergne
+Université Côte d'Azur
+Université de Caen Normandie
+Université de Rouen Normandie
+Université de technologie de Compiègne
+Université Paris-Saclay
+Université Toulouse 1 Capitole
+University of Akron
+University of Alabama in Huntsville
+University of Allahabad
+University of Applied Sciences Würzburg-Schweinfurt
+University of Arkansas
+University of Augsburg
+University of Baghdad
+University of Bath
+University of Bordj Bou Arreridj
+University of British Columbia
+University of California, Berkeley
+University of California, Irvine
+University of California, Los Angeles
+University of California, San Diego
+University of California, Santa Barbara
+University of California, Santa Cruz
+University of Cambridge
+University of Canberra
+University of Catania
+University of Cincinnati
+University of Colorado Boulder
+University of Connecticut
+University of Copenhagen
+University of Derby
+University of Florida
+University of Genoa
+University of Ghana
+University of Groningen
+University of Hamburg
+University of Houston
+University of Hull
+University of Iceland
+University of Idaho
+University of Illinois at Urbana-Champaign
+University of International Business and Economics
+University of Klagenfurt
+University of Liège
+University of Louisiana at Lafayette
+University of Maryland
+University of Maryland Baltimore County
+University of Massachusetts Lowell
+University of Michigan
+University of Michigan Dearborn
+University of Milano-Bicocca
+University of Minnesota, Twin Cities
+University of Moratuwa
+University of Nebraska Omaha
+University of New Hampshire
+University of Newcastle
+University of North Carolina at Chapel Hill
+University of North Texas
+University of Northern Philippines
+University of Nottingham
+University of Oslo
+University of Pennsylvania
+University of Pittsburgh
+University of Rostock
+University of São Paulo
+University of Science and Technology of China
+University of Southern California
+University of Southern Maine
+University of St Andrews
+University of St. Thomas
+University of Suffolk
+University of Sydney
+University of Szeged
+University of Technology Sydney
+University of Tehran
+University of Texas at Austin
+University of Texas at Dallas
+University of Texas Rio Grande Valley
+University of Udine
+University of Warsaw
+University of Washington
+University of Waterloo
+University of Wisconsin Madison
+Univerzita Komenského v Bratislave
+Uniwersytet Jagielloński
+Vardhaman College of Engineering
+Vardhman Mahaveer Open University
+Vietnamese-German University
+Vignana Jyothi Institute Of Management
+Vilnius University
+Wageningen University
+West Virginia University
+Western University
+Wichita State University
+Xavier University Bhubaneswar
+Xi'an Jiaotong Liverpool University
+Xiamen University
+Xianning Vocational Technical College
+Yale University
+Yeshiva University
+Yıldız Teknik Üniversitesi
+Yonsei University
+Yunnan University
+Zhejiang University
+BibTeX entry for citing the book
+
+ @book{zhang2023dive,
+    title={Dive into Deep Learning},
+    author={Zhang, Aston and Lipton, Zachary C. and Li, Mu and Smola, Alexander J.},
+    publisher={Cambridge University Press},
+    note={\url{https://D2L.ai}},
+    year={2023}
+}
+
+Copy to clipboard
+Table of contents
+
+    Preface
+    Installation
+    Notation
+
+    1. Introduction
+        1.1. A Motivating Example
+        1.2. Key Components
+        1.3. Kinds of Machine Learning Problems
+        1.4. Roots
+        1.5. The Road to Deep Learning
+        1.6. Success Stories
+        1.7. The Essence of Deep Learning
+        1.8. Summary
+        1.9. Exercises
+    2. Preliminaries
+        2.1. Data Manipulation
+        2.2. Data Preprocessing
+        2.3. Linear Algebra
+        2.4. Calculus
+        2.5. Automatic Differentiation
+        2.6. Probability and Statistics
+        2.7. Documentation
+    3. Linear Neural Networks for Regression
+        3.1. Linear Regression
+        3.2. Object-Oriented Design for Implementation
+        3.3. Synthetic Regression Data
+        3.4. Linear Regression Implementation from Scratch
+        3.5. Concise Implementation of Linear Regression
+        3.6. Generalization
+        3.7. Weight Decay
+    4. Linear Neural Networks for Classification
+        4.1. Softmax Regression
+        4.2. The Image Classification Dataset
+        4.3. The Base Classification Model
+        4.4. Softmax Regression Implementation from Scratch
+        4.5. Concise Implementation of Softmax Regression
+        4.6. Generalization in Classification
+        4.7. Environment and Distribution Shift
+    5. Multilayer Perceptrons
+        5.1. Multilayer Perceptrons
+        5.2. Implementation of Multilayer Perceptrons
+        5.3. Forward Propagation, Backward Propagation, and Computational Graphs
+        5.4. Numerical Stability and Initialization
+        5.5. Generalization in Deep Learning
+        5.6. Dropout
+        5.7. Predicting House Prices on Kaggle
+    6. Builders’ Guide
+        6.1. Layers and Modules
+        6.2. Parameter Management
+        6.3. Parameter Initialization
+        6.4. Lazy Initialization
+        6.5. Custom Layers
+        6.6. File I/O
+        6.7. GPUs
+    7. Convolutional Neural Networks
+        7.1. From Fully Connected Layers to Convolutions
+        7.2. Convolutions for Images
+        7.3. Padding and Stride
+        7.4. Multiple Input and Multiple Output Channels
+        7.5. Pooling
+        7.6. Convolutional Neural Networks (LeNet)
+    8. Modern Convolutional Neural Networks
+        8.1. Deep Convolutional Neural Networks (AlexNet)
+        8.2. Networks Using Blocks (VGG)
+        8.3. Network in Network (NiN)
+        8.4. Multi-Branch Networks (GoogLeNet)
+        8.5. Batch Normalization
+        8.6. Residual Networks (ResNet) and ResNeXt
+        8.7. Densely Connected Networks (DenseNet)
+        8.8. Designing Convolution Network Architectures
+    9. Recurrent Neural Networks
+        9.1. Working with Sequences
+        9.2. Converting Raw Text into Sequence Data
+        9.3. Language Models
+        9.4. Recurrent Neural Networks
+        9.5. Recurrent Neural Network Implementation from Scratch
+        9.6. Concise Implementation of Recurrent Neural Networks
+        9.7. Backpropagation Through Time
+    10. Modern Recurrent Neural Networks
+        10.1. Long Short-Term Memory (LSTM)
+        10.2. Gated Recurrent Units (GRU)
+        10.3. Deep Recurrent Neural Networks
+        10.4. Bidirectional Recurrent Neural Networks
+        10.5. Machine Translation and the Dataset
+        10.6. The Encoder–Decoder Architecture
+        10.7. Sequence-to-Sequence Learning for Machine Translation
+        10.8. Beam Search
+    11. Attention Mechanisms and Transformers
+        11.1. Queries, Keys, and Values
+        11.2. Attention Pooling by Similarity
+        11.3. Attention Scoring Functions
+        11.4. The Bahdanau Attention Mechanism
+        11.5. Multi-Head Attention
+        11.6. Self-Attention and Positional Encoding
+        11.7. The Transformer Architecture
+        11.8. Transformers for Vision
+        11.9. Large-Scale Pretraining with Transformers
+    12. Optimization Algorithms
+        12.1. Optimization and Deep Learning
+        12.2. Convexity
+        12.3. Gradient Descent
+        12.4. Stochastic Gradient Descent
+        12.5. Minibatch Stochastic Gradient Descent
+        12.6. Momentum
+        12.7. Adagrad
+        12.8. RMSProp
+        12.9. Adadelta
+        12.10. Adam
+        12.11. Learning Rate Scheduling
+    13. Computational Performance
+        13.1. Compilers and Interpreters
+        13.2. Asynchronous Computation
+        13.3. Automatic Parallelism
+        13.4. Hardware
+        13.5. Training on Multiple GPUs
+        13.6. Concise Implementation for Multiple GPUs
+        13.7. Parameter Servers
+    14. Computer Vision
+        14.1. Image Augmentation
+        14.2. Fine-Tuning
+        14.3. Object Detection and Bounding Boxes
+        14.4. Anchor Boxes
+        14.5. Multiscale Object Detection
+        14.6. The Object Detection Dataset
+        14.7. Single Shot Multibox Detection
+        14.8. Region-based CNNs (R-CNNs)
+        14.9. Semantic Segmentation and the Dataset
+        14.10. Transposed Convolution
+        14.11. Fully Convolutional Networks
+        14.12. Neural Style Transfer
+        14.13. Image Classification (CIFAR-10) on Kaggle
+        14.14. Dog Breed Identification (ImageNet Dogs) on Kaggle
+    15. Natural Language Processing: Pretraining
+        15.1. Word Embedding (word2vec)
+        15.2. Approximate Training
+        15.3. The Dataset for Pretraining Word Embeddings
+        15.4. Pretraining word2vec
+        15.5. Word Embedding with Global Vectors (GloVe)
+        15.6. Subword Embedding
+        15.7. Word Similarity and Analogy
+        15.8. Bidirectional Encoder Representations from Transformers (BERT)
+        15.9. The Dataset for Pretraining BERT
+        15.10. Pretraining BERT
+    16. Natural Language Processing: Applications
+        16.1. Sentiment Analysis and the Dataset
+        16.2. Sentiment Analysis: Using Recurrent Neural Networks
+        16.3. Sentiment Analysis: Using Convolutional Neural Networks
+        16.4. Natural Language Inference and the Dataset
+        16.5. Natural Language Inference: Using Attention
+        16.6. Fine-Tuning BERT for Sequence-Level and Token-Level Applications
+        16.7. Natural Language Inference: Fine-Tuning BERT
+    17. Reinforcement Learning
+        17.1. Markov Decision Process (MDP)
+        17.2. Value Iteration
+        17.3. Q-Learning
+    18. Gaussian Processes
+        18.1. Introduction to Gaussian Processes
+        18.2. Gaussian Process Priors
+        18.3. Gaussian Process Inference
+    19. Hyperparameter Optimization
+        19.1. What Is Hyperparameter Optimization?
+        19.2. Hyperparameter Optimization API
+        19.3. Asynchronous Random Search
+        19.4. Multi-Fidelity Hyperparameter Optimization
+        19.5. Asynchronous Successive Halving
+    20. Generative Adversarial Networks
+        20.1. Generative Adversarial Networks
+        20.2. Deep Convolutional Generative Adversarial Networks
+    21. Recommender Systems
+        21.1. Overview of Recommender Systems
+        21.2. The MovieLens Dataset
+        21.3. Matrix Factorization
+        21.4. AutoRec: Rating Prediction with Autoencoders
+        21.5. Personalized Ranking for Recommender Systems
+        21.6. Neural Collaborative Filtering for Personalized Ranking
+        21.7. Sequence-Aware Recommender Systems
+        21.8. Feature-Rich Recommender Systems
+        21.9. Factorization Machines
+        21.10. Deep Factorization Machines
+    22. Appendix: Mathematics for Deep Learning
+        22.1. Geometry and Linear Algebraic Operations
+        22.2. Eigendecompositions
+        22.3. Single Variable Calculus
+        22.4. Multivariable Calculus
+        22.5. Integral Calculus
+        22.6. Random Variables
+        22.7. Maximum Likelihood
+        22.8. Distributions
+        22.9. Naive Bayes
+        22.10. Statistics
+        22.11. Information Theory
+    23. Appendix: Tools for Deep Learning
+        23.1. Using Jupyter Notebooks
+        23.2. Using Amazon SageMaker
+        23.3. Using AWS EC2 Instances
+        23.4. Using Google Colab
+        23.5. Selecting Servers and GPUs
+        23.6. Contributing to This Book
+        23.7. Utility Functions and Classes
+        23.8. The d2l API Document
+
+    References
+
+Next
+Preface

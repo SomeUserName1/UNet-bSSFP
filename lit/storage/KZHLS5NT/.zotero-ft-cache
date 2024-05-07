@@ -1,0 +1,82 @@
+
+Skip to main content
+Cornell University
+We gratefully acknowledge support from the Simons Foundation, member institutions , and all contributors. Donate
+arxiv logo > cs > arXiv:2211.02701
+
+Help | Advanced Search
+Search
+Computer Science > Machine Learning
+(cs)
+[Submitted on 4 Nov 2022]
+Title: MONAI: An open-source framework for deep learning in healthcare
+Authors: M. Jorge Cardoso , Wenqi Li , Richard Brown , Nic Ma , Eric Kerfoot , Yiheng Wang , Benjamin Murrey , Andriy Myronenko , Can Zhao , Dong Yang , Vishwesh Nath , Yufan He , Ziyue Xu , Ali Hatamizadeh , Andriy Myronenko , Wentao Zhu , Yun Liu , Mingxin Zheng , Yucheng Tang , Isaac Yang , Michael Zephyr , Behrooz Hashemian , Sachidanand Alle , Mohammad Zalbagi Darestani , Charlie Budd , Marc Modat , Tom Vercauteren , Guotai Wang , Yiwen Li , Yipeng Hu , Yunguan Fu , Benjamin Gorman , Hans Johnson , Brad Genereaux , Barbaros S. Erdal , Vikash Gupta , Andres Diaz-Pinto , Andre Dourson , Lena Maier-Hein , Paul F. Jaeger , Michael Baumgartner , Jayashree Kalpathy-Cramer , Mona Flores , Justin Kirby , Lee A.D. Cooper , Holger R. Roth , Daguang Xu , David Bericat , Ralf Floca , S. Kevin Zhou , Haris Shuaib , Keyvan Farahani , Klaus H. Maier-Hein , Stephen Aylward , Prerna Dogra , Sebastien Ourselin , Andrew Feng
+View a PDF of the paper titled MONAI: An open-source framework for deep learning in healthcare, by M. Jorge Cardoso and 56 other authors
+View PDF
+
+    Abstract: Artificial Intelligence (AI) is having a tremendous impact across most areas of science. Applications of AI in healthcare have the potential to improve our ability to detect, diagnose, prognose, and intervene on human disease. For AI models to be used clinically, they need to be made safe, reproducible and robust, and the underlying software framework must be aware of the particularities (e.g. geometry, physiology, physics) of medical data being processed. This work introduces MONAI, a freely available, community-supported, and consortium-led PyTorch-based framework for deep learning in healthcare. MONAI extends PyTorch to support medical data, with a particular focus on imaging, and provide purpose-specific AI model architectures, transformations and utilities that streamline the development and deployment of medical AI models. MONAI follows best practices for software-development, providing an easy-to-use, robust, well-documented, and well-tested software framework. MONAI preserves the simple, additive, and compositional approach of its underlying PyTorch libraries. MONAI is being used by and receiving contributions from research, clinical and industrial teams from around the world, who are pursuing applications spanning nearly every aspect of healthcare. 
+
+Comments: 	this http URL
+Subjects: 	Machine Learning (cs.LG) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)
+Cite as: 	arXiv:2211.02701 [cs.LG]
+  	(or arXiv:2211.02701v1 [cs.LG] for this version)
+  	https://doi.org/10.48550/arXiv.2211.02701
+Focus to learn more
+arXiv-issued DOI via DataCite
+Submission history
+From: M. Jorge Cardoso [ view email ]
+[v1] Fri, 4 Nov 2022 18:35:00 UTC (882 KB)
+Full-text links:
+Access Paper:
+
+    View a PDF of the paper titled MONAI: An open-source framework for deep learning in healthcare, by M. Jorge Cardoso and 56 other authors
+    View PDF
+    TeX Source
+    Other Formats 
+
+license icon view license
+Current browse context:
+cs.LG
+< prev   |   next >
+new | recent | 2211
+Change to browse by:
+cs
+cs.AI
+cs.CV
+References & Citations
+
+    NASA ADS
+    Google Scholar
+    Semantic Scholar
+
+a export BibTeX citation Loading...
+Bookmark
+BibSonomy logo Reddit logo
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer ( What is the Explorer? )
+Litmaps Toggle
+Litmaps ( What is Litmaps? )
+scite.ai Toggle
+scite Smart Citations ( What are Smart Citations? )
+Code, Data, Media
+Demos
+Related Papers
+About arXivLabs
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? )
+
+    About
+    Help
+
+    contact arXiv Click here to contact arXiv Contact
+    subscribe to arXiv mailings Click here to subscribe Subscribe
+
+    Copyright
+    Privacy Policy
+
+    Web Accessibility Assistance
+
+    arXiv Operational Status
+    Get status notifications via email or slack
+

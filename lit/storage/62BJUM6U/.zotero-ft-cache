@@ -1,0 +1,170 @@
+Instance Normalization: The Missing Ingredient for Fast Stylization
+
+arXiv:1607.08022v3 [cs.CV] 6 Nov 2017
+
+Dmitry Ulyanov Computer Vision Group
+Skoltech & Yandex Russia
+dmitry.ulyanov@skoltech.ru
+
+Andrea Vedaldi Visual Geometry Group
+University of Oxford United Kingdom
+vedaldi@robots.ox.ac.uk
+
+Victor Lempitsky Computer Vision Group
+Skoltech Russia lempitsky@skoltech.ru
+
+Abstract
+It this paper we revisit the fast stylization method introduced in Ulyanov et al. (2016). We show how a small change in the stylization architecture results in a signiﬁcant qualitative improvement in the generated images. The change is limited to swapping batch normalization with instance normalization, and to apply the latter both at training and testing times. The resulting method can be used to train high-performance architectures for real-time image generation. The code is available at https://github.com/DmitryUlyanov/texture_nets. Full paper can be found at https://arxiv.org/abs/1701.02096.
+1 Introduction
+The recent work of Gatys et al. (2016) introduced a method for transferring a style from an image onto another one, as demonstrated in ﬁg. 1. The stylized image matches simultaneously selected statistics of the style image and of the content image. Both style and content statistics are obtained from a deep convolutional network pre-trained for image classiﬁcation. The style statistics are extracted from shallower layers and averaged across spatial locations whereas the content statistics are extracted form deeper layers and preserve spatial information. In this manner, the style statistics capture the “texture” of the style image whereas the content statistics capture the “structure” of the content image.
+Although the method of Gatys et. al produces remarkably good results, it is computationally inefﬁcient. The stylized image is, in fact, obtained by iterative optimization until it matches the desired statistics. In practice, it takes several minutes to stylize an image of size 512 × 512. Two recent works, Ulyanov et al. (2016) Johnson et al. (2016), sought to address this problem by learning equivalent feed-forward generator networks that can generate the stylized image in a single pass. These two methods differ mainly by the details of the generator architecture and produce results of a comparable quality; however, neither achieved as good results as the slower optimization-based method of Gatys et. al.
+In this paper we revisit the method for feed-forward stylization of Ulyanov et al. (2016) and show that a small change in a generator architecture leads to much improved results. The results are in fact of comparable quality as the slow optimization method of Gatys et al. but can be obtained in real time on standard GPU hardware. The key idea (section 2) is to replace batch normalization
+
+Figure 1: Artistic style transfer example of Gatys et al. (2016) method.
+
+(a) Content image.
+
+(b) Stylized image.
+
+(c) Low contrast content image. (d) Stylized low contrast image.
+Figure 2: A contrast of a stylized image is mostly determined by a contrast of a style image and almost independent of a content image contrast. The stylization is performed with method of Gatys et al. (2016).
+
+layers in the generator architecture with instance normalization layers, and to keep them at test time (as opposed to freeze and simplify them out as done for batch normalization). Intuitively, the normalization process allows to remove instance-speciﬁc contrast information from the content image, which simpliﬁes generation. In practice, this results in vastly improved images (section 3).
+
+2 Method
+
+The work of Ulyanov et al. (2016) showed that it is possible to learn a generator network g(x, z) that can apply to a given input image x the style of another x0, reproducing to some extent the results of the optimization method of Gatys et al. Here, the style image x0 is ﬁxed and the generator g is learned to apply the style to any input image x. The variable z is a random seed that can be used to
+obtain sample stylization results.
+
+The function g is a convolutional neural network learned from examples. Here an example is just a content image xt, t = 1, . . . , n and learning solves the problem
+
+1n
+
+min gn
+
+L(x0, xt, g(xt, zt))
+
+t=1
+
+2
+
+Figure 3: Row 1: content image (left), style image (middle) and style transfer using method of Gatys et. al (right). Row 2: typical stylization results when trained for a large number of iterations using fast stylization method from Ulyanov et al. (2016): with zero padding (left), with a better padding technique (middle), with zero padding and instance normalization (right).
+
+where zt ∼ N (0, 1) are i.i.d. samples from a Gaussian distribution. The loss L uses a pre-trained CNN (not shown) to extracts features from the style x0 image, the content image xt, and the stylized image g(xt, zt), and compares their statistics as explained before.
+
+While the generator network g is fast, the authors of Ulyanov et al. (2016) observed that learning it from too many training examples yield poorer qualitative results. In particular, a network trained on just 16 example images produced better results than one trained from thousands of those. The most serious artifacts were found along the border of the image due to the zero padding added before every convolution operation (see ﬁg. 3). Even by using more complex padding techniques it was not possible to solve this issue. Ultimately, the best results presented in Ulyanov et al. (2016) were obtained using a small number of training images and stopping the learning process early. We conjectured that the training objective was too hard to learn for a standard neural network architecture.
+
+A simple observation is that the result of stylization should not, in general, depend on the contrast of the content image (see ﬁg. 2). In fact, the style loss is designed to transfer elements from a style image to the content image such that the contrast of the stylized image is similar to the contrast of the style image. Thus, the generator network should discard contrast information in the content image. The question is whether contrast normalization can be implemented efﬁciently by combining standard CNN building blocks or whether, instead, is best implemented directly in the architecture.
+
+The generators used in Ulyanov et al. (2016) and Johnson et al. (2016) use convolution, pooling,
+upsampling, and batch normalization. In practice, it may be difﬁcult to learn a highly nonlinear contrast normalization function as a combination of such layers. To see why, let x ∈ RT ×C×W ×H be an input tensor containing a batch of T images. Let xtijk denote its tijk-th element, where k and j span spatial dimensions, i is the feature channel (color channel if the input is an RGB image), and
+t is the index of the image in the batch. Then a simple version of contrast normalization is given by:
+
+ytijk =
+
+W l=1
+
+xtijk
+H m=1
+
+xtilm
+
+.
+
+(1)
+
+It is unclear how such as function could be implemented as a sequence of ReLU and convolution operator.
+
+3
+
+On the other hand, the generator network of Ulyanov et al. (2016) does contain a normalization layers, and precisely batch normalization ones. The key difference between eq. (1) and batch normalization is that the latter applies the normalization to a whole batch of images instead for single ones:
+
+ytijk
+
+=
+
+xtijk − µi , σi2 +
+
+1
+
+TW H
+
+µi = HW T
+
+xtilm,
+
+t=1 l=1 m=1
+
+σi2
+
+=
+
+1 HWT
+
+T
+
+W
+
+H
+(xtilm−mui)2.
+
+t=1 l=1 m=1
+
+(2)
+
+In order to combine the effects of instance-speciﬁc normalization and batch normalization, we pro-
+
+pose to replace the latter by the instance normalization (also known as “contrast normalization”)
+
+layer:
+
+ytijk
+
+=
+
+xtijk − µti , σt2i +
+
+1 WH
+
+µti = HW
+
+xtilm,
+
+l=1 m=1
+
+σt2i
+
+=
+
+1 HW
+
+W
+
+H
+(xtilm − muti)2. (3)
+
+l=1 m=1
+
+We replace batch normalization with instance normalization everywhere in the generator network g. This prevents instance-speciﬁc mean and covariance shift simplifying the learning process. Differently from batch normalization, furthermore, the instance normalization layer is applied at test time as well.
+
+3 Experiments
+In this section, we evaluate the effect of the modiﬁcation proposed in section 2 and replace batch normalization with instance normalization. We tested both generator architectures described in Ulyanov et al. (2016) and Johnson et al. (2016) in order too see whether the modiﬁcation applies to different architectures. While we did not have access to the original network by Johnson et al. (2016), we carefully reproduced their model from the description in the paper. Ultimately, we found that both generator networks have similar performance and shortcomings (ﬁg. 5 ﬁrst row).
+Next, the replaced batch normalization with instance normalization and retrained the generators using the same hyperparameters. We found that both architectures signiﬁcantly improved by the use of instance normalization (ﬁg. 5 second row). The quality of both generators is similar, but we found the residuals architecture of Johnson et al. (2016) to be somewhat more efﬁcient and easy to use, so we adopted it for the results shown in ﬁg. 4.
+
+4 Conclusion
+In this short note, we demonstrate that by replacing batch normalization with instance normalization it is possible to dramatically improve the performance of certain deep neural networks for image generation. The result is suggestive, and we are currently experimenting with similar ideas for image discrimination tasks as well.
+
+References
+Gatys, L. A., Ecker, A. S., and Bethge, M. (2016). Image style transfer using convolutional neural networks. In The IEEE Conference on Computer Vision and Pattern Recognition (CVPR).
+Johnson, J., Alahi, A., and Li, F. (2016). Perceptual losses for real-time style transfer and superresolution. CoRR, abs/1603.08155.
+Ulyanov, D., Lebedev, V., Vedaldi, A., and Lempitsky, V. S. (2016). Texture networks: Feed-forward synthesis of textures and stylized images. In Proceedings of the 33nd International Conference on Machine Learning, ICML 2016, New York City, NY, USA, June 19-24, 2016, pages 1349–1357.
+
+4
+
+Figure 4: Stylization examples using proposed method. First row: style images; second row: original image and its stylized versions.
+5
+
+Figure 5: Qualitative comparison of generators proposed in Ulyanov et al. (2016) (left), Johnson et al. (2016) (right) with batch normalization (ﬁrst row) and instance normalization (second row). Both architectures beneﬁt from instance normalization.
+Figure 6: Processing a content image from ﬁg. 4 with Delaunay style at different resolutions: 512 (left) and 1080 (right).
+6
+

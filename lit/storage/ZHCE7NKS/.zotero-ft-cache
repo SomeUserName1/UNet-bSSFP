@@ -1,0 +1,732 @@
+$watermark-text
+
+$watermark-text
+
+NIH Public Access
+Author Manuscript
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+Published in final edited form as: J Magn Reson Imaging. 2012 December ; 36(6): 1300–1313. doi:10.1002/jmri.23742.
+Rapid Gradient-Echo Imaging
+Brian Hargreaves, PhD Department of Radiology, Stanford University, Stanford CA, USA
+Abstract
+Gradient echo sequences are widely used in magnetic resonance imaging (MRI) for numerous applications ranging from angiography to perfusion to functional MRI. Compared with spin-echo techniques, the very short repetition times of gradient-echo methods enable very rapid 2D and 3D imaging, but also lead to complicated “steady states.” Signal and contrast behavior can be described graphically and mathematically, and depends strongly on the type of spoiling: fully balanced (no spoiling), gradient spoiling, or RF-spoiling. These spoiling options trade off between high signal and pure T1 contrast while the flip angle also affects image contrast in all cases, both of which can be demonstrated theoretically and in image examples. As with spin-echo sequences, magnetization preparation can be added to gradient-echo sequences to alter image contrast. Gradient echo sequences are widely used for numerous applications such as 3D perfusion imaging, functional MRI, cardiac imaging and MR angiography.
+Keywords Gradient echo; steady state; spoiling; balanced SSFP
+Introduction
+Magnetic resonance imaging (MRI) sequences are often classified either as spin-echo or gradient-echo techniques. Spin-echo sequences use refocusing radiofrequency (RF) pulses that cause the magnetization to realign even in the presence of resonance frequency variations due to static magnetic field inhomogeneity effects, resulting in robust imaging methods (1). This, combined with efficient mechanisms to generate pure T1, T2 and protondensity contrasts is why spin-echo methods are commonly used for routine clinical scanning. However, spin-echo methods are limited for some applications, due to high RF power requirements and lengthened time needed for refocusing pulses. Particularly for 3dimensional (3D) imaging or other applications where very rapid data collection is necessary, rapid gradient-echo imaging methods are frequently used. Early gradient echo sequences used a short excitation followed by the minimum gradient waveforms necessary to form an image, allowing very rapid imaging (2). Numerous variations on this approach allow more control of image artifacts and contrast. This article describes the contrast mechanisms, parameter selections and some applications of gradient-echo sequences.
+General Gradient-Echo Sequences As is common in MRI, the terminology around gradient-echo sequences has become confusing and, to some extent, ambiguous. Generally, the term “gradient echo” refers to a point in time when magnetization in a motionless sample is coherent regardless of its position within the sample along at least one direction (3). This usually occurs whenever the
+Correspondence: Brian A. Hargreaves, Lucas Center for Imaging, 1201 Welch Rd, Stanford, CA, USA. 94305-5488, bah@stanford.edu.
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 2
+
+net gradient area since the excitation is zero. Conversely, in a “spin echo,” magnetization is coherent regardless of resonant frequency (1). The relationship between gradient echoes and spin echoes is both described and applied in the GRASE (gradient and spin echo) technique (4). Gradient-echo sequences, the topic of this paper, are generally sequences that do not use spin echoes. These include gradient spoiled sequences, RF-spoiled sequences and balanced steady-state free precession (bSSFP) sequences.
+Rapid gradient-echo sequences consist of a single RF excitation, imaging gradients and acquisition, as shown in Fig. 1. The RF pulse has some flip angle α and some phase angle, φ. Similar slice-selection (or slab-selection for 3D) and imaging gradients are used for all gradient-echo sequences. The echo time (TE) is the time from the RF pulse to the formation of a gradient echo, and the repetition time (TR) is the time between excitation pulses.
+After the imaging portion of the sequence, some residual transverse magnetization remains, and different gradient-echo sequences use this magnetization differently. Balanced steadystate free-precession (bSSFP) sequences have no spoiler gradients, and attempt to recover transverse magnetization. Gradient-spoiled sequences have a “spoiler gradient” at the end of the repetition, which averages transverse magnetization across a voxel. Finally, RF-spoiled sequences use a gradient spoiler at the end of the repetition and additionally vary the phase of each RF pulse to eliminate transverse magnetization, providing pure T1 contrast. The different treatment of residual magnetization results in very different contrasts for these three sequences, as shown in Fig. 2.
+
+Magnetization Dynamics
+Although the purpose of this article is to provide an intuitive understanding of methods, numerous other analysis techniques exist. The dynamics of spins in an MRI system with RF and gradient coils are accurately described by the Bloch equation (5). Given RF and gradient waveforms, as well as the resonance frequency, relaxation times and position of a spin, the (3×1) magnetization vector can be easily modeled using a matrix formalism (6). The effects of precession, gradients, RF excitation and relaxation can easily be applied numerically to individual spins to study the resulting MRI signal and contrast from many different pulse sequences. Analytic descriptions of the signals in different gradient-echo sequences often provide faster calculations and additional insights into the signal formation (7–10). Alternatively, extended phase graphs are a powerful tool to model signal formation through different refocusing pathways and can include diffusion effects (11,12). Other articles have also provided additional explanations of the different steady states that form in rapid gradient echo imaging (13, 14).
+
+Steady States
+In MRI pulse sequences, the same sequence of RF rotations and gradients is usually repeated many times, with magnetization changing the same way during each repetition. When the TR is long, the magnetization begins at equilibrium on each repetition. As TR is shortened to about 2×T1 or lower, incomplete T1-relaxation may occur, and magnetization forms a “steady state” that depends on T1 and TR. When TR is further shortened to about 2×T2 or lower, both T1 and T2 relaxation are incomplete and the steady-state signal depends on many factors. This last case applies to most rapid gradient-echo sequences.
+
+Overview
+
+This article begins by showing intuitively how the basic steady states are formed, with mathematical explanations given in the Appendix. The different implementations, contrast mechanisms and characteristics of common rapid gradient-echo imaging sequences are then
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 3
+
+explored. Finally, the effects of imaging parameters including flip angle, repetition time and echo times are described, with examples of these changes.
+
+Geometric Description of Magnetization Dynamics
+This section explains the magnetization dynamics in gradient-echo sequences geometrically. A parallel, mathematical explanation is given in the Appendix. The signal dynamics are first described for balanced SSFP, which is the simplest sequence. From this, the signals in gradient-spoiled variations then RF-spoiled sequences can be explained.
+
+Balanced Steady-State Free Precession
+The most basic gradient-echo sequence occurs when the net gradient area on each axis is zero over the sequence repetition. In this case, the effect of gradients upon the steady state can be neglected. Historically, the resulting magnetization dynamic is called “steady-state free precession” (SSFP) (15) but to avoid ambiguity, the term “balanced SSFP” (bSSFP) is often used. The bSSFP magnetization is described here, and in more detail elsewhere (16, 17).
+To understand the magnetization dynamics, first assume that the sign of the RF excitation alternates between successive repetitions, and the flip angle is reasonably large, say greater than 10° (See later section regarding “Small Flip-Angle Balanced SSFP”). When TR is very short, the change in magnetization length over TR can be neglected, which combined with the Bloch equation leads to a very powerful constraint: the steady-state magnetization is restricted to lie on the surface of an ellipsoid (Fig. 3). The shape of the ellipsoid is determined by the T2/T1 ratio of the tissue. RF pulses and precession both rotate magnetization on this ellipsoid by known angles, and the complete steady state is easily found geometrically as shown in Fig. 3, which shows the magnetization path that satisfies both the RF rotation and precession angles, while lying on the ellipsoid surface (17,18). This solution explains many gradient-echo sequence signal characteristics.
+The magnetization states from Fig. 3 are summarized at different time points in Fig. 4. The signal (transverse magnetization vectors) starts as an elliptical distribution, then aligns along positive and negative directions midway between RF pulses, and then reforms an elliptical distribution. The amplitude and phase for the well-known bSSFP signal profile (Fig. 4) are periodic functions of the resonant frequency (period = 1/TR). The signal magnitude is symmetric about the on-resonance frequency, and includes null points, where the signal is zero. The phase is refocused midway between RF pulses offering a spin-echo-like effect, but over a limited range of frequencies (19,20).
+
+Gradient-Spoiled Dynamics
+The precession over each repetition can be result from background static magnetic field variations, or be induced by a spoiler gradient. In the latter case, the amount of precession varies linearly across a voxel, with each spin reaching a steady state based on the amount of precession induced at that location. The end effect is that the signal is the average of the balanced SSFP signal, as shown in Fig. 5. Since precession from the spoiler dominates precession due to other sources, the spin dynamics are those of Fig. 4a, where the imaging measurement precedes precession. The signal is the complex (vector) average of the elliptical distribution of spins in Fig. 4, and is not sensitive to the resonant frequency. However, the presence of multiple frequencies in a voxel will result in static dephasing, or T2* signal loss. Note that the spoiler area should be chosen carefully to induce an integer number of cycles across the voxel to avoid any signal variations with resonant frequency.
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 4
+
+Complete Spoiling Dynamics
+Completely eliminating transverse magnetization at the end of each repetition enables pure T1-weighted imaging, but unfortunately it is not possible to simply null transverse magnetization. Gradient spoilers dephase a group of spins in a voxel, which has the effect of nulling the signal in the short term. However, as shown by Fig. 5, in the steady state there is considerable transverse signal after the spoiler gradient. Varying the size of spoiler gradients for different repetitions alters this behavior, but still does not fully eliminate signal in the steady state (21, 22). Fortunately, the combination of spoiler gradients with a variation of the RF pulse phase can solve this problem.
+
+The technique of RF-spoiling uses an unbalanced gradient for gradient spoiling and also increments the phase of the RF pulse (and acquired data) on each excitation (22, 23), and increases the RF phase increment by certain numbers such as 117°. While the overall distribution of magnetization within a voxel is very complicated, the average signal is very similar to that which would be achieved if the transverse magnetization could be just set to zero at the end of each repetition, which enables pure T1-weighted imaging.
+Pulse Sequences
+The previous section described the steady states that form when periodic sequences of RF rotations, precession, and decay are applied. We now describe several different pulse sequences using these concepts to understand the signal formation with each sequence. In all cases, we use the x, y and z axes as the readout, phase-encode and slice-select axes respectively. Other practical aspects of these pulse sequences are described in considerable detail elsewhere (3, 24).
+
+Balanced SSFP Imaging
+Balanced SSFP imaging uses the sequence shown in Fig. 6 to give the signal characteristics described in the previous section (25, 26). All gradients are “balanced,” meaning they have zero net area over a repetition. This creates the bSSFP magnetization dynamics described above, where the precession ψ arises only from off-resonance effects, and typically the goal is to keep ψ small. Commercial names for balanced SSFP methods include TrueFISP, FIESTA, Balanced-FFE, BASG or True SSFP.
+
+bSSFP images usually result in the highest signal of the gradient echo methods, and a contrast that is a function of T2/T1 (Fig. 7). The primary limitation of balanced SSFP imaging is the signal variation with off-resonance frequency (27), which can be mitigated by minimizing the repetition time, TR. However, the minimum time required to achieve adequate spatial resolution or to limit RF power absorption limits the minimum TR that can be achieved. Using multiple acquisitions with “phase cycling” can also mitigate undesirable signal variations due to static magnetic field variations (28, 29). Adding a constant phase to each successive RF pulse (and acquired echo signal) adds a constant amount of procession per TR, which simply shifts the signal profile in Figs. 3 and 4. The receiver phase is aligned with the transmit phase. Note that the alternating RF scheme that is typically used is really a phase increment of 180° per TR. Numerous schemes of combining acquisitions with different phase increments have been proposed to smooth the signal (7, 30, 31), to create suppression profiles (32), or to maximize signal-to-noise ratio of the combination (33).
+
+Other variations of balanced SSFP sequences have been proposed for different objectives. Frequency-modulated SSFP is a way to continuously vary the phase cycling described above (34). Alternating the phase of the RF pulse by 90° (35), or alternating the repetition time itself (36, 37) vary the spectral profile to allow fat suppression or wider spacing between dark bands.
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 5
+
+Gradient-Spoiled Sequences
+The goal of gradient spoiling is to avoid the signal variations due to off-resonance effects in balanced SSFP, by essentially averaging the profile. The gradient-spoiled sequence (FE, FFE, GRASS, GRE, FISP, FAST), uses a spoiler gradient at the end of the sequence as shown in Fig. 8 (8, 38). The net gradient area is no longer zero over a sequence repetition, resulting in complex averaging of the bSSFP signal profile within each voxel. Typically the spoiler area is chosen to induce an integer number of cycles of phase twist across a voxel. The effect is similar regardless of the direction of the net spoiler gradient, which may be chosen to induce phase in the slice, readout or phase-encode direction, or in some combination of these. However, it is important to note that for a given spoiler gradient size, spoiling in the slice direction is often most effective, since this is often the largest voxel dimension so the phase twist across a voxel is maximized.
+While the signal in gradient-spoiled images is reduced since spins are no longer perfectly coherent, the image contrast of gradient-spoiled images is similar to that of balanced SSFP, still a function of T2/T1, because underlying elliptical spin distribution is based on T2/T1. Additionally, the relative signal of fluids tends to be lower compared to the predicted signal in gradient-spoiled imaging than balanced SSFP, due to diffusion effects (39). These can be understood by considering that the dephased signal after one repetition is rephased by later spoiler gradients, and in the presence of diffusion the rephasing is less complete (40). Figure 9 compares images with balanced SSFP and gradient spoiling, using identical flip angles. Note the brighter CSF in the bSSFP image, but also the presence of a signal null near the sinuses. There are many variations of gradient-spoiled sequences, depending on the direction and size of the spoiler gradient. However, if the assumption can be made that the unbalanced gradient induces numerous rotations within a single voxel, the signal is similar for all variations.
+
+Reversed Gradient-Spoiled Echo
+While gradient-spoiled sequences generate the elliptical distribution at the top of Fig. 4 within each voxel, it is also possible to image with the distribution at the bottom of Fig. 4 by inducing precession prior to imaging. The reversed gradient-spoiled sequence (CE-FAST, SSFP, T2-FFE and PSIF, SSFP-echo) instead uses a gradient spoiler at the beginning of the sequence, as shown in Fig. 10 (38, 41). As with the gradient-spoiled sequence, the steadystate magnetization for any single spin is the same as for balanced SSFP when the precession due to the gradient spoiler is included. However, imaging occurs after the spoiler gradient. Because of the absence of a free-induction-decay signal component, the signal is more heavily T2-weighted than that of gradient spoiled imaging, as well as more sensitive to diffusion effects (39, 42). Note that T2′ dephasing effects should be calculated between the echo time and the subsequent RF pulse. The reversed gradient-spoiled sequences have similar T2/T1 contrast to gradient-spoiled sequences, but with additional T2 weighting. As TR approaches T2, this can produce fairly noticeable signal differences, as shown in Fig. 11.
+Double Echo Imaging (FADE or DESS)
+The fast acquisition double echo (FADE) or double echo at steady state (DESS) sequence acquires both the gradient-spoiled echo and the reversed gradient-spoiled echo in a single repetition (42–44). This is achieved by placing the gradient spoiling in the middle of the sequence as shown in Fig. 12. The echo characteristics are those described above. Commercial implementations (DESS, MENSA) typically combine the signals from both echoes using a magnitude sum or root-mean-square combination. However, recent work suggests that the difference between echoes can be exploited to measure T2 to a good approximation (45), while modulation of the spoiler gradient can offer quantitative diffusion measurement (46). Often the spoiling in FADE or DESS is achieved by simply extending
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 6
+
+the readout gradient, though it has recently been shown that playing the spoiler on the sliceselect axis can often reduce its area, which minimizes diffusion-related signal loss (47).
+
+RF-Spoiled Gradient Echo
+Gradient spoiled, reversed gradient spoiled and balanced SSFP sequences all have a signal with “T2/T1” contrast. The T2 dependence can be virtually eliminated by RF spoiling (22, 23), leaving pure T1 contrast. RF spoiling quadratically increments the phase of the RF pulse in combination with gradient spoiling, with the result that residual transverse magnetization before the RF pulse is not refocused and can be neglected. Therefore the pulse sequence looks exactly like the gradient-spoiled sequence (Fig. 8). The signal in RF spoiled sequences (SPGR, FLASH, T1-FFE) can be calculated by numerical simulations, but is well approximated by simply neglecting residual transverse magnetization prior to each RF pulse (See Appendix). Diffusion effects further enhance the ability of RF-spoiled sequences to avoid T2-dependent contrast.
+RF-spoiled gradient-echo imaging is commonly used clinically for contrast-enhanced imaging, since the pure T1 weighting highlights the shortened-T1 due to presence of a contrast agent. One of the most common contrast-enhanced applications is MR angiography, whereby fast 3D RF-spoiled images are acquired shortly after contrast injection to vasculature. Careful timing of these images enables depiction of arterial and venous phases. Dynamic contrast-enhanced MRI extends this approach to measure the time course of perfusion. Fig. 13 shows an example of pre-contrast and post-contrast T1-weighted imaging that is the primary method used to diagnose breast cancer with MRI. Another example in Fig. 14 shows the contrast enhancement of the colon wall, compared with balanced SSFP contrast. Both images are part of a 3D series acquired in a single breath hold. Balanced SSFP shows fluid in the colon, while contrast-enhanced RF-spoiled imaging suppresses the fluid signal, but highlights the colon wall. Possibly due to the high prevalence of RF-spoiled gradient echo imaging, the unqualified term “spoiled” usually means RF-spoiled, as opposed to gradient-spoiled. Additionally, the terms GRE or gradient echo are frequently used refer to RF-spoiled imaging.
+
+Imaging Considerations
+This section briefly discusses some of the parameter choices and signal considerations with the rapid gradient-echo pulse sequences, including relative signals and contrast of different sequences.
+
+Timing Parameters
+Gradient-echo sequences are relatively simple, with only two primary timing parameters, TR and TE. For most fast imaging applications, TR is minimized, primarily to reduce the scan time and avoid bulk subject motion. This is emphasized more with balanced SSFP, particularly at higher field strengths, as reducing TR reduces the likelihood of dark band artifacts (described above). The minimum TR is limited by the duration of pulses due to imaging resolution and gradient system limitations, and in the case of T2*-weighted imaging, by the lengthened TE.
+Several considerations affect the choice of echo time, TE. Minimizing the TE minimizes Intravoxel dephasing, which leads to signal loss in RF-spoiled and gradient-spoiled sequences. However, in balanced SSFP, this dephasing is minimized by choosing TE=TR/2 (19, 20). In reversed gradient-spoiled imaging, the dephasing is minimized by minimizing the difference between TE and TR.
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 7
+
+Contrast based on T2* (both T2-decay and intravoxel dephasing) is very commonly used for numerous applications, particularly for neuroimaging (48). Different contrast methods include BOLD imaging in functional MRI (fMRI) (49, 50), for dynamic susceptibility contrast (DSC) perfusion (51) and more recently for susceptibility weighted imaging (SWI) (52). T2* weighting is generated by using a longer TE, at a cost of reduced signal-to-noise ratio (SNR) and longer TR. Typically, gradient spoiling or RF spoiling is used for these sequences though when TR is long compared to T2* the difference may be negligible. An example fMRI activation map is shown in Fig. 15.
+Alternatively, it is often desirable to minimize TE to reduce the sensitivity to flow, cardiac motion or respiratory motion. In addition to short TE, a “fractional” readout is often also used, in combination with a partial Fourier reconstruction (53, 54). The reduced size of dephasing and readout gradients prior to TE substantially reduces the higher gradient moments, and thus the sensitivity to motion or flow (55, 56). Using modern gradient systems, it is not unusual to achieve TE times of 1 to 2 milliseconds by using these approaches, combined with high receiver bandwidths.
+A more extreme case of minimized TE is ultrashort TE (UTE) imaging (57), whereby special excitation pulses, radial readouts and in some cases specialized receiver hardware are used to image with echo times of tens to hundreds of microseconds. Here the goal is to use a near-zero echo time to image very short T2 (or T2*) species that are otherwise not visible, as shown in Fig. 16. There has been considerable interest in UTE imaging, particularly for imaging tendons, ligaments, menisci and cortical bone (58–60).
+Finally, it is becoming more common in gradient-echo sequences to use multi-echo or Dixon-type methods (61–63) for fat/water separation. For rapid steady-state sequences, an advantage of these approaches is that they do not interrupt or alter the steady state. Particularly in abdominal imaging, the use of both in- and out-of-phase imaging can also be useful in diagnosis of liver lesions based on fat/water chemical shift (64), as well as T2* effects (65). There are, of course, numerous other applications for multiple TE methods and T2* measurement, for example Refs. 66–68.
+Flip Angle and Contrast
+Since TR is often minimized, the flip angle is the main parameter used to adjust contrast in rapid gradient-echo sequences. Figure 17 shows the flip-angle dependence of bSSFP, gradient-spoiled and and RF spoiled sequences. For a given T1 and T2 combination, each sequence has a flip angle that maximizes SNR. An interesting point to note is that at the Ernst angle (69), α = arccos(e−TR/T1), which maximizes signal for RF-spoiled sequences, the signal is identical for all spoiling methods (10). Below the Ernst angle, the gradientspoiled signal is actually lower than that of RF-spoiled signal, while the bSSFP signal may be higher or lower depending on whether the excitation sign alternates. Overall, the flip angle is usually chosen to maximize a combination of SNR as well as contrast between the tissues of interest. Figure 18 shows bSSFP, gradient-spoiled and RF-spoiled images with identical parameters at different flip angles. It is clear that for each sequence, both contrast and signal vary with flip angle, and the optimal choice of flip angle combines the goals of high contrast and high SNR.
+
+Small Flip-Angle Balanced SSFP
+The signal description in this article applies for bSSFP with moderate to large flip angles, as is commonly used in many clinical imaging cases. However, in cases where the flip angle is small, the assumption that the RF nutation is balanced by precession (and that relaxation over TR can be neglected) breaks down. The contrast is less-dependent on residual
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 8
+
+magnetization, and tends to become proton-density weighted and less dependent on spoiling. The bSSFP signal profile is inverted, so that at critical frequencies where there are signal nulls for high flip angles, the low-flip-angle signal is maximized (10). Interestingly, however, the phase profile is independent of flip angle, and sharp transitions at critical points remain. The combination of high signal with rapid phase transition has been exploited for functional MRI (70), as well as for MR thermometry (71).
+
+SNR Considerations
+Signal-to-noise ratio (SNR) is always an important consideration in MRI. SNR is proportional to voxel size, the square root of the total acquisition time, and the signal level for the given sequence and parameters. 3D gradient-echo sequences typically achieve good SNR because the signal is averaged over many repetitions when 3D phase encoding is used. However, as TR is shortened, a greater proportion of time is required for RF pulses and preparatory gradients such as phase encoding, dephasing and rephasing. This means that the “acquisition duty cycle” or the portion of TR spent acquiring data is reduced. A compromise is to lower the readout bandwidth, which increases the acquisition duty cycle, but this increases TE (and T2* signal loss) or may extend TR. Extending TR lengthens scan time and exacerbates dark band artifacts in bSSFP. Overall, in gradient-echo sequences, there is usually a trade-off between maximizing SNR and minimizing TR and TE for the reasons described above.
+
+Magnetization Preparation Options
+In order to enhance the intrinsic contrast of gradient echo sequences, “magnetization preparation” schemes are often used. These may include chemically-selective saturation (CHESS) or inversion-recovery for fat suppression (72), inversion-recovery for long-T1 fluid suppression or background suppression for angiography or perfusion, T2-preparation to enhance T2 contrast (73), myocardial tagging to observe myocardial motion (74–77), magnetization-transfer preparation (78, 79). Magnetization-prepared rapid acquisition with gradient echo (MP-RAGE) methods use either a saturation pulse to enhance T1 contrast or a T2-prep pulse to enhance T2 contrast (80). The preparation block simply precedes a gradient-echo readout method that can use any of the spoiling types described here. An example comparing magnetization-prepared (inversion-recovery background suppression) imaging to contrast-enhanced RF-spoiled imaging for MR angiography is shown in Fig. 19, demonstrating two very different gradient-echo imaging approaches for this application.
+Following any preparation technique, it is desirable to image as quickly as possible. For RFspoiled and gradient-spoiled imaging, it is often possible to simply begin imaging after preparation. Balanced SSFP is increasingly used following magnetization preparation because it preserves high signal, but care must be taken to avoid signal oscillations that cause image artifacts (81). A bSSFP start-up or “catalyzation” sequence of RF pulses is usually used, ranging from a simple α/2 pulse (82) to longer sequences that perform well over a broader range of off-resonances (83), to a spin-echo-like approach called transition into driven equilibrium (TIDE) (84). All of these approaches attempt to ensure a smooth transient signal, which tends to minimize imaging artifacts. However, by their nature, magnetization-prepared methods always image transient magnetization, which, combined with the k-space sampling order, will affect the resulting contrast and image artifacts.
+
+Flow and Motion Sensitivity
+Most derivations of steady-state MR signals, including those in this article, ignore the effects of flow and motion. However, the broad applications of these sequence often involve diffusive, cardiac, respiratory or other motion as well as steady or pulsatile flow. The imaging effects of motion or flow are often similar to any sequence, and can be reduced with
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 9
+
+standard techniques such as cariac or respiratory triggering, breath-holding or navigatorbased methods. Gradient moment-nulling or short echo times can be used to reduce flow sensitivity. In addition, flow and motion can affect the steady-state itself, often causing signal variations. Diffusion and motion sensitivity increase primarily with the size of unbalanced spoiler gradients. The steady-state in balanced SSFP is relatively insensitive to diffusion and small motion as the gradient area is rewound and gradient first-moments tend to be nulled in the readout direction and small in other directions. Instead, flowing spins in bSSFP can result in slice-profile distortion and out-of-slice excitation (85). Gradient-spoiled imaging is particularly sensitive to diffusive motion, especially when the spoiler precedes imaging (39). Constant flow in gradient-spoiled imaging essentially results in a quadraticphase modulation of the excitation which can cause velocity-dependent signal modulation and loss (86). RF-spoiled sequences tend to be relatively immune to most motion, as most motion effects either help eliminate transverse magnetization or at least do not enhace signal. Finally as with other sequence, inflow enhancement can alter the signal in all steadystate sequences, especially when flow is time-varying or acquisitions are cardiac or respiratory triggered.
+Summary
+Gradient-echo sequences are commonly used in MRI for applications such as rapid 3D imaging, fMRI, and magnetization-prepared imaging, with many of the variations summarized in Table 1. When short repetition times are used, the signal behavior and contrast of these sequences depends strongly on the residual magnetization prior to each excitation. Signal contrast can be altered by using combinations of gradient spoiling and RF spoiling, or by varying the flip angles. The choice of TE also allows contrast based on T2* or chemical shift, as is commonly used for perfusion, susceptibility weighted, or BOLD imaging. Finally, gradient echo sequences can be combined with magnetization preparation schemes to setup and efficiently image a desired contrast state without the blurring that can occur with spin-echo methods.
+
+Acknowledgments
+Funding Support from NIH P41-RR009784, R01-EB009055 and R01-EB002524, and the Richard M. Lucas Foundation
+The author acknowledges all image contributions as noted, as well as useful discussions and help in preparing this manuscript from Pauline Worters, Kyung Sung, Karla Miller and Shreyas Vasanawala.
+
+References
+1. Hahn EL. Spin echoes. Phys Rev. 1950; 80:580–594. 2. Haase A, Frahm J, Matthaei D, Hanicke W, Merboldt KD. FLASH imaging. Rapid NMR imaging
+using low flip-angle pulses. J Magn Reson. 1986; 67:258–266. 3. Haacke, EM.; Brown, RW.; Thompson, MR.; Venkatesan, R. Magnetic Resonance Imaging:
+Physical Principles and Sequence Design. 1. New York: John Wiley and Sons Inc; 1999. p. 918 4. Oshio K, Feinberg DA. GRASE (gradient- and spin-echo) imaging: A novel fast MRI technique.
+Magn Reson Med. 1991; 20:344–349. [PubMed: 1775061] 5. Bloch F. Nuclear induction. Phys Rev. 1946; 70:460–474. 6. Jaynes E. Matrix treatment of nuclear induction. Phys Rev. 1955; 98:1099–1105. 7. Zur Y, Stokar S, Bendel P. An analysis of fast imaging sequences with steady-state transverse
+magnetization refocusing. Magn Reson Med. 1988; 6:175–193. [PubMed: 3367775] 8. Sekihara K. Steady-state magnetizations in rapid NMR imaging using small flip angles and short
+repetition intervals. IEEE Trans Med Imaging. 1987; 6:157–164. [PubMed: 18230442]
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 10
+9. van der Meulen P, Groen JP, Tinus AMC, Bruntink G. Fast field echo imaging: An overview and contrast calculations. Magn Reson Imaging. 1988; 6:355–368. [PubMed: 3054380]
+10. Buxton RB, Fisel CR, Chien D, Brady TJ. Signal intensity in fast NMR imaging with short repetition times. J Magn Reson. 1989; 83:576–585.
+11. Hennig J. Multiecho imaging sequences with low refocusing flip angles. J Magn Reson. 1988; 78:397–407.
+12. Weigel M, Schwenk S, Kiselev V, Scheffler K, Hennig J. Extended phase graphs with anisotropic diffusion. J Magn Reson. 2010; 205:276–285. [PubMed: 20542458]
+13. Scheffler K. A pictorial description of steady-states in rapid magnetic resonance imaging. Concepts Magn Reson. 1999; 11:291–304.
+14. Chavhan GB, Babyn PS, Jankharia BG, Cheng HL, Shroff MM. Steady-state MR imaging sequences: physics, classification, and clinical applications. Radiographics. 2008; 28:1147–1160. [PubMed: 18635634]
+15. Carr HY. Steady-state free precession in nuclear magnetic resonance. Phys Rev. 1958; 112:1693– 1701.
+16. Scheffler K, Lehnhardt S. Principles and applications of balanced SSFP techniques. Eur Radiol. 2003; 13:2409–2418. [PubMed: 12928954]
+17. Schmitt P, Griswold MA, Gulani V, Haase A, Flentje M, Jakob PM. A simple geometrical description of the TrueFISP ideal transient and steady-state signal. Magn Reson Med. 2006:55.
+18. Zun, Z.; Nayak, KS. Graphical derivation of the steady-state magnetization in balanced SSFP MRI. Proceedings of the 14th Annual Meeting of ISMRM; Seattle. 2006. p. 2410
+19. Scheffler K, Hennig J. Is TrueFISP a gradient-echo or a spin-echo sequence? Magn Reson Med. 2003; 49:395–397. [PubMed: 12541263]
+20. Hargreaves BA, Vasanawala SS, Nayak KS, Hu BS, Nishimura DG. Fat-suppressed steady-state free precession imaging using phase detection. Magn Reson Med. 2003; 50:210–213. [PubMed: 12815698]
+21. Frahm J, Hanicke W, Merboldt KD. Transverse coherence in rapid FLASH NMR imaging. J Magn Reson. 1987; 72:307–314.
+22. Crawley AP, Wood ML, Henkelman RM. Elimination of transverse coherences in FLASH MRI. Magn Reson Med. 1988; 8:248–260. [PubMed: 3205155]
+23. Zur Y, Wood ML, Neuringer LJ. Spoiling of transverse magnetization in steady-state sequences. Magn Reson Med. 1991; 21:251–263. [PubMed: 1745124]
+24. Bernstein, MA.; King, KF.; Zhou, ZJ. Handbook of MRI pulse sequences. Burlington MA: Elsevier Inc; 2004. p. 1017
+25. Oppelt A, Graumann R, Barfuss H, Fischer H, Hartl W, Shajor W. FISP – a new fast MRI sequence. Electromedica. 1986; 54:15–18.
+26. Duerk JL, Lewin JS, Wendt M, Petersilge C. Remember true FISP? a high SNR near 1-second imaging method for T2-like contrast in interventional MRI at. 2 T. J Magn Reson Imaging. 1998; 8:203–208. [PubMed: 9500281]
+27. Freeman R, Hill HDW. Phase and intensity anomalies in Fourier transform NMR. J Magn Reson. 1971; 4:366–383.
+28. Hinshaw WS. Image formation by nuclear magnetic resonance: the sensitive-point method. J Appl Phys. 1976; 47:3709–3721.
+29. Zur Y, Wood ML, Neuringer LJ. Motion-Insensitive Steady-State Free Precession Imaging. Magn Reson Med. 1990; 16:444–451. [PubMed: 2077335]
+30. Haacke EM, Wielopolski PA, Tkach JA, Modic MT. Steady-state free precession imaging in the presence of motion: Application for improved visualization of the cerebrospinal fluid. Radiology. 1990; 175:545–552. [PubMed: 2326480]
+31. Kurucay S, Schmalbrock P, Chakeres DW, Keller PJ. A segment-interleaved motion-compensated acquisition in the steady state (SIMCAST) technique for high resolution imaging of the inner ear. J Magn Reson Imaging. 1997; 7:1060–1068. [PubMed: 9400850]
+32. Vasanawala SS, Pauly JM, Nishimura DG. Linear combination steady-state free precession MRI. Magn Reson Med. 2000; 43:82–90. [PubMed: 10642734]
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 11
+33. Bangerter NK, Hargreaves BA, Vasanawala SS, Pauly JM, Gold GE, Nishimura DG. Analysis of multiple-acquisition SSFP. Magn Reson Med. 2004; 51:1038–1047. [PubMed: 15122688]
+34. Foxall DL. Frequency-modulated steady-state free precession imaging. Magn Reson Med. 2002; 48:502–508. [PubMed: 12210915]
+35. Vasanawala SS, Pauly JM, Nishimura DG. Fluctuating equilibrium MRI. Magn Reson Med. 1999; 42:876–883. [PubMed: 10542345]
+36. Leupold J, Hennig J, Scheffler K. Alternating repetition time balanced steady state free precession. Magn Reson Med. 2006; 55:557–565. [PubMed: 16447171]
+37. Nayak K, Lee H, Hargreaves B, Hu B. Wideband SSFP: alternating repetition time balanced steady state free precession with increased band spacing. Magn Reson Med. 2007; 58:931–938. [PubMed: 17969129]
+38. Gyngell ML. The application of steady-state free precession in rapid 2DFT NMR imaging: FAST and CE-FAST sequences. Magn Reson Imaging. 1988; 6:415–419. [PubMed: 3185135]
+39. Wu E, Buxton R. Effect of diffusion on the steady-state magnetization with pulsed field gradients. J Magn Reson. 1990; 90:243–253.
+40. Buxton R. The diffusion sensitivity of fast steady-state free precession imaging. Magn Reson Med. 1993; 29:235–243. [PubMed: 8429788]
+41. Hawkes RC, Patz S. Rapid Fourier imaging using steady-state free precession. Magn Reson Med. 1987; 4:9–23. [PubMed: 3821484]
+42. Redpath TW, Jones RA. FADE - a new fast imaging sequence. Magn Reson Med. 1988; 6:224– 234. [PubMed: 3367779]
+43. Lee SY, Cho ZH. Fast SSFP gradient echo sequence for simultaneous acquisitions of FID and echo signals. Magn Reson Med. 1988; 8:142–150. [PubMed: 3210952]
+44. Bruder H, Fischer H, Graumann R, Deimling M. A new steady-state imaging sequence for simultaneous acquisition of two MR images with clearly different contrasts. Magn Reson Med. 1988; 7:35–42. [PubMed: 3386520]
+45. Welsch G, Scheffler K, Mamisch T, et al. Rapid estimation of cartilage T2 based on double echo at steady state (DESS) with 3 Tesla. Magn Reson Med. 2009; 62:544–549. [PubMed: 19526515]
+46. Staroswiecki E, Granlund KL, Alley MT, Gold GE, Hargreaves BA. Simultaneous estimation of T2 and apparent diffusion coefficient in human articular cartilage in vivo with a modified threedimensional double echo steady state (DESS) sequence at 3 T. Magn Reson Med. 2012; 67:1086– 1096. [PubMed: 22179942]
+47. Bieri, O.; Ganter, C.; Scheffler, K. Desperately seeking: Non-balanced steady state free precession fluid signal. Proceedings of the 19th Annual Meeting of ISMRM; Montreal. 2011. p. 379
+48. Sehgal V, Delproposto Z, Haacke E, et al. Clinical applications of neuroimaging with susceptibility-weighted imaging. Journal of Magnetic Resonance Imaging. 2005; 22:439–450. [PubMed: 16163700]
+49. Ogawa S, Tank DW, Menon R, et al. Intrinsic signal changes accompanying sensory stimulation: functional brain mapping with magnetic resonance imaging. Proc Natl Acad Sci U S A. 1992; 89:5951–5955. [PubMed: 1631079]
+50. Kwong K, Belliveau JW, Chesler DA, et al. Dynamic magnetic resonance imag ing of human brain activity during primary sensory stimulation. Proc Natl Acad Sci U S A. 1992; 89:5675–5679. [PubMed: 1608978]
+51. Vonken E, van Osch M, Bakker C, Viergever M. Measurement of cerebral perfusion with dualecho multi-slice quantitative dynamic susceptibility contrast MRI. J Magn Reson Imaging. 1999; 10:109–117. [PubMed: 10441012]
+52. Haacke, E. Susceptibility weighted imaging. US Patent App. 10/143,671.. May 10. 2002 53. McGibney G, Smith MR, Nichols ST, Crawley A. Quantitative evaluation of several partial
+Fourier reconstruction algorithms used in MRI. Magn Reson Med. 1993; 30:51–59. [PubMed: 8371675] 54. Noll DC, Nishimura DG, Macovski A. Homodyne detection in magnetic resonance imaging. IEEE Trans Med Imaging. 1991; 10:154–163. [PubMed: 18222812]
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 12
+55. Nishimura D, Macovski A, Jackson J, Hu R, Stevick C, Axel L. Magnetic resonance angiography by selective inversion recovery using a compact gradient echo sequence. Magn Reson Med. 1988; 8:96–103. [PubMed: 3173074]
+56. Scheidegger M, Maier S, Boesiger P. FID-acquired-echos (FAcE): a short echo time imaging method for flow artefact suppression. Magn Reson Imaging. 1991; 9:517–524. [PubMed: 1779722]
+57. Gold GE, Pauly J, Macovski A, Herfkens R. MR spectroscopic imaging of collagen: Tendons and knee menisci. Magn Reson Med. 1995; 34:647–654. [PubMed: 8544684]
+58. Robson M, Gatehouse P, So P, Bell J, Bydder G. Contrast enhancement of short T2 tissues using ultrashort TE (UTE) pulse sequences. Clinical radiology. 2004; 59:720–726. [PubMed: 15262547]
+59. Gatehouse P, Thomas R, Robson M, Hamilton G, Herlihy A, Bydder G. Magnetic resonance imaging of the knee with ultrashort TE pulse sequences. Magn Reson Imaging. 2004; 22:1061–7. [PubMed: 15527992]
+60. Du J, Carl M, Bydder M, Takahashi A, Chung CB, Bydder GM. Qualitative and quantitative ultrashort echo time (UTE) imaging of cortical bone. J Magn Reson. 2010; 207:304–311. [PubMed: 20980179]
+61. Dixon WT. Simple proton spectroscopic imaging. Radiology. 1984; 153:189–194. [PubMed: 6089263]
+62. Ma J. Breath-hold water and fat imaging using a dual-echo two-point Dixon technique with an efficient and robust phase-correction algorithm. Magn Reson Med. 2004; 52:415–419. [PubMed: 15282827]
+63. Reeder SB, Wen Z, Yu H, et al. Multicoil Dixon chemical species separation with an iterative least-squares estimation method. Magn Reson Med. 2004; 51:35–45. [PubMed: 14705043]
+64. Rofsky N, Weinreb J, Ambrosino M, Safir J, Krinsky G. Comparison between in-phase and opposed-phase T1-weighted breath-hold FLASH sequences for hepatic imaging. Journal of computer assisted tomography. 1996; 20:230. [PubMed: 8606229]
+65. Merkle E, Nelson R. Dual gradient-echo in-phase and opposed-phase hepatic MR imaging: A useful tool for evaluating more than fatty infiltration or fatty sparing. Radiographics. 2006; 26:1409. [PubMed: 16973772]
+66. Neumann-Haefelin T, Wittsack H, Wenserski F, et al. Diffusion-and perfusion-weighted MRI: the DWI/PWI mismatch region in acute stroke. Stroke. 1999; 30:1591–1597. [PubMed: 10436106]
+67. Ordidge R, Gorell J, Deniau J, Knight R, Helpern J. Assessment of relative brain iron concentrations using T2-weighted and T2*-weighted MRI at 3 Tesla. Magn Reson Med. 1994; 32:335–341. [PubMed: 7984066]
+68. Wood J, Otto-Duessel M, Aguilar M, et al. Cardiac iron determines cardiac T2*, T2, and T1 in the gerbil model of iron cardiomyopathy. Circulation. 2005; 112:535. [PubMed: 16027257]
+69. Ernst R, Anderson W. Application of Fourier transform spectroscopy to magnetic resonance. Review of Scientific Instruments. 1966; 37:93–102.
+70. Miller KL, Hargreaves BA, Lee J, Ress D, de Charms RC, Pauly JM. Functional brain imaging using a blood oxygenation sensitive steady state. Magn Reson Med. 2003; 50:675–683. [PubMed: 14523951]
+71. Scheffler K. Fast frequency mapping with balanced SSFP: Theory and application to protonresonance frequency shift thermometry. Magn Reson Med. 2004; 51:1205–1211. [PubMed: 15170841]
+72. Keller PJ, Schmalbrock P. Multisection fat-water imaging with chemical shift selective presaturation. Radiology. 1987; 164:539–541. [PubMed: 3602398]
+73. Brittain JH, Hu BS, Wright GA, Meyer CH, Macovski A, Nishimura DG. Coronary angiography with magnetization-prepared T2 contrast. Magn Reson Med. 1995; 33:689–696. [PubMed: 7596274]
+74. Zerhouni E, Parish D, Rogers W, Yang A, Shapiro E. Human heart: tagging with MR imaging–a method for noninvasive assessment of myocardial motion. Radiology. 1988; 169:59. [PubMed: 3420283]
+75. Axel L, Dougherty L. MR imaging of motion with spatial modulation of magnetization. Radiology. 1989; 171:841. [PubMed: 2717762]
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 13
+
+76. McVeigh ER, Atalar E. Cardiac tagging with breath-hold cine MRI. Magn Reson Med. 1992; 28:318–327. [PubMed: 1461130]
+77. Reichek N. MRI myocardial tagging. J Magn Reson Imaging. 1999; 10:609–616. [PubMed: 10548769]
+78. Wolff S, Balaban R. Magnetization transfer contrast (MTC) and tissue water proton relaxation in vivo. Magn Reson Med. 1989; 10:135–144. [PubMed: 2547135]
+79. Henkelman R, Stanisz G, Graham S. Magnetization transfer in MRI: a review. NMR in Biomedicine. 2001; 14:57–64. [PubMed: 11320533]
+80. Mugler JP III, Brookeman JR. Three-Dimensional Magnetization-prepared rapid gradient-echo imaging (3D MP RAGE). Magn Reson Med. 1990; 15:152–157. [PubMed: 2374495]
+81. Hargreaves BA, Vasanawala SS, Pauly JM, Nishimura DG. Characterization and reduction of the transient response in steady-state MR imaging. Magn Reson Med. 2001; 46:149–158. [PubMed: 11443721]
+82. Deimling, M.; Heid, O. Magnetization prepared True FISP imaging. Proceedings of the 2nd Annual Meeting of SMR; San Francisco. 1994. p. 495
+83. Le Roux P. Simplified model and stabilization of SSFP sequences. J Magn Reson. 2003; 163:23– 37. [PubMed: 12852904]
+84. Hennig J, Speck O, Scheffler K. Optimization of signal behavior in the transition to driven equilibrium in steady-state free precession sequences. Magn Reson Med. 2002; 48:801–809. [PubMed: 12417994]
+85. Markl M, Alley MT, Elkins CJ, Pelc NJ. Flow effects in balanced steady state free precession imaging. Magn Reson Med. 2003; 50:892–903. [PubMed: 14586999]
+86. Duyn JH. Steady state effects in fast gradient echo magnetic resonance imaging. Magn Reson Med. 1997; 37:559–568. [PubMed: 9094078]
+
+Appendix: Mathematical Description of Steady States
+Although much of the balanced SSFP signal can be understood intuitively by using the graphical explanations in Fig. 3, a simple mathematical description is provided here for completeness. Similar descriptions for gradient-spoiled and RF-spoiled sequences follow.
+
+Balanced SSFP Dynamics
+The assumption that magnetization length does not change over TR can be restated as follows: the change in magnetization Ṁ is always perpendicular to the magnetization M, or mathematically, Ṁ · M = 0. The Bloch equation equates the change in magnetization to the magnetization itself. The above assumption can easily be combined with the Bloch equation, and with completion of the square gives:
+
+[1]
+
+Equation [1 describes the ellipsoid centered at (0, 0, M0/2), with height M0 and equatorial
+
+radius
+
+(shown in Fig. 3a and b). Given this ellipsoid of possible locations of
+
+the magnetization in the steady state and the rotations due to precession and RF pulses, the
+
+steady state can be easily found as shown in Fig. 3 and as follows. With increasing
+precession, the magnetization state moves lower on this ellipsoid, toward the Mx − My plane. A key parameter of the steady state is the “effective flip” angle β (18), which is given as tan(β/2) = Mxy/Mz = tan(α/2)sec(ψ/2), where α is the RF flip angle and ψ is the precession over a TR.
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+$watermark-text
+
+Hargreaves
+
+Page 14
+The signal level, also given in ref. 13, is the radius where the ellipsoid of Eq. 1 forms an angle of β/2 to the Mz axis, as
+
+[2]
+
+The signal is maximized when
+
+, which corresponds to the magnetization
+
+following the outermost extent of the ellipsoid, or if this is not possible, when β=α (ψ=0).
+
+When β reaches 180°, the signal approaches zero for any sizable flip angle α. The signal
+
+midway between RF pulses is refocused, with alternating sign based on cos(ψ/2), which
+
+changes when β (or equivalently ψ) reaches 180°. Note that this analysis applies for
+
+reasonably large flip angles, α, as are commonly used for imaging. The case for small flip
+
+angles was briefly described in the “Imaging Considerations” section, and elsewhere (10).
+
+Gradient-Spoiled Dynamics
+As shown in Fig. 5, gradient spoiling causes different amounts of precession within a voxel, resulting in different spins reaching different steady states based on the precession as shown in Fig. 3. Assuming that the variation of this precession is an integer number of cycles, the signal is then the average over a full period of the balanced SSFP signal that occurs immediately following the RF pulse. To a good approximation, the signal is the average over ψ of Eq. 2, with a complex phase. Additionally, T2* loss from the RF pulse to the echo time must be included. Mathematically, the signal is becomes:
+
+[3]
+where β = 2arctan[tan(α/2)sec(ψ/2)]. This expression is presented primarily for illustration, but is accurate for the assumptions of moderate flip angle and short TR or TE. For the reverse gradient-spoiled sequence, the complex exponent is negated, but the net signal is the same except that since TE is longer, there will be additional T2 weighting. Static dephasing (T2′) effects have been omitted in both cases. More exact formulations of this signal are given in refs. 7, 8, and 43.
+Complete Spoiling Dynamics
+When spoiling is “complete” then the transverse magnetization can be assumed to be zero at the end of the repetition time. The longitudinal magnetization at the end of a repetition can be equated in consecutive repetitions from the Bloch equation as:
+[4]
+
+This is easily solved to give the signal, including T2* decay from RF pulse to echo time:
+[5]
+
+The Ernst angle is simply the flip angle α that maximizes the signal in Eq. 5, as was shown in Fig. 17 (69). The main conclusion is that the relative simplicity of Eq. 5 compared with
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 15
+Eq. 3 shows that gradient spoiling results in a very different signal to that of complete spoiling.
+The signal produced by RF-spoiling can be calculated numerically by simulating multiple precession angles over TR, and including a rotation due to the incrementing RF phase (23). Such a simulation is considerably more complicated than the equations above, but the average over all spins is close to the signal given by Eq. 5, which demonstrates that RFspoiling is a very good approximation to complete spoiling.
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+Hargreaves
+
+Page 16
+
+Figure 1. Gradient-echo sequences generally consist of repeated RF pulses with a spacing TR, and imaging gradients. The RF flip angle (α) is usually constant, while the phase angle (φ) can be constant, or can increment linearly or quadratically with the repetition number. At the end of the repetition, the sequence may have balanced gradients, spoiler gradients, or RF spoiling, leading to preservation, averaging, or elimination of remaining signal, and very different image contrast and properties. The choice of flip angle also alters contrast, while repetition time (TR) and echo time (TE) are often minimized subject to other constraints, except when generation of T2* contrast is desired.
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+Hargreaves
+
+Page 17
+
+Figure 2. Axial balanced SSFP (a,d), gradient-spoiled (b,e) and RF-spoiled (c,f) images of the brain (a–c) and knee (d–f) show very different contrast based only on how the remaining transverse magnetization is treated. Solid arrows show the depiction of cerebrospinal fluid in the brain and synovial fluid in the knee, which is bright on balanced SSFP and dark on RFspoiled imaging. Fluid is attenuated based on diffusion effects in gradient-spoiled imaging, and can be somewhat variable in intensity.
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 18
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Figure 3. In balanced steady-state free precession, magnetization precesses around the Mz axis along the surface of an ellipsoid by some angle ψ, between planes separated by the flip angle, α as viewed along each axis (a,b,c). The precession angle ψ depends on resonant frequency as well as gradient-induced precession. Together, angles ψ and α determine the Mz (longitudinal) and Mxy (signal) components and the “effective” flip angle β (a). The resulting signal vs precession (ψ) plot (d) highlights the same precession angles ψ of interest including no precession (blue), maximum signal (pink), different precession directions (yellow), precession over 180° (dotted pink, red), and signal nulls when β=180° (green). These same angles are shown in (c), with squares and diamonds marking the position immediately after and before an RF pulse. Arrowheads in (c) mark magnetization midway through TR, which is aligned along the positive and negative Mx-axis depending on amount of precession. (As described in the Appendix, the equatorial radius of the ellipse is
+, which is the basis of T2/T1 contrast in gradient-echo sequences).
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 19
+
+Figure 4.
+Balanced SSFP transverse magnetization distribution at different time points. Depending on precession angle ψ, the transverse components begin distributed along an ellipse, are
+refocused along ±Mx midway between RF pulses, and end again on an ellipse, with each spin reflected about the Mx axis from the starting point. At all points the phase is linear with ψ, and has discontinuities of π at ψ=(2n+1)π, where n is an integer. (These assume
+alternating RF sign, though similar principles apply for different RF phase increments.)
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 20
+
+Figure 5. Signal formation in gradient-spoiled imaging. Different spins experience a different amount of precession over TR, so that the distribution of spin signals within a voxel is the bSSFP profile (a). The black arrow (b) shows the complex average of these spin signals, which gives the black signal level shown in (c), which is lower than the peak bSSFP signal, but without the sensitivity to resonant frequency offsets.
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 21
+
+Figure 6. Balanced SSFP pulse sequence. All gradient waveforms are fully rewound, or balanced, meaning they have zero net area over one repetition. The RF pulse sign usually alternates, so that a high signal is produced for on-resonance spins. The signal echo location is shown on the Gx waveform.
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 22
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Figure 7. Balanced SSFP brain (a,b) and knee (c,d) images showing T2/T1 contrast - note that subcutaneous fat and CSF are both bright due to high T2/T1. When a shim gradient is used to force a large frequency variation, dark bands result (b) shown by arrows. Knee images with different phase increments (c,d) result in dark bands at different locations (arrows) in the image, and reduced signal in much of the bone in (d).
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 23
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Figure 8. Gradient spoiled pulse sequence. In this example, a spoiler gradient is included on both the readout (x) and slice-select (z) axes. The signal echo location is shown on the Gx waveform. Although the RF sign often alternates, the same contrast would be achieved with constant RF sign, as this just shifts the profile within the voxel that is shown in Fig. 5.
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 24
+
+Figure 9. Gradient-spoiled (a) and bSSFP (b) brain images at identical flip angles. The bSSFP image shows a dark band that is avoided by the use of gradient spoiling (solid arrow). CSF is brighter on balanced SSFP (dashed arrow), while fluid in the eye is attenuated substantially by diffusion sensitivity of the gradient spoiler (dotted arrow).
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 25
+
+Figure 10. The reversed gradient spoiled pulse sequence is precisely the reverse of the gradient spoiled sequence, with the spoiler gradient preceding the imaging readout. Note that it is important to “rephase” the readout gradient and “defocus” the slice-select gradient prior to the RF pulse.
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 26
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Figure 11. Images acquired with gradient spoiling (a) and reversed-gradient spoiling (b), both with water-only excitation to suppress fat. The long-T2 synovial fluid (solid arrows) is comparable in both images, while the cartilage signal (dashed arrows) is much lower on in (b). The sum of images compromises between these contrasts (c) while the difference image suppresses the fluid signal (d). In this example, minimal gradient spoiling is used, so diffusion attenuation is not noticeable.
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+Hargreaves
+
+Page 27
+
+Figure 12. FADE or DESS pulse sequence, which acquires both the gradient-spoiled echo and the reversed gradient-spoiled echo (Shown on Gx waveform). A spoiler gradient is shown on both the readout (x) and slice-select (z) axes, midway between RF pulses, although the spoiling is often achieved by simply maintaining the readout gradient amplitude for long enough to separate the echo signals in time.
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 28
+
+Figure 13. Pre-contrast (a) and post-contrast (b) breast images with RF-spoiled imaging provide the T1 contrast necessary to highlight enhancing lesions, seen in the inferior breast. Here TR/ TE=40/5 ms, and the flip angle is 40° at 1.5 T. (Courtesy of Dr. Marcus Alley, Stanford University)
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+Hargreaves
+
+Page 29
+
+Figure 14. Balanced SSFP (a) and post-contrast RF-spoiled (b) images of the colon. Tap-water enema used for colonic distension is bright on bSSFP due to the long T2, but dark on RF-spoiled imaging due to the long T1 (solid arrow). However, gadolinium-enhancement causes shortened T1, which highlights the colon wall (dashed arrow). (Courtesy of Dr. Lewis Shin, Stanford University).
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 30
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Figure 15. BOLD activation maps using repeated RF-spoiled gradient echo scans over a 2-minute interval, timed with a visual stimulus task that cycles through repeated presentation of a checkerboard pattern flashing for 15s, then a blank screen for 15s. Following basic motion correction and filtering, “activation” is identified as voxels that change in time to the stimulus. Activation maps are shown in coronal (a), sagittal (b), and axial (c) planes. The use of rapid multi-slice acquisitions enables a rendering of whole-brain activation maps (d). (Courtesy of Dr. Karla Miller, Oxford University).
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 31
+
+Figure 16. Transverse images of the humerus and radius from a cadaveric forearm using 2D fast spin echo (a) and 2D inversion-recovery ultrashort echo time (UTE) imaging with TR/TE/TE = 300/120/8 ms (b). The use of a very short echo time clearly shows the cortical bone, which is not visible on the fast spin echo image (Courtesy of Drs. Jiang Du and Graeme Bydder, University of California at San Diego. Reprinted with permission from Ref. 60).
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 32
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+Figure 17. Signal as a function of flip angle for (a) blood and (b) muscle. Shown are the signals from balanced SSFP (0 Hz off-resonance, alternating RF sign), gradient spoiled, and RF-spoiled sequences. The Ernst angle, cos−1(e−TR/T1), gives the same signal for all sequences, and the peak signal for RF spoiled sequences (10). Note that diffusion effects will further reduce the signals, particularly in gradient-spoiled and RF-spoiled sequences.
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+Hargreaves
+
+Page 33
+
+Figure 18. Images using RF-spoiled, gradient-spoiled and balanced SSFP imaging sequences with identical timing parameters (TR/TE=7/3.4 ms) at a range of flip angles. For each tissue type and sequence, the signal will generally peak at a particular flip angle. Note that for white matter, the Ernst angle at TR=7 ms and 1.5 T is about 9°, and the signal level is about the same in the 10° image for all sequences. The “best” flip angle for a sequence is often chosen to maximize contrast between tissue types.
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+Hargreaves
+
+Page 34
+
+Figure 19. MR angiograms of the renal arteries using inversion-recovery and fat-saturation preparation to null fat and background tissue, followed by a balanced SSFP imaging readout to offer a non-contrast-enhanced angiogram (a) and leg vasculature using fat-saturation and RFspoiled imaging following intravenous gadolinium injection, with accelerated techniques to acquire the image in just 8 seconds to avoid venous contamination (b). (Images courtesy of Dr. Pauline Worters (a) and Drs. Shreyas Vasanawala and Michael Lustig (b), Stanford University.)
+
+$watermark-text
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+
+$watermark-text
+
+Hargreaves
+
+Page 35
+
+Table 1
+Summary of common gradient-echo imaging methods and their characteristics. The term “T2/T1” indicates that the contrast is roughly a function of this ratio.
+
+Sequence RF-Spoiled Gradient Spoiled
+
+Spoiling RF and Gradient
+Gradient
+
+Reversed Gradient Spoiled
+
+Gradient
+
+Balanced SSFP UTE or T2* BOLD Magnetization Prepared
+
+None
+Gradient and/or RF
+Usually RF and gradient or none
+
+Transverse Magnetization Cancelled Averaged
+Averaged
+Retained Decays, due to long TR Cancelled or retained during
+imaging
+
+Contrast
+T1
+T2/T1 (plus diffusion)
+T2/T1, more T2weighted (plus
+Diffusion)
+T2/T1, Bright Fluid
+T2*
+
+SNR Lowest Moderate
+Moderate
+High (but dark bands) High (long TR)
+
+Varies with preparation Varies with preparation
+
+$watermark-text
+
+$watermark-text
+
+J Magn Reson Imaging. Author manuscript; available in PMC 2013 December 01.
+

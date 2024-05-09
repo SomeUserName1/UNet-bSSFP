@@ -1,0 +1,152 @@
+
+JavaScript is disabled on your browser. Please enable JavaScript to use all the features on this page. Skip to main content Skip to article
+Elsevier logo ScienceDirect
+
+    Access through  your institution
+    Purchase PDF
+    Patient Access
+
+Article preview
+
+    Abstract
+    Introduction
+    Section snippets
+    References (16)
+    Cited by (180) 
+
+Elsevier
+Computerized Medical Imaging and Graphics
+Volume 25, Issue 4 , July 2001, Pages 299-326
+Computerized Medical Imaging and Graphics
+Diffusion MRI: apparent diffusion coefficient (ADC) values in the normal brain and a classification of brain disorders based on ADC values
+Author links open overlay panel R.N. Sener
+Show more
+Add to Mendeley
+Share
+Cite
+https://doi.org/10.1016/S0895-6111(00)00083-5 Get rights and content
+Abstract
+
+Diffusion-weighted imaging, dependent on motion of water molecules, provides information regarding tissue integrity. Apparent diffusion coefficient (ADC) values in the normal brain parenchyma, and those in a variety of lesions were studied by echo-planar diffusion MRI in 310 cases. Brain disorders were classified based on their ADC values, taking the ADC values of the normal brain white matter as the principal category. In the normal white matter ADC ranges were 0.60–1.05×10 −3  mm 2 /s, and the mean ADC value was 0.84±0.11×10 −3  mm 2 /s. It was possible to distribute brain disorders, as well as artefacts on diffusion MRI to five major categories: category 1, ADC similar to normal white matter; category 2, ADC lower than normal white matter; category 3, ADC higher than normal white matter; category 4, ADC similar to CSF; and category 5, markedly low or high ADC. Further studies can provide addition of different lesions as well as refinements of these categories.
+Introduction
+
+Diffusion-weighted MR imaging is a relatively new sequence reflecting molecular motion of water within the tissue, so providing data on tissue integrity. In conventional MR imaging, diffusion of water molecules in the tissues has an extremely small contribution to the MR signal. In diffusion MRI, powerful magnetic gradients with echo planar sequence are used. This enables images that are dependent on water diffusion. A diffusion coefficient called apparent diffusion coefficient (ADC) value can be calculated, and ADC maps can be generated. Diffusion MRI has mainly been used for detection of acute ischemia (cytotoxic edema), and for distinction of cytotoxic and vasogenic edema [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], and its role in other brain diseases such as neurodegenerative and metabolic conditions, infections, tumors, and others has been investigated [11], [12], [13], [14], [15]. This article is a preliminary report from our prospective study on diffusion MRI in an attempt to establish normal ADC values in the brain, and in a variety of disorders.
+Section snippets
+Subjects and methods
+
+In this study, 310 cases (166 males, 144 females) are included covering 52 normal individuals, and 258 patients with brain lesions, out of our ongoing studies on diffusion MRI since 1998. There were 26 infants (age range: 1 day–2 years; mean 8 months), 74 children (2–18 years; mean 6.3 years), and 210 adults (18–81 years; mean 47.8 years). Conventional MR imaging and echo planar diffusion weighted imaging were performed on a 1.5 T MR unit (Magnetom Vision, Siemens, Erlangen, Germany).
+
+Diffusion MRI was
+ADC values in the normal brain
+
+The mean ADC values (×10 −3  mm 2 /s) in the normal brain belonging to the first group, covering infants up to 2 years of age were as follows: unmyelinated white matter, 1.64±0.17; myelinated white matter, 0.90±0.12; paracentral cortices, 0.83±0.14; basal ganglia, thalami, 0.98±0.11; brainstem, 1.00±0.10; and cerebellar parenchyma, 0.97±0.13.
+
+The mean ADC values in the normal brain belonging to the second group, covering children and adults from 2 to 81 years of age were as follows: white matter,
+Discussion
+
+Random motion of water molecules is referred to as Brownian motion or ‘translational molecular diffusion’, and it is relatively free in homogeneous fluid-containing structures. This type of water diffusion is called isotropic diffusion. On the other hand, in the tissues (e.g. brain parenchyma), water motion is restricted by the presence of cellular structures which provide barriers to free diffusion. This restriction may be more in one direction than in another (e.g. around axons). This type of
+Summary
+
+Apparent diffusion coefficient (ADC) values are studied in the normal brain parenchyma, and in a variety of brain lesions. Echo-planar diffusion-weighted imaging, using either a three-axis or trace approach, were performed on a 1.5 T MR unit (Magnetom Vision) in 310 patients, ages ranging from 1 day to 81 years. ADC calculations were performed either from automated ADC maps or from the Stejskal–Tanner formula.
+
+ADC values (×10 −3  mm 2 /s) in normals were: unmyelinated white matter, 1.64±0.17: myelinaetd
+References (16)
+
+    C. Beaulieu et al.
+    Diffusion-weighted magnetic imaging: theory and potential applications to child neurology
+    Semin Pediatr Neurol
+    (1999)
+    H.A. Rowley et al.
+    Diffusion MR imaging. Theory and applications
+    Neuroimaging Clin N Am
+    (1999)
+    D.K. Jones et al.
+    Optimal strategies for measuring diffusion in anisotropic systems by magnetic resonance imaging
+    Magn Reson Med
+    (1999)
+    J. Finsterbusch et al.
+    Diffusion-weighted single-shot line scan imaging of the human brain
+    Magn Reson Med
+    (1999)
+    T.Q. Li et al.
+    ADC mapping by means of a single-shot spiral MRI technique with application in acute cerebral ischemia
+    Magn Reson Med
+    (1999)
+    T. Kuroiwa et al.
+    Correlations between the apparent diffusion coefficient, water content, and ultrastructure after induction of vasogenic brain edema in cats
+    J Neurosurg
+    (1999)
+    P. Barzo et al.
+    Contribution of vasogenic and cellular edema to traumatic brain swelling measured by diffusion-weighted imaging
+    J Neurosurg
+    (1997)
+    M. Altieri et al.
+    Multiple brain infarcts: clinical and neuroimaging patterns using diffusion-weighted magnetic resonance
+    Eur Neurol
+    (1999)
+
+There are more references available in the full text version of this article.
+Cited by (180)
+
+    Clinico-radiological factors associated with aphasia outcome in post stroke patients: A prospective follow up study from eastern part of India
+    2024, Journal of Clinical Neuroscience
+    Show abstract
+    NTMS based tractography and segmental diffusion analysis in patients with brainstem gliomas: Risk stratification and clinical potential
+    2024, Brain and Spine
+    Show abstract
+    Convolutional network denoising for acceleration of multi-shot diffusion MRI
+    2024, Magnetic Resonance Imaging
+    Show abstract
+    Cumulant expansion framework for internal gradient distributions tensors
+    2023, Journal of Magnetic Resonance Open
+    Show abstract
+    Finding an effective MRI sequence to visualise the electroporated area in plant-based models by quantitative mapping
+    2023, Bioelectrochemistry
+    Show abstract
+    Calcium electroporation in cutaneous metastases – A non-randomised phase II multicentre clinical trial
+    2023, European Journal of Surgical Oncology
+    Show abstract
+
+View all citing articles on Scopus
+View full text
+Copyright © 2001 Elsevier Science Ltd. All rights reserved.
+Recommended articles
+
+    Impact of 2 Lateral Nasal Osteotomy Techniques on the Periorbital Subunits
+    Journal of Oral and Maxillofacial Surgery, Volume 78, Issue 8, 2020, pp. 1416.e1-1416.e9
+    Seied Omid Keyhan , …, Behzad Cheshmi
+    What can we see with IVIM MRI?
+    NeuroImage, Volume 187, 2019, pp. 56-67
+    Denis Le Bihan
+    Clinical translation of quantitative magnetic resonance imaging biomarkers – An overview and gap analysis of current practice
+    Physica Medica, Volume 101, 2022, pp. 165-182
+    Penny L. Hubbard Cristinacce , …, Maite Jauregui-Osoro
+
+Show 3 more articles
+Article Metrics
+Citations
+
+    Citation Indexes: 176 
+
+Captures
+
+    Readers: 227 
+
+plumX logo
+View details
+Elsevier logo with wordmark
+
+    About ScienceDirect
+    Remote access
+    Shopping cart
+    Advertise
+    Contact and support
+    Terms and conditions
+    Privacy policy 
+
+Cookies are used by this site. Cookie Settings
+
+All content on this site: Copyright © 2024 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those for text and data mining, AI training, and similar technologies. For all open access content, the Creative Commons licensing terms apply.
+RELX group home page
+We use cookies that are necessary to make our site work. We may also use additional cookies to analyze, improve, and personalize our content and your digital experience. For more information, see our Cookie Policy
+Cookie Settings Accept all cookies

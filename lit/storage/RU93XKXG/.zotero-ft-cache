@@ -1,0 +1,412 @@
+
+Schließen Sie diesen Dialog
+Diese Website nutzt Technologien wie Cookies, um wesentliche Funktionen der Website zu ermöglichen, sowie für analyse, personalisierung und gezielte werbung. Sie können Ihre Einstellungen jederzeit ändern oder die Standardeinstellungen übernehmen. Datenschutz-Bestimmungen
+Einstellungen verwalten Alle akzeptieren Alles ablehnen
+
+Schließen Sie die Cookie-Einstellungen
+
+    Skip to Article Content
+    Skip to Article Information
+
+Wiley Online Library
+Login / Register
+Magnetic Resonance in Medicine
+Volume 55, Issue 1 p. 98-107 Magnetic Resonance in Medicine
+Full Paper
+Free Access
+Steady state of gradient echo sequences with radiofrequency phase cycling: Analytical solution, contrast enhancement with partial spoiling
+Carl Ganter , 
+Department of Diagnostic Radiology, Klinikum rechts der Isar, Technical University Munich, Ismaningerstrasse 22, D-81675 Munich, Germany===
+First published: 09 December 2005
+https://doi.org/10.1002/mrm.20736
+Citations: 34
+Sections
+PDF PDF
+Tools
+Share
+Abstract
+
+Spoiled gradient echo sequences can only reach a homogeneous steady state if sufficiently strong crusher gradients are used in combination with RF phase cycling (RF spoiling). However, the signal depends quite sensitively on the chosen phase increment ϕ and—lacking analytical solutions—numerical simulations must be used to study the transient and steady-state magnetization. For the steady state an exact analytical solution is derived, which holds for arbitrary sequence and tissue parameters. Besides a considerably improved computation performance, the analytical approach enables a better understanding of the complicated dependence on ϕ. For short repetition times (TR) the regime of small ϕ turns out to be particularly interesting: It is shown that the typical ϕ c , where RF spoiling starts to become effective, is essentially inversely proportional to T 2 . This tissue dependence implies that contrasts can be considerably larger with partial spoiling (ϕ ≈ ϕ c ) than with conventional RF spoiling (ϕ ≫ ϕ c ). As an example, the uptake of contrast agents in tissues is investigated. For typical parameters a considerably improved contrast enhancement can be obtained, both theoretically and experimentally. Magn Reson Med, 2006. © 2005 Wiley-Liss, Inc.
+Spoiled gradient echo sequences, in the following referred to as FLASH (T1-FFE, SPGR, …), require an effective elimination of transversal magnetization prior to each excitation pulse, especially for short repetition times (TR). To this end sufficiently strong crusher gradients are nowadays generally applied in combination with an RF phase cycling condition (RF spoiling) ( 1 , 2 ). The latter means that the differences between the phases φ k of consecutive excitation pulses are linearly incremented:
+equation image (1)
+While pure gradient spoiling or randomly distributed φ k were associated with hyperintense bands ( 2 , 3 ) or statistical fluctuations ( 4 ), respectively, RF spoiling was proven to generate a homogeneous steady state ( 4 ).
+
+Due to the essentially quadratically increasing RF phases, no closed analytical solution for RF spoiling has been found so far, neither for the steady state nor the even more complicated transient response. Consequently, the statical and dynamical behavior of these sequences must be studied numerically, typically based on the formalism of configuration theory ( 5 - 7 ), which is described in detail in Ref. ( 8 ).
+
+While φ can be chosen arbitrarily without affecting the result, the steady-state signal is known to depend rather sensitively on the choice of the phase shift increment ϕ. Various maxima can be observed (see Fig. 1 ), the most prominent of which is centered around ϕ = 0. This value is of special importance as it represents the absence of RF spoiling, also known as FISP (FFE, GRASS, …) ( 9 ).
+Details are in the caption following the image
+Figure 1
+Open in figure viewer PowerPoint
+
+Steady-state signal as a function of ϕ calculated with the continued fraction expansion and with both simulation variants. Parameters (α = 30°, TR/ T 1 = TR/ T 2 = 0.05) are the same as in Ref. ( 8 , 15 ). Within the desired accuracy, the continued fraction expansion agrees with the numerical simulation. The constant value represents ideal spoiling: M xy (1 − E 1 )sinα/(1 − E 1 cosα).
+
+To achieve the desired T 1 contrast, FLASH sequences need a suitably chosen nonzero ϕ, where the signal approximately intersects with the expected result from ideal spoiling (horizontal line). The first published value was 117° ( 4 ), but different values are also in use, partly because of better convergence properties ( 10 , 11 ).
+
+In this article an exact analytical solution for the steady-state signal of FLASH sequences will be derived, which holds for arbitrary sequence (TR, α, ϕ) and tissue ( T 1 , T 2 ) parameters. It will be compared with simulation results and some of its analytical properties will be discussed.
+
+Special emphasis will be put on small TR and ϕ values, more precisely the initial decay from the FISP signal to the onset of RF spoiling. The width of this transition regime, which will be referred to as partial spoiling, depends on tissue parameters. It will be shown that the typical value ϕ c of steepest descent is essentially proportional to 1/ T 2 . By adjusting ϕ to a value near ϕ c , the attainable tissue contrasts can be considerably enhanced in comparison with FLASH (ϕ ≫ ϕ c ).
+
+As an application, the uptake of contrast agents in tumors will be investigated.
+THEORY
+Recursion Relations
+
+We consider a series of RF pulses with constant flip angle α and variable phases φ k , separated by a constant time interval TR.
+
+The phase ϑ, which is accumulated during each repetition period as a consequence of off-resonance effects and unbalanced gradients, is assumed to be constant in time. In the presence of crusher gradients, it will, however, strongly depend on the intravoxel position.
+The complex magnetization vector will be used as follows:
+equation image (2)
+Apart from relabeling the indices, which will be helpful later, it differs from its more commonly encountered definition in another technical point: The transversal components are divided by equation image to preserve the vector norm under rotations, which makes the corresponding matrices unitary.
+The magnetization immediately after the k th RF pulse obeys a recursion relation,
+equation image (3)
+with
+equation image (4)
+m eq is the equilibrium magnetization, the magnitude of which (proton density) will be set to 1 in the following. The matrix E describes the relaxation during TR, E i : = exp(−TR/ T i ), and R x , R z perform rotations around the x - and z -axes, respectively. Explicit expressions are given in Appendix A .
+
+We now assume φ k to advance according to Eq. [ 1 ].
+φ is equivalent to a constant position independent shift of ϑ, cf. ( 4 , 12 ),
+equation image (5)
+In the presence of crusher gradients, the actual value of φ is unimportant and can be chosen arbitrarily.
+The magnetization will now be written in a representation, which is closely related to configuration theory ( 8 ):
+equation image (6)
+Apart from different prefactors, m urn:x-wiley:07403194:media:MRM20736:tex2gif-stack-1 is essentially the n th order configuration. Because of Eq. [ 2 ], the boundary condition [ m k ] 1 = [ m k ]urn:x-wiley:07403194:media:MRM20736:tex2gif-stack-2 must hold. Since θ can take arbitrary values, there is some redundancy in the definition of m urn:x-wiley:07403194:media:MRM20736:tex2gif-stack-3 :
+equation image (7)
+Inserting Eq. [ 6 ] into Eq. [ 3 ] and using the notation
+equation image (8)
+yields with
+equation image (9)
+equation image (10)
+Note that, different from Eq. [ 3 ], the recursion coefficients no longer depend on k . Therefore, and because the B -matrices reduce the magnitude of any vector, they act on the m urn:x-wiley:07403194:media:MRM20736:tex2gif-stack-4 will finally reach a steady state:
+equation image (11)
+Iterating Eq. [ 10 ] gives
+equation image (12)
+equation image (13)
+The special case j = 1 is included since the sum does not contribute then. As indicated in Eq. [ 12 ], the second summation is restriced by a boundary condition:
+equation image (14)
+Analytical Solution for n = 0
+
+For the steady-state magnetization m (0) , we only need to consider the case n = 0 in the following. All other components are eliminated by the crusher gradients.
+For every addend in Eq. [ 12 ], a unique order can be assigned to each index i j :
+equation image (15)
+{0} stands for an arbitrary number (≥0) of repetitions of index 0. For all r ∈1,…, p we assume αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-5 ≠0. αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-6 is defined as the first index following αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-7 , for which the sum of consecutive indices,
+equation image (16)
+vanishes. This necessarily implies
+equation image (17)
+We call {0} and αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-8 in Eq. [ 15 ] zero-order indices.
+Because of Eqs. [ 14 ] and [ 17 ], the remaining indices · · · between each pair αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-9 can be organized in the same manner:
+equation image (18)
+The only difference to Eq. [ 15 ] is that for all s ∈ 1, …, q we have
+equation image (19)
+Otherwise we would have a contradiction to the definition of αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-10 as being the first index fulfilling Eq. [ 16 ]. In analogy to above, the indices {0} and βurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-11 are now of first order.
+
+The procedure can be iterated with all equation image 's on the r.h.s., defining higher-order indices, always taking into account that a boundary condition like Eq. [ 19 ] must be obeyed. It stops, when to each index in { i 1 , …, i m } a unique order has been assigned.
+As a benefit, the exponents ν j in Eq. [ 12 ] can now be better handled. By construction, two rules can be deduced for the indices of k th order (cf. Eq. [ 18 ] for k = 1):
+
+    1
+
+    For each 0 in {0}, we have ν j = k ·αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-12 . The index αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-13 belongs to the associated pair of surrounding zeroth-order indices. For k = 0, when there is no such surrounding pair, the rule is trivially true.
+    2
+
+    From Eq. [ 14 ] ( n = 0) we obtain for the sum of the two exponents ν i , ν j , which belong to the pair βurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-14 , the value ν i + ν j = (2 k + 1)·βurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-15 .
+
+We can now carry out the sum over all possible { i 1 , …, i m } in Eq. [ 12 ].
+From rule 1 we know that the k th order {0} contain arbitrary powers of y ± k B (0) , which can be collected in a geometrical series:
+equation image (20)
+I denotes the unity matrix.
+The nonzero k th-order pair together with the enclosed indices equation image can be collected in
+equation image (21)
+The prefactor belongs to the two enclosing k th-order B -matrices and is explained by rule 2. The inverse matrix between the B 's is just another geometrical series for the higher-order indices equation image ,
+equation image (22)
+The first two addends on the r.h.s. would correspond to q = 0 and q = 1 in Eq. [ 18 ]. In combination with the definitions [ 20 ] and [ 21 ], it follows that the matrix [ 22 ] indeed collects all possible terms without double counting.
+
+Note that in Eq. [ 21 ] the sign (±) of the higher order matrices equals that of the associated lowest order Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-16 , reflecting the boundary condition [ 19 ]. Only the sign of the zero-order indices αurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-17 in Eq. [ 15 ] could be chosen arbitrarily.
+Noting that Γurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-18 = Γurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-19 =: Γ (0) , we therefore finally obtain for m (0)
+equation image (23)
+Still the solution of Eq. [ 23 ] seems to be impossible, because Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-20 cannot be represented in closed form but depends on the infinite matrix recursions of Eq. [ 21 ].
+However, as shown in Appendix B , it turns out that only a scalar Λ needs to be recursively calculated. With the help of the explicit expressions in Appendix B , the inverse in Eq. [ 23 ] can be calculated and we finally obtain for the steady-state magnetization
+equation image (24)
+equation image (25)
+with
+equation image (26)
+Λ is defined by a continued fraction expansion
+equation image (27)
+equation image (28)
+equation image (29)
+using
+equation image (30)
+Ideal spoiling can be formally obtained in the limit T 2 /TR → 0. As from E 2 → 0 immediately follows Λ → 0, Eqs. [ 24 – 26 ] are indeed consistent with the ideal FLASH result.
+
+The case ϕ = 0 yields a closed equation for Λ and the well-known result for FISP is obtained. Details are given in Appendix C .
+
+m (0) has been determined as the magnetization immediately after the excitation pulse. In some sequences like PSIF, the crusher gradient is applied before the readout period and the signal has the characteristics of a spin echo. The corresponding magnetization can be obviously obtained from m (0) by undoing the last α-pulse: R x (−α) m (0) .
+Approximate Solution for Small ϕ
+
+For small TR, RF spoiling will be already effective for small values of ϕ.
+In Appendix C the following linear expansion of Λ in terms of the small parameters ϕ and δ: = TR/ T 1 is derived:
+equation image (31)
+defining
+equation image (32)
+equation image (33)
+The quantity ξ≔ ξ 0 depends only on α and must be determined numerically via a continued fraction expansion:
+equation image (34)
+For ϕ expressed in degrees, useful values are given in Table 1 .
+Table 1. Some Values for ξ and equation image /ξ, Determined from Eq. [ 34 ]
+α 	10° 	20° 	30° 	40° 	50° 	60° 	70° 	80° 	90°
+ξ 	0.47 	0.16 	0.090 	0.061 	0.047 	0.038 	0.032 	0.028 	0.025
+equation image /ξ 	3.0 	8.8 	15.7 	23.0 	30.4 	37.4 	44.2 	50.4 	56.2
+For the complex signal we now find
+equation image (35)
+If α and T 1 / T 2 are large enough to justify T 1 / T 2 ≫ η, the result simplifies further:
+equation image (36)
+Analytical Solution for n ≠ 0
+
+Up to now we only considered the steady-state solution for n = 0, which was sufficient for standard sequences. For more advanced topics like shifted echo imaging or the transient response toward equilibrium, it is crucial to know the solution for n ≠ 0, too. Although these topics need a separate discussion and will not be further treated in this article, the solution for m ( n ) will be derived for future reference.
+In fact, most of the work has been done already. Let us first assume that n > 0 and rewrite Eq. [ 12 ] as follows:
+equation image (37)
+q is the smallest number, for which ν q + 1 = n − 1. Consequently, this also means i q = 1 and ν q = n .
+
+The partial sum ( B ) of all terms following after y urn:x-wiley:07403194:media:MRM20736:tex2gif-sup-29 Burn:x-wiley:07403194:media:MRM20736:tex2gif-sup-30 is by construction equivalent to m ( n − 1) .
+
+Due to the definition of q , the preceding partial sum ( A ) can only contain indices of n th or higher order. As shown above, cf. the arguments leading to Eq. [ 22 ], these terms can be collected in [Γurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-21 −Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-22 ] −1 .
+Putting all together, we obtain
+equation image (38)
+The remaining case ( n < 0) can be treated in complete analogy:
+equation image (39)
+With the help of Eq. [ 56 ], it can be verified that the result is in accordance with the symmetry requirements, expressed by Eqs. [ 7 ] and [ 11 ].
+Connection with Balanced SSFP
+As a consistency test on Eqs. [ 38 , 39 ] we can now obtain the steady-state result of balanced SSFP sequences (TrueFISP, b-FFE, FIESTA,…). In contrast to FISP, these sequences not only require ϕ = 0 but also fully balanced gradients. As a consequence, the steady state is not simply m (0) , but consists of a sum of all configuration orders, cf. Eq. [ 6 ]:
+equation image (40)
+For ϕ = 0 ( y = 1), we know from Appendix C that Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-23 Λ, with the solution given in Eq. [ 58 ]. Consequently, this also means Γurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-24 −Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-25 Γ ± − Λ ± , cf. Eqs. [ 53 , 54 ].
+Combining Eqs. [ 38 – 40 ] and collecting the resulting geometrical series yields
+equation image (41)
+A lengthy but straightforward calculation shows that this is indeed in accordance with the familiar result for TrueFISP:
+equation image (42)
+equation image (43)
+equation image (44)
+MATERIALS AND METHODS
+Numerical Solution and Simulation Results
+
+All numerical calculations were done on a standard 1.1 GHz Linux PC, using selfwritten C++ software.
+
+The continued fraction expansion was implemented using a modified version of Lentz's method, which is described in Ref. ( 13 ). In contrast to more direct algorithms ( 14 ), it is robust against over- or underflow problems.
+To test the analytical results, they were compared with two variants of numerical simulation:
+
+    The recursion relation [3] was implemented for a hypothetical voxel. To simulate crusher gradients, the voxel was subdivided in 1000 intervals along the direction of the dephasing gradient. Its strength was adjusted, so that the dephasing across the voxel during one TR period was exactly 360°.
+
+    The configuration model in the version of Eq. [ 10 ] was iterated directly.
+
+Both the evaluation of the continued fraction and the numerical iteration were stopped, when the relative difference between two iterations became smaller than 10 −10 .
+MR Measurement
+
+The experiments were performed on a clinical 1.5-T whole body scanner (Magnetom Sonata, Siemens, MR Syngo 2002B). Within the programming environment, the hardcoded phase increment ϕ of a standard FLASH sequence has been made adjustible (resolution: 0.1°) in the user interface.
+
+Volunteer and patient examinations were conducted according to the institutional guidelines. Written informed consent was obtained before the measurement.
+RESULTS
+Comparison with Simulation
+
+Figure 1 shows the magnitude of the steady-state signal as a function of ϕ. The same parameters (α = 30°, δ = TR/ T 1 = TR/ T 2 = 0.05) as in Refs. ( 8 , 15 ) are used. Within the desired accuracy, the continued fraction expansion agrees with the numerical simulation. The horizontal line represents the idealized FLASH result. With approximately 0.15 ms versus 50 ms per data point, the continued fraction expansion was considerably faster than the configuration-based simulation.
+
+The maxima, which occur at ϕ = p · 360°/ q , ( p, q positive integers) have been explained as the result of an incomplete cancellation of transverse magnetization ( 2 , 4 , 16 ). Because of y q = 1, we see that in these cases the continued fraction expansion [55] can be closed (Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-26 = Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-27 ) and can thus be solved in a similar way like the case ϕ = 0 (FISP) in Appendix C .
+
+Indeed, Fig. 2 demonstrates that for short enough TR, the values at the maxima essentially depend on T 1 / T 2 (and not on TR) and thus show a FISP-like behavior. In contrast, the signal at the edges is essentially a function of TR/ T 1 .
+Details are in the caption following the image
+Figure 2
+Open in figure viewer PowerPoint
+
+Steady-state signal as a function of ϕ for δ = 0.01 (solid lines) and δ = 0.005 (dashed lines), both calculated for T 1 / T 2 = 1 and T 1 / T 2 = 2. While the maxima (here at ϕ = 120°) show FISP-like behavior since their value is mainly determined by the ratio T 1 / T 2 , the baseline essentially depends on TR/ T 1 , as expected for FLASH. Like for ϕ = 0, the width of the peaks increases with decreasing T 2 . As demonstrated in Ref. ( 4 ), the agreement with ideal spoiling (horizontal lines) is quite good for ϕ = 117 and 123°.
+
+For large q the peaks finally vanish as a consequence of the T 2 relaxation. The E 2 factors in Eq. [ 55 ] formally express the finite memory of the magnetization about its previous values.
+Figure 3 shows the initial decay for small ϕ (α = 30°, δ = TR/ T 1 = TR/ T 2 = 0.01), in comparison with the expansion for small δ and ϕ, Eq. [ 35 ]. The agreement is good, even until RF spoiling becomes effective. According to Eq. [ 35 ], a maximum for nonzero ϕ is only observable for
+equation image (45)
+For more typical tissue values, with, say, T 1 / T 2 ≈ 10, α should roughly be smaller than 20°.
+Details are in the caption following the image
+Figure 3
+Open in figure viewer PowerPoint
+
+Calculated/simulated steady-state signal (solid line) versus approximative expansion [35] (dashed line) for small ϕ. Parameters were α = 30°, δ = TR/ T 1 = TR/ T 2 = 0.01. For small δ Eq. [ 35 ] provides a good approximation including the onset of RF spoiling.
+Partial Spoiling
+An interesting aspect of the initial decay from the maximum at ϕ = 0 is its tissue dependence. According to Eq. [ 36 ], which is reasonable for most tissues and the high flip angles typically used in steady-state imaging, the magnetization has its steepest descent for
+equation image (46)
+Typical values for equation image /ξ can be found in Table 1 .
+The inverse proportionality to T 2 has a simple physical interpretation: For a given, small ϕ it will take some TR intervals for RF spoiling to become effective. According to Eq. [ 46 ] we can estimate this typical duration as
+equation image (47)
+In case of a tissue with T 2 ≪ T ϕ , the transverse magnetization is already gone, before RF spoiling sets in. These tissues essentially see a usual steady-state sequence (FISP).
+
+The situation is different for T 2 ≫ T ϕ , when RF spoiling is effective during almost the whole lifetime of transverse magnetization. These tissues will show a FLASH contrast.
+
+In the transition regime, T 2 ≈ T ϕ , we can expect the signal to be some mixture between FISP and FLASH. The relative contribution of, say, FISP will increase with decreasing T 2 . By a suitable choice of ϕ it should therefore be possible to suppress tissues with a longer T 2 in favor of those with a shorter T 2 .
+
+We will refer to such sequences as “partial FISP” (pFISP) in the following.
+Suppression of Tissues with Large T 2
+
+Figure 4 shows that fluids are effectively suppressed already for small values of ϕ, due to their considerably larger T 2 values.
+Details are in the caption following the image
+Figure 4
+Open in figure viewer PowerPoint
+
+While CSF appears bright in an ordinary FISP sequence (left image), it can be effectively suppressed by a small increment (ϕ = 1.5°, middle), leaving the other tissues essentially unchanged. Consequently, the difference (right) shows mainly the CSF signal. However, both sequences are rather motion sensitive, most prominently seen as intraventricular signal losses due to pulsatile flow.
+
+As an example Fig. 4 depicts an exam of the brain of a healthy volunteer with α = 50° and TR = 5.19 ms for ϕ = 0° (FISP, left) and 1.5° (pFISP, middle). The right image shows their subtraction, i.e., essentially the cerebrospinal fluid (CSF).
+
+A measurement of T 2 of CSF and white/gray matter gave approximately 1500 and 90 ms, corresponding to ϕ c ≈ 0.1 and 1.75°, respectively, cf. Eq. [ 46 ]. While the CSF signal changed in good approximation from FISP to FLASH (ϕ c ≪ 1.5°), the small increment had only little effect on the other tissues.
+Uptake of Contrast Agents
+The uptake of a paramagnetic contrast agent with concentration C leads to a reduction of the native relaxation times T 1 and T 2 :
+equation image (48)
+For most contrast agents and tissues, r 2 is not much larger than r 1 . For example, the ratio r 1 / r 2 ≈ 4.5/5.5 is published for Gd-DTPA ( 8 ).
+
+The shortening of T 1 leads to a signal enhancement in T 1 -weighted sequences. But also in FISP a signal enhancement can be observed, because the ratio T 2 / T 1 ( C ) increases due to the similar relaxivities. In combination with the inherently higher signal, the attainable contrast can be even larger than in FLASH, as we will see below.
+
+However, the major obstacle for the usage of FISP sequences for these purposes is their pronounced hyperintense signal for large T 2 .
+
+In pFISP these tissues can be effectively suppressed by a suitable choice of ϕ. A value near ϕ c of the uptaking native tissue would be a reasonable choice. Due to the T 2 shortening during contrast agent uptake, the relative contribution from FISP will rise and thereby will induce a further contrast enhancement.
+
+Figure 5 shows a model calculation for realistic tissue parameters with short TR, as typically encountered in abdominal imaging. After comparative calculations, α was set to a fixed value of 50° in (p)FISP. The result depends, however, not very sensitively on the flip angle, and a value of 40° can also be used, especially for larger ϕ values. For marginal uptake of contrast agent, i.e., for large T 1 ( C ), FISP (ϕ = 0, curve b) and pFISP for ϕ = ϕ c (a) show very similar results and perform considerably better than FLASH. With increasing concentrations the advantage declines, but is still present. For comparison, typical T 1 values for blood in contrast enhanced angiography are about 50 ms at the first pass of the bolus ( 8 ). The uptake in tissues will be considerably smaller, and larger values for T 1 ( C ) can be expected. Curve c shows that the performance for lower T 1 ( C ) can be improved by increasing ϕ at the cost of losing contrast for small C .
+Details are in the caption following the image
+Figure 5
+Open in figure viewer PowerPoint
+
+As a function of the concentration C and the corresponding relaxation times T 1,2 ( C ), the contrast to the native tissue ( T 1 / T 2 = 1000/100 ms) has been determined for both pFISP and FLASH and depicted as a ratio (pFISP/FLASH). TR has been set to 3 ms. While a single value (α = 50°) for the flip angle has been chosen for the pFISP sequence, the optimally achievable FLASH contrast has been determined for each T 1 ( C ).Curves a, b, and c show the result for ϕ = ϕ c , 0 and 2 ϕ c , respectively. Taking the native tissue as a reference, ϕ c has been set to 0.91°, cf. Eq. [ 46 ].
+
+Unlike FISP (curve b), tissues with larger T 2 values will appear hypointense in pFISP (curves a and c).
+
+Figure 6 shows enhancement of a subcortical lesion following Gd-DTPA (Magnevist®, Schering) administration in a 42-year-old female patient with multiple sclerosis. In addition to the standard protocol (2D spin echo sequence with magnetization transfer prepulse), 3D FLASH (α = 15°) and 3D pFISP (α = 50°, ϕ = 3.4° ≈ 2 ϕ c ) were measured with otherwise equal parameters (TR = 5.4 ms). As expected, the lesion appears considerably brighter in pFISP.
+Details are in the caption following the image
+Figure 6
+Open in figure viewer PowerPoint
+
+The uptake of Gd-DTPA in inflammatory lesions (arrows) can be considerably enhanced by the use of partial spoiling (right image, ϕ ≈ 2ϕ c ) in comparison with a T 1 -weighted FLASH sequence (left). Contrary to this, the signal in the posterior vein (sinus sagittalis) is much brighter in the FLASH sequence, which is again a consequence of the motion sensitivity of the FISP sequence. The diffuse signal enhancement near the ventricles in pFISP is probably caused by a combination of motion-induced signal enhancement and spatial misregistration of pulsatile liquor. Finally, the contrast between white and gray matter is decreased in (p)FISP.
+
+In Fig. 7 , 20 min after administration of Gd-EOB-DTPA (Primovist®, Schering), the contrast agent has been taken up specifically by the normal liver cells (hepatocytes), while the metastasis in the right liver lobe remains essentially unenhanced. The time window of this state is known to be large enough to allow for several comparative breathhold examinations under constant physiologic conditions. Evidently, the enhancement of the liver is considerably lower in FLASH than in FISP and pFISP. However, the liver–lesion contrast is much better in FLASH than in FISP, as the lesion appears also very bright in the latter, obviously due to a high T 2 / T 1 ratio. The situation is different in pFISP, when partial spoiling is used to increase the difference between enhancing and native tissue. With a suitable choice of ϕ, the liver–lesion contrast is significantly higher than in FLASH.
+Details are in the caption following the image
+Figure 7
+Open in figure viewer PowerPoint
+
+Transversal 3D breathhold examination with spectral fat saturation of a 73-year-old male patient with a metastasis from a malignant melanoma in the right liver lobe. Twenty minutes after administration, the contrast agent (Gd-EOB-DTPA) is specifically taken up by the hepatocytes, while the lesion remains almost unenhanced. The four images, which are displayed with equal center/window values, differ in the following parameters: Upper left: FLASH (α = 12°); upper right: FISP (α = 50°, ϕ = 0°); lower left: pFISP (α = 50°, ϕ = 3°); lower right: pFISP (α = 50°, ϕ = 4.5°) All other settings were identical, and values for TR/TE were 4.39/1.62 ms.
+DISCUSSION
+
+An exact analytical solution for the steady state of RF-spoiled gradient echo sequences has been derived. The magnetization depends on a complex scalar Λ, for which a continued fraction representation could be obtained. Apart from allowing for a very simple and rapid evaluation, the analytical approach sheds more light on the rather involved dependence on the phase difference increment ϕ.
+
+For small TR, the initial signal decay at small ϕ due to the beginning effectivity of RF spoiling can be observed at small ϕ values. From the continued fraction expansion approximate expressions for Λ were derived, which agree well with the exact solution in this regime. It has been demonstrated that the maximum negative slope occurs at some tissue-dependent ϕ c , which is essentially proportional to 1/ T 2 . With ϕ chosen of the order of ϕ c , the signal (pFISP) can be regarded as a mixture between FISP and FLASH. As the relative contribution of FISP is higher for small T 2 , this effect can be used to increase tissue contrasts on the basis of T 2 differences.
+
+It has been shown, theoretically and for a practical example, that the detection of the uptake of paramagnetic contrast agents in inflammatory lesions can be considerably improved with pFISP. Especially for 3D sequences with short TR, the achievable contrasts are significantly higher than those attainable with comparable T 1 -weighted FLASH. The effect depends only weakly on the amount of accumulated contrast medium; in particular, it is already present for a marginal uptake. Unlike FISP, the signal of tissues with long T 2 values appears hypointense, which is a necessary prerequisite for this kind of application.
+
+Other than in the brain, where spin echo sequences are typically the method of choice, pFISP could be advantageous, when fast imaging techniques are mandatory, e.g., in the abdomen. The attainable raise in signal and contrast, compared to FLASH, could be used to improve spatial and/or temporal resolution.
+
+A benefit can be expected for (dynamical) contrast uptake examinations, e.g., of the liver. Because of its intrinsic high signal pFISP could also be useful for virtual MR colonoscopy, especially when performed in dark lumen technique. Different from FISP, the water is effectively suppressed by use of a small ϕ already.
+
+Although similar calculations as presented in Fig. 5 would also apply for the contrast enhancement achievable in MR angiography, pFISP is not useful for this application. In fact, blood flow destroys the FISP signal, and, as a consequence of the higher flip angle α, the signal is even lower than in FLASH.
+CONCLUSIONS
+
+In summary, an analytical solution of the steady state of RF-spoiled gradient echo sequences has been derived. Apart from considerably improving the computation speed in comparison with simulation, it enables a deeper understanding of these sequences. It was shown that for small TR and ϕ the width of the transition from FISP to FLASH is in good approximation inversely proportional to T 2 . A new sequence (pFISP) has been proposed, which uses this effect for increasing tissue contrasts. For abdominal imaging, particularly in combination with contrast agents, pFISP might be a superior alternative to FLASH.
+Acknowledgements
+
+The author thanks Dr. Marcus Settles for his critical reading of the manuscript and helpful comments. The partial spoiling method has been filed at the German Patent and Trade Mark Office.
+
+APPENDIX A
+Matrix Representations
+Explicit expressions for the matrices, which enter Eq. [ 3 ], are given below.
+equation image (49)
+The unitary rotation matrices read
+equation image (50)
+and
+equation image (51)
+APPENDIX B
+Derivation of the Continued Fraction Expansion
+At first sight it seems to be a very complicated task to solve the recursion relation [ 21 ]. But since the matrices B (±1) have only one nonzero column, the matrix Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-28 depends only on a complex scalar Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-29 :
+equation image (52)
+Explicitly, we obtain the following matrices:
+equation image (53)
+equation image (54)
+After inverting [53], Eq. [ 21 ] indeed yields three identical equations for Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-30 :
+equation image (55)
+with α k , β k , and γ k defined in Eq. [ 30 ].
+In the same way, we obtain from Eq. [ 54 ] and y − k = [ y k ] * ,
+equation image (56)
+as we might already have guessed.
+
+If we finally set Λ: = Λurn:x-wiley:07403194:media:MRM20736:tex2gif-stack-31 , the continued fraction expansion [27] directly follows from iterating Eq. [ 55 ].
+APPENDIX C
+Derivation of the Linear Expansion
+We first assume ϕ = 0 (FISP) and note that the coefficients in Eq. [ 55 ] no longer depend on k . We therefore obtain a closed equation for Λ:
+equation image (57)
+The quadratic equation has the solution
+equation image (58)
+Only the minus sign is physical, since Λ must vanish for E 2 → 0. Inserting [58] into [24] indeed yields the well-known result for FISP:
+equation image (59)
+To develop Λ up to linear order in δ and ϕ, we make use of
+equation image (60)
+where η is defined by Eq. [ 33 ].
+We can now expand Eq. [ 58 ] in linear order and obtain
+equation image (61)
+with σ defined as in Eq. [ 32 ].
+To determine the lowest order correction in terms of ϕ, we now set δ = 0 and insert the ansatz
+equation image (62)
+and Eq. [ 60 ] into the recursion relation [55]. We indeed find that ξ k is defined by the continued fraction expansion [ 34 ], which completes the proof of Eq. [ 31 ].
+REFERENCES
+Citing Literature
+
+Volume 55 , Issue 1
+
+January 2006
+
+Pages 98-107
+
+    Figures
+    References
+    Related
+    Information
+
+Recommended
+
+    Optimal radiofrequency and gradient spoiling for improved accuracy of T 1 and B 1 measurements using fast steady-state techniques
+    Vasily L. Yarnykh , 
+    Magnetic Resonance in Medicine
+
+    Steady‐state preparation for spoiled gradient echo imaging
+    Reed F. Busse ,  Stephen J. Riederer , 
+    Magnetic Resonance in Medicine
+
+    Steady state of echo–shifted sequences with radiofrequency phase cycling
+    Carl Ganter , 
+    Magnetic Resonance in Medicine
+
+    Hexagonal gradient scheme with RF spoiling improves spoiling performance for high‐flip‐angle fast gradient echo imaging
+    Aaron T. Hess ,  Matthew D. Robson , 
+    Magnetic Resonance in Medicine
+
+    Spoiling of transverse magnetization in steady‐state sequences
+    Y. Zur ,  M. L. Wood ,  L. J. Neuringer , 
+    Magnetic Resonance in Medicine
+
+Download PDF
+back
+Additional links
+About Wiley Online Library
+
+    Privacy Policy
+    Terms of Use
+    About Cookies
+    Manage Cookies
+    Accessibility
+    Wiley Research DE&I Statement and Publishing Policies
+    Developing World Access
+
+Help & Support
+
+    Contact Us
+    Training and Support
+    DMCA & Reporting Piracy
+
+Opportunities
+
+    Subscription Agents
+    Advertisers & Corporate Partners
+
+Connect with Wiley
+
+    The Wiley Network
+    Wiley Press Room
+
+Copyright © 1999-2024 John Wiley & Sons, Inc or related companies. All rights reserved, including rights for text and data mining and training of artificial technologies or similar technologies.
+
+Wiley Home Page
+

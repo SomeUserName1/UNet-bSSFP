@@ -1,0 +1,1184 @@
+Chapter 27
+Introduction to MRI Coils and Magnets
+Chapter Contents
+27.1 The Circular Loop as an Example
+27.2 The Main Magnet Coil
+27.3 Linearly Varying Field Gradients
+27.4 RF Transmit and Receive Coils
+Summary: Basic electromagnetic equations are introduced to describe the ﬁelds produced by and properties of the coils used in MRI. Desirable properties of the various coil systems are discussed. A brief introduction to rf power deposition and speciﬁc absorption rate is also given.
+Introduction
+Heretofore the primary focus has been the eﬀect of magnetic ﬁelds on samples. The attention is now directed toward the coils and magnets that produce the requisite MRI ﬁelds. The goal of this chapter is to familiarize the reader with a number of basic electromagnetic and mathematical concepts needed to understand the design of the coils that generate the ﬁelds used in MRI. Some well-known prototypes of the coils (main magnet, rf, and gradient) are considered in the sections that follow.
+The problem of designing ﬁeld generating coils can be stated very simply. The ideal ﬁelds to be used in MRI are very well speciﬁed, but the arrangements of wires needed to produce these ﬁelds most eﬃciently are not intuitively obvious. For this reason, the design of coils lies primarily in determining the optimal arrangements of current necessary to produce the magnetic ﬁelds used in MRI. These concepts are borne in mind even as the simple designs of coils are discussed.
+823
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+824
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+27.1 The Circular Loop as an Example
+
+To understand a number of the magnetic ﬁeld concepts in this chapter, it is useful to begin with an example. Consider the time-independent ﬁeld from a circular loop with current I, radius a, coaxial with the z-axis (see Fig. 27.1).
+
+Fig. 27.1: Spherical and cylindrical coordinate systems used to describe the ﬁeld from a single
+loop of wire coaxial with the z-axis. The unprimed (primed) coordinates refer to the observation (source) points.
+
+The ﬁeld from the circular loop can be found from the Biot-Savart Law
+
+B(x) = μ0 4π
+
+volume
+
+d3x
+
+J(x ) × (x − |x − x |3
+
+x
+
+)
+
+(27.1)
+
+where J(x ) represents an arbitrary time-independent current density (the amount of current
+
+moving in a given direction per unit area). In cases involving thin wires (27.1) can be reduced
+
+to
+
+B(x) = μ0 4π
+
+Id × (x − x ) path |x − x |3
+
+(27.2)
+
+in which the current in the wire is I and the vector diﬀerential along the current path is d . This formula is very accurate as long as both the distance |x − x | between the wire and the point of observation remain large compared to the cross-sectional diameter of the wire.
+The exact form of B for a circular loop obtained from the Biot-Savart law (27.2) at a general spatial location is a complicated expression. However, an elementary calculation can
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.1. The Circular Loop as an Example
+
+825
+
+be made to ﬁnd the on-axis ﬁeld for the circular loop. In terms of the coordinates shown in Fig. 27.1, the current follows the azimuthal φˆ direction, and therefore it is easiest to deﬁne the problem in terms of cylindrical coordinates
+
+d = adφ (− sin φ xˆ + cos φ yˆ) x − x = −a (cos φ xˆ + sin φ yˆ) + (z − s)zˆ
+
+The radius of the loop is a and the loop center is at the axial location s. The integrand of (27.2) becomes
+
+Id
+
+× (x − |x − x |3
+
+x)
+
+=
+
+I adφ
+
+((z
+
+− s) cos φ xˆ − (z − s) sin φ (a2 + (z − s)2)3/2
+
+yˆ +
+
+azˆ)
+
+(27.3)
+
+The integration is performed around the entire loop from 0 to 2π, and the x- and ycomponents of B disappear since the integrals of sine and cosine vanish on that interval. Therefore, the ﬁeld on the z-axis has only a constant integration for the z component,
+
+Bz(ρ = 0)
+
+=
+
+μ0 I a2 2 (a2 + (z − s)2)3/2
+
+(27.4)
+
+A plot of the ﬁeld for a single wire loop, centered at the origin, as a function of z is shown in Fig. 27.2.
+
+Fig. 27.2: Bz vs z on the axis for a single wire loop centered at the origin (z = 0). The loop
+radius is 1 m and the current units are chosen for convenience to give Iμ0/2 = 1.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+826
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+27.1.1 Quality of Field
+Both homogeneous and linearly varying ﬁelds are used for imaging in MRI, and it is useful to try and understand how homogeneous or linear a given ﬁeld is. This question is usually answered by decomposing the ﬁeld in terms of the desired ﬁeld behavior and contaminating ﬁeld terms. Consider the ﬁeld shown in Fig. 27.2 which is not homogeneous, for example, but can be decomposed into a homogeneous term and other terms. The ﬁeld shown in Fig. 27.2 has been expressed in terms of a power series in z in Fig. 27.3, as an example. The individual lines in Fig. 27.3 represent terms in an expansion of Bz along the axis, and are generally referred to as ‘moments.’1
+This analysis is useful when trying to obtain a homogeneous ﬁeld, for example, because several coils can be positioned such that their linear and other unwanted moments exactly cancel, leading to a resulting ﬁeld which is more homogeneous than that of a single coil. The quality of the ﬁeld produced depends upon how many of the contaminating terms or moments are successfully reduced to zero.
+
+Fig. 27.3: The ﬁrst six nonzero terms in the series in the expansion of Bz for a single loop centered
+at the origin as a function of z. This example demonstrates the rapidly decreasing contribution of higher-order moments near the origin.
+1In general, the magnetic ﬁeld moments used to analyze the ﬁelds used in MRI are expressed in terms of spherical harmonics. Spherical harmonics are used because they represent a general solution of Laplace’s equation, which the magnetic ﬁeld must satisfy in free space for a time-independent ﬁeld. Since most readers may not be familiar with these functions, a Taylor series is used here to introduce the notion of breaking the ﬁeld down into moments.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.2. The Main Magnet Coil
+
+827
+
+One way to obtain an expression for a function as a power series about a particular point is to use a Taylor expansion. Making a Taylor series expansion of the on-axis ﬁeld from a circular loop (Fig. 27.1) leads to
+
+Bz (z )
+
+=
+
+μ0 I a2 2
+
+1 R3
+
++
+
+z
+
+·
+
+3s R5
+
++ 1z2 · 2
+
+12s2 − 3a2 R7
+
++1z3 · 6
+
+60s3 − 45sa2 R9
+
++ ...
+
+(27.5)
+
+√ where R = a2 + s2. If a set of circular loops could be arranged such that the sum of their resulting ﬁelds only produced a z0 term, a perfectly homogeneous ﬁeld would be found.
+Unfortunately, it is not possible, practically, to produce a perfectly homogeneous ﬁeld. However, it might be possible to make sure that the coeﬃcient of moments z1 to z10 are all approximately zero, which, as can be seen from Fig. 27.3, would lead to a very homogeneous
+ﬁeld near the origin. In the sections that follow, speciﬁc examples of how homogeneous and
+linearly varying ﬁelds are produced will be described.
+
+27.2 The Main Magnet Coil
+As mentioned throughout this text the primary job of the main magnet is to cause a population of spins to align parallel to the magnetic ﬁeld, resulting in a net magnetization of the sample. The magnetization is then manipulated to produce the signal in an MRI experiment. The main magnetic ﬁeld should be time-independent and very homogeneous.
+27.2.1 Classic Designs
+There are several main magnet designs that are based on analytic solutions, and they are worth studying to obtain an increased understanding of how ﬁeld expansions are used to design ﬁelds.
+Helmholtz Pair
+An initial step in producing a magnetic ﬁeld that is more homogeneous than that shown for the single loop is to combine two coaxial loops symmetrically about the origin, and ﬁnd the ratio of their separation to radii which gives optimal ﬁeld homogeneity (see Fig. 27.4). The theoretical tool employed is the Taylor expansion of the ﬁeld along the axis about z = 0 for a pair of coils centered at z = ±s with common radius ρ = a (see (27.4) and (27.5)). The resulting ﬁeld is the summation of the ﬁeld from each individual loop. Since the coils have the same radius and current, but diﬀerent centers, the only diﬀerence between their expansions (27.5) is that s → −s for the coil at z = −s. The combined series for the symmetric pair of coils has no terms odd in the power z. In general, any current distribution that is symmetric with respect to the z = 0 plane will have no odd derivatives in its Taylor series expansion along z.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+828
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+Fig. 27.4: Helmholtz coil pair conﬁguration where the separation of the coils is equal to their
+radius (a = 2s). This choice of spacing leads to a homogeneous ﬁeld near the origin because the z2
+moment of the ﬁeld is zero.
+
+It is possible to use a relation between a and s to eliminate the second-order derivative
+
+for the two coils which will lead to a more homogeneous ﬁeld. The second-order term will
+
+vanish when
+
+a = 2s
+
+(27.6)
+
+i.e., the coil radii equals the axial separation of their centers. A single coil set which meets this criterion is referred to as a Helmholtz pair or a Helmholtz coil. The fourth-order term corresponds to the ﬁrst nonvanishing derivative at the origin for such coils. The resultant ﬁeld is plotted in Fig. 27.5, showing the uniformity around z = 0. The magnetic ﬁeld remains primarily parallel to z along ρ as well.2
+
+Problem 27.1
+
+a) Derive the ﬁrst two terms shown in (27.5) by an appropriate expansion of (27.4).
+b) Write out the z2 term for the ﬁeld produced by a Helmholtz coil pair (sum contribution of each coil using (27.4)), and show that this term vanishes under the condition given by (27.6). Make an argument for why all of the terms odd in z are equal to 0.
+c) Plot Bz vs z for a symmetric coil pair for two cases. In the ﬁrst case use the Helmholtz condition (27.6). In the second case, increase a by 10% from this value. Qualitatively comment on the diﬀerence in axial homogeneity for these two cases.
+
+2The variation in the ρ direction is constrained to be small by Maxwell’s equations if the variation in the z-direction is small.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.2. The Main Magnet Coil
+
+829
+
+Fig. 27.5: Plot of Bz vs z for a Helmholtz pair. The loop radius is 1 m, the wire separation is
+therefore also 1 m, and the current units are chosen for convenience to give Iμ0/2 = 1.
+Problem 27.2
+In an attempt to increase ﬁeld strength B0 generated by a Helmholtz pair, an additional coil might be added at the origin. Consider the coil set shown in Fig. 27.6. Assume that z0, a, b, and I0 are all given. Find an expression for α in terms of these parameters such that the second derivative of the ﬁeld produced by all of the coils at the origin is zero. Comment on the potential advantages or disadvantages of this coil set with respect to the simpler Helmholtz coil based upon the discussions presented throughout this section. Some things you may wish to consider include eﬃciency, overall homogeneity, length, and ease of construction.
+Classic Solenoid
+An elementary textbook example of a coil which produces a uniform magnetic ﬁeld near the origin is a long solenoid, coaxial with the z-axis, centered about z = 0. A classic uniformly wound solenoid, however, is not the best choice for an MRI main magnet. Good uniformity at the center of such a solenoid requires that its length be large compared to its radius. This is evident from the familiar formula for the z-component of the ﬁeld along the axis of
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+830
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+a solenoid,
+
+Bz (z )
+
+=
+
+μ0nI 2
+
+(cos α1
+
+−
+
+cos α2)
+
+(27.7)
+
+where n is the number of turns per unit length, and the angles are described in Fig. 27.7. If Bz(z) is to be approximately constant near the origin, then α1 and α2 must also be approximately constant which only occurs if the length of the solenoid is much greater than its radius.
+
+Fig. 27.6: This coil conﬁguration represents a simple addition to the Helmoltz coil pair where a coil
+has been placed at the center in an attempt to increase the ﬁeld produced in the imaging region.
+
+Fig. 27.7: An illustration of a solenoid with radius a. The angles α1 and α2 are deﬁned as shown.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.2. The Main Magnet Coil
+
+831
+
+Problem 27.3
+
+It is often assumed that a classic solenoid is the simplest choice of coil for generating the static ﬁeld in MRI. However, sets of bundled coils, such as those shown in Fig. 27.8 are actually the norm. Consider the ﬁeld generated by a tightly wound solenoid with n turns of wire per unit length as given by (27.7). The angles α1,2 are the angles between the z-axis and a line from the origin to the edge of the wires at either end of the solenoid. Using this formula, and assuming the following parameters, rsolenoid = 1.0 m, n = 1000 turns/meter, an imaging region-of-interest of 50 cm diameter spherical volume, and I = 1 amp,
+a) By an integration using (27.4) show that the ﬁeld from a solenoid is correctly given by (27.7).
+b) Determine the minimum length of the solenoid if the on-axis homogeneity of the magnet must be 5 ppm, i.e., (Bz(0) − Bz(0.25 m))/Bz(0) = 5 ppm.
+Hint: This problem is most easily solved by using a numerical analysis, or using a Taylor series expansion of the ﬁeld.
+
+Fig. 27.8: Sketch of a typical set of main magnet coils. The lightly shaded sphere in the center
+of the ﬁgure represents the imaging region. The cutaway of the left-most coil demonstrates that individual superconducting wires are packed together to form the coils.
+Further Improving Homogeneity The Helmholtz pair and solenoid are useful conceptual designs, but are not generally adequate to produce the very homogeneous ﬁelds desired in MRI. It is not, in general, possible to obtain the desired ﬁeld homogeneity by eliminating only the z2 term from the ﬁeld, as is the case for the Helmholtz coil. Neither is it reasonable to build a solenoid that is long
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+832
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+enough to provide adequate homogeneity over a human whole body imaging region. Advanced designs consist of rectangular bundles of wires centered at axial and radial locations chosen speciﬁcally to optimize homogeneity in the imaging volume. A pictorial example of a modern coil conﬁguration is shown in Fig. 27.8.
+Problem 27.4
+
+Suppose the technology of superconductivity is not available. Assume that it takes 2 mega-amp turns (current/wire × number of turns or individual wire loops) of wire to generate a 1.0 T ﬁeld. Assume the following parameters: wire
+with a 1 mm diameter and a current of 10 amps, average radius, call it a, of the coils to be 1 m, and use 1.7 × 10−8 Ω·m as the resistivity of copper.
+
+a) Find the power required to operate this magnet if copper windings are used.
+
+Recall that for a wire
+
+R = ρ /A
+
+(27.8)
+
+where R is resistance, ρ is resistivity, is the total length of the wire, and
+
+A is its cross-sectional area. Also, recall that the power dissipated by a
+
+resistive wire is given by
+
+P = I2R
+
+(27.9)
+
+b) Imagine for a minute that this power is instead used to heat water. How many liters of water could be heated from 15 ◦C to 90 ◦C in one minute by the power supplied to this magnet? (This should give the reader some idea of why resistive magnets are not practical for high ﬁeld magnet use.)
+c) Since the quantity which determines the ﬁeld produced by the magnet is best characterized by amp-turns and copper can not carry very many amps a large number of turns are required to produce a high ﬁeld. Estimate the weight of both a copper magnet and a superconducting magnet. Assume the density of copper to be 3g /cm3 and the density of the superconductor to be 2.5 m/cm3, further assume the superconductor can carry 150 amps of current. Use the amp-turns and average radius ﬁgures given above to complete this problem. Qualitatively comment on whether your answer places another restriction on the utility of a resistive magnet at high ﬁelds.
+d) Patients in MRI often complain of claustrophobic feelings during MR examinations. Consider the eﬀects of increasing the radius of the MRI main magnet in an attempt to give patients more space. Assume that the magnet is constructed of two coils centered at the Helmholtz position (a = d or radius equals separation). Assuming that the same number of amp-turns is used, what would be the relative decrease in B0(0) if the radius a is taken from 1 m to 2 m. What is the relative increase in the length of wire in this case? Your answers should explain why the radius of the main magnet is not too large.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.2. The Main Magnet Coil
+
+833
+
+27.2.2 Desirable Properties of Main Magnets
+In order to develop optimal coils, the important operational parameters of the object should be well understood. Several important aspects of the MRI main magnet include: ﬁeld strength, homogeneity, temporal stability, patient access and comfort, cost eﬀectiveness, minimization of ﬁelds generated outside the imaging environment, and access to the patient during scanning for invasive procedures.
+
+Maximizing Field Strength
+As mentioned in the introduction the maximum available SNR for an MR experiment is proportional to B0α; (α ≥ 1) with some variability in the value of the exponent as a function of B0. Since MRI is an inherently low SNR phenomenon, a primary goal of MRI main magnet design to increase SNR is to maximize B0 (see Sec. 15.8.2). Maximization of B0 explains two common aspects of contemporary high ﬁeld MRI systems. The ﬁrst is the solenoidal or cylindrical magnet structure. The cylindrical structure of the magnet allows a large amount of ﬁeld producing wire to be placed close to the imaging environment and is also attractive from an engineering point of view. The second aspect of contemporary machines dictated by increasing B0 is the use of superconductors to generate B0. The magnetic ﬁeld a wire generates is linearly proportional to the current it carries. A copper wire, operating at room temperature, a few millimeters in diameter, can carry approximately 10 amps continuously, and a bundle of such wires must be cooled since the resistance causes a lot of power to be deposited in the wires as heat. A superconducting wire of 1 mm in diameter, however, can support more than a hundred amps of current with no associated heating. The presence of resistance in a room temperature copper wire also means that power must constantly be fed to maintain the ﬁeld, but a superconducting system will run indeﬁnitely with no additional power, excluding refrigeration, if it is kept superconducting.
+
+Temporal and Spatial Uniformity
+As a matter of convention, homogeneity of an MRI magnet is quoted in terms of inhomogeneity or ΔB0. For example, if a magnet is said to have a homogeneity of 20 ppm, this means that the ﬁeld varies by 20 millionths of its average value over the region-of-interest. It must be kept in mind that ppm is a relative measure (1 ppm of x = 1/1, 000, 000 of x), but the eﬀect on imaging is a function of the actual ﬁeld diﬀerence. For example, a 1.0 T magnet with a homogeneity of 10 ppm and a 10 T magnet with 10 ppm of homogeneity would have image distortion and signal loss problems due to static ﬁeld inhomogeneities that diﬀer in magnitude by approximately a factor of ten. An accepted homogeneity level for contemporary whole-body clinical imaging machines might be given as 5 ppm over a 50 cm diameter spherical volume at 1.5 T. All of these ﬁgures show that the static ﬁeld used in MRI must be very homogeneous. In order to achieve this level of homogeneity the classic designs described previously are not adequate. In reality, sets of coils such as those shown in Fig. 27.8 are used to obtain ppm homogeneity levels and high ﬁeld strengths. These coils are developed with an identical philosophy to that described for the Helmholtz coil, except more coils have been added to cancel progressively higher order contaminating moments. The level of accuracy
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+834
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+required leads to a unique set of requirements in accuracy of ﬁeld modeling, and manufacture of coil sets.
+The required homogeneity of an MRI magnet is dictated by the desire to avoid the ﬁeld distortion eﬀects outlined in previous chapters. In order to avoid a majority of ﬁeld distortion errors, the homogeneity of the magnet should be such that T2 due to static ﬁeld inhomogeneities is much longer than an average data acquisition or read gradient period. The spatial frequency of variation in B0 must also be very low so that ΔB0 across a pixel is much less than GxΔx. In other words, spins are not aﬀected as much by ﬁeld inhomogeneity as by applied gradient eﬀects. To determine what homogeneity for a magnet is required, however, is diﬃcult because some imaging methodologies require more uniformity than others. The question is also dependent upon the volume being considered, and a magnet with 15 ppm of homogeneity on a 50 cm diameter spherical volume (DSV) may also be able to claim less than 2 ppm on a 30 cm DSV. This is easy to understand from a moment analysis of the magnetic ﬁeld (see Fig. 27.3) which demonstrates that error contributions are smaller near the origin. This explains why some imaging methods which may be employed on a small volume sample (human head, for example) are much more diﬃcult to use for scanning a larger volume.
+The label static implies that the ﬁeld is independent of time, and in MRI a ﬁeld which is independent of time would be deﬁned by one which varied by less than a few ppm over the total imaging time, TT . It is found that for superconducting magnets the ﬁelds often vary less than a μT/hour. Therefore, for all practical purposes the time dependence of the main ﬁeld can be neglected for a superconducting system. This is not the case for a system using resistive wire. In this case variations of the ﬁeld may occur over times much less than TT , resulting in image errors due to incorrect demodulation of the signal.
+
+Fig. 27.9: Example of a 1.0 T magnet system with and without active shielding. The two lines
+circling the magnet represent the 5 G lines before and after shielding is introduced to the system.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.2. The Main Magnet Coil
+
+835
+
+Fringe Field Eﬀects
+Another concern which must be considered when designing an MRI main magnet is the eﬀect of the ﬁeld on nearby electronic devices. Fields in excess of 5 G (5×10−4 T) are considered to pose potential risks to people using electronic health aids. Therefore, ﬁelds produced outside of the imaging region (fringe ﬁelds) must also be considered in the initial design. In fact, unshielded magnets at 0.5 T and above can produce ﬁelds in excess of 5 G at distances of 10 to 30 m from the imaging site (see Fig. 27.9), and in hospitals where space is at a premium, shielding of these ﬁelds must be one of the primary design concerns.
+Problem 27.5
+
+There are really two concerns in the immediate area of MRI main magnets: one is the increased static ﬁeld level, and the other is the large static ﬁeld gradients near the magnet. Consider the following situations where a small circular loop will be used to approximate the wires in an electronic device which may be employed near an MRI system.
+a) Consider a circular loop of wire that is initially aligned so that its area vector is parallel to the ﬁeld, and rotates to a position anti-parallel to the ﬁeld in 1 s (example of time it may take a person to turn quickly). Take the radius of the wire to be 10 cm. Approximate the emf induced in the coil in a 5 G ﬁeld, the earth’s magnetic ﬁeld (Bearth ≈1 G), and a 1.5 T ﬁeld.
+b) Consider moving the same loop from part (a) near the magnet where the magnitude of the ﬁeld is varying rapidly. Consider a person walking through a region where the ﬁeld varies linearly from 0 T to 1.0 T in 1.0 m. Assume the area vector of the loop is aligned parallel to the ﬁeld and that the person is walking at a rate of 3 mile/hr. Calculate the emf induced in the loop.
+c) Based on your answers to the previous parts, would you expect the induced voltages given to be large enough to aﬀect the function of a solid-state device such as a calculator?
+
+Problem 27.6
+Answer the following questions about how an iron paper clip would behave in and around an MRI machine.
+a) If the paper clip is released from rest in a perfectly uniform ﬁeld, what will happen?
+b) The paper clip is placed on a frictionless imaging table just outside the bore of an MRI machine. Describe what will happen to the paper clip, and estimate the velocity of the paper clip in the center of the magnet. Hint: The dipole moment/mass for iron = 333 A·m2/kg.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+836
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+c) Assume you are placed in a large uniform magnetic ﬁeld. Can you locate the direction of the ﬁeld, if your only detection device is a paper clip? Describe how you might do this.
+
+27.2.3 Shielding
+As described previously, the static ﬁelds produced by the main magnet can present safety risks when electronic devices or metallic objects are brought into the imaging environment. In order to minimize the region where these issues are important most main magnets are shielded to minimize ﬁelds produced outside of the imaging environment.
+Active Shielding
+Active shielding of fringe ﬁelds in MRI is generally accomplished by the addition of one coil pair at a larger radius than the interior pairs. The current in the shielding (secondary) coil ﬂows in the opposite direction to the interior coils, and so produces ﬁelds which tend to cancel the primary ﬁelds. The vector summation of the ﬁelds from the primary and shielding coils leads to a large reduction in the overall ﬁeld outside of the magnet.
+Unfortunately shielding in this way also leads to a signiﬁcant reduction of the interior ﬁeld. Therefore, to obtain a similar B0 ﬁeld, an actively shielded coil must have a signiﬁcantly larger amount of primary and shielding current than is found in an unshielded magnet. Active shielding more than doubles the amount of total current needed to produce a similar B0 in most cases.
+It appears that active shielding might be overly expensive since the magnet cost is strongly related to the amp-turns used to produce the ﬁeld. However, this is not the case. Although active shielding does aﬀect the initial magnet cost, since the magnets are superconducting it does not have a signiﬁcant impact on subsequent operating costs. Also, active shielding simpliﬁes magnet installation. By reducing the external ﬁelds, interactions with external magnetic materials are reduced. An actively shielded magnet can be brought to most sites and installed, with little concern for the building structure (iron beams, nearby traﬃc, etc.).
+Ferromagnetic or Passive Shielding
+Ferromagnetic shielding in MRI is based upon principles similar to those used in electrical shielding. A magnet designer can make use of the boundary conditions, and properties of materials with large magnetic permeability μ to modify the form of ﬁelds local to the magnetic materials.
+Ferromagnetic shielding has been used in two primary ways in MRI. In the ﬁrst case it has simply consisted of iron introduced into the walls of an imaging site where an unshielded magnet has been installed. The distortion of the main ﬁeld due to the presence of the iron is then corrected on a case-by-case basis. Each new site presents new conditions for the people installing the magnet, and can lead to unique diﬃculties.
+Another way to address ferromagnetic shielding is to include iron in the initial magnet design. The iron material surrounds the primary ﬁeld producing coils in very close proximity,
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.2. The Main Magnet Coil
+
+837
+
+and its presence is included in the design of the homogeneous ﬁeld. The eﬀect is included by calculating the ﬁelds from the bare coils, and then calculating the contribution to the ﬁeld from the iron in terms of moments. Advantages of this method are the same as those from active shielding. Disadvantages of this method are that the amount of iron necessary for shielding can lead to very heavy designs which are awkward to transport and install. Also, iron is diﬃcult to treat mathematically, and leads to a large increase in the amount of computational power needed to achieve an initial design.
+
+27.2.4 Shimming
+Shimming in magnet technology refers to the process of removing small inhomogeneities which are present in the ﬁeld after the coil has been wound. It is not possible to consistently produce a set of coils whose homogeneity meets the speciﬁcations imposed by the theoretical design. This is due to the large number of variables in the manufacturing process. Some of these variables include machine error in locating coil troughs, wire distribution during winding, contraction of the system when it is cooled to superconducting temperatures (≈ 4 K), shifting of the wires under magnetic (or passive) forces, presence of magnetic impurities in any of the surrounding structures, mechanical stresses during transport, and so forth. As a result when magnets are ﬁnally ‘brought to ﬁeld’ the homogeneity is typically found to be on the order of several hundred ppm.
+It is still necessary to achieve the original design homogeneity for imaging to take place, and a set of corrections must be applied to the ﬁeld before it is ready for imaging. The process of removing these ﬁnal inhomogeneities from the magnet is referred to as shimming. There are two primary methods for shimming similar to those employed for shielding. Ferromagnetic (or passive) shimming involves placing pieces of iron in the bore of the magnet close to the imaging region in order to eliminate moments in the ﬁeld. Active shimming involves adding small amounts of extra current to a set of coils at a slightly larger radius than the primary coil, in order to add or subtract extra ﬁeld as needed. Analysis of the ﬁeld inhomogeneities and their corrections are all based upon moment analysis of the ﬁeld as described in the ﬁrst section of this chapter. Each piece of shimming iron, or shim coil is designed or positioned to generate speciﬁc moments which are used to cancel the unwanted moments present in the manufactured coil.
+In order to better understand the need for shims, and how they are employed, an example of a potential ﬁeld distortion will be discussed. Consider the potential eﬀects of N plastic rods which hold the superconducting coils in place within their refrigerator. Due to their diﬀerent thermal contraction properties it might be expected that the azimuthal invariance of the coils will be distorted by these rods. In fact it is possible to predict the variation of the ﬁeld as a function of φ they may cause. Their contribution to ﬁeld distortion may vary as a linear combination of cos 2πφ/N (each leg causes a distortion), in addition to a cos φ distribution of error due to the rods above the magnet being under more tension than the ones below due to gravity. Without any analysis, it is possible to predict that iron placed in the magnet to correct this distortion would have to be similarly distributed.
+The ﬁeld proﬁle is re-evaluated after corrections are added, and another set of shims is added if necessary. This process (measure/shim/evaluate) is repeated until the target ﬁeld homogeneity for the magnet is achieved. Due to the complexity of the problem, ﬁeld analysis
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+838
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+is generally performed by a computer. The ﬁeld is measured at a number of points, and the results are fed to the computer which decomposes the ﬁeld into a sum of moments. The correct currents in shim coils or placement of iron to minimize individual moment contributions are then determined by the computer. Although, distortions can not be predicted in advance, the moment expansion of the ﬁeld may be used to correct ﬁeld distortions in a systematic fashion.
+
+27.3 Linearly Varying Field Gradients
+The second class of coils employed in MRI are linear magnetic ﬁeld gradient coils. These coils are used to encode spatially the positions of the spins in MRI by varying the value of the local magnetic ﬁeld causing spins’ Larmor frequencies to vary as a function of their positions. These coils are rapidly switched during MRI sequences to allow the collection of large regions of k-space in a short amount of time.
+
+27.3.1 Classic Designs
+There are several gradient coil designs based on analytic solutions that were originally designed to correct ﬁeld inhomogeneities in spectroscopic magnets. These designs, and simple modiﬁcations of them, are still employed in magnets today.
+
+Maxwell Pair (z-Gradient)
+
+The z-gradient coil set is designed to produce a linear variation in the z-component of the ﬁeld along the axis of the magnet, with a high degree of gradient uniformity in the transverse plane. Circular wire loops are again the most obvious choice since they are azimuthally symmetric and possess reasonable radial uniformity.
+As long as a symmetric gradient ﬁeld is being considered, it is possible to describe the coils in terms of pairs, as was the case for main magnets. However, in the case of the gradient coil pairs their currents will be equal in magnitude, but opposite in direction. Coils on one side of the z = 0 plane will generate ﬁelds parallel to B0 while ﬁelds due to coils on the other side are anti-parallel to B0 leading to an overall ﬁeld variation along z. Linearity is achieved by choosing the relation between the radius of the coils and their axial locations in order to minimize all but the linear z term in (27.5).
+For a single coil pair, an analytic solution is available for which the z3 term from both coils in (27.5) is zero, and the even z powers are all eliminated (see Fig. 27.10). This analysis closely parallels that already presented for the Helmholtz coil. It is found that if
+
+√ d = 3a
+
+(27.10)
+
+(see Prob. 27.7) then the lowest order contaminant to the linear ﬁeld is zero, and a reasonably homogeneous ﬁeld gradient can be obtained. A coil pair possessing these dimensions is referred to as a Maxwell pair or a Maxwell coil. Although the Maxwell pair provides reasonably good homogeneity and performance many of today’s imaging applications require more
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.3. Linearly Varying Field Gradients
+
+839
+
+Fig. 27.10: This ﬁgure represents a Maxwell coil pair. A set of wire loops coaxial with z are the
+most eﬃcient choice for producing a z-gradient; however, with only two coils the linearity of the Maxwell pair is limited.
+homogeneity over greater distances than can be achieved with the ﬁxed radius-to-length restrictions of this coil.
+Improvements to the Maxwell pair are generally achieved by introducing additional coil pairs. The z locations and currents for each coil pair can then be varied to eliminate higherorder moments. This can be accomplished by inspection or with the use of an inverse technique to determine the optimal coil locations and currents.
+Problem 27.7
+Given a coil pair with radius a, z = ±d/2, and equal and opposite currents given by I,
+a) Show that the even terms in (27.5) are all zero. b) Derive the Maxwell condition. In other words, ﬁnd the relation between a
+and z such that the z3 term in (27.5) vanishes. c) Plot Bz vs z for this coil pair for 2 cases. In the ﬁrst case use the relation
+between a and d found in part (b). In the second case, change a or d by approximately 10% from this value. What is the eﬀect on axial linearity?
+Golay Pair (x- or y-Gradient)
+Producing a transverse gradient is somewhat more complicated than producing a z-gradient. If one is working on a cylindrical geometry, however, the x- and y-gradient coil sets are identical except for a rotation, owing to the azimuthal symmetry of the problem. One of the classic designs for a transverse gradient is the Golay pair as depicted in Fig. 27.11.
+The variation of Bz along x is primarily due to the innermost azimuthal wires. The two inner wires on the upper coils produce ﬁelds parallel to B0, and the inner wires on the
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+840
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+Fig. 27.11: A Golay pair. Notice that only the innermost turns are used to produce the desired
+ﬁeld gradient.
+
+lower coil produce ﬁelds anti-parallel to B0. The combination of these ﬁelds leads to an overall variation of Bz along the x-axis. If a symmetric gradient is desired along x then the coils can again be chosen with symmetric spatial design and anti-symmetric (with respect to x = 0) currents so that all of the even terms in an expansion of Bz along x similar to (27.5) along z vanish. It is obvious that if the coils are to remain on the cylinder, their separation along the x-axis can not be varied, and therefore homogeneity must be optimized by varying the axial location of the azimuthally ﬂowing wire paths. The optimal conﬁguration of the Golay pair is shown in Fig. 27.11. Deriving the optimal conﬁguration for the Golay pair is conceptually the same, but mathematically more diﬃcult, than for the Maxwell and Helmholtz pair (see the papers on coil design in the Suggested Reading). Unfortunately, the Golay pair is found to be a relatively ineﬃcient coil. This should be obvious since it can be seen that only the innermost azimuthal turn of each coil produces the desired variation of the ﬁeld.
+Improvements to the Golay pair have been made by adding more coils with diﬀerent axial locations and opening angles. These improvements were largely made by inspection. That is, coils were added, and then the system was re-evaluated and modiﬁed to eliminate as many higher-order moments from (27.5) as possible.
+
+27.3.2 Calculating Linearly Varying Fields
+
+The Taylor series expansion of the magnetic ﬁeld is especially useful for studying the gradients produced by a given coil. Analyzing the ﬁrst derivative terms in Cartesian coordinates gives
+
+x · ∇Bz(x) x=0 =
+
+∂Bz ∂x
+
+x+
+x=0
+
+∂Bz ∂y
+
+y+
+y=0
+
+∂Bz ∂z
+
+z
+z=0
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.3. Linearly Varying Field Gradients
+
+841
+
+= G0xx + G0y y + G0z z
+
+(27.11)
+
+where only these linear terms have been considered in the previous chapters. It is obvious, however, that the other terms in (27.5) also contribute to the ﬁeld, and that one of the primary goals in gradient coil design will be to minimize their contribution to the ﬁeld in the imaging volume.
+From the expansion of the ﬁeld and the Biot-Savart law it is possible to obtain analytic formulas for the gradient at any point due to an arbitrary current distribution.
+
+G(x) = μ0 ∇
+
+d3x
+
+4π volume
+
+Jx(x )(y − y ) − Jy(x )(x − x ) |x − x |3
+
+(27.12)
+
+In cases where the current is conﬁned to a two-dimensional surface this expression can often be further reduced by using Maxwell’s equations to relate the diﬀerent components of J.
+In order to obtain the local gradient an alternative to the above formula is often used. This is due to the fact that a large number of programs are available to calculate Bz, and a simple numerical approximation to (27.12) can be obtained by considering the local ﬁeld gradient to be the slope of Bz between two points separated by some small distance, assuming Bz varies linearly over this distance
+
+Gx(x)
+
+≈
+
+Bz(x2, y, z) − Bz(x1, y, z) x2 − x1
+
+Gy(x)
+
+≈
+
+Bz(x, y2, z) − Bz(x, y1, z) y2 − y1
+
+Gz (x)
+
+≈
+
+Bz(x, y, z2) − Bz(x, y, z1) z2 − z1
+
+(27.13)
+
+This method of calculation is less eﬃcient, because the ﬁeld must be calculated at two points, and less accurate. It is often used because a ﬁeld plot can be generated simultaneously, despite the need to calculate a large number of points in order to get accurate values of the local gradients.
+
+27.3.3 Desirable Properties of Linear Gradient Coils
+Gradient coils must satisfy a unique set of performance criteria. Also, much more than main magnets, gradient coils can be designed with a speciﬁc imaging application and performance criterion in mind. Some performance criteria universally desirable in gradient coils include: low inductance, high gradient to current ratio, minimal resistance, good gradient uniformity, minimal interaction with conducting shields, absence of torque, high duty cycle, minimum ∂B/∂t, and comfortable patient access (often requires development of coils with novel geometries).
+
+Inductance, Eﬃciency, and Resistance
+For most imaging applications gradient coils are turned on and oﬀ as rapidly as possible, but the waveform they follow is not sinusoidal except in specialized EPI applications. Therefore,
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+842
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+for the most part resonant circuit theory can not be applied. Instead the only way to attain
+the rapid switching desired is to minimize the inductance of the coils, or increase the voltage of the ampliﬁers being used as is illustrated by the basic electromagnetic relationship3
+
+emfapplied
+
+=
+
+Ltotal
+
+∂I ∂t
+
+(27.14)
+
+Since the voltages which may be safely used in combination with high currents are limited, optimization of rise times (time it takes the gradient to achieve its maximum value) is assumed to be a problem of minimizing the inductance of the gradient system without degrading the quality of the ﬁeld.
+The desirable properties of minimum inductance, high gradient to current ratio, and low resistance are closely related. It is possible to see how achieving any one of these goals is likely to satisfy all three. Consider the electromagnetic energy associated with the gradient coil
+
+E
+
+=
+
+1 2
+
+Ltot
+
+I
+
+2
+
+=
+
+1 2
+
+[Lself
+
++
+
+Lmutual] I 2
+
+=1
+
+d3x B 2
+
+2μ0 volume
+
+(27.15) (27.16)
+
+where Lself represents the self inductance of the wires in the gradient coils and Lmutual represents the inductance between diﬀerent wires in the coil set.
+
+Lself is proportional to the amount of wire used in the coil which is also proportional to the amount of resistance in the system (R = ρ /Awire). Therefore by minimizing Ltot, resistance is also reduced. The resistance of the coils is directly related to the power deposited
+
+in the coils, and the amount of heat generated. Heating of the coils is a primary limit on
+
+duty cycle.4
+
+It can be seen that Ltot is also related to the total amount of ﬁeld produced by the coils. Any ﬁelds produced outside of the imaging region reduce the eﬃciency of the coil, because
+
+they require energy for their support, but are not used in the experiments. Reducing Ltot
+
+while maintaining the desired gradient quality reduces these extraneous ﬁelds by decreasing
+
+volume d3x
+
+B
+
+2
+.
+
+27.3.4 Eddy Currents and dB/dt
+The rapid switching of the gradients leads to rapidly changing amounts of ﬂux through the rf coils, rf shields, main magnet components, and the person being imaged. This changing
+3The full expression for emfapplied is emfapplied = Ltotal∂I/∂t + I · R, but when emfapplied/IR 1 this term may be neglected. This is generally the case when the gradient coils in MRI are being turned on and oﬀ.
+4Duty cycle is the ratio between amount of time a gradient coil (or any other device) can be on versus the time it must be oﬀ. For example, a duty cycle of 50% implies that a gradient may be generating ﬁelds half of the time and must be dormant for half of the time. For gradient coils duty cycle often changes with the level of gradient the coil is asked to produce, i.e., a gradient coil with a 50% duty cycle when Gmax is being generated by the coil may have a duty cycle of 100% when it is only used to produce Gmax/2.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.3. Linearly Varying Field Gradients
+
+843
+
+ﬂux leads to voltages and currents being induced in conducting pathways throughout the MRI system. These currents are detrimental to imaging because they produce ﬁelds which oppose the applied gradients. They also present potential health risks to patients because, if suﬃcient voltages are generated in the body, involuntary nerve stimulation might occur.
+Rapidly switched gradient coils induce currents in conducting surfaces due to the changing ﬂux associated with the ﬁelds being generated. Recall from Ch. 7 that
+
+emf = − ∂Φ =
+
+∂B · dA
+
+∂t
+
+area ∂t
+
+(27.17)
+
+These currents have been referred to as ‘eddy currents.’ In general the majority of these currents are induced in the rf coils, and in the electromagnetic and thermal shielding surrounding the main magnet. Eddy currents distort gradient response by generating ﬁelds of their own which oppose the gradients, reducing the gradient seen by the sample and causing a delay between the time voltages are applied, and ﬁelds are seen by the sample. Variations in gradient performance due to eddy currents can lead to phase errors, distortion, and chemical shift artifacts in the resulting images.
+As the performance of gradient coils has increased, physiological concerns have also grown. The question arises of whether or not ‘eddy currents’ can be generated in the body if ∂B/∂t becomes large enough. Researchers are still determining what levels and duration of ∂B/∂t the body can be exposed to. In gradient coils there is an important trade-oﬀ to be made between maximizing gradient switching rates and reducing ∂B/∂t eﬀects. The ﬁeld associated with a gradient along an arbitrary axis ζ is given by
+
+BzG(ζ) = Gζζ
+
+(27.18)
+
+If it is assumed that gradients rise linearly from 0 to their maximum value Gmax then it can
+
+be seen that
+
+∂BzG(ζ) = Gmaxζ
+
+∂t
+
+rise time
+
+(27.19)
+
+Therefore, the change in B as a function of time is proportional to the distance ζ. In order
+
+to decrease the rise time for a coil but avoid an increase in ∂B/∂t it is necessary to reduce
+
+the volume over which the gradient acts.
+
+Volume and Energy
+
+In instances where the volume or size of the gradient coil is reduced, the gains in performance can be impressive, because in addition to reducing ∂B/∂t eﬀects, the inductance of the coil is reduced. The reduction in inductance is actually greater than the reduction of ∂B/∂t, since it is found that the gradient energy is approximately proportional to
+
+energy associated with gradient coil ∝ G2rD5 SV
+
+(27.20)
+
+for a spherical imaging region. All of these considerations lead to the conclusion that whenever possible the gradient
+homogeneity should only cover the region being imaged in order to maximize gradient performance. This explains the development of gradient coils for various speciﬁc imaging applications (biplanar for cardiac, perpendicular cylinder for wrist, etc.). Novel (non-cylindrical)
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+844
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+geometries are often employed for speciﬁc applications, and therefore gradient coil design methods must be ﬂexible enough to be applied to these diﬀering conditions.
+Problem 27.8
+
+In order to understand how the inductance of a gradient coil behaves as a function of both gradient strength and the size of the imaging volume, complete the following calculation to verify (27.20). Assume that |Bgradient| varies linearly away from the center of the imaging region, and that the ﬁeld rapidly falls to zero outside of this region
+
+|Bgradient| =
+
+|Bgradient(r)| = G0r |Bgradient(r)| = 0
+
+r < rDSV r > rDSV
+
+Calculate E
+
+=
+
+1 2μ0
+
+DSV d3x|Bgradient(r)|2.
+
+How does the energy behave as a
+
+function of gradient strength and rDSV ? How does the stored energy depend
+
+upon G0? Describe the implications of these results to gradient coil design.
+
+Uniformity
+Another question which must be addressed is the uniformity required of the gradient over the imaging volume. In the previous section on main magnets the ﬁelds described needed to match ideal conditions to within a few ppm. In gradient coils, however, the accuracy required of the ﬁeld can range over a much larger set of values. As an example, contemporary gradient coils in use for whole-body human imaging are only accurate to about 5% of their ideal values over the imaging region. Still, for the applications being considered very little image distortion results. The amount of image distortion due to variations in the gradient vary from application to application, and requirements for homogeneity must be determined based upon an investigation of the methods and imaging that will be used.
+27.3.5 Active Shielding
+In order to minimize eddy currents, gradient coils may be shielded in a manner identical to that described for main magnets. Fields produced outside of the imaging bore can be reduced to a point where eddy currents have little or no eﬀect on the images. However, similar to the case of main magnets, the additional shielding requires additional currents to be applied, and increases the inductance of the gradient coils. The increase in inductance leads to a decrease in switching rate. The only way which this decrease in performance can be compensated is by increasing the applied voltage to the system.
+27.3.6 ‘Linearly Varying’ Magnetic Fields
+It is found that a linear variation of a single component of the magnetic ﬁeld can not exist in free space, therefore a more in depth study of the linear ﬁeld gradient is warranted. Of
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.3. Linearly Varying Field Gradients
+
+845
+
+course, all ﬁelds used in MRI must obey Maxwell’s equations (A.1). It is possible to show how a linear gradient with only one component is ultimately incompatible with Maxwell’s equations. Use the x-gradient as an example
+
+BG = G0xzˆ
+
+(27.21)
+
+In free space (no sources present) B = H, and J = 0. The gradient ﬁeld is constant in time, during data acquisition so all of the time derivatives in (A.1) also vanish. For the given
+ﬁeld, then it is seen that ∇ · B = 0 but ∇ × B = ∇ × (G0x)zˆ = −G0yˆ = 0. This implies that another component of the ﬁeld must be present, in order that the linear ﬁeld variation satisfies Maxwell’s equations. In fact, the linear variation of Bz is always accompanied by some variation of Bx or By along a direction perpendicular to the gradient.
+
+BGx = xˆG0z + zˆG0x BGy = yˆG0z + zˆG0y
+
+BGz = xˆaG0x + yˆbG0y + zˆG0z
+
+where
+
+[a + b = −1]
+
+(27.22)
+
+This result is interesting because it implies that although a large amount of work may be done to minimize the moments in the expansion of Bz the linear term itself will be responsible for a set of extraneous ﬁeld components (referred to as concomitant gradient ﬁelds). It is of practical interest to determine the eﬀect of these extra ﬁeld components on images.
+Throughout this book the generic phase relation φ(t) = −γBzt has played a central role. However, in Chs. 2 and 3 it was shown that the magnetization really precesses around the axis of the eﬀective ﬁeld with a frequency that is proportional to the magnitude of eﬀective ﬁeld. The use of rf radiation to ﬂip the spins away from the z-axis was explained using this concept in Ch. 3. Since, the applied gradients generate Bx and By as well as Bz it is necessary to determine how these ﬁelds aﬀect the eﬀective ﬁeld and phase accumulated by the spins. The concern may arise that the additional ﬁeld component causes the spins to precess about a new axis, but since the gradient ﬁelds are approximately two to three orders of magnitude smaller than B0 the eﬀective rotation axis remains essentially along z, and only phase eﬀects are observed. In order to determine the additional phase accumulation, the x-gradient example will again be considered.
+In the presence of a perfectly linear x-gradient the total MRI B ﬁeld is
+
+therefore
+
+B(x) = B0 + BGx = G0zxˆ + G0xzˆ + B0zˆ
+
+(27.23)
+
+φ(x) = −γ|B(x)|t
+
+= −γ|G0zxˆ + G0xzˆ + B0zˆ|t
+
+= −γt (B0 + G0x)2 + (G0z)2
+
+−γ
+
+B0
+
++
+
+G0x
+
++
+
+z2G20 2B0
+
++
+
+O
+
+z2G30x B02
+
+t
+
+(27.24)
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+846
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+This expression diﬀers from the usual form φ(x) = −γ(B0 + G · r)t = −γ(B0 + Gx)t for the phase accumulated in the presence of an x-gradient. The additional phase develops along a direction perpendicular to the original gradient (in this case along zˆ):
+
+ΔφGx (x)
+
+− γz2G20t 2B0
+
+(27.25)
+
+The magnitude of this eﬀect is very small at high ﬁelds, but can be of concern for imaging at low ﬁelds. Determining quantitative values for the amount of extra phase accumulated is left as an exercise.
+
+Problem 27.9
+
+Given the following set of parameters, and assuming a gradient echo experiment is being performed, answer the list of questions. The relevant parameters for proton imaging include G0x = 25 mT/m, B0 = 1.5 T, Ts = 1 ms, FOVx,y,z = 25 cm, Δx = Δy = Δz = 1 mm, and γ = 2π × 42.58 × 106 (rad/s/T).
+a) Calculate the ΔφGx at the edge of the imaging volume at the echo. b) Find the ratio of ΔφGx to φGx as a function of sampling time and position.
+Hence, show that there is a position shift Δx(z) given by G0z2/(2B0). c) Is the eﬀect large enough that you might expect to see the position of the
+spins shifted by more than one pixel at the edge of the ﬁeld-of-view?
+d) Repeat parts (a) through (c) for B0 = 0.2 T. e) Qualitatively discuss whether you would expect this problem to be more
+or less serious for sodium imaging. Assume you are trying to attain similar resolution for both elements.
+
+27.4 RF Transmit and Receive Coils
+The rf coils used in MRI have two purposes. One is to excite the magnetization, and the coils which perform this function are referred to as transmit coils. The second purpose of the rf coils is to receive the signal from the excited spins, and the coils which perform this function are referred to as the receive coils. Some people make the distinction between the coils by referring to transmit coils as rf coils, and receive coils as rf probes. Of course, one coil can be used to both transmit and receive, but often separate coils are used because there are properties that are desirable for each coil to possess to obtain optimal quality images. In this section, some of the desirable properties of both transmit and receive coils are discussed.
+Another interesting aspect of rf coils that separates them from gradient and main magnet systems is that they produce and detect time dependent ﬁelds. Radiofrequency coils, in fact, fall into an interesting regime. The wavelength of radiofrequencies used for proton imaging
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.4. RF Transmit and Receive Coils
+
+847
+
+is on the order of seven meters for B0 1.0 T, and ﬁnite wavelength eﬀects can mostly be neglected. Therefore, when calculating ﬁelds, static solutions present good approximations
+
+of the ﬁelds produced by the coils, and the time dependence of the ﬁelds can be neglected.
+
+However, when considering the electronics and other elements that are employed in the
+
+systems, understanding the time and frequency responses of the coils and circuits is crucial.
+
+In fact, the frequency response of the coils can lead to spatial modulation of the signal in
+
+the image.
+
+One consideration of universal importance to rf coils is the issue of quadrature as dis-
+
+cussed in Ch. 4. Quadrature refers to the ability of a set of coils to generate or detect the
+
+circularly polarized ﬁeld B1 = B1xˆ which involves producing both x- and y-components
+
+of the magnetic ﬁeld in the lab frame. If a coil is only capable of producing a ﬁeld along
+
+one direction in the lab frame (B1 = B1 cos ωt xˆ) then in the rotating frame its eﬀective
+
+magnitude after time averaging is reduced by a half (B1 =
+
+1 2
+
+B1
+
+xˆ
+
+).
+
+This type of coil has
+
+been ref√erred to as linear, and although linear coils are sometimes easier to construct they
+
+suﬀer a 2 reduction in their sensitivity.
+
+27.4.1 Transmit Coils
+The primary considerations in an rf transmit coil are the homogeneity of the magnetization response, and minimization of the time needed to tip the spins away from the static ﬁeld. Recall that the time needed to tip the spins is determined by the magnitude of B1 generated by the rf ampliﬁers.
+In Ch. 16, the ﬂip angle as a function of the applied rf ﬁeld was given as
+
+θ = γB1τrf
+
+(27.26)
+
+For a given ﬂip angle θ, the amount of time needed to generate the desired rotation is inversely proportional to the magnitude of B1
+
+trfα
+
+∝
+
+1 B1
+
+∝
+
+1 B1I
+
+(27.27)
+
+where B1 contains all of the spatial information about B1, and I is separated to show that B1 is a linear function of the current. The magnitude of B1 is determined by the power delivered by the rf ampliﬁer, which is generally ﬁxed,
+
+Pamp = I2Z
+
+(27.28)
+
+in which I is the current in the coil, and Z is the impedance of the coil circuit at frequency ω
+
+Z=
+
+Re2ff +
+
+ωL
+
+−
+
+1 ωC
+
+2
+
+(27.29)
+
+where L is the inductance of the coil, and C is the capacitance in the coil circuit. It can be seen that if the rf coil is tuned to resonance (i.e., ωL − 1/ωC = 0), then the time needed to tip the spins depends upon Reff which includes the resistance of the sample, coil, and electronics as well.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+848
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+27.4.2 Receive Coils or RF Probes
+
+There are two primary properties that are of importance to MRI receive coils or probes: one is to improve the SNR obtained with the coil, and the other is to insure uniformity of the rf receive response over the volume being imaged. Within these two objectives, a number of speciﬁc goals can be assessed, but, in ﬁrst approximation, a coil which provides high SNR with good homogeneity is desirable.
+There are two factors to be considered in the SNR of a coil: one is the sensitivity of the coil and the other is the noise associated with the coil. In Ch. 7, the signal of an MRI experiment was shown to be proportional to
+
+signal ∝ ∂ d3xM · Breceive ∂t
+
+(27.30)
+
+An expression for the noise in the coil based upon several thermodynamic principles is given by
+
+noise ∝ 4kTcoilΔf Reff
+
+(27.31)
+
+where Tcoil is the temperature of the coil, Δf is the bandwidth of the experiment, and R is the resistance of the coil and the body being imaged. The eﬀective resistance, Reff , includes contributions from the coil, electronics, and the sample being imaged
+
+Ref f = Rcoil + Rsample + Relectronics
+
+(27.32)
+
+Due to the improvement of electronics, in contemporary imaging experiments (0.5 T ≤ B0 ≤ 4.0 T), it is generally seen that Reff ≈ Rsample. The resistance which a coil sees from a sample is proportional to the volume of the region of the body from which the coil receives a signal, Vsensitive (i.e., Rsample ∝ Vsensitive).
+Unlike the case of gradient coils, it is not as easy to develop a simple relation between the imaging volume and the SNR of the associated rf coil, but it is still possible to see the increase of SNR with the decrease of the coil’s eﬀective imaging volume. From (27.30) and (27.31), a formula for the SNR associated with a particular coil can be developed
+
+SNR = ∝
+
+ΛM⊥B⊥ 4kTcoilΔf Reff
+ω7/4B⊥ TcoilΔf Vsensitivity
+
+(27.33)
+
+It can be seen from this formula that coils which only cover the imaging region-of-interest are optimal, as was the case with gradient coils. This is due to the increase in SNR from both an increase in B⊥ obtained by positioning the coil closer to the region-of-interest and by decreasing Vsensitivity to the smallest possible volume which reduces Rsample.
+The above discussion dealing with improvement of SNR for an rf receive coil did not address the issue of ﬁeld homogeneity. The most serious image artifact associated with any inhomogeneity of the rf receive ﬁeld is a variation of the intensity proﬁle of the image. The
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.4. RF Transmit and Receive Coils
+
+849
+
+signal from the spins at a given point r is proportional to M⊥(r)B⊥(r). In most cases, ﬁeld variations are smooth and relatively slow over the imaging regions so variations in B⊥(r) can be readily identiﬁed and taken into account in the interpretation of the images. However, the variations in B⊥(r) become a problem when they reduce the CNR in the image below acceptable levels. The possibility also exists for phase errors to be associated with the rf receive coil. If the coil produces a large amount of both By and Bx, phase images will have their phase modulated across the ﬁeld-of-view.
+There is another aspect of rf probe sensitivity that needs to be considered. That is the relation between the region of coil sensitivity and the region of space covered by the gradients. If the region of probe sensitivity is greater than the volume covered by the gradients then objects outside of the imaging region may be misregistered within the imaging volume (see Fig. 27.12). It is necessary that the rf coil not be sensitive to spins outside of the region of gradient homogeneity, since these spins will appear in the image at the same point as ﬁelds within the imaging volume at points with identical ﬁelds.
+
+Fig. 27.12: Misregistration in an image can also occur due to a mismatch in the region of rf
+sensitivity and gradient ﬁeld homogeneity. Notice that spins at point A and B precess at the same frequency and, therefore, will be encoded at the same location in the image.
+27.4.3 Classic Designs
+There are a number of coil designs employed in MRI whose widespread use merits individual treatment of their performance characteristics. In this section several coil designs will be investigated in some detail. Their performance and utility will be discussed in general terms.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+850
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+Saddle Coils
+The Helmholtz pair is used to produce a homogeneous B0zˆ ﬁeld; a similar coil conﬁguration exists for rf coils. A pair of coils is wrapped on a cylindrical surface (See Fig. 27.13) and is referred to as a saddle coil. Remember that for rf coils only the transverse component of the ﬁeld is of interest; the loops are chosen such that the ﬁelds they produce are mainly perpendicular to the axis of the magnet. A power series expansion for the ﬁeld about the origin can be developed in identical fashion to that described earlier in this chapter, and the x2, y2, and z2 moments can be made to vanish by choosing the appropriate opening angle Δφ and axial length d. In this fashion, the optimal homogeneity over the imaging region may be achieved. Maximum homogeneity is found for these coils when Δφ = 2π/3 and d = 4ρ .
+
+Fig. 27.13: This ﬁgure depicts an rf Helmholtz coil pair where Δφ and d have been chosen to
+minimize the variation of the ﬁeld over the imaging region. For current directions, see Fig. 27.4.
+
+Birdcage Coil
+The birdcage coil is presently the most popular coil conﬁguration for use in MRI since it is a quadrature design, with excellent radial ﬁeld homogeneity over the imaging volume. Figure 27.14 depicts a birdcage coil. The axial current paths are referred to as the legs of the coil, and the azimuthal paths are referred to as the endrings.
+If the current in the legs of the coil is of the form
+
+I(t) = I0 sin(ωt + φ )
+
+(27.34)
+
+then the ﬁeld produced in the imaging region is extremely uniform, and rotates its direction with angular frequency ω. In fact, if the length of the birdcage is extended to inﬁnity, and a continuous current distribution is used, the ﬁeld is perfectly uniform. This also implies that the eﬃciency of the birdcage is very high since nearly all of the ﬁelds produced by the coil are used for imaging.
+A limitation of the ﬁelds produced by a ﬁnite birdcage is that their uniformity decays axially. Besides the ﬁnite axial length, the currents in the endrings do not produce uniform
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.4. RF Transmit and Receive Coils
+
+851
+
+Fig. 27.14: This ﬁgure depicts a birdcage coil. Current is distributed as a function of φ in order
+to optimize the homogeneity of the ﬁeld in the imaging volume (I ∝ sin φ ).
+ﬁelds within the imaging volume. It is found, however, that if the coil’s length is approximately equal to its diameter, then a roughly spherical volume is found for which the coil has good homogeneity.
+Problem 27.10
+Verify that the transverse magnetic ﬁeld as a function of ρ (ρ < a) is a constant in an inﬁnitely long birdcage coil. This implies that the current density of the coil is given by J(r ) = I0 sin φ zˆδ(ρ − a)/a.
+Surface Coils
+If the feature to be imaged is localized near the surface of the body, an rf probe coil may be placed directly on the surface of the sample in order to optimize the SNR of the experiment. SNR is maximized because the coil is placed very close to the object being imaged, maximizing B. Further, in general, the Vsensitivity for a surface coil is much less than that for a coil surrounding the entire sample. Therefore, Rsample is reduced which reduces noise and further increases the coil’s SNR. For imaging small objects near the surface of a body, i.e., the spine, surface coils are an overwhelmingly popular √choice of rf probe.
+Of course, a single coil placed on the body loses a 1/ 2 factor in SNR because it does not detect quadrature ﬁelds. A way around this is to use two surface coils on the body to produce a quadrature ﬁeld in the desired region. Fig. 27.15 shows an example coil conﬁguration where two surface coils are positioned to produce both x- and y-components of the ﬁeld in
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+852
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+t√he imaging region. In this way, a surface coil may be used in quadrature to gain back the 2 loss in SNR that a single linear surface coil suﬀers from. An obvious question to be addressed regarding surface coils is, “What features of a body
+are near enough to the surface to be imaged with increased SNR by employing a surface coil?” This question is not easy to address directly. In practice, the coil is chosen so that the radius of the coil roughly matches the depth to which imaging is desired.
+
+Fig. 27.15: An example of how two surface coils may be combined to produce a circularly polarized
+ﬁeld. The dotted lines represent the ﬂux lines produced by each coil. The ﬂux lines from these coils are roughly perpendicular to each other in a region beneath the coil. It is in this region where optimal imaging conditions exist.
+Phased Array Coils
+In MRI, a phased array coil generally refers to a set of receive coils whose signals are combined to obtain a uniform image over a region larger than any individual coil could cover while taking advantage of the high SNR available from the smaller individual coils. As mentioned previously, smaller coils are used because they have superior SNR individually due to their high B1/I ratios and their small eﬀective noise volumes. Fig. 27.16a shows an example of
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.4. RF Transmit and Receive Coils
+
+853
+
+Fig. 27.16: Example of a set of phased array coils is shown in the upper portion of the ﬁgure.
+The coils are overlapped to reduce the electromagnetic coupling between the nearest neighbor coils. The ﬁeld as a function of x for the individual coils at a given y and z is shown in the bottom of the ﬁgure.
+
+four square loops combined in a row. This array could, for example, be used to image the entire spine. Alternatively, it could be wrapped around a person’s torso in an attempt to obtain an optimal SNR image of the heart. An example of the sensitivity of the coils as a function of x at a given y and z position is also shown in Fig. 27.16 where the overlap of regions of sensitivity are shown. The signals obtained from the individual coils are combined to give a single image. Methods for combining the signals have been considered in Ch. 15.
+In order to obtain optimal SNR from a phased array coil, it is necessary to make sure that the noise from coil to coil is largely uncorrelated. In order to achieve this, each coil should have its own receive circuit so electronic noise is uncorrelated. Also, there should be minimal electromagnetic interaction between the coils to make sure that sample noise is not correlated. Minimizing electromagnetic interaction between the coils is generally achieved in one of two ways. In the ﬁrst case the coils are simply separated by enough distance that their interaction is minimal. If the coils are in close proximity, however, minimizing the interaction between the coils is not as simple. However, the principle for minimizing the interaction is obvious from the principle of reciprocity and Faraday’s law of induction
+
+emf1
+
+=
+
+− dΦ1,2 dt
+
+(27.35)
+
+which states that the emf induced in coil 1 is proportional to the change in ﬂux induced in coil 1 by coil 2. The coils should be placed so that the net ﬂux through coil 1 due to coil 2 is zero, and by reciprocity this should also zero the ﬂux through coil 2 due to coil 1. This is generally achieved by overlapping nearest neighbor coils (see Fig. 27.16) such that the ﬂux through the coil and its return ﬂux path sum to zero. An alternative way to describe these
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+854
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+conditions is to say that the mutual inductance between the coils is zero.
+The possibility of sample noise being correlated from one coil to another still exists, and there are methods for combining the signals from these coils in order to optimize the SNR of the experiment such as those presented in Ch. 15.
+Methods for determining the optimal arrangement and number of coils in a phased array are still a subject of research. This is because there are several competing factors to be considered in the design of each coil.
+
+27.4.4 RF Shielding
+The alternating ﬁelds used to tip the magnetization away from the z-axis in MRI are generally referred to as ‘rf’ because for hydrogen protons in a ﬁeld on the order of a tesla or higher, the Larmor frequency is in the bandwidth occupied by FM radio stations. This fact has dual implications for MRI. The ﬁrst concern is that local sources of signals be shielded from the MR environment. An rf coil designed to receive signals from the body would otherwise indiscriminately receive local signals and integrate them into the MRI data. Both the transmit and receive modes of the rf coils necessitate the shielding of the rf coil system. Fortunately, the rf radiation used is at a high enough frequency that the penetration of the ﬁelds into a good conductor is only a few micrometers. Therefore, thin copper shields (solid or even meshed layers) are suﬃcient to eliminate the transmission of rf ﬁelds into, or out of, the MRI environment.
+
+27.4.5 Power Deposition
+Another feature of rf transmit ﬁelds not discussed previously in detail is the fact that rf energy can be deposited in the body as heat. At ﬁeld strengths up to 1.5 T, the wavelength of the rf is so long that little energy is absorbed by the body. The move toward higher and higher ﬁelds and, hence, larger frequencies, carries with it the safety problem of increased rf power deposition in the body. Contemporary whole-body systems are being made not only at 1.5 T, but also for research purposes from 3.0 T to 7.0 T.
+There are government guidelines as to acceptable limits of speciﬁc absorption rates (SAR) of radiation deposited into the body to be considered. The human body can only tolerate a few watts per kilogram of tissue before body temperature begins to rise. An average rf ampliﬁer used for human imaging can produce more that 10 kW of power. If all of this power were deposited in the body, MRI of humans would be impossible. Fortunately, little of this power is left in the body and the safety issue revolves around the deposited power, not the electric power, delivered to the body. Still, this ﬁgure implies that there is a signiﬁcant amount of rf power in use, and at higher ﬁelds and frequencies, rf power deposition could become a signiﬁcant problem.
+Estimates of the power absorbed by the body can be made by measurements of the quality factor, or Q, of the coil-body system. The Q of the coil is deﬁned to be the resonant
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+27.4. RF Transmit and Receive Coils
+
+855
+
+frequency5 times the stored ﬁeld energy divided by the power loss
+
+Q
+
+=
+
+ω
+
+stored energy P
+
+(27.36)
+
+It can also be considered as the inverse of the fractional energy loss per cycle of the rf.
+
+Consequently, at roughly the same frequency and stored energy, the power deposited in the
+
+body is
+
+Pbody
+
+=
+
+P (1
+
+−
+
+Qloaded ) Qunloaded
+
+(27.37)
+
+where
+
+P = Pbody + Punloaded
+
+(27.38)
+
+When Q is reduced substantially by the loading due to the body, most of the rf power is absorbed in the body. The present guidelines are that the power (or rather the power per unit mass, or watts/kg) deposited should not exceed 1.5 to 3.0 watts/kg over the whole body, or 3 to 8 watts/kg ‘locally’ (point by point).
+To investigate an example, let us derive the ﬁrst-order formula for the inductive heating caused by a linearly polarized coil with an rf ﬁeld Brf along the z-axis of amplitude 2B1 (so that B1 is the ﬁeld at rest in the rotating reference frame) for a sphere with radius R. Consider a ring centered at the point z = r cos θs of an arbitrary radius r sin θs (where 0 ≤ r ≤ R and θs is the usual spherical polar angle). The electric ﬁeld at this ring can be found from an elementary Faraday line integral around the circumference of the ring, which is related to the rate of change of the magnetic ﬂux through the cross-sectional area via
+
+E ≡ |E| = voltage = r sin θs
+
+circumference
+
+2
+
+dBrf dt
+
+= ωB1r sin θs
+
+(27.39)
+
+where E is the electric ﬁeld vector and ω the transmit angular frequency. The local power deposited is then the ohmic power density
+
+dP dV
+
+=
+
+1σE2 = 2
+
+1 2
+
+σω2B12r2
+
+sin2
+
+θs
+
+(27.40)
+
+where the conductivity of the sphere is σ. The power deposited in the entire sphere is given by an integral over (27.40), that is, over all rings that make up the sphere,
+
+P
+
+=
+
+4 15
+
+πσ
+
+ω2
+
+B12
+
+R5
+
+For θ = γB1τrf , this formula becomes
+
+(27.41)
+
+P
+
+=
+
+4πσω2θ2R5 15γ2τr2f
+
+(27.42)
+
+The average power (or the energy deposited per unit time) for the sphere is given by
+
+P
+
+=
+
+energy per repetition TR
+
+=
+
+P τrf TR
+
+=
+
+4πσω2θ2R5 15γ2τrf TR
+
+(27.43)
+
+5The resonant frequency is sometimes referred to as the carrier or base frequency.
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+856
+
+Chapter 27. Introduction to MRI Coils and Magnets
+
+For a CP coil (two linearly polarized coils in spatial and temporal quadrature each with amplitude B1), P is one-half that in (27.43).
+Problem 27.11
+
+a) Carry out the integration over a sphere of radius R for (27.40) to ﬁnd (27.41).
+
+b) If two linearly polarized coils are used to generate a circularly polarized
+
+ﬁeld, show that
+
+dP dV
+
+in (27.40) is reduced by a factor of two.
+
+Local power deposition will depend on the local ﬁelds. Therefore, the rf penetration will determine, in part, the strength of the local ﬁelds and the local SAR (the power deposited per unit mass, usually quoted in watts/kg). The conductivity also plays a key role in the form of the spatial response of the rf penetration and the local power deposition.
+Problem 27.12
+
+The rf power deposition is a limiting factor in how many slices can be applied in a spin echo sequence or how short the repeat time can be for a given ﬂip angle for a gradient echo sequence. As an order of magnitude example of how big these eﬀects can be, consider imaging the body at 1.5 T. Assume a coil duty cycle (the fraction of ‘on-time’) D = τrf /TR = 0.1. Take the density of the body to be 1 gm/cm3, σ = 0.3 S/m, and TR = 20 ms (remember to convert all quantities to SI units). For parts (a) through (c), use R = 20 cm.
+a) Find the SAR in watts/kg for a circularly polarized coil and θ = π/2. Practically, the body is not a uniform conductive material in which large currents can build up. Its structure prevents such currents from forming and, hence, (27.43) signiﬁcantly overestimates the SAR.
+b) When does the local power deposited exceed 8 watts/kg near the surface of the body? Hint: Find an expression for the power deposited in a shell with inner radius 19 cm and outer radius 20 cm.
+c) Human eyes contain vitreous humor ﬂuid with conductivity similar to that of CSF (assume that σCSF = 1.0 S/m at 64 MHz, i.e., B0 1.5 T). Take the radius of the eye to be 1 cm. Would you want to be imaged under the above conditions? What about at 7.0 T if σCSF = 5.0 S/m at a frequency of 300 MHz? How could you modify the imaging experiment to reduce P ?
+
+10.1002/9781118633953.ch27, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781118633953.ch27 by Universitã£Â¤Tsbibliothek, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Suggested Reading
+
+857
+
+Suggested Reading
+
+The following are basic electromagnetism references:
+
+• J. D. Jackson. Classical Electrodynamics. John Wiley and Sons, 3rd ed., Hoboken, 1999.
+• W. Smythe. Static and Dynamic Electricity. McGraw-Hill Book Company, New York, 1968.
+
+General signal-to-noise considerations appear in:
+
+• D. G. Gadian. Nuclear Magnetic Resonance and Its Applications to Living Systems. 2nd ed., Oxford, University Press, 1995.
+
+The following references provide an introduction to coil design methodology and explanations of the relevant electromagnetic results as they apply to MRI:
+
+• R. W. Brown, H. Fujita, S. Shvartsman, M. Thompson, M. A. Morich, L. S. Petropoulos and V. C. Srivastava. New applications of inverse methods in the design of MRI coils. Int. J. Appl. Electromagn. Mech., 94: 1013, 1997.
+• C.-N. Chen and D. I. Hoult. Biomedical Magnetic Resonance Technology. Bristol, Philadelphia, 1989.
+• F. Romeo and D. I. Hoult. Magnetic ﬁeld proﬁling: Analysis and correcting coil design. Magn. Reson. Med., 1: 44, 1984.
+• R. Turner. Gradient coil design: A review of methods. Magn. Reson. Imag., 11: 903, 1993.
+
+The eﬀects of higher order ﬁeld changes on imaging are presented in:
+
+• D. G. Norris and J. M. S. Hutchison. Concomitant magnetic ﬁeld gradients and their eﬀects on imaging at low magnetic ﬁeld strengths. Magn. Reson. Imag., 8: 33, 1990.
+
+The role of rf penetration in changing the apparent eﬀective spin density is discussed in these two references:
+
+• G. H. Glover, C. E. Hayes, N. J. Pelc, W. A. Edelstein, O. M. Mueller, H. R. Hart, C. J. Hardy, M. O’Donnell and W. D. Barber. Comparison of linear and circular polarization for magnetic resonance imaging. J. Magn. Reson., 64: 255, 1985.
+• L. S. Petropoulos and E. M. Haacke. Higher order frequency dependence of radiofrequency penetration in planar, cylindrical and spherical models. J. Magn. Reson., 91: 466, 1991.
+

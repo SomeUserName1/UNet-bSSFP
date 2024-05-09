@@ -1,0 +1,415 @@
+This information is current as of May 8, 2024.
+
+Diffusion-Weighted MR Imaging in Normal Human Brains in Various Age Groups
+Johanna Helenius, Lauri Soinne, Jussi Perkiö, Oili Salonen, Aki Kangasmäki, Markku Kaste, Richard A. D. Carano, Hannu J Aronen and Turgut Tatlisumak
+AJNR Am J Neuroradiol 2002, 23 (2) 194-199 http://www.ajnr.org/content/23/2/194
+
+AJNR Am J Neuroradiol 23:194–199, February 2002
+
+Diffusion-Weighted MR Imaging in Normal Human Brains in Various Age Groups
+
+Johanna Helenius, Lauri Soinne, Jussi Perkio¨, Oili Salonen, Aki Kangasm¨aki, Markku Kaste, Richard A. D. Carano, Hannu J Aronen, and Turgut Tatlisumak
+
+BACKGROUND AND PURPOSE: Few studies have concerned the absolute apparent diffusion coefficient (ADC) values in the normal human brain and the effect of aging on diffusion. Therefore, our purpose was to determine whether the average ADC (ADCav) values in the various regions of the brain differ with age, sex, or hemisphere and to establish reference values of the absolute ADCav for further studies.
+METHODS: Subjects (40 men and 40 women) were chosen from a healthy population; age groups were 20 –34, 35– 49, and 50 – 64 years and 65 years or older (n ‫ ؍‬20 each). All subjects were examined with MR imaging, including conventional and diffusion-weighted imaging in three orthogonal directions with two b values (0 and 1000 s/mm2) at 1.5 T. Bilateral ADCav values were determined in 36 regions of interest encompassing the entire brain.
+RESULTS: ADCav values were highest in the cortical gray matter ([0.89 ؎ 0.04] ؋ 10؊3 mm2/s; range, 0.78 –1.09 ؋ 10؊3), lower in the deep gray matter ([0.75 ؎ 0.03] ؋ 10؊3 mm2/s; range, 0.64 – 0.83 ؋ 10؊3), and lowest in the white matter ([0.70 ؎ 0.03] ؋ 10؊3 mm2/s; range, 0.62– 0.79 ؋ 10؊3). The ADCav values did not significantly change with aging, except for an increase in the lateral ventricles. No difference was observed between women and men or between the hemispheres.
+CONCLUSION: The data reported herein are representative, and the ADCav values can be used for reference in future studies and in clinical settings.
+
+Diffusion-weighted (DW) MR imaging reveals ischemic regions in the brain within minutes after the induction of focal ischemia in experimental stroke (1, 2) and as soon as a patient with acute stroke is available for imaging studies (3). DW imaging has become an essential part of the imaging examination of patients with hyperacute stroke (4). Recently, its utility has been investigated in several other brain diseases, including epilepsy (5), Alzheimer disease (6), multiple sclerosis (7, 8), and Parkinson disease (9). DW imaging is based on the random translational movement of water molecules in biologic media. The net diffusion of the molecules is referred to as the
+Received December 19, 2000; accepted after revision September 26, 2001.
+From the Departments of Neurology (J.H., L.S., M.K., T.T.) and Radiology (J.P., O.S., A.K., H.J.A.), Helsinki University Central Hospital, Finland; the Department of Physics (J.P., A.K.), University of Helsinki, Finland; and Synarc (R.A.D.C.), San Francisco, CA.
+Supported in part by the Maire Taponen Foundation, the University of Helsinki, the Sigrid Juselius Foundation, and the Foundation of Neurology, Helsinki, Finland.
+Address reprint requests to Dr Johanna Helenius, Department of Neurology, Helsinki University Central Hospital, Haartmaninkatu 4, 00290 Helsinki, Finland. © American Society of Neuroradiology
+
+apparent diffusion coefficient (ADC) (10). Because the cellular structures are distributed anisotropically, the measurement of diffusion is direction dependent (11); this fact emphasizes the need for measuring diffusion in several directions. Thus, to obtain a rotationally invariant estimate of the isotropic diffusion, DW images must be acquired in at least three orthogonal directions (12). Diffusion weighting is expressed with a b value, which is dependent on sequence characteristics. The b value increases with increasing diffusion weighting, and sufficient diffusion weighting is usually achieved with a b value of 1000 s/mm2. The ADC value can be calculated as the slope of the natural logarithm of the signal intensity versus the b value. Two-point ADC estimates, with b ϭ 0 and 1000 s/mm2, are adequate for measuring diffusion in the human brain; they result in good agreement with six-point estimates of ADC (13, 14) and substantially shorten the imaging time.
+Studies regarding absolute ADC values in the normal human brain and the effect of aging on diffusion are scarce, and only a few reports involving small numbers of subjects have been published (12, 15–18). Therefore, the purpose of this study was to determine whether the average ADC (ADCav) values in the various regions of the brain differ with age, sex, or
+
+194
+
+AJNR: 23, February 2002
+
+NORMAL BRAIN 195
+
+FIG 1. ROIs used in data analysis are superimposed on axial ADCav maps. 1 indicates the parietal gray matter; 2, parietal white matter; 3, frontal horn of lateral ventricle; 4, middle part of lateral ventricle; 5, posterior horn of lateral ventricle; 6, frontal gray matter; 7, frontal
+white matter; 8, caudate nucleus; 9, putamen; 10, internal capsule; 11, thalamus; 12, occipital white matter; 13, occipital gray matter;
+14, temporal gray matter; 15, temporal white matter; 16, pons; 17, cerebellar white matter; and 18, cerebellar gray matter.
+
+hemisphere (left or right) and to establish reference values of the absolute ADCav for further studies.
+Methods
+Volunteer Characteristics The present study was approved by the ethics committees of the Departments of Neurology and Radiology, Helsinki University Central Hospital, Finland, and it was performed according to the principles of the Declaration of Helsinki and institutional guidelines. All subjects provided written informed consent before their enrollment in the study. The study included 80 healthy volunteers chosen from a healthy population (40 men and 40 women), whose ages ranged from 22 to 85 years (men, 22– 85 years; women, 22– 82 years), with a mean age of 50.0 years Ϯ 17.4 (men, 49.9 years Ϯ 17.2; women, 50.1 years Ϯ 17.9). Their age distribution was uniform within each of the four age groups (10 men and 10 women per group): group 1, 20 –34 years (mean, 26.8 years Ϯ 4.1; range, 22–34 years); group 2, 35– 49 years (mean, 43.6 years Ϯ 4.4; range, 36 – 49 years); group 3, 50 – 64 years (mean, 57.4 years Ϯ 3.5; range, 52– 64 years); and group 4, 65 years or older (mean, 72.2 years Ϯ 5.2; range, 65– 85 years). A neurologist (L.S., T.T.) interviewed and examined the volunteers before imaging and excluded those for whom MR imaging was contraindicated (19). The volunteers had no symptoms, signs, or history of any neurologic or systemic disease that might have affected the brain (eg, diabetes, chronic obstructive pulmonary disease, hypertension, metabolic disorders), nor did they have a family history of dementia or multiple sclerosis. None was regularly taking medication, expect for female hormones for replacement therapy or topical drugs. Subjects in whom MR images revealed an unexpected cerebral lesion were excluded. All the subjects were white, and all except two were Finnish.
+Imaging Techniques All studies were performed with a Magnetom Vision imager (Siemens Medical Systems, Erlangen, Germany) operating at 1.5 T. A standard head coil with standard restraints was used to fix the volunteer’s head position. In addition to axial DW images, conventional T1-weighted, T2-weighted, fluid-attenuated inversion recovery, and proton density–weighted images were obtained to exclude gross brain disease. Two physicians— first, a neurologist (L.S., T.T.) and, later, a neuroradiologist (O.S.)—independently evaluated the images as normal. Minor white matter changes (leukoaraiosis) in the older subjects were regarded as normal (20). All imaging studies were completed without any adverse effects or complications.
+
+DW imaging was performed with a spin-echo echo-planar imaging sequence with a TR/TE of 4000/103, a gradient strength of 25 mT/m, 19 5-mm-thick sections, an intersection gap of 1.5 mm, a field of view of 230 ϫ 230 mm2, and a matrix size of 96 ϫ 128 interpolated to 256 ϫ 256. Diffusion was measured in three orthogonal directions (x, y, and z) with two b values (0 and 1000 s/mm2). The total acquisition time for the DW images was 20 seconds.
+
+Data Analysis DW images were transferred to a separate workstation for data analysis. First, the images in the three orthogonal directions were coregistered. The natural logarithms of the images were averaged to form a rotationally invariant resultant image. By using a linear least-squares regression on a pixel-by-pixel basis, the resultant image and the natural logarithm of the reference T2-weighted image (b ϭ 0) were fitted to the b values; the slope of the fitted line was the ADCav. The calculations were performed with a commercially available software program (MatLab; Mathsoft, Natick, MA). In each hemisphere, 18 distinct neuroanatomic structures were selected for the analysis. These structures were the frontal, parietal, temporal, occipital, and cerebellar gray matter and white matter; the caudate nucleus; the putamen; the thalamus; the internal capsule; the pons; and the CSF in the lateral ventricles (frontal horn, middle part, posterior horn) (Fig 1). The regions of interest (ROIs) were manually drawn on the T2-weighted (b ϭ 0) images on which the structures could easily be identified. They were subsequently transferred to the equivalent ADCav maps. For each ROI, the surface area and the mean, SD, and range of the ADCav values were obtained. The ROI analysis was performed with a commercially available image analysis software (Alice; Hayden Image Processing Group, Perceptive Systems, Boulder, CO).
+
+Statistical Analysis The regional variation and the effect of sex on the ADCav values were studied by using the t test for dependent or independent samples, as appropriate. A one-way analysis of variance was applied to study the average values in the different regions of the brain. The groups representing different age cohorts and different sexes were compared with a multivariate analysis of variance. The homogeneity of the variances was studied with the Levene test. A two-tailed P value of less than .05 was considered to indicate a significant difference.
+
+Results
+
+In (0.89
+
+the whole Ϯ 0.04) ϫ
+
+1b0raϪi3nm, tmhe2/sm(eraanngAe,D0.C78av–v1a.0lu9eϫs
+
+were 10Ϫ3
+
+196 HELENIUS
+
+TABLE 1: ADCav values in the 36 ROIs
+
+ADCav (ϫ 10Ϫ3 mm2/s)
+
+Age Group 1,
+
+Age Group 2,
+
+Age Group 3,
+
+Age Group 4,
+
+All
+
+Men
+
+Women
+
+20–34 years
+
+35–49 years
+
+50–64 years
+
+65–85 years
+
+ROI
+
+(n ϭ 80)
+
+(n ϭ 40)
+
+(n ϭ 40)
+
+(n ϭ 20)
+
+(n ϭ 20)
+
+(n ϭ 20)
+
+(n ϭ 20)
+
+Gray matter Frontal left Frontal right Occipital left Occipital right Temporal left Temporal right Parietal left Parietal right Cerebellum left Cerebellum right
+White matter Frontal left Frontal right Occipital left Occipital right Temporal left Temporal right Parietal left Parietal right Cerebellum left Cerebellum right
+Deep gray matter Caudate nucleus, left Caudate nucleus, right Putamen, left Putamen, right Thalamus, left Thalamus, right
+Other structures Internal capsule, left Internal capsule, right Pons, left Pons, right Ventricle, frontal horn left Ventricle, frontal horn right Ventricle, middle part left Ventricle, middle part right Ventricle, posterior horn left Ventricle, posterior horn right
+
+0.89 Ϯ 0.08 (0.72–1.18) 0.91 Ϯ 0.08 (0.77–1.13) 0.90 Ϯ 0.08 (0.67–1.09) 0.91 Ϯ 0.11 (0.78–1.38) 0.88 Ϯ 0.06 (0.66–1.01) 0.87 Ϯ 0.09 (0.38–1.10) 0.89 Ϯ 0.06 (0.75–1.10) 0.90 Ϯ 0.08 (0.76–1.14) 0.84 Ϯ 0.12 (0.65–1.13) 0.80 Ϯ 0.14 (0.61–1.16)
+
+0.89 Ϯ 0.08 (0.72–1.05) 0.90 Ϯ 0.08 (0.77–1.11) 0.91 Ϯ 0.07 (0.80–1.09) 0.90 Ϯ 0.09 (0.78–1.07) 0.88 Ϯ 0.05 (0.79–1.00) 0.88 Ϯ 0.08 (0.75–1.10) 0.90 Ϯ 0.06 (0.80–1.10) 0.91 Ϯ 0.07 (0.79–1.08) 0.82 Ϯ 0.13 (0.65–1.13) 0.78 Ϯ 0.13 (0.65–1.16)
+
+0.89 Ϯ 0.09 (0.72–1.18) 0.91 Ϯ 0.08 (0.79–1.13) 0.90 Ϯ 0.09 (0.67–1.09) 0.92 Ϯ 0.13 (0.79–1.38) 0.87 Ϯ 0.06 (0.66–1.01) 0.87 Ϯ 0.10 (0.38–1.01) 0.89 Ϯ 0.07 (0.75–1.07) 0.89 Ϯ 0.09 (0.76–1.14) 0.85 Ϯ 0.12 (0.66–1.08) 0.81 Ϯ 0.14 (0.62–1.13)
+
+0.89 Ϯ 0.06 (0.72–0.98) 0.92 Ϯ 0.09 (0.80–1.13) 0.90 Ϯ 0.09 (0.67–1.09) 0.91 Ϯ 0.10 (0.80–1.13) 0.87 Ϯ 0.05 (0.80–0.98) 0.87 Ϯ 0.06 (0.79–1.04) 0.90 Ϯ 0.05 (0.82–0.98) 0.90 Ϯ 0.08 (0.76–1.06) 0.82 Ϯ 0.12 (0.65–1.01) 0.79 Ϯ 0.12 (0.64–1.08)
+
+0.88 Ϯ 0.07 (0.72–1.00) 0.90 Ϯ 0.10 (0.77–1.09) 0.90 Ϯ 0.07 (0.78–1.08) 0.92 Ϯ 0.10 (0.78–1.13) 0.89 Ϯ 0.06 (0.79–1.01) 0.84 Ϯ 0.13 (0.38–1.01) 0.88 Ϯ 0.08 (0.75–1.10) 0.88 Ϯ 0.09 (0.78–1.14) 0.82 Ϯ 0.14 (0.65–1.13) 0.75 Ϯ 0.13 (0.61–1.13)
+
+0.90 Ϯ 0.12 (0.73–1.18) 0.90 Ϯ 0.08 (0.80–1.13) 0.91 Ϯ 0.09 (0.81–1.09) 0.93 Ϯ 0.15 (0.78–1.38) 0.87 Ϯ 0.07 (0.66–0.96) 0.87 Ϯ 0.08 (0.80–1.10) 0.91 Ϯ 0.06 (0.84–1.07) 0.92 Ϯ 0.07 (0.78–1.08) 0.86 Ϯ 0.11 (0.66–1.07) 0.83 Ϯ 0.17 (0.64–1.16)
+
+0.88 Ϯ 0.07 (0.80–1.00) 0.90 Ϯ 0.06 (0.82–1.02) 0.90 Ϯ 0.07 (0.80–1.02) 0.88 Ϯ 0.08 (0.78–1.07) 0.87 Ϯ 0.04 (0.80–0.97) 0.91 Ϯ 0.70 (0.80–1.02) 0.89 Ϯ 0.06 (0.80–1.04) 0.90 Ϯ 0.08 (0.80–1.08) 0.84 Ϯ 0.13 (0.65–1.08) 0.82 Ϯ 0.12 (0.63–1.12)
+
+0.70 Ϯ 0.07 (0.46–0.85) 0.71 Ϯ 0.07 (0.54–0.90) 0.71 Ϯ 0.04 (0.59–0.81) 0.71 Ϯ 0.04 (0.59–0.82) 0.69 Ϯ 0.06 (0.54–0.82) 0.69 Ϯ 0.06 (0.50–0.80) 0.71 Ϯ 0.04 (0.62–0.90) 0.71 Ϯ 0.05 (0.63–0.90) 0.59 Ϯ 0.06 (0.48–0.74) 0.59 Ϯ 0.07 (0.34–0.74)
+
+0.69 Ϯ 0.08 (0.46–0.85) 0.71 Ϯ 0.08 (0.54–0.85) 0.70 Ϯ 0.04 (0.63–0.78) 0.70 Ϯ 0.03 (0.62–0.78) 0.68 Ϯ 0.06 (0.54–0.79) 0.69 Ϯ 0.06 (0.56–0.79) 0.71 Ϯ 0.05 (0.62–0.90) 0.71 Ϯ 0.05 (0.63–0.90) 0.59 Ϯ 0.06 (0.48–0.74) 0.60 Ϯ 0.07 (0.35–0.73)
+
+0.71 Ϯ 0.07 (0.57–0.81) 0.71 Ϯ 0.07 (0.54–0.90) 0.71 Ϯ 0.05 (0.59–0.81) 0.71 Ϯ 0.05 (0.59–0.82) 0.70 Ϯ 0.06 (0.57–0.82) 0.69 Ϯ 0.06 (0.50–0.80) 0.71 Ϯ 0.04 (0.64–0.82) 0.71 Ϯ 0.04 (0.64–0.82) 0.59 Ϯ 0.06 (0.48–0.68) 0.59 Ϯ 0.08 (0.34–0.74)
+
+0.68 Ϯ 0.06 (0.56–0.78) 0.69 Ϯ 0.08 (0.54–0.90) 0.71 Ϯ 0.03 (0.64–0.78) 0.71 Ϯ 0.04 (0.61–0.78) 0.69 Ϯ 0.08 (0.57–0.80) 0.67 Ϯ 0.06 (0.50–0.80) 0.70 Ϯ 0.03 (0.63–0.76) 0.71 Ϯ 0.03 (0.63–0.77) 0.60 Ϯ 0.06 (0.49–0.74) 0.60 Ϯ 0.06 (0.50–0.71)
+
+0.69 Ϯ 0.08 (0.54–0.82) 0.72 Ϯ 0.07 (0.57–0.83) 0.69 Ϯ 0.05 (0.59–0.78) 0.69 Ϯ 0.05 (0.59–0.77) 0.68 Ϯ 0.06 (0.54–0.82) 0.69 Ϯ 0.07 (0.58–0.80) 0.71 Ϯ 0.05 (0.64–0.82) 0.71 Ϯ 0.05 (0.64–0.82) 0.59 Ϯ 0.05 (0.49–0.67) 0.60 Ϯ 0.09 (0.34–0.74)
+
+0.71 Ϯ 0.06 (0.59–0.81) 0.71 Ϯ 0.06 (0.62–0.85) 0.70 Ϯ 0.03 (0.63–0.75) 0.70 Ϯ 0.03 (0.62–0.75) 0.68 Ϯ 0.06 (0.58–0.80) 0.70 Ϯ 0.06 (0.58–0.78) 0.69 Ϯ 0.04 (0.62–0.77) 0.70 Ϯ 0.04 (0.63–0.77) 0.58 Ϯ 0.07 (0.48–0.69) 0.59 Ϯ 0.08 (0.45–0.74)
+
+0.71 Ϯ 0.09 (0.46–0.85) 0.71 Ϯ 0.08 (0.54–0.85) 0.72 Ϯ 0.05 (0.65–0.81) 0.72 Ϯ 0.05 (0.66–0.82) 0.70 Ϯ 0.05 (0.60–0.77) 0.69 Ϯ 0.05 (0.56–0.79) 0.73 Ϯ 0.05 (0.66–0.90) 0.73 Ϯ 0.05 (0.65–0.90) 0.59 Ϯ 0.05 (0.49–0.65) 0.59 Ϯ 0.07 (0.35–0.72)
+
+0.76 Ϯ 0.07 (0.54–0.91) 0.76 Ϯ 0.07 (0.62–0.93) 0.75 Ϯ 0.06 (0.63–0.89) 0.74 Ϯ 0.06 (0.62–0.90) 0.73 Ϯ 0.03 (0.66–0.81) 0.73 Ϯ 0.03 (0.67–0.82)
+
+0.78 Ϯ 0.07 (0.61–0.88) 0.77 Ϯ 0.07 (0.62–0.92) 0.74 Ϯ 0.06 (0.63–0.89) 0.74 Ϯ 0.06 (0.64–0.90) 0.73 Ϯ 0.03 (0.66–0.81) 0.73 Ϯ 0.03 (0.67–0.82)
+
+0.75 Ϯ 0.07 (0.54–0.91) 0.76 Ϯ 0.07 (0.63–0.93) 0.75 Ϯ 0.06 (0.66–0.89) 0.74 Ϯ 0.06 (0.62–0.88) 0.74 Ϯ 0.04 (0.68–0.82) 0.74 Ϯ 0.03 (0.68–0.81)
+
+0.76 Ϯ 0.09 (0.54–0.88) 0.75 Ϯ 0.07 (0.63–0.88) 0.73 Ϯ 0.05 (0.66–0.86) 0.73 Ϯ 0.05 (0.62–0.82) 0.73 Ϯ 0.02 (0.68–0.77) 0.73 Ϯ 0.02 (0.69–0.76)
+
+0.77 Ϯ 0.06 (0.63–0.88) 0.75 Ϯ 0.05 (0.67–0.88) 0.74 Ϯ 0.07 (0.63–0.89) 0.74 Ϯ 0.05 (0.64–0.86) 0.73 Ϯ 0.03 (0.68–0.78) 0.72 Ϯ 0.03 (0.68–0.78)
+
+0.76 Ϯ 0.08 (0.61–0.91) 0.78 Ϯ 0.06 (0.69–0.92) 0.75 Ϯ 0.05 (0.70–0.89) 0.73 Ϯ 0.05 (0.65–0.88) 0.73 Ϯ 0.03 (0.68–0.78) 0.73 Ϯ 0.03 (0.68–0.77)
+
+0.76 Ϯ 0.07 (0.65–0.87) 0.77 Ϯ 0.09 (0.62–0.93) 0.77 Ϯ 0.06 (0.65–0.88) 0.76 Ϯ 0.07 (0.64–0.90) 0.76 Ϯ 0.05 (0.66–0.81) 0.76 Ϯ 0.05 (0.67–0.82)
+
+0.51 Ϯ 0.07 (0.32–0.64) 0.52 Ϯ 0.07 (0.34–0.63) 0.61 Ϯ 0.07 (0.45–0.76) 0.60 Ϯ 0.07 (0.40–0.78) 2.73 Ϯ 0.27 (1.93–3.49) 2.74 Ϯ 0.27 (2.03–3.46) 3.02 Ϯ 0.16 (2.62–3.33) 3.02 Ϯ 0.16 (2.65–3.38) 2.84 Ϯ 0.35 (1.73–3.05) 2.83 Ϯ 0.35 (1.80–3.39)
+
+0.51 Ϯ 0.07 (0.32–0.64) 0.51 Ϯ 0.07 (0.34–0.63) 0.61 Ϯ 0.08 (0.45–0.76) 0.59 Ϯ 0.08 (0.40–0.78) 2.72 Ϯ 0.26 (2.67–3.26) 2.73 Ϯ 0.25 (2.16–3.16) 2.99 Ϯ 0.15 (2.66–3.31) 3.00 Ϯ 0.14 (2.67–3.26) 2.87 Ϯ 0.30 (2.05–3.35) 2.85 Ϯ 0.29 (2.22–3.38)
+
+0.52 Ϯ 0.06 (0.36–0.62) 0.52 Ϯ 0.06 (0.36–0.62) 0.60 Ϯ 0.07 (0.46–0.75) 0.60 Ϯ 0.07 (0.46–0.76) 2.74 Ϯ 0.29 (1.93–3.49) 2.75 Ϯ 0.29 (2.03–3.46) 3.05 Ϯ 0.17 (2.62–3.33) 3.05 Ϯ 0.18 (2.65–3.38) 2.80 Ϯ 0.40 (1.73–3.41) 2.81 Ϯ 0.40 (1.80–3.39)
+
+0.52 Ϯ 0.06 (0.41–0.64) 0.52 Ϯ 0.06 (0.41–0.63) 0.62 Ϯ 0.08 (0.46–0.75) 0.61 Ϯ 0.08 (0.46–0.76) 2.57 Ϯ 0.29 (1.93–2.99) 2.57 Ϯ 0.28 (2.03–3.05) 2.94 Ϯ 0.16 (2.62–3.26) 2.95 Ϯ 0.16 (2.65–3.25) 2.82 Ϯ 0.30 (2.36–3.25) 2.81 Ϯ 0.29 (2.35–3.26)
+
+0.50 Ϯ 0.08 (0.32–0.62) 0.50 Ϯ 0.08 (0.34–0.62) 0.59 Ϯ 0.07 (0.46–0.76) 0.56 Ϯ 0.06 (0.43–0.65) 2.67 Ϯ 0.23 (2.12–2.99) 2.69 Ϯ 0.23 (2.10–3.00) 2.98 Ϯ 0.15 (2.66–3.17) 3.00 Ϯ 0.15 (2.77–3.26) 2.68 Ϯ 0.37 (1.73–3.32) 2.68 Ϯ 0.37 (1.80–3.25)
+
+0.51 Ϯ 0.07 (0.36–0.62) 0.51 Ϯ 0.07 (0.35–0.61) 0.62 Ϯ 0.07 (0.51–0.76) 0.62 Ϯ 0.06 (0.51–0.75) 2.78 Ϯ 0.25 (0.25–3.17) 2.79 Ϯ 0.25 (2.27–3.16) 3.05 Ϯ 0.15 (2.72–3.31) 3.03 Ϯ 0.15 (2.66–3.32) 2.82 Ϯ 0.38 (1.84–3.35) 2.83 Ϯ 2.83 (1.83–3.38)
+
+0.53 Ϯ 0.06 (0.39–0.63) 0.53 Ϯ 0.06 (0.38–0.63) 0.61 Ϯ 0.08 (.45–0.73) 0.59 Ϯ 0.07 (0.40–0.78) 2.91 Ϯ 0.21 (2.47–3.49) 2.92 Ϯ 0.21 (2.42–3.46) 3.12 Ϯ 0.13 (2.85–3.33) 3.11 Ϯ 0.14 (2.86–3.38) 3.02 Ϯ 0.30 (2.05–3.41) 2.23 Ϯ 0.26 (2.23–3.39)
+
+AJNR: 23, February 2002
+
+Note.—Data are the means Ϯ SDs. Data in parentheses are ranges.
+
+TABLE 2: Mean ADCav values for gray matter from all the cerebral lobes compared with mean ADCav values for white matter
+
+AJNR: 23, February 2002
+
+ROI Gray matter White matter Basal ganglia Thalamus
+
+All (n ϭ 80) 0.89 Ϯ 0.04 (0.78–1.09) 0.70 Ϯ 0.03 (0.62–0.79) 0.75 Ϯ 0.03 (0.64–0.83) 0.73 Ϯ 0.03 (0.67–0.82)
+
+Men (n ϭ 40) 0.90 Ϯ 0.03 (0.84–0.96) 0.70 Ϯ 0.03 (0.62–0.79) 0.75 Ϯ 0.03 (0.69–0.83) 0.73 Ϯ 0.03 (0.67–0.82)
+
+Women (n ϭ 40) 0.89 Ϯ 0.05 (0.78–1.09) 0.71 Ϯ 0.03 (0.66–0.79) 0.75 Ϯ 0.04 (0.64–0.83) 0.74 Ϯ 0.03 (0.68–0.81)
+
+ADCav (ϫ 10Ϫ3 mm2/s) Age Group 1, 20–34 years (n ϭ 20)
+0.90 Ϯ 0.04 (0.84–0.96) 0.70 Ϯ 0.02 (0.67–0.73) 0.74 Ϯ 0.03 (0.64–0.80) 0.73 Ϯ 0.02 (0.68–0.77)
+
+Age Group 2, 35–49 years
+(n ϭ 20) 0.89 Ϯ 0.04 (0.78–0.94) 0.70 Ϯ 0.04 (0.65–0.79) 0.74 Ϯ 0.02 (0.69–0.78) 0.72 Ϯ 0.03 (0.68–0.78)
+
+Age Group 3, 50–64 years
+(n ϭ 20) 0.90 Ϯ 0.06 (0.81–1.09) 0.70 Ϯ 0.03 (0.66–0.75) 0.75 Ϯ 0.03 (0.69–0.81) 0.73 Ϯ 0.03 (0.68–0.77)
+
+Age Group 4, 65–85 years
+(n ϭ 20) 0.89 Ϯ 0.03 (0.85–0.96) 0.71 Ϯ 0.04 (0.62–0.79) 0.76 Ϯ 0.04 (0.70–0.83) 0.76 Ϯ 0.05 (0.67–0.82)
+
+Note.—Data are the means Ϯ SDs. Data in parentheses are ranges. Values in eight gray matter and eight white matter ROIs were compared.
+
+NORMAL BRAIN 197
+
+mm2/s) in the cortical gray matter, 0.70 Ϯ 0.03 mm2/s
+
+(range, 0.62– 0.79 ϫ 10Ϫ3 mm2/s) in the white matter,
+
+(0.75 Ϯ 0.03) ϫ 10Ϫ3 mm2/s (range, 0.64 – 0.83 ϫ 10Ϫ3
+
+mm2/s) in the basal ganglia, and (0.73 Ϯ 0.03) ϫ 10Ϫ3
+
+mm2/s (range, 0.67– 0.82 ϫ 10Ϫ3 mm2/s) in the thala-
+
+mus. The regional Tables 1 and 2.
+
+ADCav
+
+values
+
+are
+
+presented
+
+in
+
+The mean cortical gray matter ADCav value was significantly higher than the mean white matter value
+
+in all subjects (P Ͻ .001), in men (P Ͻ .001), in
+
+women (P Ͻ .001), and in all age groups (P Ͻ .001).
+
+AhiDghCearvtvhaalnuetshoinsethine
+
+basal ganglia and thalamus were the white matter (P Ͻ .001), but
+
+they were lower than cortical gray matter values (P Ͻ
+
+.001) (Table 2). ADCav values in the white matter in the various regions of the brain did not differ signif-
+
+icantly. No statistically significant differences were
+
+found between the various cortical regions. The range
+
+of all
+
+AgrDoCupavs
+
+values within each ROI (Table 1). However, in
+
+was fairly large in every region and
+
+age group, the SDs of the ADCav values were small. In both lateral ventricles, the ADCav values in-
+creased with age (P Ͻ .001). The homogeneity of the
+
+variances was normal in all the brain regions except
+
+the two thalami (P Ͻ .002 for the left and P Ͻ .001 for
+
+the right), where the ADCav values in age group 4 were significantly higher than those of the other age
+
+groups. No other statistically significant age-related
+
+changes in the ADCav values were noted. Differences in ADCav values between the hemispheres were found only in the cerebellar gray matter; the left
+
+hemisphere the right (P
+
+had Ͻ
+
+a higher .02). No
+
+dAifDfeCreavncveasluweetrheanobtsheartveodf
+
+between the ADCav values in the men and those of the women.
+
+Discussion We report absolute ADCav values for the various regions of the human brain in a large representative adult population involving patients of both sexes with a wide age range. The study population was homogeneous; all subjects were white, and only two subjects were not Finnish. To our knowledge, no reports of normal ADC values in the brain in ethnically diverse populations exist, and whether our results can be directly extrapolated to people of different races requires further studies in such populations. Because the macro- and microstructural properties of the human brain are identical in people of various races, we believe that our results will prove to be valid for other populations as well. The ADCav values in the cerebral cortex were consistently higher than those of the white matter; this finding supports the results of previous studies (12, 15, 21, 22). This difference is partly due to the structural and functional differences between the cortex and the white matter (21). The cortex has higher water content and substantially higher blood flow compared with that of the white matter (23); both contribute to the ADCav value. Furthermore, a partial volume effect of the CSF adjacent to the cortex may
+
+198 HELENIUS increase the ADCav values in the cortex (21, 22). In this study, the small variation among the ADCav values within a cortical ROI indicated that CSF contamination was avoided. As expected, the ADCav values in the CSF were more than twice as high as the gray matter values and almost three times as high as the ADCav values in the white matter, because water diffusion is much less restricted in the CSF than in the brain tissue. In previous reports, the ADC values in the gray matter were 0.8 –1.1 ϫ 10Ϫ3 mm2/s, and those in the white matter were 0.6 – 0.9 ϫ 10Ϫ3 mm2/s (12, 22); these values are similar to our results. The ADCav values in the basal ganglia and thalamus were between the values in the gray matter and white matter, probably because of their microstructural properties (23).
+Cerebellar gray matter ADCav values were higher in the left hemisphere than in the right hemisphere. In the cerebellum, avoiding some overlap between the gray matter ROIs and the white matter, and probably the CSF, is difficult, because the cerebellar cortex is thin and has extensive folia. This partial volume effect may explain the wide range of cerebellar ADCav values and the differences between the hemispheres.
+Generally, the ADCav values in the various brain regions did not change with aging. However, an agedependent increase in ADCav values was observed in the lateral ventricles, and the ADCav values in the thalami in age group 4 were significantly higher than in those of the other age groups. Whether the change in the thalami was due to structural or functional changes related to aging or mere statistical artifact remains to be shown. The change in the ADCav values in the lateral ventricles is possibly due to lower compliance in the aging brain and age-related enlargement of the ventricles, which allows more pulsatile movement of the CSF (24). This movement is likely to increase the turbulence of CSF flow (25), with a resultant increase in the measured diffusion (24). Gideon et al (15), in their study of 17 volunteers, found small age-related changes in the white matter but not in the gray matter. Other studies of ADC values in the healthy human brain have included only a few young subjects, or the total number of volunteers ranged between four and 15 (12, 16 –18).
+Absolute ADC values may be used to identify the ischemic tissue precisely (26), but their use requires a normal reference value for each brain region. Among human DW studies, only a few have involved the use of quantitative measurements (27–29). Quantitative methods, with absolute ADC values for healthy and pathologic structures, are important when focal and diffuse abnormalities are suspected, because minor changes may be difficult to detect by visual inspection. In experimental studies, comparisons of the ADC value in a given pixel before and after ischemia and the difference in ADC values in the infarcted and intact hemispheres have been used to detect early ischemia-induced ADC changes (1, 30 –32). In humans, imaging before stroke is not feasible, and use of
+
+AJNR: 23, February 2002
+
+the contralateral side to provide a reference value
+
+may have limitations because of the possible existence
+
+of earlier lesions. A considerable amount of experi-
+
+mental work has been devoted to defining abnormal
+
+pixels and distinguishing normal pixels from ischemic
+
+pixels (26, 33–35). In studies of acute stroke, ADC
+
+values in the hyperacute (Ͻ6 hours after onset) isch-
+
+emic lesion were less than 0.63 ϫ 10Ϫ3 mm2/s (3, 36,
+
+37). (0.89
+
+In Ϯ
+
+this 0.04)
+
+study, ϫ 10Ϫ3
+
+tmhem2m/se(arnangAeD, 0C.7av8
+
+values –1.09 ϫ
+
+were 10Ϫ3
+
+mm2/s) in the cortical gray matter, (0.70 Ϯ 0.03) ϫ
+
+10Ϫ3 mm2/s (range, 0.62– 0.79 ϫ 10Ϫ3 mm2/s) in the
+
+white matter, and (0.75 Ϯ 0.03) ϫ 10Ϫ3 mm2/s (range,
+
+0.64 – 0.83 ϫ 10Ϫ3 mm2/s) in the basal ganglia; these
+
+results support the findings in hyperacute stroke stud-
+
+ies. However, we identified some pixels with very low
+
+ADCav values; the lowest was 0.32 ϫ 10Ϫ3 mm2/s, although most of the regional ADCav values were within a narrow range, and the calculated SDs were
+
+small. The rare pixels with surprisingly low ADCav values were randomly situated, and they may simply
+
+reflect blood vessels or technical errors. Because the
+
+ROIs were fairly large, these abnormal ADCav values did not affect the results.
+
+ADC values alone are not site specific. As can be
+
+seen from the white matter ADCav values, no differences were found among the various brain regions.
+
+The same applies to the various cortical gray matter
+
+regions. Recent groups have indicated that knowl-
+
+edge of diffusion anisotropy can substantially improve
+
+the estimate for the anatomic location in question
+
+(38). In general, in the cerebral peduncles and inter-
+
+nal capsule, the degree of diffusion anisotropy is high,
+
+whereas in the gray matter, diffusion is relatively
+
+isotropic (38 – 40). In the present study, the effects of
+
+anisotropy were overcome by using a rotationally in-
+
+variant measure of diffusion (12).
+
+Conclusion
+
+In the present study, 80 healthy adult volunteers of
+
+both sexes with a wide age range were examined with
+
+spin-echo echo-planar DW imaging to establish ref-
+
+erence normal average ADCav values in the various regions of the brain. With the exception of the lateral
+
+ventricles, the ADCav values were not affected by aging. The left and right hemispheres had similar
+
+ADCav values, and no sex difference was observed. In
+
+normal brain, the and white matter
+
+AwDeCreav
+
+values within
+
+in a
+
+both gray relatively
+
+matter narrow
+
+range. ADCav values beyond these boundaries may indicate disease, and thus, DW imaging may be useful
+
+for tissue characterization. Our data are representa-
+
+tive, and our findings can be used for reference in
+
+future studies and in clinical settings.
+
+Acknowledgment
+We thank Dr Fuhai Li for his critical review of the manuscript.
+
+AJNR: 23, February 2002
+References
+1. Li F, Han SS, Tatlisumak T, et al. A new method to improve in-bore middle cerebral artery occlusion in rats: demonstration with diffusion- and perfusion-weighted imaging. Stroke 1998;29:1715–1720
+2. Li F, Han SS, Tatlisumak T, et al. Reversal of acute apparent diffusion coefficient abnormalities and delayed neuronal death following transient focal cerebral ischemia in rats. Ann Neurol 1999;46:333–342
+3. Warach S, Gaa J, Siewert B, Wielopolski P, Edelman RR. Acute human stroke studied by whole brain echo planar diffusionweighted magnetic resonance imaging. Ann Neurol 1995;37:231–241
+4. Gonzalez RG, Schaefer PW, Buonanno FS, et al. Diffusionweighted MR imaging: diagnostic accuracy in patients imaged within 6 hours of stroke symptom onset. Radiology 1999;210:155– 162
+5. Helpern JA, Huang N. Diffusion-weighted imaging in epilepsy. Magn Reson Imaging 1995;13:1227–1231
+6. Hanuy H, Sakurai H, Iwamoto T, Takasaki M, Shindo H, Abe K. Diffusion-weighted MR imaging of the hippocampus and temporal white matter in Alzheimer’s disease. J Neurol Sci 1998;156:195–200
+7. Tievsky AL, Ptak T, Farkas J. Investigation of apparent diffusion coefficient and diffusion tensor anisotropy in acute and chronic multiple sclerosis lesions. AJNR Am J Neuroradiol 1999;20:1491– 1499
+8. Cercignani M, Iannucci G, Rocca MA, Comi G, Horsfield MA, Filippi M. Pathologic damage in MS assessed by diffusion-weighted and magnetization transfer MRI. Neurology 2000;54:1139 –1144
+9. Adachi M, Hosoya T, Haku T, Yamaguchi K, Kawanami T. Evaluation of the substantia nigra in patients with Parkinsonian syndrome accomplished using multishot diffusion-weighted MR imaging. AJNR Am J Neuroradiol 1999;20:1500 –1506
+10. Le Bihan D, Breton E, Lallemand D, Grenier P, Canabis E, LavalJeantet M. MR imaging of intravoxel incoherent motions: application to diffusion and perfusion in neurological disorders. Radiology 1986;161:401– 407
+11. Sakuma H, Nomura Y, Takeda K, et al. Adult and neonatal human brain: diffusional anisotropy and myelination with diffusionweighted MR imaging. Radiology 1991;180:229 –233
+12. Ulug AM, Beauchamp N Jr, Bryan RN, van Zijl PCM. Absolute quantitation of diffusion constants in human stroke. Stroke 1997; 28:483– 490
+13. Xing D, Papadakis NG, Huang CL, Lee VM, Carpenter TA, Hall LD. Optimized diffusion-weighting for measurements of apparent diffusion coefficient (ADC) in human brain. Magn Reson Imaging 1997;15:771–784
+14. Burdette JH, Elster AD, Ricci PE. Calculation of apparent diffusion coefficients (ADCs) in brain using two-point and six-point methods. J Comput Assist Tomogr 1998;22:792–794
+15. Gideon P, Thomsen C, Henriksen O. Increased self-diffusion of brain water in normal aging. J Magn Reson Imaging 1994;4:185–188
+16. Tanner SF, Ramenghi LA, Ridgway JP, et al. Quantitative comparison of intrabrain diffusion in adults and preterm and term neonates and infants. AJR Am J Roentgenol 2000;174:1643–1649
+17. Harada K, Fujita N, Sakurai K, Akai Y, Fujii K, Kozuka T. Diffusion imaging of the human brain: a new pulse sequence application for a 1.5-T standard MR system. AJNR Am J Neuroradiol 1991;12: 1143–1148
+18. van Everdingen K, van der Grond J, Kappelle LJ, Ramos LM, Mali WP. Diffusion-weighted magnetic resonance imaging in acute stroke. Stroke 1998;29:1783–1790
+19. Shellock FG, Morisoli S, Kanal E. MR procedures and biomedical implants, materials, and devices: 1993 update. Radiology 1993;189: 587–599
+20. Salonen O, Autti T, Raininko R, Ylikoski A, Erkinjuntti T. MRI of the brain in neurologically healthy middle-aged and elderly indi-
+
+NORMAL BRAIN 199
+viduals. Neuroradiology 1997;39:537–545 21. Le Bihan D, Turner R, Douek P, Patronas N. Diffusion MR imaging:
+clinical applications. AJR Am J Roentgenol 1992;159:591–599 22. Baird AE, Warach S. Magnetic resonance imaging of acute stroke.
+J Cereb Blood Flow Metab 1998;18:583– 609 23. de Groot J, Chusid JG. Correlative Neuroanatomy. Stamford, Conn:
+Appleton & Lange; 1991;319 24. Bakshi R, Caruthers SD, Janardhan V, Wasay M. Intraventricular
+CSF pulsation artifact on fast fluid-attenuated inversion-recovery MR images: analysis of 100 consecutive normal studies. AJNR Am J Neuroradiol 2000;21:503–508 25. Sherman JL, Citrin CM, Gangarosa RE, Bowen BJ. The MR appearance of CSF flow in patients with ventriculomegaly. AJR Am J Roentgenol 1987;148:193–199 26. Dardzinski BJ, Sotak CH, Fisher M, Hasegawa Y, Li L, Minematsu K. Apparent diffusion coefficient mapping of experimental focal cerebral ischemia using diffusion-weighted echo-planar imaging. Magn Reson Med 1993;1994:318 –325 27. Brockstedt S, Thomsen C, Wirestam R, Holtas S, Stahlberg F. Quantitative diffusion coefficient maps using fast spin-echo MRI. Magn Reson Imaging 1998;16:877– 886 28. Chien D, Buxton RB, Kwong KK, Brady TJ, Rosen BR. MR diffusion imaging of human brain. J Comp Assist Tomogr 1990;14: 514 –520 29. Pierpaoli C, Jezzard P, Basser PJ, Barnett A, Di Chiro G. Diffusion tensor MR imaging of the human brain. Radiology 1996;201:637– 648 30. Mintorovitch J, Moseley ME, Chileuitt L, Shimizu H, Cohen Y, Weinstein PR. Comparison of diffusion- and T2-weighted MRI for the early detection of cerebral ischemia and reperfusion in rats. Magn Reson Med 1991;18:39 –50 31. Roussel SA, van Bruggen N, King MD, Houseman J, Williams SR, Gadian DG. Monitoring the initial expansion of focal ischemic changes by diffusion-weighted MRI using a remote controlled method of occlusion. NMR Biomed 1994;7:21–28 32. Davis D, Ulatowski J, Eleff S, et al. Rapid monitoring of changes in water diffusion coefficient during reversible ischemia in cat and rat brain. Magn Reson Med 1994;31:454 – 460 33. Hoehn-Berlage M, Norris DG, Kohno K, Mies G, Leibfritz D, Hossmann KA. Evolution of regional changes in apparent diffusion coefficient during focal ischemia of rat brain: the relationship of quantitative diffusion NMR imaging to reduction in cerebral blood flow and metabolic disturbances. J Cereb Blood Flow Metab 1995; 15:1002–1011 34. Takano K, Latour LL, Formato JE, et al. The role of spreading depression in focal ischemia evaluated by diffusion mapping. Ann Neurol 1996;39:308 –318 35. Takano K, Tatlisumak T, Formato JE, et al. A glycine site antagonist attenuates infarct size in experimental focal ischemia: postmortem and diffusion mapping studies. Stroke 1997;28:1255–1263 36. Marks MP, de Crespigny A, Lentz D, Enzmann DR, Albers GW, Moseley ME. Acute and chronic stroke: navigated spin-echo diffusion-weighted MR imaging. Radiology 1996;199:403– 408 37. Nagesh V, Welch KM, Windham JP, et al. Time course of ADCw changes in ischemic stroke: beyond the human eye! Stroke 1998;29: 1778 –1782 38. Shimony JS, McKinstry RC, Akbudak E, et al. Quantitative diffusion-tensor anisotropy brain MR imaging: normative human data and anatomic analysis. Radiology 1999;212:770 –784 39. Sorensen AG, Wu O, Copen WA, et al. Human acute cerebral ischemia: detection of changes in water diffusion anisotropy by using MR imaging. Radiology 1999;212:785–792 40. Conturo TE, Lori NF, Cull TS, et al. Tracking neuronal fiber pathways in the living human brain. PNAS 1999;96:10422–10427
+

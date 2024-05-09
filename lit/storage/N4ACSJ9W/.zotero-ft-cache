@@ -1,0 +1,104 @@
+Skip to Main Content
+
+    IEEE.org
+    IEEE Xplore
+    IEEE SA
+    IEEE Spectrum
+    More Sites 
+
+Subscribe
+
+        Donate 
+        Cart
+        Create Account
+        Personal Sign In 
+
+IEEE Xplore logo - Link to home
+
+    Browse
+    My Settings
+    Help
+
+Institutional Sign In
+IEEE logo - Link to IEEE main site homepage
+ADVANCED SEARCH
+Conferences > IEEE 1988 International Confe...
+Computation of optical flow using a neural network
+Publisher: IEEE
+Cite This
+PDF
+Zhou ; Chellappa
+All Authors
+91
+Cites in
+Papers
+14
+Cites in
+Patents
+1084
+Full
+Text Views
+
+    Alerts
+
+Abstract
+Authors
+References
+Citations
+Keywords
+Metrics
+Abstract:
+A method for computing optical flow using a neural network is presented. Usually, the measurement primitives used for computing optical flow from successive image frames are the image-intensity values and their spatial and temporal derivatives, and tokens such as edges, corners, and linear features. Conventional methods based on such primitives suffer from edge sparsity, noise distortion, or sensitivity to rotation. The authors first fit a 2-D polynomial to find a smooth continuous image-intensity function in a window and estimate the subpixel intensity values and their principal curvatures. Under the local rigidity assumption and smoothness constraints, a neural network is then used to implement the computing procedure based on the estimated intensity values and their principal curvatures. Owing to the dense measured primitives, a dense optical flow with subpixel accuracy is obtained with only a few iterations. Since intensity values and their principle curvatures are rotation-invariant, this method can detect both rotating and translating objects in the scene. Experimental results using synthetic image sequences demonstrate the efficacy of the method.< >
+Published in: IEEE 1988 International Conference on Neural Networks
+Date of Conference: 24-27 July 1988
+Date Added to IEEE Xplore : 06 August 2002
+DOI: 10.1109/ICNN.1988.23914
+Publisher: IEEE
+Conference Location: San Diego, CA, USA
+Authors
+References
+Citations
+Keywords
+Metrics
+More Like This
+Diagnosis of Diabetic Retinopathy by Using Image Processing and Convolutional Neural Network
+
+2018 2nd International Symposium on Multidisciplinary Studies and Innovative Technologies (ISMSIT)
+
+Published: 2018
+A Neural Network Based Fault Management Scheme for Reliable Image Processing
+
+IEEE Transactions on Computers
+
+Published: 2020
+Show More
+References
+References is not available for this document.
+IEEE Personal Account
+
+    Change username/password 
+
+Purchase Details
+
+    Payment Options
+    View Purchased Documents 
+
+Profile Information
+
+    Communications Preferences
+    Profession and Education
+    Technical interests 
+
+Need Help?
+
+    US & Canada: +1 800 678 4333
+    Worldwide: +1 732 981 0060
+    Contact & Support 
+
+Follow
+
+About IEEE Xplore | Contact Us | Help | Accessibility | Terms of Use | Nondiscrimination Policy | IEEE Ethics Reporting | Sitemap | IEEE Privacy Policy
+
+A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+
+© Copyright 2024 IEEE - All rights reserved.

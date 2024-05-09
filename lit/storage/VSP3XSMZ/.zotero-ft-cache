@@ -1,0 +1,448 @@
+CME
+JOURNAL OF MAGNETIC RESONANCE IMAGING 37:805–817 (2013)
+Review: MR Physics for Clinicians
+
+Spin Echo Magnetic Resonance Imaging
+
+Bernd Andre Jung, PhD,* and Matthias Weigel, PhD
+
+This article is accredited as a journal-based CME activity. If you wish to receive credit for this activity, please refer to the website: www.wileyhealthlearning.com
+ACCREDITATION AND DESIGNATION STATEMENT
+Blackwell Futura Media Services designates this journalbased CME activity for a maximum of 1 AMA PRA Category 1 CreditTM. Physicians should only claim credit commensurate with the extent of their participation in the activity.
+Blackwell Futura Media Services is accredited by the Accreditation Council for Continuing Medical Education to provide continuing medical education for physicians.
+EDUCATIONAL OBJECTIVES
+Upon completion of this educational activity, participants will be better able to describe the basic imaging parameters repetition time (TR) and echo time (TE) and their inﬂuence on image contrast.
+ACTIVITY DISCLOSURES
+No commercial support has been accepted related to the development or publication of this activity.
+Faculty Disclosures:
+The following contributors have no conﬂicts of interest to disclose:
+Editor-in-Chief: C. Leon Partain, MD, PhD
+CME Editor: Scott B. Reeder, MD, PhD
+CME Committee: Scott Nagle, MD, PhD, Pratik Mukherjee, MD, PhD, Shreyas Vasanawala, MD, PhD, Bonnie Joe, MD, PhD, Tim Leiner, MD, PhD, Sabine Weckbach, MD, Frank Korosec, PhD
+Authors: Bernd Andre Jung, PhD, Matthias Weigel, PhD
+This manuscript underwent peer review in line with the standards of editorial integrity and publication ethics
+
+maintained by Journal of Magnetic Resonance Imaging. The peer reviewers have no relevant ﬁnancial relationships. The peer review process for Journal of Magnetic Resonance Imaging is double-blinded. As such, the identities of the reviewers are not disclosed in line with the standard accepted practices of medical journal peer review.
+Conﬂicts of interest have been identiﬁed and resolved in accordance with Blackwell Futura Media Services’s Policy on Activity Disclosure and Conﬂict of Interest. No relevant ﬁnancial relationships exist for any individual in control of the content and therefore there were no conﬂicts to resolve.
+INSTRUCTIONS ON RECEIVING CREDIT
+For information on applicability and acceptance of CME credit for this activity, please consult your professional licensing board.
+This activity is designed to be completed within an hour; physicians should claim only those credits that reﬂect the time actually spent in the activity. To successfully earn credit, participants must complete the activity during the valid credit period.
+Follow these steps to earn credit:
+ Log on to www.wileyhealthlearning.com  Read the target audience, educational objectives, and
+activity disclosures.  Read the article in print or online format.  Reﬂect on the article.  Access the CME Exam, and choose the best answer to
+each question.  Complete the required evaluation component of the
+activity.
+This activity will be available for CME credit for twelve months following its publication date. At that time, it will be reviewed and potentially updated and extended for an additional period.
+
+Department of Radiology, Medical Physics, University Medical Center, Freiburg, Germany. *Address reprint requests to: B.A.J., University Medical Center, Department of Radiology, Medical Physics, Breisacher Strasse 60a, 79106 Freiburg, Germany. E-mail: bernd.jung@uniklinik-freiburg.de Received June 27, 2011; Accepted January 11, 2013. DOI 10.1002/jmri.24068 View this article online at wileyonlinelibrary.com.
+
+VC 2012 Wiley Periodicals, Inc.
+
+805
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+806
+
+Jung and Weigel
+
+The spin echo sequence is a fundamental pulse sequence in MRI. Many of today’s applications in routine clinical use are based on this elementary sequence. In this review article, the principles of the spin echo formation are demonstrated on which the generation of the fundamental image contrasts T1, T2, and proton density is based. The basic imaging parameters repetition time (TR) and echo time (TE) and their inﬂuence on the image contrast are explained. Important properties such as the behavior in multi-slice imaging or in the presence of ﬂow are depicted and the basic differences with gradient echo imaging are illustrated. The characteristics of the spin echo sequence for different magnetic ﬁeld strengths with respect to clinical applications are discussed.
+Key Words: spin echo; SE; relaxation; T1; T2; proton density; PD J. Magn. Reson. Imaging 2013;37:805–817. VC 2012 Wiley Periodicals, Inc.
+THE PRINCIPLES OF SPIN ECHO FORMATION
+The spin echo sequence is one of the fundamental pulse sequences in MR and was introduced by Hahn in 1950—a long time before the MR imaging (MRI) era began (1). For the understanding of spin echo formation, it has to be considered that the measured macroscopic magnetization actually equals the net sum of a multitude of tiny magnetization vectors called isochromats in MR. An isochromat—based on the Greek meaning for ‘‘the same color’’—represents an ensemble of spins that all precess at the same Larmor frequency. Isochromats are much smaller than a voxel.
+
+The physical construct of an isochromat is useful, because it behaves like a classical physical magnetization vector of arbitrary magnitude and orientation in space. It avoids the complex depths of quantum theory where (single or a few) spins have ‘‘strange properties’’ such as spin polarization—properties which often have no direct intuitive counterpart in daily life. In the literature, authors usually mean ‘‘isochromats’’ if they talk of ‘‘spins.’’ However, to simplify things a bit and to stay in accordance with the broad majority of books and papers, we will refer to ‘‘spins’’ in the remainder of this article, yet, keep in mind that we actually mean ‘‘(spin) isochromats.’’
+A standard spin echo sequence consists of an excitation pulse (90) and a refocusing pulse (180). The 90 excitation pulse completely turns the longitudinal magnetization Mz into transverse magnetization Mxy as depicted in Figure 1. Then, the transverse magnetization and, therefore, the measured signal decays, which is called the FID (free induction decay). Responsible for the decay of Mxy are dephasing effects of the spins. Dephasing describes the phenomenon that several spins have Larmor frequencies that are different from the base Larmor frequency v0 determined by the scanner ﬁeld strength B0 according to:
+
+v0 ¼ gB0;
+
+½1
+
+with the constant g, the gyromagnetic ratio. Hence, some spins precess faster or slower than v0, which results in a fanning-out, dephasing, or loss of coherence of the spins. All three terms have the same meaning in this respect and result in the decay or relaxation of transverse magnetization.
+
+Figure 1. The Spin Echo sequence consists of a 90 excitation pulse and a 180 refocusing pulse. All spin isochromats are fully rephased at TE when only static magnetic ﬁeld inhomogeneities are considered—the signal decay is described by T20. If
+additional time-varying (stochastic, nonstatic) magnetic ﬁeld ﬂuctuations are present, the signal amplitude at TE is reduced—the signal decay is then described by TÃ2, being a composition of T2 and T20 according to Eq. [2].
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Spin Echo MRI
+
+807
+
+MR physics distinguishes between two basic phenomena for dephasing effects leading to transverse relaxation, which are closely related with the spin echo formation. These two phenomena are discussed in the following:
+(i). Magnetic ﬁeld inhomogeneities of the scanner and local magnetic susceptibility changes caused by the scanned subject directly alter the local Larmor frequency of the spins. ‘‘Susceptibility’’ represents a measure for the magnetizability of a material. Although the susceptibilities of human tissue are very weak, they are strong enough to have an observable effect in MRI, particularly at tissue-air boundaries. Both inhomogeneities of the main magnetic ﬁeld B0 and local magnetic susceptibilities are static effects, i.e., they are constant in time, and they act on a spatially macroscopic scale. The resulting signal decay is described by the characteristic relaxation time T20 (Fig. 1). These static dephasing effects are reversible, because the application of a refocusing pulse of typically 180 rotates the spins along an axis in the transverse plane leading to rephasing of the dephased spins by the static magnetic ﬁeld inhomogeneities or susceptibility variations. For reasons of symmetry, it takes the same time for the spins to rephase again as elapsed during dephasing. Because the spins stay in the same location and precess at the same rate and in the same direction before and after the 180 pulse, the transverse magnetization is refocused and what is referred to as a spin echo is generated, its center (signal maximum) occurring at the echo time TE. The axis of rotation for refocusing can be the x-axis, for instance, as shown in Figure 1. At TE, all static ﬁeld effects are perfectly refocused (reversibility). Thus, in the fundamental spin echo sequence the refocusing pulse is played out after half of the desired echo time TE—a parameter used to manipulate image contrast as described later—so that the spin echo is generated at TE (see the timing of the pulses and signals in Fig. 1).
+(ii). There are dephasing effects caused by magnetic ﬁeld ﬂuctuations that are not static but vary in time. These ﬁeld ﬂuctuations are induced by random spin–spin interactions, i.e., the spins inﬂuence randomly the magnetic ﬁeld of the spin neighbors and, hence, alter their Larmor frequency in a stochastic way (Fig. 1). Molecular rotation and the so-called Brownian motion of molecules, which is molecular motion due to heat / temperature, induce these random spin– spin interactions (2). Therefore, spins experience different locations and thus precess at different frequencies before and after the 180 pulse. This results in stochastic dephasing of the spins, leading to irreversible decay of the transverse magnetization and, therefore, the measured signal (Fig. 1). Thus, refocusing in a spin echo sequence is not perfect; inevitable signal decay takes place that is described by the
+
+characteristic relaxation time T2. Spin echoes, therefore, decay with the characteristic (and tissue-speciﬁc) relaxation time T2 as is also noted in Figure 1.
+It should be noted that, strictly speaking, a multiplicity of other effects contributes to the measurable T2 decay besides the spin–spin interaction. One further contribution is diffusion effects within inhomogeneous magnetic ﬁelds, the so called dynamic susceptibility effects (1,3). Yet, such effects are beyond the scope of this article.
+Without the presence of a refocusing pulse, transverse magnetization experiences both types of decay: T2 and T20 relaxation. The combined relaxation time is denoted TÃ2 (T2-star) and is determined by:
+
+1 T2Ã
+
+¼
+
+1 T2
+
+þ
+
+1 T20
+
+:
+
+½2
+
+It should be noted that—strictly speaking—TÃ2 is an approximation because Eq. [2] assumes that the effect of all ﬁeld inhomogeneities and susceptibility variations can be described by a single relaxation time T20 (4), which is not always the case. However, it is usually a good approximation and—much more importantly—a convenient approximation in MR.
+It was shown that the use of a refocusing pulse in
+the SE sequence reverses all dephasing caused by
+static magnetic ﬁeld inhomogeneity and susceptibility effects (T20 effects). Thus, the SE sequence is insensitive to these effects, which represents an important
+property of it. This robustness was also important
+from a historical perspective: Until the beginning of
+the 1980s, spin echo sequences were by far the most
+popular MRI sequences. A major reason was the rela-
+tively inhomogeneous B0 ﬁelds of the scanners leading to very strong T20 effects.
+Putting the static T20 ﬁeld effects to the side for the moment, Figure 2 only accounts for the irreversible T2 decay for transverse magnetization. Figure 2 also dis-
+plays the recovery of the longitudinal magnetization component after a 90 excitation pulse. The spin sys-
+tem always changes toward the thermal equilibrium,
+which corresponds to a fully recovered/relaxed magnet-
+ization component Mz along z of magnitude M0. This relaxation process is denoted by the characteristic
+relaxation time T1. Both T1 and T2 relaxation are monoexponential relaxation processes as described quantita-
+tively for longitudinal Mz and transverse Mxy magnetization in Figure 2. Typical T1 relaxation times, deﬁned as when 1-1/e ($63.2%) of Mz has recovered, are on the order of hundreds of milliseconds to a few seconds for human tissues. The T2 and TÃ2 relaxation times, deﬁned as when 1-1/e ($63.2%) of Mxy has decayed, are always shorter than T1, and are on the order of tens of milliseconds to a few hundred milliseconds for soft tissues
+and approximately 2.5 to 4.0 s for cerebrospinal ﬂuid
+(CSF) and pure water (5–12). While T2 relaxation is particularly important in combination with TE, the time
+when the spin echo is generated, T1 relaxation becomes particularly important when there is more than one
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+808
+
+Jung and Weigel
+
+Figure 2. The behavior of the
+longitudinal (Mz) and the transverse (Mxy) magnetization after a 90 excitation pulse: the relaxa-
+tion of Mz is described by the time constant T1, the decay of Mxy by TÃ2.
+
+excitation or a repeated series of excitations of magnetization as happens in an imaging sequence, for example.
+SPIN ECHO IMAGING
+The previous section introduced the basics and properties of spin echo formation in combination with the observed relaxation processes. The MR sequence presented in Figure 1, however, does not produce any MR images. Hence it is not an MRI sequence; it lacks the necessary magnetic ﬁeld gradients for spatial encoding of the generated signal. The comprehensive spin echo (SE) sequence for MR imaging is presented in Figure 3. It is based on the fundamental spin echo sequence from Figure 1 and inherits its properties including the insensitivity to ﬁeld inhomogeneity and susceptibility effects. Added are the different magnetic ﬁeld gradients for spatially encoding the signal to position.
+The prewinding gradient in the frequency-encoding/ readout direction, the phase-encoding gradient and the rephasing gradient in the slice selection direction are usually applied at the same time (13). The prewinding and readout gradient in the frequency-encoding direction have the same polarity, because the 180 refocusing pulse reverses the effect of the initial prewinding gradient, causing the dephasing resulting from the prewinding gradient to be refocused at the mid-point of the readout gradient (which coincides with TE).
+To acquire the full data set, the SE sequence has to be repeated according to the chosen matrix size NP in the phase-encoding direction because only one phaseencoding gradient can be applied per TR. Therefore, the acquisition time TA of an image is given by:
+
+TASE ¼ TR Á NP :
+
+½3
+
+Typical TRs (and TEs) depend on the desired contrast of the later-reconstructed image from the SE sequence and are discussed below.
+
+DIFFERENT CONTRASTS WITH SPIN ECHO IMAGING
+Contrast is deﬁned as the difference of signal intensities for different tissues. The SE sequence can produce ‘‘all three basic contrasts’’ that are based on the fundamental tissue properties, T1 and T2 relaxation times and proton density PD. It is also compatible with virtually all methods for magnetization preparation, whereof inversion recovery (IR) preparation is the most important with respect to clinical applications.
+The Fundamental Contrasts PD, T1, and T2
+As was already noted above, TE depicts the time of echo generation and, thus, also describes and controls the degree of T2 weighting in the measured signal and, therefore, in the reconstructed image. Similarly, the repetition time TR depicts the time between excitations and, thus, how strong T1 recovery of different tissues inﬂuences image contrast in the form of T1 weighting. Hence, both TE and TR are important parameters for inﬂuencing contrast in SE imaging.
+For an improved understanding, Figure 4 demonstrates the behavior of longitudinal magnetization Mz after applying a 90 excitation pulse for two different types of tissue—one with a shorter T1 relaxation time (red) and one with a longer T1 relaxation time (green). Both proton densities PD and, therefore, M0 are presumed equal. Due to the different T1 relaxation times,
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Spin Echo MRI
+
+809
+
+Figure 3. The spin echo sequence with all RF-pulses and magnetic ﬁeld gradients for the spatial encoding. The sequence has to be repeated according to the matrix size Np in the phase-encoding direction.
+
+different Mz values for both tissues are present after a given time (Fig. 4a, left graph). If the next 90 pulse is
+applied at that point in time, different Mxy components are generated and, therefore, different signal
+intensities are measured for both tissues due the dif-
+ferent T1 relaxation times. Minimizing the echo time TE of the following spin echo ensures that T2 weighting effects are small (see Fig. 4a, right graph)—a T1 weighted image is, therefore, obtained.
+If the time TR between two successive excitation
+pulses is long enough, so that the longitudinal mag-
+netization Mz values from different tissues are close to their equilibrium states M0 at the time the 90 excitation pulse is applied, a negligible effect due to differ-
+ent T1 relaxation times is present in the spin echo signals from the two tissues (see Fig. 4b, left graph). If a
+long TE is chosen, then the amplitude of the spin
+
+echo signals from the different tissues is affected by the T2 relaxation times of the different tissues, and this is manifested as signal differences of the different tissues (see Fig. 4b, right graph)—a T2 weighted image is, therefore, obtained.
+For typical T2-weighted imaging, a TE in the range of the T2 relaxation times of the tissues is chosen, which maximizes the contrast between these given tissues. Another common method is to use an even stronger T2 contrast to highlight liquids with their considerably longer T2 compared with soft tissues. Applications range from the highlighting of the CSF sheath against the optic nerve and surrounding soft tissues (14) by means of MR-myelography and MRurography (15,16) to MR-cholangio-pancreaticography (MRCP) (17). For such concepts, TE can be as high as approximately 1500 ms.
+
+Figure 4. The longitudinal magnetization Mz after a 90 pulse: with a short TR and a short TE a T1-weighted image is generated with a spin echo sequence (a); with a long TR and a long TE a T2-weighted image is obtained with a spin echo sequence (b). DS denotes the signal difference based on T1-differences due to different relaxation rates. The behavior of the transverse magnetization Mxy after another 90 pulse (after TR) is shown in the smaller graphs on the right. Keeping TE short while using a long TR (not shown here), the image contrast is only determined by the proton density.
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+810
+
+Jung and Weigel
+
+Figure 5. Different contrasts of a spin echo sequence according to TE and TR (values for 1.5T).
+Both weightings T1 and T2 are dominant over the different signal intensities (contrast) resulting from different proton densities (M0) from different tissues. A long TR and a short TE minimizes the inﬂuence from both relaxation times and an image with PD weighting results.
+Conventional spin echo images acquired at 1.5 Tesla (T) with typical TR and TE values for T1-, T2-, and PD-weighted images are summarized in Figure 5. It should be noted that the combination of a short TR and a long TE would lead to a mixture T1 and T2 weighting. This combination yields signals of uncertain origin, and so it is not used clinically. However, because the T1 relaxation times increase with higher magnetic ﬁeld strength, TR has to be adapted according to the ﬁeld strength. Table 1 summarizes TR and TE values for the most common ﬁeld strengths of 1.5T and 3T used on clinical MR scanners.
+Inversion Recovery Preparation
+An additional 180 pulse applied as a magnetization preparation at the beginning of every TR before the actual spin echo sequence further manipulates the contrast in SE imaging. This additional inversion pulse can be used to enhance the T1 contrast and/or to suppress the signal from a certain tissue type with a speciﬁc T1 relaxation time (18–23). As can be seen in Figure 6, the inversion pulse turns the longitudinal equilibrium magnetization M0 into ÀM0 from where the T1 relaxation for two different exemplary tissues (fat in red, cerebrospinal ﬂuid CSF in green) is shown. If the time between the inversion pulse and the 90 excitation pulse of the following spin echo sequence, which is called the inversion time TI, is chosen such
+
+that the longitudinal magnetization Mz of a tissue crosses zero, no signal is provided by this tissue in the following spin echo. This effect is frequently exploited to suppress the signal of a tissue with a given T1.
+The most common types of IR-prepared SE sequences are STIR (short tau inversion recovery) and FLAIR (ﬂuid attenuated inversion recovery, see Fig. 6). In STIR, the signal of the fast T1 relaxing fat tissue is suppressed by using a short TI ($160 ms @ 1.5T); in FLAIR the signal of the slow T1 relaxing liquor is suppressed by using a long TI ($2500 ms @ 1.5T). The TR and TI times for the most common types of IR-prepared SE sequences, STIR and FLAIR, are given for ﬁeld strengths of 1.5T and 3T in Table 1 (18–23).
+There are three technical or physical issues that should be noted if using an IR-prepared SE sequence for nulling tissue signal in spin echo imaging:
+(i). Because the nulling or suppression of tissue signal by means of a chosen TI is T1 speciﬁc rather than tissue speciﬁc, all TI values have to be adapted to the ﬁeld strength, because T1 relaxation times change with ﬁeld strength. This is also considered in Table 1.
+(ii). The necessary TI value for signal suppression of a given tissue also depends on the chosen TR value relative to the T1 relaxation time of the tissue, because an incomplete recovery of magnetization leads to an earlier zero crossing of the longitudinal magnetization. Thus, the TI values have to be reduced for small TR values, i.e., small compared with the corresponding T1 relaxation time. Generally, the magnetization of a given tissue with relaxation time T1 becomes nulled, when (13,24):
+
+Table 1 Typical Values for Repetition Time (TR), Echo Time (TE), and Inversion Time (TI) for T1-Weighted, T2-Weighted, PD-Weighted, STIR (Short Tau Inversion Recovery), and FLAIR (Fluid Attenuated Inversion Recovery) Sequences for the Field Strengths of 1.5T and 3T
+
+Field strength
+
+1.5T
+
+3T
+
+TR / ms TE / ms
+TR / ms TE / ms
+TR / ms TE / ms
+TR / ms TE /ms TI / ms
+TR / ms TE / ms TI / ms
+
+T1-weighting
+
+$500
+
+$600
+
+$15
+
+$15
+
+T2-weighting
+
+>2500
+
+>3000
+
+80-120
+
+80-100
+
+PD-weighting
+
+>2500
+
+>3000
+
+$15
+
+$15
+
+STIR
+
+>2500
+
+>3000
+
+20-80
+
+20-80
+
+140-170
+
+170-200
+
+FLAIR
+
+>6000
+
+>8000
+
+80-120
+
+80-100
+
+2200-2500
+
+2500-2800
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Spin Echo MRI
+
+811
+
+Interleaved Acquisition Schemes for Multi-slice Imaging
+
+Figure 6. Inversion recovery spin echo sequence—if the time of inversion (TI) is chosen such that the longitudinal magnetization Mz of fat is zero during its T1 relaxation, the fat signal in the subsequent SE-sequence is suppressed— this is referred to as a STIR (short tau inversion recovery) sequence. With a longer TI the signal of the cerebrospinal ﬂuid (CSF) can be suppressed—this is referred to as a FLAIR (ﬂuid attenuated inversion recovery) sequence.
+
+(
+
+TInull ¼
+
+T1
+
+Á
+
+Â ln
+
+2
+
+T1 Á ln À lnð1
+
+2 þ
+
+e
+
+ÀTR=T
+
+Ã 1Þ
+
+TR ! 1 ;
+for SE
+
+½4
+
+where the natural logarithm of 2 is approximately 0.69. The SE term in the lower row of Eq. [4] considers the incomplete T1 recovery and tends to the term in the upper row for TR>5*T1. If a TSE readout is used instead (see below), TR in Eq. [4] has to be replaced with the approximation TR-ETD (13,23) with ETD being the echo train duration. This correction is necessary to account for the multiple refocusing pulses that avoid undisturbed T1 recovery. (iii). STIR-prepared sequences should never be used after contrast agent (CA) administration. Because the CA signiﬁcantly reduces the T1 of tissues, particularly pathologies that result in high accumulation of CA may acquire T1 relaxation times as low as fat and, thus, their signal will be also suppressed and they will disappear from the image: Once again, the nulling or suppression of tissue signal is T1 speciﬁc rather than tissue speciﬁc in an IR preparation. STIR just exploits the fact that the T1 of fat is considerably different from the T1 values of other tissues in the body.
+
+PROPERTIES OF SPIN ECHO IMAGING
+Some important and sometimes advantageous properties of the SE sequence such as an intrinsic insensitivity to signal loss caused by ﬁeld inhomogeneities and susceptibility effects or a ﬂexible and speciﬁc (i.e., T1-, T2-, PD-weighted) contrast behavior have already been mentioned. A disadvantage of SE sequences lies in the very unfavorable ratio of data acquisition time to repetition time, which is approximately TE/TR $ 2% regardless of T1- or T2-weighting (see also Table 1). This deﬁcient economy is caused by the long ‘‘dead time’’ during each TR interval, i.e., the waiting time for T1 relaxation.
+
+Particularly in routine clinical MRI, the acquisition of several slices is usually needed to cover a certain volume of interest. By acquiring more than one slice per TR—which is typically referred to as an interleaved acquisition scheme or a multi-slice multi-acquisition (MSMA) mode—the waiting time for T1 relaxation in one slice can be used for the excitation and acquisition of data from other slices (Fig. 7) (25). This procedure dramatically increases the efﬁciency of SE sequences, because it shortens the effective measurement time per slice: A greater number of slices can be acquired in the same time as one slice. The maximal number of slices in such an interleaved acquisition scheme is set by TE and TR. Assuming a typical TR of 500 ms and a TE of approximately 15 ms for T1weighted SE imaging, a line of data for approximately 33 slices (500/15) can be acquired during one TR interval. If more slices need to be required, another pass or acquisition needs to be performed, which doubles the scan time. For T2-weighted scans, where TR is longer compared with T1-weighted scans, more slices ﬁt into the TR interval. However, if more slices are desired, TR can be increased for T2-weighted scans, whereas TR determines the T1-weighting in T1weighted scans thus preventing an arbitrary increase of TR to acquire more slices—an increase in TR leads to a decrease in T1-weighting. The opposite of the ‘‘interleaved acquisition scheme’’ is the ‘‘sequential acquisition scheme’’ (one line of data for one slice is acquired per TR).
+Crosstalk and Magnetization Transfer Effects During Multi-Slice Imaging
+Ideally, excitation and refocusing pulses generate a rectangular slice proﬁle, i.e., the slices have a deﬁned starting and ending point in space in a lateral view (see Fig. 8a, depicted in slice E). In practice, all slices ‘‘fade out’’—the shape deviates from the ideal rectangle and gets broadened as is sketched in Figure 8a (depicted in slice C). Small slice distances (i.e., small gaps), therefore, can lead to crosstalk or bleed over effects: Applied RF pulses also partially excite adjacent slices ‘‘at the wrong time’’, resulting in diminished signal and altered contrast that can ﬂuctuate between different slices (26). To reduce these effects, the sequential relationship between the data acquisition order and the slice number as shown in Figure 7 is changed to an interleaved slice order as shown in Figure 8b. Here, the slices with odd numbers are acquired ﬁrst followed by the slices with even numbers. When this is done, the T1 relaxation process (during the time between the acquisition of lines of data from adjacent slices) following the excitation induced in the adjacent slices strongly reduces any crosstalk effects that might occur. Crosstalk can also be reduced by inserting a gap between adjacent slices—approximately 10% of the slice thickness results in images demonstrating little or no crosstalk effects. However, on modern MRI scanners, slice proﬁles are
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+812
+
+Jung and Weigel
+
+Figure 7. Multi-slice or interleaved acquisition scheme that allows the acquisition of one line of phase-encoded data from several slices within one TR interval.
+
+nearly rectangular, and contiguous slice acquisition (i.e., zero gap) is usually not a problem.
+Another effect that occurs during an interleaved multi-slice acquisition scheme is magnetization transfer (MT) (12,27–29). This phenomenon is tissue-speciﬁc and affects all neighboring slices (not just the adjacent ones). Tissues with high macromolecular content experience the RF pulses intended for all neighboring slices as pre-excitation pulses and, thus, demonstrate diminished signal (30–33). The resulting contrast changes are complex, because they depend on the MT sensitivity of the tissues, the native sequence weighting, the number of acquired slices, and the magnetic ﬁeld strength B0 (30–33). As a rule of thumb, cerebral white matter, cartilage, muscle (including myocardium), and liver display notable MT sensitivity (12,13). Particularly in the brain, considerable MT effects can be observed that increase the apparent T2 contrast but decrease the apparent T1 contrast between white matter (WM) and gray matter (GM).
+
+based sequence, demonstrating multiple vessels without signal. Figure 9d shows a cutout of Figure 9c for comparison with a (T1-weighted) gradient echo acquisition in Figure 9e. The signal enhancement of the vessels in the gradient echo image is clearly visible where signal voids in the spin echo image are observed.
+Comparison of SE-Based and GE-Based Imaging
+A further signiﬁcant difference with respect to the properties of spin echo and gradient echo sequences is based on the different relaxation times describing the signal decay of the transverse magnetization Mxy. As shown above, the signal dephasing caused by
+
+Flow Effects
+
+A sequence-speciﬁc property characterizing a SE sequence is its outﬂow effect (34). It is responsible for the fact that vessels typically provide almost no signal and are, therefore, black in spin-echo-based images. Figure 9a illustrates the physical mechanism: During the time between the 90 and the 180 RF pulses, the blood ﬂows partially or completely (depending on the blood ﬂow velocity) out of the imaging slice and, therefore, the spins do not experience the 180 refocusing pulse. The outﬂow effect is less pronounced for slowly ﬂowing blood, i.e., excited spins (blood) stay within the slice to experience the 180 refocusing pulse and and generate some signal. The same effect can be observed if the vessel is located within the imaging slice for a certain distance. Further, a fresh thrombus also leads to a bright signal within the vessel.
+In contrast, gradient echo (GE) sequences with TR values typically in the order of several milliseconds demonstrate an enhanced signal for inﬂowing blood, the so-called inﬂow effect (35). Figure 9b shows a sagittal view (T2-weighted) and Figure 9c a coronal view (T1-weighted) of the head acquired with a spin-echo-
+
+Figure 8. a: Due to an imperfect slice excitation proﬁle, magnetization outside a certain slice location (here, e.g., slice C) in adjacent slices (here slices B and D) is contaminated (the magnetization is inadvertently affected in a noncontrolled manner) by the excitation pulse in 2D imaging. b: In an interleaved multi-slice acquisition scheme, the slices with odd numbers are acquired ﬁrst followed by the slices with even numbers, which allows contamination effects to be reduced by allowing magnetization to return to its equilibrium value.
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Spin Echo MRI
+
+813
+
+Figure 9. a: The outﬂow effect of a spin echo sequence causes signal voids in blood vessels. In contrast to the spin echo (here: turbo spin echo images) sequence (b–d), a gradient echo sequence (e) shows enhanced signal at the location of the vessels.
+
+static magnetic ﬁeld inhomogeneities (T20) is reversed by the 180 refocusing pulse in a SE sequence yielding an echo amplitude reduction modulated by T2. Due to the absence of this refocusing pulse in gradient echo sequences, the signal amplitude is depicted by TÃ2 decay rather than T2 decay (see above). Comparing an axial view through the brain as shown in Figure 10 acquired with a spin-echo-based and a gradient-echo-based sequence (in a region absent of any susceptibility changes) no marked differences can be observed. However, the situation clearly changes when acquiring a sagittal view. Due to susceptibility changes at tissue-air boundaries (resulting in magnetic ﬁeld inhomogeneities) signal voids in the gradient echo image can be seen in the region of the nasal and oral cavities (see arrows in Fig. 10). These artifacts are not present in the spin echo image.
+
+lower the excitation ﬂip angle of the spin echo
+sequence (36). This suggestion may sound confusing because the SE was introduced as a 90–180 pulse
+sequence. However, it is possible to lower the excitation ﬂip angle below 90, basically representing a
+‘‘partial excitation of magnetization.’’ This procedure,
+being the norm in gradient-echo-based imaging, is by
+far less frequent in SE-based imaging. The reason is that a 90 excitation pulse usually leads to both maxi-
+mal signal and maximal contrast. However, for T1weighted multi-slice SE imaging at 3T the maximal
+
+SPIN ECHO IMAGING AT 3T VERSUS 1.5T
+
+With the advent of 3T MRI systems for clinical use, a transfer of standard SE sequences commonly used at 1.5T was required, i.e., a similar contrast behavior and image appearance was required to ensure proper image interpretation. Because the relaxation times depend on the ﬁeld strength—speciﬁcally, T1 increases with B0, and T2 decreases slightly—the image contrast is different if the same parameters are used. Therefore, as shown in Table 1, to maintain similar T1 contrast the TR must be increased at the higher ﬁeld strength to compensate for the longer T1 values.
+Nevertheless, the T1-contrast of SE sequences at 3T is frequently judged as being inferior to T1 contrast at 1.5T. One major reason is that the MT-induced contrast changes (for multi-slice measurements, see above) increase with ﬁeld strength, reducing T1-contrast. A partial remedy to this effect in the brain is to
+
+Figure 10. Signal voids due to susceptibility variations are present in the gradient echo image, particularly in regions of tissue-air boundaries (arrows), which are not present in the spin echo images.
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+814
+
+Jung and Weigel
+
+Figure 11. Contrast behavior for T1-weighted spin echo images acquired at 1.5T and 3T. By observing the images it can be noted that a similar CNR for 1.5T and 3T images is achieved for a 70 excitation ﬂip angle at 3T and a 90 excitation ﬂip
+angle at 1.5T. The graph shows the contrast behavior between white (WM) and gray matter (GM) dependent from the excita-
+tion ﬂip angle for single slice and multi-slice (19 slices) measurements acquired at 3T. For the multi-slice measurement, a
+shift of the CNR maximum to lower excitation ﬂip angles can be noticed.
+
+contrast between tissues with different T1 values in the brain is shifted to excitation ﬂip angles smaller than 90 (36): The graph in Figure 11, left side,
+depicts the contrast-to-noise ratio (CNR) between WM
+and GM and between WM and CSF as a function of
+the excitation ﬂip angle. For the multi-slice measure-
+ments (19 slices), a clear shift of the CNR maximum to lower ﬂip angle values ($70) can be observed,
+whereas for a single-slice measurement the maximum CNR appears at approximately 90. On the right side
+of Figure 11, T1-weighted SE images acquired at 1.5T and 3T with both 70 and 90 excitation ﬂip angles
+are shown. It is demonstrated that the image appear-
+ance can be very similar for 1.5T and 3T when the excitation ﬂip angle is decreased from 90 at 1.5T to 70
+at 3T.
+
+mately 21 min. Because for most diagnostic questions, images with more than one contrast are necessary, a faster data acquisition is mandatory while maintaining the desired image contrast. For the spin echo sequence, this is realized by acquiring more than one echo per excitation pulse, whereat each echo is sampled with a different phase encoding value. This method is called the rapid acquisition with relaxation enhancement (RARE), turbo spin echo (TSE), or fast spin echo (FSE) sequence (37). The number of acquired echoes after one excitation is called the echo train length (ETL) or turbo-factor. Thus, the acquisition time of a conventional SE sequence (Eq. [3]) is shortened by a factor of ETL:
+
+TATSE
+
+¼
+
+TR Á NP ETL
+
+:
+
+½5
+
+TURBO SPIN ECHO IMAGING
+The spin echo sequence is one of the most fundamental sequences in MRI on which many sequences in routine clinical use are based. However, the major drawback of the pure spin echo sequence (i.e., the generation of a single echo with one excitation pulse, as introduced in this article) is the long scan time due to the need to wait before the next spin echo sampling can be performed (TR), i.e. the time necessary for the longitudinal magnetization Mz to regrow due to the T1 relaxation process before it can be excited with a 90 pulse again (see Fig. 2).
+Taking an exemplary matrix size of 512 in the phase-encoding direction, the acquisition time of a single (or a set of multiple slices that ﬁt into the TR interval as described above) T1-weighted spin echo image (with a TR of 500 ms) is approximately 4 min (see Eq. [3]). For a T2-weighted spin echo image (with a TR of 2500 ms) the scan time increases to approxi-
+
+Due to the relatively long TR required for T2weighted imaging, T2-weighted images are always acquired using the TSE sequence. Because the generation of a T1-weighted image requires a much shorter TR compared with a T2-weighted image, a conventional spin echo sequence with multi-slice acquisition can be used for acquiring T1-weighted spin echo images in a time-efﬁcient way.
+Frequently, a TSE sequence is also used for acquiring T1-weighted images, e.g., if the number of slices is small and, thus, a net decrease of acquisition time can be achieved. However, MT-induced contrast changes due to multi-slice acquisition tend to be stronger for TSE than for SE sequences which may spoil T1-contrast (see above). Additionally, ETL should be kept small (approximately 3 to 5), because larger ETL mean the generation of heavily T2 weighted echoes in the echo train that introduce additional T2-weighting in the desired T1-weighted image.
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Spin Echo MRI
+
+815
+
+Figure 12. Clinical examples for SE-based acquisitions. a: Patient with a meningeoma imaged with a T1-weighted SE sequence before (left) and after (right) the application of a Gadolinium-based contrast agent. It demonstrates one of the most important applications of T1-weighted SE sequences, a signal enhancement in the area of the lesion due to an uptake of contrast agent. b: Patient with a bone contusion in the lateral condyle of the femur acquired with a T1-weighted SE sequence (left) and a STIR prepared sequence (right) revealing a decrease of the signal intensity in the T1-weighted image due to the bone marrow edema, which causes a relative increased signal intensity in the fat-saturated STIR image. c: Patient with cranial vessel wall inﬂammations acquired with a high spatial resolution (195mm Â 260mm) T1-weighted SE sequence revealing circumferential inﬂammatory signal enhancement and wall thickening after the application of a Gadolinium-based contrast agent (see zoomed image cut). d: Patient with a circular edema in the brain stem acquired with a T2-weighted TSE sequence demonstrating bright signal intensity caused by the ﬂuid retention of the edema. The images A, B, and D were acquired at 1.5T, the image C was acquired at 3T with the following imaging parameters: A, TE ¼ 13 ms, TR ¼ 740 ms (left); TE ¼ 17 ms, TR ¼ 420 ms (right); B, TE ¼ 15 ms, TR ¼ 560 ms (left); TE ¼ 20 ms, TR ¼ 4460 ms, TI ¼ 140 ms (right); C, TE ¼ 16 ms, TR ¼ 580 ms; D, TE ¼ 90 ms, TR ¼ 2800 ms.
+
+CLINICAL APPLICATIONS
+Figure 12 shows some clinical examples for pathologies imaged with a SE or SE-based sequence. One important application of a T1-weighted SE sequence is the use after the administration of a Gadoliniumbased contrast agent leading to a shortening of tissues’ T1 relaxation times where the contrast agent accumulates. This induces higher signal intensity in the T1-weighted image as demonstrated in Figure 12a. In the case of edema—characterized by ﬂuid retention and, therefore, a longer T1 relaxation time—decreased signal intensity can be observed as shown in the left image of Figure 12b. In contrast, an increased signal intensity of edema is clearly visible using a STIR based sequence as shown in the right image of Figure 12b.
+The high resolution image in Figure 12c (195 mm Â 260 mm) shows an inﬂammation of cranial vessel walls after the administration of a Gadolinium-based contrast agent resulting in a signal enhancement of the inﬂammatory tissue. Due to the high spatial resolution the image appears somewhat ‘‘noisy’’; however,
+
+the SE sequence provides a sufﬁcient signal-to-noise ratio in exchange for the spatial resolution that was indispensable for the clinical diagnosis.
+Figure 12d presents a typical clinical example for a T2-weighted TSE image displaying edema in the brain stem with a bright signal intensity caused by the ﬂuid retention.
+IMPORTANT SPIN ECHO VARIANTS AND SPIN ECHO BASED PREPARATIONS
+Longer echo trains speed up the acquisition time of TSE sequences (Eq. [5]). In the extreme, the ETL may be equal to the number of phase encoding steps that have to be measured, which corresponds to a singleshot TSE. Besides acquiring images within typically 0.5 s to 2 s per slice, the main advantage of the single-shot TSE sequence is the single excitation pulse that leads to less motion sensitivity and a vanishing T1 weighting (if there is not a multiple acquisition mode such as time-resolved MRI, for instance). However, single-shot TSE tends to produce heavy blurring
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+816
+
+Jung and Weigel
+
+in the image, because the echo train duration is usually much longer than the T2 relaxation time of a soft tissue, the strong decay of echo intensity introduced along the long echo train causes image blurring. For this reason, single-shot TSE sequences are often combined with a half-Fourier-acquisition scheme (38) to approximately cut the ETL by a factor of 2. This halfFourier-acquisition single-shot turbo spin echo (HASTE) sequence (39,40) allows for rapid SE imaging with acceptable T2 blurring.
+Spin echo preparation schemes are used to introduce T2-weighting or T2 contrast in MRI sequences with low or different contrasts. A common example is the spin echo-echo planar imaging (SE-EPI) sequence that introduces a ‘‘pure’’ T2 weighting into the ultrafast EPI sequence. To achieve this, one refocusing pulse is used to generate a spin echo at the time when the k-space center of the EPI sequence is acquired.
+Spin echoes are by nature a major basis for T2 relaxometry/T2 mapping. Conventional SE imaging is still the most accurate basis to measure the ‘‘real’’ T2, however, as already said for imaging, it is very slow in acquisition. TSE based multi spin echo acquisitions or even more complex schemes such as DESPOT2 are faster for T2 mapping, yet, may be less accurate or even rely on an initial T1 mapping (41–45).
+The addition of a unipolar pair of gradients straddled around the refocusing pulse in a spin echo experiment introduces motion-sensitivity, particularly a diffusion dependent signal damping if the gradients are strong and long enough. This basic preparation scheme is well known as the pulsed gradient spin echo (PGSE) or the Stejskal-Tanner sequence (46). In this form or the slightly altered form using a twicerefocused (double spin echo) scheme with lower eddy current sensitivity, it is the most common basis to provide diffusion weighted imaging (DWI) (46–48) and diffusion tensor imaging (DTI) (49,50).
+At last, to underline the high importance of (understanding) spin echo generation, it should be noted that some of the observed effects in steady state imaging such as balanced SSFP are actually linked to spin echo generation and not to gradient echo generation as one may presume from their classiﬁcation as so called ‘‘gradient echo sequences’’ (51–53).
+To conclude, the generation of spin echoes represents a fundamental capability in MR imaging. In addition to the acquisition of images with low sensitivity to susceptibility and inhomogeneity effects, spin echo imaging facilitates the fundamental contrasts T1, T2, and PD. Conventional spin echo sequences together with faster variants of multiple spin echoes are applied to imaging of virtually every region of the body, including the brain, heart, liver and musculoskeletal tissues. In the form of preparations, spin echoes are also used to produce images with diffusion weighting, for instance.
+ACKNOWLEDGMENTS
+We thank Julia Geiger for providing the images in Figure 12 and Oliver Speck for providing Figure 11.
+
+REFERENCES
+1. Hahn EL. Spin echoes. Phys Rev 1950;80:580–594. 2. Haacke EM,Brown RW,Thompson MR,Venkatesan R. Magnetic
+resonance imaging: physical principles and sequence design. New York: John Wiley and Sons; 1999. 3. Michaeli S,Garwood M,Zhu XH, et al. Proton T2 relaxation study of water, N-acetylaspartate, and creatine in human brain using Hahn and Carr-Purcell spin echoes at 4T and 7T. Magn Reson Med 2002;47:629–633. 4. Yablonskiy DA. Quantitation of intrinsic magnetic susceptibilityrelated effects in a tissue matrix. Phantom study. Magn Reson Med 1998;39:417–428. 5. Weigel M,Hennig J. Contrast behavior and relaxation effects of conventional and hyperecho-turbo spin echo sequences at 1.5 and 3 T. Magn Reson Med 2006;55:826–835. 6. Breger RK,Rimm AA,Fischer ME,Papke RA,Haughton VM. T1 and T2 measurements on a 1.5-T commercial MR imager. Radiology 1989;171:273–276. 7. Vymazal J,Righini A,Brooks RA, et al. T1 and T2 in the brain of healthy subjects, patients with Parkinson disease, and patients with multiple system atrophy: relation to iron content. Radiology 1999;211:489–495. 8. Ethofer T,Mader I,Seeger U, et al. Comparison of longitudinal metabolite relaxation times in different regions of the human brain at 1.5 and 3 Tesla. Magn Reson Med 2003;50:1296–1301. 9. Jezzard P,Duewell S,Balaban RS. MR relaxation times in human brain: measurement at 4 T. Radiology 1996;199:773–779. 10. Wansapura JP,Holland SK,Dunn RS,Ball WSJr. NMR relaxation times in the human brain at 3.0 tesla. J Magn Reson Imaging 1999;9:531–538. 11. Whittall KP,MacKay AL,Graeb DA,Nugent RA,Li DK,Paty DW. In vivo measurement of T2 distributions and water contents in normal human brain. Magn Reson Med 1997;37:34–43. 12. Stanisz GJ,Odrobina EE,Pun J, et al. T1, T2 relaxation and magnetization transfer in tissue at 3T. Magn Reson Med 2005;54: 507–512. 13. Bernstein MA,King KF,Zhou XJ. Handbook of MRI pulse sequences. New York: Elsevier Academic Press; 2004. 14. Weigel M,Lagreze WA,Lazzaro A,Hennig J,Bley TA. Fast and quantitative high-resolution magnetic resonance imaging of the optic nerve at 3.0 tesla. Invest Radiol 2006;41:83–86. 15. Hennig J,Friedburg H,Strobel B. Rapid nontomographic approach to MR myelography without contrast agents. J Comput Assist Tomogr 1986;10:375–378. 16. Sigmund G,Stoever B,Zimmerhackl LB, et al. RARE-MR-urography in the diagnosis of upper urinary tract abnormalities in children. Pediatr Radiol 1991;21:416–420. 17. Laubenberger J,Buchert M,Schneider B,Blum U,Hennig J,Langer M. Breath-hold projection magnetic resonance-cholangio-pancreaticography (MRCP): a new method for the examination of the bile and pancreatic ducts. Magn Reson Med 1995;33:18–23. 18. Bydder GM,Pennock JM,Steiner RE,Khenia S,Payne JA,Young IR. The short TI inversion recovery sequence–an approach to MR imaging of the abdomen. Magn Reson Imaging 1985;3:251–254. 19. De Coene B,Hajnal JV,Gatehouse P, et al. MR of the brain using ﬂuid-attenuated inversion recovery (FLAIR) pulse sequences. AJNR Am J Neuroradiol 1992;13:1555–1564. 20. Weigel M,Zaitsev M,Hennig J. Inversion recovery prepared turbo spin echo sequences with reduced SAR using smooth transitions between pseudo steady states. Magn Reson Med 2007;57: 631–637. 21. Panush D,Fulbright R,Sze G,Smith RC,Constable RT. Inversionrecovery fast spin-echo MR imaging: efﬁcacy in the evaluation of head and neck lesions. Radiology 1993;187:421–426. 22. Eustace S,Tello R,DeCarvalho V,Carey J,Melhem E,Yucel EK. Whole body turbo STIR MRI in unknown primary tumor detection. J Magn Reson Imaging 1998;8:751–753. 23. Rydberg JN,Riederer SJ,Rydberg CH,Jack CR. Contrast optimization of ﬂuid-attenuated inversion recovery (FLAIR) imaging. Magn Reson Med 1995;34:868–877. 24. Dixon RL,Ekstrand KE. The physics of proton NMR. Med Phys 1982;9:807–818. 25. Haacke EM,Brown RW,Thompson MR,Venkatesan R. Magnetic resonance imaging: physical principles and sequence design, Chap. 10. New York: John Wiley and Sons; 1999. p165–206.
+
+15222586, 2013, 4, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/jmri.24068, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Spin Echo MRI
+
+817
+
+26. Kucharczyk W,Crawley AP,Kelly WM,Henkelman RM. Effect of multislice interference on image contrast in T2- and T1-weighted MR images. AJNR Am J Neuroradiol 1988;9:443–451.
+27. McConnell HM. Reaction rates by nuclear magnetic resonance. J Chem Phys 1958;28:430–431.
+28. Wolff SD,Balaban RS. Magnetization transfer contrast (MTC) and tissue water proton relaxation in vivo. Magn Reson Med 1989;10: 135–144.
+29. Henkelman RM,Stanisz GJ,Graham SJ. Magnetization transfer in MRI: a review. NMR Biomed 2001;14:57–64.
+30. Dixon WT,Engels H,Castillo M,Sardashti M. Incidental magnetization transfer contrast in standard multislice imaging. Magn Reson Imaging 1990;8:417–422.
+31. Melki PS,Mulkern RV. Magnetization transfer effects in multislice RARE sequences. Magn Reson Med 1992;24:189–195.
+32. Santyr GE. Magnetization transfer effects in multislice MR imaging. Magn Reson Imaging 1993;11:521–532.
+33. Weigel M,Helms G,Hennig J. Investigation and modeling of magnetization transfer effects in two-dimensional multislice turbo spin echo sequences with low constant or variable ﬂip angles at 3 T. Magn Reson Med 2010;63:230–234.
+34. Edelman RR,Mattle HP,Wallner B, et al. Extracranial carotid arteries: evaluation with ‘‘black blood’’ MR angiography. Radiology 1990;177:45–50.
+35. Potchen EJ,Haacke EM,Siebert JE,Gottschalk A. Magnetic resonance angiography: concepts and applications. St.Louis: MosbyYear Book; 1993.
+36. Speck O. Chapter 6. In: Hennig J,Speck O,editors. High-ﬁeld MR imaging. Berlin. Springer: Springer; 2011.
+37. Hennig J,Nauerth A,Friedburg H. RARE imaging: a fast imaging method for clinical MR. Magn Reson Med 1986;3:823–833.
+38. Feinberg DA,Hale JD,Watts JC,Kaufman L,Mark A. Halving MR imaging time by conjugation: demonstration at 3.5 kG. Radiology 1986;161:527–531.
+39. Kiefer B,Grassner J,Hausmann R. Image acquisition in a second with half-Fourier-acquisition single-shot turbo spin echo. J Magn Reson Imaging 1994;4:86.
+40. Patel MR,Klufas RA,Alberico RA,Edelman RR. Half-fourier acquisition single-shot turbo spin-echo (HASTE) MR: comparison with
+
+fast spin-echo MR in diseases of the brain. AJNR Am J Neuroradiol 1997;18:1635–1640. 41. Crawley AP,Henkelman RM. Errors in T2 estimation using multislice multiple-echo imaging. Magn Reson Med 1987;4:34–47. 42. Poon CS,Henkelman RM. Practical T2 quantitation for clinical applications. J Magn Reson Imaging 1992;2:541–553. 43. Majumdar S,Orphanoudakis SC,Gmitro A,O’Donnell M,Gore JC. Errors in the measurements of T2 using multiple-echo MRI techniques. I. Effects of radiofrequency pulse imperfections. Magn Reson Med 1986;3:397–417. 44. Sled JG,Pike GB. Correction for B(1) and B(0) variations in quantitative T(2) measurements using MRI. Magn Reson Med 2000;43: 589–593. 45. Deoni SC,Peters TM,Rutt BK. High-resolution T1 and T2 mapping of the brain in a clinically acceptable time with DESPOT1 and DESPOT2. Magn Reson Med 2005;53:237–241. 46. Stejskal EO,Tanner JE. Spin diffusion measurements - spin echoes in presence of a time-dependent ﬁeld gradient. J Chem Phys 1965;42:288–292. 47. Le Bihan D. Molecular diffusion nuclear magnetic resonance imaging. Magn Reson Q 1991;7:1–30. 48. Le Bihan D,Breton E,Lallemand D,Grenier P,Cabanis E,LavalJeantet M. MR imaging of intravoxel incoherent motions: application to diffusion and perfusion in neurologic disorders. Radiology 1986;161:401–407. 49. Basser PJ,Mattiello J,LeBihan D. Estimation of the effective selfdiffusion tensor from the NMR spin echo. J Magn Reson B 1994; 103:247–254. 50. Mattiello J,Basser PJ,Le Bihan D. Analytical expressions for the b matrix in NMR diffusion imaging and spectroscopy. J Magn Reson A 1994;108:131–141. 51. Carr HY. Steady-state free precession in nuclear magnetic resonance. Phys Rev 1958;112:1693. 52. Oppelt A,Graumann R,Barfuss H,Fischer H,Hartl W,Schajor W. FISP: Eine neue schnelle Pulssequenz fuer die Kernspintomographie. Electromedica 1986;54:15–18. 53. Schefﬂer K,Hennig J. Is TrueFISP a gradient-echo or a spin-echo sequence? Magn Reson Med 2003;49:395–397.
+

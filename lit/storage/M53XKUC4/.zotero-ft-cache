@@ -1,0 +1,462 @@
+BULLETIN OF MATHEMATICAL BIOPHYSICS
+VOLUME5, 1943
+A LOGICAL CALCULUS OF THE IDEAS IMMANENT IN NERVOUS ACTIVITY
+WARREN S. MCCULLOCH AND WALTER PITTS
+FROM THE UNIVERSITY OF ILLINOIS, COLLEGEOF MEDICINI~, DEPARTMENT OF PSYCHIATRY AT THE ILLINOIS NEUROPSYCHIATRICINSTITUTE,
+AND THE UNIVERSITY OF CHICAGO
+Because of the "all-or-none" character of nervous activity, neural events and the relations among them can be treated by means of propositional logic. It is found that the behavior of every net can be described in these terms, with the addition of more complicated logical means for nets containing circles; and that for any logical expression satisfying certain conditions, one can find a net behaving in the fashion it describes. It is shown that many particular choices among possible neurophysiological assumptions are equivalent, in the sense that for every net behaving under one assumption, there exists another net which behaves under the other and gives the same results, although perhaps not in the same time. Various applications of the calculus are discussed.
+I. Introduction
+Theoretical neurophysiology rests on certain cardinal assumptions. The nervous system is a net of neurons, each having a soma and an axon. Their adjunctions, or synapses, are always between the axon of one neuron and the soma of another. At any instant a neuron has some threshold, which excitation must exceed to initiate an impulse. This, except for the fact and the time of its occurrence, is determined by the neuron, not by the excitation. From the point of excitation the impulse is propagated to all parts of the neuron. The velocity along the axon varies directly with its diameter, from less than one meter per second in thin axons, which are usually short, to more than 150 meters per second in thick axons, which are usually long. The time for axonal conduction is consequently of little importance in determining the time of arrival of impulses at points unequally remote from the same source. Excitation across synapses occurs predominantly from axonal terminations to somata. It is still a moot point whether this depends upon irreciprocity of individual synapses or merely upon prevalent anatomical configurations. To suppose the latter requires no hypothesis ad hoc and explains known exceptions, but any assumption as to cause is compatible with the calculus to come. No case is known in which excitation through a single synapse has elicited a nervous impulse in any neuron, whereas any
+115
+
+116
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+neuron may be excited by impulses arriving at a sufficient number of neighboring synapses within the period of latent addition, which lasts less than one quarter of a millisecond. Observed temporal summation of impulses at greater intervals is impossible for single neurons and empirically depends upon structural properties of the net. Between the arrival of impulses upon a neuron and its own propagated impulse there is a synaptic delay of more than half a millisecond. During the first part of the nervous impulse the neuron is absolutely refractory to any stimulation. Thereafter its excitability returns rapidly, in some cases reaching a value above normal from which it sinks again to a subnormal value, whence it returns slowly to normal. Frequent activity augments this subnormality. Such specificity as is possessed by nervous impulses depends solely upon their time and place and not on any other specificity of nervous energies. Of late only inhibition has been seriously adduced to contravene this thesis. Inhibition is the termination or prevention of the activity of one group of neurons by concurrent or antecedent activity of a second group. Until recently this could be explained on the supposition that previous activity of neurons of the second group might so raise the thresholds of internuncial neurons that they could no longer be excited by neurons of the first group, whereas the impulses of the first group must sum with the impulses of these internuncials to excite the now inhibited neurons. Today, some inhibitions have been shown to consume less than one millisecond. This excludes internuncials and requires synapses through which impulses inhibit that neuron which is being stimulated by impulses through other synapses. As yet experiment has not shown whether the refractoriness is relative or absolute. We will assume the latter and demonstrate that the difference is immaterial to our argument. Either variety of refractoriness can be accounted for in either of two ways. The "inhibitory synapse" may be of such a kind as to produce a substance which raSses the threshold of the neuron, or it may be so placed that the local disturbance produced by its excitation opposes the alteration induced by the otherwise excitatory synapses. Inasmuch as position is already known to have such effects in the case of electrical stimulation, the first hypothesis ~s to be excluded unless and until it be substantiated, for t h e second involves no new hypothesis. We have, then, two explanations of inhibition based on the same general premises, differing only in the assumed nervous nets and, consequently, in the time required for inhibition. Hereafter we shall refer to such nervous nets as equivalent in the extended sense. Since we are concerned with properties of nets which are invariant under equivalence, we may make the physical assumptions which are most convenient for the calculus.
+
+WARREN S. MCCULLOCH AND WALTER PITTS
+
+117
+
+Many years ago one of us, by considerations impertinent to this argument, was led to conceive of the response of any neuron as factually equivalent to a proposition which proposed its adequate stimulus. He therefore attempted to record the behavior of complicated nets in the notation of the symbolic logic of propositions. The "allor-none" law of nervous activity is sufficient to insure that the activity of any neuron may be represented as a proposition. Physiological relations existing among nervous activities correspond, of course, to relations among the propositions; and the utility of the representation depends upon the identity of these relations with those of the logic of propositions. To each reaction of any neuron there is a corresponding assertion of a simple proposition. This, in turn, implies either some other simple proposition or the disjunction or the conjunction, with or without negation, of similar propositions, according to the configuration of the synapses upon and the threshold of the neuron in question. Two difficulties appeared. The first concerns facilitation and extinction, in which antecedent activity temporarily alters responsiveness to subsequent stimulation of one and the same part of the net. The second concerns learning, in which activities concurrent at some previous time have altered the net permanently, so that a stimulus which would previously have been inadequate is now adequate. But for nets undergoing both alterations, we can substitute equivalent fictitious nets composed of neurons whose connections and thresholds are unaltered. But one point must be made clear: neither of us conceives the formal equivalence to be a factual explanation. Per contra!--we regard facilitation and extinction as dependent upon continuous changes in threshold related to electrical and chemical variables, such as after-potentials and ionic concentrations; and learning as an enduring change which can survive sleep, anaesthesia, convlusions and coma. The importance of the formal equivalence lies in this: that the alterations actually underlying facilitation, extinction and learning ~in no way affect the conclusions which follow from the formal treatment of the activity of nervous nets, and the relations of the corresponding propositions remain those of the logic of propositions.
+The nervous system contains many circular paths, whose activity so regenerates the excitation of any participant neuron that reference to time past becomes indefinite, although it still implies that afferent activity has realized one of a certain class of configurations over time. Precise specification of these implications by means of recursive functions, and determination of those that can be embodied in the activity of nervous nets, completes the theory.
+
+118
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+H. The Theory: Nets Without Circles
+We shall make the following physical assumptions for our calculus.
+1. The activity of the neuron is an "all-or-none" process.
+2. A certain fixed number of synapses must be excited within the period of latent addition in order to excite a neuron at any time, and this number is independent of previous activity and position on the neuron.
+3. The only significant delay within the nervous system is synaptic delay.
+4. The activity o f any inhibitory synapse absolutely prevents excitation of the neuron at that time.
+5. The structure of the net does not change with time.
+To present the theory, the most appropriate symbolism is that of Language II of R. Carnap (1938), augmented with various notations drawn from B. Russell and A. N. Whitehead (1927), including the Principia conventions for dots. Typographical necessity, however, will compel us to use the upright 'E' for the existential operator instead of the inverted, and an arrow ('-~') for implication instead of the horseshoe. We shall also use the Carnap syntactical notations, but print them in boldface rather than German type; and we shall introduce a functor S, whose value for a property P is the property which holds of a number when P holds of its predecessor; it is defined by ' S ( P ) (t) .=-. P ( K x ) . t ~ x')'; the brackets around its argument will often be omitted, in which case this is understood to be the nearest predicate-expression [Pr] on the right. Moreover, we shall write S~Pr for S (S (Pr)), etc.
+The neurons of a given net ~ may be assigned designations 'c1', 'c~', . . . , 'c~'. This done, we shall denote the property of a number, that a neuron c~ fires at a time which is that number of synaptic delays from the origin of time, by 'N' with the numeral i as subscript, so that N~ (t) asserts that c~ fires at the time t. N~ is called the action of e~. We shall sometimes regard the subscripted numeral of 'N' as if it belonged to the object-language, and were in a place for a functoral argument, so that it might be replaced by a number-variable [z] and quantified; this enables us to abbreviate long but finite disjunctions and conjunctions by the use of an operator. We shall eraploy this locution quite generally for sequences of Pr; it may be secured formally by an obvious disjunctive definition. The predicates 'NI', 'N.~', . . . , comprise the syntactical class 'N'.
+
+WARREN S. MCCULLOCH AND WALTER PITTS
+
+119
+
+Let us define the peripheral afyerents of ~ as the neurons of ~( w i t h no axons s y n a p s i n g upon them. Let N1, - - . , Np denote t h e actions of such neurons and N~+I, N~+~, . . . , N~ those of the rest. Then a solution of $~ will be a class of sentences of the f o r m S~: Np+l(zl) .=. Pr~ (N1, N~, ..., Np, z~), where Pr~ contains no free variable save zl and no descriptive symbols save the N in the argument [Arg], and possibly some constant sentences [sa] ; and such t h a t each S~ is t r u e of ~ . Conversely, given a P r l ( l p ~ , lp12, . . . , ~p~p, z l , s), containing no free variable save those in its Arg, we shall say that it is realizable in the n a r r o w sense if there exists a net $~ and a series of N~ in it such t h a t Nl(z~) .----.P r I ( N ~ , N ~ , . . . , z l , sa~) is t r u e of it, where sa~ has the form N(0). We shall call it realizable in the extended sense, or simply realizable, if for some n S~(Prl) (pl, ." , pp, z~, s) is realizable in the above sense, c~ is here the realizing neuron. We shall say of two laws of nervous excitation which are such that every S which is realizable in either sense upon one supposition is also realizable, perhaps by a different net, upon the other, that they are equivalent assumptions, in that sense.
+The following theorems about realizability all refer to the extended sense. In some cases, sharper theorems about narrow re~lizability can be obtained; but in addition to greater complication in statement this were of little practical value, since our present neuroo physiological knowledge determines the law of excitation only to extended equivalence, and the more precise theorems differ according to which possible assumption we make. Our less precise theorems, however, are invariant under equivalence, and are still sufficient for all purposes in which the exact time for impulses to pass through the whole net is not crucial.
+Our central problems may now be stated exactly: first, to find an effective method of obtaining a set of computable S constituting a solution of any given net; and second, to characterize the class of realizable S in an effective fashion. Materially stated, the problems are to calculate the behavior of any net, and to find a net which will behave in a specified way, when such a net exists.
+A net will be called cyclic if it contains a circle: i.e., if there exists a chain c~, c~§ ... of neurons on it, each m e m b e r of t h e chain synapsing upon the next, with the same beginning and end. If a set of its neurons a~, c~ , . . . , cp is such t h a t its removal f r o m ~ leaves it without circles, and no smaller class of neurons has this property, the set is called a cyclic set, and its cardinality is the order of ~. In an important sense, as we shall see, the order of a net is an index of the complexity of its behavior. In particular, nets of zero order have especially simple properties; we shall discuss them first.
+
+120
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+Let us define a temporal propositional expression (a TPE), designating a temporal propositional function (TPF), by the following
+recursion:
+1. A ~p~[z~] is a TPE, where p~ is a predicate-variable. 2. If S~ and S~ are TPE containing the same free individual variable, so are SSI, S~vS~, SI.S~ and S~. ~ S ~ . 3. Nothing else is a TPE.
+
+THEOREM I.
+Every net of order 0 c~n be solved in terms of temporal propositional expressions.
+Let c~ be any neuron o f g~ with a threshold t~ > 0 , and let c~1, c ~ , ... , c~, have respectively n ~ , n~:, ... , n~p excitatory synapses upon it. Let cj~, ci:, - - . , c~q have inhibitory s y n a p s e s upon it. L e t ~ be the set of the subclasses of (n~l, n~:, .~., n~,) such that the sum of their m e m b e r s exceeds 6~. We shall then be able to write, in accordance with the assumptions mentioned above,
+
+N~(z~) . - - . S t I~,~ ~ Nj~(z~). ~,~ ~H N~ (z~)}
+
+(1)
+
+where the 'F~' and 'II' are syntactical symbols for disjunctions and
+conjunctions which are finite in each case. Since an expression of
+this f o r m can be w r i t t e n f o r each c~ which is not a peripheral affer-
+ent, we can, by substituting the corresponding expression in (1) for
+each Ns,, or N~, whose neuron is not a peripheral afferent, and re-
+peating the process on the result, ultimately come to an expression f o r N~ in terms solely of peripherally afferent N , since ~ is w i t h o u t
+circles. Moreover, this expression will be a TPE, since obviously (1)
+is; and Jt follows immediately from the definition that the result of
+substituting a TPE for a constituent p (z) in a TPE is also one.
+
+THEOREM II.
+Every TPE is realizable by a net of order zero.
+The functor S obviously commutes with disjunction, conjunction, and negation. It is obvious that the result of substituting any S~,
+realizable in the narrow sense (i.n.s.), for the p(z) in a real~izable ex-
+pression $1 is itself realizable i.n.s. ; one constructs the realizing net by replacing the peripheral afferents in the net for $1 by the realizing neu-
+rons in the nets for the S~. The one neuron net realizes pl(zl) i.n.s.,
+
+WARREN S. MCCULLOCH AND WALTER PITTS
+
+121
+
+and Figure 1-a shows a net that realizes Spl (zl) and hence SS2, i.n.s., if S: can be realized i.n.s. Now if S~ and $3 are realizable t h e n SmS~ and S~S~ are realizable i.n.s., f o r suitable m and n . Hence so are S~S~ and S~"Sa. Now the nets of Figures lb, c and d respectively realize S (p~ (zl ) v p~ (z~) ), S (p~(zD. p~ ( z~) ), and S (p~ (z~) . oo p~ (z~) ) i.n.s. Hence S ~+'+~ (S, v S~), S ~§ (81 . $2), and S~§ (S1. o~ S2) are realizable i.n.s. Therefore S, v $2 $1 . S~ S~ . oo $2 are realizable if $1 and S:~ are. By complete induction, all T P E a r e realizable. In this way all nets may be regarded as built out of the fundamental elements of Figures la, b, c, d, precisely as the temporal propositional expressions are generated out of the operations of precession, disjunction, conjunction, and conjained negation. In particular, corresponding to any description of state, or distribution of the values true and false for the actions of all the neurons of a net save that which makes them all false, a single neuron is constructible whose firing is a necessary and sufficient condition for the validity of that description. Moreover, there is always an indefinite number of topologically different nets realizing any TPE.
+
+THEOREM III.
+L e t there be given a complex sentence S~ built up in any m a n n e r out of elementary sentences of the f o r m p (z~ - zz) w h e r e zz is any numeral, by any of the propositional connections: negation, dis]unction, con]unction, implication, and equivalence. Then $1 is a T P E wad only if it is false when its constituent p (zl - zz) are all assumed false--i.e., replaced by false sentences -- or that the last line in its truth-table contains an 'F',--or there is no term in its Hilbert dis]unctive normal form composed exclnsively of negated terms.
+
+These latter three conditions are of course equivalent (Hilbert and Ackermann, 1938). We see by induction that the first of them is necessary, since p(zl - zz) becomes false when it is replaced by a false sentence, and $1 v S~, S~ . S~ and $1 . ~ $2 are all false if both their constituents are. We see that the last condition is sufficient by remarking that a disjunction is a TPE when its constituents are, and that any term
+
+81.8.~ ....
+
+S ~ . ~ S,,~+~. ~176. . . .
+
+~ 8.
+
+can be written as
+
+(8~.8.~ . . . . Sin) . ~ (S~,vS~§ . . . . v S , ) ,
+
+which is clearly a TPE.
+
+The method of the last theorems does in fact provide a very convenient and workable procedure for constructing nervous nets to or-
+
+122
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+der, for those cases where there is no reference to events indefinitely far in the past in the specification of the conditions. By way of example, we may consider the case of heat produced by a transient cooling.
+If a cold object is held to the skin for a moment and removed, a sensation of heat will be felt; if it is applied for a longer time, the sensation will be only of" cold, with no preliminary w a r m t h , h o w e v e r transient. It is known that one cutaneous receptor is affected by heat, and another b y cold. I f we let N1 and N~ be the actions of the respective receptors and N~ and N4 of neurons whose activity implies a sensation of heat and cold, our requirements may be written as
+
+N ~ ( t ) : ~- : N l ( t - 1 ) . v . N ~ ( t - 3 ) . ~ N ~ ( t - 2 ) N4(t) . =--. N ~ ( t - 2 ) . N ~ ( t - 1 )
+
+where we suppose for simplicity that the required persistence in the sensation of cold is say two syaaptic delays, compared with one for that of heat. These conditions clearly fall under Theorem III. A net may consequently be constructed to realize them, by the method of Theorem II. We begin by writing them in a fashion which exhibits them as built out of their constituents by the operations realized in Figures la, b, c, d: i.e., in the form
+
+~ ( t ) . -=. S~N1 (t) v SE (SN~ ( t ) ) . ~ N~ (t) ]}
+N4 (t) . =-. S( [SY~(t) ] . Y.~ (t) ) .
+
+First we construct a net for the function enclosed in the greatest number of brackets and proceed outward ; in this case we run a net of the f o r m shown in Figure l a from cz to some neuron ca, say, so t h a t
+
+Na (t) . ~. SN2 (t).
+
+Next introduce two nets of the forms lc and ld, both running from Ca and c:, and ending respectively at o4 and say cb. Then
+
+N4 ( t ) . ~ . S [ N ~ ( t ) . N~_( t ) ] . - ~ . S [ ( S N 2 ( t ) ) . N~ ( t ) ]. N b ( t ) . =--. S [ N r . ~ N~ (t) ] . ~ . S [ ( S ~ [ 2 ( t ) ) . oo N~(t) ].
+
+Finally, r u n a net of the form l b from Cl and cb to c8, and derive
+
+N~(t). ~-. S [ ~ ( t ) v Nb(t)]
+9~. S(N~ (t) vS[(SN:(t)].
+
+~ N~(t) ).
+
+These expressions for N~ (t) and N~ (t) are the ones desired; and the realizing net in toto is shown in Figure le.
+This illusion makes very clear the dependence of the correspondence between perception and the "external world" upon the specific structural properties of the inCervening nervous net. The same illu-
+
+WARREN S. MCCULLOCHAND WALTER PITTS
+
+123
+
+sion, of course, could also have been produced under various other assumptions about the behavior of the cutaneous receptors, with correspon4ingly different nets.
+We shall now consider some theorems of equivalence: i.e., theorems which demonstrate the essential identity, save for time, of various alternative laws of nervous excitation. Let us first discuss the case of relative inhibition. By this we mean the supposition that the firing of an inhibitory synapse does not absolutely prevent the firing of the neuron, but merely raises its threshold, so that a greater number of excitatory synapses must fire concurrently to fire it than would otherwise be needed. We may suppose, losing no generality, that the increase .in threshold is unity f o r the firing of each such synapse; we then have the theorem:
+
+THEOREM IV.
+Relative and absolute inhibition are equivalent in the extended sense.
+We may write out a law of nervous excitation after the fashion of (1), but employing the assumption of relative inhibition instead; inspection then shows that this expression is a TPE. An example of the replacement of relative inhibition by absolute is given by Figure lf. The reverse replacement is even easier; we give the inhibitory axons afferent to c~ any sufficiently large n u m b e r of inhibitory synapses apiece.
+Second, we consider the case of extinction. We may write this in the f o r m of a variation in the threshold 0~; a f t e r the neuron c~ has fired; to the nearest integer--and only to this approximation is the variation in threshold significant in natural forms of excitation--this m a y be w r i t t e n as a sequence 0~ + bj f o r ] synaptic delays a f t e r firing, w h e r e bs ---- 0 f o r ~"large enough, say ] - - M or greater. W e m a y then state
+
+THEOREM V.
+Extinction is equivalent to absolute inhibition.
+For, assuming relative inhibition to hold for the moment, we need merely run M circuits T~, T,, ... T. containing respectively 1, 2, -.., M neurons, such that the firing of each link in any is sufficient to fire the next, f r o m the neuron c~ back to it, w h e r e the end of the circuit Tj has just bj inhibitory synapses upon c,. It is evident that this will produce the desired results. The reverse substitution may be accomplished by the diagram of Figure lg. From the transitivity of
+
+124
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+replacement, we infer the theorem. To this group of theorems also belongs the well-known
+
+THEOREM VI.
+Facilitation and temporal summation may be replaced by spatial summation.
+This is obvious: one need merely introduce a suitable sequence of delaying chains, of increasing numbers of synapses, between the exciting cell and the neuron whereon temporal summation is desired to hold. The assumption of spatial summation will then give the required results. See e.g. F,igure lh. This procedure had application in showing that the observed temporal summation in gross nets does not imply such a mechanism in Che interaction of individual neurons.
+The phenomena of learning, which are of a character persisting over most physiological changes in nervous activity, seem to require the possibility of permanent alterations in the structure of nets. The simplest such alteration is the formation of new synapses or equivalent local depressions of threshold. We suppose that some axonal terminations cannot at first excite the succeeding neuron; but if at any time the neuron fires, and the axonal terminations are simultaneously excited, they become synapses of the ordinary kind, henceforth capable of exciting the neuron. The loss of an inhibitory synapse gives an entirely equivalent result. We shall then have
+
+THEOREM VII.
+Alterable synapses can be replaced by circles.
+This is accomplished by the method of Figure li. It is also to be remarked that a neuron which becomes and remains spontaneously active can likewise be replaced by a circle, which is set into activity by a peripheral afferent when the activity commences, and inhibited by one when it ceases.
+IH. The Theory: Nets with Circles.
+The treatment of nets which do not satisfy our previous assumption of freedom from circles is very much more difficult than that case. This is largely a consequence of the possibility that activity may be set up in a circuit and continue reverberating around it for an indefinite period of time, so that the realizable Pr may involve reference to past events of an indefinite degree of remoteness. Consider such a net $~, say of order p , and let cl, c~, . . . , c~ be a cyclic set of neurons of g(. It is first of all clear from the definition that every N,
+
+WARREN S. MCCULLOCH AND WALTER PITTS
+
+125
+
+of ~( can be expressed as a TPE, of N~, N2, ..., N~ and the absolute afferents; the solution of ~( involves then only the determination of expressions for the cyclic set. This done, we shall derive a set of expressions [A] :
+N~(z~) .= .Pr~[S~,~N~(z~),S~,'-N~(zl), ...,S~,~N~(zl)], (2)
+where Pr~ also involves peripheral afferents. Now if n is the least common multiple of the n~j, we shall, by substituting their equivalents according to (2) in (3) for the Nj, and repeating this process often enough on the result, obtain S of the form
+
+N~(za) .=.Prl[S~N~(z~),S~N~(zl),...,S~Np(z~)]
+
+. (3)
+
+These expressions may be written in the Hilbert disjunctive normal form as
+
+N~ (z~) . ~ . ~ S~ H S ~ N~ (z~) H ~ S ~ Nj (z~), for suitable ~, ( 4 )
+
+ae~ ieK
+
+j~
+
+~agK
+
+where S~ is a T P E of the absolute afferents of g(. There exist some 2p different sentences formed out of the p N~ by conjoining to the conjunction of some set of them the conjunction of the negations of the rest. Denumerating these by X~ (zl), X~ (z~), --. , X (z~), we m a y , by use of the expresaions (4), arrive at an equipollent set of equations of the form
+
+~P
+
+X~ ( z l ) . =- . Y Pr~j (zl) . S~X~ ( z l ) .
+
+(5)
+
+i=1
+
+Now we import the subscripted numerals i,] into the object-language: i.e., define Prl and Pr: such that P r l (zzl,zl) . -- . X~ (zl) and Pr~ ( z z l , zz~ , z~) . --. Pr~j (zl) are provable whenever zz~ and zz~ denote i and j respectively. Then we may rewrite (5) as
+
+(z~)zzp : Prl (z~, z~)
+9 =. (Ez~)zzp. Pr~ (z~, z~, z~ - zz~) . Prl (z~, z~ - zz~) (6)
+
+where zz~ denotes n and zzp denotes 2~. By repeated substitution we arrive at an expression
+
+(z~)zzp : Pr~(z~, zz, zz~) . =. (Ez~)zzp (Ez~) zzp... (Ez~)zzj~.
+
+Pr~ (z~, z~, zz, (zz~ ~ 1) ). Pr~ (z~, z3, zz~ (zz~ - 1) ) .....
+
+(7)
+
+Pr~. (z~_~, z~, 0). Prl (z~, 0), for any numeral zz~ which denotes s . This is easily shown by induction to be equipollent to
+
+126
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+(z~)zzp : . Pr~ (zz , zz~zz=) : = : ( E l ) (z=) zz2 -- l f (z2 zz~)
+
+zzp. f ( z z ~ zz=) = z~. P r 2 ( f ( z z ~ (z2 + 1) ),
+
+(8)
+
+f ( z z ~ z2) ) 9P r ~ ( f ( O ) , O)
+
+and since this is the case for all zz2, it is also true that
+
+(z4) (z~)zz~ : Pr~ (z~ , z~) . ~ . ( E l ) (z2) (z4 -- 1) . f (z~)
+
+<~zz~ . f (z4) - - z~ f ( z ~ ) - - z~ . P r ~ [ f (z~ + 1), f (z~) , z2].
+
+(9)
+
+Pr~[f (res (z4 , zz~) ), res (z~ , zz,~) ],
+
+where zz, denotes n, res (r,s) is the residue of r rood s and zzp denotes 2p. This m a y be w r i t t e n in a less exact w a y as
+
+N~(t) . - - . ( E r (x) t - 1. r _-<2". ~ ( t ) - - i . P[ep(x + 1), ~b(x) . N~(o) ( 0 ) ] ,
+
+where x and t are also assumed divisible by n, and Pr~ denotes P. From the preceding remarks we shall have
+
+THEOREM VIII.
+The expression (9) for neurons of the cyclic set of a net ~ together with certain TPE expressing the actwns of other neurons in terms of them, constitute a solution of ~(.
+Consider now the question of the realizability of a set of S~, A first necessary condition, demonstrable by an easy induction, is that
+
+9i(z2) -= (z2) . 3 .
+
+-=
+
+/ [
+
+pl P2
+
+1
+
+(10)
+
+should be true, with similar statements for the other free p in S~: i.e., no nervous net can take account of future peripheral afferents. Any S~ satisfying this r e q u i r e m e n t can be replaced by an equipollent S of the form
+
+(gf) (z2)zl (zo)zzp : fe Pr,~
+: f(zl, z:, z3) ~-- 1 . -- . Pz~ (Z~)
+
+(11)
+
+where zzp denotes p, by defining
+A
+Pr~ --f[(z~) (z~)z~(z~)zzp : .f(zl ,z~ ,z~) -- 0.v.f(z~ ,z~,z~)
+- - 1 : f ( z ~ , z 2 , z~) - = 1 . = - . p ~ ( z D : --> : S~] .
+
+Consider now these series of classes as, for which
+
+N ~ ( t ) : -- : ( E r ( x ) t ( m ) q : ~ea~ : N ~ ( x ) . - . r [i -- q + 1 ,..., M]
+
+--1. (12)
+
+WARREN S. MCCULLOCH AND WALTER PITTS
+
+127
+
+holds for some net. These will be called prehensible classes. Let us define the Boolean ring generated by a class of classes ~ as the aggregate of the classes which can be formed from members of ~ by repeated application of the logical operations; i.e., we put
+
+(,,) = p'~[ (~, ~) : ~ ~ K
+
+--)ae~:a,~.--'.-
+
+a,a.#,av#~]
+
+.
+
+We shall also define
+
+B
+"aGO 9 --. ~ (,,) - ~'p .... ,,,
+~ ( , , ) = p '~[ ((~ , ~ ) : a s k --, a s,~. - ) . - a , a . f l , a v f l , S " a e ~ ]
+"R.(D =~(K) - ~'p'-",,,
+and
+a(9,t)-----~[(m).+(t+l,t,m)=~(m)].
+The class ~(,(K) is formed from K in analogy with ~(K), but by repeated application not only of the logical operations but also of that which replaces a class of properties P s a by S (P)s S "a. We shall then have the
+ImMMA
+Prl (Pl , P~ , "" , Pro, zl) is a T P E if and only if
+
+(z~) (p~,...,p,~) (Epm+~) : p ~ §
+
+Pm+l (Zl) ------P- r l ( p ~ , P 2 , " " , P,~ , z;)
+
+(13)
+
+is true ; and it is a TPE not involving 'S' if and only if this holds when
+
+'~e' is replaced by '~', and we then obtain
+
+THEOREM IX.
+
+A series of classes a l , a~., 9.. as is a series of prehensible classes if and only if
+
+(Era) (En) ( p ) n ( i ) (9) :. ( x ) m ~ ( x ) z 0 v ~ ( x ) - - 1 : -+ : (Eft)
+
+(Ey)m. ~(y) --O.fl s't~[~( (Ei) . ?~-a~) ) . v. (x)m.
+
+A
+
+(14)
+
+~(x)--O.fls~[r((Ei).r~-ai)]
+
+: (t)(~) :~ea~.
+
+q(~,nt +p) .-~. (Ef) .f efl. (w)m(x)t-1.
+
+~(n(t+l) +p,nx +p,w) --~f(nt +p,nx+p,v~).
+
+128
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+The proof here follows directly from the lemma. The condition is necessary, since every net for which an expression of the form (4) can be written obviously verifies it, the ~'s being the characteristic functions of the S~ and the p for each ~ being the class whose designation has the form H Pr~ H P r s , where Pr~ denotes a~ for all k. Con-
+~ea ie.Sa
+versely, we may write an expression of the form (4) for a net g( fulfilling prehensible classes satisfying (14) by putting for the Pra Pr denoting {he ~'s, and a Pr, written in the analogue for classes of the disjunctive normal form, and denoting the a corresponding to that
+, conjoined to it. Since every S of the form (4) is clearly realizable, we have the theorem.
+It is of some ,interest to consider the extent to which we can by knowledge of the present determine the whole past of various special nets: i.e., when we may construct a net the firing of the cyclic set of whose neurons requires the peripheral afferents to have had a set of past values specified by given functions ~ . In this case the classes at of the last theorem reduced to unit classes; and the condition may be transformed into
+
+( E m , n ) ( p ) n ( i , ~f) ( E l ) : . ( x ) m : ~ ( x ) - - - - 0 . v . ~ ( x ) - - 1 :
+
+r
+
++ p ) : -~ : ( w ) m ( x ) t - 1 . ~ ( n ( t + 1)
+
++p,nx+p,w)~-~j(nt+p,nx+p,w)
+
+:.
+
+(u, v) ( w ) m . g)~(n(u + 1) + p , n u + p , w)
+
+--r
+
+l) +p,nv+p,w).
+
+On account of limitations of space, we have presented the above argument very sketchily; we propose to expand it and certain of its implications in a further publication.
+The condition of the last theorem is fairly simple in principle, though not in deta`il; its application to practical cases would, however, require the exploration of some 22. classes of functions, namely the members of ~({a~ , . . . , a~)). Since each of these is a possible fl of Theorem IX, this result cannot be sharpened. But we may obtain a sufficient condition for the realizability of an S which is very easily applicable and probably covers most practical purposes. This is given
+by
+
+THEOREM X.
+Let us define a set K of S by the following recursion: 1. Any T P E and any T P E whose arguments have been replaced
+by members of K belong to K;
+2. IfPrl(zl) is a member of K , then (z~)zl . Prl(z~), (Ez~)zl .
+
+WARREN S. MCCULLOCH AND WALTER PITTS
+
+129
+
+Prl (z~), and C~. (zl) . s belong to it, where C~ denotes the property of being congruent to m modulo n, m < n.
+3. The set K has no further members
+Then every member of K is realizable.
+For, if Prl (zl) is realizable, nervous nets for which
+N i (z~) . =--. P r l (zl) . SN~ (z~) N~ (z~) . =. Pr, (zl) v SN~ (z~)
+are the expressions of equation (4), realize (z~)z~ . Prl(zD and ( E z~)zl . P r ~ ( z D respectively; and a simple circuit, c~, c~ , . . . , e~, of n links, each sufficient to excite the next, gives an expression
+Nm(z~) . --. NI (O) . C~
+for the last form. By induction we derive the theorem. One more thing is to be remarked in conclusion. It is easily
+shown: first, that every net, if furnished with a tape, scanners connected to afferents, and suitable efferents to perform the necessary motor-operations, Call compute only such n u m b e r s as can a T u r i n g machine; second, that each of the latter numbers can be computed by such a net; and that nets with circles can be computed by such a net; and that nets with circles can compute, without scanners and a tape, some of the numbers the machine can, but no others, and not all of them. This is of interest as affording a psychological justification of the Turing definition of computability and its equivalents, Church's
+~ definability and Kleene's primitive recursiveness: If any number can be computed by an organism, it is computable by these definitions, and conversely.
+
+IV. Consequences
+Causality, which requires description of states and a law of necessary connection relating them, has appeared in several forms in several sciences, but never, except in statistics, has it been as irreciprocal as in this theory. Specification for any one time of afferent stimulation and of the activity of all constituent neurons, each an "all-or-none" affair, determines the state. Specification of the nervous net provides the law of necessary connection whereby one can compute from the description of any state that of the succeeding state, but the inclusion of disjunctive relations prevents complete determination of the one before. Moreover, the regenerative activity of Constituent circles renders reference indefinite as to time past. Thus our knowledge of the world, including ourselves, is incomplete
+
+130
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+b
+
+d
+
+e ~
+
+~
+
+f
+
+9
+
+h
+FIG~E 1
+
+WARREN S. MCCULLOCH AND WALTER PITTS
+
+131
+
+as to space and indefinite as to time. This ignorance, implicit in all our brains, is the counterpart of the abstraction which renders our knowledge useful. The role of brains in determining the epistemic relations of our theories to our observations and of these to the facts is all too clear, for it is apparent that every idea and every sensation is realized by activity within that net, and by no such activity are the actual afferents fully determined.
+There is no theory we may hold and no observation we can make that will retain so much as its old defective reference to the facts if the net be altered. Tinitus, paraestheaias, hallucinations, delusions, confusions and disorientations intervene. Thus empiry confirms that if our nets are undefined, our facts are undefined, and to the "real" we can attribute not so much as one quality or "form." With determination of the net, the unknowable object of knowledge, the "thing in itself," ceases to be unknowable.
+To psychology, however defined, specification of the net would contribute all that could be achieved in that field even if the analysis were pushed to ultimate psychic units or "psychons," for a psychon can be no less than the activity of a single neuron. Since that activity is inherently propositional, all psychic events have an intentional, or "semiotic," character. The "all-or-none" law of these activities, and the conformity of their relations to those of the logic of propositions, insure that the relations of psychons are those of the two-valued logic of propositions. Thus in psychology, introspective, behavioristic or physiological, the fundamental relations are those of two-valued logic.
+
+EXPRESSION FOR THE FIGURES
+
+I n the figure the neuron c~ is always marked with the numeral i upon the body of the cell, and the corresponding action is denoted by 'N' with i as subscript, as in the text.
+
+F igurela Figurelb Ffgurelc Figureld Figure le
+Figurelf
+Figure lg Figurelh Figure li
+
+N ~ ( t ) . ~-- . N l ( t - - 1)
+
+Nz(t ) . ~ . Nl (t --1) v N~(t --1)
+
+N~(t) .~ .N~(t--1).N.e(t--1)
+
+N3(t ) .~.N~(t--1).o~Na(t--1)
+
+N3(t) : ~ : N~(t -- 1) . v. N~(t -- 3). oo N2(t _ 2)
+
+N4(t) .~ . N2(t-- 2 ) . N ~ ( t - - 1) N4(t ) : ~ : e ~ N ~ ( t -- 1 ) . N ~ ( t -- 1) v N a ( t -- 1) . v . N ~ ( t
+N~(t -- 1). N3(t -- 1)
+
+N 4 ( t ) : -~ : co N ~ ( t - - 2). N ~ ( t - - 2:) v N ~ ( t N~(t -- 2). N3(t -- 2)
+Na(t) . -~ . N~(t -- 2). ~ N~(t -- 3)
+
+-- 2) . v 9 N~(t
+
+N2(t ) . -~ . N~ (t -- 1 ) . N ~ ( t - - 2)
+
+N3(t ) :~--: N~(t-- 1) . v . N ~ ( t - - 1).(Ex)t-- 1.N~(x) .N,(x)
+
+-- 1). -- 2).
+
+132
+
+LOGICAL CALCULUS FOR NERVOUS ACTIVITY
+
+Hence arise constructional solutions of holistic problems involving the, differentiated continuum of sense awareness and the normative, perfective and resolvent properties of perception and execution. From the irreciprocity of causality it follows that even if the net be known, though we may predict future from present activities, we can deduce neither afferent from central, nor central from efferent, nor past from present activities--conclusions which are reinforced by the contradictory testimony of eye-witnesses, by the difficulty of diagnosing differentially the organically diseased, the hysteric and the malingerer, and by comparing one's own memories or recollections with his contemporaneous records. Moreover, systems which so respond to the difference between afferents to a regenerative net and certain activity within that net, as to reduce the difference, exhibit purposive behavior; and organisms are known to possess many such systems, subserving homeostasis, appetition and attention. Thus both the formal and the final aspects of that activity which we are wont to call mental are rigorously deduceable from present neurophysiology. The psychiatrist may take comfort from the obvious conclusion concerning causality--that, for prognosis, history is never necessary. He can take little from the equally valid conclusion that his observables are explicable only in terms of nervous activities which, until recently, have been beyond his ken. The crux of this ignorance is that inference from any sample of overt behavior to nervous nets is not unique, whereas, of imaginable nets, only one in fact exists, and may, at any moment, exhibit some unpredictable activity. Certainly for the psychiatr,ist it is more to the point that in such systems "Mind" no longer "goes more ghostly than a ghost." Instead, diseased mentality can be understood without loss of scope or rigor, in the scientific ~erms of" neurophysiology. For neurology, the theory sharpens the distinction between nets necessary or merely sufficient for given activities, and so clarifies the relations of disturbed structure to disturbed function. In its own domain the difference between equivalent nets and nets equivalent in the narrow sense indicates the appropri'ate use and importance of temporal studies of nervous activity: and to mathematical biophysics the theory contributes a tool for rigorous symbolic treatment of known nets and an easy method of constructing hypothetical nets of required properties.
+
+WARREN S. MCCULLOCH AND WALTER PITTS
+
+133
+
+LITERATURE
+Carnap, R. 19~8. The Logical Syntax of Language. New York: Harcourt, Brace and Company.
+Hilbert, D., und Ackermann, W. 1927. Grundi2ge tier The~retischen Logik. Berlin: J. Springer.
+Russell, B., and Whitehead, A. N. 1925. Princip~ Ma~hematica. Cambridge: Cambridge University Press.
+

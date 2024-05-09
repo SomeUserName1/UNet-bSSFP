@@ -1,0 +1,1338 @@
+Magnetic Resonance in Medicine 55:98 –107 (2006)
+Steady State of Gradient Echo Sequences with Radiofrequency Phase Cycling: Analytical Solution, Contrast Enhancement with Partial Spoiling
+Carl Ganter*
+
+Spoiled gradient echo sequences can only reach a homogeneous steady state if sufﬁciently strong crusher gradients are used in combination with RF phase cycling (RF spoiling). However, the signal depends quite sensitively on the chosen phase increment ␾ and—lacking analytical solutions—numerical simulations must be used to study the transient and steady-state magnetization. For the steady state an exact analytical solution is derived, which holds for arbitrary sequence and tissue parameters. Besides a considerably improved computation performance, the analytical approach enables a better understanding of the complicated dependence on ␾. For short repetition times (TR) the regime of small ␾ turns out to be particularly interesting: It is shown that the typical ␾c, where RF spoiling starts to become effective, is essentially inversely proportional to T2. This tissue dependence implies that contrasts can be considerably larger with partial spoiling (␾ Ϸ ␾c) than with conventional RF spoiling (␾ ϾϾ ␾c). As an example, the uptake of contrast agents in tissues is investigated. For typical parameters a considerably improved contrast enhancement can be obtained, both theoretically and experimentally. Magn Reson Med 55:98 –107, 2006. © 2005 Wiley-Liss, Inc.
+Key words: phase cycling; spoiled gradient echo; steady state; rapid imaging; RF spoiling
+Spoiled gradient echo sequences, in the following referred to as FLASH (T1-FFE, SPGR, ...), require an effective elimination of transversal magnetization prior to each excitation pulse, especially for short repetition times (TR). To this end sufﬁciently strong crusher gradients are nowadays generally applied in combination with an RF phase cycling condition (RF spoiling) (1,2). The latter means that the differences between the phases ␸k of consecutive excitation pulses are linearly incremented:
+
+␸k Ϫ ␸kϪ1 ϭ ␸ ϩ k␾.
+
+[1]
+
+statical and dynamical behavior of these sequences must be studied numerically, typically based on the formalism of conﬁguration theory (5–7), which is described in detail in Ref. (8).
+While ␸ can be chosen arbitrarily without affecting the result, the steady-state signal is known to depend rather sensitively on the choice of the phase shift increment ␾. Various maxima can be observed (see Fig. 1), the most prominent of which is centered around ␾ ϭ 0. This value is of special importance as it represents the absence of RF spoiling, also known as FISP (FFE, GRASS, ...) (9).
+To achieve the desired T1 contrast, FLASH sequences need a suitably chosen nonzero ␾, where the signal approximately intersects with the expected result from ideal spoiling (horizontal line). The ﬁrst published value was 117° (4), but different values are also in use, partly because of better convergence properties (10,11).
+In this article an exact analytical solution for the steadystate signal of FLASH sequences will be derived, which holds for arbitrary sequence (TR, ␣, ␾) and tissue (T1, T2) parameters. It will be compared with simulation results and some of its analytical properties will be discussed.
+Special emphasis will be put on small TR and ␾ values, more precisely the initial decay from the FISP signal to the onset of RF spoiling. The width of this transition regime, which will be referred to as partial spoiling, depends on tissue parameters. It will be shown that the typical value ␾c of steepest descent is essentially proportional to 1/T2. By adjusting ␾ to a value near ␾c, the attainable tissue contrasts can be considerably enhanced in comparison with FLASH (␾ ϾϾ ␾c).
+As an application, the uptake of contrast agents in tumors will be investigated.
+
+While pure gradient spoiling or randomly distributed ␸k were associated with hyperintense bands (2,3) or statisti- THEORY
+
+cal ﬂuctuations (4), respectively, RF spoiling was proven to generate a homogeneous steady state (4).
+Due to the essentially quadratically increasing RF phases, no closed analytical solution for RF spoiling has been found so far, neither for the steady state nor the even more complicated transient response. Consequently, the
+
+Recursion Relations
+We consider a series of RF pulses with constant ﬂip angle ␣ and variable phases ␸k, separated by a constant time interval TR.
+The phase ␽, which is accumulated during each repetition period as a consequence of off-resonance effects and
+
+unbalanced gradients, is assumed to be constant in time. In
+
+Department of Diagnostic Radiology, Klinikum rechts der Isar, Technical the presence of crusher gradients, it will, however,
+
+University Munich, Munich, Germany.
+
+strongly depend on the intravoxel position.
+
+*Correspondence to: Carl Ganter, Department of Diagnostic Radiology, Klinikum rechts der Isar, Technical University Munich, Ismaningerstrasse 22, D-81675 Munich, Germany. E-mail: cganter@roe.med.tum.de
+
+The complex magnetization vector will be used as follows:
+
+Received 30 June 2005; revised 12 August 2005; accepted 24 August 2005.
+
+DOI 10.1002/mrm.20736 Published online 9 December 2005 in Wiley InterScience (www.interscience. wiley.com).
+
+© 2005 Wiley-Liss, Inc.
+
+98
+
+ͫ ͬ ͫ ͬ m1
+
+(Mx ϩ iMy)/ ͱ2
+
+m :ϭ m0 :ϭ
+
+Mz
+
+.
+
+[2]
+
+mϪ1
+
+(Mx Ϫ iMy)/ ͱ2
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Steady State of RF Phase Cycling
+
+99
+
+Apart from relabeling the indices, which will be helpful later, it differs from its more commonly encountered definition in another technical point: The transversal components are divided by ͌2 to preserve the vector norm under rotations, which makes the corresponding matrices unitary.
+The magnetization immediately after the kth RF pulse obeys a recursion relation,
+
+mkϩ1 ϭ Rz͑␸k͒BRz͑␽͒Rz͑Ϫ␸k͒mk ϩ Rz͑␸k͒b
+
+[3]
+
+with
+
+B :ϭ Rx͑␣͒E and b :ϭ ͑1 Ϫ E1͒ ⅐ Rx͑␣͒meq. [4]
+meq is the equilibrium magnetization, the magnitude of which (proton density) will be set to 1 in the following. The matrix E describes the relaxation during TR, Ei: ϭ exp(ϪTR/Ti), and Rx, Rz perform rotations around the xand z-axes, respectively. Explicit expressions are given in Appendix A.
+We now assume ␸k to advance according to Eq. [1]. ␸ is equivalent to a constant position independent shift of ␽, cf. (4,12),
+
+matrices reduce the magnitude of any vector, they act on the mk(n) will ﬁnally reach a steady state:
+
+m͑n͒ :ϭ lim mk͑n͒.
+k3ϱ
+
+[11]
+
+Iterating Eq. [10] gives
+
+͸ ͸ ϱ
+m͑n͒ ϭ
+
+͓14͔
+y␯1B͑i1͒y␯2B͑i2͒ · · · y␯mB͑im͒b ϩ ␦n0 ⅐ b
+
+mϭ1 i1,. . .,im
+
+[12]
+
+͸jϪ1
+␯j :ϭ n Ϫ ip.
+pϭ1
+
+[13]
+
+The special case j ϭ 1 is included since the sum does not contribute then. As indicated in Eq. [12], the second summation is restriced by a boundary condition:
+
+͸m ij ϭ n.
+
+[14]
+
+jϭ1
+
+␪ :ϭ ␽ Ϫ ␸.
+
+[5]
+
+In the presence of crusher gradients, the actual value of ␸ is unimportant and can be chosen arbitrarily.
+The magnetization will now be written in a representation, which is closely related to conﬁguration theory (8):
+
+Analytical Solution for n ϭ 0
+For the steady-state magnetization m(0), we only need to consider the case n ϭ 0 in the following. All other components are eliminated by the crusher gradients.
+For every addend in Eq. [12], a unique order can be assigned to each index ij:
+
+͸ϱ
+
+mk ϭ: Rz͑␸kϪ1͒
+
+ein͑␪Ϫk␾͒mk͑n͒.
+
+nϭϪϱ
+
+[6]
+
+i1
+
+·
+
+·
+
+·
+
+im ϭ
+
+͕
+
+0͖
+
+␣
+
+ϩ 1
+
+·
+
+·
+
+·
+
+␣1Ϫ͕0͖
+
+␣
+
+ϩ 2
+
+·
+
+·
+
+·
+
+␣pϪϪ1͕
+
+0
+
+͖
+
+␣
+
+ϩ p
+
+·
+
+·
+
+·
+
+␣pϪ͕0͖.
+
+[15]
+
+Apart from different prefactors, mk(n) is essentially the nth
+order conﬁguration. Because of Eq. [2], the boundary con-
+dition [mk]1 ϭ [mk]Ϫ * 1 must hold. Since ␪ can take arbitrary values, there is some redundancy in the deﬁnition of mk(n):
+
+{0} stands for an arbitrary number (Ն0) of repetitions of index 0. For all rʦ1,. . . , p we assume ␣rϮ 0. ␣rϪ is deﬁned as the ﬁrst index following ␣rϩ, for which the sum of consecutive indices,
+
+͓mk͑Ϫn͔͒j ϭ ͓mk͑n͔͒*Ϫj
+
+͑j ϭ Ϫ1, 0, 1͒.
+
+[7]
+
+Inserting Eq. [6] into Eq. [3] and using the notation
+
+␣rϩ ϩ · · · ϩ ␣rϪ ϭ 0,
+
+͸1
+
+BRz͑␤͒ ϭ
+
+eij␤B͑j͒
+
+jϭϪ1
+
+with
+
+vanishes. This necessarily implies
+
+Bk͑jl͒ :ϭ Bkl ⅐ ␦jl [8]
+
+␣
+
+ϩ r
+
+ϭ
+
+Ϫ␣rϪ.
+
+[16] [17]
+
+yields with
+
+y :ϭ exp͑i␾͒
+
+͸1
+
+m͑n͒ kϩ1
+
+ϭ
+
+yn
+
+B͑j͒mk͑nϪj͒ ϩ ␦n0 ⅐ b.
+
+jϭϪ1
+
+We call {0} and ␣rϮ in Eq. [15] zero-order indices. Because of Eqs. [14] and [17], the remaining indices ⅐ ⅐ ⅐
+[9] between each pair ␣rϮ can be organized in the same man-
+ner:
+
+[10]
+
+·
+
+·
+
+·
+
+ϭ
+
+͕
+
+0͖
+
+␤
+
+ϩ 1
+
+·
+
+·
+
+·
+
+␤1Ϫ͕
+
+0͖
+
+␤
+
+ϩ 2
+
+·
+
+·
+
+·
+
+␤qϪϪ1͕
+
+0
+
+͖
+
+␤
+
+ϩ q
+
+·
+
+·
+
+·
+
+␤qϪ͕0͖.
+
+[18]
+
+Note that, different from Eq. [3], the recursion coefﬁcients The only difference to Eq. [15] is that for all s ʦ 1, . . . , q no longer depend on k. Therefore, and because the B- we have
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+100
+
+Carl Ganter
+
+␤sϮ ϭ ␣rϮ.
+
+[19]
+
+Otherwise we would have a contradiction to the deﬁnition
+
+of ␣rϪ as being the ﬁrst index fulﬁlling Eq. [16]. In analogy
+
+to
+
+above, the indices The procedure can
+
+{0} and ␤sϮ be iterated
+
+are now with all .
+
+of ﬁrst . .’s on
+
+order. the r.h.s.,
+
+deﬁning higher-order indices, always taking into account
+
+that a boundary condition like Eq. [19] must be obeyed. It
+
+stops, when to each index in {i1, . . . , im} a unique order has been assigned.
+
+As a beneﬁt, the exponents ␯j in Eq. [12] can now be better handled. By construction, two rules can be deduced
+
+for the indices of kth order (cf. Eq. [18] for k ϭ 1):
+
+1. For each 0 in {0}, we have ␯j ϭ k⅐␣rϪ. The index ␣rϪ belongs to the associated pair of surrounding zerothorder indices. For k ϭ 0, when there is no such
+surrounding pair, the rule is trivially true. 2. From Eq. [14] (n ϭ 0) we obtain for the sum of the two
+exponents ␯i, ␯j, which belong to the pair ␤sϮ, the value ␯i ϩ ␯j ϭ (2k ϩ 1)⅐␤sϪ.
+
+We can now carry out the sum over all possible {i1, . . . , im} in Eq. [12].
+From rule 1 we know that the kth order {0} contain arbitrary powers of y Ϯ kB(0), which can be collected in a
+geometrical series:
+
+͸ϱ
+I ϩ ͓yϮkB͑0͔͒p ϭ ͓I Ϫ yϮkB͑0͔͒Ϫ1 ϭ: ͓⌫Ϯ͑k͔͒Ϫ1.
+pϭ1
+
+[20]
+
+m͑0͒ ϭ ͓⌫͑0͔͒Ϫ1b ϩ ͓⌫͑0͔͒Ϫ1͑⌳ϩ͑0͒ ϩ ⌳Ϫ͑0͓͒͒⌫͑0͔͒Ϫ1b ϩ · · · ϭ ͓⌫͑0͒ Ϫ ⌳ϩ͑0͒ Ϫ ⌳Ϫ͑0͔͒Ϫ1b.
+
+[23]
+
+Still the solution of Eq. [23] seems to be impossible, because ⌳Ϯ (0) cannot be represented in closed form but depends on the inﬁnite matrix recursions of Eq. [21].
+However, as shown in Appendix B, it turns out that only a scalar ⌳ needs to be recursively calculated. With the help of the explicit expressions in Appendix B, the inverse in Eq. [23] can be calculated and we ﬁnally obtain for the steady-state magnetization
+
+ͱ2
+
+⅐
+
+m
+
+͑0͒ 1
+
+ϭ
+
+Mx
+
+ϩ
+
+iMy
+
+ϭ
+
+Ϫi
+
+1
+
+Ϫ D
+
+E1
+
+⅐
+
+sin
+
+␣
+
+⅐
+
+͑1
+
+Ϫ
+
+⌳*͒
+
+[24]
+
+m
+
+͑0͒ 0
+
+ϭ
+
+Mz
+
+ϭ
+
+1
+
+Ϫ D
+
+E1
+
+ͫ ͬ 1
+⅐ cos ␣ ϩ 2 (1 Ϫ cos ␣)(⌳ ϩ ⌳*) Ϫ ͉⌳͉2 [25]
+
+with
+
+1 D:ϭ1 Ϫ E1cos␣ Ϫ 2͑1 Ϫ cos␣͒
+ϫ ͑1 ϩ E1͒͑⌳ ϩ ⌳*͒ ϩ ͑E1 Ϫ cos␣͉͒⌳͉2. [26]
+⌳ is deﬁned by a continued fraction expansion
+
+I denotes the unity matrix.
+The nonzero kth-order pair together with the enclosed indices . . . can be collected in
+
+⌳
+
+͑k͒ Ϯ
+
+:ϭ
+
+yϮ͑2kϩ1͒B͑ϯ1͓͒⌫Ϯ͑kϩ1͒
+
+Ϫ
+
+⌳Ϯ͑kϩ1͔͒Ϫ1B͑Ϯ1͒.
+
+[21]
+
+⌳
+
+ϭ
+
+b0
+
+ϩ
+
+a1 b1ϩ
+
+a2 b2ϩ
+
+·
+
+·
+
+·
+
+[27]
+
+ͫ ͬ a1 :ϭ
+
+␥1 ␣1
+
+ϩ
+
+␤1 ␥1
+
+⅐ E22y
+
+ͫ ͬ anϾ1
+
+:ϭ
+
+Ϫ
+
+␥nϪ1 ␣nϪ1
+
+␥n ␣n
+
+ϩ
+
+␤n ␥n
+
+⅐ E22y2nϪ1
+
+[28]
+
+The prefactor belongs to the two enclosing kth-order Bmatrices and is explained by rule 2. The inverse matrix between the B’s is just another geometrical series for the higher-order indices · · ·
+
+͓
+
+⌫
+
+͑kϩ1͒ Ϯ
+
+Ϫ
+
+⌳Ϯ͑kϩ1͔͒Ϫ1
+
+ϭ
+
+͓⌫Ϯ͑kϩ1͔͒Ϫ1
+
+ϩ
+
+͓⌫Ϯ͑kϩ1͔͒Ϫ1⌳Ϯ͑kϩ1͓͒⌫Ϯ͑kϩ1͔͒Ϫ1
+
+ϩ · · ·. [22]
+
+The ﬁrst two addends on the r.h.s. would correspond to q ϭ 0 and q ϭ 1 in Eq. [18]. In combination with the
+deﬁnitions [20] and [21], it follows that the matrix [22]
+indeed collects all possible terms without double count-
+ing. Note that in Eq. [21] the sign (Ϯ) of the higher order
+matrices equals that of the associated lowest order ⌳Ϯ (0), reﬂecting the boundary condition [19]. Only the sign of the zero-order indices ␣rϮ in Eq. [15] could be chosen arbitrarily.
+Noting that ⌫ϩ (0) ϭ ⌫Ϫ (0) ϭ: ⌫ (0), we therefore ﬁnally obtain for m(0)
+
+b0
+
+:ϭ
+
+Ϫ
+
+␤1 ␥1
+
+⅐
+
+E22y
+
+bnϾ0
+
+:ϭ
+
+1
+
+ϩ
+
+␥n ␣n
+
+␤nϩ1 ␥nϩ1
+
+⅐
+
+E22y2nϩ1
+
+[29]
+
+using
+
+␣n :ϭ 1 Ϫ ynE1cos ␣,
+
+␤n :ϭ cos ␣ Ϫ ynE1 1
+and ␥n :ϭ 2 ͑␣n Ϫ ␤n͒.
+
+[30]
+
+Ideal spoiling can be formally obtained in the limit T2/TR 3 0. As from E2 3 0 immediately follows ⌳ 3 0, Eqs. [24 –26] are indeed consistent with the ideal FLASH result.
+The case ␾ ϭ 0 yields a closed equation for ⌳ and the
+well-known result for FISP is obtained. Details are given in
+Appendix C. m(0) has been determined as the magnetization immedi-
+ately after the excitation pulse. In some sequences like
+PSIF, the crusher gradient is applied before the readout
+period and the signal has the characteristics of a spin echo.
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Steady State of RF Phase Cycling
+
+Table 1 Some Values for ␰ and ͌2/␰, Determined from Eq. [34]
+
+␣
+
+10°
+
+20°
+
+30°
+
+40°
+
+␰
+
+0.47
+
+0.16
+
+0.090
+
+0.061
+
+͌2/␰
+
+3.0
+
+8.8
+
+15.7
+
+23.0
+
+50°
+0.047 30.4
+
+60°
+0.038 37.4
+
+70°
+0.032 44.2
+
+80°
+0.028 50.4
+
+101
+90° 0.025 56.2
+
+The corresponding magnetization can be obviously ob- In fact, most of the work has been done already. Let us tained from m(0) by undoing the last ␣-pulse: Rx(Ϫ␣) m(0). ﬁrst assume that n Ͼ 0 and rewrite Eq. [12] as follows:
+
+Approximate Solution for Small ␾
+For small TR, RF spoiling will be already effective for small values of ␾.
+In Appendix C the following linear expansion of ⌳ in terms of the small parameters ␾ and ␦: ϭ TR/T1 is derived:
+
+⌳ Ϸ 1 ϩ ␴␦ ϩ i␰␾,
+
+[31]
+
+͸ ͸ ϱ
+
+͓14͔
+
+m͑n͒ ϭ
+
+mϭ1 i1,. . .,im
+
+ϫ y␯1B͑i1͒ · · · y B y B y B ␯qϪ1 ͑iqϪ1͒ ␯q ͑iq͒ ␯qϩ1 ͑iqϩ1͒ · · · y␯mB͑im͒b. [37]
+
+A
+
+B
+
+deﬁning
+
+ͱ ͩ ͪ ␴
+
+:ϭ
+
+Ϫ
+
+T1 T2
+
+Ϫ
+
+T1 T2
+
+T1 T2
+
+ϩ
+
+2␩
+
+[32]
+
+1 1 ϩ cos ␣
+
+␩ :ϭ 2 ⅐ 1 Ϫ cos ␣ .
+
+[33]
+
+The quantity ␰:ϭ ␰0 depends only on ␣ and must be determined numerically via a continued fraction expansion:
+
+q is the smallest number, for which ␯q ϩ 1 ϭ n Ϫ 1. Consequently, this also means iq ϭ 1 and ␯q ϭ n.
+The partial sum (B) of all terms following after y␯qB(iq) is by construction equivalent to m(n Ϫ 1).
+Due to the deﬁnition of q, the preceding partial sum (A)
+can only contain indices of nth or higher order. As shown
+above, cf. the arguments leading to Eq. [22], these terms can be collected in [⌫ϩ (n)Ϫ⌳ϩ (n)]Ϫ1.
+Putting all together, we obtain
+
+m͑n͒ ϭ yn͓⌫ϩ͑n͒ Ϫ ⌳ϩ͑n͔͒Ϫ1B͑ m 1͒ ͑nϪ1͒
+
+͑n Ͼ 0͒. [38]
+
+␩2͑k ϩ 1͒2 ␰k ϭ ͑2k ϩ 1͒͑␩ ϩ 1͒ Ϫ ␰kϩ1 .
+
+[34] The remaining case (n Ͻ 0) can be treated in complete analogy:
+
+For ␾ expressed in degrees, useful values are given in Table 1.
+For the complex signal we now ﬁnd
+
+ͱ2
+
+⅐
+
+m 1͑0͒
+
+Ϸ
+
+i
+
+1
+
+sin ␣ Ϫ cos
+
+␣
+
+⅐
+
+͓␴2
+
+Ϫ
+
+␴␦ Ϫ i␰␾ 2␩␴͔ ⅐ ␦2 ϩ
+
+␰2␾2
+
+⅐
+
+␦.
+
+[35]
+
+m͑n͒ ϭ yn͓⌫Ϫ͑Ϫn͒ Ϫ ⌳Ϫ͑Ϫn͔͒Ϫ1B͑Ϫ1͒m͑nϩ1͒
+
+͑n Ͻ 0͒. [39]
+
+With the help of Eq. [56], it can be veriﬁed that the result is in accordance with the symmetry requirements, expressed by Eqs. [7] and [11].
+
+If ␣ and T1/T2 are large enough to justify T1/T2 ϾϾ ␩, the result simpliﬁes further:
+
+ͱ2 ⅐ ͉m1͑0͉͒
+
+sin ␣
+
+1␦
+
+Ϸ 1 Ϫ cos ␣ ⅐ ͱ␭2 ϩ ␾2 ⅐ ␰
+
+with
+
+2 TR ␭ :ϭ ␰ ⅐ T2 . [36]
+
+Connection with Balanced SSFP
+As a consistency test on Eqs. [38,39] we can now obtain the steady-state result of balanced SSFP sequences (TrueFISP, b-FFE, FIESTA,. . . ). In contrast to FISP, these sequences not only require ␾ ϭ 0 but also fully balanced gradients. As a consequence, the steady state is not simply m(0), but consists of a sum of all conﬁguration orders, cf. Eq. [6]:
+
+Analytical Solution for n 0
+Up to now we only considered the steady-state solution for n ϭ 0, which was sufﬁcient for standard sequences. For more advanced topics like shifted echo imaging or the transient response toward equilibrium, it is crucial to know the solution for n 0, too. Although these topics need a separate discussion and will not be further treated in this article, the solution for m(n) will be derived for future reference.
+
+͸ϱ
+
+mSSFP :ϭ lim Rz͑Ϫ␸kϪ1͒mk ϭ
+
+ein␪m͑n͒.
+
+k3ϱ
+
+nϭϪϱ
+
+[40]
+
+For ␾ ϭ 0 (y ϭ 1), we know from Appendix C that ⌳Ϯ (n)'⌳, with the solution given in Eq. [58]. Consequently, this also means ⌫Ϯ (n)Ϫ⌳Ϯ (n)'⌫Ϯ Ϫ ⌳Ϯ, cf. Eqs. [53,54].
+Combining Eqs. [38 – 40] and collecting the resulting
+geometrical series yields
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+102
+
+mSSFP ϭ ͕͑I Ϫ ei␪͓⌫ϩ Ϫ ⌳ϩ͔Ϫ1B͑1͒͒Ϫ1 ϩ ͑I Ϫ eϪi␪͓⌫Ϫ Ϫ ⌳Ϫ͔Ϫ1B͑Ϫ1͒͒Ϫ1 Ϫ I͖m͑0͒.
+
+[41]
+
+A lengthy but straightforward calculation shows that this is indeed in accordance with the familiar result for TrueFISP:
+
+M
+
+SSFP x
+
+ϩ
+
+iMySSFP
+
+ϭ
+
+Ϫ
+
+i DT
+
+͑1
+
+Ϫ
+
+E1͒sin
+
+␣͑1
+
+Ϫ
+
+E2eϪi␪͒
+
+[42]
+
+1 MzSSFP ϭ DT ͑1 Ϫ E1͓͒cos ␣͑1 Ϫ E2cos ␪͒ ϩ ͑E2 Ϫ cos ␪͒E2͔
+[43]
+
+DT :ϭ ͑1 Ϫ E1cos ␣͒͑1 Ϫ E2cos ␪͒ Ϫ ͑E1 Ϫ cos ␣͒͑E2 Ϫ cos ␪͒E2. [44]
+
+Carl Ganter
+
+MATERIALS AND METHODS
+Numerical Solution and Simulation Results
+All numerical calculations were done on a standard 1.1 GHz Linux PC, using selfwritten Cϩϩ software.
+The continued fraction expansion was implemented using a modiﬁed version of Lentz’s method, which is described in Ref. (13). In contrast to more direct algorithms (14), it is robust against over- or underﬂow problems.
+To test the analytical results, they were compared with two variants of numerical simulation:
+● The recursion relation [3] was implemented for a hypothetical voxel. To simulate crusher gradients, the voxel was subdivided in 1000 intervals along the direction of the dephasing gradient. Its strength was adjusted, so that the dephasing across the voxel during one TR period was exactly 360°.
+● The conﬁguration model in the version of Eq. [10] was iterated directly.
+Both the evaluation of the continued fraction and the numerical iteration were stopped, when the relative difference between two iterations became smaller than 10Ϫ10.
+MR Measurement
+The experiments were performed on a clinical 1.5-T whole body scanner (Magnetom Sonata, Siemens, MR Syngo 2002B). Within the programming environment, the hardcoded phase increment ␾ of a standard FLASH sequence has been made adjustible (resolution: 0.1°) in the user interface.
+Volunteer and patient examinations were conducted according to the institutional guidelines. Written informed consent was obtained before the measurement.
+RESULTS
+Comparison with Simulation
+Figure 1 shows the magnitude of the steady-state signal as a function of ␾. The same parameters (␣ ϭ 30°, ␦ ϭ TR/T1 ϭ TR/T2 ϭ 0.05) as in Refs. (8,15) are used. Within the
+
+FIG. 1. Steady-state signal as a function of ␾ calculated with the continued fraction expansion and with both simulation variants. Parameters (␣ ϭ 30°, TR/T1 ϭ TR/T2 ϭ 0.05) are the same as in Ref. (8,15). Within the desired accuracy, the continued fraction expansion agrees with the numerical simulation. The constant value represents ideal spoiling: Mxy '(1 Ϫ E1)sin␣/(1 Ϫ E1cos␣).
+
+desired accuracy, the continued fraction expansion agrees
+with the numerical simulation. The horizontal line repre-
+sents the idealized FLASH result. With approximately
+0.15 ms versus 50 ms per data point, the continued frac-
+tion expansion was considerably faster than the conﬁgu-
+ration-based simulation. The maxima, which occur at ␾ ϭ p ⅐ 360Њ/q, (p, q
+positive integers) have been explained as the result of an
+incomplete cancellation of transverse magnetization (2,4,16). Because of yq ϭ 1, we see that in these cases the continued fraction expansion [55] can be closed (⌳ϩ (q) ϭ ⌳ϩ (0)) and can thus be solved in a similar way like the case ␾ ϭ 0 (FISP) in Appendix C.
+Indeed, Fig. 2 demonstrates that for short enough TR, the
+values at the maxima essentially depend on T1/T2 (and not on TR) and thus show a FISP-like behavior. In contrast, the
+signal at the edges is essentially a function of TR/T1. For large q the peaks ﬁnally vanish as a consequence of
+the T2 relaxation. The E2 factors in Eq. [55] formally express the ﬁnite memory of the magnetization about its
+previous values. Figure 3 shows the initial decay for small ␾ (␣ ϭ 30°, ␦ ϭ
+TR/T1 ϭ TR/T2 ϭ 0.01), in comparison with the expansion for small ␦ and ␾, Eq. [35]. The agreement is good, even
+until RF spoiling becomes effective. According to Eq. [35], a maximum for nonzero ␾ is only observable for
+
+cos
+
+␣
+
+Ͼ
+
+3T1 3T1
+
+Ϫ ϩ
+
+T2 T2
+
+.
+
+[45]
+
+For more typical tissue values, with, say, T1/T2 Ϸ 10, ␣ should roughly be smaller than 20°.
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Steady State of RF Phase Cycling
+
+103
+
+creasing T2. By a suitable choice of ␾ it should therefore be possible to suppress tissues with a longer T2 in favor of those with a shorter T2. We will refer to such sequences as “partial FISP” (pFISP)
+in the following.
+
+Suppression of Tissues with Large T2
+Figure 4 shows that ﬂuids are effectively suppressed already for small values of ␾, due to their considerably larger T2 values.
+As an example Fig. 4 depicts an exam of the brain of a healthy volunteer with ␣ ϭ 50° and TR ϭ 5.19 ms for ␾ ϭ 0° (FISP, left) and 1.5° (pFISP, middle). The right image shows their subtraction, i.e., essentially the cerebrospinal ﬂuid (CSF).
+A measurement of T2 of CSF and white/gray matter gave approximately 1500 and 90 ms, corresponding to ␾c Ϸ 0.1 and 1.75°, respectively, cf. Eq. [46]. While the CSF signal changed in good approximation from FISP to FLASH (␾c ϽϽ 1.5°), the small increment had only little effect on the other tissues.
+
+FIG. 2. Steady-state signal as a function of ␾ for ␦ ϭ 0.01 (solid lines) and ␦ ϭ 0.005 (dashed lines), both calculated for T1/T2 ϭ 1 and T1/T2 ϭ 2. While the maxima (here at ␾ ϭ 120°) show FISP-like behavior since their value is mainly determined by the ratio T1/T2, the baseline essentially depends on TR/T1, as expected for FLASH. Like for ␾ ϭ 0, the width of the peaks increases with decreasing T2. As demonstrated in Ref. (4), the agreement with ideal spoiling (horizontal lines) is quite good for ␾ ϭ 117 and 123°.
+Partial Spoiling
+An interesting aspect of the initial decay from the maximum at ␾ ϭ 0 is its tissue dependence. According to Eq. [36], which is reasonable for most tissues and the high ﬂip angles typically used in steady-state imaging, the magnetization has its steepest descent for
+
+Uptake of Contrast Agents
+The uptake of a paramagnetic contrast agent with concentration C leads to a reduction of the native relaxation times T1 and T2:
+
+TiϪ1͑C͒
+
+ϭ
+
+T
+
+Ϫ1 i
+
+ϩ
+
+ri
+
+⅐
+
+C
+
+i ϭ 1, 2.
+
+[48]
+
+For most contrast agents and tissues, r2 is not much larger than r1. For example, the ratio r1/r2 Ϸ 4.5/5.5 is published for Gd-DTPA (8).
+
+ͱ2 TR
+
+␾c Ϸ ␰ ⅐ T2 .
+
+[46]
+
+Typical values for ͌2/␰ can be found in Table 1. The inverse proportionality to T2 has a simple physical
+interpretation: For a given, small ␾ it will take some TR intervals for RF spoiling to become effective. According to Eq. [46] we can estimate this typical duration as
+
+ͱ2 TR
+
+T␾ Ϸ ␰ ⅐ ␾ .
+
+[47]
+
+In case of a tissue with T2 ϽϽ T␾, the transverse magnetization is already gone, before RF spoiling sets in. These tissues essentially see a usual steady-state sequence (FISP).
+The situation is different for T2 ϾϾ T␾, when RF spoiling is effective during almost the whole lifetime of transverse magnetization. These tissues will show a FLASH contrast.
+In the transition regime, T2 Ϸ T␾, we can expect the signal to be some mixture between FISP and FLASH. The relative contribution of, say, FISP will increase with de-
+
+FIG. 3. Calculated/simulated steady-state signal (solid line) versus approximative expansion [35] (dashed line) for small ␾. Parameters were ␣ ϭ 30°, ␦ ϭ TR/T1 ϭ TR/T2 ϭ 0.01. For small ␦ Eq. [35] provides a good approximation including the onset of RF spoiling.
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+104
+
+Carl Ganter
+
+FIG. 4. While CSF appears bright in an ordinary FISP sequence (left image), it can be effectively suppressed by a small increment (␾ ϭ 1.5°, middle), leaving the other tissues essentially unchanged. Consequently, the difference (right) shows mainly the CSF signal. However, both sequences are rather motion sensitive, most prominently seen as intraventricular signal losses due to pulsatile ﬂow.
+
+The shortening of T1 leads to a signal enhancement in T1-weighted sequences. But also in FISP a signal enhancement can be observed, because the ratio T2/T1(C) increases due to the similar relaxivities. In combination with the inherently higher signal, the attainable contrast can be even larger than in FLASH, as we will see below.
+However, the major obstacle for the usage of FISP sequences for these purposes is their pronounced hyperintense signal for large T2.
+In pFISP these tissues can be effectively suppressed by a suitable choice of ␾. A value near ␾c of the uptaking native tissue would be a reasonable choice. Due to the T2 shortening during contrast agent uptake, the relative contribution from FISP will rise and thereby will induce a further contrast enhancement.
+Figure 5 shows a model calculation for realistic tissue parameters with short TR, as typically encountered in
+FIG. 5. As a function of the concentration C and the corresponding relaxation times T1,2(C), the contrast to the native tissue (T1/T2 ϭ 1000/100 ms) has been determined for both pFISP and FLASH and depicted as a ratio (pFISP/FLASH). TR has been set to 3 ms. While a single value (␣ ϭ 50°) for the ﬂip angle has been chosen for the pFISP sequence, the optimally achievable FLASH contrast has been determined for each T1(C).Curves a, b, and c show the result for ␾ ϭ ␾c, 0 and 2 ␾c, respectively. Taking the native tissue as a reference, ␾c has been set to 0.91°, cf. Eq. [46].
+
+abdominal imaging. After comparative calculations, ␣ was set to a ﬁxed value of 50° in (p)FISP. The result depends, however, not very sensitively on the ﬂip angle, and a value of 40° can also be used, especially for larger ␾ values. For marginal uptake of contrast agent, i.e., for large T1(C), FISP (␾ ϭ 0, curve b) and pFISP for ␾ ϭ ␾c (a) show very similar results and perform considerably better than FLASH. With increasing concentrations the advantage declines, but is still present. For comparison, typical T1 values for blood in contrast enhanced angiography are about 50 ms at the ﬁrst pass of the bolus (8). The uptake in tissues will be considerably smaller, and larger values for T1(C) can be expected. Curve c shows that the performance for lower T1(C) can be improved by increasing ␾ at the cost of losing contrast for small C.
+Unlike FISP (curve b), tissues with larger T2 values will appear hypointense in pFISP (curves a and c).
+Figure 6 shows enhancement of a subcortical lesion following Gd-DTPA (Magnevist®, Schering) administration in a 42-year-old female patient with multiple sclerosis. In addition to the standard protocol (2D spin echo sequence with magnetization transfer prepulse), 3D FLASH (␣ ϭ 15°) and 3D pFISP (␣ ϭ 50°, ␾ ϭ 3.4° Ϸ 2 ␾c) were measured with otherwise equal parameters (TR ϭ 5.4 ms). As expected, the lesion appears considerably brighter in pFISP.
+In Fig. 7, 20 min after administration of Gd-EOB-DTPA (Primovist®, Schering), the contrast agent has been taken up speciﬁcally by the normal liver cells (hepatocytes), while the metastasis in the right liver lobe remains essentially unenhanced. The time window of this state is known to be large enough to allow for several comparative breathhold examinations under constant physiologic conditions. Evidently, the enhancement of the liver is considerably lower in FLASH than in FISP and pFISP. However, the liver–lesion contrast is much better in FLASH than in FISP, as the lesion appears also very bright in the latter, obviously due to a high T2/T1 ratio. The situation is different in pFISP, when partial spoiling is used to increase the difference between enhancing and native tissue. With a suitable choice of ␾, the liver–lesion contrast is signiﬁcantly higher than in FLASH.
+DISCUSSION
+An exact analytical solution for the steady state of RFspoiled gradient echo sequences has been derived. The magnetization depends on a complex scalar ⌳, for which a continued fraction representation could be obtained.
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Steady State of RF Phase Cycling
+
+105
+
+FIG. 6. The uptake of Gd-DTPA in inﬂammatory lesions (arrows) can be considerably enhanced by the use of partial spoiling (right image, ␾ Ϸ 2␾c) in comparison with a T1-weighted FLASH sequence (left). Contrary to this, the signal in the posterior vein (sinus sagittalis) is much brighter in the FLASH sequence, which is again a consequence of the motion sensitivity of the FISP sequence. The diffuse signal enhancement near the ventricles in pFISP is probably caused by a combination of motion-induced signal enhancement and spatial misregistration of pulsatile liquor. Finally, the contrast between white and gray matter is decreased in (p)FISP.
+
+Apart from allowing for a very simple and rapid evaluation, the analytical approach sheds more light on the rather involved dependence on the phase difference increment ␾.
+For small TR, the initial signal decay at small ␾ due to the beginning effectivity of RF spoiling can be observed at small ␾ values. From the continued fraction expansion approximate expressions for ⌳ were derived, which agree well with the exact solution in this regime. It has been demonstrated that the maximum negative slope occurs at some tissue-dependent ␾c, which is essentially proportional to 1/T2. With ␾ chosen of the order of ␾c, the signal (pFISP) can be regarded as a mixture between FISP and FLASH. As the relative contribution of FISP is higher for small T2, this effect can be used to increase tissue contrasts on the basis of T2 differences.
+It has been shown, theoretically and for a practical example, that the detection of the uptake of paramagnetic contrast agents in inﬂammatory lesions can be considerably improved with pFISP. Especially for 3D sequences with short TR, the achievable contrasts are signiﬁcantly
+
+higher than those attainable with comparable T1-weighted FLASH. The effect depends only weakly on the amount of accumulated contrast medium; in particular, it is already present for a marginal uptake. Unlike FISP, the signal of tissues with long T2 values appears hypointense, which is a necessary prerequisite for this kind of application.
+Other than in the brain, where spin echo sequences are typically the method of choice, pFISP could be advantageous, when fast imaging techniques are mandatory, e.g., in the abdomen. The attainable raise in signal and contrast, compared to FLASH, could be used to improve spatial and/or temporal resolution.
+A beneﬁt can be expected for (dynamical) contrast uptake examinations, e.g., of the liver. Because of its intrinsic high signal pFISP could also be useful for virtual MR colonoscopy, especially when performed in dark lumen technique. Different from FISP, the water is effectively suppressed by use of a small ␾ already.
+Although similar calculations as presented in Fig. 5 would also apply for the contrast enhancement achievable in MR angiography, pFISP is not useful for this applica-
+
+FIG. 7. Transversal 3D breathhold examination with spectral fat saturation of a 73year-old male patient with a metastasis from a malignant melanoma in the right liver lobe. Twenty minutes after administration, the contrast agent (Gd-EOB-DTPA) is speciﬁcally taken up by the hepatocytes, while the lesion remains almost unenhanced. The four images, which are displayed with equal center/window values, differ in the following parameters: Upper left: FLASH (␣ ϭ 12°); upper right: FISP (␣ ϭ 50°, ␾ ϭ 0°); lower left: pFISP (␣ ϭ 50°, ␾ ϭ 3°); lower right: pFISP (␣ ϭ 50°, ␾ ϭ 4.5°) All other settings were identical, and values for TR/TE were 4.39/ 1.62 ms.
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+106
+
+Carl Ganter
+
+tion. In fact, blood ﬂow destroys the FISP signal, and, as a consequence of the higher ﬂip angle ␣, the signal is even lower than in FLASH.
+
+CONCLUSIONS
+In summary, an analytical solution of the steady state of RF-spoiled gradient echo sequences has been derived. Apart from considerably improving the computation speed in comparison with simulation, it enables a deeper understanding of these sequences. It was shown that for small TR and ␾ the width of the transition from FISP to FLASH is in good approximation inversely proportional to T2. A new sequence (pFISP) has been proposed, which uses this effect for increasing tissue contrasts. For abdominal imaging, particularly in combination with contrast agents, pFISP might be a superior alternative to FLASH.
+
+APPENDIX A Matrix Representations
+Explicit expressions for the matrices, which enter Eq. [3], are given below.
+
+ͫ ͬ E2 0 0
+E :ϭ 0 E1 0 , 0 0 E2
+
+with Ei :ϭ exp͑ϪTR/Ti͒. [49]
+
+The unitary rotation matrices read
+
+ͫ ͱ 1 Ϫ ⌳ϩ͑k͒(1 Ϫ cos ␣)/2
+
+⌫ϩ͑k͒ Ϫ ⌳ϩ͑k͒ ϭ
+
+Ϫi⌳ϩ͑k͒sin ␣/ 2
+
+Ϫ⌳ϩ͑k͒(1 ϩ cos ␣)/2
+
+ykiE1sin ␣/ ͱ2
+1 Ϫ ykE1cos ␣
+
+ͬ0
+0
+
+ϪykiE1sin ␣/ ͱ2 1
+
+[53]
+
+⌫
+
+͑k͒ Ϫ
+
+Ϫ
+
+⌳Ϫ͑k͒
+
+ͫ1
+ϭ0 0
+
+ͱ yϪkiE1sin ␣/ 2
+1 Ϫ yϪkE1cos ␣
+ͱ ϪyϪkiE1sin ␣/ 2
+
+Ϫ⌳Ϫ͑k͒(1 ϩ cos ␣)/2
+ͱ i⌳Ϫ͑k͒sin ␣/ 2
+
+ͬ.
+
+1 Ϫ ⌳Ϫ͑k͒(1 Ϫ cos ␣)/2
+
+[54]
+
+After inverting [53], Eq. [21] indeed yields three identical equations for ⌳ϩ (k):
+
+⌳
+
+͑k͒ ϩ
+
+ϭ
+
+␥ kϩ1 ␣ kϩ1
+
+ϩ Ϫ
+
+␤ kϩ1⌳ ϩ͑kϩ1͒ ␥ kϩ1⌳ ϩ͑kϩ1͒
+
+⅐
+
+E 22y 2kϩ1
+
+ϭ
+
+Ϫ
+
+␤kϩ1 ␥kϩ1
+
+⅐
+
+E22y2kϩ1
+
+ͫ ͬ ͫ ͬ ϩ
+
+␥kϩ1 ␣kϩ1
+
+ϩ
+
+␤kϩ1 ␥kϩ1
+
+⅐ E22y2kϩ1 ⅐
+
+1
+
+Ϫ
+
+␥kϩ1 ␣kϩ1
+
+⅐
+
+⌳͑kϩ1͒ ϩ
+
+Ϫ1
+
+[55]
+
+with ␣k, ␤k, and ␥k deﬁned in Eq. [30]. In the same way, we obtain from Eq. [54] and yϪk ϭ [yk]*,
+
+⌳
+
+͑k͒ Ϫ
+
+ϭ
+
+͓⌳ϩ͑k͔͒*,
+
+[56]
+
+as we might already have guessed. If we ﬁnally set ⌳: ϭ ⌳ϩ (0), the continued fraction expan-
+sion [27] directly follows from iterating Eq. [55].
+
+ͫ exp(i␸) 0
+
+Rz͑␸͒ :ϭ
+
+01
+
+ͬ0
+0
+
+0 0 exp(Ϫi␸)
+
+APPENDIX C [50] Derivation of the Linear Expansion
+We ﬁrst assume ␾ ϭ 0 (FISP) and note that the coefﬁcients
+
+in Eq. [55] no longer depend on k. We therefore obtain a
+
+and
+
+closed equation for ⌳:
+
+ͫ ͬ (1 ϩ cos ␣)/2 Ϫi sin ␣/ͱ2 (1 Ϫ cos ␣)/2
+
+Rx͑␣͒ ϭ Ϫi sin ␣/ ͱ2
+
+cos ␣
+
+i sin ␣/ͱ2 .
+
+(1 Ϫ cos ␣)/2 i sin ␣/ͱ2 (1 ϩ cos ␣)/2
+
+ͫ ͬ ͫ ͬ ⌳
+
+ϭ
+
+Ϫ
+
+␤0 ␥0
+
+⅐
+
+E22
+
+ϩ
+
+␥0 ␣0
+
+ϩ
+
+␤0 ␥0
+
+⅐ E22 ⅐
+
+1
+
+Ϫ
+
+␥0 ␣0
+
+⅐
+
+⌳
+
+Ϫ1
+.
+
+[57]
+
+[51] The quadratic equation has the solution
+
+APPENDIX B Derivation of the Continued Fraction Expansion
+
+At ﬁrst sight it seems to be a very complicated task to solve the recursion relation [21]. But since the matrices B(Ϯ1)
+have only one nonzero column, the matrix ⌳Ϯ (k) depends only on a complex scalar ⌳Ϯ (k):
+
+͸ ͓⌳Ϯ͑k͔͒ij ϭ
+
+yϮ͑2kϩ1͒Biϯ1͓⌫Ϯ͑kϩ1͒ Ϫ ⌳Ϯ͑kϩ1͔͒ϯϪ11pBpϮ1␦Ϯ1j
+
+p
+
+ϭ: Biϯ1 ⅐ ␦Ϯ1j ⅐ ⌳Ϯ͑k͒/E2. [52]
+
+ͱ 1
+
+⌳ ϭ 2␥0 ͓␣0 Ϫ E22␤0 Ϯ
+
+͑
+
+␣
+
+2 0
+
+Ϫ
+
+E22␤02͒͑1
+
+Ϫ
+
+E22͔͒
+
+1 ϭ: 2␥0 ͓␣0 Ϫ E22␤0 Ϯ r͔. [58]
+
+Only the minus sign is physical, since ⌳ must vanish for E2 3 0. Inserting [58] into [24] indeed yields the well-known
+result for FISP:
+
+Mx
+
+ϩ
+
+iMy
+
+ϭ
+
+Ϫi͑1
+
+Ϫ
+
+E1͒
+
+⅐
+
+sin
+
+␣
+
+⅐
+
+␤0͑1 Ϫ E22͒ ϩ r͑␣0 ϩ ␤0͒
+
+r
+
+.
+
+[59]
+
+Explicitly, we obtain the following matrices:
+
+To develop ⌳ up to linear order in ␦ and ␾, we make use of
+
+15222594, 2006, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.20736, Wiley Online Library on [08/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Steady State of RF Phase Cycling
+
+107
+
+␥k ␣k
+
+Ϸ
+
+1
+
+Ϫ
+
+␩͑␦
+
+Ϫ
+
+ik␾͒
+
+Ϸ
+
+Ϫ
+
+␤k ␥k
+
+and
+
+␥k ␣k
+
+ϩ
+
+␤k ␥k
+
+Ϸ
+
+␩2͑␦
+
+Ϫ
+
+ik␾͒2,
+
+[60]
+
+where ␩ is deﬁned by Eq. [33]. We can now expand Eq. [58] in linear order and obtain
+
+⌳ Ϸ 1 ϩ ␴␦
+
+[61]
+
+with ␴ deﬁned as in Eq. [32]. To determine the lowest order correction in terms of ␾,
+we now set ␦ ϭ 0 and insert the ansatz
+
+⌳
+
+͑k͒ ϩ
+
+Ϸ
+
+1
+
+ϩ
+
+i͑␰k
+
+Ϫ
+
+␩k͒␾
+
+[62]
+
+and Eq. [60] into the recursion relation [55]. We indeed ﬁnd that ␰k is deﬁned by the continued fraction expansion [34], which completes the proof of Eq. [31].
+
+ACKNOWLEDGMENTS
+The author thanks Dr. Marcus Settles for his critical reading of the manuscript and helpful comments. The partial spoiling method has been ﬁled at the German Patent and Trade Mark Ofﬁce.
+
+REFERENCES
+1. Zur Y, Bendel P. In: Proceedings of the 6th Annual Meeting of the Society of Magnetic Resonance in Medicine, New York, 1987. p 440.
+2. Crawley AP, Wood ML, Henkelmann RM. Elimination of transversal coherences in FLASH MRI. Magn Reson Med 1988;8:248 –260.
+3. Wood ML, Runge VM. Artifacts due to residual magnetization in threedimensional magnetic resonance imaging. Med Phys 1988;15:825– 831.
+4. Zur Y, Wood ML, Neuringer J. Spoiling of transverse magnetization in steady-state sequences. Magn Reson Med 1991;21:251–263.
+5. Woessner DE. Effects of diffusion in nuclear magnetic resonance split echo experiments. J Chem Phys 1961;34:2057–2061.
+6. Kaiser R, Bartholdy E, Ernst RR. Diffusion and ﬁeld gradient effects in NMR Fourier spectroscopy. J Chem Phys 1974;60:2966 –2979.
+7. Hennig J. Echoes: how to generate, recognise, use or avoid them in MR imaging sequences. Concepts Magn Reson 1991;3:125–143.
+8. Vlaardingerbroek MT, den Boer JA. Magnetic Resonance Imaging, 3rd ed. Berlin: Springer-Verlag; 2002. p 423– 467.
+9. Wehrli FW. Fast scan magnetic resonance. New York: Raven Press; 1991.
+10. Epstein FH, Mugler JP, Brookeman JR. Spoiling of transverse magnetization in gradient-echo (GRE) imaging during the approach to steady state. Magn Reson Med 1996;35:237–245.
+11. Busse RF, Riederer SJ. Steady-state preparation for spoiled gradient echo imaging. Magn Reson Med 2001;45:653– 661.
+12. Ganter C. Off-resonance effects in the transient response of SSFP sequences. Magn Reson Med 2004;54:368 –375.
+13. Press WH, Flannery BP, Teukolsky SA, Vetterling WT. Numerical Recipes in C. Cambridge, NY: Cambridge University Press; 1992.
+14. Abramowitz M, Stegun IA. Pocketbook of mathematical functions. Thun: Verlag Harri Deutsch; 1984.
+15. Duyn JH. Steady state effects in fast gradient echo magnetic resonance imaging. Magn Reson Med 1997;37:559 –568.
+16. Sekihara K. Steady-state magnetizations in rapid NMR imaging using small ﬂip angles and short repetition times. IEEE Trans Med Imaging 1987;6:157–164.
+

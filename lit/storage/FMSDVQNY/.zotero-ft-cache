@@ -1,0 +1,127 @@
+Skip to Main Content
+
+    IEEE.org
+    IEEE Xplore
+    IEEE SA
+    IEEE Spectrum
+    More Sites 
+
+Subscribe
+
+        Donate 
+        Cart
+        Create Account
+        Personal Sign In 
+
+IEEE Xplore logo - Link to home
+
+    Browse
+    My Settings
+    Help
+
+Institutional Sign In
+IEEE logo - Link to IEEE main site homepage
+ADVANCED SEARCH
+Conferences > 2015 IEEE International Confe...
+Unsupervised Cross-Modal Synthesis of Subject-Specific Scans
+Publisher: IEEE
+Cite This
+PDF
+Raviteja Vemulapalli ; Hien Van Nguyen ; Shaohua Kevin Zhou
+All Authors
+40
+Cites in
+Papers
+5
+Cites in
+Patents
+344
+Full
+Text Views
+
+    Alerts
+
+Abstract
+Document Sections
+
+    1.
+    Introduction
+    2.
+    Relevant Work
+    3.
+    Proposed Synthesis Approach
+    4.
+    Experimental Evaluation
+    5.
+    Conclusions and Future Work
+
+Authors
+Figures
+References
+Citations
+Keywords
+Metrics
+Footnotes
+Abstract:
+Recently, cross-modal synthesis of subject-specific scans has been receiving significant attention from the medical imaging community. Though various synthesis approaches have been introduced in the recent past, most of them are either tailored to a specific application or proposed for the supervised setting, i.e., they assume the availability of training data from the same set of subjects in both source and target modalities. But, collecting multiple scans from each subject is undesirable. Hence, to address this issue, we propose a general unsupervised cross-modal medical image synthesis approach that works without paired training data. Given a source modality image of a subject, we first generate multiple target modality candidate values for each voxel independently using cross-modal nearest neighbor search. Then, we select the best candidate values jointly for all the voxels by simultaneously maximizing a global mutual information cost function and a local spatial consistency cost function. Finally, we use coupled sparse representation for further refinement of synthesized images. Our experiments on generating T1-MRI brain scans from T2-MRI and vice versa demonstrate that the synthesis capability of the proposed unsupervised approach is comparable to various state-of-the-art supervised approaches in the literature.
+Published in: 2015 IEEE International Conference on Computer Vision (ICCV)
+Date of Conference: 07-13 December 2015
+Date Added to IEEE Xplore : 18 February 2016
+ISBN Information:
+Electronic ISSN: 2380-7504
+DOI: 10.1109/ICCV.2015.79
+Publisher: IEEE
+Conference Location: Santiago, Chile
+1. Introduction
+
+Currently, a multitude of imaging modalities such as Computed Tomography, Tl-weighted and T2-weighted Magnetic Resonance Imaging (MRI), X-ray, Ultrasound, Diffusion MRI, etc., are being used for medical imaging research. Each of these modalities captures different characteristics of the underlying anatomy, and the relationship between any two modalities is highly nonlinear.
+Sign in to Continue Reading
+Authors
+Figures
+References
+Citations
+Keywords
+Metrics
+Footnotes
+More Like This
+Adversarially Trained Convolutional Neural Networks for Semantic Segmentation of Ischaemic Stroke Lesion using Multisequence Magnetic Resonance Imaging
+
+2019 41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)
+
+Published: 2019
+Artificially Generated Training Datasets for Supervised Machine Learning Techniques in Magnetic Resonance Imaging: An Example in Myocardial Segmentation
+
+2019 Computing in Cardiology (CinC)
+
+Published: 2019
+Show More
+References
+References is not available for this document.
+IEEE Personal Account
+
+    Change username/password 
+
+Purchase Details
+
+    Payment Options
+    View Purchased Documents 
+
+Profile Information
+
+    Communications Preferences
+    Profession and Education
+    Technical interests 
+
+Need Help?
+
+    US & Canada: +1 800 678 4333
+    Worldwide: +1 732 981 0060
+    Contact & Support 
+
+Follow
+
+About IEEE Xplore | Contact Us | Help | Accessibility | Terms of Use | Nondiscrimination Policy | IEEE Ethics Reporting | Sitemap | IEEE Privacy Policy
+
+A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+
+© Copyright 2024 IEEE - All rights reserved.

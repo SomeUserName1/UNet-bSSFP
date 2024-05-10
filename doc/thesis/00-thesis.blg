@@ -1,15 +1,22 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is '00-thesis.blg'
-[57] biber:340> INFO - === Do Mai  9, 2024, 23:18:22
-[68] Biber.pm:419> INFO - Reading '00-thesis.bcf'
-[120] Biber.pm:976> INFO - Using all citekeys in bib section 0
-[132] Biber.pm:4419> INFO - Processing section 0
-[139] Biber.pm:4610> INFO - Looking for bibtex file 'resources.bib' for section 0
-[148] bibtex.pm:1713> INFO - LaTeX decoding ...
-[247] bibtex.pm:1519> INFO - Found BibTeX data source 'resources.bib'
-[786] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[786] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[786] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[786] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[844] bbl.pm:660> INFO - Writing '00-thesis.bbl' with encoding 'UTF-8'
-[874] bbl.pm:763> INFO - Output to 00-thesis.bbl
+[70] biber:340> INFO - === Fr Mai 10, 2024, 22:46:57
+[83] Biber.pm:419> INFO - Reading '00-thesis.bcf'
+[149] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[164] Biber.pm:4419> INFO - Processing section 0
+[172] Biber.pm:4610> INFO - Looking for bibtex file 'resources.bib' for section 0
+[185] bibtex.pm:1713> INFO - LaTeX decoding ...
+[335] bibtex.pm:1519> INFO - Found BibTeX data source 'resources.bib'
+[1150] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1150] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1150] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[1150] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[1232] bbl.pm:660> INFO - Writing '00-thesis.bbl' with encoding 'UTF-8'
+[1271] bbl.pm:763> INFO - Output to 00-thesis.bbl
+[1271] Biber.pm:131> WARN - Duplicate entry key: 'ruder_overview_2017' in file 'resources.bib', skipping ...
+[1272] Biber.pm:131> WARN - Duplicate entry key: 'he_deep_2016' in file 'resources.bib', skipping ...
+[1272] Biber.pm:131> WARN - Duplicate entry key: 'loshchilov_decoupled_2019' in file 'resources.bib', skipping ...
+[1272] Biber.pm:131> WARN - Duplicate entry key: 'goodfellow_generative_2020' in file 'resources.bib', skipping ...
+[1272] Biber.pm:131> WARN - Duplicate entry key: 'yang_mri_2020' in file 'resources.bib', skipping ...
+[1272] Biber.pm:131> WARN - ISBN '978-3-642-38708-1 978-3-642-38709-8' in entry 'hutchison_robust_2013' is invalid - run biber with '--validate_datamodel' for details.
+[1272] Biber.pm:133> INFO - WARNINGS: 6

@@ -1,0 +1,539 @@
+Robust Multimodal Dictionary Learning
+Tian Cao1, Vladimir Jojic1, Shannon Modla3, Debbie Powell3, Kirk Czymmek4, and Marc Niethammer1,2
+1 University of North Carolina at Chapel Hill, NC 2 Biomedical Research Imaging Center, UNC Chapel Hill, NC
+3 University of Delaware, DE 4 Carl Zeiss Microscopy, LLC
+tiancao@cs.unc.edu
+Abstract. We propose a robust multimodal dictionary learning method for multimodal images. Joint dictionary learning for both modalities may be impaired by lack of correspondence between image modalities in training data, for example due to areas of low quality in one of the modalities. Dictionaries learned with such non-corresponding data will induce uncertainty about image representation. In this paper, we propose a probabilistic model that accounts for image areas that are poorly corresponding between the image modalities. We cast the problem of learning a dictionary in presence of problematic image patches as a likelihood maximization problem and solve it with a variant of the EM algorithm. Our algorithm iterates identiﬁcation of poorly corresponding patches and reﬁnements of the dictionary. We tested our method on synthetic and real data. We show improvements in image prediction quality and alignment accuracy when using the method for multimodal image registration.
+1 Introduction
+Sparse representation model represents a signal with sparse combinations of items in a dictionary and shows its power in numerous low-level image processing applications such as denoising and inpainting [4] as well as discriminative tasks such as face and object recognition [10]. Dictionary learning plays a key role in applications using sparse models. Hence, many dictionary learning methods have been introduced [1,11,6,7]. In [1], a dictionary is learned for image denoising, while in [6], supervised learning is performed for classiﬁcation and recognition tasks. In [7], a multimodal dictionary is learned from audio-visual data. Mutltimodal dictionaries can be applied to super-resolution [11], multimodal image registration [3] and tissue synthesis [9].
+However, multimodal dictionary learning is challenging: it may fail or provide inferior dictionary quality without suﬃcient correspondences between modalities in the training data. This problem has so far not been addressed in the literature. For example, a low quality image deteriorated by noise in one modality can hardly match a high quality image in another modality. Furthermore, training images are pre-registered. Resulting registration error may harm image
+K. Mori et al. (Eds.): MICCAI 2013, Part I, LNCS 8149, pp. 259–266, 2013. c Springer-Verlag Berlin Heidelberg 2013
+
+260 T. Cao et al.
+
+correspondence and hence dictionary learning. Such noise- and correspondencecorrupted dictionaries will consequentially produce inferior results for image reconstruction or prediction. Fig. 1 shows an example of multimodal dictionary learning for both perfect and imperfect corresponding image pairs.
+
+Two modalities with perfect correspondence
+
+Modality 1
+
+Modality 2
+
+Learned Dictionary Dictionary Word 1 Dictionary Word 2 Dictionary Word 3
+
+Two modalities with imperfect correspondence
+
+Modality 1
+
+Modality 2
+
+Learned Dictionary Dictionary Word 1 Dictionary Word 2 Dictionary Word 3 Dictionary Word 4 Dictionary Word 5
+
+... ... ... ...
+
+Fig. 1. An illustration of perfect (left) and imperfect (right) correspondence between multimodal images and their learned dictionaries. The imperfect correspondence (gray part in right images) could result in learning an imperfect dictionary (gray dictionary words) which is not desirable. Our goal is to robustly recover a compact dictionary of corresponding elements.
+
+In this paper, instead of directly learning a multimodal dictionary from training data [3], we distinguish between image regions with and without good correspondence in the learning process. Our main contributions are as follows
+• We propose a probabilistic model for dictionary learning which discriminates between corresponding and non-corresponding patches. This model is generally applicable to multimodal dictionary learning.
+• We provide a method robust to noise and mis-correspondences. We demonstrate this using real and synthetic data and obtain “cleaner” dictionaries.
+• We demonstrate consistency of performance for a wide range of parameter settings. This indicates the practicality of our approach.
+The paper is organized as follows: Sec. 2 describes the multimodal dictionary learning method and its probabilistic model. Sec. 3 provides an interpretation of the proposed model. We apply the model to synthetic and real data in Sec 4. The paper concludes with a summary of results and an outlook on future work.
+
+2 Dictionary Learning Method
+Let I1 and I2 be two diﬀerent training images acquired from diﬀerent modalities for the same area or object. Assume the two images have been registered already.
+
+2.1 Sparse Multimodal Dictionary Learning To learn a multimodal dictionary D˜ using a sparse representation, one solves
+
+N
+{Dˆ˜ , αˆ} = arg min
+
+1
+
+D˜ ,α i=1 2
+
+x˜i − D˜ αi
+
+2 2
+
++
+
+λ
+
+αi
+
+1,
+
+(1)
+
+Robust Multimodal Dictionary Learning 261
+
+where . 1 is the 1 norm of a vector and the 1 regularization induces sparsity in α, N is the number of training samples, D˜ = [D1, D2]T is the corresponding
+multimodal dictionary (dictionaries are stacked for the two modalities) and x˜i = Ri[I1, I2]T (Ri is an operator to select the ith image patch). Note that there is
+only one set of coeﬃcients αi per patch, which relates the two dictionaries.
+
+2.2 Conﬁdence Measure for Image Patch
+
+The conﬁdence can be deﬁned as a conditional probability p(h|xi). Given image patches {xi}Ni=1 we want to reconstruct them with our learned multimodal dictionary. Here, h is the hypothesis of whether the reconstruction of xi uses
+some ’noise’ dictionary items (i.e. non-corresponding dictionary items); h = 1
+indicates that the reconstruction xi uses ’noise’ dictionary elements. Applying Bayes Rule [8,2], p(h = 1|xi) can be represented as,
+
+p(h
+
+=
+
+1|xi)
+
+= p(xi|h
+
+=
+
+p(xi|h 1)p(h =
+
+= 1)
+
+1)p(h = + p(xi|h
+
+1) =
+
+0)p(h
+
+=
+
+. 0)
+
+(2)
+
+Assuming the independence of each image patch xi and that the pixels in each patch follow a Gaussian distribution, for p(xi|h) we assume
+
+p(xi|h = 1, θ1) = N (xi; μ1, σ12), p(xi|h = 0, θ0; D, αi) = N (xi − Dαi; 0, σ02). (3)
+
+The parameters we need to estimate are θ1 = {μ1, σ1} and θ0 = σ0, as well as the prior probability p(h), where p(h = 1) = π and p(h = 0) = 1 − π.
+Based on the assumption of conditional independence of the random variable
+xi given h and θ [8], we can use either maximum likelihood (ML) or maximum a posteriori (MAP) estimation for these parameters [8].
+
+2.3 Robust Multimodal Dictionary Learning Based on EM
+For robust multimodal dictionary learning, we want to estimate θ = {D˜ , α} considering the latent variable h. Based on the probabilistic framework of dictionary learning [1], we have p(x˜|θ) = h p(x˜, h|θ). The ML estimation for θ is as follows
+
+θˆ = arg max p(x˜|θ) = arg max log p(x˜, h|θ) = arg max (θ).
+
+(4)
+
+θ
+
+θ
+
+θ
+
+h
+
+Instead of directly maximizing (θ), we maximize the lower bound Q(θ) =
+h p(h|x˜, θ) log p(x˜, h|θ) [8]. p(h|x˜, θ) is the conﬁdence in section 2.2. We can apply the following EM algorithm to maximize Q(θ),
+
+E-step : Q(θ|θ(t)) = E[log p(x˜, h|θ(t))]; M-step : θ(t+1) = arg max E[log p(x˜, h|θ)].
+θ
+
+In the E-step we compute p(hi|x˜, θ), hi ∈ {1, 0}, which provides a conﬁdence level for each training patch given D˜ and α. In the M-step p(hi|x˜, θ) is a weight for each image patch for updating θ. We use a variant of the EM algorithm
+
+262 T. Cao et al.
+
+for multimodal dictionary learning. We replace p(hi|x˜, θ) by δp(p(hi|x˜, θ)). Here, δp(p) is an indicator function and δp(p) = 1, if p ≥ 0.5, δp(p) = 0, otherwise. Thus in each iteration we rule out the image patches which have high conﬁdence
+that they are noise patches. We then reﬁne the multimodal dictionary using the
+corresponding training samples. The detailed algorithm is shown in Alg. 1.
+
+Algorithm 1. EM algorithm for Multimodal Dictionary Learning
+Input: Training multimodal image patches: {x˜i}, i ∈ 1, ..., N ; Initialize multimodal dictionary D˜ = D˜0, D˜0 is trained on all of the x˜i;
+Output: Reﬁned dictionary Dˆ˜ 1: (E-step) compute δp(p(h = 0|x˜i, θ)), where
+
+δp(p) =
+
+1, if p ≥ 0.5, 0, otherwise.
+
+(5)
+
+p(h
+
+=
+
+0|x˜i, θ)
+
+=
+
+p(x˜i|h
+
+=
+
+p(x˜i|h = 0, θ)p(h = 0) 1, θ)p(h = 1) + p(x˜i|h = 0, θ)p(h
+
+=
+
+. 0)
+
+(6)
+
+update θ1 and θ0 in (3) based on δp(p(h = 0|x˜i, θ)). 2: (M-step) update D˜ and α as follows1,
+
+D˜ (t)
+
+=
+
+arg
+
+min D˜
+
+N i=1
+
+δp(p(h
+
+=
+
+0|x˜i,
+
+θ))( 1 2
+
+x˜i − D˜ αi
+
+2 2
+
++
+
+λ
+
+αi
+
+1),
+
+s.t.
+
+D˜ j
+
+2 2
+
+≤
+
+1,
+
+j = 1, 2, ..., k.
+
+(7)
+
+α(it)
+
+=
+
+arg min δp(p(h αi
+
+=
+
+0|x˜i
+
+,
+
+θ))(
+
+1 2
+
+x˜i − D˜ (t)αi
+
+2 2
+
++
+
+λ
+
+αi
+
+1).
+
+3: Iterate E and M steps until convergence reached.
+
+3 Interpreting the Model
+
+If there is no prior information about p(h), we assume p(h = 1) = p(h = 0) = 0.5. If p(h = 0|x˜i, θ) > 0.5, based on (3), (5), (6), we have
+
+x˜i − D˜ α
+
+2 2
+
+≤
+
+σ02 /σ12
+
+x˜i − μi1
+
+2 2
+
+=
+
+c
+
+x˜i − μi1
+
+22.
+
+(8)
+
+Here
+
+x˜i − D˜ α
+
+2 2
+
+is
+
+the
+
+sum
+
+of
+
+squares
+
+of
+
+reconstruction
+
+residuals
+
+of
+
+image
+
+patch
+
+x˜i, and
+
+x˜i − μi1
+
+2 2
+
+is the sum of squares of centered intensity values (with mean
+
+μi1 removed) in x˜i.
+
+Thus equation (8) deﬁnes the criterion for corresponding multimodal image patches as those patches which can be explained by the multimodal dictionary D˜
+
+better than the patch’s mean intensity, i.e. the sum of squared residuals should
+
+be smaller than a threshold T , and T is dependent on the variance of x˜i, σ12, and the variance of the reconstruction residual, σ02.
+
+1 We use SPAMS (http://spams-devel.gforge.inria.fr) for dictionary learning and sparse coding[5].
+
+Robust Multimodal Dictionary Learning 263
+Intuitively, a small σ1 favors more corresponding image patches and a large σ1 considers more image patches as non-corresponding.
+
+4 Experimental Validation
+
+We consider the image prediction problem (for a known dictionary D˜ ) solving
+
+N
+
+{αˆi}
+
+=
+
+arg
+
+min
+αi
+
+x˜i − D˜ αi
+
+2 2
+
++
+
+λ
+
+αi
+
+1.
+
+(9)
+
+i
+
+Unlike for eq. 1, where x˜i = Ri[I1, I2]T , here x˜i = Ri[I1, u2]T where u2 is the prediction of I2. Since I2 is not measured, we can eﬀectively set Riu2 = D2αi or equivalently remove it from the optimization. Given {αˆi} we can then compute the predicted image. Most applications using multimodal dictionary are
+concerned about the prediction residuals, such as super-resolution and multi-
+modal registration [11,3]. We therefore ﬁrst validate our algorithm based on the
+resulting sum of squares of prediction residuals (SSR).
+We test our proposed multimodal dictionary learning method on synthetic
+and real data. For the synthetic data, we generate non-corresponding multimodal
+image patches using the following generative model. We choose p(h = 1) which deﬁnes the noise level in the training set, i.e. the percentage of non-corresponding
+multimodal image patches in the training set. For each non-corresponding patch x1i , we generate μi1 as the mean of all training patches and add Gaussian noise μ. We generate a noise patch by adding Gaussian noise x1i to the mean μi1.
+
+4.1 Synthetic Experiment on Textures
+We create multimodal textures by smoothing a given texture with a Gaussian kernel and inverting the intensity of the smoothed image. Fig. 2 shows an example of our generated multimodal textures. We generate both training and testing multimodal textures from Fig. 2, i.e. use half of the multimodal textures for training (add noise as non-correspondence regions) and the other half of the multimodal textures for testing. We extract 10 × 10 image patches in both training images, and add ’noise’ with non-corresponding image patches to replace corresponding patches. The σ for the Gaussian noise is set to 0.2.
+We test how σ1 inﬂuences our dictionary learning method at a ﬁxed noise level p(h = 1) = 0.5. Fig. 2 shows the result. In practice, we can either learn σ1 with an EM algorithm or manually choose it. When σ1 is close to 0.2 (the σ for the noise), to be speciﬁc, σ1 ∈ (0.15, 0.4), we get consistently lower SSRs. This indicates that our algorithm is robust for a wide range of σ1 values and noise. For σ1 < 0.15, all the patches are considered as corresponding patches while for σ1 > 0.4, all the patches are classiﬁed as non-corresponding patches. Our method has the same performance as the standard method in [3] in these two cases. The learned multimodal dictionaries are illustrated in Fig. 2 showing that our algorithm successfully removes non-corresponding patches.
+
+264 T. Cao et al.
+
+8 x 104
+
+7
+
+Proposed Method
+
+Standard Method
+
+6
+
+True σ1
+
+Learned σ1
+
+5
+
+SSR
+
+4
+
+(a) training textures and learned D˜
+
+3
+
+0
+
+0.2
+
+0.4 σ1 0.6
+
+0.8
+
+1
+
+(b) SSR vs σ1
+
+Fig. 2. D˜ is learned from training images with Gaussian noise (left). Standard method cannot distinguish corresponding patches and non-corresponding patches while our proposed method can remove non-corresponding patches in the dictionary learning process. The curve (right) shows the robustness with respect to σ1. The vertical green dashed line indicates the learned σ1.
+
+6 x 105
+
+5
+
+SSR
+
+4
+
+Proposed Method
+
+Standard Method
+
+3
+
+True σ1
+
+Learned σ1
+
+2
+
+(a) training images and learned D˜
+
+1
+
+0
+
+0.2
+
+0.4 σ1 0.6
+
+0.8
+
+1
+
+(b) SSR vs σ1
+
+Fig. 3. D˜ is learned from training SEM/confocal images with Gaussian noise (left). The curve (right) shows the robustness with respect to σ1. The vertical green dashed line indicates the learned σ1.
+
+4.2 Synthetic Experiment on Multimodal Microscope Images
+
+We also test the proposed algorithm on correlative microscope images. We have 8 pairs of Scanning Electron Microscopy (SEM) and confocal images. Image pairs have been aligned with ﬁducials. Fig. 3 (a) illustrates an example of SEM/confocal images. We add non-corresponding patches using the same method as in sec. 4.1. Fig 3 (a) shows the results. The dictionary learned with our method shows better structure and less noise compared with the standard dictionary learning method. Fig. 3 (b) shows the interaction between σ1 and SSR with ﬁxed p(h = 1) = 0.5. For σ1 < 0.16, all the image patches are categorized as corresponding patches while for σ1 > 0.6, all the patches are classiﬁed as noncorresponding patches. Our method has the same performance as the standard method under these conditions. We observe a large range of σ1 values resulting in improved reconstruction results indicating robustness.
+
+Robust Multimodal Dictionary Learning 265
+
+4.3 Multimodal Registration on Correlative Microscopy
+
+We use the proposed multimodal
+
+dictionary learning algorithm for mul-
+
+timodal registration [3]. The mul-
+
+timodal image registration problem
+
+simpliﬁes to a monomodal one us-
+
+ing the multimodal dictionary in
+
+a sparse representation framework.
+
+The test data is Transmission Elec-
+
+tron Microscopy (TEM) and confocal microscopy. We have six pairs of
+
+(a) TEM
+
+(b) Confocal
+
+TEM/confocal images. We train the multimodal dictionary using leave-
+
+Fig. 4. TEM/Confocal images
+
+one-out cross-validation. Fig. 4 shows an example of our test data. We ﬁrst
+
+registered the training images with manually chosen landmarks (no ground truth
+
+available), then learned the multimodal dictionary and applied it to predict the
+
+corresponding image for a given source image. We resampled the predicted im-
+
+ages with up to ±2.07μm (30 pixels) in translation in the x and y directions (at steps of 10 pixels) and ±20◦ in rotation (at steps of 10 degrees). Then we reg-
+
+istered the resampled predicted image to the corresponding target using a rigid
+
+transformation model. σ1 is chosen as 0.15 based on cross-validation for the pre-
+
+diction errors in this experiment. Tab. 1 shows a comparison of our method with
+
+the method in [3]. The result shows about 15% improvement in prediction error
+
+and a statistically signiﬁcant improvement in registration errors.
+
+Table 1. Prediction and registration results. Prediction is based on the method in [3], and we use SSR to evaluate the prediction results. Here, MD denotes our proposed multimodal dictionary learning method and ST denotes the dictionary learning method in [3]. The registrations use Sum of Squared Diﬀerences (SSD) and mutual information (MI) similarity measures. We report the results of mean and standard deviation of the absolute error of corresponding landmarks in micron (0.069 micron = 1 pixel). The p-value is computed using a paired t-test.
+
+Metric Method mean
+
+std p-value
+
+Prediction SSR
+
+MD 6.28 × 104 3.61 × 103 ST 7.43 × 104 4.72 × 103
+
+SSD Registration
+MI
+
+MD ST MD ST
+
+0.760 0.801 0.754 0.795
+
+0.124 0.139 0.127 0.140
+
+0.0004 0.0005
+
+5 Conclusion
+In this paper, we proposed a robust multimodal dictionary learning method based on a probabilistic formulation. We directly model corresponding and
+
+266 T. Cao et al.
+non-corresponding multimodal training patches. Our method is based on a variant of the EM algorithm which classiﬁes the non-corresponding image patches and updates the multimodal dictionary iteratively. We validated our method using synthetic and real data. Our algorithm demonstrated its robustness to noise (non-corresponding image patches). We also applied our method to multimodal registration showing an improvement in alignment accuracy compared with the traditional dictionary learning method. The proposed method is expected to be of general use for multimodal dictionary learning. While our method is based on a Gaussian noise model, it can easily be adapted to other noise model such as Poisson noise. Future work will address multimodal dictionary learning in the context of deformable image registration.
+Acknowledgments. This work was supported by NSF (EECS-1148870, EECS0925875), NIH (5P41EB002025-28, 5R01GM097587-03, 2P41EB002025-26A1), Delaware INBRE program (NIH NIGMS 8P20GM103446-13) and Lineberger Comprehensive Cancer Center startup funds.
+References
+1. Aharon, M., Elad, M., Bruckstein, A.: K-svd: An algorithm for designing overcomplete dictionaries for sparse representation. IEEE Transactions on Signal Processing 54(11), 4311–4322 (2006)
+2. Besag, J.: On the statistical analysis of dirty pictures. Journal of the Royal Statistical Society. Series B (Methodological), 259–302 (1986)
+3. Cao, T., Zach, C., Modla, S., Powell, D., Czymmek, K., Niethammer, M.: Registration for correlative microscopy using image analogies. Biomedical Image Registration, 296–306 (2012)
+4. Elad, M., Aharon, M.: Image denoising via sparse and redundant representations over learned dictionaries. IEEE Transactions on Image Processing 15(12), 3736– 3745 (2006)
+5. Mairal, J., Bach, F., Ponce, J., Sapiro, G.: Online dictionary learning for sparse coding. In: Proceedings of the 26th Annual International Conference on Machine Learning, pp. 689–696. ACM (2009)
+6. Mairal, J., Bach, F., Ponce, J., Sapiro, G., Zisserman, A.: Supervised dictionary learning. In: NIPS, pp. 1033–1040 (2008)
+7. Monaci, G., Jost, P., Vandergheynst, P., Mailhe, B., Lesage, S., Gribonval, R.: Learning multimodal dictionaries. IEEE Transactions on Image Processing 16(9), 2272–2283 (2007)
+8. Neal, R., Hinton, G.: A view of the em algorithm that justiﬁes incremental, sparse, and other variants. NATO ASI Series D Behavioural and Social Sciences 89, 355– 370 (1998)
+9. Roy, S., Carass, A., Prince, J.: A compressed sensing approach for mr tissue contrast synthesis. In: Sz´ekely, G., Hahn, H.K. (eds.) IPMI 2011. LNCS, vol. 6801, pp. 371–383. Springer, Heidelberg (2011)
+10. Wright, J., Yang, A., Ganesh, A., Sastry, S., Ma, Y.: Robust face recognition via sparse representation. IEEE Transactions on Pattern Analysis and Machine Intelligence 31(2), 210–227 (2009)
+11. Yang, J., Wright, J., Huang, T., Ma, Y.: Image super-resolution via sparse representation. IEEE Transactions on Image Processing 19(11), 2861–2873 (2010)
+

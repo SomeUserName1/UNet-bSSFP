@@ -2,8 +2,8 @@
 
 | Date | Task |
 |--- |--- |
-| 09.05 | BG: Deep Learning - Act, Norm, Pool, Regression vs Classification |
-| 10.05 | BG: Pretraining, UNet, GANs, Diffusion Models, im2im, medical DL |
+ |
+| 10.05 | BG: Regression vs Classification, PSNR, SSIM, L1 problems, Pretraining & Transfer, UNet, GANs, Diffusion Models, im2im, medical DL, |
 | 11.05 | Methods: Dataset, Preprocessing, Augmentation, Arch, Training |
 | 12.05 | Results: Plots |
 | 13.05 | Results: pc bSSFP to DWI comparison, pc vs single comparison, T1w vs bssfp comp |

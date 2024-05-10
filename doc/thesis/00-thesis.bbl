@@ -147,7 +147,6 @@
       \field{abstract}{Balanced steady state free precession (balanced SSFP) has become increasingly popular for research and clinical applications, offering a very high signal-to-noise ratio and a T2/T1-weighted image contrast. This review article gives an overview on the basic principles of this fast imaging technique as well as possibilities for contrast modification. The first part focuses on the fundamental principles of balanced SSFP signal formation in the transient phase and in the steady state. In the second part, balanced SSFP imaging, contrast, and basic mechanisms for contrast modification are revisited and contemporary clinical applications are discussed. J. Magn. Reson. Imaging 2013;38:2–11. © 2013 Wiley Periodicals, Inc.}
       \field{issn}{1522-2586}
       \field{journaltitle}{Journal of Magnetic Resonance Imaging}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/jmri.24163}
       \field{number}{1}
       \field{title}{Fundamentals of balanced steady state free precession {MRI}}
       \field{urlday}{10}
@@ -227,7 +226,6 @@
       \field{abstract}{We propose to utilize the rich information content about microstructural tissue properties entangled in asymmetric balanced steady-state free precession (bSSFP) profiles to estimate multiple diffusion metrics simultaneously by neural network (NN) parameter quantification. A 12-point bSSFP phase-cycling scheme with high-resolution whole-brain coverage is employed at 3 and 9.4 T for NN input. Low-resolution target diffusion data are derived based on diffusion-weighted spin-echo echo-planar-imaging (SE-EPI) scans, that is, mean, axial, and radial diffusivity (MD, AD, and RD), fractional anisotropy (FA), as well as the spherical coordinates (azimuth Φ and inclination ϴ) of the principal diffusion eigenvector. A feedforward NN is trained with incorporated probabilistic uncertainty estimation. The NN predictions yielded highly reliable results in white matter (WM) and gray matter structures for MD. The quantification of FA, AD, and RD was overall in good agreement with the reference but the dependence of these parameters on WM anisotropy was somewhat biased (e.g. in corpus callosum). The inclination ϴ was well predicted for anisotropic WM structures, while the azimuth Φ was overall poorly predicted. The findings were highly consistent across both field strengths. Application of the optimized NN to high-resolution input data provided whole-brain maps with rich structural details. In conclusion, the proposed NN-driven approach showed potential to provide distortion-free high-resolution whole-brain maps of multiple diffusion metrics at high to ultrahigh field strengths in clinically relevant scan times.}
       \field{issn}{1099-1492}
       \field{journaltitle}{NMR in Biomedicine}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/nbm.4669}
       \field{number}{6}
       \field{title}{High-resolution neural network-driven mapping of multiple diffusion metrics leveraging asymmetries in the balanced steady-state free precession frequency profile}
       \field{urlday}{11}
@@ -236,7 +234,6 @@
       \field{volume}{35}
       \field{year}{2022}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{e4669}
       \range{pages}{-1}
       \verb{doi}
@@ -287,7 +284,6 @@
       \field{volume}{44}
       \field{year}{2020}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.31449/inf.v44i3.2828
       \endverb
@@ -424,6 +420,179 @@
       \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118633953.ch27
       \endverb
       \keyw{absorption rate,coil system,magnet,magnetic field gradient,MRI,power deposition,radiofrequency}
+    \endentry
+    \entry{hutchison_robust_2013}{incollection}{}
+      \name{author}{6}{}{%
+        {{hash=39670ad503c9ccbed6e7a302b95d0f39}{%
+           family={Cao},
+           familyi={C\bibinitperiod},
+           given={Tian},
+           giveni={T\bibinitperiod}}}%
+        {{hash=3b2f6bbdb4322c135bde344ec779f073}{%
+           family={Jojic},
+           familyi={J\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod}}}%
+        {{hash=66ec6820b19f869e8f53c41851da77f8}{%
+           family={Modla},
+           familyi={M\bibinitperiod},
+           given={Shannon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5a3e02f87871fed8cebf327b11e178d5}{%
+           family={Powell},
+           familyi={P\bibinitperiod},
+           given={Debbie},
+           giveni={D\bibinitperiod}}}%
+        {{hash=1c52bafed9456301902ccdb208bc2579}{%
+           family={Czymmek},
+           familyi={C\bibinitperiod},
+           given={Kirk},
+           giveni={K\bibinitperiod}}}%
+        {{hash=c6add5cc3b01d80c7332dc87ce7cc9e8}{%
+           family={Niethammer},
+           familyi={N\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{18}{}{%
+        {{hash=d003d9a994005f480f7fa06dde74326e}{%
+           family={Hutchison},
+           familyi={H\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=45496c6a7530cfbfb4f3218a2602b77e}{%
+           family={Kanade},
+           familyi={K\bibinitperiod},
+           given={Takeo},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9dd3a56c94774f5880ca7475fdc308ea}{%
+           family={Kittler},
+           familyi={K\bibinitperiod},
+           given={Josef},
+           giveni={J\bibinitperiod}}}%
+        {{hash=fb11814963625d418100ec9ca3710333}{%
+           family={Kleinberg},
+           familyi={K\bibinitperiod},
+           given={Jon\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=e07c4272d13053fc36d770d4735f2c14}{%
+           family={Mattern},
+           familyi={M\bibinitperiod},
+           given={Friedemann},
+           giveni={F\bibinitperiod}}}%
+        {{hash=47dbc192a926109dd86ea18b25249a93}{%
+           family={Mitchell},
+           familyi={M\bibinitperiod},
+           given={John\bibnamedelima C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=c6af39e79e88306281e6e0b0ccea956c}{%
+           family={Naor},
+           familyi={N\bibinitperiod},
+           given={Moni},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7d3ea70a5274b32c8a184dd4d844ee47}{%
+           family={Nierstrasz},
+           familyi={N\bibinitperiod},
+           given={Oscar},
+           giveni={O\bibinitperiod}}}%
+        {{hash=6bcab2334dc65214139b0ad45fe8185e}{%
+           family={Pandu\bibnamedelima Rangan},
+           familyi={P\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=665b6687b4ed05721bf55d61032505ca}{%
+           family={Steffen},
+           familyi={S\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+        {{hash=8753fbfaaa4aa8a1195c657edc9daef4}{%
+           family={Sudan},
+           familyi={S\bibinitperiod},
+           given={Madhu},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cd9aa5de7673e375889cc32997ef97df}{%
+           family={Terzopoulos},
+           familyi={T\bibinitperiod},
+           given={Demetri},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0e2feef9b3f0364b6e5bf7c63136056e}{%
+           family={Tygar},
+           familyi={T\bibinitperiod},
+           given={Doug},
+           giveni={D\bibinitperiod}}}%
+        {{hash=a4cf237a06b02ad7e7601b14b4d005be}{%
+           family={Vardi},
+           familyi={V\bibinitperiod},
+           given={Moshe\bibnamedelima Y.},
+           giveni={M\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=e47f9d085c16045a5911784850208ada}{%
+           family={Weikum},
+           familyi={W\bibinitperiod},
+           given={Gerhard},
+           giveni={G\bibinitperiod}}}%
+        {{hash=e4eb33be9f70b08fdbae06f4003ad249}{%
+           family={Salinesi},
+           familyi={S\bibinitperiod},
+           given={Camille},
+           giveni={C\bibinitperiod}}}%
+        {{hash=88e22618df6cb769735eacd5a19e7f4b}{%
+           family={Norrie},
+           familyi={N\bibinitperiod},
+           given={Moira\bibnamedelima C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=c3d0b98b9fa6149fb896a8a8ab8e8e25}{%
+           family={Pastor},
+           familyi={P\bibinitperiod},
+           given={Óscar},
+           giveni={Ó\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{92e9788a1dc326e27acf2dc591e02e96}
+      \strng{fullhash}{d8d035a2b2cb941122867806411fd368}
+      \strng{bibnamehash}{92e9788a1dc326e27acf2dc591e02e96}
+      \strng{authorbibnamehash}{92e9788a1dc326e27acf2dc591e02e96}
+      \strng{authornamehash}{92e9788a1dc326e27acf2dc591e02e96}
+      \strng{authorfullhash}{d8d035a2b2cb941122867806411fd368}
+      \strng{editorbibnamehash}{1878e5aaeb2ba2e2aaa5cb8a1a7cf207}
+      \strng{editornamehash}{1878e5aaeb2ba2e2aaa5cb8a1a7cf207}
+      \strng{editorfullhash}{48457093068d165d970335ed23bacded}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We propose a robust multimodal dictionary learning method for multimodal images. Joint dictionary learning for both modalities may be impaired by lack of correspondence between image modalities in training data, for example due to areas of low quality in one of the modalities. Dictionaries learned with such non-corresponding data will induce uncertainty about image representation. In this paper, we propose a probabilistic model that accounts for image areas that are poorly corresponding between the image modalities. We cast the problem of learning a dictionary in presence of problematic image patches as a likelihood maximization problem and solve it with a variant of the EM algorithm. Our algorithm iterates identiﬁcation of poorly corresponding patches and reﬁnements of the dictionary. We tested our method on synthetic and real data. We show improvements in image prediction quality and alignment accuracy when using the method for multimodal image registration.}
+      \field{booktitle}{Advanced {Information} {Systems} {Engineering}}
+      \field{isbn}{978-3-642-38708-1 978-3-642-38709-8}
+      \field{note}{Series Title: Lecture Notes in Computer Science}
+      \field{title}{Robust {Multimodal} {Dictionary} {Learning}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{7908}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \field{pages}{259\bibrangedash 266}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1007/978-3-642-40811-3_33
+      \endverb
+      \verb{file}
+      \verb Cao et al. - 2013 - Robust Multimodal Dictionary Learning.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/TQW5VCFT/Cao et al. - 2013 - Robust Multimodal Dictionary Learning.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-3-642-40811-3_33
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-3-642-40811-3_33
+      \endverb
     \endentry
     \entry{cardoso_monai_2022}{misc}{}
       \name{author}{57}{}{%
@@ -943,7 +1112,6 @@
       \field{urlyear}{2024}
       \field{year}{2024}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.5281/zenodo.10780386
       \endverb
@@ -1186,7 +1354,6 @@
       \field{abstract}{Statistical parametric maps are spatially extended statistical processes that are used to test hypotheses about regionally specific effects in neuroimaging data. The most established sorts of statistical parametric maps (e.g., Friston et al. [1991]: J Cereb Blood Flow Metab 11:690–699; Worsley et al. [1992]: J Cereb Blood Flow Metab 12:900–918) are based on linear models, for example ANCOVA, correlation coefficients and t tests. In the sense that these examples are all special cases of the general linear model it should be possible to implement them (and many others) within a unified framework. We present here a general approach that accomodates most forms of experimental layout and ensuing analysis (designed experiments with fixed effects for factors, covariates and interaction of factors). This approach brings together two well established bodies of theory (the general linear model and the theory of Gaussian fields) to provide a complete and simple framework for the analysis of imaging data. The importance of this framework is twofold: (i) Conceptual and mathematical simplicity, in that the same small number of operational equations is used irrespective of the complexity of the experiment or nature of the statistical model and (ii) the generality of the framework provides for great latitude in experimental design and analysis. © 1995 Wiley-Liss, Inc.}
       \field{issn}{1097-0193}
       \field{journaltitle}{Human Brain Mapping}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/hbm.460020402}
       \field{number}{4}
       \field{shorttitle}{Statistical parametric maps in functional imaging}
       \field{title}{Statistical parametric maps in functional imaging: {A} general linear approach}
@@ -1237,7 +1404,6 @@
       \field{abstract}{Spoiled gradient echo sequences can only reach a homogeneous steady state if sufficiently strong crusher gradients are used in combination with RF phase cycling (RF spoiling). However, the signal depends quite sensitively on the chosen phase increment ϕ and—lacking analytical solutions—numerical simulations must be used to study the transient and steady-state magnetization. For the steady state an exact analytical solution is derived, which holds for arbitrary sequence and tissue parameters. Besides a considerably improved computation performance, the analytical approach enables a better understanding of the complicated dependence on ϕ. For short repetition times (TR) the regime of small ϕ turns out to be particularly interesting: It is shown that the typical ϕc, where RF spoiling starts to become effective, is essentially inversely proportional to T2. This tissue dependence implies that contrasts can be considerably larger with partial spoiling (ϕ ≈ ϕc) than with conventional RF spoiling (ϕ ≫ ϕc). As an example, the uptake of contrast agents in tissues is investigated. For typical parameters a considerably improved contrast enhancement can be obtained, both theoretically and experimentally. Magn Reson Med, 2006. © 2005 Wiley-Liss, Inc.}
       \field{issn}{1522-2594}
       \field{journaltitle}{Magnetic Resonance in Medicine}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/mrm.20736}
       \field{number}{1}
       \field{shorttitle}{Steady state of gradient echo sequences with radiofrequency phase cycling}
       \field{title}{Steady state of gradient echo sequences with radiofrequency phase cycling: {Analytical} solution, contrast enhancement with partial spoiling}
@@ -1340,6 +1506,59 @@
       \verb https://www.frontiersin.org/articles/10.3389/fninf.2014.00008
       \endverb
       \keyw{clustering,Deterministic Tractography,diffusion MRI,diffusion tensor,fiber tracking,Free Open Source Software,medical imaging,Medical Visualization,Probabilistic Tractography,python,Spherical Deconvolution}
+    \endentry
+    \entry{gencay_pricing_2001}{article}{}
+      \name{author}{2}{}{%
+        {{hash=5ccc2a2004a738566cad9e9a3a15f039}{%
+           family={Gencay},
+           familyi={G\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=4179744d04becbb5470c3ee5de81f435}{%
+           family={Qi},
+           familyi={Q\bibinitperiod},
+           given={Min},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{011bda54a344737613ba9528580f4683}
+      \strng{fullhash}{011bda54a344737613ba9528580f4683}
+      \strng{bibnamehash}{011bda54a344737613ba9528580f4683}
+      \strng{authorbibnamehash}{011bda54a344737613ba9528580f4683}
+      \strng{authornamehash}{011bda54a344737613ba9528580f4683}
+      \strng{authorfullhash}{011bda54a344737613ba9528580f4683}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We study the effectiveness of cross validation, Bayesian regularization, early stopping, and bagging to mitigate overfitting and improving generalization for pricing and hedging derivative securities with daily S\&P 500 index daily call options from January 1988 to December 1993. Our results indicate that Bayesian regularization can generate significantly smaller pricing and delta-hedging errors than the baseline neural-network (NN) model and the Black-Scholes model for some years. While early stopping does not affect the pricing errors, it significantly reduces the hedging error (HE) in four of the six years we investigated. Although computationally most demanding, bagging seems to provide the most accurate pricing and delta hedging. Furthermore, the standard deviation of the MSPE of bagging is far less than that of the baseline model in all six years, and the standard deviation of the average HE of bagging is far less than that of the baseline model in five out of six years. We conclude that they be used at least in cases when no appropriate hints are available.}
+      \field{issn}{1941-0093}
+      \field{journaltitle}{IEEE Transactions on Neural Networks}
+      \field{month}{7}
+      \field{note}{Conference Name: IEEE Transactions on Neural Networks}
+      \field{number}{4}
+      \field{shorttitle}{Pricing and hedging derivative securities with neural networks}
+      \field{title}{Pricing and hedging derivative securities with neural networks: {Bayesian} regularization, early stopping, and bagging}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{12}
+      \field{year}{2001}
+      \field{urldateera}{ce}
+      \field{pages}{726\bibrangedash 734}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/72.935086
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:/home/someusername/workspace/UNet-bSSFP/lit/storage/DPUCZB4V/935086.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/935086
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/935086
+      \endverb
+      \keyw{Bagging,Bayesian methods,Convergence,Councils,Medical diagnosis,Neural networks,Parametric statistics,Pattern recognition,Pricing,Robustness}
     \endentry
     \entry{gholamalinezhad_pooling_nodate}{article}{}
       \name{author}{2}{}{%
@@ -1915,7 +2134,6 @@
       \field{abstract}{Purpose Rapid imaging techniques have attracted increased interest for relaxometry, but none are perfect: they are prone to static (B0) and transmit (B1) field heterogeneities, and commonly biased by T2/T1. The purpose of this study is the development of a rapid T1 and T2 relaxometry method that is completely (T2) or partly (T1) bias-free. Methods A new method is introduced to simultaneously quantify T1 and T2 within one single scan based on a triple echo steady-state (TESS) approach in combination with an iterative golden section search. TESS relaxometry is optimized and evaluated from simulations, in vitro studies, and in vivo experiments. Results It is found that relaxometry with TESS is not biased by T2/T1, insensitive to B0 heterogeneities, and, surprisingly, that TESS-T2 is not affected by B1 field errors. Consequently, excellent correspondence between TESS and reference spin echo data is observed for T2 in vitro at 1.5 T and in vivo at 3 T. Conclusion TESS offers rapid T1 and T2 quantification within one single scan, and in particular B1-insensitive T2 estimation. As a result, the new proposed method is of high interest for fast and reliable high-resolution T2 mapping, especially of the musculoskeletal system at high to ultra-high fields. Magn Reson Med 71:230–237, 2014. © 2013 Wiley Periodicals, Inc.}
       \field{issn}{1522-2594}
       \field{journaltitle}{Magnetic Resonance in Medicine}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/mrm.24659}
       \field{number}{1}
       \field{title}{Triple echo steady-state ({TESS}) relaxometry}
       \field{urlday}{10}
@@ -2010,6 +2228,60 @@
       \verb https://aclanthology.org/P18-1031
       \endverb
     \endentry
+    \entry{huang_simultaneous_2017}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=04ea73cdf1bdad5b2ecfd83c77f6e88e}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Yawen},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=a19a5e715fda869516c9d9d4ffbfd7f7}{%
+           family={Shao},
+           familyi={S\bibinitperiod},
+           given={Ling},
+           giveni={L\bibinitperiod}}}%
+        {{hash=2413defb142650e8edf0bcd5608ab789}{%
+           family={Frangi},
+           familyi={F\bibinitperiod},
+           given={Alejandro\bibnamedelima F.},
+           giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{69df3ce7a55f146350ed4aa81d5176c0}
+      \strng{fullhash}{69df3ce7a55f146350ed4aa81d5176c0}
+      \strng{bibnamehash}{69df3ce7a55f146350ed4aa81d5176c0}
+      \strng{authorbibnamehash}{69df3ce7a55f146350ed4aa81d5176c0}
+      \strng{authornamehash}{69df3ce7a55f146350ed4aa81d5176c0}
+      \strng{authorfullhash}{69df3ce7a55f146350ed4aa81d5176c0}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Magnetic Resonance Imaging (MRI) offers high-resolution in vivo imaging and rich functional and anatomical multimodality tissue contrast. In practice, however, there are challenges associated with considerations of scanning costs, patient comfort, and scanning time that constrain how much data can be acquired in clinical or research studies. In this paper, we explore the possibility of generating high-resolution and multimodal images from low-resolution single-modality imagery. We propose the weakly-supervised joint convolutional sparse coding to simultaneously solve the problems of super-resolution (SR) and cross-modality image synthesis. The learning process requires only a few registered multimodal image pairs as the training set. Additionally, the quality of the joint dictionary learning can be improved using a larger set of unpaired images. To combine unpaired data from different image resolutions/modalities, a hetero-domain image alignment term is proposed. Local image neighborhoods are naturally preserved by operating on the whole image domain (as opposed to image patches) and using joint convolutional sparse coding. The paired images are enhanced in the joint learning process with unpaired data and an additional maximum mean discrepancy term, which minimizes the dissimilarity between their feature distributions. Experiments show that the proposed method outperforms state-of-the-art techniques on both SR reconstruction and simultaneous SR and cross-modality synthesis.}
+      \field{booktitle}{2017 {IEEE} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR})}
+      \field{month}{7}
+      \field{note}{ISSN: 1063-6919}
+      \field{title}{Simultaneous {Super}-{Resolution} and {Cross}-{Modality} {Synthesis} of {3D} {Medical} {Images} {Using} {Weakly}-{Supervised} {Joint} {Convolutional} {Sparse} {Coding}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{5787\bibrangedash 5796}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/CVPR.2017.613
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:/home/someusername/workspace/UNet-bSSFP/lit/storage/F3F2G3Z6/8100096.html:text/html;Volltext:/home/someusername/workspace/UNet-bSSFP/lit/storage/GUSHAH8S/Huang et al. - 2017 - Simultaneous Super-Resolution and Cross-Modality S.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/8100096
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/8100096
+      \endverb
+      \keyw{Biomedical imaging,Convolutional codes,Image coding,Image reconstruction,Image resolution,Three-dimensional displays,Training}
+    \endentry
     \entry{huisman_diffusion-weighted_2010}{article}{}
       \name{author}{1}{}{%
         {{hash=cbaefc3c8c10e2e034fd6a7b092d242a}{%
@@ -2099,7 +2371,7 @@
       \field{pages}{448\bibrangedash 456}
       \range{pages}{9}
     \endentry
-    \entry{isola_image--image_2017}{inproceedings}{}
+    \entry{isola_image-image_2017}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=cae9f806bc99a5f19fadea538fc2db04}{%
            family={Isola},
@@ -2138,7 +2410,6 @@
       \field{urlyear}{2024}
       \field{year}{2017}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{1125\bibrangedash 1134}
       \range{pages}{10}
       \verb{file}
@@ -2246,7 +2517,6 @@
       \field{abstract}{The spin echo sequence is a fundamental pulse sequence in MRI. Many of today's applications in routine clinical use are based on this elementary sequence. In this review article, the principles of the spin echo formation are demonstrated on which the generation of the fundamental image contrasts T1, T2, and proton density is based. The basic imaging parameters repetition time (TR) and echo time (TE) and their influence on the image contrast are explained. Important properties such as the behavior in multi-slice imaging or in the presence of flow are depicted and the basic differences with gradient echo imaging are illustrated. The characteristics of the spin echo sequence for different magnetic field strengths with respect to clinical applications are discussed. J. Magn. Reson. Imaging 2013;37:805–817. © 2013 Wiley Periodicals, Inc.}
       \field{issn}{1522-2586}
       \field{journaltitle}{Journal of Magnetic Resonance Imaging}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/jmri.24068}
       \field{number}{4}
       \field{title}{Spin echo magnetic resonance imaging}
       \field{urlday}{8}
@@ -2270,6 +2540,107 @@
       \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/jmri.24068
       \endverb
       \keyw{PD,proton density,relaxation,SE,spin echo,T1,T2}
+    \endentry
+    \entry{kingma_adam_2017}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=b6fbd171848aad4edf3925543f1f1522}{%
+           family={Kingma},
+           familyi={K\bibinitperiod},
+           given={Diederik\bibnamedelima P.},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=8aa66e8231cc2fdbe67aa4f18ca970c6}{%
+           family={Ba},
+           familyi={B\bibinitperiod},
+           given={Jimmy},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{fullhash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{bibnamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorbibnamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authornamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorfullhash}{a09df9f123146b8e2c7f1134c9496932}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We introduce Adam, an algorithm for ﬁrst-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efﬁcient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the inﬁnity norm.}
+      \field{annotation}{Comment: Published as a conference paper at the 3rd International Conference for Learning Representations, San Diego, 2015}
+      \field{month}{1}
+      \field{note}{arXiv:1412.6980 [cs]}
+      \field{shorttitle}{Adam}
+      \field{title}{Adam: {A} {Method} for {Stochastic} {Optimization}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Kingma und Ba - 2017 - Adam A Method for Stochastic Optimization.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/DDIRZJUI/Kingma und Ba - 2017 - Adam A Method for Stochastic Optimization.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1412.6980
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1412.6980
+      \endverb
+      \keyw{Computer Science - Machine Learning}
+    \endentry
+    \entry{kingma_auto-encoding_2022}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=b6fbd171848aad4edf3925543f1f1522}{%
+           family={Kingma},
+           familyi={K\bibinitperiod},
+           given={Diederik\bibnamedelima P.},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=53d2880ad8047b61cdae2c6b2803e763}{%
+           family={Welling},
+           familyi={W\bibinitperiod},
+           given={Max},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{aabdd5db7a1ed298b1dfb6824d032c66}
+      \strng{fullhash}{aabdd5db7a1ed298b1dfb6824d032c66}
+      \strng{bibnamehash}{aabdd5db7a1ed298b1dfb6824d032c66}
+      \strng{authorbibnamehash}{aabdd5db7a1ed298b1dfb6824d032c66}
+      \strng{authornamehash}{aabdd5db7a1ed298b1dfb6824d032c66}
+      \strng{authorfullhash}{aabdd5db7a1ed298b1dfb6824d032c66}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{How can we perform efﬁcient inference and learning in directed probabilistic models, in the presence of continuous latent variables with intractable posterior distributions, and large datasets? We introduce a stochastic variational inference and learning algorithm that scales to large datasets and, under some mild differentiability conditions, even works in the intractable case. Our contributions are two-fold. First, we show that a reparameterization of the variational lower bound yields a lower bound estimator that can be straightforwardly optimized using standard stochastic gradient methods. Second, we show that for i.i.d. datasets with continuous latent variables per datapoint, posterior inference can be made especially efﬁcient by ﬁtting an approximate inference model (also called a recognition model) to the intractable posterior using the proposed lower bound estimator. Theoretical advantages are reﬂected in experimental results.}
+      \field{annotation}{Comment: Fixes a typo in the abstract, no other changes}
+      \field{month}{12}
+      \field{note}{arXiv:1312.6114 [cs, stat]}
+      \field{title}{Auto-{Encoding} {Variational} {Bayes}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Kingma und Welling - 2022 - Auto-Encoding Variational Bayes.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/X2DF3PAG/Kingma und Welling - 2022 - Auto-Encoding Variational Bayes.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1312.6114
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1312.6114
+      \endverb
+      \keyw{Computer Science - Machine Learning,Statistics - Machine Learning}
     \endentry
     \entry{krizhevsky_imagenet_2012}{inproceedings}{}
       \name{author}{3}{}{%
@@ -2419,6 +2790,76 @@
       \endverb
       \keyw{Computer science,Mathematics and computing}
     \endentry
+    \entry{lecun_handwritten_1989}{inproceedings}{}
+      \name{author}{7}{}{%
+        {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
+           family={LeCun},
+           familyi={L\bibinitperiod},
+           given={Yann},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=824ee0660bd2a40e283a9b8266f0868b}{%
+           family={Boser},
+           familyi={B\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+        {{hash=2e06fda0238979cad0d24113daf80ed5}{%
+           family={Denker},
+           familyi={D\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0444ce878492140cb17d6d4f19c2b24d}{%
+           family={Henderson},
+           familyi={H\bibinitperiod},
+           given={Donnie},
+           giveni={D\bibinitperiod}}}%
+        {{hash=09c5a94a3b4d44c65e19cea92a351737}{%
+           family={Howard},
+           familyi={H\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=494b3ee863ae780ea5237c5b09b80c0e}{%
+           family={Hubbard},
+           familyi={H\bibinitperiod},
+           given={Wayne},
+           giveni={W\bibinitperiod}}}%
+        {{hash=4b8d7e185f2fbc444f33953aa1c0a385}{%
+           family={Jackel},
+           familyi={J\bibinitperiod},
+           given={Lawrence},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Morgan-Kaufmann}%
+      }
+      \strng{namehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{fullhash}{850352120a3ba111c2cfdcbcc36f7f30}
+      \strng{bibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authorbibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authornamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authorfullhash}{850352120a3ba111c2cfdcbcc36f7f30}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present an application of back-propagation networks to hand(cid:173) written digit recognition. Minimal preprocessing of the data was required, but architecture of the network was highly constrained and specifically designed for the task. The input of the network consists of normalized images of isolated digits. The method has 1 \% error rate and about a 9\% reject rate on zipcode digits provided by the U.S. Postal Service.}
+      \field{booktitle}{Advances in {Neural} {Information} {Processing} {Systems}}
+      \field{title}{Handwritten {Digit} {Recognition} with a {Back}-{Propagation} {Network}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{2}
+      \field{year}{1989}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/WTDUYVFR/LeCun et al. - 1989 - Handwritten Digit Recognition with a Back-Propagat.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.nips.cc/paper/1989/hash/53c3bce66e43be4f209556518c2fcb54-Abstract.html
+      \endverb
+      \verb{url}
+      \verb https://papers.nips.cc/paper/1989/hash/53c3bce66e43be4f209556518c2fcb54-Abstract.html
+      \endverb
+    \endentry
     \entry{lauterbur}{book}{}
       \name{author}{2}{}{%
         {{hash=36ba018a9d1501ce6bde8b95029c1f10}{%
@@ -2497,7 +2938,6 @@
       \field{urlyear}{2024}
       \field{year}{2019}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.48550/arXiv.1711.05101
       \endverb
@@ -2638,7 +3078,6 @@
       \field{abstract}{Purpose Triple echo steady state (TESS) uses the lowest steady state configuration modes for rapid relaxometry. Due to its unbalanced gradient scheme, however, TESS is inherently motion-sensitive. The purpose of this work is to merge TESS with a balanced acquisition scheme for motion-insensitive rapid configuration relaxometry, termed MIRACLE. Methods The lowest order steady state free precession (SSFP) configurations are retrieved by Fourier transformation of the frequency response of N frequency-shifted balanced SSFP (bSSFP) scans and subsequently processed for relaxometry, as proposed with TESS. Accuracy of MIRACLE is evaluated from simulations, phantom studies as well as in vivo brain and cartilage imaging at 3T. Results Simulations and phantom results revealed no conceptual flaw, and artifact-free configuration imaging was achieved in vivo. Overall, relaxometry results were accurate in phantoms and in good agreement for cartilage and for in the brain, but apparent low values were observed for brain white matter; reflecting asymmetries in the bSSFP profile. Conclusion Rapid and mapping with MIRACLE offers analogous properties as TESS while successfully mitigating its motion-sensitivity. As a result of the Fourier transformation, relaxometry becomes sensitive to the voxel frequency distribution, which may contain useful physiologic information, such as structural brain integrity. © 2016 International Society for Magnetic Resonance in Medicine. Magn Reson Med 78:518–526, 2017. © 2016 International Society for Magnetic Resonance in Medicine}
       \field{issn}{1522-2594}
       \field{journaltitle}{Magnetic Resonance in Medicine}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/mrm.26384}
       \field{number}{2}
       \field{title}{Motion-insensitive rapid configuration relaxometry}
       \field{urlday}{10}
@@ -2694,6 +3133,67 @@
       \verb{file}
       \verb Nishimura - 2010 - Principles of Magnetic Resonance Imaging.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/TF4RUKCE/Nishimura - 2010 - Principles of Magnetic Resonance Imaging.pdf:application/pdf
       \endverb
+    \endentry
+    \entry{pang_image-image_2021}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=95e2f9b881c964bb17b011ef38c1c558}{%
+           family={Pang},
+           familyi={P\bibinitperiod},
+           given={Yingxue},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=25da004d1147d80ff018794286650701}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Jianxin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5588f729660dbe4dbf5af3850f858ae3}{%
+           family={Qin},
+           familyi={Q\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod}}}%
+        {{hash=18dc21ba371100b5e6f3bd88a675373e}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zhibo},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{b8c551c4c477a56b8c83ee4abefbbcc0}
+      \strng{fullhash}{6d79191ed54c7397855aba80f60dad34}
+      \strng{bibnamehash}{b8c551c4c477a56b8c83ee4abefbbcc0}
+      \strng{authorbibnamehash}{b8c551c4c477a56b8c83ee4abefbbcc0}
+      \strng{authornamehash}{b8c551c4c477a56b8c83ee4abefbbcc0}
+      \strng{authorfullhash}{6d79191ed54c7397855aba80f60dad34}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Image-to-image translation (I2I) aims to transfer images from a source domain to a target domain while preserving the content representations. I2I has drawn increasing attention and made tremendous progress in recent years because of its wide range of applications in many computer vision and image processing problems, such as image synthesis, segmentation, style transfer, restoration, and pose estimation. In this paper, we provide an overview of the I2I works developed in recent years. We will analyze the key techniques of the existing I2I works and clarify the main progress the community has made. Additionally, we will elaborate on the effect of I2I on the research and industry community and point out remaining challenges in related ﬁelds.}
+      \field{annotation}{Comment: 24 pages, 21 figures}
+      \field{month}{7}
+      \field{note}{arXiv:2101.08629 [cs]}
+      \field{shorttitle}{Image-to-{Image} {Translation}}
+      \field{title}{Image-to-{Image} {Translation}: {Methods} and {Applications}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Pang et al. - 2021 - Image-to-Image Translation Methods and Applicatio.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/JHJYN3R8/Pang et al. - 2021 - Image-to-Image Translation Methods and Applicatio.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2101.08629
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2101.08629
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
     \entry{paszke_pytorch_2019}{inproceedings}{}
       \name{author}{21}{}{%
@@ -2988,7 +3488,6 @@
       \field{urlyear}{2024}
       \field{year}{2019}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{7\bibrangedash 14}
       \range{pages}{8}
       \verb{doi}
@@ -3093,7 +3592,6 @@
       \field{abstract}{This article is based on an introductory lecture given for the past many years during the “MR Physics and Techniques for Clinicians” course at the Annual Meeting of the ISMRM. This introduction is not intended to be a comprehensive overview of the field, as the subject of magnetic resonance imaging (MRI) physics is large and complex. Rather, it is intended to lay a conceptual foundation by which magnetic resonance image formation can be understood from an intuitive perspective. The presentation is nonmathematical, relying on simple models that take the reader progressively from the basic spin physics of nuclei, through descriptions of how the magnetic resonance signal is generated and detected in an MRI scanner, the foundations of nuclear magnetic resonance (NMR) relaxation, and a discussion of the Fourier transform and its relation to MR image formation. The article continues with a discussion of how magnetic field gradients are used to facilitate spatial encoding and concludes with a development of basic pulse sequences and the factors defining image contrast. J. Magn. Reson. Imaging 2012;35:1038-1054. © 2012 Wiley Periodicals, Inc.}
       \field{issn}{1522-2586}
       \field{journaltitle}{Journal of Magnetic Resonance Imaging}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/jmri.23642}
       \field{number}{5}
       \field{shorttitle}{Physics of {MRI}}
       \field{title}{Physics of {MRI}: {A} primer}
@@ -3187,6 +3685,48 @@
       \endverb
       \keyw{Early Stopping,Generalization Error,Neural Information Processing System,Training Time,Validation Error}
     \endentry
+    \entry{radford_improving_nodate}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a812c46caad94fc8701be37871f303ba}{%
+           family={Radford},
+           familyi={R\bibinitperiod},
+           given={Alec},
+           giveni={A\bibinitperiod}}}%
+        {{hash=997c3143c2e5d593e816d2ff704fbf98}{%
+           family={Narasimhan},
+           familyi={N\bibinitperiod},
+           given={Karthik},
+           giveni={K\bibinitperiod}}}%
+        {{hash=e6f76e1a4d058df028530916774ad3a7}{%
+           family={Salimans},
+           familyi={S\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod}}}%
+        {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
+           family={Sutskever},
+           familyi={S\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{ca3baa5a22057195db1c71be39b4c922}
+      \strng{fullhash}{fbc85d06f02fc1534a6ba28d0d6e5c89}
+      \strng{bibnamehash}{ca3baa5a22057195db1c71be39b4c922}
+      \strng{authorbibnamehash}{ca3baa5a22057195db1c71be39b4c922}
+      \strng{authornamehash}{ca3baa5a22057195db1c71be39b4c922}
+      \strng{authorfullhash}{fbc85d06f02fc1534a6ba28d0d6e5c89}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Natural language understanding comprises a wide range of diverse tasks such as textual entailment, question answering, semantic similarity assessment, and document classiﬁcation. Although large unlabeled text corpora are abundant, labeled data for learning these speciﬁc tasks is scarce, making it challenging for discriminatively trained models to perform adequately. We demonstrate that large gains on these tasks can be realized by generative pre-training of a language model on a diverse corpus of unlabeled text, followed by discriminative ﬁne-tuning on each speciﬁc task. In contrast to previous approaches, we make use of task-aware input transformations during ﬁne-tuning to achieve effective transfer while requiring minimal changes to the model architecture. We demonstrate the effectiveness of our approach on a wide range of benchmarks for natural language understanding. Our general task-agnostic model outperforms discriminatively trained models that use architectures speciﬁcally crafted for each task, signiﬁcantly improving upon the state of the art in 9 out of the 12 tasks studied. For instance, we achieve absolute improvements of 8.9\% on commonsense reasoning (Stories Cloze Test), 5.7\% on question answering (RACE), and 1.5\% on textual entailment (MultiNLI).}
+      \field{title}{Improving {Language} {Understanding} by {Generative} {Pre}-{Training}}
+      \verb{file}
+      \verb Radford et al. - Improving Language Understanding by Generative Pre.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/9I5FJD5T/Radford et al. - Improving Language Understanding by Generative Pre.pdf:application/pdf
+      \endverb
+    \endentry
     \entry{rao_transform_2018}{book}{}
       \name{author}{2}{}{%
         {{hash=78db54f48458b24a3a3b8cdc14aa348d}{%
@@ -3222,11 +3762,66 @@
       \field{note}{Google-Books-ID: EgvOBQAAQBAJ}
       \field{title}{The {Transform} and {Data} {Compression} {Handbook}}
       \field{year}{2018}
-      \true{nocite}
       \verb{file}
       \verb Rao and Yip - 2018 - The Transform and Data Compression Handbook.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/9BJEL5YW/Rao and Yip - 2018 - The Transform and Data Compression Handbook.pdf:application/pdf
       \endverb
       \keyw{Computers / Computer Science,Computers / Computer Engineering,Computers / General,Technology \& Engineering / Electrical,Technology \& Engineering / Environmental / General,Technology \& Engineering / Telecommunications,psnr}
+    \endentry
+    \entry{raskutti_early_2013}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=ca850c174a51d59e1eb217b5f4f06f73}{%
+           family={Raskutti},
+           familyi={R\bibinitperiod},
+           given={Garvesh},
+           giveni={G\bibinitperiod}}}%
+        {{hash=7eb03239453694f59946ad6008e9f0ab}{%
+           family={Wainwright},
+           familyi={W\bibinitperiod},
+           given={Martin\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=43d22dc81cc0e5bb1d24d5eeb65ecbae}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{763e93770718ba3c8abcf4cf1d22d6f0}
+      \strng{fullhash}{763e93770718ba3c8abcf4cf1d22d6f0}
+      \strng{bibnamehash}{763e93770718ba3c8abcf4cf1d22d6f0}
+      \strng{authorbibnamehash}{763e93770718ba3c8abcf4cf1d22d6f0}
+      \strng{authornamehash}{763e93770718ba3c8abcf4cf1d22d6f0}
+      \strng{authorfullhash}{763e93770718ba3c8abcf4cf1d22d6f0}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The strategy of early stopping is a regularization technique based on choosing a stopping time for an iterative algorithm. Focusing on non-parametric regression in a reproducing kernel Hilbert space, we analyze the early stopping strategy for a form of gradient-descent applied to the least-squares loss function. We propose a data-dependent stopping rule that does not involve hold-out or cross-validation data, and we prove upper bounds on the squared error of the resulting function estimate, measured in either the L2(P) and L2(Pn) norm. These upper bounds lead to minimax-optimal rates for various kernel classes, including Sobolev smoothness classes and other forms of reproducing kernel Hilbert spaces. We show through simulation that our stopping rule compares favorably to two other stopping rules, one based on hold-out data and the other based on Stein’s unbiased risk estimate. We also establish a tight connection between our early stopping strategy and the solution path of a kernel ridge regression estimator.}
+      \field{annotation}{Comment: 29 pages, 4 figures}
+      \field{month}{6}
+      \field{note}{arXiv:1306.3574 [stat]}
+      \field{shorttitle}{Early stopping and non-parametric regression}
+      \field{title}{Early stopping and non-parametric regression: {An} optimal data-dependent stopping rule}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Raskutti et al. - 2013 - Early stopping and non-parametric regression An o.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/RATUHVKE/Raskutti et al. - 2013 - Early stopping and non-parametric regression An o.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1306.3574
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1306.3574
+      \endverb
+      \keyw{Statistics - Machine Learning}
     \endentry
     \entry{RelaxationlongitudinalmagnetizationSpinlatticerelaxationWikipedia-2024-05-01}{misc}{}
       \field{sortinit}{R}
@@ -3272,6 +3867,78 @@
       \endverb
       \verb{url}
       \verb https://en.wikipedia.org/wiki/Spin%E2%80%93spin_relaxation#/media/File:Relaxation_transverse_magnetization.svg
+      \endverb
+    \endentry
+    \entry{rombach_high-resolution_2022}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=0921e3810ca1ba112b5f374d82f0735f}{%
+           family={Rombach},
+           familyi={R\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod}}}%
+        {{hash=43a95cf5d0fe271fe6d6d0e5803cbfc9}{%
+           family={Blattmann},
+           familyi={B\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=809ae73566d8d76e9931ffde3969f1dc}{%
+           family={Lorenz},
+           familyi={L\bibinitperiod},
+           given={Dominik},
+           giveni={D\bibinitperiod}}}%
+        {{hash=e61c1cb5e29d764299a12d1ab334cdc2}{%
+           family={Esser},
+           familyi={E\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod}}}%
+        {{hash=e5a040243464f368c0ac690deabc8731}{%
+           family={Ommer},
+           familyi={O\bibinitperiod},
+           given={Bjorn},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {New Orleans, LA, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{b5bfcd95459df0d66c58a299cbec3e9a}
+      \strng{fullhash}{31a3b0d904c7d14f5af157452068b121}
+      \strng{bibnamehash}{b5bfcd95459df0d66c58a299cbec3e9a}
+      \strng{authorbibnamehash}{b5bfcd95459df0d66c58a299cbec3e9a}
+      \strng{authornamehash}{b5bfcd95459df0d66c58a299cbec3e9a}
+      \strng{authorfullhash}{31a3b0d904c7d14f5af157452068b121}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{By decomposing the image formation process into a sequential application of denoising autoencoders, diffusion models (DMs) achieve state-of-the-art synthesis results on image data and beyond. Additionally, their formulation allows for a guiding mechanism to control the image generation process without retraining. However, since these models typically operate directly in pixel space, optimization of powerful DMs often consumes hundreds of GPU days and inference is expensive due to sequential evaluations. To enable DM training on limited computational resources while retaining their quality and ﬂexibility, we apply them in the latent space of powerful pretrained autoencoders. In contrast to previous work, training diffusion models on such a representation allows for the ﬁrst time to reach a near-optimal point between complexity reduction and detail preservation, greatly boosting visual ﬁdelity. By introducing cross-attention layers into the model architecture, we turn diffusion models into powerful and ﬂexible generators for general conditioning inputs such as text or bounding boxes and high-resolution synthesis becomes possible in a convolutional manner. Our latent diffusion models (LDMs) achieve new state of the art scores for image inpainting and class-conditional image synthesis and highly competitive performance on various tasks, including unconditional image generation, text-to-image synthesis, and super-resolution, while signiﬁcantly reducing computational requirements compared to pixel-based DMs.}
+      \field{booktitle}{2022 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR})}
+      \field{isbn}{978-1-66546-946-3}
+      \field{month}{6}
+      \field{title}{High-{Resolution} {Image} {Synthesis} with {Latent} {Diffusion} {Models}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{10674\bibrangedash 10685}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1109/CVPR52688.2022.01042
+      \endverb
+      \verb{file}
+      \verb Rombach et al. - 2022 - High-Resolution Image Synthesis with Latent Diffus.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/SHRPWNXA/Rombach et al. - 2022 - High-Resolution Image Synthesis with Latent Diffus.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9878449/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9878449/
       \endverb
     \endentry
     \entry{ronneberger_u-net_2015}{inproceedings}{}
@@ -3342,7 +4009,6 @@
       \field{shorttitle}{U-{Net}}
       \field{title}{U-{Net}: {Convolutional} {Networks} for {Biomedical} {Image} {Segmentation}}
       \field{year}{2015}
-      \true{nocite}
       \field{pages}{234\bibrangedash 241}
       \range{pages}{8}
       \verb{doi}
@@ -3420,7 +4086,6 @@
       \field{urlyear}{2024}
       \field{year}{2017}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.48550/arXiv.1706.05098
       \endverb
@@ -3459,7 +4124,6 @@
       \field{abstract}{Magnetic resonance imaging in biochemical and clinical research requires rapid imaging sequences. Time-resolved imaging of heart movement and the acquisition of a three-dimensional image block within the circulation time of a contrast agent bolus are two typical examples. Rapid imaging sequences are characterized by a very fast train of radiofrequency (rf) and gradient pulses. Between these rf pulses, the excited magnetization is unable to return to its thermal equilibrium. As a consequence, further rf pulses will influence both the remaining transversal and the remaining equilibrium state. The steady-state magnetization of a multi-rf pulse and gradient pulse experiment is thus a mixture or superposition of different transversal and longitudinal states and the acquired image amplitude becomes a complex function of the investigated tissue's relaxation properties. Based on the works of Woessner, Kaiser, and Hennig, this article intends to give a pictorial description of rapid multipulse imaging experiments. It also provides an extension of this theory applied to modern imaging sequences such as TRUE FISP and rf-spoiled techniques. ©1999 John Wiley \& Sons, Inc. Concepts Magn Reson 11: 291–304, 1999}
       \field{issn}{1099-0534}
       \field{journaltitle}{Concepts in Magnetic Resonance}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/\%28SICI\%291099-0534\%281999\%2911\%3A5\%3C291\%3A\%3AAID-CMR2\%3E3.0.CO\%3B2-J}
       \field{number}{5}
       \field{title}{A pictorial description of steady-states in rapid magnetic resonance imaging}
       \field{urlday}{10}
@@ -3538,6 +4202,24 @@
       \verb https://doi.org/10.1007/s00330-003-1957-x
       \endverb
       \keyw{Contrast modification,Rapid imaging,Transient phase}
+    \endentry
+    \entry{noauthor_segmentation_nodate}{misc}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The ImageJ wiki is a community-edited knowledge base on topics relating to ImageJ, a public domain program for processing and analyzing scientific images, and its ecosystem of derivatives and variants, including ImageJ2, Fiji, and others.}
+      \field{journaltitle}{ImageJ Wiki}
+      \field{title}{Segmentation of neuronal structures in {EM} stacks challenge - {ISBI} 2012}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://imagej.github.io/events/isbi-2012-segmentation-challenge
+      \endverb
+      \verb{url}
+      \verb https://imagej.github.io/events/isbi-2012-segmentation-challenge
+      \endverb
     \endentry
     \entry{sener_diffusion_2001}{article}{}
       \name{author}{1}{}{%
@@ -3712,6 +4394,58 @@
       \verb https://www.sciencedirect.com/science/article/pii/S1053811904003933
       \endverb
       \keyw{FMRI,FSL,Structural MR image analysis}
+    \endentry
+    \entry{sohl-dickstein_deep_2015}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=529bdf392a3471f000ce33ec88c41bd5}{%
+           family={Sohl-Dickstein},
+           familyi={S\bibinithyphendelim D\bibinitperiod},
+           given={Jascha},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8b4a541c45705890d9759e0bbd2dfd0d}{%
+           family={Weiss},
+           familyi={W\bibinitperiod},
+           given={Eric\bibnamedelima A.},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=24b3062319f458bd1a60642d737d4aea}{%
+           family={Maheswaranathan},
+           familyi={M\bibinitperiod},
+           given={Niru},
+           giveni={N\bibinitperiod}}}%
+        {{hash=05b3e391388084df874ede60f2210c12}{%
+           family={Ganguli},
+           familyi={G\bibinitperiod},
+           given={Surya},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Lille, France}%
+      }
+      \list{publisher}{1}{%
+        {JMLR.org}%
+      }
+      \strng{namehash}{ba6e625a46287ebf30dd9d9f3c07087b}
+      \strng{fullhash}{fcce41a9178ec20258209817b78f08ac}
+      \strng{bibnamehash}{ba6e625a46287ebf30dd9d9f3c07087b}
+      \strng{authorbibnamehash}{ba6e625a46287ebf30dd9d9f3c07087b}
+      \strng{authornamehash}{ba6e625a46287ebf30dd9d9f3c07087b}
+      \strng{authorfullhash}{fcce41a9178ec20258209817b78f08ac}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A central problem in machine learning involves modeling complex data-sets using highly flexible families of probability distributions in which learning, sampling, inference, and evaluation are still analytically or computationally tractable. Here, we develop an approach that simultaneously achieves both flexibility and tractability. The essential idea, inspired by non-equilibrium statistical physics, is to systematically and slowly destroy structure in a data distribution through an iterative forward diffusion process. We then learn a reverse diffusion process that restores structure in data, yielding a highly flexible and tractable generative model of the data. This approach allows us to rapidly learn, sample from, and evaluate probabilities in deep generative models with thousands of layers or time steps, as well as to compute conditional and posterior probabilities under the learned model. We additionally release an open source reference implementation of the algorithm.}
+      \field{booktitle}{Proceedings of the 32nd {International} {Conference} on {International} {Conference} on {Machine} {Learning} - {Volume} 37}
+      \field{month}{7}
+      \field{series}{{ICML}'15}
+      \field{title}{Deep unsupervised learning using nonequilibrium thermodynamics}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{2256\bibrangedash 2265}
+      \range{pages}{10}
     \endentry
     \entry{sonoda_neural_2017}{article}{}
       \name{author}{2}{}{%
@@ -4039,6 +4773,83 @@
       \endverb
       \keyw{Brain Theory,Small Pattern,Synaptic Plasticity,Synaptic Weight,Syntactical Information}
     \endentry
+    \entry{van_nguyen_cross-domain_2015}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=40164312b793ac2bc03467b6ec3f87c9}{%
+           family={Van\bibnamedelima Nguyen},
+           familyi={V\bibinitperiod\bibinitdelim N\bibinitperiod},
+           given={Hien},
+           giveni={H\bibinitperiod}}}%
+        {{hash=6acd04f23749b5e7581f86bfb0b632e7}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=2f0c1948be53b13647d2d7a1f278b575}{%
+           family={Vemulapalli},
+           familyi={V\bibinitperiod},
+           given={Raviteja},
+           giveni={R\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=c107bbd317cd780c2aa7006dbe61d83f}{%
+           family={Navab},
+           familyi={N\bibinitperiod},
+           given={Nassir},
+           giveni={N\bibinitperiod}}}%
+        {{hash=13dfdbfc375d5ae886268dec73d8d8f9}{%
+           family={Hornegger},
+           familyi={H\bibinitperiod},
+           given={Joachim},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4d166f6210ae1792f8f90d7871b4d234}{%
+           family={Wells},
+           familyi={W\bibinitperiod},
+           given={William\bibnamedelima M.},
+           giveni={W\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=1a646ae010320b6078bc4ef1eaae06e8}{%
+           family={Frangi},
+           familyi={F\bibinitperiod},
+           given={Alejandro},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{326660c664b8d2a81e760822205f8d35}
+      \strng{fullhash}{326660c664b8d2a81e760822205f8d35}
+      \strng{bibnamehash}{326660c664b8d2a81e760822205f8d35}
+      \strng{authorbibnamehash}{326660c664b8d2a81e760822205f8d35}
+      \strng{authornamehash}{326660c664b8d2a81e760822205f8d35}
+      \strng{authorfullhash}{326660c664b8d2a81e760822205f8d35}
+      \strng{editorbibnamehash}{7d63d752dc1fd3abad4ee5f250821c1c}
+      \strng{editornamehash}{7d63d752dc1fd3abad4ee5f250821c1c}
+      \strng{editorfullhash}{2df59fa6c3dd55532ed381fe2be2f595}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Cross-modality image synthesis has recently gained significant interest in the medical imaging community. In this paper, we propose a novel architecture called location-sensitive deep network (LSDN) for synthesizing images across domains. Our network integrates intensity feature from image voxels and spatial information in a principled manner. Specifically, LSDN models hidden nodes as products of features and spatial responses. We then propose a novel method, called ShrinkConnect, for reducing the computations of LSDN without sacrificing synthesis accuracy. ShrinkConnect enforces simultaneous sparsity to find a compact set of functions that accurately approximates the responses of all hidden nodes. Experimental results demonstrate that LSDN+ShrinkConnect outperforms the state of the art in cross-domain synthesis of MRI brain scans by a significant margin. Our approach is also computationally efficient, e.g. 26× faster than other sparse representation based methods.}
+      \field{booktitle}{Medical {Image} {Computing} and {Computer}-{Assisted} {Intervention} -- {MICCAI} 2015}
+      \field{isbn}{978-3-319-24553-9}
+      \field{title}{Cross-{Domain} {Synthesis} of {Medical} {Images} {Using} {Efficient} {Location}-{Sensitive} {Deep} {Network}}
+      \field{year}{2015}
+      \field{pages}{677\bibrangedash 684}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1007/978-3-319-24553-9_83
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/E5N5DTC2/Van Nguyen et al. - 2015 - Cross-Domain Synthesis of Medical Images Using Eff.pdf:application/pdf
+      \endverb
+      \keyw{Convolutional Neural Network,Hide Node,Intensity Feature,Principled Manner,Rigid Transformation}
+    \endentry
     \entry{vaswani_attention_2017}{inproceedings}{}
       \name{author}{8}{}{%
         {{hash=7f28e84700536646dd6620a0db07ad09}{%
@@ -4115,6 +4926,60 @@
       \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/APQ34RTA/Vaswani et al. - 2017 - Attention is all you need.pdf:application/pdf
       \endverb
     \endentry
+    \entry{vemulapalli_unsupervised_2015}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=2f0c1948be53b13647d2d7a1f278b575}{%
+           family={Vemulapalli},
+           familyi={V\bibinitperiod},
+           given={Raviteja},
+           giveni={R\bibinitperiod}}}%
+        {{hash=40164312b793ac2bc03467b6ec3f87c9}{%
+           family={Van\bibnamedelima Nguyen},
+           familyi={V\bibinitperiod\bibinitdelim N\bibinitperiod},
+           given={Hien},
+           giveni={H\bibinitperiod}}}%
+        {{hash=b5248a628c22c4bbec1533e5cab4399e}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Shaohua\bibnamedelima Kevin},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{ee39a66edbcca0c068b198d208872403}
+      \strng{fullhash}{ee39a66edbcca0c068b198d208872403}
+      \strng{bibnamehash}{ee39a66edbcca0c068b198d208872403}
+      \strng{authorbibnamehash}{ee39a66edbcca0c068b198d208872403}
+      \strng{authornamehash}{ee39a66edbcca0c068b198d208872403}
+      \strng{authorfullhash}{ee39a66edbcca0c068b198d208872403}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Recently, cross-modal synthesis of subject-specific scans has been receiving significant attention from the medical imaging community. Though various synthesis approaches have been introduced in the recent past, most of them are either tailored to a specific application or proposed for the supervised setting, i.e., they assume the availability of training data from the same set of subjects in both source and target modalities. But, collecting multiple scans from each subject is undesirable. Hence, to address this issue, we propose a general unsupervised cross-modal medical image synthesis approach that works without paired training data. Given a source modality image of a subject, we first generate multiple target modality candidate values for each voxel independently using cross-modal nearest neighbor search. Then, we select the best candidate values jointly for all the voxels by simultaneously maximizing a global mutual information cost function and a local spatial consistency cost function. Finally, we use coupled sparse representation for further refinement of synthesized images. Our experiments on generating T1-MRI brain scans from T2-MRI and vice versa demonstrate that the synthesis capability of the proposed unsupervised approach is comparable to various state-of-the-art supervised approaches in the literature.}
+      \field{booktitle}{2015 {IEEE} {International} {Conference} on {Computer} {Vision} ({ICCV})}
+      \field{month}{12}
+      \field{note}{ISSN: 2380-7504}
+      \field{title}{Unsupervised {Cross}-{Modal} {Synthesis} of {Subject}-{Specific} {Scans}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{630\bibrangedash 638}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/ICCV.2015.79
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:/home/someusername/workspace/UNet-bSSFP/lit/storage/FMSDVQNY/7410436.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/7410436
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/7410436
+      \endverb
+      \keyw{Biomedical imaging,Image generation,Image resolution,Magnetic resonance imaging,Nearest neighbor searches,Training,Training data}
+    \endentry
     \entry{wang_pretraining_2022}{misc}{}
       \name{author}{7}{}{%
         {{hash=b611a31fdd15fef15397f8328de5bfa2}{%
@@ -4177,7 +5042,6 @@
       \field{urlyear}{2024}
       \field{year}{2022}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.48550/arXiv.2205.12952
       \endverb
@@ -4281,7 +5145,6 @@
       \field{abstract}{The extended phase graph (EPG) concept represents a powerful tool for depicting and understanding the magnetization response of a broad variety of MR sequences. EPGs focus on echo generation as well as on classification and use a Fourier based magnetization description in terms of “configurations states”. The effect of gradients, radiofrequency (RF) pulses, relaxation, and motion phenomena during the MR sequence is characterized as the action of a few matrix operations on these configuration states. Thus, the EPG method allows for fast and precise quantitation of echo intensities even if several gradients and RF pulses are applied. EPG diagrams aid in the comprehension of different types of echoes and their corresponding echo time. Despite its several benefits in regard to a large number of problems and issues, researchers and users still often refrain from applying EPGs. It seems that “phase graphing” is still seen as a kind of “magic.” The present review investigates the foundation of EPGs and sheds light on prerequisites for adding more advanced phenomena such as diffusion. The links between diagrams and calculations are discussed. A further focus is on limitations and simplifications as well recent extensions within the EPG concept. To make the review complete, representative software for EPG coding is provided. J. Magn. Reson. Imaging 2015;41:266–295.© 2013 Wiley Periodicals, Inc.}
       \field{issn}{1522-2586}
       \field{journaltitle}{Journal of Magnetic Resonance Imaging}
-      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/jmri.24619}
       \field{number}{2}
       \field{shorttitle}{Extended phase graphs}
       \field{title}{Extended phase graphs: {Dephasing}, {RF} pulses, and echoes - pure and simple}
@@ -4408,7 +5271,6 @@
       \field{volume}{10}
       \field{year}{2020}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{3753}
       \range{pages}{1}
       \verb{doi}
@@ -4539,7 +5401,6 @@
       \field{urlyear}{2024}
       \field{year}{2018}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.48550/arXiv.1801.03924
       \endverb

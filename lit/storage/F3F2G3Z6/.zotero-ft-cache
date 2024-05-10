@@ -1,0 +1,127 @@
+Skip to Main Content
+
+    IEEE.org
+    IEEE Xplore
+    IEEE SA
+    IEEE Spectrum
+    More Sites 
+
+Subscribe
+
+        Donate 
+        Cart
+        Create Account
+        Personal Sign In 
+
+IEEE Xplore logo - Link to home
+
+    Browse
+    My Settings
+    Help
+
+Institutional Sign In
+IEEE logo - Link to IEEE main site homepage
+ADVANCED SEARCH
+Conferences > 2017 IEEE Conference on Compu...
+Simultaneous Super-Resolution and Cross-Modality Synthesis of 3D Medical Images Using Weakly-Supervised Joint Convolutional Sparse Coding
+Publisher: IEEE
+Cite This
+PDF
+Yawen Huang ; Ling Shao ; Alejandro F. Frangi
+All Authors
+112
+Cites in
+Papers
+1
+Cites in
+Patent
+641
+Full
+Text Views
+
+    Alerts
+
+Abstract
+Document Sections
+
+    1.
+    Introduction
+    2.
+    Related Work
+    3.
+    Weakly-Supervised Joint Convolutional Sparse Coding
+    4.
+    Experimental Results
+    5.
+    Conclusion
+
+Authors
+Figures
+References
+Citations
+Keywords
+Metrics
+Footnotes
+Abstract:
+Magnetic Resonance Imaging (MRI) offers high-resolution in vivo imaging and rich functional and anatomical multimodality tissue contrast. In practice, however, there are challenges associated with considerations of scanning costs, patient comfort, and scanning time that constrain how much data can be acquired in clinical or research studies. In this paper, we explore the possibility of generating high-resolution and multimodal images from low-resolution single-modality imagery. We propose the weakly-supervised joint convolutional sparse coding to simultaneously solve the problems of super-resolution (SR) and cross-modality image synthesis. The learning process requires only a few registered multimodal image pairs as the training set. Additionally, the quality of the joint dictionary learning can be improved using a larger set of unpaired images. To combine unpaired data from different image resolutions/modalities, a hetero-domain image alignment term is proposed. Local image neighborhoods are naturally preserved by operating on the whole image domain (as opposed to image patches) and using joint convolutional sparse coding. The paired images are enhanced in the joint learning process with unpaired data and an additional maximum mean discrepancy term, which minimizes the dissimilarity between their feature distributions. Experiments show that the proposed method outperforms state-of-the-art techniques on both SR reconstruction and simultaneous SR and cross-modality synthesis.
+Published in: 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)
+Date of Conference: 21-26 July 2017
+Date Added to IEEE Xplore : 09 November 2017
+ISBN Information:
+Print ISSN: 1063-6919
+DOI: 10.1109/CVPR.2017.613
+Publisher: IEEE
+Conference Location: Honolulu, HI, USA
+1. Introduction
+
+With the rapid progress in Magnetic Resonance Imaging (MRI), there are a multitude of mechanisms to generate tissue contrast that are associated with various anatomical or functional features. However, the acquisition of a complete multimodal set of high-resolution images faces constraints associated with scanning costs, scanner availability, scanning time, and patient comfort. In addition, long-term longitudinal studies such as ADNI [24] imply that changes exist in the scanner or acquisition protocol over time. In these situations, it is not uncommon to have images of the same subject but obtained from different sources, or to be confronted with missing or corrupted data from earlier time points. In addition, high-resolution (HR) 3D medical imaging usually requires long breath-hold and repetition times, which lead to long-term scanning times that are challenging or unfeasible in clinical routine. Acquiring low-resolution (LR) images and/or skipping some imaging modalities altogether from the acquisition are then not uncommon. In all such scenarios, it is highly desirable to be able to generate HR data from the desired target modality from the given LR modality data.
+Sign in to Continue Reading
+Authors
+Figures
+References
+Citations
+Keywords
+Metrics
+Footnotes
+More Like This
+Memory-Efficient Training for Fully Unrolled Deep Learned PET Image Reconstruction With Iteration-Dependent Targets
+
+IEEE Transactions on Radiation and Plasma Medical Sciences
+
+Published: 2022
+Super-resolution image reconstruction via adaptive sparse representation and joint dictionary training
+
+2013 6th International Congress on Image and Signal Processing (CISP)
+
+Published: 2013
+Show More
+References
+References is not available for this document.
+IEEE Personal Account
+
+    Change username/password 
+
+Purchase Details
+
+    Payment Options
+    View Purchased Documents 
+
+Profile Information
+
+    Communications Preferences
+    Profession and Education
+    Technical interests 
+
+Need Help?
+
+    US & Canada: +1 800 678 4333
+    Worldwide: +1 732 981 0060
+    Contact & Support 
+
+Follow
+
+About IEEE Xplore | Contact Us | Help | Accessibility | Terms of Use | Nondiscrimination Policy | IEEE Ethics Reporting | Sitemap | IEEE Privacy Policy
+
+A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+
+© Copyright 2024 IEEE - All rights reserved.

@@ -1,0 +1,437 @@
+Cross-Domain Synthesis of Medical Images Using Eﬃcient Location-Sensitive Deep Network
+Hien Van Nguyen, Kevin Zhou, and Raviteja Vemulapalli
+Imaging and Computer Vision, Siemens Corporate Technology
+Abstract. Cross-modality image synthesis has recently gained signiﬁcant interest in the medical imaging community. In this paper, we propose a novel architecture called location-sensitive deep network (LSDN) for synthesizing images across domains. Our network integrates intensity feature from image voxels and spatial information in a principled manner. Speciﬁcally, LSDN models hidden nodes as products of features and spatial responses. We then propose a novel method, called ShrinkConnect, for reducing the computations of LSDN without sacriﬁcing synthesis accuracy. ShrinkConnect enforces simultaneous sparsity to ﬁnd a compact set of functions that accurately approximates the responses of all hidden nodes. Experimental results demonstrate that LSDN+ShrinkConnect outperforms the state of the art in cross-domain synthesis of MRI brain scans by a signiﬁcant margin. Our approach is also computationally eﬃcient, e.g. 26× faster than other sparse representation based methods.
+1 Introduction
+Recently, cross-modality synthesis has gained signiﬁcant interest in the medical imaging community. Existing approaches do not have a systematic way to incorporate the spatial information which is important for accurate synthesis. As an illustration, we plot the intensity correspondences of registered MRI-T1 and MRI-T2 of the same subject in Fig. 1a. We can notice that the intensity transformation is not only non-linear but also far from unique, i.e. there are multiple feasible intensity values in MRI-T2 domain for one intensity value in MRI-T1 domain. The non-uniqueness comes from a well-known fact that intensity values depend on the regions in which voxels reside. By restricting to a local neighborhood of, say 10 × 10 × 10 voxels, the intensity transformation is much simpler as shown in Fig. 1b. In particular, it could be reasonably well described as a union of two linear subspaces represented by the two red lines. That is to say, the spatial information helps simplify the relations between modalites which in turn could enable more accurate prediction.
+In this paper, we propose a novel architecture called location-sensitive deep network (LSDN) to integrate image intensity features and spatial information in a principled manner. Our network models the responses of hidden nodes as the product of feature responses and spatial responses. In LSDN formulation, spatial information is used as soft constraints whose parameters are learned.
+© Springer International Publishing Switzerland 2015 N. Navab et al. (Eds.): MICCAI 2015, Part I, LNCS 9349, pp. 677–684, 2015. DOI: 10.1007/978-3-319-24553-9_83
+
+678 H. Van Nguyen, K. Zhou, and R. Vemulapalli
+
+T2 Intensities T2 intensities
+
+2000 1500 1000
+
+2000
+
+(a)
+
+(b)
+
+1500
+
+1000
+
+500
+
+500 0
+
+500 1000 1500 2000 2500
+T1 Intensities
+
+0
+
+0
+
+500
+
+1000
+
+1500
+
+2000
+
+2500
+
+T1 Intensities
+
+Fig. 1. a) 2D histogram of intensity correspondences between T1 and T2 scans over an entire image. Brighter color indicates higher density regions. b) Intensity correspondences of a restricted region of 10 × 10 × 10 voxels. Red lines indicate the main directions of variation. All images are registered using rigid transformations.
+
+As a result, LSDN is able to capture the joint distribution of feature and spatial information. We also propose a network simpliﬁcation method for speeding up LSDN prediction. Experimental results demonstrate that our approach achieves better synthesis quality compared to the state-of-the-art. It is also more computationally eﬃcient because the algorithm only uses feed-forward operations instead of expensive sparse coding or nearest neighbor search.
+Contributions: 1) We incorporate spatial location and image intensity feature for cross-domain image synthesis in a principled manner. To perform such an integration, we propose a novel deep network architecture called location-sensitive deep network. We derive the gradients necessary for training LSDN. 2) We propose a network simpliﬁcation technique for speeding up LSDN. 3) We provide experiments to demonstrate that LSDN outperforms state-of-art methods on brain MRI synthesis.
+
+2 Location-Sensitive Deep Network
+
+Our goal is to learn a deep network that uses an image of one domain (e.g., MRIT1) to predict the corresponding image from another domain (e.g., MRI-T2). It is ineﬀective to train a network that operates on the entire image since the number of variables becomes too large for the learning algorithm to generalize well. Instead, our network operates on small voxels. Let s and x denote the voxel’s intensity feature and spatial coordinates from the input domain, respectively. Let ψ(.) represent a mapping that is carried out by a multi-layer network. This function operates on (s, x) and gives out a scalar value approximating the corresponding intensity t in the output domain. The error function that we want to minimize can be written as:
+
+1N E=
+2N
+
+ψ(sn, xn) − tn 2
+
+(1)
+
+n=1
+
+Cross-Domain Synthesis of Medical Images 679
+
+where N is the total number of voxels sampled from all training images. The minimization is with respect to network variables which will be explained in detail shortly. As E is just a sum over the individual error on each training sample, it is suﬃcient to study the optimization with respect to a single sample. For the simplicity of notation, the subscript “n” would be omitted in our derivations of gradients. Motivated by the observation in Fig. 1, which shows that output intensity depends on voxel’s location, we make our mapping dependent on both local feature and spatial coordinates.
+We introduce a location-sensitive deep network for eﬀectively fusing image feature and spatial information in a principled manner. Fig. 2a shows the architecture of a LSDN, where (F(k), h(k), b(k)) are the set of ﬁlters, hidden nodes, and biases at k-th layer, respectively. LSDN has multiple feed-forward layers. Moreover, the hidden nodes in the second layer of LSDN is modeled as products of feature and spatial functions:
+
+h(2) = κ(s) ς(x), κ(s) = γ(u(2)), u(2) = F(2)s + b(2)
+
+(2)
+
+ς(x) = 2γ −
+
+x − xˆ1 σ2
+
+2
+,...,
+
+x − xˆp2 σ2
+
+2
+
+T
+
+(3)
+
+Here, κ(s) is a feature response computed by a linear ﬁltering followed by a sigmoid function denoted as γ(.). The spatial response function ς(x) is parameterized by Xˆ = [xˆ1, . . . , xˆp2 ], which are learned, and a constant σ. We use “ ” to indicate the Hadamard product. The reason we choose ς as in (3) is because we want to enforce locality property within the network. Speciﬁcally, we associate each hidden node in the second layer with a latent coordinates xˆi. As can be seen from (3), i-th hidden node of the second layer only turns on when the voxel is close enough to location xˆi. The combination of on/oﬀ hidden nodes eﬀectively creates multiple sub-networks, each tuned to a small spatial region in the image. This novel property is an important advantage of our network compared to other approaches. We recall from the observation in Fig. 1b that the input-output mapping becomes much simpler when restricted to a smaller spatial region. Therefore, LSDN has the potential to yield more accurate prediction. Our experimental results in section 4 conﬁrm this intuition.
+For spatial coordinates x to convey useful information, training and test images are registered to a reference image using rigid transformations, as done in [6,2]. This makes the same location in diﬀerent images corresponding to roughly the same anatomical region. Alternatively, one could eliminate the need for registration by using relative coordinates with respect to some landmarks. This direction is open for future research. We note that in [4], three-way multiplicative interactions were used with Restricted Boltzmann Machine to model the transformation between two images. Their hidden nodes are products of learned weights and pixel intensities from two diﬀerent images. In contrast, our network uses multiplicative interactions between a spatial function and an intensity function computed from a single image. LSDN is similar to the convolutional neural network (CNN) [3] in the sense that it is applied on every voxel during the synthesis phase. However, the two networks diﬀer in how they incorporate the
+
+680 H. Van Nguyen, K. Zhou, and R. Vemulapalli
+
+Root Mean Square Error
+
+s
+
+F , b h F , b h (2) (2)
+
+(2)
+
+(3) (3) (3)
+
+F , b (4) (4) t
+
++1
+
+240 220 200 180
+
+Vanilla DN LSDN
+
+160
+
+140
+
++1
+
++1
+
+120
+
++1
+x
+(a)
+
+100 0
+
+20 40 60 80 100 Epochs
+(b)
+
+Fig. 2. a) Location-sensitive deep network. Green color and cyan color indicate feature s and spatial location x, respectively. For better clarity, we only draw connections between input layer and one product node. b) Comparison of training errors.
+
+spatial information. CNN uses spatial pooling while LSDN uses multiplicative interactions.
+
+2.1 Training LSDN
+
+We use stochastic gradient descent [1] to optimize the loss function in (1). The optimization is with respect to the network’s parameters such as ﬁlters’ coeﬃcients, biases, and latent coordinates. As mentioned earlier, all derivations in this section are for based on one training sample (s, x, t). Recall that the second-layer hidden nodes’ responses are given in (2). We can write the responses of hidden nodes in higher layers as:
+
+h(k) = γ(u(k)), where u(k) = F(k) h(k−1) + b(k), ∀k ∈ [3, K]
+
+(4)
+
+where K is the number of layers. First, the gradients of the bias terms b(k), denoted as d(k), can be computed recursively as in (5), where γ (.) denotes the derivative of the sigmoid function. This recursive relationship can be veriﬁed
+easily using the chain rule.
+
+d(k) = (F(k+1))T d(k+1)
+
+γ (u(k)),
+
+where
+
+d(k)
+
+=
+
+∂E ∂b(k) ,
+
+∀k ∈ [3, K − 1].
+
+(5)
+
+The above expression only applies to the intermediate layers. The gradients of biases in the second layer and the last layer take slightly diﬀerent forms:
+
+d(2) = F(3)T d(3) γ (u(2)) ς(x), and d(K) = (ψ(s, x) − t) γ (u(K)) (6)
+
+Cross-Domain Synthesis of Medical Images 681
+
+Once all d(k) and h(k) are computed, the other gradients could be easily derived from using the chain rule. For completion, the gradients of ﬁlters coeﬃcients and latent coordinates are provided below. We use [.]i to denote the i-th element of a vector.
+
+∂E =
+
+F(3)T d(3)
+
+∂xˆi
+
+∂E ∂ F(k)
+
+= d(k) h(k−1)T ,
+
+∀k ∈
+
+[2, K]
+
+(7)
+
+γ (u(2) )
+
+ς (x)
+
+(2 − ς(x))
+
+×
+i
+
+(x
+
+− xˆi σ2
+
+)
+
+,
+
+∀i ∈ [1, p2]
+
+(8)
+
+The learning rate is one of the most important tuning parameters. We empirically found that 0.25 is a good learning rate for our experiments. We also slowly decrease the learning rate after each iteration by multiplying it by 0.99. Fig. 2b shows the evolution of training error over 100 epochs which we obtained when training a LSDN to predict MRI-T2 intensity values from MRI-T1 intensity values. More details of this experiment will be explained in section 4. We can see that LSDN error goes signiﬁcantly lower than that of the vanilla network despite they have the same parameter setting such as learning rate and number of hidden nodes. Similar patterns were observed for diﬀerent learning rates and network sizes.
+
+3 Network Simpliﬁcation
+
+Applying LSDN on every voxel during the synthesis process can be computationally expensive because medical images usually contains hundreds of thousands of voxels. In what follows, we propose a post-processing approach for simplifying the network in order to improve the speed of LSDN without losing much in its prediction accuracy. Our method is based on a central observation that, at each hidden layer of a network, there exists a smaller subset of functions that approximately span the same functional space of the entire layer. Let I(k) denote the index set of such subset, we have:
+
+h(i,kn) ≈
+
+α(ijk)h(jk,n), ∀i ∈ [1, pk], ∀n ∈ [1, N ]
+
+(9)
+
+j ∈I (k)
+
+where pk is the number of hidden nodes at k-th layer, h(i,kn) is the response of i-th hidden node at k-layer for n-th training sample, and α(ijk) is an unknown coeﬃcient of the linear approximation. We propose the following optimization
+to ﬁnd I(k) and α(ijk):
+
+argmin
+A(k)
+A(ijk) =
+
+H(k) − A(k)H(k)
+
+2 F
+
+,
+
+α(ijk), if j ∈ I(k) , 0, otherwise
+
+subject to A(k) col−0 ≤ T (k)
+
+⎛
+
+⎞
+
+H(k)
+
+=
+
+⎜⎜⎝
+
+h(1k,1) ...
+
+... ...
+
+h(1k,N) ...
+
+⎟⎟⎠
+
+h(pkk),1 . . . h(pkk),N
+
+(10) (11)
+
+682 H. Van Nguyen, K. Zhou, and R. Vemulapalli
+
+The optimization in (10) enforces a small number of hidden nodes to linearly repre-
+sent well all hidden nodes for all training samples. This is achieved by constraining the quasi-norm A(k) col−0, which is the number of nonzero columns, to be less than T (k). Since the formulation in (10) is a special case of the simultaneous spar-
+sity, we use simultaneous orthogonal matching pursuit [5] to eﬃciently minimize
+the loss function. It takes less than 2 seconds for each network in our experiments. Finally, the subset I(k) is obtained from the indices of non-zero columns in A(k).
+Once we ﬁnd I(k) and all the coeﬃcients, the computation can be reduced
+by shrinking the connection at each layer (in short, ShrinkConnect). This is done by discarding the hidden nodes at k-layer and their associated rows in F(k) whose indices are not in I(k). In addition, the latent coordinates xˆi is removed if i ∈/ I(2). Since the hidden nodes of k-layer connect to (k + 1)-layer, we also need to update F(k+1). Intuitively, the update should preserve F(k+1)h(k) as much
+as possible so that the output at (k + 1)-layer is similar to that of the original network. From (9), we can derive the update rule for F(k+1) whose details are
+given in the appendix. The update step can be summarized as follows:
+
+F(k) ← Fr(okw) ∈I(k) and F(k+1) ← F(k+1)Ac(ko)lumn∈I(k)
+
+(12)
+
+where Fr(okw) ∈I(k) and Ac(ko)lumn∈I(k) are the matrices formed by the rows of F(k) and columns of A(k) whose indices are in I(k), respectively. In practice, we set the sparsity level T (k) of all layers to a certain percentage of the original layer’s size (e.g. from 10% to 90%) and pick the smallest network that does
+not degrade the prediction accuracy on training data by more than 2%. We re-
+train LSDN with 10 epochs after performing ShrinkConnect to reﬁne the whole network. In most cases, the network could be reduced 4× without losing much in prediction accuracy. We note that training a LSDN of the same size from scratch
+or randomly removing hidden nodes yield worse results.
+
+4 Experiments
+We perform experiments on NAMIC brain dataset with leave-one-out cross validation. All images are registered, within domain and across domain, to a reference image using rigid transformations, as done in [6,2].
+Training Phase: We are given a set of training pairs of images. Each pair has one image from a source domain (e.g. MRI-T1) and another image from a target domain (e.g. MRI-T2) of the same subject. We assume that our data are 3dimensional volumes. Source images are cropped into small voxels of size 3 × 3 × 3. The source voxels’s intensities and their corresponding center’s coordinates, denoted as (s, x), are used as input for training a LSDN network. The intensities at centers of target voxels are treated as the desirable outputs. We investigate two network conﬁgurations denoted LSDN-1 and LSDN-2 whose layers sizes are [30-200-20-1] and [30-400-40-1], respectively. In the ﬁrst layer, 27 dimensions are from the intensity feature and 3 dimensions are from the spatial coordinates. The learning rate λ is set to 0.25, and the constant σ to 0.5.
+
+Cross-Domain Synthesis of Medical Images 683
+
+Input
+
+Ground truth
+
+MP
+
+CDN
+
+LSDN−1
+
+Fig. 3. Visual comparison of synthesized MRI-T1 volumes using diﬀerent approaches. Red boxes indicates regions where there are signiﬁcant diﬀerences among approaches.
+
+Test Phase: We apply LSDN over all voxels of a given source image in a sliding-
+
+window fashion. The predicted intensity values of all source-domain voxels are
+
+arranged according to the voxel centers’ coordinates to create a synthesized
+
+target image. We note that computational complexity for applying LSDN to one
+
+voxel is O(psp2 + pxp2 +
+
+K k=3
+
+pk−1pk),
+
+where
+
+ps
+
+and
+
+px
+
+are
+
+the
+
+dimensions
+
+of
+
+the intensity feature and the spatial coordinates, respectively. This is slightly
+
+more expensive than that of a vanilla network, which is O(psp2 +
+
+K k=3
+
+pk−1
+
+pk
+
+).
+
+However, we will see that ShrinkConnect further reduces the computation of
+
+LSDN, making our network signiﬁcantly faster than the vanilla deep network.
+
+Results and Discussion: We use signal-to-noise ratio (SNR) as the measure to evaluate diﬀerent methods. Table 1 compares average SNR for diﬀerent methods. One of the methods trains a vanilla deep network (VDN) of size [27-400-40-1] on only intensity features. Another approach, denoted as concatenation deep network (CDN), trains a vanilla deep network of size [30-400-40-1] on the concatenation of intensity features and spatial coordinates. We also compare with recent methods in literature such as modality propagation (MP) [6] and coupled sparse representation [2]. The improvements in SNR is quite signiﬁcant for LSDN compared to other approaches, especially for the case of T2→T1 synthesis. It is interesting to see that the synthesis results from T2→T1 is much better than from T1→T2. We conjecture that more details of the brain are visible under T2 than under T1. From CDN results, we observe that the concatenation of intensity feature and spatial feature is not as eﬀective as LSDN. ShrinkConnect reduces the LSDN-1 and LSDN-2 sizes respectively to [30-50-5-1] and [30-100-10-1] without losing much in prediction accuracy, as shown in the last two rows of Table 1. To validate if we could obtain the same accuracy without ShrinkConnect, we train a LSDN network of size [30-50-5-1] from scratch, denoted as LSDN-Small. We can easily notice the accuracy of LSDN-Small is signiﬁcantly lower than that of LSDN+ShrinkConnect. This demonstrates the eﬀectiveness of our network simpliﬁcation technique.
+The results also indicate that increasing network size improves the accuracy, at the cost of higher run-time computation. Table 1 provides training time of
+
+684 H. Van Nguyen, K. Zhou, and R. Vemulapalli
+
+Table 1. Comparison of signal to noise ratios and speeds on NAMIC brain dataset
+
+Method
+
+SNR (T1→T2) SNR (T2→T1) Training Synthesis
+
+(dB)
+
+(dB)
+
+(hour) (second)
+
+MP [6]
+
+13.64 ± 0.67 15.13 ± 0.88
+
+n/a
+
+928
+
+Coupled Sparse [2]
+
+13.72 ± 0.64 15.24 ± 0.85
+
+2.8
+
+245
+
+VDN
+
+12.67 ± 0.6
+
+14.19 ± 0.82
+
+1.2
+
+23.5
+
+CDN
+
+13.79 ± 0.68 15.36 ± 0.88
+
+1.2
+
+23.6
+
+LSDN-Small
+
+12.53 ± 0.75 13.85 ± 0.86
+
+0.6
+
+9.2
+
+LSDN-1
+
+14.82 ± 0.72 17.09 ± 0.94 1.4
+
+29.5
+
+LSDN-2
+
+14.93 ± 0.73 17.39 ± 0.91 2.5
+
+68.0
+
+LSDN-1+ShrinkConnect 14.79 ± 0.72 17.05 ± 0.91 1.4
+
+9.2
+
+LSDN-2+ShrinkConnect 14.80 ± 0.74 17.1 ± 0.86
+
+2.5
+
+21.5
+
+LSDN with 300 epochs. The average time it takes LSDN-1 to synthesize an image is 29.5 seconds compared to 23.5 seconds of VDN. With ShrinkConnect, the run time is reduced to 9.2 seconds per image, which is 26× faster than the coupled sparse method and 100× faster than modality propagation. Fig 3 provides visual comparisons for diﬀerent methods.
+5 Conclusions
+We proposed LSDN as a way to incorporate both image intensity feature and spatial information into a deep network. We also proposed a novel network simpliﬁcation technique for reducing computation of LSDN. Our approach outperforms the state of the art in both accuracy and computation on MR brain image synthesis. In the future, we plan to investigate the use of LSDN for other applications such as segmentation.
+References
+1. Bottou, L.: Large-scale machine learning with stochastic gradient descent. In: Proceedings of COMPSTAT 2010, pp. 177–186. Springer (2010)
+2. Cao, T., Zach, C., Modla, S., Powell, D., Czymmek, K., Niethammer, M.: Multimodal Registration for Correlative Microscopy Using Image Analogies. MIA 18(6), 914–926 (2014)
+3. LeCun, Y., Bottou, L., Bengio, Y., Haﬀner, P.: Gradient-based learning applied to document recognition. Proceedings of the IEEE 86(11), 2278–2324 (1998)
+4. Memisevic, R.: Learning to relate images. IEEE Transactions on Pattern Analysis and Machine Intelligence 35(8), 1829–1846 (2013)
+5. Tropp, J.A., Gilbert, A.C., Strauss, M.J.: Simultaneous sparse approximation via greedy pursuit. In: IEEE ICASSP. vol. 5, p. v–721 (2005)
+6. Ye, D.H., Zikic, D., Glocker, B., Criminisi, A., Konukoglu, E.: Modality Propagation: Coherent Synthesis of Subject-Speciﬁc Scans with Data-Driven Regularization. In: Mori, K., Sakuma, I., Sato, Y., Barillot, C., Navab, N. (eds.) MICCAI 2013, Part I. LNCS, vol. 8149, pp. 606–613. Springer, Heidelberg (2013)
+

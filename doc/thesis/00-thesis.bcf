@@ -2435,7 +2435,51 @@
     <bcf:citekey order="64" intorder="1">he_deep_2016</bcf:citekey>
     <bcf:citekey order="65" intorder="1">he_deep_2016</bcf:citekey>
     <bcf:citekey order="66" intorder="1">he_deep_2016</bcf:citekey>
-    <bcf:citekey order="67" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="67" intorder="1">vaswani_attention_2017</bcf:citekey>
+    <bcf:citekey order="67" intorder="2">goodfellow_generative_2020</bcf:citekey>
+    <bcf:citekey order="67" intorder="3">krizhevsky_imagenet_2012</bcf:citekey>
+    <bcf:citekey order="67" intorder="4">sohl-dickstein_deep_2015</bcf:citekey>
+    <bcf:citekey order="67" intorder="5">lecun_handwritten_1989</bcf:citekey>
+    <bcf:citekey order="68" intorder="1">goodfellow_deep_2016</bcf:citekey>
+    <bcf:citekey order="69" intorder="1">he_deep_2016</bcf:citekey>
+    <bcf:citekey order="70" intorder="1">ronneberger_u-net_2015</bcf:citekey>
+    <bcf:citekey order="71" intorder="1">noauthor_segmentation_nodate</bcf:citekey>
+    <bcf:citekey order="72" intorder="1">rombach_high-resolution_2022</bcf:citekey>
+    <bcf:citekey order="73" intorder="1">ruder_overview_2017</bcf:citekey>
+    <bcf:citekey order="74" intorder="1">loshchilov_decoupled_2019</bcf:citekey>
+    <bcf:citekey order="75" intorder="1">kingma_adam_2017</bcf:citekey>
+    <bcf:citekey order="76" intorder="1">raskutti_early_2013</bcf:citekey>
+    <bcf:citekey order="76" intorder="2">gencay_pricing_2001</bcf:citekey>
+    <bcf:citekey order="77" intorder="1">gencay_pricing_2001</bcf:citekey>
+    <bcf:citekey order="78" intorder="1">gencay_pricing_2001</bcf:citekey>
+    <bcf:citekey order="79" intorder="1">radford_improving_nodate</bcf:citekey>
+    <bcf:citekey order="79" intorder="2">wang_pretraining_2022</bcf:citekey>
+    <bcf:citekey order="80" intorder="1">bozinovski_reminder_2020</bcf:citekey>
+    <bcf:citekey order="81" intorder="1">peters_tune_2019</bcf:citekey>
+    <bcf:citekey order="82" intorder="1">dale_fine-tuning_2024</bcf:citekey>
+    <bcf:citekey order="83" intorder="1">pang_image-image_2021</bcf:citekey>
+    <bcf:citekey order="84" intorder="1">pang_image-image_2021</bcf:citekey>
+    <bcf:citekey order="85" intorder="1">pang_image-image_2021</bcf:citekey>
+    <bcf:citekey order="86" intorder="1">goodfellow_generative_2020</bcf:citekey>
+    <bcf:citekey order="86" intorder="2">kingma_auto-encoding_2022</bcf:citekey>
+    <bcf:citekey order="87" intorder="1">goodfellow_deep_2016</bcf:citekey>
+    <bcf:citekey order="88" intorder="1">isola_image-image_2017</bcf:citekey>
+    <bcf:citekey order="89" intorder="1">zhang_unreasonable_2018</bcf:citekey>
+    <bcf:citekey order="90" intorder="1">rao_transform_2018</bcf:citekey>
+    <bcf:citekey order="91" intorder="1">van_nguyen_cross-domain_2015</bcf:citekey>
+    <bcf:citekey order="91" intorder="2">huang_simultaneous_2017</bcf:citekey>
+    <bcf:citekey order="91" intorder="3">vemulapalli_unsupervised_2015</bcf:citekey>
+    <bcf:citekey order="91" intorder="4">yang_mri_2020</bcf:citekey>
+    <bcf:citekey order="92" intorder="1">vemulapalli_unsupervised_2015</bcf:citekey>
+    <bcf:citekey order="93" intorder="1">huang_simultaneous_2017</bcf:citekey>
+    <bcf:citekey order="94" intorder="1">hutchison_robust_2013</bcf:citekey>
+    <bcf:citekey order="95" intorder="1">van_nguyen_cross-domain_2015</bcf:citekey>
+    <bcf:citekey order="96" intorder="1">yang_mri_2020</bcf:citekey>
+    <bcf:citekey order="97" intorder="1">isola_image-image_2017</bcf:citekey>
+    <bcf:citekey order="98" intorder="1">birk_high-resolution_2022</bcf:citekey>
+    <bcf:citekey order="99" intorder="1">birk_high-resolution_2022</bcf:citekey>
+    <bcf:citekey order="100" intorder="1">birk_high-resolution_2022</bcf:citekey>
+    <bcf:citekey order="101" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

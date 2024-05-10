@@ -428,7 +428,8 @@ Often multiple input samples are processed in one step and the loss function is 
 Usually the weights (and biases) of a NN are initialized randomly or using some initialization procedure that has shown to be effective empirically, like the Xavier initialization~\autocite{glorot_understanding_2010}. \\
 
 Neural networks have been proven to be universal function approximators, i.e. can learn any function of arbitrary complexity, when given enough parameters, appropriate topology and a suitable loss function~\autocite{sonoda_neural_2017}. \\
-
+The two most common settings are classification and regression tasks.
+Classification takes an input and produces a discrete output --- usually a class label --- while regression outputs a continuous value.
 \fig{img/conv.png}{conv}{Application of the convolution operation on a 2D input. For each element in the output, the convolution is applied once to the input image and then slided to the next position~\autocite{dumoulin_guide_2018}.}{1}
 
 Now commonly used layers, that are also used in this work will be introduced.
@@ -516,21 +517,122 @@ Thus they can be seen as a kind of shortcut~\autocite{he_deep_2016}.
 An illustration of a skip connection in the architecture of a block is shown in \ref{skip}.
 \fig{img/skip.png}{skip}{Diagram of a block in a neural net that incorporates a skip connection~\autocite{he_deep_2016}. Weight layers stand for convolution or dense layers for example.}{0.5}
 
+\subsection{Architectures}
+Various deep learning architectures have been proposed in the past.
+The more successful ones are convolutional networks, generative adversarial networks, transformers and stable diffusion models~\autocite{vaswani_attention_2017, goodfellow_generative_2020, krizhevsky_imagenet_2012, sohl-dickstein_deep_2015, lecun_handwritten_1989}.
+Here we will focus on convolutional networks for the most part. \\
 
+A convolutional neural network uses convolutions, activation functions, pooling, and dropout as major layers in the network topology~\autocite{goodfellow_deep_2016}.
+Modern architectures use the notion of a block which groups a number of these layers together into a unit and reuses these blocks with different parameters with respect to input and output shapes, thus the number of parameters.
+An example is the ResNet Block shown in~\ref{skip}~\autocite{he_deep_2016}.
+In this example, a block consists of a convolution, followed by an activation function, another convolution, the addition of the skip connection (i.e. the input to the block) and another activation function application.
+Usually dropout and normalization layers are also included. \\
+\fig{img/unet.png}{unet}{The architecture of the UNet NN}{0.8}
 
-\subsection{Architecture}
-UNet, challenges, impact of transformers, ...
+An extension of this method is the UNet architecture initially designed for the segmentation of cells in photomicrographs~\autocite{ronneberger_u-net_2015}.
+It is shown in~\ref{unet}.
+There is a contracting part that decreases the dimension of the input by a factor of approximately $2$ per level, while doubling the number of features.
+As we can see, this network employs two convolutions and ReLU activations follwed by a max pooling operation per block in the contracting stage.
+The expanding path undoes the change in dimensionality at least partially, i.e. it increases the spatial size while decreasing the number of channels at each level.
+An expanding block first upsamples data by applying transpose convolution (also called deconvolution) and then applies two convolution operations along with ReLU activations.
+Overall there are 4 of these blocks each on the contracting and on the expanding path.
+Blocks at corresponding positions between the paths have skip connections: the output of the first contracting block is concatenated to the expanding block after the upsampling.
+Finally, there is a final convolution with kernel size $1$ to infer the output segmentation labels.
+This architecture has won the 2015 ISBI EM segmentation challenge~\autocite{noauthor_segmentation_nodate} and is since then one of the goto models for many problems, as well as the foundation for other model types like diffusion models~\autocite{rombach_high-resolution_2022}.
 
 \subsection{Training}
+Usually, the previously briefly introducted gradient descent method in combination with the back-propagation algorithm is employed to train the NN.
+As often not only a single data sample is processed but multiple together in a batch, the loss and the gradient update are performed on the mean of the loss of a batch.
+This renders the implementaion of the gradient descent method stochastic and is called stochastic gradient descent.
+Multiple extensions have been proposed, to increase the speed of convergence, to avoid getting stuck in local optima and to regularize the solution with additional constraints (e.g. on the absolute value of the weights)~\autocite{ruder_overview_2017}.
+One such extension is called AdamW~\autocite{loshchilov_decoupled_2019}.
+It is based on the the adaptive gradient-based optimization method Adam~\autocite{kingma_adam_2017}, which uses estimates of the first and second moment (mean and uncentered variance) of the gradient to include momentum to the parameter update.
+AdamW additionally introduces a decaying of the weights into the optimization procedure in order to increase sparsity into the model (reduce the number of calculations potentially in matrix multiplications) and to fight overfitting. \\
+
+Given the architecture, the initialized weights and a dataset, the dataset is split into a training set and a test set that will not be used during training but rahter to compute prediction metrics on unseen data samples to evaluate generalization of the model.
+The algorithm is then executed and the weights  are updated.
+Training on the training dataset once usually leads to underfitting, i.e. pad predictions as the weights have not been adapted enoug.
+Thus, the training reiterates on the training set multiple times.
+A single iteration of the optimization algorithm on the weights and dataset is called an epoch. \\
+
+Another way to target overfitting is early stopping.
+For that, a small part of the training set is split off to be used for validation at the end of each epoch, which computes the loss function on the validation set which is also unseen during training.
+If the validation loss does not further decrease (while the training loss might still), the training is stopped to achieve close-to-optimal generalizability~\autocite{raskutti_early_2013, gencay_pricing_2001}.
+This procedure is visualized in~\ref{e-stop}
+\fig{img/e-stop.png}{e-stop}{The early stopping method visualized in terms of loss functions~\autocite{gencay_pricing_2001}.}{0.5}
+
+For tasks that prove to be difficult like question answering or image generation, pretraining has proven to be effective~\autocite{radford_improving_nodate, wang_pretraining_2022}.
+An auxiliary task is used to train the model with an auxiliary dataset which can be orders of magnitude larger than the actual dataset for the task at hand.
+In a second step the model is then trained on the actual task dataset.
+Not only does this improve the prediction metrics of the final network, it also increases the speed of convergence.
+Early work on neural networks in the 1960s and 70s has additionally established the notion of transfer learning~\autocite{bozinovski_reminder_2020}.
+Here a network trained on another task and dataset that is related to the actual task is taken as initialization of the parameters for the actual task.
+During training, only the parameters of the output layer or block of the new network is adapted.
+Then, the learning rate is reduced by one or two orders of magnitude and either the layers are gradually unfrozen step by step or the full network is set to trainable.
+Many variations of this procedure have been developed in the past and are reviewed in~\autocite{peters_tune_2019} as well as extended in~\autocite{dale_fine-tuning_2024}.
 
 \subsection{Image-to-Image Synthesis}
+The task of image-to-image synthesis (or generation or translation) is to convert an input image from one domain to another.
+Examples include super-resolution, style transfer and image inpainting~\autocite{pang_image-image_2021}.
+There is large variety of proposed NNs to solve this problem, as shown in~\ref{i2i}.
+\fig{img/i2i.png}{i2i}{Previously proposed methods for image to image translation~\autocite{pang_image-image_2021}.}{0.8}
+Most of these architectures use generative adverserial networks (GANs) and variational auto-encoders (VAEs)~\autocite{goodfellow_generative_2020, kingma_auto-encoding_2022}.
+These will not be elaborated on in detail but certain aspects of these architectures are highlighted.
+Autoencoders receive an input image and shall output the same image.
+Architecturally they consist of an encoder and a decoder.
+Between these two there is a representation of the input image in what is called the latent space.
+Autoencoder variants differ not only between the layers and the number of parameters but also introduce additional mechanisms to ensure certain properties of the representation in the latent space~\autocite{goodfellow_deep_2016}.
+The previously described UNet architecture can be seen as an example for such an encoder-decoder architecture where the contracting part is the encoder and the expanding part is the decoder, see~\ref{unet}. \\
 
-\subsection{Deep Learning in Medical Imaging}
+Common loss functions used in other tasks usually do not work as well for image generation tasks.
+The $L_1$ metric for example is able to capture low spatial frequency differences in the image but fails to quantify the high frequency differences~\autocite{isola_image-image_2017}.
+To tackle the problem of image similarity quantification or put differently, to quantify the quality and perceptual differences that classical loss functions cannot address different methods have been proposed for NNs. \\
 
-\paragraph{pc-bSSFP \& DTI in Neuronal Networks}
+GANs employ an architecture that has two basic parts, namely
+\begin{itemize}
+ \item a generator, that generates an image given a vector (e.g. a noise vector), and
+ \item a discriminator, which is trained to distinguish the generated image from a real image. The discriminator serves as a term in the loss function of the generator.
+\end{itemize}
+The training of this network usually first updates the weights of the generator and then the weights of the discriminator per batch.
+Due to this game-theoretic two-player game, the training has proven difficult in terms of convergence empirically. \\
+
+An alternative to training a discriminator network is the use of a NN that was pretrained on the target domain on a variety of datasets and tasks.
+Given such a pretrained network, the top-most layers are discarded and both the generated and the corresponding true image are passed one after another into the network.
+The $L_2$ norm of the resulting vectors from the last non-cut layer of the top-cut pre-trained network is then calculated such that a NN based quantification of the differences in features of the images can be used as a loss fuction.
+This is called a perceptual metric~\autocite{zhang_unreasonable_2018}. \\
+
+Already before the rise of NNs' popularity, metrics have been introduced to quantify differences in images, usually for applications in photography, TV and cinematic images.
+The peak signal to noise ratio (PSNR) [dB] is defined as the logarithm of the maximal possible pixel value (e.g. 255 for grayscale or RGB images or 1 for normalized images) divided by the $L_2$ norm of the two images~\autocite{rao_transform_2018}.
+\[ \text{PSNR} = 10 \cdot \log \left( \frac{\max}{L_2} \right) \]
+Further, the structural similarity index meassure (SSIM) quantifies the difference based on the luminance $l$, contrast $c$ and the structure $s$ of different windows of the images:
+\[ l(\overrightarrow{x}, \overrightarrow{y}) = \frac{2 \mu_x \mu_y + c_1}{\mu_x^2 + \mu_y^2 + c_1} \]
+\[ c(\overrightarrow{x}, \overrightarrow{y}) = \frac{2 \sigma_x \sigma_y + c_2}{\sigma_x^2 + \sigma_y^2 + c_2} \]
+\[ s(\overrightarrow{x}, \overrightarrow{y}) = \frac{\sigma_{xy} + c_3}{\sigma_x + \sigma_y + c_3} \]
+where $\mu_x$ and $\sigma_x$ are the mean and the variance of the pixels in the window, $\sigma_{xy}$ the covariance and $c_i = (k_i L)^2$ is used to stabilize the denominator based on the dynamic range $L$ of the pixel values and some constant $k_i$.
+The SSIM is then computed as
+\[ \text{SSIM} = l + c + s \]
+
+
+\subsection{Deep Learning-based Image-to-image Synthesis for MRI}
+\autocite{van_nguyen_cross-domain_2015, huang_simultaneous_2017, vemulapalli_unsupervised_2015, yang_mri_2020} propose methods to do the image-to-image synthesis problem from MRI.
+All of these approaches use one of $T_1$-, $T_2$- and PD-weighted images as source and target modality each, that is a modality with a single channel.
+\autocite{vemulapalli_unsupervised_2015} and \autocite{huang_simultaneous_2017} use unpaired data for training where the dataset consists of a set of images, while paired datasets is a set of pairs of corresponding images.
+They employ coupled sparse representations~\autocite{hutchison_robust_2013}, which is per se not a NN-based method.
+\autocite{van_nguyen_cross-domain_2015} proposes a location-sensitive deep network on a voxel basis, mainly utilizing dense layers, the sigmoid activation function and multiplicative interactions --- an alternative to pooling that the authers propose.
+The loss function is the $L_2$ metric.
+\autocite{yang_mri_2020} employs a conditional GAN, that generates an image from an input image instead of a noise vector. The authors generate the image slice-wise and use the PatchGAN loss, introduced in~\autocite{isola_image-image_2017}. \\
+
+\autocite{birk_high-resolution_2022} generates the scalars computed from the diffusion tensor directly from 12-phase-cycle bSSFP volumes in a voxel-wise manner.
+The $L_2$ norm is used as a loss function along with an uncertainty term that is used to output the uncertainty of the predicted voxel as well.
+The network employs dense layers where the amount of neurons per layer and the number of layers as well as the batch size are subject to a secondary optimization algorithm.
+Further, not only the voxel to be predicted is passed as input to the network but also the neighboring $9$ voxels.
+The general method employed is shown in \ref{birk}.
+\fig{img/birk.jpg}{birk}{The method employed by Birk et al.~\autocite{birk_high-resolution_2022}.}{0.8}
 
 
 
+
+\newpage
 
 \chapter{Methods}\label{\positionnumber} 
 \section{The Dove Dataset}

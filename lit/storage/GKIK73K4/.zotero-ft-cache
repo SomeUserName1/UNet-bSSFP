@@ -1,0 +1,314 @@
+arXiv:2211.02701v1 [cs.LG] 4 Nov 2022
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare
+M. Jorge Cardoso1*†, Wenqi Li2†, Richard Brown1, Nic Ma2, Eric Kerfoot1, Yiheng Wang2, Benjamin
+Murrey1, Andriy Myronenko2, Can Zhao2, Dong Yang2, Vishwesh Nath2, Yufan He2, Ziyue Xu2, Ali Hatamizadeh2, Andriy Myronenko2, Wentao Zhu2, Yun Liu2, Mingxin Zheng2, Yucheng Tang2, Isaac Yang2, Michael
+Zephyr2, Behrooz Hashemian2, Sachidanand Alle2, Mohammad Zalbagi Darestani2,3, Charlie Budd1, Marc
+Modat1, Tom Vercauteren1, Guotai Wang1, Yiwen Li4, Yipeng Hu4,5, Yunguan Fu5,6, Benjamin Gorman7, Hans
+Johnson7, Brad Genereaux2, Barbaros S. Erdal8, Vikash Gupta8, Andres Diaz-Pinto1, Andre Dourson9, Lena Maier-Hein10, Paul F. Jaeger, Michael Baumgartner12, Jayashree Kalpathy-Cramer18, Mona Flores2, Justin Kirby19, Lee A.D. Cooper20, Holger R.
+Roth2, Daguang Xu2, David Bericat2, Ralf Floca12,13, S. Kevin Zhou14, Haris Shuaib15, Keyvan Farahani16, Klaus H.
+Maier-Hein12,13, Stephen Aylward17, Prerna Dogra2, Sebastien Ourselin1† and Andrew Feng2†
+1School of Biomedical Engineering & Imaging Sciences, King’s College London, London, U.K.
+2NVIDIA Corporation, Santa Clara and Bethesda, USA. 3School of Electrical and Computer Engineering, Rice University,
+Houston, USA. 4Department of Engineering Science, University of Oxford,
+Oxford, UK. 5Department of Medical Physics and Biomedical Engineering,
+University College London, London, UK. 6Department of BioAI, InstaDeep Ltd, London, UK.
+1
+
+Springer Nature 2021 LATEX template
+2 MONAI: An open-source framework for deep learning in healthcare
+7Department of Electrical & Computer Engineering, University of Iowa, Iowa City, USA.
+8Mayo Clinic, Jacksonville, USA. 9Mars Incorporated, , USA.
+10Div. Intelligent Medical Systems, German Cancer Research Center, Heidelberg, Germany.
+11Interactive Machine Learning Group, German Cancer Research Center, Heidelberg, Germany.
+12Division of Medical Image Computing, German Cancer Research Center, Heidelberg, Germany.
+13Pattern Analysis and Learning Group, Department of Radiation Oncology, Heidelberg University Hospital, Heidelberg.
+14School of Biomedical Engineering & Suzhou Institute for Advanced Research, University of Science and Technology of
+China, Suzhou, China. 15Department of Medical Physics, Guy’s & St Thomas’ NHS
+Foundation Trust, London, UK. 16National Cancer Institute, Bethesda, USA.
+17Kitware, Inc., Clifton Park, USA. 18Department of Ophthalmology, University of Colorado,
+Aurora, USA. 19Frederick National Laboratory for Cancer Research, Frederick,
+USA. 20Department of Pathology, Northwestern University, Chicago,
+USA.
+†Equal contribution
+Abstract Artiﬁcial Intelligence (AI) is having a tremendous impact across most areas of science. Applications of AI in healthcare have the potential to improve our ability to detect, diagnose, prognose, and intervene on human disease. For AI models to be used clinically, they need to be made safe, reproducible and robust, and the underlying software framework must be aware of the particularities (e.g. geometry, physiology, physics) of medical data being processed. This work introduces MONAI, a freely available, community-supported, and consortium-led PyTorch-based framework for deep learning in healthcare. MONAI extends PyTorch to support medical data, with a particular focus on imaging, and provide purpose-speciﬁc AI model architectures, transformations and utilities that streamline the development
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 3
+and deployment of medical AI models. MONAI follows best practices for software-development, providing an easy-to-use, robust, welldocumented, and well-tested software framework. MONAI preserves the simple, additive, and compositional approach of its underlying PyTorch libraries. MONAI is being used by and receiving contributions from research, clinical and industrial teams from around the world, who are pursuing applications spanning nearly every aspect of healthcare.
+1 Introduction
+Evidence-based medicine is the de facto standard approach guiding clinical management and decision-making, drawing recommendations directly from robust and bias-controlled evidence, and utilizing statistical measures to quantify the clinical beneﬁt of these recommendations. As patterns become more complex and data more numerous, advanced data analytics and pattern recognition methods are needed; artiﬁcial intelligence, and more speciﬁcally, machine learning, delivers on this need.
+Artiﬁcial intelligence (AI), when applied to healthcare data, carries the promise of improving and automating the detection and diagnosis of diseases, enabling the prognosis of disease outcomes, and supporting the delivery of clinical interventions. AI can also be used to speed image reconstruction, to automate clinical data curation and preparation [1], to improve auditing and clinical safety [2], and to optimise patient scheduling and other hospital operations [3]. In order for this vision to be achieved, several problems need to be mitigated [4]; among them, the evidence supporting the safety and eﬃcacy of these AI systems needs to outweigh the potential risks while representing a good value proposition. While several AI risks are often problem-speciﬁc and require substantial evidence to validate their accuracy, the safety and quality of the underlying software frameworks and tools used to develop these AI models are equally important and pervasive.
+There are a plethora of competing high-quality, general-purpose machine learning libraries and software frameworks that are used by researchers and developers to create, train, and deploy AI models. Examples of high-quality frameworks for AI development include actively supported frameworks such as Tensorﬂow [5], Keras, PyTorch [6], JAX and Apache MXNet [7], as well as many deprecated frameworks such as Theano, Torch, Caﬀe, and CNTK. The two most popular frameworks (Tensorﬂow and PyTorch) have significant feature parity, demonstrating the maturity of the ﬁeld. However, as general-purpose frameworks, they often do not support ﬁeld-speciﬁc or dataspeciﬁc functionality. Healthcare data, such as medical images and digital pathology reports, have a physiological basis that must be understood and maintained as the data is processed, e.g., tabular blood data transformations must be aware of the expected numerical ranges, or clinical x-ray computed tomography images are recorded in DICOM object ﬁles with rich metadata
+
+Springer Nature 2021 LATEX template
+4 MONAI: An open-source framework for deep learning in healthcare
+descriptions of the acquisition protocol and with voxel values recorded in Hounsﬁeld units at speciﬁc within-slice and inter-slice distances. Correspondingly, the associated AI models for processing such data (e.g. 3D multimodal medical imaging data) require purpose-speciﬁc architectures, augmentation, and training mechanisms. If healthcare AI models are to be built using a general-purpose framework, signiﬁcant functionality would need to be developed and tested, thus increasing the length of and the risks associated with the full R&D life-cycle.
+With the increasing popularity of AI in healthcare, several open-source healthcare-speciﬁc frameworks have also been developed by academic groups (NiftyNet [8], DLTK [9], DeepNeuro [10]) and industry teams (NVIDIA Clara, Microsoft Project InnerEye). However, this disjointed development of several platforms resulted in a fragmented software ﬁeld, diluting development eﬀorts, reducing code quality, and slowing the pace of research.
+Project MONAI (https://monai.io) is a joint initiative aiming at deﬁning, standardizing, developing, and exchanging best practices for AI in healthcare; it is unifying the fragmented healthcare AI software ﬁeld. Initially led by NVIDIA and King’s College London, Project MONAI has since evolved into a growing consortium currently with 16 diﬀerent universities and industrial partners. Project MONAI consists of several components, including MONAI Label for AI-assisted image annotation, MONAI Deploy for integrating AI models into clinical workﬂows, and MONAI Core for deep learning model research and development. This paper is focused on MONAI Core, but much of the design and community-oriented philosophies of MONAI Core are shared with the other Project MONAI components.
+MONAI Core is a freely available, community-supported, consortium-led, component of Project MONAI for deep learning in healthcare. It provides domain-optimized foundational capabilities for developing healthcare AI model training workﬂows, with a focus on imaging, video, and other forms of structured data (e.g. tabular data, HL7 FIHR, EEG signals). MONAI Core has strong community backing, with several thousand active users and more than 120 contributors. It was created with several principles in mind: open-source design, standardized, user-friendly, reproducible, high quality, and easy to integrate. This paper describes the MONAI Core software framework and its open-source strategy, design philosophy, implementation choices, abstractions, and capabilities. This paper also provides examples of how MONAI Core, and Project MONAI in general, is being applied to solve a variety of healthcare challenges.
+1.1 Design considerations for deep learning in healthcare
+Compared with generic deep learning software packages, healthcare has its own characteristics and technical challenges. These aspects are carefully considered throughout the design of the project. First, the data are often in the form of high-dimensional arrays, with the processing of the data often being coupled with the underlying physical interpretations of the data acquisition processes
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 5
+and the anatomical analysis. Thus, the design should consider the accompanying metadata and the relevant annotations. Second, due to data variability and highly ﬂexible requirements, it is necessary to build simple and robust low-level data processing components, with each component focusing on a key problem implemented to be eﬃcient and tested to be robust; such an approach allows end-users to build complex and ﬂexible compositional pipelines using these components. Lastly, while exposing the low-level component APIs, the design decisions should also be aware of the widely-used, high-level workﬂows. The introduction of standardized pipeline elements reduces the eﬀort needed to reproduce algorithmic research baselines, potentially accelerating research and development by allowing users to focus on their innovative contributions while reusing most of the existing pipelines.
+2 Methods
+2.1 Design choices and structure of the framework
+As alluded to in the previous section, MONAI Core (also referred to simply as MONAI in the remainder of this paper) has been through a very deliberate design process with a clear design philosophy as its foundation. Project MONAI has a set of principles to which its design adheres and which guide the addition of functionality across the core team and the broader base of contributors.
+The three key design principles are: it looks and feels like PyTorch; it is opt-in and incremental over PyTorch, and it fully integrates with the PyTorch ecosystem. These principles are detailed in the following sections, with concrete examples throughout subsequent sections.
+2.1.1 MONAI looks and feels like PyTorch
+PyTorch is a highly-successful deep learning framework, particularly amongst the research community [11]. This research focus was a key factor in why PyTorch was chosen as the MONAI underlying framework, with ease of use when building novel networks and a rich ecosystem built up around the core PyTorch functionality, further motivating this decision.
+MONAI has adopted the principle that features should be designed and implemented following the core guidelines and principles of PyTorch (docs.monai.io/en/stable/contrib.html), or in the case of the quality-of-life frameworks, such as Ignite (pytorch.org/ignite), as if it was done by the team developing that library. This approach was chosen to ensure developers using MONAI have a minimal learning curve and cognitive burden beyond understanding PyTorch.
+Exceptions to this rule are additive in nature. As an example of such an exception, a number of MONAI transforms which rely on a random number generation have a behaviour typical of transforms provided by libraries such as Torchvision (pytorch.org/vision), the de-facto imaging preprocessing library
+
+Springer Nature 2021 LATEX template
+6 MONAI: An open-source framework for deep learning in healthcare
+for PyTorch, but expose extra options that can provide additional functionality to enhance determinism.
+2.1.2 MONAI is opt-in and incremental over PyTorch
+A core tenet of MONAI is to be opt-in and incremental, and emphases low coupling between components. Rather than rebuilding a network architecture or model in MONAI, individual components can be selected to enhance vanilla PyTorch, Ignite-based projects, or other deep learning pipelines. MONAI has a smooth barrier-to-entry, allowing the user to gradually and seamlessly adopt individual transforms, layers, loss functions, and other elements of a deep learning model into a vanilla PyTorch model.
+In particular, MONAI does not enforce overly stringent design philosophies or oﬀer cumbersome APIs, nor does its implementation use architectural features that are unfamiliar to or introduce unexpected constraints on Pytorch users. MONAI deﬁnitions are almost entirely standard Python, inheriting from PyTorch or Ignite types and exhibiting the same loose coupling expected of these libraries. Only PyTorch, and by extension Numpy, are mandatory dependencies of MONAI; if libraries, such as Ignite, are absent from the environment, then dependent deﬁnitions will use alternative or dummy implementations with appropriate error management.
+2.1.3 MONAI collaborates with the PyTorch ecosystem
+There is a wealth of medically-focused libraries built around PyTorch, which are seldom compatible with one another. For example, while there is a rich ecosystem of medical transform and augmentation libraries, combining these libraries (e.g., through PyTorch Compose) is not directly supported. In collaboration with the developers of these libraries, MONAI now allows methods from those libraries to be mixed within a single compose command, promoting their usage and integrating their beneﬁts and user communities.
+MONAI also integrates and seamlessly extends several core PyTorch ecosystem tools. As an example, several PyTorch-based quality-of-life frameworks, such as Ignite, exist to provide higher-order engines and abstractions for the training and validation of neural networks. MONAI has adopted Ignite and extended it following an Ignite-native approach, all while ensuring two-way compatibility.
+2.2 Open-Source Strategy
+MONAI is a software framework for both research and commercial product development, with the ultimate objective of accelerating, simplifying, and reducing risks associated with AI model development and associated downstream clinical deployment. With this in mind, MONAI is licensed under the Apache-2.0 License, a permissive, altruistic, free-software license that allows the software to be used for any purpose, to be distributed and modiﬁed, without Project MONAI charging royalties or licensing fees. Copyleft licenses were
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 7
+explicitly avoided as the redistribution requirement would result in reduced commercial adoption and contributions, which have signiﬁcantly beneﬁted the quality, capabilities, and impact of MONAI.
+While MONAI is being developed with minimal required dependencies, namely PyTorch and NumPy, it provides wrappers and adaptors that allow popular healthcare AI tools to be used from within MONAI. Such an approach improves access to these tools and brings the community together in a manner that preserves software quality and integration.
+Several other software initiatives are being developed under the Project MONAI consortium, building on the foundation provided by MONAI Core: MONAI Label, an AI-assisted data labeling tool [12]; MONAI Deploy, a framework and software development toolkit allowing AI models to be deployed and integrated into a clinical environment; MONAI FL, providing standards for Federated Learning; MONAI Education, an educational package that can be used or adapted to teach AI in healthcare; with others on the way. The Project MONAI consortium is also working with key societies in the ﬁeld, such as MICCAI and MIDL, with the aim of supporting educational initiatives and hackathons and bringing the research community together.
+2.3 System Overview and components
+The MONAI core modules include the following (as illustrated in Fig 1Top): monai.data, targeting the datasets, readers/writers, and synthetic data; monai.losses, targeting classes deﬁning loss functions and following the pattern of torch.nn.modules.loss; monai.networks, containing network deﬁnitions, component deﬁnitions, and PyTorch-speciﬁc utilities; monai.transforms, deﬁning data transforms for preprocessing and postprocessing; monai.csrc and monai. extensions, providing C++/CUDA extensions for MONAI core Python APIs; monai.visualize, containing utilities for data visualization; monai.metrics, deﬁning metric tracking and analysis tools; and monai.optimizers, containing classes deﬁning optimizers and following the pattern of torch.optim. To assemble and integrate diﬀerent components, as depicted in Fig 1 (bottom), core modules also include monai.engines and
+Fig. 1: Pictorial representation of the MONAI Core modules (top) and MONAI workﬂows components (bottom).
+
+Springer Nature 2021 LATEX template
+8 MONAI: An open-source framework for deep learning in healthcare
+monai.handlers, deﬁning workﬂow engines for training and evaluation, and event handlers for implementing functionality at various stages in the training and inferencing processes.
+2.4 Transforms
+Data transformation and augmentation is of paramount importance in the domain of deep learning, primarily when applied to imaging data. They can help with data processing, from simple use cases such as loading an image from a ﬁle or normalizing the intensity of an image to a given range, to complex geometrical data transformations taking the image geometry into account. Equally, transforms can be used in the context of data augmentation to minimize model overﬁtting, for example, by randomly rotating or ﬂipping images.
+MONAI aims to support users by providing both domain-speciﬁc transforms (see next sections), as well as those commonly used in volumetric medical-imaging deep learning pipelines. Medical images require highly specialized methods for I/O, pre-processing, and augmentation. Images are often stored in complex formats with rich meta-information, with the data volumes being high-dimensional and requiring carefully designed manipulation procedures.
+MONAI provides comprehensive medical image-speciﬁc transformations for IO, spatial, intensity, crop/pad, etc. They can be easily composed into optimized medical data processing pipelines emphasizing reproducible results. A non-exhaustive list of examples is provided as follows: LoadImage, which loads medical images with an automatically-selected package (ITK [13], Nibabel [14], PIL [15], etc.); Spacing, which resamples input images into a speciﬁed voxel spacing; Orientation, which transforms images to a speciﬁed orientation axis (e.g., RAS); RandGaussianNoise, which perturbs image intensities by adding statistical noise; NormalizeIntensity, which normalizes data intensity based on mean and standard deviation; Affine, which transforms images based on aﬃne parameters; and Rand3DElastic, which performs both a random elastic and aﬃne deformations in 3D. Some of these examples are also depicted in Figure 2.
+2.4.1 Physics-speciﬁc transforms
+In a medical imaging setting, users often require transforms that have a grounding in the underlying physics of the acquisition. For example, data acquired from magnetic resonance (MR) imaging is recorded in k-space, and therefore it is desirable to be able to augment MR images in the k-space domain. The RandKSpaceSpikeNoise transform, which randomly applies localized radiofrequency spikes in k-space, is just one example of many transforms in MONAI that are inspired by the physics of how medical images are acquired.
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 9
+2.4.2 Invertible transforms
+Within deep learning workﬂows, it is often desirable to invert or revert previously-applied spatial transforms (resize, ﬂip, rotate, zoom, crop, pad, etc.) in order to return transformed data to a previous geometrical state. This is useful if, for example, in test-time augmentation (TTA) [16], augmentationconsistency based domain adaptation, or when the user wishes to save an inferred segmented image in a way that preserves the original geometry and promotes transformation equivariance. Doing so requires a full understanding of the tensor geometry and attached rasterization grid as to ensure the geometry is preserved after inversion.
+2.4.3 Array and dictionary transforms
+The design of MONAI transforms emphasizes code readability and usability. MONAI transforms can either be applied to a tensor or array of data (e.g., a single image), or to a data dictionary. The former focuses on simplicity, whilst the latter allows for more complex pipelines, such as applying the same random instantiation of a transform to sets of paired data (i.e. input image and associated ground truth segmentation). Storing data in a dictionary also allows for meta-information to be used, updated and tracked, for example, to
+
+(a) Orientation (RAS)
+
+(b) RandGaussianNoise
+
+(c) RandRotate
+
+(d) RandSpatialCrop
+
+Fig. 2: Each block (a-d) represents some data before (top) and after (bottom) a transformation.
+
+Springer Nature 2021 LATEX template
+10 MONAI: An open-source framework for deep learning in healthcare
+ensure that the physical attributes of an image are preserved after a resize transform is applied.
+2.4.4 Utility transforms
+The ability to compose and chain transforms is naturally required when applying a series of data processing steps; this is achieved in MONAI using the Compose class. The provided OneOf transform allows the user to build on Compose by executing one of multiple transforms with some user-deﬁned probability.
+To convert the data shapes or types, utility transforms such as ToTensor, ToNumpy, SqueezeDim are also provided. These are not only convenient for users but also enable compatibility with other packages, as described in the following sections.
+2.4.5 Simplifying CPU, GPU, PyTorch & NumPy interactions
+The majority of transforms in MONAI are compatible with both PyTorch and NumPy input, do not require explicit conversion between the two formats, and support both CPU and GPU inputs. Users can also arbitrarily switch between CPU and GPU devices during their chain of transforms with the ToDevice transform, allowing for computation-heavy transforms (e.g. those requiring image resampling) to be performed on the GPU, with other transforms performed on the CPU to save GPU memory for model training.
+2.4.6 Compatibility with community-led libraries
+MONAI provides adapter tools to accommodate the use of third-party transforms from packages such as ITK [13], torchIO [17], Kornia [18], BatchGenerator [19], Rising [20], and cuCIM [21].
+For example, cuCIM has implementations of optimized versions of several common transforms that are often used in digital pathology pipelines. These transforms are executed on the GPU and act on CuPy arrays, with the CuCIM class provided to adapt cuCIM operations to MONAI transform types.
+2.5 Engines, Loss Functions, and Metrics
+MONAI focuses on PyTorch-like implementations, and thus, introducing additive concepts on top of its architecture allows its components to be used in typical existing workﬂows. The common pattern for a PyTorch training loop, consisting of an explicit iteration over input data which is passed to the model and loss calculation before the optimizer is manually stepped, can incorporate MONAI networks, loss function, metrics, and other features. Following our design principles, MONAI training and inference workﬂows extend the Engine class of Ignite. These types encapsulate the training loop while supporting online metric calculation, visualization, and saving network state. Functionality is added on top of that provided by Ignite, such as the support for
+
+Springer Nature 2021 LATEX template
+
+MONAI: An open-source framework for deep learning in healthcare 11
+
+Reference
+
+General Purpose
+
+AHNet BasicUNet DenseNet DiNTS DynUNet EﬃcientNet HighResNet RegUNet ResNet
+
+SegResNet SegResNetVAE SENet Transchex UNETR ViT ViTAutoEnc VNet SwinUNETR
+
+AutoEncoder Regressor Classiﬁer Discriminator Critic FullyConnectedNet VarFullyConnectedNet Generator UNet VarAutoEncoder
+
+Table 1: MONAI Network Deﬁnitions
+
+specialized transform handling, provide default training functions, and provide extra event handling functionality.
+Loss functions in MONAI adhere to PyTorch API conventions and can be used in any existing PyTorch workﬂow. The added functions introduce specialized losses not present in the base library, such as Dice and its variants (generalized, masked, focal, etc.) [22], focal loss, Tversky loss, contrastive loss, those used for image registration (bending energy, multi-scale loss, etc.), and several others. Where possible, inheritance is used to limit code duplication and ease the extension of the provided classes, and many aspects of the loss calculations, such as choice of reduction, are controlled via constructor arguments. In addition to PyTorch compatibility, the design of the loss functions emphasizes ﬂexibility of use and ease of extension.
+Lastly, metrics are used to calculate values for assessing the performance of an AI model during training or validation. These are typically nondiﬀerentiable, unlike loss functions, allowing them to calculate measures of performance that would be unsuitable as losses. MONAI has been among the lead initiatives of the Metrics Reloaded consortium, comprising academic and industrial image analysis thought leaders from all over the world [23]. The mission of Metrics Reloaded is to foster reliable algorithm validation through problem-aware choice of metrics with the long-term goal of (1) enabling the reliable tracking of scientiﬁc progress and (2) bridging the current chasm between AI research and translation into biomedical imaging practice. Contributions include a comprehensive collection of metric-related pitfalls [24] and a corresponding paper on recommendations [23]. Reference implementations for all recommended metrics are currently being integrated into MONAI. Following the metric deﬁnitions provided by Ignite, MONAI metric classes can be used with an evaluator engine class to assess the network at key points in training while supporting distributed data-parallel operations.
+2.6 Network Architectures
+Table 1 lists a subset of the network deﬁnitions provided by MONAI and divided into two primary categories: those deﬁning a reference implementation of a published architecture, and those deﬁned for general use following
+
+Springer Nature 2021 LATEX template
+12 MONAI: An open-source framework for deep learning in healthcare
+what is considered best design and practice. Reference implementations include networks such as ResNet, BasicUNet, EfficientNet, and several transformerbased networks, with implementations explicitly adhering to their published deﬁnitions and settings, rather than providing an abstract architecture. Where possible, these are also deﬁned with some conﬁgurability in place, such as allowing 1/2/3D inputs and outputs based on constructor parameters, and a varying number of input and output channel counts.
+General purpose networks, conversely, primarily adhere to an architectural structure emphasizing inheritance for reuse, conﬁgurability of number of spatial dimensions for input and output data, of internal structure (e.g., the number of levels or layers), and of speciﬁc network layers and blocks. The intent of this class of networks is to deﬁne sensible defaults, inheriting structure or components from other similar networks, while permitting customization and reuse in other applications without requiring major rewriting or adaptation.
+2.6.1 Working network example and extensions
+As an example, the UNet class can be instantiated without modiﬁcation to operate on one, two, or three-dimensional data as input and output. The number of levels the network has can also be set to values other than that found in the reference implementation [25], subject to the constraints of downsampling (as discussed later). Each level is by default deﬁned using blocks of convolution-normalization-dropout-activation layers, but these can be replaced with residual units or sequences of such layers. Constructor arguments also set the type of activation or normalization used throughout the network. As an explicit example, a network segmenting 3D volumetric image data into four labels can be created by setting the constructor parameters for dimensions to 3, in channels to 1 for single-channel inputs, and out channels to 4. The number of layers is set by the channels parameter whose values deﬁne the number of output channels for the layers of the encoding side of the network, e.g., ﬁve layers, comprising four encoding layers and a ﬁnal bottleneck layer, would be given as (4, 8, 16, 32, 64).
+By default, downsampling is performed in the encoding part of the network using strided convolutions, as deﬁned by the strides parameter for every layer save the bottleneck. A strides value of (2, 2, 2, 2) implies the network will downsample the activation map by half at each of the ﬁrst four layers. Note that an input whose spatial dimensions are multiples of 24 is necessary for the decoding path to concatenate skip connections and get an output with the same dimensions as the input.
+A much simpler network producing a single channel 2D output from the same sort of input can be created by changing the dimensions argument to 2 and out channels to 1. Using fewer layers can be accomplished with fewer values in channels and strides. Activation layers are uniformly the same type throughout the network, by default PReLU [26], but can be changed by setting the act argument to a name or a type for a diﬀerent layer. MONAI provides factory objects to query types from a central location by names, thus
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 13
+setting act to the string “GELU” [27] will cause the network to be constructed with that activation in place of the default.
+All general-purpose networks are compatible with Torchscript as scripted objects when using either the default or a subset of the layer parameters, maximizing portability and usability of pre-trained networks. This allows trained networks to be loaded in a process where there is no Python dependency, thus facilitating downstream deployment and integration. A scripted network saved to a Torchscript archive can be instantiated and used for training or inference without MONAI being installed in the host environment, thus decoupling the library and its version from the stored network so that requirements and incompatibilities with the host environment can be minimized.
+These network factories are used to easily refer to built-in PyTorch or custom types, as well as choose the appropriate type for the desired spatial dimensionality. This latter property is useful for PyTorch layers, which deﬁne separate classes for each dimension as the factory can be queried by name and other arguments such as dimension. Without this feature, deﬁnitions parameterized on number of dimensions would have to include code to choose which layer to instantiate based on that value.
+Typically MONAI deﬁnitions using these factories permit constructor argument values to be passed along with the name so that the layer can be constructed in a conﬁgurable way. For example, the act argument for UNet can be given (Act.SELU, "inplace": True) to use torch.nn.SELU as an in-place operation [28].
+2.7 Datasets and IO
+2.7.1 Data representations for imaging
+Medical imaging data requires metadata to preserve geometric and other dataspeciﬁc, information. As such, MONAI provides ﬁrst-class support for imaging data and related networks and transforms. A typical approach to implementing such domain-speciﬁc functionality is to provide concrete types for entities such as medical images that are then hardwired through the framework. This, however, conﬂicts the MONAI design goal that it should be interoperable with PyTorch; it also limits the reusability of components in cases where the assumptions made about such specialized types do not hold.
+To this end, MONAI has a class named MetaTensor. It inherits from the PyTorch torch.Tensor class, meaning it can be used wherever tensors are used in PyTorch. It further extends upon PyTorch functionality by also storing image metadata. An example of this is the orientation information stored in DICOM or NIfTI images, which when loaded with MONAI can then be stored alongside the images, and the MONAI transforms can use and update this meta data as necessary.
+The MetaTensor also stores information, such as transformations that have already been applied to an image. This is particularly useful when data augmentations are only applied some of the time, parameterized by user-deﬁned
+
+Springer Nature 2021 LATEX template
+14 MONAI: An open-source framework for deep learning in healthcare
+probabilities (e.g., randomly ﬂipping an image 50% of the time), or where the user would like to inspect the parameters of a randomly applied transform (e.g., knowing the rotation matrix that was applied during RandRotate). It also enables MONAI to perform actions such as inverse transforms (as mentioned in 2.4.2) all whilst resting in the conﬁnes of PyTorch interoperability.
+2.7.2 Extended dataset functionality
+Medical datasets, particularly those for various imaging modalities, are amongst the most memory-intensive per-sample datasets in deep learning. Conversely, the relative lack of high-quality labeling means that, at least for supervised deep learning tasks, training must often be carried out on relatively small number of samples and data augmentation techniques are very important for eﬀective learning. As a result, pre-processing of data can be a signiﬁcant overhead unless careful attention is paid to the data input and pre-processing aspects of model training.
+MONAI provides extensions to the standard PyTorch Dataset class which help solve the above problems. In particular, MONAI provides integrated caching and persistence solutions that can reduce the computational expense of data pre-processing without adding complexity to the user experience.
+CacheDataset provides the ability to cache deterministic operations in a pre-processing pipeline that can be costly with certain large types of medical data. Operations such as deterministic pixel/voxel resampling and rescaling are carried out the ﬁrst time when a particular sample is loaded, and the results of those operations are then cached in memory for future training steps. Note that only preprocessing steps occurring before stochastic steps can be cached in this way. CacheDataset provides eﬀective performance gains as long as the cached data does not exceed RAM, and the user can tune the proportion of the dataset that is cached in this manner.
+PersistentDataset provides analogous functionality to CacheDataset, but with the output of the deterministic stages stored in an intermediary ﬁle system representation rather than to memory. The use of PersistentDataset is recommended for 3D datasets or where the overall dataset size is much larger than RAM.
+2.7.3 Wrappers for reference datasets
+As with machine learning in other domains, reference datasets exist for medical deep learning applications. For example, MedNIST 1 serves as an MNIST handwritten digit dataset analogue [29], providing a standard dataset that is suitable for initial training and benchmarking of various medically-focused deep learning applications. Another example, the Medical Segmentation Decathlon [30], represents a set of 10 challenge datasets, widely used to demonstrate network performance across a range of segmentation tasks. MONAI
+1Made available by Dr. Bradley J. Erickson M.D., PhD (Department of Radiology, Mayo Clinic) under the Creative Commons CC BY-SA 4.0 license.
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 15
+provides Dataset extension classes that simplify the downloading, storage and partitioning of the MedNIST and Medical Segmentation Decathlon datasets, and demonstrate a best practice for wrapping other such datasets. These datasets are extensions of MONAI CacheDataset, facilitating rapid training. In addition to providing an extended dataset class for the Medical Segmentation Decathlon, the MONAI Consortium also manages a msd-for-monai S3 bucket in US and EU regions, via AWS Open Data, with the aim of facilitating cloud-based model training and data distribution. A plan is currently in place to further extend beyond the current dataset pool and provide a common platform for large research data sharing and ingestion for the community. Recently MONAI took a ﬁrst step towards this by introducing TciaDataset to automatically download and extract publicly-accessible datasets from The Cancer Imaging Archive with accompanying DICOM segmentations, and act as PyTorch datasets to generate training, validation, and test data.
+2.8 Training, Inference Engines and Event Handlers
+To quickly set up training and evaluation experiments, MONAI provides a set of workﬂows to signiﬁcantly simplify the setup of a MONAI script and allow for fast prototyping.
+These features decouple the domain-speciﬁc components and the generic machine-learning processes. They also provide a set of uniﬁed APIs for higherlevel applications (such as AutoML, and Federated Learning). The trainers and evaluators of the workﬂows are compatible with the Ignite engine and eventhandler mechanism. There are rich event handlers in MONAI to independently attach to the trainer or evaluator, and users can register additional custom events to workﬂows.
+Distributed data-parallel is an important feature of PyTorch to connect multiple GPU devices, on single or multiple nodes, to train or evaluate models. The distributed data-parallel APIs of MONAI are compatible with the native PyTorch distributed module, Ignite distributed module, Horovod, XLA, and SLURM.
+For model inferences on large volumes, the sliding window approach is a popular choice to achieve high performance while having ﬂexible memory requirements. A typical process comprises the selection of continuous windows on the original image, followed by iteratively running batched window inferences until all windows are analyzed. The inference outputs are then aggregated into a single segmentation map, and the results are saved to ﬁle or compute some evaluation metrics. This approach also supports ‘overlap‘ and ‘blending mode‘ conﬁgurations to better handle window overlap, resulting in improved performance.
+The Ignite library provides event handlers to decouple training/inference pipelines from additional logic which gets triggered at set times or events during execution. Users can extend handlers for speciﬁc requirements, use preexisting handlers for logging, metric calculation, or other tasks, or attach their own deﬁned handler routines. These will be triggered by speciﬁc events during
+
+Springer Nature 2021 LATEX template
+16 MONAI: An open-source framework for deep learning in healthcare
+execution such as at the completion of a batch or an epoch, or during data loading, allowing data to be analyzed, model parameters adjusted, or other operations at these key moments.
+2.9 Visualisations and utilities
+2.9.1 Tensorboard
+When developing large workﬂows, it is crucial that users are able to visualize, track and understand processes and progress. To this end, MONAI provides many helper functions to the popular package, Tensorboard [31]. Images in medical imaging are often 3D, so MONAI wrapper functions enable the presentation of these images in the form of GIFs, a set of 2D slices, or as interactive 3D renderings [32]. These can be used in conjunction with the engines mentioned in the previous section.
+2.9.2 Traceable transformations
+As mentioned in Section 2.4.3, MONAI transforms can be applied to both arrays and dictionaries of data. When dictionaries are used, as well as storing the input metadata corresponding to each image, a stack of transforms that have been applied to that image can also be stored. This is particularly useful when data augmentations are only applied some of the time, parameterized by user-deﬁned probability (e.g., randomly ﬂipping an image 50% of the time), or where the user would like to inspect the parameters of a randomly applied transform (e.g., knowing the rotation matrix that was applied during RandRotate). It also provides a mechanism for augmentation auditing and traceability, a subject of increasing importance when developing AI models for clinical use. Internally, MONAI also uses this functionality when performing inverse transformations, when it is appropriate to invert with a last in, ﬁrst out strategy.
+2.9.3 Interpretability
+MONAI supports popular variants of network interpretability that are often employed in classiﬁcation tasks. These include occlusion sensitivity [33], GradCAM [34] and Smoothgrad [35]. These methods help the researchers address the question: “which parts of the image were important in arriving to a given decision of a classiﬁcation?”. This allows users to better visualize the inner workings of their models. Examples of occlusion sensitivity and GradCAM++ (a GradCAM variant) can be seen in Figure 3.
+Another form of interpretability is test-time augmentation (TTA), which is also available in MONAI. TTA works by repeatedly applying data augmentations and averaging the inferred outputs. If spatial transformations have been applied, the inverse transformation is required — as previously mentioned, this functionality is also provided by MONAI.
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 17
+Fig. 3: Examples of interpretability with MONAI. The MedNIST dataset was used here, and the network correctly classiﬁed each image, which from left to right were head CT, chest x-ray and hand x-ray. From top to bottom, the columns are the input image and then the outputs from occlusion sensitivity and GradCAM++ (a GradCAM variant). Blue indicates areas of the image that the network relied on more heavily in the decision-making process.
+2.9.4 Utility functions Lastly, a wealth of other functions exist in MONAI for helping users visualize their results. An example of this is the blend image function, which allows users to easily create RGB images from the superposition of images and labels (ground truth or inferred), examples of which can be seen in Figure 2. Another example of utility functions used for visualizations is the matshow3d function, which creates a 3D volume ﬁgure as a grid of images.
+3 Experiments and Applications
+This section introduces four applications with the aim of demonstrating the breadth and beneﬁts of MONAI.
+3.1 Segmentation
+The typical PyTorch training workﬂow consists of a training loop which feeds data into the network and optimizes its parameters, followed by an evaluation loop where validation data is used in conjunction with a metric to assess training progress. PyTorch provides the relatively low-level components for this workﬂow but relies on libraries such as Ignite for higher-level deﬁnitions. Types which encapsulate the training process oﬀer ease of use at the expense
+
+Springer Nature 2021 LATEX template
+18 MONAI: An open-source framework for deep learning in healthcare
+of some ﬂexibility but represent a signiﬁcant acceleration of development for most users.
+Training a segmentation network with ground truth annotated data is one instance of this common supervised process. The network is tasked with predicting the segmentation image from the input image, and this is compared using a loss such as Dice against the known actual segmentation. A supervised segmentation training workﬂow in PyTorch can be sketched as the following:
+PyTorch Training Loop
+for epoch in range(max_epochs): network.train() for inputs, labels in train_loader: optimizer.zero_grad() outputs = network(inputs) loss = loss_function(outputs, labels) loss.backward() optimizer.step()
+network.eval() with torch.no_grad():
+for val_inputs, val_labels in val_loader: val_outputs = network(val_inputs) metric(y_pred=val_outputs, y=val_labels)
+metric = metric.aggregate().item() print("Validation result:", metric)
+MONAI provides types inheriting from Ignite deﬁnitions to encapsulate this process. The purpose is to simplify and regularize how workﬂows are created to make the process quicker, easier, and more reproducible. For a supervised training workﬂow, the SupervisedTrainer and SupervisedEvaluator types deﬁne the training and validation components discussed previously. The previous training script is thus transformed into an instantiation of these types followed by a call to run to hand control of the process to the internal training mechanism:
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 19
+MONAI Training Loop
+evaluator = SupervisedEvaluator( val_data_loader=val_loader, network=network, key_val_metric={ "metric": metric }, ...
+)
+trainer = SupervisedTrainer( max_epochs=num_epochs, train_data_loader=train_loader, network=network, optimizer=optimizer, loss_function=loss_function, train_handlers=[ValidationHandler(1,evaluator)], ...
+)
+trainer.run() # do the training run for 10 epochs
+In addition to simplifying the code down to a few lines of object instantiations, this form of workﬂow aids in reproducibility and correctness by limiting the number of details and deﬁnitions the scientist needs to implement for training. With more moving parts and structural deﬁnitions a user must implement, even simple things like loops and method calls, the more opportunity there is for variation or error to be introduced into the code. Reproduction for software experiments requires rerunning or repurposing pre-existing code for new situations, and so introduced variations between code bases that are expected to be equivalent complicate the process of deriving and verifying scientiﬁc results.
+3.2 Classiﬁcation
+For many training and evaluation tasks, deterministic behavior is important for consistent and reproducible results. MONAI provides routines for managing determinism in workﬂows by setting random seed values for PyTorch, Numpy, and the native Python random library, as well as setting backend ﬂags, to appropriate values. This ensures that many stochastic processes, including the evaluation of data transforms and network processes like dropout, can be expected to produce identical results between runs.
+For example, a ﬁxed seed can be set for all involved libraries as well as setting ﬂags for deterministic behavior, followed by computation, and then returning the state of the running program to non-determinism:
+
+Springer Nature 2021 LATEX template
+20 MONAI: An open-source framework for deep learning in healthcare
+MONAI Training Loop
+random_seed = 42 monai.utils.set_determinism(
+seed=random_seed, use_deterministic_algorithms=True )
+# perform computation
+monai.utils.set_determinism( seed=None, use_deterministic_algorithms=False
+)
+Classiﬁcation problems beneﬁt from this determinism when interpreting network behavior and results. MONAI provides networks, losses, and metrics for classiﬁcation problems, and visualization routines for displaying occlusion sensitivity and the GradCAM method. Making sense of the interpretations these methods provide requires experimentation and minor changes to network parameters to observe results. Being able to ﬁx a deterministic training process allows the user to minimize the variability that would be introduced with randomized transforms or internal PyTorch/Numpy processes in their code, and allows consistent results to be generated and visualized.
+3.3 Registration
+DeepReg [36] is an open-source toolkit of networks and algorithms for image registration. A number of these components have been ported into MONAI and are provided as standard loss functions and network deﬁnitions.
+MONAI provides a semi-supervised example of registering lung CT images at inspiration to expiration. During training, a deformation ﬁeld is estimated by the network to deform the moving image and its segmentation to the ﬁxed image and segmentation. A combined loss scores the results based on the similarity between the deformed and ﬁxed images, the Dice score of the deformed and ﬁxed segmentation calculated at various scales, and an energy-based regularisation term.
+The image loss is the standard PyTorch MSE function, and the Dice loss is that provided by MONAI and used in other segmentation applications. The regularisation function is a bending loss term based on second-order derivatives and is a MONAI deﬁnition.
+Deformation is performed using a MONAI class which can use resampling routines included in PyTorch, or MONAI’s compiled code for doing the same. Note that these routines implement interpolation models (e.g. tricubic), which are not present in PyTorch, in addition to having speed advantages. MONAI thus provides a number of important tools for training deep learning registration algorithms not present in the base PyTorch library.
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 21
+3.4 Benchmarks
+Typically, model training is a time-consuming step during deep learning development, especially in medical imaging applications. Volumetric medical images are usually large (as multi-dimensional arrays), and the model training process can be complex. Even with powerful hardware platforms (e.g., CPU/GPU with large RAM), it is not easy to fully leverage them to achieve high performance. MONAI provides not only optimized tools and code but also a detailed guide based on best practices to achieve the best performance.
+NVIDIA GPUs have been widely applied in many areas of deep learning training and evaluation, and the CUDA parallel computation library shows obvious acceleration when compared to traditional computation methods. To fully leverage GPU features, many popular mechanisms are provided in PyTorch, like automatic mixed precision (AMP), distributed data-parallel, etc. MONAI can support these features and provides rich examples. Even with CacheDataset, one still needs to copy the same data to GPU memory for random transforms or network computation for every epoch. To address this issue, an eﬃcient approach is to cache the data to GPU memory directly, allowing for more eﬃcient and immediate GPU computation.
+As an example, one ﬁrst converts to PyTorch Tensor with the EnsureTyped transform and moves data to GPU with the ToDeviced transform. CacheDataset then caches the transform results until ToDeviced, so caches are stored in GPU memory. Then in every epoch, the program fetches cached data from GPU memory and only executes the following random transforms (like RandCropByPosNegLabeld) on GPU directly.
+A fast model training guide is available as a MONAI tutorial, providing an overview of the fast training techniques in practice, covering aspects such as proﬁling the pipelines, optimizing data loading function, algorithmic improvement, optimizing GPU utilization, and leveraging multi-GPU and multi-node distributed training.
+4 Conclusions
+We present MONAI, an open-source and community-supported, consortiumled PyTorch-based framework for deep learning in healthcare, with a particular focusing providing a standardized and ﬂexible platform for developing biomedical and clinical applications. This paper introduces key design considerations and implementation choices that have driven the development of MONAI, presents the rationale behind the MONAI open-source strategy and license, and introduces MONAI’s major system components. Finally, example use cases of MONAI are provided, highlighting the beneﬁts of the platform. Overall, we believe MONAI can help accelerate and simplify the development of AI models and contribute towards more impactful research, development, and clinical deployment.
+
+Springer Nature 2021 LATEX template
+22 MONAI: An open-source framework for deep learning in healthcare
+5 Acknowledgments
+JC, EK, TV, and SO acknowledge funding from the Wellcome/EPSRC Centre for Medical Engineering (WT203148/Z/16/Z), Wellcome Flagship Programme (WT213038/Z/18/Z). JC, EK, SO and HS also acknowledge funding from the London Medical Imaging and AI Centre for Value-based Healthcare. SA was funded, in part, from the National Institutes of Health via NIBIB and NIGMS R01EB021396, NIBIB R01EB014955, NCI R01CA220681, and NINDS R42NS086295. This project has been funded in whole or in part with federal funds from the National Cancer Institute, National Institutes of Health, under Contract No. HHSN261200800001E. The content of this publication does not necessarily reﬂect the views or policies of the Department of Health and Human Services, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.
+References
+[1] Kraljevic, Z. et al. Multi-domain clinical natural language processing with medcat: The medical concept annotation toolkit. Artiﬁcial Intelligence in Medicine 117, 102083 (2021). URL https://www.sciencedirect.com/ science/article/pii/S0933365721000762. https://doi.org/https://doi.org/ 10.1016/j.artmed.2021.102083 .
+[2] Brzezicki, M. A. et al. Artiﬁcial intelligence outperforms human students in conducting neurosurgical audits. Clinical Neurology and Neurosurgery 192, 105732 (2020). URL https://www.sciencedirect.com/ science/article/pii/S0303846720300755. https://doi.org/https://doi.org/ 10.1016/j.clineuro.2020.105732 .
+[3] Nelson, A., Herron, D., Rees, G. & Nachev, P. Predicting scheduled hospital attendance with artiﬁcial intelligence. npj Digital Medicine 2 (1), 26 (2019). URL https://doi.org/10.1038/s41746-019-0103-3. https: //doi.org/10.1038/s41746-019-0103-3 .
+[4] Panch, T., Mattie, H. & Celi, L. A. The “inconvenient truth”about ai in healthcare. npj Digital Medicine 2 (1), 77 (2019). URL https://doi.org/ 10.1038/s41746-019-0155-4. https://doi.org/10.1038/s41746-019-0155-4 .
+[5] Abadi, M. et al. Tensorﬂow: A system for large-scale machine learning (2016). URL https://www.usenix.org/system/ﬁles/conference/osdi16/ osdi16- abadi.pdf .
+[6] Paszke, A. et al. Pytorch: An imperative style, high-performance deep learning library (2019). URL https://arxiv.org/abs/1912.01703.
+[7] Chen, T. et al. Mxnet: A ﬂexible and eﬃcient machine learning library for heterogeneous distributed systems (2015). URL https://arxiv.org/abs/
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 23
+1512.01274.
+[8] Gibson, E. et al. Niftynet: a deep-learning platform for medical imaging. Computer Methods and Programs in Biomedicine 158, 113– 122 (2018). URL https://www.sciencedirect.com/science/article/pii/ S0169260717311823. https://doi.org/https://doi.org/10.1016/j.cmpb. 2018.01.025 .
+[9] Pawlowski, N. et al. Dltk: State of the art reference implementations for deep learning on medical images (2017). URL https://arxiv.org/abs/ 1711.06853.
+[10] Beers, A. et al. Deepneuro: an open-source deep learning toolbox for neuroimaging. Neuroinformatics 19 (1), 127–140 (2021). https://doi.org/ 10.1007/s12021-020-09477-5 .
+[11] He, H. The state of machine learning frameworks in 2019. The Gradient (2019) .
+[12] Diaz-Pinto, A. et al. Monai label: A framework for ai-assisted interactive labeling of 3d medical images (2022). URL https://arxiv.org/abs/2203. 12362.
+[13] McCormick, M., Liu, X., Ibanez, L., Jomier, J. & Marion, C. ITK: enabling reproducible research and open science. Frontiers in Neuroinformatics 8, 13 (2014). URL https://www.frontiersin.org/article/10.3389/ fninf.2014.00013. https://doi.org/10.3389/fninf.2014.00013 .
+[14] Brett, M. et al. nipy/nibabel: 3.2.1 (2020). URL https://doi.org/10.5281/ zenodo.4295521.
+[15] van Kemenade, H. et al. python-pillow/pillow: 8.4.0 (2021). URL https: //doi.org/10.5281/zenodo.5571504.
+[16] Wang, G. et al. Aleatoric uncertainty estimation with test-time augmentation for medical image segmentation with convolutional neural networks. Neurocomputing 338, 34–45 (2019). URL https://www. sciencedirect.com/science/article/pii/S0925231219301961. https://doi. org/https://doi.org/10.1016/j.neucom.2019.01.103 .
+[17] P´erez-Garc´ıa, F., Sparks, R. & Ourselin, S. Torchio: a python library for eﬃcient loading, preprocessing, augmentation and patch-based sampling of medical images in deep learning. Computer Methods and Programs in Biomedicine 106236 (2021). URL https://www.sciencedirect.com/ science/article/pii/S0169260721003102. https://doi.org/https://doi.org/ 10.1016/j.cmpb.2021.106236 .
+
+Springer Nature 2021 LATEX template
+24 MONAI: An open-source framework for deep learning in healthcare
+[18] Riba, E., Mishkin, D., Ponsa, D., Rublee, E. & Bradski, G. Kornia: an open source diﬀerentiable computer vision library for pytorch (2020). URL https://arxiv.org/pdf/1910.02190.pdf .
+[19] Isensee, F. et al. batchgenerators - a python framework for data augmentation (2020). URL https://doi.org/10.5281/zenodo.3632567.
+[20] Schock, J., Baumgartner, M. & Weninger, L. Phoenixdl/rising: Highperformance diﬀerentiable medical data augmentation. https://github. com/PhoenixDL/rising. Accessed: 2021-12-20.
+[21] Lee, G., Bae, G., Zaitlen, B., Kirkham, J. & Choudhury, R. cucim - a gpu image i/o and processing library (2021). URL https://doi.org/10.25080/ majora-1b6fd038-022.
+[22] Sudre, C. H., Li, W., Vercauteren, T., Ourselin, S. & Jorge Cardoso, M. Cardoso, M. J. et al. (eds) Generalised dice overlap as a deep learning loss function for highly unbalanced segmentations. (eds Cardoso, M. J. et al.) Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support, 240–248 (Springer International Publishing, Cham, 2017).
+[23] Maier-Hein, L. et al. Metrics reloaded: Pitfalls and recommendations for image analysis validation (2022). URL https://arxiv.org/abs/2206.01653.
+[24] Reinke, A. et al. Common limitations of image processing metrics: A picture story (2021). URL https://arxiv.org/abs/2104.05642.
+[25] Ronneberger, O., Fischer, P. & Brox, T. in U-Net: Convolutional Networks for Biomedical Image Segmentation (eds Navab, N., Hornegger, J., Wells III, W. M. & Frangi, A. F.) MICCAI 2015, Vol. 9351 of LNCS 234–241 (Springer, 2015).
+[26] He, K., Zhang, X., Ren, S. & Sun, J. Delving deep into rectiﬁers: Surpassing human-level performance on imagenet classiﬁcation (2015). URL https://arxiv.org/abs/1502.01852.
+[27] Hendrycks, D. & Gimpel, K. Gaussian error linear units (gelus) (2016). URL https://arxiv.org/abs/1606.08415.
+[28] Klambauer, G., Unterthiner, T., Mayr, A. & Hochreiter, S. Selfnormalizing neural networks (2017). URL https://arxiv.org/abs/1706. 02515.
+[29] LeCun, Y., Cortes, C. & Burges, C. Mnist handwritten digit database. ATT Labs [Online]. Available: http://yann.lecun.com/exdb/mnist 2 (2010) .
+
+Springer Nature 2021 LATEX template
+MONAI: An open-source framework for deep learning in healthcare 25
+[30] Antonelli, M. et al. The medical segmentation decathlon (2021). URL https://arxiv.org/abs/2106.05735.
+[31] Abadi, M. et al. Tensorﬂow: Large-scale machine learning on heterogeneous distributed systems (2016). 1603.04467.
+[32] Major, B., McCormick, M. & Aylward, S. Tensorboardplugin3d: 3d tensor visualization. https://github.com/KitwareMedical/ tensorboard-plugin-3d (2022).
+[33] Zeiler, M. D. & Fergus, R. Fleet, D., Pajdla, T., Schiele, B. & Tuytelaars, T. (eds) Visualizing and Understanding Convolutional Networks. (eds Fleet, D., Pajdla, T., Schiele, B. & Tuytelaars, T.) Computer Vision – ECCV 2014, 818–833 (Springer International Publishing, Cham, 2014).
+[34] Selvaraju, R. R. et al. Grad-cam: Visual explanations from deep networks via gradient-based localization (2017).
+[35] Smilkov, D., Thorat, N., Kim, B., Vi´egas, F. & Wattenberg, M. Smoothgrad: removing noise by adding noise (2017). URL https://arxiv.org/abs/ 1706.03825.
+[36] Fu, Y. et al. DeepReg: a deep learning toolkit for medical image registration. Journal of Open Source Software 5 (55), 2705 (2020). URL https: //doi.org/10.21105/joss.02705. https://doi.org/10.21105/joss.02705 .
+

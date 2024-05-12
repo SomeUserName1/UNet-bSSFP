@@ -1,0 +1,577 @@
+ Contents Menu Expand Light mode Dark mode Auto light/dark mode Skip to content
+TorchIO becomes one of the most downloaded articles from CMPB !
+Logo
+TorchIO
+
+    Getting started
+    Data structures
+    Toggle navigation of Data structures
+    Patch-based pipelines
+    Toggle navigation of Patch-based pipelines
+    Transforms
+    Toggle navigation of Transforms
+        Preprocessing
+        Augmentation
+        Others
+    Medical image datasets
+    Additional interfaces
+    Toggle navigation of Additional interfaces
+    Examples gallery
+    Toggle navigation of Examples gallery
+    GitHub repository
+    Paper
+
+  v: latest
+Back to top
+Edit this page
+Toggle Light / Dark / Auto color theme
+Augmentation ¶
+
+Augmentation transforms generate different results every time they are called.
+Augmented image
+Base class ¶
+RandomTransform ¶
+
+class torchio.transforms.augmentation. RandomTransform ( ** kwargs ) [source] ¶
+
+    Bases: Transform
+
+    Base class for stochastic augmentation transforms.
+
+    Parameters :
+
+        **kwargs – See Transform for additional keyword arguments.
+
+Composition ¶
+Compose ¶
+
+class torchio.transforms. Compose ( transforms : Sequence [ Transform ] , ** kwargs ) [source] ¶
+
+    Bases: Transform
+
+    Compose several transforms together.
+
+    Parameters :
+
+            transforms – Sequence of instances of Transform .
+
+            **kwargs – See Transform for additional keyword arguments.
+
+OneOf ¶
+
+class torchio.transforms. OneOf ( transforms : Dict [ Transform , float ] | Sequence [ Transform ] , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform
+
+    Apply only one of the given transforms.
+
+    Parameters :
+
+            transforms – Dictionary with instances of Transform as keys and probabilities as values. Probabilities are normalized so they sum to one. If a sequence is given, the same probability will be assigned to each transform.
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Example
+
+      >>>  import  torchio  as  tio 
+    >>>  colin  =  tio . datasets . Colin27 () 
+    >>>  transforms_dict  =  { 
+    ...      tio . RandomAffine ():  0.75 , 
+    ...      tio . RandomElasticDeformation ():  0.25 , 
+    ...  }   # Using 3 and 1 as probabilities would have the same effect 
+    >>>  transform  =  tio . OneOf ( transforms_dict ) 
+    >>>  transformed  =  transform ( colin ) 
+
+    Copy to clipboard
+
+Spatial ¶
+RandomFlip ¶
+
+class torchio.transforms. RandomFlip ( axes : int | Tuple [ int , ... ] = 0 , flip_probability : float = 0.5 , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , SpatialTransform
+
+    Reverse the order of elements in an image along the given axes.
+
+    Parameters :
+
+            axes – Index or tuple of indices of the spatial dimensions along which the image might be flipped. If they are integers, they must be in (0, 1, 2) . Anatomical labels may also be used, such as 'Left' , 'Right' , 'Anterior' , 'Posterior' , 'Inferior' , 'Superior' , 'Height' and 'Width' , 'AP' (antero-posterior), 'lr' (lateral), 'w' (width) or 'i' (inferior). Only the first letter of the string will be used. If the image is 2D, 'Height' and 'Width' may be used.
+
+            flip_probability – Probability that the image will be flipped. This is computed on a per-axis basis.
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Example
+
+      >>>  import  torchio  as  tio 
+    >>>  fpg  =  tio . datasets . FPG () 
+    >>>  flip  =  tio . RandomFlip ( axes = ( 'LR' ,))   # flip along lateral axis only 
+
+    Copy to clipboard
+
+    Tip
+
+    It is handy to specify the axes as anatomical labels when the image orientation is not known.
+
+RandomAffine ¶
+
+class torchio.transforms. RandomAffine ( scales : float | Tuple [ float , float ] | Tuple [ float , float , float ] | Tuple [ float , float , float , float , float , float ] = 0.1 , degrees : float | Tuple [ float , float ] | Tuple [ float , float , float ] | Tuple [ float , float , float , float , float , float ] = 10 , translation : float | Tuple [ float , float ] | Tuple [ float , float , float ] | Tuple [ float , float , float , float , float , float ] = 0 , isotropic : bool = False , center : str = 'image' , default_pad_value : str | float = 'minimum' , image_interpolation : str = 'linear' , label_interpolation : str = 'nearest' , check_shape : bool = True , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , SpatialTransform
+
+    Apply a random affine transformation and resample the image.
+
+    Parameters :
+
+            scales – Tuple ( a 1 , b 1 , a 2 , b 2 , a 3 , b 3 ) defining the scaling ranges. The scaling values along each dimension are ( s 1 , s 2 , s 3 ) , where s i ∼ U ( a i , b i ) . If two values ( a , b ) are provided, then s i ∼ U ( a , b ) . If only one value x is provided, then s i ∼ U ( 1 − x , 1 + x ) . If three values ( x 1 , x 2 , x 3 ) are provided, then s i ∼ U ( 1 − x i , 1 + x i ) . For example, using scales=(0.5, 0.5) will zoom out the image, making the objects inside look twice as small while preserving the physical size and position of the image bounds.
+
+            degrees – Tuple ( a 1 , b 1 , a 2 , b 2 , a 3 , b 3 ) defining the rotation ranges in degrees. Rotation angles around each axis are ( θ 1 , θ 2 , θ 3 ) , where θ i ∼ U ( a i , b i ) . If two values ( a , b ) are provided, then θ i ∼ U ( a , b ) . If only one value x is provided, then θ i ∼ U ( − x , x ) . If three values ( x 1 , x 2 , x 3 ) are provided, then θ i ∼ U ( − x i , x i ) .
+
+            translation – Tuple ( a 1 , b 1 , a 2 , b 2 , a 3 , b 3 ) defining the translation ranges in mm. Translation along each axis is ( t 1 , t 2 , t 3 ) , where t i ∼ U ( a i , b i ) . If two values ( a , b ) are provided, then t i ∼ U ( a , b ) . If only one value x is provided, then t i ∼ U ( − x , x ) . If three values ( x 1 , x 2 , x 3 ) are provided, then t i ∼ U ( − x i , x i ) . For example, if the image is in RAS+ orientation (e.g., after applying ToCanonical ) and the translation is ( 10 , 20 , 30 ) , the sample will move 10 mm to the right, 20 mm to the front, and 30 mm upwards. If the image was in, e.g., PIR+ orientation, the sample will move 10 mm to the back, 20 mm downwards, and 30 mm to the right.
+
+            isotropic – If True , only one scaling factor will be sampled for all dimensions, i.e. s 1 = s 2 = s 3 . If one value x is provided in scales , the scaling factor along all dimensions will be s ∼ U ( 1 − x , 1 + x ) . If two values provided ( a , b ) in scales , the scaling factor along all dimensions will be s ∼ U ( a , b ) .
+
+            center – If 'image' , rotations and scaling will be performed around the image center. If 'origin' , rotations and scaling will be performed around the origin in world coordinates.
+
+            default_pad_value – As the image is rotated, some values near the borders will be undefined. If 'minimum' , the fill value will be the image minimum. If 'mean' , the fill value is the mean of the border values. If 'otsu' , the fill value is the mean of the values at the border that lie under an Otsu threshold . If it is a number, that value will be used.
+
+            image_interpolation – See Interpolation .
+
+            label_interpolation – See Interpolation .
+
+            check_shape – If True an error will be raised if the images are in different physical spaces. If False , center should probably not be 'image' but 'center' .
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Example
+
+      >>>  import  torchio  as  tio 
+    >>>  image  =  tio . datasets . Colin27 () . t1 
+    >>>  transform  =  tio . RandomAffine ( 
+    ...      scales = ( 0.9 ,  1.2 ), 
+    ...      degrees = 15 , 
+    ...  ) 
+    >>>  transformed  =  transform ( image ) 
+
+    Copy to clipboard
+
+    ( Source code , png )
+    ../_images/augmentation-1.png
+
+RandomElasticDeformation ¶
+Random elastic deformation
+
+class torchio.transforms. RandomElasticDeformation ( num_control_points : int | Tuple [ int , int , int ] = 7 , max_displacement : float | Tuple [ float , float , float ] = 7.5 , locked_borders : int = 2 , image_interpolation : str = 'linear' , label_interpolation : str = 'nearest' , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , SpatialTransform
+
+    Apply dense random elastic deformation.
+
+    A random displacement is assigned to a coarse grid of control points around and inside the image. The displacement at each voxel is interpolated from the coarse grid using cubic B-splines.
+
+    The ‘Deformable Registration’ topic on ScienceDirect contains useful articles explaining interpolation of displacement fields using cubic B-splines.
+
+    Warning
+
+    This transform is slow as it requires expensive computations. If your images are large you might want to use RandomAffine instead.
+
+    Parameters :
+
+            num_control_points – Number of control points along each dimension of the coarse grid ( n x , n y , n z ) . If a single value n is passed, then n x = n y = n z = n . Smaller numbers generate smoother deformations. The minimum number of control points is 4 as this transform uses cubic B-splines to interpolate displacement.
+
+            max_displacement – Maximum displacement along each dimension at each control point ( D x , D y , D z ) . The displacement along dimension i at each control point is d i ∼ U ( 0 , D i ) . If a single value D is passed, then D x = D y = D z = D . Note that the total maximum displacement would actually be D m a x = D x 2 + D y 2 + D z 2 .
+
+            locked_borders – If 0 , all displacement vectors are kept. If 1 , displacement of control points at the border of the coarse grid will be set to 0 . If 2 , displacement of control points at the border of the image (red dots in the image below) will also be set to 0 .
+
+            image_interpolation – See Interpolation . Note that this is the interpolation used to compute voxel intensities when resampling using the dense displacement field. The value of the dense displacement at each voxel is always interpolated with cubic B-splines from the values at the control points of the coarse grid.
+
+            label_interpolation – See Interpolation .
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    This gist can also be used to better understand the meaning of the parameters.
+
+    This is an example from the 3D Slicer registration FAQ .
+    B-spline example from 3D Slicer documentation
+
+    To generate a similar grid of control points with TorchIO, the transform can be instantiated as follows:
+
+      >>>  from  torchio  import  RandomElasticDeformation 
+    >>>  transform  =  RandomElasticDeformation ( 
+    ...      num_control_points = ( 7 ,  7 ,  7 ),   # or just 7 
+    ...      locked_borders = 2 , 
+    ...  ) 
+
+    Copy to clipboard
+
+    Note that control points outside the image bounds are not showed in the example image (they would also be red as we set locked_borders to 2 ).
+
+    Warning
+
+    Image folding may occur if the maximum displacement is larger than half the coarse grid spacing. The grid spacing can be computed using the image bounds in physical space [ 1 ] and the number of control points:
+
+      >>>  import  numpy  as  np 
+    >>>  import  torchio  as  tio 
+    >>>  image  =  tio . datasets . Slicer () . MRHead . as_sitk () 
+    >>>  image . GetSize ()   # in voxels 
+    (256, 256, 130) 
+    >>>  image . GetSpacing ()   # in mm 
+    (1.0, 1.0, 1.2999954223632812) 
+    >>>  bounds  =  np . array ( image . GetSize ())  *  np . array ( image . GetSpacing ()) 
+    >>>  bounds   # mm 
+    array([256. , 256. , 168.99940491]) 
+    >>>  num_control_points  =  np . array (( 7 ,  7 ,  6 )) 
+    >>>  grid_spacing  =  bounds  /  ( num_control_points  -  2 ) 
+    >>>  grid_spacing 
+    array([51.2 , 51.2 , 42.24985123]) 
+    >>>  potential_folding  =  grid_spacing  /  2 
+    >>>  potential_folding   # mm 
+    array([25.6 , 25.6 , 21.12492561]) 
+
+    Copy to clipboard
+
+    Using a max_displacement larger than the computed potential_folding will raise a RuntimeWarning .
+    [ 1 ]
+
+    Technically, 2 ϵ should be added to the image bounds, where ϵ = 2 − 3 according to ITK source code .
+
+RandomAnisotropy ¶
+Simulation of an image with highly anisotropic spacing
+
+class torchio.transforms. RandomAnisotropy ( axes : int | Tuple [ int , ... ] = (0, 1, 2) , downsampling : float | Tuple [ float , float ] = (1.5, 5) , image_interpolation : str = 'linear' , scalars_only : bool = True , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform
+
+    Downsample an image along an axis and upsample to initial space.
+
+    This transform simulates an image that has been acquired using anisotropic spacing and resampled back to its original spacing.
+
+    Similar to the work by Billot et al.: Partial Volume Segmentation of Brain MRI Scans of any Resolution and Contrast .
+
+    Parameters :
+
+            axes – Axis or tuple of axes along which the image will be downsampled.
+
+            downsampling – Downsampling factor m > 1 . If a tuple ( a , b ) is provided then m ∼ U ( a , b ) .
+
+            image_interpolation – Image interpolation used to upsample the image back to its initial spacing. Downsampling is performed using nearest neighbor interpolation. See Interpolation for supported interpolation types.
+
+            scalars_only – Apply only to instances of torchio.ScalarImage . This is useful when the segmentation quality needs to be kept, as in Billot et al. .
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Example
+
+      >>>  import  torchio  as  tio 
+    >>>  transform  =  tio . RandomAnisotropy ( axes = 1 ,  downsampling = 2 ) 
+    >>>  transform  =  tio . RandomAnisotropy ( 
+    ...      axes = ( 0 ,  1 ,  2 ), 
+    ...      downsampling = ( 2 ,  5 ), 
+    ...  )    # Multiply spacing of one of the 3 axes by a factor randomly chosen in [2, 5] 
+    >>>  colin  =  tio . datasets . Colin27 () 
+    >>>  transformed  =  transform ( colin ) 
+
+    Copy to clipboard
+
+Intensity ¶
+RandomMotion ¶
+MRI k-space motion artifacts
+
+class torchio.transforms. RandomMotion ( degrees : float | Tuple [ float , float ] = 10 , translation : float | Tuple [ float , float ] = 10 , num_transforms : int = 2 , image_interpolation : str = 'linear' , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform , FourierTransform
+
+    Add random MRI motion artifact.
+
+    Magnetic resonance images suffer from motion artifacts when the subject moves during image acquisition. This transform follows Shaw et al., 2019 to simulate motion artifacts for data augmentation.
+
+    Parameters :
+
+            degrees – Tuple ( a , b ) defining the rotation range in degrees of the simulated movements. The rotation angles around each axis are ( θ 1 , θ 2 , θ 3 ) , where θ i ∼ U ( a , b ) . If only one value d is provided, θ i ∼ U ( − d , d ) . Larger values generate more distorted images.
+
+            translation – Tuple ( a , b ) defining the translation in mm of the simulated movements. The translations along each axis are ( t 1 , t 2 , t 3 ) , where t i ∼ U ( a , b ) . If only one value t is provided, t i ∼ U ( − t , t ) . Larger values generate more distorted images.
+
+            num_transforms – Number of simulated movements. Larger values generate more distorted images.
+
+            image_interpolation – See Interpolation .
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Warning
+
+    Large numbers of movements lead to longer execution times for 3D images.
+
+RandomGhosting ¶
+MRI k-space ghosting artifacts
+
+class torchio.transforms. RandomGhosting ( num_ghosts : int | Tuple [ int , int ] = (4, 10) , axes : int | Tuple [ int , ... ] = (0, 1, 2) , intensity : float | Tuple [ float , float ] = (0.5, 1) , restore : float = 0.02 , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform
+
+    Add random MRI ghosting artifact.
+
+    Discrete “ghost” artifacts may occur along the phase-encode direction whenever the position or signal intensity of imaged structures within the field-of-view vary or move in a regular (periodic) fashion. Pulsatile flow of blood or CSF, cardiac motion, and respiratory motion are the most important patient-related causes of ghost artifacts in clinical MR imaging (from mriquestions.com ).
+
+    Parameters :
+
+            num_ghosts – Number of ‘ghosts’ n in the image. If num_ghosts is a tuple ( a , b ) , then n ∼ U ( a , b ) ∩ N . If only one value d is provided, n ∼ U ( 0 , d ) ∩ N .
+
+            axes – Axis along which the ghosts will be created. If axes is a tuple, the axis will be randomly chosen from the passed values. Anatomical labels may also be used (see RandomFlip ).
+
+            intensity – Positive number representing the artifact strength s with respect to the maximum of the k -space. If 0 , the ghosts will not be visible. If a tuple ( a , b ) is provided then s ∼ U ( a , b ) . If only one value d is provided, s ∼ U ( 0 , d ) .
+
+            restore – Number between 0 and 1 indicating how much of the k -space center should be restored after removing the planes that generate the artifact.
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Note
+
+    The execution time of this transform does not depend on the number of ghosts.
+
+RandomSpike ¶
+MRI k-space spike artifacts
+
+class torchio.transforms. RandomSpike ( num_spikes : int | Tuple [ int , int ] = 1 , intensity : float | Tuple [ float , float ] = (1, 3) , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform , FourierTransform
+
+    Add random MRI spike artifacts.
+
+    Also known as Herringbone artifact , crisscross artifact or corduroy artifact, it creates stripes in different directions in image space due to spikes in k-space.
+
+    Parameters :
+
+            num_spikes – Number of spikes n present in k-space. If a tuple ( a , b ) is provided, then n ∼ U ( a , b ) ∩ N . If only one value d is provided, n ∼ U ( 0 , d ) ∩ N . Larger values generate more distorted images.
+
+            intensity – Ratio r between the spike intensity and the maximum of the spectrum. If a tuple ( a , b ) is provided, then r ∼ U ( a , b ) . If only one value d is provided, r ∼ U ( − d , d ) . Larger values generate more distorted images.
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Note
+
+    The execution time of this transform does not depend on the number of spikes.
+
+RandomBiasField ¶
+MRI bias field artifact
+
+class torchio.transforms. RandomBiasField ( coefficients : float | Tuple [ float , float ] = 0.5 , order : int = 3 , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform
+
+    Add random MRI bias field artifact.
+
+    MRI magnetic field inhomogeneity creates intensity variations of very low frequency across the whole image.
+
+    The bias field is modeled as a linear combination of polynomial basis functions, as in K. Van Leemput et al., 1999, Automated model-based tissue classification of MR images of the brain .
+
+    It was implemented in NiftyNet by Carole Sudre and used in Sudre et al., 2017, Longitudinal segmentation of age-related white matter hyperintensities .
+
+    Parameters :
+
+            coefficients – Maximum magnitude n of polynomial coefficients. If a tuple ( a , b ) is specified, then n ∼ U ( a , b ) .
+
+            order – Order of the basis polynomial functions.
+
+            **kwargs – See Transform for additional keyword arguments.
+
+RandomBlur ¶
+
+class torchio.transforms. RandomBlur ( std : float | Tuple [ float , float ] = (0, 2) , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform
+
+    Blur an image using a random-sized Gaussian filter.
+
+    Parameters :
+
+            std – Tuple ( a 1 , b 1 , a 2 , b 2 , a 3 , b 3 ) representing the ranges (in mm) of the standard deviations ( σ 1 , σ 2 , σ 3 ) of the Gaussian kernels used to blur the image along each axis, where σ i ∼ U ( a i , b i ) . If two values ( a , b ) are provided, then σ i ∼ U ( a , b ) . If only one value x is provided, then σ i ∼ U ( 0 , x ) . If three values ( x 1 , x 2 , x 3 ) are provided, then σ i ∼ U ( 0 , x i ) .
+
+            **kwargs – See Transform for additional keyword arguments.
+
+RandomNoise ¶
+Random Gaussian noise
+
+class torchio.transforms. RandomNoise ( mean : float | Tuple [ float , float ] = 0 , std : float | Tuple [ float , float ] = (0, 0.25) , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform
+
+    Add Gaussian noise with random parameters.
+
+    Add noise sampled from a normal distribution with random parameters.
+
+    Parameters :
+
+            mean – Mean μ of the Gaussian distribution from which the noise is sampled. If two values ( a , b ) are provided, then μ ∼ U ( a , b ) . If only one value d is provided, μ ∼ U ( − d , d ) .
+
+            std – Standard deviation σ of the Gaussian distribution from which the noise is sampled. If two values ( a , b ) are provided, then σ ∼ U ( a , b ) . If only one value d is provided, σ ∼ U ( 0 , d ) .
+
+            **kwargs – See Transform for additional keyword arguments.
+
+RandomSwap ¶
+Random patches swapping
+
+class torchio.transforms. RandomSwap ( patch_size : int | Tuple [ int , int , int ] = 15 , num_iterations : int = 100 , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform
+
+    Randomly swap patches within an image.
+
+    This is typically used in context restoration for self-supervised learning .
+
+    Parameters :
+
+            patch_size – Tuple of integers ( w , h , d ) to swap patches of size w × h × d . If a single number n is provided, w = h = d = n .
+
+            num_iterations – Number of times that two patches will be swapped.
+
+            **kwargs – See Transform for additional keyword arguments.
+
+RandomLabelsToImage ¶
+
+class torchio.transforms. RandomLabelsToImage ( label_key : str | None = None , used_labels : Sequence [ int ] | None = None , image_key : str = 'image_from_labels' , mean : Sequence [ float | Tuple [ float , float ] ] | None = None , std : Sequence [ float | Tuple [ float , float ] ] | None = None , default_mean : float | Tuple [ float , float ] = (0.1, 0.9) , default_std : float | Tuple [ float , float ] = (0.01, 0.1) , discretize : bool = False , ignore_background : bool = False , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform
+
+    Randomly generate an image from a segmentation.
+
+    Based on the work by Billot et al.: A Learning Strategy for Contrast-agnostic MRI Segmentation and Partial Volume Segmentation of Brain MRI Scans of any Resolution and Contrast .
+
+    ( Source code , png )
+    ../_images/augmentation-2.png
+
+    Parameters :
+
+            label_key – String designating the label map in the subject that will be used to generate the new image.
+
+            used_labels – Sequence of integers designating the labels used to generate the new image. If categorical encoding is used, label_channels refers to the values of the categorical encoding. If one hot encoding or partial-volume label maps are used, label_channels refers to the channels of the label maps. Default uses all labels. Missing voxels will be filled with zero or with voxels from an already existing volume, see image_key .
+
+            image_key – String designating the key to which the new volume will be saved. If this key corresponds to an already existing volume, missing voxels will be filled with the corresponding values in the original volume.
+
+            mean – Sequence of means for each label. For each value v , if a tuple ( a , b ) is provided then v ∼ U ( a , b ) . If None , default_mean range will be used for every label. If not None and label_channels is not None , mean and label_channels must have the same length.
+
+            std – Sequence of standard deviations for each label. For each value v , if a tuple ( a , b ) is provided then v ∼ U ( a , b ) . If None , default_std range will be used for every label. If not None and label_channels is not None , std and label_channels must have the same length.
+
+            default_mean – Default mean range.
+
+            default_std – Default standard deviation range.
+
+            discretize – If True , partial-volume label maps will be discretized. Does not have any effects if not using partial-volume label maps. Discretization is done taking the class of the highest value per voxel in the different partial-volume label maps using torch.argmax() on the channel dimension (i.e. 0).
+
+            ignore_background – If True , input voxels labeled as 0 will not be modified.
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Tip
+
+    It is recommended to blur the new images in order to simulate partial volume effects at the borders of the synthetic structures. See RandomBlur .
+
+    Example
+
+      >>>  import  torchio  as  tio 
+    >>>  subject  =  tio . datasets . ICBM2009CNonlinearSymmetric () 
+    >>>  # Using the default parameters 
+    >>>  transform  =  tio . RandomLabelsToImage ( label_key = 'tissues' ) 
+    >>>  # Using custom mean and std 
+    >>>  transform  =  tio . RandomLabelsToImage ( 
+    ...      label_key = 'tissues' ,  mean = [ 0.33 ,  0.66 ,  1. ],  std = [ 0 ,  0 ,  0 ] 
+    ...  ) 
+    >>>  # Discretizing the partial volume maps and blurring the result 
+    >>>  simulation_transform  =  tio . RandomLabelsToImage ( 
+    ...      label_key = 'tissues' ,  mean = [ 0.33 ,  0.66 ,  1. ],  std = [ 0 ,  0 ,  0 ],  discretize = True 
+    ...  ) 
+    >>>  blurring_transform  =  tio . RandomBlur ( std = 0.3 ) 
+    >>>  transform  =  tio . Compose ([ simulation_transform ,  blurring_transform ]) 
+    >>>  transformed  =  transform ( subject )   # subject has a new key 'image_from_labels' with the simulated image 
+    >>>  # Filling holes of the simulated image with the original T1 image 
+    >>>  rescale_transform  =  tio . RescaleIntensity ( 
+    ...      out_min_max = ( 0 ,  1 ),  percentiles = ( 1 ,  99 ))    # Rescale intensity before filling holes 
+    >>>  simulation_transform  =  tio . RandomLabelsToImage ( 
+    ...      label_key = 'tissues' , 
+    ...      image_key = 't1' , 
+    ...      used_labels = [ 0 ,  1 ] 
+    ...  ) 
+    >>>  transform  =  tio . Compose ([ rescale_transform ,  simulation_transform ]) 
+    >>>  transformed  =  transform ( subject )   # subject's key 't1' has been replaced with the simulated image 
+
+    Copy to clipboard
+
+    See also
+
+    RemapLabels .
+
+RandomGamma ¶
+
+class torchio.transforms. RandomGamma ( log_gamma : float | Tuple [ float , float ] = (-0.3, 0.3) , ** kwargs ) [source] ¶
+
+    Bases: RandomTransform , IntensityTransform
+
+    Randomly change contrast of an image by raising its values to the power γ .
+
+    Parameters :
+
+            log_gamma – Tuple ( a , b ) to compute the exponent γ = e β , where β ∼ U ( a , b ) . If a single value d is provided, then β ∼ U ( − d , d ) . Negative and positive values for this argument perform gamma compression and expansion, respectively. See the Gamma correction Wikipedia entry for more information.
+
+            **kwargs – See Transform for additional keyword arguments.
+
+    Note
+
+    Fractional exponentiation of negative values is generally not well-defined for non-complex numbers. If negative values are found in the input image I , the applied transform is sign ( I ) | I | γ , instead of the usual I γ . The RescaleIntensity transform may be used to ensure that all values are positive. This is generally not problematic, but it is recommended to visualize results on images with negative values. More information can be found on this StackExchange question .
+
+    ( Source code , png )
+    ../_images/augmentation-3.png
+
+    Example
+
+      >>>  import  torchio  as  tio 
+    >>>  subject  =  tio . datasets . FPG () 
+    >>>  transform  =  tio . RandomGamma ( log_gamma = ( - 0.3 ,  0.3 ))   # gamma between 0.74 and 1.34 
+    >>>  transformed  =  transform ( subject ) 
+
+    Copy to clipboard
+
+Next
+Others
+Previous
+Preprocessing
+Copyright © 2024, Fernando Pérez-García
+Made with Sphinx and @pradyunsg 's Furo
+On this page
+
+    Augmentation
+        Base class
+            RandomTransform
+                RandomTransform
+        Composition
+            Compose
+                Compose
+            OneOf
+                OneOf
+        Spatial
+            RandomFlip
+                RandomFlip
+            RandomAffine
+                RandomAffine
+            RandomElasticDeformation
+                RandomElasticDeformation
+            RandomAnisotropy
+                RandomAnisotropy
+        Intensity
+            RandomMotion
+                RandomMotion
+            RandomGhosting
+                RandomGhosting
+            RandomSpike
+                RandomSpike
+            RandomBiasField
+                RandomBiasField
+            RandomBlur
+                RandomBlur
+            RandomNoise
+                RandomNoise
+            RandomSwap
+                RandomSwap
+            RandomLabelsToImage
+                RandomLabelsToImage
+            RandomGamma
+                RandomGamma
+

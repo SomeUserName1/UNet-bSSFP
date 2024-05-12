@@ -1,0 +1,668 @@
+BJR
+Received: 27 October 2016
+
+Revised: 29 March 2017
+
+Accepted: 3 April 2017
+
+© 2017 The Authors. Published by the British Institute of Radiology https://doi.org/10.1259/bjr.20160834
+
+Cite this article as:
+Jeevanandham B, Kalyanpur T, Gupta P, Cherian M. Comparison of post-contrast 3D-T1-MPRAGE, 3D-T1-SPACE and 3D-T2-FLAIR MR images in evaluation of meningeal abnormalities at 3-T MRI. Br J Radiol 2017; 90: 20160834.
+
+FULL PAPER
+Comparison of post-contrast 3D-T1-MPRAGE, 3D-T1-SPACE and 3D-T2-FLAIR MR images in evaluation of meningeal abnormalities at 3-T MRI
+BALAJI JEEVANANDHAM, DNB, TEJAS KALYANPUR, DMRD, DNB, PRASHANT GUPTA, DNB, FRCR and MATHEW CHERIAN, MD, PDCC Department of Radiology, Kovai Medical Centre and Hospital, Coimbatore, India
+Address correspondence to: Dr Balaji Jeevanandham E-mail: bjradiologist@gmail.com
+
+Objective: This study was to assess the usefulness of newer three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flipangle evolutions (SPACE) and 3D-T2 fluid-attenuated inversion recovery (FLAIR) sequences in evaluation of meningeal abnormalities. Methods: 78 patients who presented with high suspicion of meningeal abnormalities were evaluated using postcontrast 3D-T2-FLAIR, 3D-T1 magnetization-prepared rapid gradient-echo (MPRAGE) and 3D-T1-SPACE sequences. The images were evaluated independently by two radiologists for cortical gyral, sulcal space, basal cisterns and dural enhancement. The diagnoses were confirmed by further investigations including histopathology. Results: Post-contrast 3D-T1-SPACE and 3D-T2-FLAIR images yielded significantly more information than MPRAGE images (p , 0.05 for both SPACE and FLAIR images) in detection of meningeal abnormalities. SPACE images best demonstrated abnormalities in dural and sulcal spaces, whereas FLAIR was useful for basal cisterns
+
+enhancement. Both SPACE and FLAIR performed equally well in detection of gyral enhancement. In all 10 patients, where both SPACE and T2-FLAIR images failed to demonstrate any abnormality, further analysis was also negative. Conclusion: The 3D-T1-SPACE sequence best demonstrated abnormalities in dural and sulcal spaces, whereas FLAIR was useful for abnormalities in basal cisterns. Both SPACE and FLAIR performed holds good for detection of gyral enhancement. Post-contrast SPACE and FLAIR sequences are superior to the MPRAGE sequence for evaluation of meningeal abnormalities and when used in combination have the maximum sensitivity for leptomeningeal abnormalities. The negative-predictive value is nearly 100%, where no leptomeningeal abnormality was detected on these sequences. Advances in knowledge: Post-contrast 3D-T1-SPACE and 3D-T2-FLAIR images are more useful than 3D-T1-MPRAGE images in evaluation of meningeal abnormalities.
+
+INTRODUCTION Detecting meningeal abnormalities is vital because untreated malignant leptomeningeal abnormality decreases the survival rate time to less than 3 months.1–3 A delay of 4–6 h in the administration of antibiotics after presentation has also been shown to cause about 8.4-fold greater risk of death from meningitis.4
+Even with the advent of technological advancements, there is still a considerable number of meningeal abnormalities and meningitis which could not be well demonstrated in MR images. The leptomeningeal and dural enhancements are due to contrast leakage from vessels into the cerebrospinal ﬂuid (CSF) because of either increase in permeability of meningeal vessels or due to the breakdown of the blood–brain, blood–CSF or blood–nerve barriers.5–7
+
+Despite newer sequences being developed, protocols for post-contrast imaging are largely restricted to pre- and postcontrast T1 sequences. In the past decade, three-dimensional (3D)-T1 magnetization-prepared rapid gradient-echo (MPRAGE) dominated the post-contrast T1 images.8,9 Several studies have shown that small lesions and leptomeningeal abnormalities with contrast enhancement may go undetected in routine post-contrast MPRAGE images. Recently, several studies have shown excellent results with post-contrast 3D-T1 sampling perfection with application optimized contrast using different ﬂip-angle evolutions (SPACE).10,11 The post-contrast T2 sequence is not commonly used as a routine sequence to detect brain lesions.
+But there are several recent studies which have shown that post-contrast T2-FLAIR images are just as useful and
+
+BJR
+
+Jeevanandham et al
+
+Table 1. Comparison of various studies in evaluation of meningeal abnormalities
+
+Studies
+Splendiani et al15 2005
+
+Post-contrast T1-MPRAGE
+T1-MPRA had low sensitivity (50%) in detecting infectious meningitis
+
+Post-contrast T2-FLAIR
+Had 100% sensitivity in detecting meningitis
+
+Post-contrast T1-SPACE
+–
+
+Allesandra et al 2006 Less sensitive in detecting meningitis
+
+More sensitive
+
+–
+
+Post-contrast FLAIR is a valuable
+
+Ercan et al32 2004
+
+Post-contrast T1W imaging is essential adjunct to post-contrast T1W for
+
+–
+
+diagnosing meningitis
+
+Vaswani et al33 2015 Less sensitive
+
+More sensitive in detecting meningitis
+
+–
+
+Fukuoka et al34 2010 Less sensitive
+
+Provide more information than
+
+T1-MPRAGE images in leptomeningeal
+
+–
+
+enhancement
+
+Kato et al11 2009
+
+Less conspicuous
+
+–
+
+More conspicuous and high detectability in brain metastases
+
+Komada et al10 2008 Low CNR
+
+–
+
+High CNR and superior contrast rate
+
+than T1-MPRAGE
+
+CNR, contrast-to-noise ratio; FLAIR, 3D-T2 fluid-attenuated inversion recovery; MPRAGE, 3D-T1 magnetization-prepared rapid gradient-echo; SPACE, sampling perfection with application optimized contrast using different flip-angle evolutions; T1W, T1 weighted imaging.
+
+sometimes better than post-contrast T1 images. This is due to the fact that unlike T1 weighted images, post-contrast 3D-T2FLAIR images do not usually demonstrate contrast-enhanced normal vessels.12–15 Since these normal sulcal vascular en-
+hancement can be mistaken for leptomeningeal enhancement.
+Some studies have shown the value of post-contrast FLAIR in
+differentiating leptomeningeal abnormalities from normal
+leptomeningeal vascular enhancement which is not seen on
+FLAIR. It has been also proved that post-gadolinium effects
+were visible on FLAIR images at concentrations four times lower than that on T1 weighted images.5 To the best of our knowledge no study comparing post-contrast 3D-T2-FLAIR, T1-MPRAGE and T1-SPACE images for the evaluation of brain and leptomeningeal abnormalities has yet been pub-
+lished. 3D-T2-FLAIR sequences can be acquired in a clinically acceptable time with a non-selective inversion pulse by using the variable ﬂip-angle technique in a 3D turbo spin-echo (SE) sequence.
+
+Aim Our study aims for comparison of post-contrast 3D-T1MPRAGE, 3D-T1-SPACE and 3D-T2-FLAIR MR images in evaluation of meningeal abnormalities.
+Objectives (1) To evaluate the usefulness of post-contrast 3D-T2-FLAIR in
+evaluation of meningeal abnormalities and comparing the information obtained by 3D-T2-FLAIR with that of postcontrast 3D-T1-MPRAGE and 3D-T1-SPACE (2) to evaluate the different meningeal enhancement patterns (3) gyral enhancement (4) sulcal space enhancement (5) basal cisterns enhancement and (6) dural enhancement.
+and to ﬁnd out which MRI sequence is best for demonstrating each abnormal enhancement patterns.
+
+Figure 1. Sulcal space enhancement: left, post-contrast three-dimensional (3D)-T1-sampling perfection with application optimized contrast using different flip-angle evolutions image showing abnormal sulcal space enhancement (arrow) in the right frontal lobe in a patient with pneumococcal meningitis; middle, post-contrast T2-fluid-attenuated inversion recovery image showing the enhancement (arrow); and right, post-contrast 3D-T1-magnetization-prepared rapid gradient-echo image failed to show the abnormal enhancement.
+
+2 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+
+Full paper: Post-contrast evaluation of meningeal abnormalities at 3-T MRI
+
+BJR
+
+Figure 2. Gyral enhancement: from the left, post-contrast three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flip-angle evolutions (SPACE) (left), 3D-T2 fluid-attenuated inversion recovery (FLAIR) (middle) and 3D-T1 magnetization-prepared rapid gradient-echo (MPRAGE) (right) images. The SPACE image shows abnormal gyral enhancement (arrow) in the right lentiform nucleus region in a patient with viral meningitis. The post-contrast T2-FLAIR image shows subtle enhancement (arrow), and in the post-contrast 3D-T1-MPRAGE image, the enhancement is barely visible.
+
+Review of literature MRI is a revolutionary modality in detecting neurological disorders in modern medicine. However, not all lesions are conspicuous on CT and non-contrast MRI. The expertise of the radiologist lies in tailoring the MR sequences and detecting small lesions. Most of the brain lesions and meningeal abnormalities require contrast imaging for better evaluation, and postgadolinium contrast-enhanced images have proved to be essential in the evaluation of primary brain tumours and metastases.16
+The basis of imaging in leptomeningeal abnormality is postcontrast enhancement of the meninges. The leptomeningeal and dural enhancements are due to contrast leakage from vessels into the CSF. The contrast enhancement is due to the combination of two primary processes: vascular and interstitial (extravascular) enhancement.17–19 The leptomeningeal enhancement is due to
+
+contrast leakage from the vessels into the CSF due to an increase in permeability of the meningeal vessels due to breakdown of the blood–brain, blood–CSF or blood–nerve barrier. Although MPRAGE images were reported to be more helpful than contrast-enhanced two-dimensional (2D) SE images to detect brain metastases at 3 T;20,21 however, some small lesions with contrast enhancement have been missed in post-contrast MPRAGE images.21,22
+Post-contrast SPACE sequence In quest for developing better MRI sequence, Mugler et al23 developed the SPACE sequence. SPACE is a 3D fast SE sequence with variable ﬂip-angle refocusing pulses available at 3 T. Postcontrast SPACE imaging was developed which scores over the post-contrast T1-MPRAGE in detection and evaluation of brain or meningeal metastasis as it suppresses normal blood vessel signals in the brain surface.
+
+Figure 3. Basal cisterns enhancement: a patient who is a known case of tubercular meningitis with enhancing exudates, postcontrast fluid-attenuated inversion recovery image (middle) shows the enhancing exudates (arrows) with better conspicuity and superior contrast, whereas both post-contrast three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flip-angle evolutions (left) and 3D-T1 magnetization-prepared rapid gradient-echo (right) images failed to show the enhancement.
+
+3 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+
+BJR
+
+Jeevanandham et al
+
+Figure 4. Dural enhancement: post-contrast three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flip-angle evolutions (SPACE) (left), 3D-T2 fluid-attenuated inversion recovery (FLAIR) (middle) and 3D-T1 magnetization-prepared rapid gradient-echo (MPRAGE) (right) images showing abnormal dural enhancement (arrows) in the left temporal region in a patient with tubercular meningitis. However, the post-contrast T1-SPACE image is much more conspicuous than the post-contrast 3D-T1-MPRAGE and 3D-T2-FLAIR images.
+
+Komada et al10 compared the detectability of brain metastases on contrast-enhanced images among SPACE and MPRAGE and stated that SPACE might be useful for detecting small brain metastasis. They also reported that the contrast-to-noise ratio of brain metastasis on SPACE was signiﬁcantly higher than that on MPRAGE at 3 T.
+Kato et al11 in addition stated that post-contrast 3D-T1-SPACE was signiﬁcantly better in detecting leptomeningeal metastasis than post-contrast 3D-T1-MPRAGE. They reported that the high detectability of SPACE is due to non-visualization of normal vessels, minimized partial volume effect and greater magnetization transfer (MT) effect. They concluded that conspicuity and delectability of brain metastases were better with contrast-enhanced SPACE than with contrastenhanced MPRAGE.
+Post-contrast FLAIR sequences In the ﬁrst ever study on post-contrast FLAIR sequences, Mathews et al12 showed that post-contrast T2-FLAIR images can be useful for detecting superﬁcial abnormalities and meningeal
+
+disease. Contrast-enhanced FLAIR imaging is highly sensitive for detecting subarachnoid space disease.
+However, it was found that CSF pulsation artefacts on 2D T2FLAIR images may render the detection of lesions in the CSF spaces difﬁcult,24,25 and although post-contrast 2D T2-FLAIR images were useful for assessing leptomeningeal abnormalities, concerns regarding its usefulness were raised.25,26
+Consequently, 3D-T2-FLAIR imaging of high spatial resolution has been developed which has signiﬁcant advantage in detecting small brain lesions and abnormal leptomeningeal enhancement by avoiding partial volume effect26,27 and by reducing CSF ﬂow artefacts.28,29
+3D-T2-FLAIR sequences can be acquired in a clinically acceptable time with a non-selective inversion pulse by using the variable ﬂip-angle technique in a 3D turbo SE sequence.26–29
+The amount of contrast administered also plays a vital role in demonstrating the abnormal enhancement. The intravenous
+
+Figure 5. Different cases: post-contrast three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flip-angle evolutions (left), 3D-T2 fluid-attenuated inversion recovery (middle) and 3D-T1 magnetization-prepared rapid gradient-echo (right) images showing abnormal thickening with enhancement (arrows) of the dura in the right tentorial leaflet. Histopathology proved it to be en plaque meningioma.
+
+4 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+
+Full paper: Post-contrast evaluation of meningeal abnormalities at 3-T MRI
+
+BJR
+
+Figure 6. Post-contrast three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flip-angle evolutions (left), 3D-T2 fluid-attenuated inversion recovery (FLAIR) (middle) and 3D-T1 magnetization-prepared rapid gradientecho (right) images showing nodular sulcal spaces enhancement (arrows) in the bilateral cerebellar hemisphere. Post-contrast 3DT2-FLAIR shows better leptomeningeal enhancement and the ependymal enhancement in the fourth ventricle. The patient is a known case of pineoblastoma.
+
+injection of gadolinium at a dose of 0.1 mmol kg21 can detect brain lesions effectively. The maximum concentration of gadolinium in the blood after 10 to 60 s on intravenous injection of gadolinium at 0.1 mmol kg21 body weight is 2.0 6 1.2 mmol l21 for the aorta and 0.6 6 0.3 mmol l21 for the inferior vena cava.30 Therefore, administration of post-contrast at a dose of 0.1 mmol kg21 is ideal.
+The other advantage of 3D-T2-FLAIR sequence is that it also requires lower contrast dosage as it is highly sensitive to low gadolinium concentrations than T1 weighted or MPRAGE sequences. This phenomenon is due to the increase in T2 effect caused by the sequence.31 But since our study mainly concentrates for comparison with the other two sequences for qualitative demonstration of abnormal enhancement, we administered the ideal dosage, i.e. 0.1 mmol kg21, for all cases. A comparison of various studies in evaluation of meningeal abnormalities has been depicted in Table 1.
+Thus our study aims to compare the usefulness of post-contrast 3D-T2-FLAIR with post-contrast 3D-T1-SPACE and postcontrast 3D-T1-MPRAGE.
+
+METHODS AND MATERIALS Between the period of April 2014 to March 2016, 78 patients with high clinical suspicion of meningitis and meningeal abnormalities were evaluated in the study.
+Study site The study was carried out in Kovai medical centre and Hospital, in India. The study was approved by the institutional review board of our hospital and local ethical committee. Prior written informed consent was obtained from the patients who had to undergo MRI. The consent form was in compliance with the institutional review board at our hospital.
+Study design The study was a prospective clinical study designed to compare the effectiveness of post-contrast 3D-T2-FLAIR over post-contrast T1-MPRAGE and T1-SPACE in detecting and evaluating the meningeal abnormalities. 48 patients (26 males and 22 females) fulﬁlled the inclusion criteria and underwent pre- and post-contrast 3D-T2-FLAIR, post-contrast T1MPRAGE and T1-SPACE imaging. All lesions detected by post-contrast 3D sequences were compared, and any
+
+Figure 7. A case of tubercular meningitis; post-contrast three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flip-angle evolutions (left), 3D-T2 fluid-attenuated inversion recovery (middle) and 3D-T1 magnetization-prepared rapid gradient-echo (right) images show enhancing exudates in the basal cisterns leading to hydrocephalous.
+
+5 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+
+BJR
+
+Jeevanandham et al
+
+Table 2. Number of patients with each sequence showing different enhancement patterns
+
+Pattern of enhancement
+Gyral enhancement
+
+Post-contrast 3D-T1-MPRAGE
+8
+
+Post-contrast 3D-T1-SPACE
+11
+
+Post-contrast 3D-T2-FLAIR
+10
+
+Sulcal space enhancement
+
+15
+
+26
+
+21
+
+Basal cisterns enhancement
+
+9
+
+13
+
+18
+
+Dural enhancement
+
+10
+
+12
+
+11
+
+3D, three-dimensional; FLAIR, 3D-T2 fluid-attenuated inversion recovery; MPRAGE, 3D-T1 magnetization-prepared rapid gradient-echo; SPACE, sampling perfection with application optimized contrast using different flip-angle evolutions.
+
+additional information that was gained by 3D-T2-FLAIR imaging was documented.
+Inclusion criteria All patients with
+(1) high clinical suspicion for meningeal lesions (2) abnormal CSF ﬁndings within 10 days before MRI of
+the brain
+
+(3) initial 2D FLAIR images showing suspicious meningeal abnormalities.
+Exclusion criteria (1) Patients who were unable to provide consent; (2) Patients who were unable to undergo MRI because of
+a pacemaker, an aneurysm clip or a metallic foreign body in or near the eye;
+
+Table 3. Additional information of post-contrast three-dimensional (3D) MR images compared with post-contrast two-dimensional T1 weighted images for the conspicuity of leptomeningeal enhancement
+
+Pattern of enhancement with grade
+
+3D-T1-MPRAGE
+
+Rad 1
+
+Rad 2
+
+3D-T1-SPACE
+
+Rad 1
+
+Rad 2
+
+3D-T2-FLAIR
+
+Rad 1
+
+Rad 2
+
+Gyral enhancement grade
+
+3
+
+0
+
+1
+
+5
+
+5
+
+4
+
+4
+
+2
+
+3
+
+2
+
+3
+
+4
+
+2
+
+2
+
+1
+
+5
+
+5
+
+3
+
+3
+
+4
+
+4
+
+0
+
+3
+
+3
+
+0
+
+1
+
+1
+
+1
+
+Sulcal space enhancement grade
+
+3
+
+2
+
+2
+
+17
+
+19
+
+14
+
+13
+
+2
+
+8
+
+9
+
+4
+
+2
+
+5
+
+6
+
+1
+
+5
+
+5
+
+1
+
+1
+
+6
+
+6
+
+0
+
+11
+
+10
+
+0
+
+0
+
+1
+
+1
+
+Basal cisterns enhancement grade
+
+3
+
+2
+
+2
+
+7
+
+7
+
+10
+
+11
+
+2
+
+0
+
+0
+
+4
+
+3
+
+6
+
+6
+
+1
+
+7
+
+5
+
+2
+
+2
+
+2
+
+1
+
+0
+
+9
+
+11
+
+5
+
+6
+
+0
+
+0
+
+Dural enhancement grade
+
+3
+
+3
+
+3
+
+10
+
+11
+
+7
+
+8
+
+2
+
+4
+
+4
+
+2
+
+1
+
+3
+
+2
+
+1
+
+3
+
+3
+
+0
+
+0
+
+1
+
+1
+
+0
+
+2
+
+2
+
+0
+
+0
+
+0
+
+0
+
+FLAIR, 3D-T2 fluid-attenuated inversion recovery; MPRAGE, 3D-T1 magnetization-prepared rapid gradient-echo; SPACE, sampling perfection with application optimized contrast using different flip-angle evolutions.
+
+6 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+
+Full paper: Post-contrast evaluation of meningeal abnormalities at 3-T MRI
+
+Table 4. Demographic distribution of the study
+
+,10 years
+15%
+
+11–20 years
+26%
+
+31–40 years
+11%
+
+41–50 years
+7%
+
+51–60 years
+15%
+
+61–70 years
+11%
+
+BJR
+71–80 years
+4%
+
+(3) Patients who were already treated with surgery/chemotherapy/ radiotherapy.
+Imaging techniques 3D-T2-FLAIR with a section thickness of 0.9 mm and isotropic information was initially performed in all patients, followed by intravenous contrast gadopentetate dimeglumine (Magnevist®; Bayer-Schering, Berlin, Germany) administered with a dose of 0.1 mmol kg21.20
+MR studies were started about 60–120 s after the contrast material injection. The post-contrast 3D-T2-FLAIR, 3D-T1-MPRAGE and 3D-T1-SPACE images were then acquired (Figures 1–7).
+To avoid timing bias after contrast injection, the order of the three 3D sequences were alternated in the patients by rotation.35
+Standard MR protocol Localizer in all planes. The 3D MRI studies were performed by using the following parameters:
+(1) repetition time (TR), 6000 ms; effective echo time (TE eff), 421 ms; inversion time, 2000 ms; echo-train length, 284; imaging time, 4 min 14 s; ﬁeld of view (FOV), 240 3 240 mm; matrix, 256 3 256; and 0.9-mm-thick sections for 3DT2-FLAIR.
+(2) TR, 1740 ms; TE eff, 2.49 ms; inversion time, 900 ms; imaging time, 3 min 34 s; FOV, 240 3 240 mm; matrix, 256 3 256; and 0.9-mm-thick sections for 3D-T1-MPRAGE.
+(3) TR, 500 ms; TE eff, 12.0 ms; imaging time, 4 min 01 s; FOV, 250 3 250 mm; matrix, 256 3 256; and 0.9-mm-thick sections for 3D-T1-SPACE.
+Image evaluation Two senior radiologists assessed the meningeal abnormalities and compared the post-contrast 3D-T2-FLAIR with post-
+
+Table 5. Distribution of final diagnoses
+Tuberculosis Metastases Viral meningitis Pneumococcus Group B streptococci Autoimmune Dural sinus thrombosis Cyanotic CHD with Haemophilus inﬂuenzae En plaque meningioma CHD, congenital heart disease.
+
+26.3% 15.8% 13.2% 10.5% 10.5% 7.9% 7.9% 5.3% 2.6%
+
+contrast 3D-T1-MPRAGE and 3D-T1-SPACE images with precontrast 3D-T2-FLAIR images simultaneously reviewed as the reference. The radiologists were blinded to the clinical history and cytological results.
+All the images were assessed on GE picture archiving and communication system workstation. Image evaluation was performed using the multiplanar reconstruction of 3D MR images.
+The presence of additional information on post-contrast 3D MR images was compared with post-contrast 3D-T1-MPRAGE and 3D-T1-SPACE images. The conspicuity and additional information were evaluated with a four-point scoring system.
+• Score 3: post-contrast 3D-T2-FLAIR images provided additional information of a lesion with deﬁnite abnormal meningeal enhancement clearly discriminated from leptomeningeal vessels
+• Score 2: probable abnormal meningeal enhancement that seemed to be different from leptomeningeal vessels
+• Score 1: possible abnormal meningeal enhancement that was not discriminated from leptomeningeal vessels and
+• Score 0: no additional information about abnormal meningeal enhancement.
+The presence or absence of additional information that was detected in post-contrast 3D-T2-FLAIR on comparison with post-contrast 3D-T1-MPRAGE and in post-contrast 3D-T1SPACE was also recorded.
+The investigators documented the information scores for each of the different meningeal enhancement patterns.34
+(a) gyral enhancement (b) sulcal space enhancement (c) basal cisterns enhancement and (d) dural enhancement.
+And the informations gained by the post-contrast 3D-T2-FLAIR, 3D-T1-MPRAGE and 3D-T1-SPACE images.
+Final diagnoses were correlated with microbiological CSF examination, biochemical CSF evaluatory methods and pathological examinations, with the gold standard examination being the polymerase chain reaction examination of the CSF.
+RESULTS On pre-contrast 3D-T2-FLAIR images, a slightly high signal intensity relative to the CSF was seen in the sulci and in basal cisterns in 12 patients. Abnormal leptomeningeal contrast enhancement on post-contrast MR images was observed in 38 patients but not observed in 10 patients. Contrast enhancement of the cortical veins was seen on post-contrast 3D-T1-
+
+7 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+
+BJR
+
+Jeevanandham et al
+
+Table 6. Number of abnormal meningeal enhancement detected by each sequences
+
+Positive cases by T1-MPRAGE
+29
+
+Positive cases by T2-FLAIR
+36
+
+Positive cases by T1-SPACE
+38
+
+Proven cases of meningeal abnormalities
+38
+
+FLAIR, 3D-T2 fluid-attenuated inversion recovery; MPRAGE, 3D-T1 magnetization-prepared rapid gradient-echo; SPACE, sampling perfection with application optimized contrast using different flip-angle evolutions.
+
+MPRAGE images but not on post-contrast 3D-T2-FLAIR and post-contrast 3D-T2-FLAIR images in all patients.
+Our results of patients showing different enhancement patterns and semi-quantitative comparison of additional information yielded on 3D-T2-FLAIR, 3D-T1-SPACE and 3D-T1-MPRAGE are depicted in Tables 2 and 3, respectively. Demographics of the study and diseases causing meningeal abnormalities are described in Tables 4 and 5, respectively.
+Statistical methods An interobserver reliability analysis using the kappa statistic was performed to determine consistency among observers (Table 6), with a kappa value of 0.648 suggesting substantial agreement. The statistical signiﬁcance of differences scored on the fourpoint scale was determined by Wilcoxon signed rank test. Differences with p-value ,0.05 were considered signiﬁcant. Sensitivity values for each sequence are described in Table 7.
+DISCUSSION The results of our study indicated that both post-contrast 3DT1-SPACE and post-contrast 3D-T2-FLAIR images add signiﬁcantly more information than do post-contrast 3D-T1MPRAGE images.
+The ability of 3D-T1-SPACE and 3D-T2-FLAIR sequences to detect more leptomeningeal abnormalities is due to the fact that they do not show signals in the leptomeningeal vasculatures and cortical vessels at normal ﬂow which is the usual cause for overlooking foci of leptomeningeal enhancement.
+On comparing the post-contrast 3D-T1-SPACE MR images with post-contrast 3D-T2-FLAIR images for overall detection of meningeal abnormalities, we did not ﬁnd any statistically signiﬁcant difference between the two.
+Gyral enhancement Both the gyral and sulcal space enhancements are more speciﬁc for leptomeningeal metastases and viral meningitis.
+
+Table 7. Sensitivity of each sequence to detect the meningeal abnormalities
+
+MPRAGE
+
+80.56%
+
+T2-FLAIR SPACE
+
+94.73% 100%
+
+FLAIR, 3D-T2 fluid-attenuated inversion recovery; MPRAGE, 3D-T1 magnetization-prepared rapid gradient-echo; SPACE, sampling perfection with application optimized contrast using different flip-angle evolutions.
+
+Leptomeningeal carcinomatosis is usually a small nodular leptomeningeal lesion ranging from 2 to 5 mm. Kato et al11 reported that post-contrast T1-SPACE had higher contrast-tonoise ratio and more conspicuity than post-contrast T1MPRAGE in detection of leptomeningeal metastases. In our study, we found that the post-contrast SPACE images hold good for the demonstration of gyral enhancement than the postcontrast MPRAGE and T2-FLAIR images with a statistical signiﬁcance of p , 0.05. This is in par with the Kato et al study.
+Sulcal space enhancement Our results of the semi-quantitative comparison of 3D-T2FLAIR, SPACE and MPRAGE radiologists assigned overall score. The mean score of sulcal space enhancement by the radiologists are depicted in Table 8.
+The assigned scores were signiﬁcantly higher for post-contrast 3D-T1-SPACE than were for post-contrast 3D-T2-FLAIR and post-contrast 3D-T1-MPRAGE images (p , 0.05 and p , 0.01, respectively).
+Dural enhancement Dural thickening and enhancements are predominantly seen in cases of granulomatous diseases such as tuberculosis and sarcoidosis. Similarly for the dural enhancement, we found out that post-contrast 3D-T1-SPACE images are much superior to T1-MPRAGE and T2-FLAIR images (statistical signiﬁcance p , 0.05).
+Basal cisterns enhancement Basal cisterns leptomeningeal enhancement is predominantly the feature of tubercular and pyogenic meningitis. The basal cisterns enhancing exudates more speciﬁcally favour tubercular meningitis. Interestingly, our study shows that the assigned scores for abnormal basal cisterns enhancement were signiﬁcantly higher for post-contrast T2-FLAIR than for SPACE and MPRAGE post-contrast images (p , 0.05 for both).
+There are some limitations in this study. First, our study population consisted of a small number of patients with meningeal
+
+Table 8. Mean score of sulcal space enhancement
+
+MPRAGE
+
+FLAIR
+
+SPACE
+
+2.17 6 1.17
+
+2.28 6 1.08
+
+2.52 6 1.17
+
+FLAIR, 3D-T2 fluid-attenuated inversion recovery; MPRAGE, 3D-T1 magnetization-prepared rapid gradient-echo; SPACE, sampling perfection with application optimized contrast using different flip-angle evolutions.
+
+8 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+
+Full paper: Post-contrast evaluation of meningeal abnormalities at 3-T MRI
+
+BJR
+
+abnormalities, especially patients with abnormal gyral and dural enhancements. Because our results were promising regardless of the small number of subjects, further clinical studies with large population should be performed. Second, we could not obtain histological conﬁrmation of the metastatic lesions because patients with multiple brain metastases generally do not undergo surgery. We believe that careful observation of 69 lesions in leptomeningeal carcinomatosis, including follow-up imaging and also the evaluation conducted by two neuroradiologists, minimized contamination of our subjects with false positives and negatives. Finally, the neuroradiologists and readers of the study were not blinded as to which pulse sequence was being evaluated because the grey–white differentiation was so different between SPACE, T2-FLAIR and MPRAGE that they knew the sequence at a glance, and this could introduce bias.
+CONCLUSION
+• Post-contrast 3D-T1-SPACE imaging adds signiﬁcantly more information to post-contrast 3D-T2-FLAIR and 3D-T1 weighted MPRAGE imaging. Hence post-contrast 3D-T1SPACE and 3D-T2-FLAIR images can replace the routine postcontrast T1-MPRAGE images.
+• In the evaluation of different enhancement patterns, postcontrast 3D-T1-SPACE imaging scored better than 3D-T2-
+
+FLAIR and 3D-T1-weighted MPRAGE images in evaluation of gyral, sulcal space and dural enhancements.
+• However, for evaluation of basal cisterns enhancement, our study revealed that post-contrast 3D-T2-FLAIR was better than post-contrast 3D-T1-SPACE and 3D-T1 weighted MPRAGE images. Hence, if there is a clinical suspicion for tubercular or pyogenic meningitis, post-contrast 3DT2-FLAIR imaging is better than post-contrast 3DT1-MPRAGE and post-contrast 3D-T1-SPACE imaging sequences.
+• Post-contrast 3D-T2-FLAIR and 3D-T1-SPACE imaging sequences should be performed for better detection and enhanced conspicuity of meningeal abnormalities.
+• A combination of both post-contrast 3D-T2-FLAIR and 3DT1-SPACE images can lead to a 100% detection rate for meningeal abnormalities.
+Further larger scale prospective studies with more number of meningeal abnormalities are required to validate the results of this study.
+The preliminary results of the above study have been presented in the European Congress of Radiology (ECR) 2015 in Vienna, Austria, as a paper presentation.
+
+REFERENCES
+
+1. Grossman SA, Krabak MJ. Leptomeningeal carcinomatosis. Cancer Treat Rev 1999; 25: 103–19. doi: https://doi.org/10.1053/ ctrv.1999.0119
+2. Balm M, Hammack J. Leptomeningeal carcinomatosis: presenting features and prognostic factors. Arch Neurol 1996; 53: 626–32.
+3. Chamberlain MC. Leptomeningeal metastases: a review of evaluation and treatment. J Neurooncol 1998; 37: 271–84.
+4. Proulx N, Fre´chette D, Toye B, Chan J, Kravcik S. Delays in the administration of antibiotics are associated with mortality from adult acute bacterial meningitis. QJM 2005; 98: 291–8. doi: https://doi.org/10.1093/ qjmed/hci047
+5. Mamourian AC, Hoopes PJ, Lewis LD. Visualization of intravenously administered contrast material in the CSF on ﬂuidattenuated inversion-recovery MR images: an in vitro and animal-model investigation. AJNR Am J Neuroradiol 2000; 21: 105–11.
+6. Bozzao A, Floris R, Fasoli F, Fantozzi LM, Colonnese C, Simonetti G. Cerebrospinal ﬂuid changes after intravenous injection of gadolinium chelate: assessment by FLAIR MR imaging. Eur Radiol 2003; 13: 592–7.
+7. Hirai T, Ando Y, Yamura M, Kitajima M, Hayashida Y, Korogi Y, et al. Transthyretinrelated familial amyloid polyneuropathy: evaluation of CSF enhancement on serial
+
+T1-weighted and ﬂuid-attenuated inversion recovery images following intravenous contrast administration. AJNR Am J Neuroradiol 2005; 26: 2043–8. 8. Mugler JP 3rd, Brookeman JR. Rapid three dimensional T1 weighted MR imaging with the MP-RAGE sequence. J Magn Reson Imaging 1991; 1: 561–7. doi: https://doi.org/ 10.1002/jmri.1880010509 9. Brant-Zawadski M, Gillan GD, Nitz WR. MPRAGE: a three-dimensional, T1 weighted, gradient echo sequence-initial experience in the brain. Radiology 1992; 182: 769–75. 10. Komada T, Naganawa S, Ogawa H, Matsushima M, Kubota S, Kawai H, et al. Contrast-enhanced MR imaging of metastatic brain tumor at 3 Tesla: utility of T(1)weighted SPACE compared with 2D spin echo and 3D gradient echo sequence. Magn Reson Med Sci 2008; 7: 13–21. doi: https:// doi.org/10.2463/mrms.7.13 11. Kato Y, Higano S, Tamura H. Usefulness of contrast-enhanced T1-SPACE imaging by using different ﬂip angle evolutions in detection of small brain metastasis at 3T MR imaging comparison with MP-RAGE imaging. AJNR Am J Neuroradiol 2009; 30: 923–9. doi: https://doi.org/10.3174/ajnr.a1506 12. Mathews VP, Caldemeyer KS, Lowe MJ. Brain: gadolinium-enhanced fast ﬂuid-
+
+attenuated inversion-recovery MR imaging. Radiology 1999; 211: 257–63. doi: https:// doi.org/10.1148/radiology.211.1. r99mr25257 13. Tsuchiya K, Katase S, Yoshino A, Hachiya J. FLAIR MR imaging for diagnosing intracranial meningeal carcinomatosis. AJR Am J Roentgenol 2001; 176: 1585–8. doi: https:// doi.org/10.2214/ajr.176.6.1761585 14. Grifﬁths PD, Coley SC, Romanowski CA, Hodgson T, Wilkinson ID. Contrastenhanced ﬂuid-attenuated inversion recovery imaging for leptomeningeal disease in children. AJNR Am J Neuroradiol 2003; 24: 719–23. 15. Splendiani A, Puglielli E, Amicis RD, Necozione S, Masciocchi C, Gallucci M. Contrast-enhanced FLAIR in the early diagnosis of infectious meningitis. Neuroradiology 2005; 47: 591–8. doi: https://doi.org/ 10.1007/s00234-005-1383-7 16. Singh SK, Agris JM, Leeds NE, Ginsberg LE. Intracranial leptomeningeal metastases: comparison of depiction at FLAIR and contrast-enhanced MR imaging. Radiology 2000; 217: 50–3. doi: https://doi.org/10.1148/ radiology.217.1.r00oc3550 17. Sage MR, Wilson AJ, Scroop R. Contrast media and the brain: the basis of CT and MR imaging enhancement. Neuroimaging Clin N Am 1998; 8: 695–707.
+
+9 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+
+BJR
+
+Jeevanandham et al
+
+18. Provenzale JM, Mukundan S, Dewhirst M. The role of blood-brain barrier permeability in brain tumor imaging and therapeutics. AJR Am J Roentgenol 2005; 185: 763–7. doi: https://doi.org/10.2214/ajr.185.3.01850763
+19. Smirniotopoulos JG, Murphy FM, Rushing EJ. Patterns of contrast enhancement in the brain and meninges. Radiographics 2007; 27: 525–51. doi: https://doi.org/ 10.1148/rg.272065155
+20. Kakeda S, Korogi Y, Hiai Y. Detection of brain metastasis at 3T: comparison among SE, IR-FSE and 3D-GRE sequences. Eur Radiol 2007; 17: 2345–51. doi: https://doi. org/10.1007/s00330-007-0599-9
+21. Furutani K, Harada M, Mawlan M, Nishitani H. Difference in enhancement between spin echo and 3-dimensional fast spoiled gradient recalled acquisition in steady state magnetic resonance imaging of brain metastasis at 3-T magnetic resonance imaging. J Comput Assist Tomogr 2008; 32: 313–19. doi: https://doi. org/10.1097/rct.0b013e318074fd9d
+22. Fishbach F, Bruhn H, Pech M, Neumann F, Ricke J, Felix R, et al. Efﬁcacy of contrast medium use for neuroimaging at 3.0T: utility of IR-FSE compared to other T1-weighted pulse sequences. J Comput Assist Tomogr 2005; 29: 499–505.
+23. Mugler JP 3rd, Bao S, Mulkern RV, Guttmann CR, Robertson RL, Jolesz FA, et al. Optimized single-slab three dimensional spin-echo MR imaging of the brain. Radiology 2000; 216: 891–9. doi: https://doi.org/ 10.1148/radiology.216.3.r00au46891
+24. Singh SK, Leeds NE, Ginsberg LE. MR imaging of leptomeningeal metastases:
+
+comparison of three sequences. AJNR Am J Neuroradiol 2002; 23: 817–21. 25. Galassi W, Phuttharak W, Hesselink JR, Healy JF, Dietrich RB, Imbesi SG. Intracranial meningeal disease: comparison of contrast-enhanced MR imaging with ﬂuidattenuated inversion recovery and fatsuppressed T1-weighted sequences. AJNR Am J Neuroradiol 2005; 26: 553–9. 26. Kallmes DF, Hui FK, Mugler JP 3rd. Suppression of cerebrospinal ﬂuid and blood ﬂow artefacts in FLAIR MR imaging with a single-slab three-dimensional pulse sequence: initial experience. Radiology 2001; 221: 251–5. doi: https://doi.org/10.1148/ radiol.2211001712 27. Bink A, Schmitt M, Gaa J. Detection of lesions in multiple sclerosis by 2D-FLAIR and singleslab 3D FLAIR sequences at 3.0 T: initial results. Eur Radiol 2006; 16: 1104–10. doi: https://doi.org/10.1007/s00330-005-0107-z 28. Naganawa S, Koshikawa T, Nakamura T. Comparison of ﬂow artifacts between 2DFLAIR and 3D-FLAIR sequences at 3 T. Eur Radiol 2004; 14: 1901–8. doi: https://doi.org/ 10.1007/s00330-004-2372-7 29. Chagla GH, Busse RF, Sydnor R. Threedimensional ﬂuid attenuated inversion recovery imaging with isotropic resolution and nonselective adiabatic inversion provides improved three-dimensional visualization and cerebrospinal ﬂuid suppression compared to two-dimensional FLAIR at 3 Tesla. Invest Radiol 2008; 43: 547–51. doi: https:// doi.org/10.1097/rli.0b013e3181814d28 30. Strouse PJ, Prince MR, Chenevert TL. Effect of the rate of gadopentetate dimeglumine
+
+administration on abdominal vascular and soft-tissue MR imaging enhancement patterns. Radiology 1996; 201: 809–16. doi: https://doi.org/10.1148/ radiology.201.3.8939236 31. Essig M, Knopp MV, Schoenberg SO. Cerebral gliomas and metastases: assessment with contrast-enhanced fast ﬂuid-attenuated inversion-recovery MR imaging. Radiology 1999; 210: 551–7. doi: https://doi.org/ 10.1148/radiology.210.2.r99ja22551 32. Ercan N, Gultekin S, Celik H, Tali TE, Oner YA, Erbas G. Diagnostic value of contrastenhanced ﬂuid-attenuated inversion recovery MR imaging of intracranial metastases. AJNR Am J Neuroradiol 2004; 25: 761–5. 33. Vaswani K, Nizamani M, Ali M. Contrastenhanced FLAIR magnetic resonance imaging in diagnosis of meningitis correlated with CSF analysis. Radiology 2014; 2014: 578986. doi: https://doi.org/10.1155/2014/578986 34. Fukuoka H, Hirai T, Okuda T, Shigematsu Y, Sasao A, Kimura E, et al. Comparison of the added value of contrast-enhanced 3D ﬂuidattenuated inversion recovery and magnetization-prepared rapid acquisition of gradient echo sequences in relation to conventional postcontrast T1-weighted images for the evaluation of leptomeningeal diseases at 3T. AJNR Am J Neuroradiol 2010; 31: 868–73. doi: https://doi.org/10.3174/ ajnr.a1937 35. Scho¨rner W, Laniado M, Niendorf HP, Schubert C, Felix R. Time dependent changes in image contrast in brain tumors after gadolinium-DTPA. AJNR Am J Neuroradiol 1986; 7: 1013–20.
+
+10 of 10 birpublications.org/bjr
+
+Br J Radiol;90:20160834
+

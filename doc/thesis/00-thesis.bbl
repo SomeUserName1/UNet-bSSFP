@@ -19,6 +19,27 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{noauthor_augmentation_nodate}{misc}{}
+      \list{language}{1}{%
+        {en}%
+      }
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Augmentation transforms generate different results every time they are called. Augmented image Base class: RandomTransform: Composition: Compose: OneOf: Spatial: RandomFlip: RandomAffine: RandomEla...}
+      \field{journaltitle}{TorchIO}
+      \field{title}{Augmentation}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://torchio.readthedocs.io/transforms/transforms/augmentation.html
+      \endverb
+      \verb{url}
+      \verb https://torchio.readthedocs.io/transforms/transforms/augmentation.html
+      \endverb
+    \endentry
     \entry{ba_layer_2016}{misc}{}
       \name{author}{3}{}{%
         {{hash=750bb29ebaf655e36626e464041edb6d}{%
@@ -295,6 +316,530 @@
       \endverb
       \verb{url}
       \verb https://www.informatica.si/index.php/informatica/article/view/2828
+      \endverb
+    \endentry
+    \entry{brett_nipynibabel_2024}{misc}{}
+      \name{author}{99}{}{%
+        {{hash=626cc151613864abeb653c0d8172d98c}{%
+           family={Brett},
+           familyi={B\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f629153ba111aa5f9ad5155beb0dd3e1}{%
+           family={Markiewicz},
+           familyi={M\bibinitperiod},
+           given={Christopher\bibnamedelima J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=3f769f6f38f10ce050aff0d54f58526e}{%
+           family={Hanke},
+           familyi={H\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=90f75a481318c6e2f4d938116479e00f}{%
+           family={Côté},
+           familyi={C\bibinitperiod},
+           given={Marc-Alexandre},
+           giveni={M\bibinithyphendelim A\bibinitperiod}}}%
+        {{hash=2434cb02d35e1a0b93baca3e0ad07092}{%
+           family={Cipollini},
+           familyi={C\bibinitperiod},
+           given={Ben},
+           giveni={B\bibinitperiod}}}%
+        {{hash=9cd39db136b9fa76eb1032f772d38542}{%
+           family={McCarthy},
+           familyi={M\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=e1a83b14951b32856e7a3fb8c88dbcdf}{%
+           family={Jarecka},
+           familyi={J\bibinitperiod},
+           given={Dorota},
+           giveni={D\bibinitperiod}}}%
+        {{hash=f86f4d5916e5c4859c48d8ce6af23d28}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Christopher\bibnamedelima P.},
+           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=8d336f110675c46226ece1db501ce712}{%
+           family={Larson},
+           familyi={L\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=e2fb284cc447dda0b361d24f661475ce}{%
+           family={Halchenko},
+           familyi={H\bibinitperiod},
+           given={Yaroslav\bibnamedelima O.},
+           giveni={Y\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=9b01250b5fc31f6ea0059e5b40c4cd8a}{%
+           family={Cottaar},
+           familyi={C\bibinitperiod},
+           given={Michiel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=07087ce774a9e957ee449e9c645696c2}{%
+           family={Ghosh},
+           familyi={G\bibinitperiod},
+           given={Satrajit},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6fd964c8a4142f04fd117b23a4f550c9}{%
+           family={Wassermann},
+           familyi={W\bibinitperiod},
+           given={Demian},
+           giveni={D\bibinitperiod}}}%
+        {{hash=373a0a16b2f41b58fdddeef08d8ba43d}{%
+           family={Gerhard},
+           familyi={G\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=235032fbc12d47e45283ca9a714aeda7}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Gregory\bibnamedelima R.},
+           giveni={G\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=72a3a112c357eb38377384ea8e767c11}{%
+           family={Baratz},
+           familyi={B\bibinitperiod},
+           given={Zvi},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=2866cf64a5086ffc10ac32bf4be39205}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Hao-Ting},
+           giveni={H\bibinithyphendelim T\bibinitperiod}}}%
+        {{hash=3188f116b932aa7a8dec48cacd89677d}{%
+           family={Papadopoulos\bibnamedelima Orfanos},
+           familyi={P\bibinitperiod\bibinitdelim O\bibinitperiod},
+           given={Dimitri},
+           giveni={D\bibinitperiod}}}%
+        {{hash=15ea00e86864b07ebb5c463db9664b35}{%
+           family={Kastman},
+           familyi={K\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod}}}%
+        {{hash=a0c933c207f09eacb73530e7af60073a}{%
+           family={Kaczmarzyk},
+           familyi={K\bibinitperiod},
+           given={Jakub},
+           giveni={J\bibinitperiod}}}%
+        {{hash=291572e2ef0833df0942d622cfce47bd}{%
+           family={Guidotti},
+           familyi={G\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+        {{hash=52b12b71d5a5e7fe6c13b01760b7cfd5}{%
+           family={Daniel},
+           familyi={D\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b3701df6929af6743659e7b736f00c83}{%
+           family={Duek},
+           familyi={D\bibinitperiod},
+           given={Or},
+           giveni={O\bibinitperiod}}}%
+        {{hash=848bbb8a883bec42d46ee442da523381}{%
+           family={Rokem},
+           familyi={R\bibinitperiod},
+           given={Ariel},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1c9ab5e4e455d7eee45f5e75c8fb56e0}{%
+           family={Scheltienne},
+           familyi={S\bibinitperiod},
+           given={Mathieu},
+           giveni={M\bibinitperiod}}}%
+        {{hash=b3afe40090d7a8b36b4a0840e244c8ff}{%
+           family={Madison},
+           familyi={M\bibinitperiod},
+           given={Cindee},
+           giveni={C\bibinitperiod}}}%
+        {{hash=7f39cd2960dfb8caff344fbb292dbf06}{%
+           family={Sólon},
+           familyi={S\bibinitperiod},
+           given={Anibal},
+           giveni={A\bibinitperiod}}}%
+        {{hash=4fbb65faebd9a5ae3c34217c733c477e}{%
+           family={Moloney},
+           familyi={M\bibinitperiod},
+           given={Brendan},
+           giveni={B\bibinitperiod}}}%
+        {{hash=28a2e940d0b6ebad29edb5bae588799f}{%
+           family={Morency},
+           familyi={M\bibinitperiod},
+           given={Félix\bibnamedelima C.},
+           giveni={F\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=c9690af972845ee41959a41c2eb56dd1}{%
+           family={Goncalves},
+           familyi={G\bibinitperiod},
+           given={Mathias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=00b655f1744cd9476d45b14e1d521a79}{%
+           family={Markello},
+           familyi={M\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod}}}%
+        {{hash=815741c15122b5bbb836008dbdf9b48c}{%
+           family={Riddell},
+           familyi={R\bibinitperiod},
+           given={Cameron},
+           giveni={C\bibinitperiod}}}%
+        {{hash=2a8e6fb30064dd9ff465064b05cb2628}{%
+           family={Burns},
+           familyi={B\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+        {{hash=eca9aeefdc8563b0e153fbedf08bc1a1}{%
+           family={Millman},
+           familyi={M\bibinitperiod},
+           given={Jarrod},
+           giveni={J\bibinitperiod}}}%
+        {{hash=12ebe424e1c87de156c57e8fa7683f46}{%
+           family={Gramfort},
+           familyi={G\bibinitperiod},
+           given={Alexandre},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a2e162e1acae5a3859441944c0094736}{%
+           family={Leppäkangas},
+           familyi={L\bibinitperiod},
+           given={Jaakko},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9601f9d87b9760c18c8d6689e9ed6cd1}{%
+           family={Bosch},
+           familyi={B\bibinitperiod},
+           given={Jasper\bibnamedelima J.F.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+           prefix={van\bibnamedelima den},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=7e8cb89f5c75cb98a1d77fc0eb951338}{%
+           family={Vincent},
+           familyi={V\bibinitperiod},
+           given={Robert\bibnamedelima D.},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=5a9ac99354d0fe7eccec165965c179d9}{%
+           family={Braun},
+           familyi={B\bibinitperiod},
+           given={Henry},
+           giveni={H\bibinitperiod}}}%
+        {{hash=79859656a0e79582731b4e89a955691a}{%
+           family={Subramaniam},
+           familyi={S\bibinitperiod},
+           given={Krish},
+           giveni={K\bibinitperiod}}}%
+        {{hash=483ca1fd366733ca71e5df29c31ce026}{%
+           family={Van},
+           familyi={V\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+        {{hash=37fd6602fafa336c9f4f082ecd471b6c}{%
+           family={Gorgolewski},
+           familyi={G\bibinitperiod},
+           given={Krzysztof\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=a38c3e10123230486099d321f3c93cd9}{%
+           family={Raamana},
+           familyi={R\bibinitperiod},
+           given={Pradeep\bibnamedelima Reddy},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=33cf6836f4a37d82595d08dd614fb4ad}{%
+           family={Klug},
+           familyi={K\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=63a260b48343e34f0fdffd03ca67df6d}{%
+           family={Vos\bibnamedelimb de\bibnamedelima Wael},
+           familyi={V\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim W\bibinitperiod},
+           given={Reinder},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3f00e08f9637b590dcf017a51a8ee23a}{%
+           family={Nichols},
+           familyi={N\bibinitperiod},
+           given={B.\bibnamedelimi Nolan},
+           giveni={B\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=7c296d4c50374670978aaac2a91960f9}{%
+           family={Baker},
+           familyi={B\bibinitperiod},
+           given={Eric\bibnamedelima M.},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=6819629f3291287562590ad17a8e9ee3}{%
+           family={Hayashi},
+           familyi={H\bibinitperiod},
+           given={Soichi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=23a87decad68d6c3d9a6584835af2068}{%
+           family={Pinsard},
+           familyi={P\bibinitperiod},
+           given={Basile},
+           giveni={B\bibinitperiod}}}%
+        {{hash=fdca4ea48ef60697d8575b9fe70cf79d}{%
+           family={Haselgrove},
+           familyi={H\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=cd4d26afae4431d3cccfd202d77aa578}{%
+           family={Hymers},
+           familyi={H\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+        {{hash=bad82335174e52244c1c45aa43507b06}{%
+           family={Esteban},
+           familyi={E\bibinitperiod},
+           given={Oscar},
+           giveni={O\bibinitperiod}}}%
+        {{hash=033fd8c67cbf254daeb85913f483dbc2}{%
+           family={Koudoro},
+           familyi={K\bibinitperiod},
+           given={Serge},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5387d2c9d7c24dae0973e307652b413f}{%
+           family={Pérez-García},
+           familyi={P\bibinithyphendelim G\bibinitperiod},
+           given={Fernando},
+           giveni={F\bibinitperiod}}}%
+        {{hash=131b4cefb01c56d9d1548d75c4ba5555}{%
+           family={Dockès},
+           familyi={D\bibinitperiod},
+           given={Jérôme},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7d64b7e08271acef0f62ccb3a2086fc1}{%
+           family={Oosterhof},
+           familyi={O\bibinitperiod},
+           given={Nikolaas\bibnamedelima N.},
+           giveni={N\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=405e1c52f4fabc97cac1f289e54a5832}{%
+           family={Amirbekian},
+           familyi={A\bibinitperiod},
+           given={Bago},
+           giveni={B\bibinitperiod}}}%
+        {{hash=b8a2e0d14ce6ed430a3b97cb7a00597a}{%
+           family={Christian},
+           familyi={C\bibinitperiod},
+           given={Horea},
+           giveni={H\bibinitperiod}}}%
+        {{hash=1386d696657e90c3df96b57e4b83ac92}{%
+           family={Nimmo-Smith},
+           familyi={N\bibinithyphendelim S\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=7515c84f17df1c1a97691ce8512d2fb4}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Ly},
+           giveni={L\bibinitperiod}}}%
+        {{hash=a8a595575691ac12067af19f6479b75a}{%
+           family={Suter},
+           familyi={S\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=026da5b16945ff1399bf0a5376883a76}{%
+           family={Reddigari},
+           familyi={R\bibinitperiod},
+           given={Samir},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d74323afe4aacb98ff4df690e6f43a75}{%
+           family={St-Jean},
+           familyi={S\bibinithyphendelim J\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1591ec104129dd98dc4f1d1f7944547d}{%
+           family={Panfilov},
+           familyi={P\bibinitperiod},
+           given={Egor},
+           giveni={E\bibinitperiod}}}%
+        {{hash=3bc0e9c1e8a2e07e842b9da60db9e2e4}{%
+           family={Garyfallidis},
+           familyi={G\bibinitperiod},
+           given={Eleftherios},
+           giveni={E\bibinitperiod}}}%
+        {{hash=8dfd6b3615de2946b6e0c1772b3b5827}{%
+           family={Varoquaux},
+           familyi={V\bibinitperiod},
+           given={Gael},
+           giveni={G\bibinitperiod}}}%
+        {{hash=923ef8213327cb57a0df221933600017}{%
+           family={Legarreta},
+           familyi={L\bibinitperiod},
+           given={Jon\bibnamedelima Haitz},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=eea2fa76f99fc49f04ea6675bd48d521}{%
+           family={Hahn},
+           familyi={H\bibinitperiod},
+           given={Kevin\bibnamedelima S.},
+           giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=24a85092676cba212806bda20447fc00}{%
+           family={Waller},
+           familyi={W\bibinitperiod},
+           given={Lea},
+           giveni={L\bibinitperiod}}}%
+        {{hash=86b86c4f8e326183a4a58f6320cfae43}{%
+           family={Hinds},
+           familyi={H\bibinitperiod},
+           given={Oliver\bibnamedelima P.},
+           giveni={O\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=b2fdd4d9d7b3747819bc42f089d98fc7}{%
+           family={Fauber},
+           familyi={F\bibinitperiod},
+           given={Bennet},
+           giveni={B\bibinitperiod}}}%
+        {{hash=4890ad94c5f5be9cafc8339910a50e94}{%
+           family={Dewey},
+           familyi={D\bibinitperiod},
+           given={Blake},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d04d0c8e703a6753f561785283f32aca}{%
+           family={Perez},
+           familyi={P\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=fafaa7d00542cd079af17916abf3e347}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={Jacob},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7e567d51746021a736084a5d361744cd}{%
+           family={Poline},
+           familyi={P\bibinitperiod},
+           given={Jean-Baptiste},
+           giveni={J\bibinithyphendelim B\bibinitperiod}}}%
+        {{hash=8ed2fe66036cc5896c724f8d3ae224e7}{%
+           family={Stutters},
+           familyi={S\bibinitperiod},
+           given={Jon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9a19f4e44630b13e3f84ec15b3fbae40}{%
+           family={Jordan},
+           familyi={J\bibinitperiod},
+           given={Kesshi},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f3ad93e94d21d6ccf6d45e8e2feb0cc4}{%
+           family={Cieslak},
+           familyi={C\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7e5f1f2de0d00735a74d1783427d0e4a}{%
+           family={Moreno},
+           familyi={M\bibinitperiod},
+           given={Miguel\bibnamedelima Estevan},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=8bfc20fef04af664627398f8a3c699f1}{%
+           family={Hrnčiar},
+           familyi={H\bibinitperiod},
+           given={Tomáš},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e0edd56e67a051a8db8a3c3e85bc4d53}{%
+           family={Haenel},
+           familyi={H\bibinitperiod},
+           given={Valentin},
+           giveni={V\bibinitperiod}}}%
+        {{hash=48d7274dea9ffbd3123a8a01ce2cc75f}{%
+           family={Schwartz},
+           familyi={S\bibinitperiod},
+           given={Yannick},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=c2d5fc581e388044753adf60766a4d83}{%
+           family={Darwin},
+           familyi={D\bibinitperiod},
+           given={Benjamin\bibnamedelima C},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=0f3fc06fb9fcbb01b9cc0985eaf0a71c}{%
+           family={Thirion},
+           familyi={T\bibinitperiod},
+           given={Bertrand},
+           giveni={B\bibinitperiod}}}%
+        {{hash=1fd98bc79db84f5282035c08794c9013}{%
+           family={Gauthier},
+           familyi={G\bibinitperiod},
+           given={Carl},
+           giveni={C\bibinitperiod}}}%
+        {{hash=230e942bcd44ffaf4e862f8137e63fa7}{%
+           family={Solovey},
+           familyi={S\bibinitperiod},
+           given={Igor},
+           giveni={I\bibinitperiod}}}%
+        {{hash=bb6436d795631781bbeea6e398716f53}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={Ivan},
+           giveni={I\bibinitperiod}}}%
+        {{hash=b68d05f3be7a6c4bf56e1fa116b0f606}{%
+           family={Palasubramaniam},
+           familyi={P\bibinitperiod},
+           given={Jath},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6a46a7954c134ee632e283c67181dcd6}{%
+           family={Lecher},
+           familyi={L\bibinitperiod},
+           given={Justin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=aee7436792494f62c5685ced32c3d183}{%
+           family={Leinweber},
+           familyi={L\bibinitperiod},
+           given={Katrin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=1b7c1d7cdfc90d4a2aeb40d5251f9b0e}{%
+           family={Raktivan},
+           familyi={R\bibinitperiod},
+           given={Konstantinos},
+           giveni={K\bibinitperiod}}}%
+        {{hash=c62af025d09d9a3f47dbac3726c10a10}{%
+           family={Calábková},
+           familyi={C\bibinitperiod},
+           given={Markéta},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a55d7c9320ccb32e0eea577c8552f4e9}{%
+           family={Fischer},
+           familyi={F\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=316e8efde95cbbe662a53fa3bf5165e4}{%
+           family={Gervais},
+           familyi={G\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+        {{hash=b2d9251dda959f553d451e74922bf317}{%
+           family={Gadde},
+           familyi={G\bibinitperiod},
+           given={Syam},
+           giveni={S\bibinitperiod}}}%
+        {{hash=296157b8dc063e83dbdca144a86c50b3}{%
+           family={Ballinger},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=599dfa24843aecbe951fb1816db01e19}{%
+           family={Roos},
+           familyi={R\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=4db3ff4181549023021535736edb77af}{%
+           family={Reddam},
+           familyi={R\bibinitperiod},
+           given={Venkateswara\bibnamedelima Reddy},
+           giveni={V\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=eccd9e180c535039ee164103eee75b46}{%
+           family={{freec84}},
+           familyi={f\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Zenodo}%
+      }
+      \strng{namehash}{b4687c1517f1a0edb4d121c7c1b1abc7}
+      \strng{fullhash}{d499f2cb2420a7b2c65c9ee7bc182fe2}
+      \strng{bibnamehash}{b4687c1517f1a0edb4d121c7c1b1abc7}
+      \strng{authorbibnamehash}{b4687c1517f1a0edb4d121c7c1b1abc7}
+      \strng{authornamehash}{b4687c1517f1a0edb4d121c7c1b1abc7}
+      \strng{authorfullhash}{d499f2cb2420a7b2c65c9ee7bc182fe2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{title}{nipy/nibabel: 5.2.1}
+      \field{year}{2024}
+      \verb{doi}
+      \verb 10.5281/zenodo.10714563
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.5281/zenodo.10714563
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.5281/zenodo.10714563
       \endverb
     \endentry
     \entry{relaxation}{incollection}{}
@@ -896,9 +1441,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{Artificial Intelligence (AI) is having a tremendous impact across most areas of science. Applications of AI in healthcare have the potential to improve our ability to detect, diagnose, prognose, and intervene on human disease. For AI models to be used clinically, they need to be made safe, reproducible and robust, and the underlying software framework must be aware of the particularities (e.g. geometry, physiology, physics) of medical data being processed. This work introduces MONAI, a freely available, community-supported, and consortium-led PyTorch-based framework for deep learning in healthcare. MONAI extends PyTorch to support medical data, with a particular focus on imaging, and provide purpose-specific AI model architectures, transformations and utilities that streamline the development and deployment of medical AI models. MONAI follows best practices for software-development, providing an easy-to-use, robust, well-documented, and well-tested software framework. MONAI preserves the simple, additive, and compositional approach of its underlying PyTorch libraries. MONAI is being used by and receiving contributions from research, clinical and industrial teams from around the world, who are pursuing applications spanning nearly every aspect of healthcare.}
-      \field{annotation}{Comment: www.monai.io}
       \field{month}{11}
-      \field{note}{arXiv:2211.02701 [cs]}
       \field{shorttitle}{{MONAI}}
       \field{title}{{MONAI}: {An} open-source framework for deep learning in healthcare}
       \field{urlday}{10}
@@ -906,7 +1449,6 @@
       \field{urlyear}{2024}
       \field{year}{2022}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.48550/arXiv.2211.02701
       \endverb
@@ -1274,7 +1816,6 @@
       \field{volume}{3}
       \field{year}{2019}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{urlraw}
       \verb https://cir.nii.ac.jp/crid/1370013168774120069
       \endverb
@@ -1363,7 +1904,6 @@
       \field{volume}{2}
       \field{year}{1994}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{189\bibrangedash 210}
       \range{pages}{22}
       \verb{doi}
@@ -1492,7 +2032,6 @@
       \field{volume}{8}
       \field{year}{2014}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.3389/fninf.2014.00008
       \endverb
@@ -1681,7 +2220,6 @@
       \field{abstract}{An introduction to a broad range of topics in deep learning, covering mathematical and conceptual background, deep learning techniques used in industry, and research perspectives.“Written by three experts in the field, Deep Learning is the only comprehensive book on the subject.”—Elon Musk, cochair of OpenAI; cofounder and CEO of Tesla and SpaceXDeep learning is a form of machine learning that enables computers to learn from experience and understand the world in terms of a hierarchy of concepts. Because the computer gathers knowledge from experience, there is no need for a human computer operator to formally specify all the knowledge that the computer needs. The hierarchy of concepts allows the computer to learn complicated concepts by building them out of simpler ones; a graph of these hierarchies would be many layers deep. This book introduces a broad range of topics in deep learning. The text offers mathematical and conceptual background, covering relevant concepts in linear algebra, probability theory and information theory, numerical computation, and machine learning. It describes deep learning techniques used by practitioners in industry, including deep feedforward networks, regularization, optimization algorithms, convolutional networks, sequence modeling, and practical methodology; and it surveys such applications as natural language processing, speech recognition, computer vision, online recommendation systems, bioinformatics, and videogames. Finally, the book offers research perspectives, covering such theoretical topics as linear factor models, autoencoders, representation learning, structured probabilistic models, Monte Carlo methods, the partition function, approximate inference, and deep generative models. Deep Learning can be used by undergraduate or graduate students planning careers in either industry or research, and by software engineers who want to begin using deep learning in their products or platforms. A website offers supplementary material for both readers and instructors.}
       \field{isbn}{978-0-262-33737-3}
       \field{month}{11}
-      \field{note}{Google-Books-ID: omivDQAAQBAJ}
       \field{title}{Deep {Learning}}
       \field{year}{2016}
       \verb{file}
@@ -1768,6 +2306,186 @@
       \verb{url}
       \verb https://dl.acm.org/doi/10.1145/3422622
       \endverb
+    \endentry
+    \entry{gorgolewski_brain_2016}{article}{}
+      \name{author}{27}{}{%
+        {{hash=37fd6602fafa336c9f4f082ecd471b6c}{%
+           family={Gorgolewski},
+           familyi={G\bibinitperiod},
+           given={Krzysztof\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=3325e05978ab33098a85fc07dd207104}{%
+           family={Auer},
+           familyi={A\bibinitperiod},
+           given={Tibor},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c7172dd45e3be68cbaaa4b3985f2e733}{%
+           family={Calhoun},
+           familyi={C\bibinitperiod},
+           given={Vince\bibnamedelima D.},
+           giveni={V\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=44fd334a21edae5fe18eda9d18695bde}{%
+           family={Craddock},
+           familyi={C\bibinitperiod},
+           given={R.\bibnamedelimi Cameron},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=a6496ab1152f6176833d0c89cc43ff2b}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Samir},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b141e77c571a92e34089ba18de0324f8}{%
+           family={Duff},
+           familyi={D\bibinitperiod},
+           given={Eugene\bibnamedelima P.},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=bc7677808561fd1db41e55673446b2df}{%
+           family={Flandin},
+           familyi={F\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+        {{hash=76dba40c9142166c5540f708b967f13d}{%
+           family={Ghosh},
+           familyi={G\bibinitperiod},
+           given={Satrajit\bibnamedelima S.},
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=40b974bfe49f775d2bae3fa1e9366960}{%
+           family={Glatard},
+           familyi={G\bibinitperiod},
+           given={Tristan},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e2fb284cc447dda0b361d24f661475ce}{%
+           family={Halchenko},
+           familyi={H\bibinitperiod},
+           given={Yaroslav\bibnamedelima O.},
+           giveni={Y\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=d95e73a1a075e922479f50bf3fa21bc4}{%
+           family={Handwerker},
+           familyi={H\bibinitperiod},
+           given={Daniel\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=3f769f6f38f10ce050aff0d54f58526e}{%
+           family={Hanke},
+           familyi={H\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c3113b791dddd7f003a4f74ba1c1eff0}{%
+           family={Keator},
+           familyi={K\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=de91480b7e7e120166a7cd3909afbbfc}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Xiangrui},
+           giveni={X\bibinitperiod}}}%
+        {{hash=c255427329cb19a2fee07506cbe4188f}{%
+           family={Michael},
+           familyi={M\bibinitperiod},
+           given={Zachary},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=2ea68108772ac283b0dfa813e1183589}{%
+           family={Maumet},
+           familyi={M\bibinitperiod},
+           given={Camille},
+           giveni={C\bibinitperiod}}}%
+        {{hash=3f00e08f9637b590dcf017a51a8ee23a}{%
+           family={Nichols},
+           familyi={N\bibinitperiod},
+           given={B.\bibnamedelimi Nolan},
+           giveni={B\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=941382c976b0fb8a5ca28a910a748a0b}{%
+           family={Nichols},
+           familyi={N\bibinitperiod},
+           given={Thomas\bibnamedelima E.},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=b68061e9a0a36c1a2b7f03300bb3ba01}{%
+           family={Pellman},
+           familyi={P\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7e567d51746021a736084a5d361744cd}{%
+           family={Poline},
+           familyi={P\bibinitperiod},
+           given={Jean-Baptiste},
+           giveni={J\bibinithyphendelim B\bibinitperiod}}}%
+        {{hash=848bbb8a883bec42d46ee442da523381}{%
+           family={Rokem},
+           familyi={R\bibinitperiod},
+           given={Ariel},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8993343deb2a35fcc27f12496369532b}{%
+           family={Schaefer},
+           familyi={S\bibinitperiod},
+           given={Gunnar},
+           giveni={G\bibinitperiod}}}%
+        {{hash=20bcea7098f2727067bd6b7f46818d3c}{%
+           family={Sochat},
+           familyi={S\bibinitperiod},
+           given={Vanessa},
+           giveni={V\bibinitperiod}}}%
+        {{hash=efbce5368422c93667c67ef240b056e9}{%
+           family={Triplett},
+           familyi={T\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{hash=101a42f9d9fccd6d842d2d58fa7d29f6}{%
+           family={Turner},
+           familyi={T\bibinitperiod},
+           given={Jessica\bibnamedelima A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=cfa3239dded54488f9a82a5718d5b927}{%
+           family={Varoquaux},
+           familyi={V\bibinitperiod},
+           given={Gaël},
+           giveni={G\bibinitperiod}}}%
+        {{hash=21ffb9bf6762df0fb232215885be17e1}{%
+           family={Poldrack},
+           familyi={P\bibinitperiod},
+           given={Russell\bibnamedelima A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{a4f1894bca1d05414f4ba2d32db7cfb7}
+      \strng{fullhash}{19f3b4aa0080d893747d616f4084620d}
+      \strng{bibnamehash}{a4f1894bca1d05414f4ba2d32db7cfb7}
+      \strng{authorbibnamehash}{a4f1894bca1d05414f4ba2d32db7cfb7}
+      \strng{authornamehash}{a4f1894bca1d05414f4ba2d32db7cfb7}
+      \strng{authorfullhash}{19f3b4aa0080d893747d616f4084620d}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The development of magnetic resonance imaging (MRI) techniques has defined modern neuroimaging. Since its inception, tens of thousands of studies using techniques such as functional MRI and diffusion weighted imaging have allowed for the non-invasive study of the brain. Despite the fact that MRI is routinely used to obtain data for neuroscience research, there has been no widely adopted standard for organizing and describing the data collected in an imaging experiment. This renders sharing and reusing data (within or between labs) difficult if not impossible and unnecessarily complicates the application of automatic pipelines and quality assurance protocols. To solve this problem, we have developed the Brain Imaging Data Structure (BIDS), a standard for organizing and describing MRI datasets. The BIDS standard uses file formats compatible with existing software, unifies the majority of practices already common in the field, and captures the metadata necessary for most common data processing operations.}
+      \field{issn}{2052-4463}
+      \field{journaltitle}{Scientific Data}
+      \field{month}{6}
+      \field{note}{Publisher: Nature Publishing Group}
+      \field{number}{1}
+      \field{title}{The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{3}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \field{pages}{160044}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1038/sdata.2016.44
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/4G3HD4EZ/Gorgolewski et al. - 2016 - The brain imaging data structure, a format for org.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/sdata201644
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/sdata201644
+      \endverb
+      \keyw{Data publication and archiving,Research data}
     \endentry
     \entry{grigoryev_when_2021}{inproceedings}{}
       \name{author}{3}{}{%
@@ -1908,6 +2626,187 @@
       \verb{url}
       \verb https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3502662/
       \endverb
+    \endentry
+    \entry{harris_array_2020}{article}{}
+      \name{author}{26}{}{%
+        {{hash=db2b4761cc46be347b418e68660c9554}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={Charles\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=b053969d2c6a9ec8689980fb6463cd56}{%
+           family={Millman},
+           familyi={M\bibinitperiod},
+           given={K.\bibnamedelimi Jarrod},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=9a5a65a789013a8d1e8035ec28df9b6e}{%
+           family={Walt},
+           familyi={W\bibinitperiod},
+           given={Stéfan\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=646fbfe08374cc41c2f9bd971d8c4725}{%
+           family={Gommers},
+           familyi={G\bibinitperiod},
+           given={Ralf},
+           giveni={R\bibinitperiod}}}%
+        {{hash=18703a2bb6a62484483c193a212da2f8}{%
+           family={Virtanen},
+           familyi={V\bibinitperiod},
+           given={Pauli},
+           giveni={P\bibinitperiod}}}%
+        {{hash=9fd9ed8466bbb96364ae008f2a665e6e}{%
+           family={Cournapeau},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4321feefe3d5715c6fe12639d2a1f7f1}{%
+           family={Wieser},
+           familyi={W\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=e8d1b0c2bff88b6bf54e2e934e2853f6}{%
+           family={Taylor},
+           familyi={T\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=265437a4424f0b845118651d7d04ab93}{%
+           family={Berg},
+           familyi={B\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e4d23819637a961e0e598e1c82a8f10d}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={Nathaniel\bibnamedelima J.},
+           giveni={N\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=9ad1d38817acd2f00cb7f324ec7d37ea}{%
+           family={Kern},
+           familyi={K\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8ae844f84614690134ff5d8252fdc430}{%
+           family={Picus},
+           familyi={P\bibinitperiod},
+           given={Matti},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4a22828b76006f42d747b699d2ef5167}{%
+           family={Hoyer},
+           familyi={H\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=10aba85d08ce22d724b21878b93f590a}{%
+           family={Kerkwijk},
+           familyi={K\bibinitperiod},
+           given={Marten\bibnamedelima H.},
+           giveni={M\bibinitperiod\bibinitdelim H\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=626cc151613864abeb653c0d8172d98c}{%
+           family={Brett},
+           familyi={B\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a989405517bbf67ae7b16be1d03c0081}{%
+           family={Haldane},
+           familyi={H\bibinitperiod},
+           given={Allan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9517b38a3050d34c03ac479ee122f64a}{%
+           family={Río},
+           familyi={R\bibinitperiod},
+           given={Jaime\bibnamedelima Fernández},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+           prefix={del},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=76256cb9e4c31e0a4744b1b49a6199f4}{%
+           family={Wiebe},
+           familyi={W\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3d6efaaa3d9682e20787eb06ff70a3d7}{%
+           family={Peterson},
+           familyi={P\bibinitperiod},
+           given={Pearu},
+           giveni={P\bibinitperiod}}}%
+        {{hash=aac4486f60accb8b7db22ef300423e11}{%
+           family={Gérard-Marchant},
+           familyi={G\bibinithyphendelim M\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod}}}%
+        {{hash=22fcbc93c38819e962968aad3e3cba7f}{%
+           family={Sheppard},
+           familyi={S\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=fbb0c40f5d70be8ce47ce9daafdf5749}{%
+           family={Reddy},
+           familyi={R\bibinitperiod},
+           given={Tyler},
+           giveni={T\bibinitperiod}}}%
+        {{hash=4c7e4c94b846fa41e2fc0a88e0dc656d}{%
+           family={Weckesser},
+           familyi={W\bibinitperiod},
+           given={Warren},
+           giveni={W\bibinitperiod}}}%
+        {{hash=c588b2e35e75bba896fc5677afb52fa9}{%
+           family={Abbasi},
+           familyi={A\bibinitperiod},
+           given={Hameer},
+           giveni={H\bibinitperiod}}}%
+        {{hash=52e2684c111b194e1f15fa06b0ce4544}{%
+           family={Gohlke},
+           familyi={G\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+        {{hash=d500f4849030f34359cdb3e1513acf83}{%
+           family={Oliphant},
+           familyi={O\bibinitperiod},
+           given={Travis\bibnamedelima E.},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{754b3dec5e203c19b9a5798bbb902222}
+      \strng{fullhash}{bba1ae456b2655ba67cf6cee2d142dfc}
+      \strng{bibnamehash}{754b3dec5e203c19b9a5798bbb902222}
+      \strng{authorbibnamehash}{754b3dec5e203c19b9a5798bbb902222}
+      \strng{authornamehash}{754b3dec5e203c19b9a5798bbb902222}
+      \strng{authorfullhash}{bba1ae456b2655ba67cf6cee2d142dfc}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Array programming provides a powerful, compact and expressive syntax for accessing, manipulating and operating on data in vectors, matrices and higher-dimensional arrays. NumPy is the primary array programming library for the Python language. It has an essential role in research analysis pipelines in fields as diverse as physics, chemistry, astronomy, geoscience, biology, psychology, materials science, engineering, finance and economics. For example, in astronomy, NumPy was an important part of the software stack used in the discovery of gravitational waves1 and in the first imaging of a black hole2. Here we review how a few fundamental array concepts lead to a simple and powerful programming paradigm for organizing, exploring and analysing scientific data. NumPy is the foundation upon which the scientific Python ecosystem is constructed. It is so pervasive that several projects, targeting audiences with specialized needs, have developed their own NumPy-like interfaces and array objects. Owing to its central position in the ecosystem, NumPy increasingly acts as an interoperability layer between such array computation libraries and, together with its application programming interface (API), provides a flexible framework to support the next decade of scientific and industrial analysis.}
+      \field{issn}{1476-4687}
+      \field{journaltitle}{Nature}
+      \field{month}{9}
+      \field{note}{Publisher: Nature Publishing Group}
+      \field{number}{7825}
+      \field{title}{Array programming with {NumPy}}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{585}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{357\bibrangedash 362}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1038/s41586-020-2649-2
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/BLWSYZ7X/Harris et al. - 2020 - Array programming with NumPy.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/s41586-020-2649-2
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/s41586-020-2649-2
+      \endverb
+      \keyw{Computational neuroscience,Computational science,Computer science,Software,Solar physics}
     \endentry
     \entry{he_deep_2016}{inproceedings}{}
       \name{author}{4}{}{%
@@ -2328,6 +3227,54 @@
       \verb https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2967146/
       \endverb
     \endentry
+    \entry{hunter_matplotlib_2007}{article}{}
+      \name{author}{1}{}{%
+        {{hash=a2f53dcc6bb05a06b8ad94176f80fe26}{%
+           family={Hunter},
+           familyi={H\bibinitperiod},
+           given={John\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{a2f53dcc6bb05a06b8ad94176f80fe26}
+      \strng{fullhash}{a2f53dcc6bb05a06b8ad94176f80fe26}
+      \strng{bibnamehash}{a2f53dcc6bb05a06b8ad94176f80fe26}
+      \strng{authorbibnamehash}{a2f53dcc6bb05a06b8ad94176f80fe26}
+      \strng{authornamehash}{a2f53dcc6bb05a06b8ad94176f80fe26}
+      \strng{authorfullhash}{a2f53dcc6bb05a06b8ad94176f80fe26}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Matplotlib is a 2D graphics package used for Python for application development, interactive scripting,and publication-quality image generation across user interfaces and operating systems}
+      \field{issn}{1558-366X}
+      \field{journaltitle}{Computing in Science \& Engineering}
+      \field{month}{5}
+      \field{note}{Conference Name: Computing in Science \& Engineering}
+      \field{number}{3}
+      \field{shorttitle}{Matplotlib}
+      \field{title}{Matplotlib: {A} {2D} {Graphics} {Environment}}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{9}
+      \field{year}{2007}
+      \field{urldateera}{ce}
+      \field{pages}{90\bibrangedash 95}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/MCSE.2007.55
+      \endverb
+      \verb{file}
+      \verb IEEE Xplore Abstract Record:/home/someusername/workspace/UNet-bSSFP/lit/storage/5DS93IUD/4160265.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/4160265
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/4160265
+      \endverb
+      \keyw{application development,Computer languages,Equations,Graphical user interfaces,Graphics,Image generation,Interpolation,Operating systems,Packaging,Programming profession,Python,scientific programming,scripting languages,User interfaces}
+    \endentry
     \entry{ioffe_batch_2015}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=5543e82359e26b035efc009cb3efff9d}{%
@@ -2466,7 +3413,6 @@
       \field{abstract}{Deep neural networks are typically trained by optimizing a loss function with an SGD variant, in conjunction with a decaying learning rate, until convergence. We show that simple averaging of multiple points along the trajectory of SGD, with a cyclical or constant learning rate, leads to better generalization than conventional training. We also show that this Stochastic Weight Averaging (SWA) procedure finds much flatter solutions than SGD, and approximates the recent Fast Geometric Ensembling (FGE) approach with a single model. Using SWA we achieve notable improvement in test accuracy over conventional SGD training on a range of state-of-the-art residual networks, PyramidNets, DenseNets, and Shake-Shake networks on CIFAR-10, CIFAR-100, and ImageNet. In short, SWA is extremely easy to implement, improves generalization, and has almost no computational overhead.}
       \field{annotation}{Comment: Appears at the Conference on Uncertainty in Artificial Intelligence (UAI), 2018}
       \field{month}{2}
-      \field{note}{arXiv:1803.05407 [cs, stat]}
       \field{title}{Averaging {Weights} {Leads} to {Wider} {Optima} and {Better} {Generalization}}
       \field{urlday}{10}
       \field{urlmonth}{4}
@@ -2487,6 +3433,61 @@
       \verb http://arxiv.org/abs/1803.05407
       \endverb
       \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence,Statistics - Machine Learning,Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{jeevanandham_comparison_2017}{article}{}
+      \name{author}{4}{}{%
+        {{hash=6e5abd14de80919c9c657323ea75dbf7}{%
+           family={Jeevanandham},
+           familyi={J\bibinitperiod},
+           given={Balaji},
+           giveni={B\bibinitperiod}}}%
+        {{hash=8af4c41ede3f08d6f4c08ed83221c904}{%
+           family={Kalyanpur},
+           familyi={K\bibinitperiod},
+           given={Tejas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=42bc7a574ae1f7adf2636b11f4736bb7}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Prashant},
+           giveni={P\bibinitperiod}}}%
+        {{hash=a424d49971fa68f39e45d8c805e76191}{%
+           family={Cherian},
+           familyi={C\bibinitperiod},
+           given={Mathew},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \strng{namehash}{94cffe6b2b5f3af63373c9b5fb89913e}
+      \strng{fullhash}{625e66546b7a6792ceb2742fc170cd06}
+      \strng{bibnamehash}{94cffe6b2b5f3af63373c9b5fb89913e}
+      \strng{authorbibnamehash}{94cffe6b2b5f3af63373c9b5fb89913e}
+      \strng{authornamehash}{94cffe6b2b5f3af63373c9b5fb89913e}
+      \strng{authorfullhash}{625e66546b7a6792ceb2742fc170cd06}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{OBJECTIVE: This study was to assess the usefulness of newer three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flip-angle evolutions (SPACE) and 3D-T2 fluid-attenuated inversion recovery (FLAIR) sequences in evaluation of meningeal abnormalities. METHODS: 78 patients who presented with high suspicion of meningeal abnormalities were evaluated using post-contrast 3D-T2-FLAIR, 3D-T1 magnetization-prepared rapid gradient-echo (MPRAGE) and 3D-T1-SPACE sequences. The images were evaluated independently by two radiologists for cortical gyral, sulcal space, basal cisterns and dural enhancement. The diagnoses were confirmed by further investigations including histopathology. RESULTS: Post-contrast 3D-T1-SPACE and 3D-T2-FLAIR images yielded significantly more information than MPRAGE images (p {<} 0.05 for both SPACE and FLAIR images) in detection of meningeal abnormalities. SPACE images best demonstrated abnormalities in dural and sulcal spaces, whereas FLAIR was useful for basal cisterns enhancement. Both SPACE and FLAIR performed equally well in detection of gyral enhancement. In all 10 patients, where both SPACE and T2-FLAIR images failed to demonstrate any abnormality, further analysis was also negative. CONCLUSION: The 3D-T1-SPACE sequence best demonstrated abnormalities in dural and sulcal spaces, whereas FLAIR was useful for abnormalities in basal cisterns. Both SPACE and FLAIR performed holds good for detection of gyral enhancement. Post-contrast SPACE and FLAIR sequences are superior to the MPRAGE sequence for evaluation of meningeal abnormalities and when used in combination have the maximum sensitivity for leptomeningeal abnormalities. The negative-predictive value is nearly 100\%, where no leptomeningeal abnormality was detected on these sequences. Advances in knowledge: Post-contrast 3D-T1-SPACE and 3D-T2-FLAIR images are more useful than 3D-T1-MPRAGE images in evaluation of meningeal abnormalities.}
+      \field{issn}{1748-880X}
+      \field{journaltitle}{The British Journal of Radiology}
+      \field{month}{6}
+      \field{number}{1074}
+      \field{title}{Comparison of post-contrast {3D}-{T1}-{MPRAGE}, {3D}-{T1}-{SPACE} and {3D}-{T2}-{FLAIR} {MR} images in evaluation of meningeal abnormalities at 3-{T} {MRI}}
+      \field{volume}{90}
+      \field{year}{2017}
+      \true{nocite}
+      \field{pages}{20160834}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1259/bjr.20160834
+      \endverb
+      \verb{file}
+      \verb Volltext:/home/someusername/workspace/UNet-bSSFP/lit/storage/YYNNKS4N/Jeevanandham et al. - 2017 - Comparison of post-contrast 3D-T1-MPRAGE, 3D-T1-SP.pdf:application/pdf
+      \endverb
+      \keyw{Adolescent,Adult,Child,Contrast Media,Female,Humans,Image Interpretation,Computer-Assisted,Imaging,Three-Dimensional,India,Magnetic Resonance Imaging,Male,Meninges,Middle Aged,Prospective Studies}
     \endentry
     \entry{jung_spin_2013}{article}{}
       \name{author}{2}{}{%
@@ -2952,6 +3953,78 @@
       \endverb
       \keyw{Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing,Mathematics - Optimization and Control}
     \endentry
+    \entry{marques_mp2rage_2010}{article}{}
+      \name{author}{6}{}{%
+        {{hash=9792e23f0602864e26dd63581815679f}{%
+           family={Marques},
+           familyi={M\bibinitperiod},
+           given={José\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=d5746c2c7df86179c728f888633164d1}{%
+           family={Kober},
+           familyi={K\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+        {{hash=fe8122730238f5235578bbb000887e87}{%
+           family={Krueger},
+           familyi={K\bibinitperiod},
+           given={Gunnar},
+           giveni={G\bibinitperiod}}}%
+        {{hash=f92270b9303ebe92cb03b5ab3a942859}{%
+           family={Zwaag},
+           familyi={Z\bibinitperiod},
+           given={Wietske},
+           giveni={W\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=5158e62eab17e6ec2be251a59e284d95}{%
+           family={Van\bibnamedelimb de\bibnamedelima Moortele},
+           familyi={V\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Pierre-François},
+           giveni={P\bibinithyphendelim F\bibinitperiod}}}%
+        {{hash=92c181277b6d23eae9e1d94b2018c7d3}{%
+           family={Gruetter},
+           familyi={G\bibinitperiod},
+           given={Rolf},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{3bb920a2816b6d54d4aebff5f60b2a86}
+      \strng{fullhash}{4438f1957e85d15b95fb158ae488498f}
+      \strng{bibnamehash}{3bb920a2816b6d54d4aebff5f60b2a86}
+      \strng{authorbibnamehash}{3bb920a2816b6d54d4aebff5f60b2a86}
+      \strng{authornamehash}{3bb920a2816b6d54d4aebff5f60b2a86}
+      \strng{authorfullhash}{4438f1957e85d15b95fb158ae488498f}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The large spatial inhomogeneity in transmit B1 field (B1+) observable in human MR images at high static magnetic fields (B0) severely impairs image quality. To overcome this effect in brain T1-weighted images, the MPRAGE sequence was modified to generate two different images at different inversion times, MP2RAGE. By combining the two images in a novel fashion, it was possible to create T1-weigthed images where the result image was free of proton density contrast, T2⁎ contrast, reception bias field, and, to first order, transmit field inhomogeneity. MP2RAGE sequence parameters were optimized using Bloch equations to maximize contrast-to-noise ratio per unit of time between brain tissues and minimize the effect of B1+ variations through space. Images of high anatomical quality and excellent brain tissue differentiation suitable for applications such as segmentation and voxel-based morphometry were obtained at 3 and 7 T. From such T1-weighted images, acquired within 12 min, high-resolution 3D T1 maps were routinely calculated at 7 T with sub-millimeter voxel resolution (0.65–0.85 mm isotropic). T1 maps were validated in phantom experiments. In humans, the T1 values obtained at 7 T were 1.15±0.06 s for white matter (WM) and 1.92±0.16 s for grey matter (GM), in good agreement with literature values obtained at lower spatial resolution. At 3 T, where whole-brain acquisitions with 1 mm isotropic voxels were acquired in 8 min, the T1 values obtained (0.81±0.03 s for WM and 1.35±0.05 for GM) were once again found to be in very good agreement with values in the literature.}
+      \field{issn}{1053-8119}
+      \field{journaltitle}{NeuroImage}
+      \field{month}{1}
+      \field{number}{2}
+      \field{title}{{MP2RAGE}, a self bias-field corrected sequence for improved segmentation and {T1}-mapping at high field}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{49}
+      \field{year}{2010}
+      \field{urldateera}{ce}
+      \field{pages}{1271\bibrangedash 1281}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.neuroimage.2009.10.002
+      \endverb
+      \verb{file}
+      \verb ScienceDirect Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/WVZIF6XA/S1053811909010738.html:text/html;Volltext:/home/someusername/workspace/UNet-bSSFP/lit/storage/2QS37GK6/Marques et al. - 2010 - MP2RAGE, a self bias-field corrected sequence for .pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1053811909010738
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1053811909010738
+      \endverb
+    \endentry
     \entry{mcculloch_logical_1943}{article}{}
       \name{author}{2}{}{%
         {{hash=1ccb147b2b2165266e6ce5900193e687}{%
@@ -3326,7 +4399,6 @@
       \field{volume}{32}
       \field{year}{2019}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{file}
       \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/7QNTHMYS/Paszke et al. - 2019 - PyTorch An Imperative Style, High-Performance Dee.pdf:application/pdf
       \endverb
@@ -3377,7 +4449,6 @@
       \field{volume}{208}
       \field{year}{2021}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{106236}
       \range{pages}{1}
       \verb{doi}
@@ -3541,7 +4612,6 @@
       \field{labeltitlesource}{title}
       \field{abstract}{Transfer learning has recently become the dominant paradigm of machine learning. Pre-trained models fine-tuned for downstream tasks achieve better performance with fewer labelled examples. Nonetheless, it remains unclear how to develop models that specialise towards multiple tasks without incurring negative interference and that generalise systematically to non-identically distributed tasks. Modular deep learning has emerged as a promising solution to these challenges. In this framework, units of computation are often implemented as autonomous parameter-efficient modules. Information is conditionally routed to a subset of modules and subsequently aggregated. These properties enable positive transfer and systematic generalisation by separating computation from routing and updating modules locally. We offer a survey of modular architectures, providing a unified view over several threads of research that evolved independently in the scientific literature. Moreover, we explore various additional purposes of modularity, including scaling language models, causal inference, programme induction, and planning in reinforcement learning. Finally, we report various concrete applications where modularity has been successfully deployed such as cross-lingual and cross-modal knowledge transfer. Related talks and projects to this survey, are available at https://www.modulardeeplearning.com/.}
       \field{month}{1}
-      \field{note}{arXiv:2302.11529 [cs]}
       \field{title}{Modular {Deep} {Learning}}
       \field{urlday}{10}
       \field{urlmonth}{4}
@@ -3823,6 +4893,175 @@
       \endverb
       \keyw{Statistics - Machine Learning}
     \endentry
+    \entry{reback_pandas-devpandas_2020}{article}{}
+      \name{author}{30}{}{%
+        {{hash=88cea9aa14a14b77b77c448ed339cf89}{%
+           family={Reback},
+           familyi={R\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+        {{hash=27ca77940a5e8c07c5d89d0f3fb11d75}{%
+           family={McKinney},
+           familyi={M\bibinitperiod},
+           given={Wes},
+           giveni={W\bibinitperiod}}}%
+        {{hash=0fa2de4afde6f6ce625f9fd8c033cf02}{%
+           family={{Jbrockmendel}},
+           familyi={J\bibinitperiod}}}%
+        {{hash=d0d379365636f8aff7fababea695d5bf}{%
+           family={Van\bibnamedelimb Den\bibnamedelima Bossche},
+           familyi={V\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Joris},
+           giveni={J\bibinitperiod}}}%
+        {{hash=bbb9cae798de875fe375cd78fdbc05e8}{%
+           family={Augspurger},
+           familyi={A\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=abc7b63653501dcb1794fe47649d32fb}{%
+           family={Cloud},
+           familyi={C\bibinitperiod},
+           given={Phillip},
+           giveni={P\bibinitperiod}}}%
+        {{hash=344bc406fde6523a12ad6355eaae76a4}{%
+           family={{Gfyoung}},
+           familyi={G\bibinitperiod}}}%
+        {{hash=dd396216bc8e4f0e57427ec2f40a063c}{%
+           family={{Sinhrks}},
+           familyi={S\bibinitperiod}}}%
+        {{hash=21b3ea5a26c08468a71447b0480ba5e0}{%
+           family={Klein},
+           familyi={K\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=05a873b337f2c6603299a4eab9c72bce}{%
+           family={Hawkins},
+           familyi={H\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=48bdfdba683afce467f4559c881080f7}{%
+           family={Roeschke},
+           familyi={R\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=b2cd15c7b8d39b42c79b601904fe9110}{%
+           family={Tratner},
+           familyi={T\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e5b2df24fc3f9501192f6fa8c86a8373}{%
+           family={She},
+           familyi={S\bibinitperiod},
+           given={Chang},
+           giveni={C\bibinitperiod}}}%
+        {{hash=665dc01efe9b675a766324925065b8b6}{%
+           family={Ayd},
+           familyi={A\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{hash=e38b1c3e125c1eab4d5930f277e5846e}{%
+           family={Petersen},
+           familyi={P\bibinitperiod},
+           given={Terji},
+           giveni={T\bibinitperiod}}}%
+        {{hash=01c0d7203a1be3d57abac0a453d34a53}{%
+           family={{MomIsBestFriend}},
+           familyi={M\bibinitperiod}}}%
+        {{hash=df1d62a915f9a5c2173c22f3ea49126a}{%
+           family={Garcia},
+           familyi={G\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4de45d2a9753098448d3ac1300d20295}{%
+           family={Schendel},
+           familyi={S\bibinitperiod},
+           given={Jeremy},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8cb6fdf3ed3fa0c34b89d9963b71b831}{%
+           family={Hayden},
+           familyi={H\bibinitperiod},
+           given={Andy},
+           giveni={A\bibinitperiod}}}%
+        {{hash=4493983240f034b1591aacbf7a02a5e1}{%
+           family={Jancauskas},
+           familyi={J\bibinitperiod},
+           given={Vytautas},
+           giveni={V\bibinitperiod}}}%
+        {{hash=cf8522fe7e08c0bd7420988c289c2e06}{%
+           family={Battiston},
+           familyi={B\bibinitperiod},
+           given={Pietro},
+           giveni={P\bibinitperiod}}}%
+        {{hash=bb340b8100ad532f076751d9dc3d9269}{%
+           family={Saxton},
+           familyi={S\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d1d252dd6b4a79206fc21966d6b35923}{%
+           family={Seabold},
+           familyi={S\bibinitperiod},
+           given={Skipper},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a7d2ea52976da8941d0184821530a2ae}{%
+           family={{Alimcmaster1}},
+           familyi={A\bibinitperiod}}}%
+        {{hash=9e5183b5d21e2185ed51809ce92043f5}{%
+           family={{Chris-B1}},
+           familyi={C\bibinitperiod}}}%
+        {{hash=80c1ae64f988c62c812604864802eaac}{%
+           family={{H-Vetinari}},
+           familyi={H\bibinitperiod}}}%
+        {{hash=4a22828b76006f42d747b699d2ef5167}{%
+           family={Hoyer},
+           familyi={H\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b84b55910fa969a7b4c3f827b60d7177}{%
+           family={Dong},
+           familyi={D\bibinitperiod},
+           given={Kaiqi},
+           giveni={K\bibinitperiod}}}%
+        {{hash=c10c0fcb094b1fb5f266bd68daa14806}{%
+           family={Overmeire},
+           familyi={O\bibinitperiod},
+           given={Wouter},
+           giveni={W\bibinitperiod}}}%
+        {{hash=0a687b86f653c1bf34018d7a58435a7a}{%
+           family={Winkel},
+           familyi={W\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{65bc8de17d9fc3f38d448b6bcb2d28a2}
+      \strng{fullhash}{90110734d0f22c25c292a79aa6dff346}
+      \strng{bibnamehash}{65bc8de17d9fc3f38d448b6bcb2d28a2}
+      \strng{authorbibnamehash}{65bc8de17d9fc3f38d448b6bcb2d28a2}
+      \strng{authornamehash}{65bc8de17d9fc3f38d448b6bcb2d28a2}
+      \strng{authorfullhash}{90110734d0f22c25c292a79aa6dff346}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{This is a minor bug-fix release in the 1.0.x series and includes some regression fixes and bug fixes. We recommend that all users upgrade to this version. See the full whatsnew for a list of all the changes. The release will be available on the defaults and conda-forge channels: conda install pandas Or via PyPI: python3 -m pip install --upgrade pandas Please report any issues with the release on the pandas issue tracker.}
+      \field{journaltitle}{Zenodo}
+      \field{month}{6}
+      \field{shorttitle}{pandas-dev/pandas}
+      \field{title}{pandas-dev/pandas: {Pandas} 1.0.5}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.5281/zenodo.3898987
+      \endverb
+      \verb{urlraw}
+      \verb https://ui.adsabs.harvard.edu/abs/2020zndo...3898987R
+      \endverb
+      \verb{url}
+      \verb https://ui.adsabs.harvard.edu/abs/2020zndo...3898987R
+      \endverb
+    \endentry
     \entry{RelaxationlongitudinalmagnetizationSpinlatticerelaxationWikipedia-2024-05-01}{misc}{}
       \field{sortinit}{R}
       \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
@@ -4079,7 +5318,6 @@
       \field{abstract}{Multi-task learning (MTL) has led to successes in many applications of machine learning, from natural language processing and speech recognition to computer vision and drug discovery. This article aims to give a general overview of MTL, particularly in deep neural networks. It introduces the two most common methods for MTL in Deep Learning, gives an overview of the literature, and discusses recent advances. In particular, it seeks to help ML practitioners apply MTL by shedding light on how MTL works and providing guidelines for choosing appropriate auxiliary tasks.}
       \field{annotation}{Comment: 14 pages, 8 figures}
       \field{month}{6}
-      \field{note}{arXiv:1706.05098 [cs, stat]}
       \field{title}{An {Overview} of {Multi}-{Task} {Learning} in {Deep} {Neural} {Networks}}
       \field{urlday}{10}
       \field{urlmonth}{4}
@@ -4378,7 +5616,6 @@
       \field{volume}{23}
       \field{year}{2004}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{S208\bibrangedash S219}
       \range{pages}{-1}
       \verb{doi}
@@ -4773,6 +6010,65 @@
       \endverb
       \keyw{Brain Theory,Small Pattern,Synaptic Plasticity,Synaptic Weight,Syntactical Information}
     \endentry
+    \entry{van_leemput_automated_1999}{article}{}
+      \name{author}{4}{}{%
+        {{hash=137527d92eda499afb15c0728e6198a1}{%
+           family={Van\bibnamedelima Leemput},
+           familyi={V\bibinitperiod\bibinitdelim L\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=70fc769f94537910fa8adcaa01158f1c}{%
+           family={Maes},
+           familyi={M\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=25683061b83d6998166538f0c7c362fc}{%
+           family={Vandermeulen},
+           familyi={V\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8fc76a4b840d90b32c6c99146d2aec82}{%
+           family={Suetens},
+           familyi={S\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{0ac84b19ca04da5a07af5c96c083a52d}
+      \strng{fullhash}{17f8de908db00445e4a7591d380fed4d}
+      \strng{bibnamehash}{0ac84b19ca04da5a07af5c96c083a52d}
+      \strng{authorbibnamehash}{0ac84b19ca04da5a07af5c96c083a52d}
+      \strng{authornamehash}{0ac84b19ca04da5a07af5c96c083a52d}
+      \strng{authorfullhash}{17f8de908db00445e4a7591d380fed4d}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Describes a fully automated method for model-based tissue classification of magnetic resonance (MR) images of the brain. The method interleaves classification with estimation of the model parameters, improving the classification at each iteration. The algorithm is able to segment single- and multi-spectral MR images, corrects for MR signal inhomogeneities, and incorporates contextual information by means of Markov random Fields (MRF's). A digital brain atlas containing prior expectations about the spatial location of tissue classes is used to initialize the algorithm. This makes the method fully automated and therefore it provides objective and reproducible segmentations. The authors have validated the technique on simulated as well as on real MR images of the brain.}
+      \field{issn}{1558-254X}
+      \field{journaltitle}{IEEE Transactions on Medical Imaging}
+      \field{month}{10}
+      \field{note}{Conference Name: IEEE Transactions on Medical Imaging}
+      \field{number}{10}
+      \field{title}{Automated model-based tissue classification of {MR} images of the brain}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{18}
+      \field{year}{1999}
+      \field{urldateera}{ce}
+      \field{pages}{897\bibrangedash 908}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1109/42.811270
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/811270
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/811270
+      \endverb
+      \keyw{Biomedical imaging,Brain modeling,Humans,Image analysis,Image segmentation,Iterative methods,Magnetic resonance,Magnetic resonance imaging,Markov random fields}
+    \endentry
     \entry{van_nguyen_cross-domain_2015}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=40164312b793ac2bc03467b6ec3f87c9}{%
@@ -5033,9 +6329,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We propose to use pretraining to boost general image-to-image translation. Prior image-to-image translation methods usually need dedicated architectural design and train individual translation models from scratch, struggling for high-quality generation of complex scenes, especially when paired training data are not abundant. In this paper, we regard each image-to-image translation problem as a downstream task and introduce a simple and generic framework that adapts a pretrained diffusion model to accommodate various kinds of image-to-image translation. We also propose adversarial training to enhance the texture synthesis in the diffusion model training, in conjunction with normalized guidance sampling to improve the generation quality. We present extensive empirical comparison across various tasks on challenging benchmarks such as ADE20K, COCO-Stuff, and DIODE, showing the proposed pretraining-based image-to-image translation (PITI) is capable of synthesizing images of unprecedented realism and faithfulness.}
-      \field{annotation}{Comment: Project Page: https://tengfei-wang.github.io/PITI/index.html}
       \field{month}{5}
-      \field{note}{arXiv:2205.12952 [cs]}
       \field{title}{Pretraining is {All} {You} {Need} for {Image}-to-{Image} {Translation}}
       \field{urlday}{10}
       \field{urlmonth}{4}
@@ -5120,6 +6414,55 @@
       \verb https://ieeexplore.ieee.org/document/1284395
       \endverb
       \keyw{Data mining,Degradation,Humans,Image quality,Indexes,Layout,Quality assessment,Transform coding,Visual perception,Visual system}
+    \endentry
+    \entry{waskom_seaborn_2021}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0c809239417dcb9aef9b906eff53933d}{%
+           family={Waskom},
+           familyi={W\bibinitperiod},
+           given={Michael\bibnamedelima L.},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{0c809239417dcb9aef9b906eff53933d}
+      \strng{fullhash}{0c809239417dcb9aef9b906eff53933d}
+      \strng{bibnamehash}{0c809239417dcb9aef9b906eff53933d}
+      \strng{authorbibnamehash}{0c809239417dcb9aef9b906eff53933d}
+      \strng{authornamehash}{0c809239417dcb9aef9b906eff53933d}
+      \strng{authorfullhash}{0c809239417dcb9aef9b906eff53933d}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Waskom, M. L., (2021). seaborn: statistical data visualization. Journal of Open Source Software, 6(60), 3021, https://doi.org/10.21105/joss.03021}
+      \field{issn}{2475-9066}
+      \field{journaltitle}{Journal of Open Source Software}
+      \field{month}{4}
+      \field{number}{60}
+      \field{shorttitle}{seaborn}
+      \field{title}{seaborn: statistical data visualization}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{6}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{3021}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.21105/joss.03021
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/FM3CBXRA/Waskom - 2021 - seaborn statistical data visualization.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://joss.theoj.org/papers/10.21105/joss.03021
+      \endverb
+      \verb{url}
+      \verb https://joss.theoj.org/papers/10.21105/joss.03021
+      \endverb
     \endentry
     \entry{weigel_extended_2015}{article}{}
       \name{author}{1}{}{%
@@ -5287,6 +6630,202 @@
       \endverb
       \keyw{Biomedical engineering,Computer science}
     \endentry
+    \entry{yarkoni_pybids_2019}{article}{}
+      \name{author}{31}{}{%
+        {{hash=2ef3de263c81c9443822f0beabf57c61}{%
+           family={Yarkoni},
+           familyi={Y\bibinitperiod},
+           given={Tal},
+           giveni={T\bibinitperiod}}}%
+        {{hash=f629153ba111aa5f9ad5155beb0dd3e1}{%
+           family={Markiewicz},
+           familyi={M\bibinitperiod},
+           given={Christopher\bibnamedelima J},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=7b94b10875bfb78ec76eaa504f324fa0}{%
+           family={Vega},
+           familyi={V\bibinitperiod},
+           given={Alejandro},
+           giveni={A\bibinitperiod},
+           prefix={de\bibnamedelima la},
+           prefixi={d\bibinitperiod\bibinitdelim l\bibinitperiod}}}%
+        {{hash=37fd6602fafa336c9f4f082ecd471b6c}{%
+           family={Gorgolewski},
+           familyi={G\bibinitperiod},
+           given={Krzysztof\bibnamedelima J},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=6d7b24355630cc7dfdb76c8bd29ffc8e}{%
+           family={Salo},
+           familyi={S\bibinitperiod},
+           given={Taylor},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e2fb284cc447dda0b361d24f661475ce}{%
+           family={Halchenko},
+           familyi={H\bibinitperiod},
+           given={Yaroslav\bibnamedelima O},
+           giveni={Y\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=91071582c049c3f11573bdfaf42d3fbb}{%
+           family={McNamara},
+           familyi={M\bibinitperiod},
+           given={Quinten},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=d4ff31f161efe30f263d9604b974a695}{%
+           family={DeStasio},
+           familyi={D\bibinitperiod},
+           given={Krista},
+           giveni={K\bibinitperiod}}}%
+        {{hash=7e567d51746021a736084a5d361744cd}{%
+           family={Poline},
+           familyi={P\bibinitperiod},
+           given={Jean-Baptiste},
+           giveni={J\bibinithyphendelim B\bibinitperiod}}}%
+        {{hash=ee93ff616a5bd1a749790366a8982853}{%
+           family={Petrov},
+           familyi={P\bibinitperiod},
+           given={Dmitry},
+           giveni={D\bibinitperiod}}}%
+        {{hash=ab19b8fd671588bbd527874cec32a692}{%
+           family={Hayot-Sasson},
+           familyi={H\bibinithyphendelim S\bibinitperiod},
+           given={Valérie},
+           giveni={V\bibinitperiod}}}%
+        {{hash=ba1993a5c9ded96acc214c1369dfd652}{%
+           family={Nielson},
+           familyi={N\bibinitperiod},
+           given={Dylan\bibnamedelima M},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=bd940e65f1eefd259815db306985e79c}{%
+           family={Carlin},
+           familyi={C\bibinitperiod},
+           given={Johan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8d97d5c95e4c0fa5b6cabb4ab84bf53e}{%
+           family={Kiar},
+           familyi={K\bibinitperiod},
+           given={Gregory},
+           giveni={G\bibinitperiod}}}%
+        {{hash=131443f71e33a6c4caa0522d0600889d}{%
+           family={Whitaker},
+           familyi={W\bibinitperiod},
+           given={Kirstie},
+           giveni={K\bibinitperiod}}}%
+        {{hash=2f252ee8b737cfd05345bd2da19e5f41}{%
+           family={DuPre},
+           familyi={D\bibinitperiod},
+           given={Elizabeth},
+           giveni={E\bibinitperiod}}}%
+        {{hash=a05d4c6e41a194af5c438524c2bf14e0}{%
+           family={Wagner},
+           familyi={W\bibinitperiod},
+           given={Adina},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9952f7300d8d340a54ff28e176544198}{%
+           family={Tirrell},
+           familyi={T\bibinitperiod},
+           given={Lee\bibnamedelima S},
+           giveni={L\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=c93977299341e213a29312b64c0e3016}{%
+           family={Jas},
+           familyi={J\bibinitperiod},
+           given={Mainak},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3f769f6f38f10ce050aff0d54f58526e}{%
+           family={Hanke},
+           familyi={H\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=21ffb9bf6762df0fb232215885be17e1}{%
+           family={Poldrack},
+           familyi={P\bibinitperiod},
+           given={Russell\bibnamedelima A},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=bad82335174e52244c1c45aa43507b06}{%
+           family={Esteban},
+           familyi={E\bibinitperiod},
+           given={Oscar},
+           giveni={O\bibinitperiod}}}%
+        {{hash=e051de4cde02884a9c209f76e9ffc6d4}{%
+           family={Appelhoff},
+           familyi={A\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b360ac3dbeabbee5f23f364b89f29885}{%
+           family={Holdgraf},
+           familyi={H\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=539127f260c848353f0d113822338083}{%
+           family={Staden},
+           familyi={S\bibinitperiod},
+           given={Isla},
+           giveni={I\bibinitperiod}}}%
+        {{hash=0f3fc06fb9fcbb01b9cc0985eaf0a71c}{%
+           family={Thirion},
+           familyi={T\bibinitperiod},
+           given={Bertrand},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d689826ca45a27f32c51c82380edb25b}{%
+           family={Kleinschmidt},
+           familyi={K\bibinitperiod},
+           given={Dave\bibnamedelima F},
+           giveni={D\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=1013aa8f8d2b7651ab1e33c67b3b6291}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={John\bibnamedelima A},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=b431c5378ab0526b9dd794086cab32b5}{%
+           family={Visconti\bibnamedelimb di\bibnamedelimb Oleggio\bibnamedelima Castello},
+           familyi={V\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim O\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Matteo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4f62a6e86627fcc21e4ddbfb3f75d22f}{%
+           family={Notter},
+           familyi={N\bibinitperiod},
+           given={Michael\bibnamedelima P},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=5fc986a0d5881ae22b0af085c0879efd}{%
+           family={Blair},
+           familyi={B\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{a002aa836e91ccf8e901801e0224fdef}
+      \strng{fullhash}{498f0e9cf2eacc98c9048cd1351e2484}
+      \strng{bibnamehash}{a002aa836e91ccf8e901801e0224fdef}
+      \strng{authorbibnamehash}{a002aa836e91ccf8e901801e0224fdef}
+      \strng{authornamehash}{a002aa836e91ccf8e901801e0224fdef}
+      \strng{authorfullhash}{498f0e9cf2eacc98c9048cd1351e2484}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{2475-9066}
+      \field{journaltitle}{Journal of open source software}
+      \field{number}{40}
+      \field{shorttitle}{{PyBIDS}}
+      \field{title}{{PyBIDS}: {Python} tools for {BIDS} datasets}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{4}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \field{pages}{1294}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.21105/joss.01294
+      \endverb
+      \verb{file}
+      \verb PubMed Central Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/N2PDTFK6/Yarkoni et al. - 2019 - PyBIDS Python tools for BIDS datasets.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7409983/
+      \endverb
+      \verb{url}
+      \verb https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7409983/
+      \endverb
+    \endentry
     \entry{zhang_dive_2023}{misc}{}
       \name{author}{4}{}{%
         {{hash=983273ab2d972b56d8b64d220726b6aa}{%
@@ -5325,9 +6864,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{This open-source book represents our attempt to make deep learning approachable, teaching readers the concepts, the context, and the code. The entire book is drafted in Jupyter notebooks, seamlessly integrating exposition figures, math, and interactive examples with self-contained code. Our goal is to offer a resource that could (i) be freely available for everyone; (ii) offer sufficient technical depth to provide a starting point on the path to actually becoming an applied machine learning scientist; (iii) include runnable code, showing readers how to solve problems in practice; (iv) allow for rapid updates, both by us and also by the community at large; (v) be complemented by a forum for interactive discussion of technical details and to answer questions.}
-      \field{annotation}{Comment: (HTML) https://D2L.ai (GitHub) https://github.com/d2l-ai/d2l-en/}
       \field{month}{8}
-      \field{note}{arXiv:2106.11342 [cs]}
       \field{title}{Dive into {Deep} {Learning}}
       \field{urlday}{10}
       \field{urlmonth}{4}
@@ -5458,6 +6995,64 @@
       \verb https://ieeexplore.ieee.org/document/23914
       \endverb
       \keyw{Image processing,Neural networks}
+    \endentry
+    \entry{zwiers_bidscoin_2022}{article}{}
+      \name{author}{3}{}{%
+        {{hash=29d7498c0cba8abd26c5e70c0db4536a}{%
+           family={Zwiers},
+           familyi={Z\bibinitperiod},
+           given={Marcel\bibnamedelima Peter},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=2e22547a3dd89a3c3ed568eec60e15f9}{%
+           family={Moia},
+           familyi={M\bibinitperiod},
+           given={Stefano},
+           giveni={S\bibinitperiod}}}%
+        {{hash=05b1c01a0a7d7078ddff198775251440}{%
+           family={Oostenveld},
+           familyi={O\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {English}%
+      }
+      \strng{namehash}{33942f00230bffe3e17e7c55dbc837e6}
+      \strng{fullhash}{33942f00230bffe3e17e7c55dbc837e6}
+      \strng{bibnamehash}{33942f00230bffe3e17e7c55dbc837e6}
+      \strng{authorbibnamehash}{33942f00230bffe3e17e7c55dbc837e6}
+      \strng{authornamehash}{33942f00230bffe3e17e7c55dbc837e6}
+      \strng{authorfullhash}{33942f00230bffe3e17e7c55dbc837e6}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Analyses of brain function and anatomy using shared neuroimaging data is an important development that has acquired the potential to be scaled up with the specification of the new Brain Imaging Data Structure (BIDS) standard. To date, there exists a variety of software tools to help researchers converting their source data to BIDS, but these tools often require programming skills or are tailored to specific institutes, datasets or data formats. Here we introduce BIDScoin, a cross-platform, flexible and user-friendly converter that provides a graphical user interface to help users finding their way in the BIDS standard. BIDScoin does not require programming skills to be set up and used, and supports plugins to extend its functionality. In this paper we show its design and demonstrate how it can be applied to a downloadable tutorial dataset. BIDScoin is distributed as free and open-source software to foster the community driven effort to promote and facilitate the use of the BIDS standard.}
+      \field{issn}{1662-5196}
+      \field{journaltitle}{Frontiers in Neuroinformatics}
+      \field{month}{1}
+      \field{note}{Publisher: Frontiers}
+      \field{shorttitle}{{BIDScoin}}
+      \field{title}{{BIDScoin}: {A} {User}-{Friendly} {Application} to {Convert} {Source} {Data} to {Brain} {Imaging} {Data} {Structure}}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{15}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.3389/fninf.2021.770608
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/HZLFYGZF/Zwiers et al. - 2022 - BIDScoin A User-Friendly Application to Convert S.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.frontiersin.org/articles/10.3389/fninf.2021.770608
+      \endverb
+      \verb{url}
+      \verb https://www.frontiersin.org/articles/10.3389/fninf.2021.770608
+      \endverb
+      \keyw{BIDS 1,conversion 3,data sharing 5,GUI 2,neuroimaging 4,open source software 6,plugin 8,Python 7}
     \endentry
   \enddatalist
 \endrefsection

@@ -1,0 +1,119 @@
+Skip to Main Content
+
+    IEEE.org
+    IEEE Xplore
+    IEEE SA
+    IEEE Spectrum
+    More Sites 
+
+Subscribe
+
+        Donate 
+        Cart
+        Create Account
+        Personal Sign In 
+
+IEEE Xplore logo - Link to home
+
+    Browse
+    My Settings
+    Help
+
+Institutional Sign In
+IEEE logo - Link to IEEE main site homepage
+ADVANCED SEARCH
+Journals & Magazines > Computing in Science & Engine... > Volume: 9 Issue: 3
+Matplotlib: A 2D Graphics Environment
+Publisher: IEEE
+Cite This
+PDF
+John D. Hunter
+All Authors
+20598
+Cites in
+Papers
+14
+Cites in
+Patents
+26682
+Full
+Text Views
+
+    Alerts
+
+Abstract
+Document Sections
+
+    1.
+    Getting Started: A Simple Example
+    2.
+    Images, Color Mapping, Contouring, and Color Bars
+    3.
+    Interactive Plotting
+    4.
+    Matplotlib Toolkits
+    5.
+    The Matplotlib Api
+
+Authors
+Figures
+Citations
+Keywords
+Metrics
+Abstract:
+Matplotlib is a 2D graphics package used for Python for application development, interactive scripting,and publication-quality image generation across user interfaces and operating systems
+Published in: Computing in Science & Engineering ( Volume: 9 , Issue: 3 , May-June 2007 )
+Page(s): 90 - 95
+Date of Publication: 18 June 2007
+ISSN Information:
+DOI: 10.1109/MCSE.2007.55
+Publisher: IEEE
+1. Getting Started: A Simple Example
+
+Matplotlib has a Matlab emulation environment called PyLab, which is a simple wrapper of the matplotlib API. Although many die-hard Pythonistas bristle at PyLab's Matlab-like syntax and its from pylab import * examples, which dump the PyLab and NumPy functionality into a single namespace for ease of use, this feature is an essential selling point for many teachers whose students aren't programmers and don't want to be: they just want to get up and running. For many of these students, Matlab is the only exposure to programming they've ever had, and the ability to leverage that knowledge is often a critical point for teachers trying to bring Python into the science classroom. In Figure 2, I've enabled the usetex parameter in the matplotlib configuration file so LaTeX can generate both the text and the equations.
+Sign in to Continue Reading
+Authors
+Figures
+Citations
+Keywords
+Metrics
+More Like This
+Development of a graphical user interface for the conformal finite-difference/time-domain (CFDTD) software package
+
+IEEE Antennas and Propagation Magazine
+
+Published: 2003
+Developrnent of an Educational Simulator and Graphical User Interface for Diabetic Patients
+
+2007 4th International Conference on Electrical and Electronics Engineering
+
+Published: 2007
+Show More
+IEEE Personal Account
+
+    Change username/password 
+
+Purchase Details
+
+    Payment Options
+    View Purchased Documents 
+
+Profile Information
+
+    Communications Preferences
+    Profession and Education
+    Technical interests 
+
+Need Help?
+
+    US & Canada: +1 800 678 4333
+    Worldwide: +1 732 981 0060
+    Contact & Support 
+
+Follow
+
+About IEEE Xplore | Contact Us | Help | Accessibility | Terms of Use | Nondiscrimination Policy | IEEE Ethics Reporting | Sitemap | IEEE Privacy Policy
+
+A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+
+© Copyright 2024 IEEE - All rights reserved.

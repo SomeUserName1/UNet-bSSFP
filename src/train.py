@@ -9,6 +9,7 @@ from finetuning_scheduler import (FinetuningScheduler,
 import lightning.pytorch as pl
 import torch
 import wandb
+from torchview import draw_graph
 
 from dove_data_module import DoveDataModule
 from bssfp_to_dwi_tensor_model import (bSSFPToDWITensorModel, MultiInputUNet,
@@ -152,7 +153,6 @@ if __name__ == "__main__":
             with open('wandb-api-key.json') as f:
                 os.environ['WANDB_API_KEY'] = json.load(f)['key']
 
-    torch.multiprocessing.set_start_method('spawn')
     torch.set_float32_matmul_precision('medium')
     print(f'Last run on {time.ctime()}')
 
@@ -160,6 +160,9 @@ if __name__ == "__main__":
 
     unet = MultiInputUNet(TrainingState.PRETRAIN)
     print(unet)
+    import pdb
+    pdb.set_trace()
+    model_graph = draw_graph(unet, input_size=(1, 6, 96, 128, 128), device='meta', save_graph=True)
     # check_input_shape(strides)
 
     # ckpt = train_model(unet, data, stages=['pretrain'])
@@ -171,10 +174,10 @@ if __name__ == "__main__":
  #           '/home/fklopfer/logs/finetune/t1w/epoch=54-val_loss=0.06342024-04-23 13:52:05.351665.ckpt',
             ]
 
-    for ckpt in ckpts:
-        assert os.path.exists(ckpt), f'Typo in checkpoint path {ckpt}'
-
-    modalities =  ['pc-bssfp'] # 'bssfp', 'dwi-tensor', 't1w']#, 
-    for modality, ckpt in zip(modalities, ckpts):
-        train_model(unet, data, None, modality, stages=['finetune'])
-
+#    for ckpt in ckpts:
+#        assert os.path.exists(ckpt), f'Typo in checkpoint path {ckpt}'
+#
+#    modalities =  ['pc-bssfp'] # 'bssfp', 'dwi-tensor', 't1w']#, 
+#    for modality, ckpt in zip(modalities, ckpts):
+#        train_model(unet, data, None, modality, stages=['finetune'])
+#

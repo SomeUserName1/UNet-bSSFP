@@ -507,7 +507,7 @@ This is relatively sensitive to outliers but preserves strong signals in the net
 Average pooling returns the average of a group of pixels.
 While it is not as sensitive to outliers, it may decrease the entropy of the signal.
 A visualization of both operations in shown in~\ref{pooling}.
-\fig{img/pool.png}{pooling}{Max pooling (left) and average pooling (right) visualized for single channel 2D input from the previous layer.}{0.8}
+\fig{img/pool.png}{pooling}{Max pooling (left) and average pooling (right) visualized for single channel 2D input from the previous layer.}{0.4}
 
 Finally, \paragraph{Skip connections} or residual connections were introduced by~\autocite{he_deep_2016} in order to reduce convergence time and imcrease accuracy.
 Essentially, skip connections cause convolutional layers (in combination they are used very commonly) not to learn an unreferenced presentation but rather to extract the desired change in representation.
@@ -635,38 +635,135 @@ The general method employed is shown in \ref{birk}.
 \newpage
 
 \chapter{Methods}\label{\positionnumber} 
+In this section, the dataset used, preprocessing applied and details on how the estimations were generated are presented.
 \section{The Dove Dataset}
-Some stats on size 
-\subsection{Participants \& Study Design}
-briefly describe participants, task, scanning times (of the day)
+The dataset acquired for the DOVE study contains a variety of modalities recorded at 3T $B_0$ field strength using a Magnetom Prisma produced by Siemens Healthineers in Erlangen, Germany with 64-channel receive head coils.
+Besides our main modalities of interest --- phase-cycle bSSFP and DWI --- MP2RAGE~\autocite{marques_mp2rage_2010}. \\
 
-\subsection{Recorded Sequences}
-cf gais doc.
-Details on acquisitions
+The dataset contains 120 healthy subjects each of which was scanned multiple times in 3-5 sessions at different times of the day.
+Phase-cycle bSSFP data was acquired in 3 sessions for most participants.
+The whole brain was imaged in 3D sagitally with 12 phase cycles with phase increments uniformly distributed between $[0^\circ, 360^\circ]$.
+A flip angle of $15^\circ$, an isotropic resolution of $1.4$ mm$^3$, a TE of $2.4$ ms, TR of $4.8$ ms was used with a field of view of $224$ mm and a bandwith of $401$ Hz per voxel as well as $B_0$ and $B_1$ shimming.
+To the best of the authors knowledge, this is the largest collection of bSSFP scans that has been acquired so far. \\
 
-\section{Data Processing}
-requirements
-\subsection{bSSFP}
+DWI was acquired in 4 sessions using an interleaved multi-slice single-shot SE-EPI DWI sequence with a $b$ value of $2500$ s$/$mm$^2$, a resolution of $2$mm isotropic, a TE of $62$ms, TR of $3500$ms, a field of view of $220$mm, fat supression using saturation, $B_0$ and $B_1$ shimming. \\
 
-\subsection{DWI}
-TODO ask svenja what was done
+Finally, magnetization-prepared two rapid gradient-echo $T_1$-weighted images were acquired in one session sagitally at a resolution of $1$mm isotopic, with a TE of $2.98$ ms, TR of $5000$ms in a single shot fashion with a field of view of $256$mm and flip angles of $4^\circ$ and $5^\circ$. \\
 
-\subsection{Augmentation}
+\section{Preprocessing}
+Regarding preprocessing, BIDScoin was used to convert the dataset from a collection of DICOMs per scan to one NIfTI file with a folder structure complying to the BIDS standard~\autocite{zwiers_bidscoin_2022, yarkoni_pybids_2019, gorgolewski_brain_2016}.
+Nibabel was used to read and write data~\autocite{brett_nipynibabel_2024}.
+All modalities were then coregistered to the $T_1$-weighted image using SPM~\autocite{friston_statistical_1994}. \\
+
+For \textbf{bSSFP}, the phase was rescaled from the scanner-produced range $[0, 4095]$ to radians $[-\pi,\pi]$ and phase correction was applied by multiplying the phase image of each of the 12 phase-cycles by a complex exponential with the phase of the sum of the complex data in the exponent.
+\[ \text{Phase corrected}_i = \text{Phase}_i \cdot \exp\left( -j \angle \left(\sum_{x, y, z} \text{Complex}_{i, x, y, z}\right) \right) \]
+Next, artifacts due to the Gibbs phenomenon were removed using DiPy~\autocite{garyfallidis_dipy_2014}.
+The complex bSSFP data were resampled to the resolution of the DTI data, $2$mm$^3$ isotropic using FSL~\autocite{smith_advances_2004} and a mask generated from the DTI images was applied.
+Finally, phase and magnitude were extracted, normalized to be in the range $[0, 1]$ for each phase and magnitude across the whole dataset and aligned into one channel alternatingly, such that the image has 24 channels, each contianing one 3D volume.
+One sample of the first two channels is shown in~\ref{pc-bssfp-mag}, \ref{pc-bssfp-pha}.
+\fig{img/pc-bssfp-mag.png}{pc-bssfp-mag}{A data sample of the first channel of the preprocessed bSSFP images that is fed into the neural network.}{1.0}
+\fig{img/pc-bssfp-pha.png}{pc-bssfp-pha}{A data sample of the second channel of the preprocessed bSSFP images that is fed into the neural network.}{1.0}
+In another experiment, a derived image is used: Instead of using all 12 phase cycles, only one phase-cycle is repeated 12 times to generate an image that have the information content of a single phase cylce only while having the same shape. \\
 
 
-\section{Machine Learning-based DWI Tensor estimation from bSSFP data}
-MONAI, torchio, pytorch lightning. 
+\textbf{DWI} data was distortion corrected using FSL's~\autocite{smith_advances_2004} \texttt{TOPUP}, the brain was extracted using \texttt{BET} and Eddy currents were corrected with \texttt{eddy}.
+Then \texttt{DTIFIT} was applied to estimate the diffusion tensor from the images, resulting in 6 channels corresponding to the upper triangular tensor elements per voxel.
+Channels were then normalized to the range $[0, 1]$ across the whole dataset where the diagonal elements of the tensor and the off-diagonal elements were normalized separately.
+A sample of the first two channels is depicted in ~\ref{dti-dxx} and~\ref{dti-dxy}.
+\fig{img/dti-dxx.png}{dti-dxx}{Sample of the first channel of a preprocessed DTI corresponding to the $D_{xx}$ element of the tensor.}{1}
+\fig{img/dti-dxy.png}{dti-dxy}{Sample of the second channel of a preprocessed DTI corresponding to the $D_{xy}$ element of the tensor.}{1}
+
+\textbf{MP2RAGE $T_1$-weighted} images are masked and resampled to match the DTI resolution.
+Then the single channel was normalized to the range $[0, 1]$ and repeated to 6 channels such that it matches the DTI input dimensionality.
+A sample of this is shown in~\ref{t1w}
+\fig{img/t1w.png}{t1w}{Sample of a preprocessed $T_1$-weighted image fed to the NN.}{1}
+
+\section{Machine Learning-based DWI Tensor estimation from bSSFP Data}
+Several libraries and frameworks are used to implement the neural network that predicts the diffusion tensor from the inputs:
+\begin{itemize}
+ \item PyBIDS~\autocite{yarkoni_pybids_2019} provides means to query a BIDS-compliant dataset to mitigate the overhead of traversing the folder structure.
+ \item TorchIO~\autocite{perez-garcia_torchio_2021} is a library for MRI-based data loading pipelines that supports extended data augmentation.
+ \item PyTorch~\autocite{paszke_pytorch_2019} is a framework for programming neural networks providing layers like convolutions and transpose convolutions.
+ \item PyTorch Lightning~\autocite{falcon_pytorch_2019} is an extension built on top of the Torch framework to ease distributed training, finding the pareto-optimal learning rate with respect to convergence speed and quality and extended logging facilities.
+ \item MONAI~\autocite{cardoso_monai_2022} offers a set of pre-defined blocks, architectures, metrics and loss functions for deep learning in medical applications.
+ \item NumPy~\autocite{harris_array_2020} provides basic matrix and tensor functions in an efficient manner to post-process data for example computing Eigenvectors and -values.
+ \item Pandas~\autocite{reback_pandas-devpandas_2020} provides data structures and functions to construct and aggregate tabular data for evaluation of e.g. relative errors per voxel per image and aggregate them into average errors per voxel per segmentation mask.
+ \item Seaborn~\autocite{waskom_seaborn_2021} and Matplotlib~\autocite{hunter_matplotlib_2007} are libraries for plotting data.
+\end{itemize}
+
+\subsection{Data Sampling and Augmentation}
+Deep Learning requires many data samples to produces results of acceptable quality.
+As there are mostly only two sessions per subject where both DWI and bSSFP were recorded, all bSSFP samples are paired with all DWI samples per subject across sessions.
+The goal is to infer the diffusion tensor for a subject, not necessarily specific or sensitive to variations in the time of the day, daily differences and the like.
+If only the two sessions would be used, there would only be about $250$ data samples which is little compared to the thousands or even milions of samples that NNs usualy require.
+When combining all images across sessions, we get $4 \cdot 3 = 12$ samples per participant instead of just two, resulting in approximately $12 \cdot 120 = 1440$ samples.
+However as not for all subject, all sessions were recorded either due to subjects compliance to the scanning schedules or other reasons, $1077$ samples are available. \\
+
+To further increase the non-identical data samples during training, data augmentation was applied using TorchIO.
+Data Augmentation is the act of slightly introducing noise and other pertubations into a data sample, that are characteristic to the source of the data, such that the NN is not trained on the exact same image but slight variations of it.
+This leads to better generalization and robustness to noise.
+
+\begin{figure}[h]
+   \begin{center}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/random_bias_field-0.png}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/random_bias_field-1.png}
+   \end{center}
+   \caption{
+      \textbf{Left:} Example image before a random bias field was added.
+      \textbf{Right:} Example image after a random bias field was added~\autocite{noauthor_augmentation_nodate}.
+   }
+   \label{bias-field}
+\end{figure}
+
+   \begin{figure}[h]
+   \begin{center}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/random_noise-0.png}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/random_noise-1.png}
+   \end{center}
+   \caption{
+      \textbf{Left:} Example image before a Gaussian noise was added.
+      \textbf{Right:} Example image after a Gaussian noise was added~\autocite{noauthor_augmentation_nodate}.
+   }
+   \label{random-noise}
+\end{figure}
+
+
+The augmentations added to the training inputs is two-fold:
+\begin{enumerate}
+ \item a random bias field is added with a probability of $25\%$ to mimic magnetic field inhomogenieties. This bias filed is mkodeled using a linear combination of polynomial basis functions as described in ~\autocite{van_leemput_automated_1999}.
+      In this work the maximal order is $3$ and the coefficitents are sampled uniformly between $[0, 0.25]$.
+      An example of a stronger bias field augmentation is shown in~\ref{bias-field}.
+
+ \item gausian random noise is added to the image with a probability of $25\%$, zero mean and a standard deviation in the range of $[0, 0.01]$.
+      An example of strong gaussian noise augmentation is shown in~\ref{random-noise}
+\end{enumerate}
+Effectively, the augmentation is minimal as can be seen in \ref{augmentation}.
+\fig{img/augmentation.png}{augmentation}{Samples of the training data after data augmentation was applied (with a probability of $1$).}{0.4}
+
 
 \subsection{Architecture}
-UNet + some extra layers to fit output dim.
+The backbone architecture of the model follows the standard UNet architecture and bases on the implementation of BasicUNet of the MONAI package.
+It makes the following modifications:
+\begin{itemize}
+ \item normalization and dropout is added at each block to increase generalization and cause faster convergence,
+ \item 3D inputs are supported as the task is to train on the full 12-volume bSSFP,
+ \item input and output dimensions are adapted to the taks,
+ \item Instead of ReLU, PReLU is used, to add more flexibility to the model,
+ \item the number of blocks and features are adapted to match the input dimensions. In this work 5 blocks for each contracting and expanding paths are used with the number of feature maps per block: $48, 96, 192, 384, 768, 384, 192, 96, 48, 24$
+\end{itemize}
+Besides the backbone, input heads for each modality have been added.
+They consist of a ResNet block as shown in~\ref{skip} with 6 input channels, 24 output channels and 3 convolutionals layers with ReLU activations, and batch normalization with a batch size of 1, which boils down to instance normalization.
+A visualization of the modified architecture is shown in~\ref{arch}.
+\fig{img/model.onnx.png}{arch}{The architecture of the model}{0.2}
 
 \subsection{Training}
-Pre-training, transfer \& fine-tuning \\
-
-Sparse data, small batch sizes. => Augmentation not enough => Pre training
-\paragraph{AutoEncoder PreTraining}
-As auto encoder. train autoenc for bssfp only 
-
-\paragraph{ExtraHead Transfer and Fine tuning}
-freeze autoenc, add head. transfer then unfreeze all and fine tune
-Unet + extra head
+AdamW is used as optimization algorithm with a leanring rate $\epsilon=1e-4$, running moment coefficients $0.9$ and $0.999$, and a weight decay of $0.01$.
+Further, the training was distributed on 4 NVidia GeForce RTX 5000 GPUs using the distributed data parallel strategy, that split the dataset into 4 and performs training on each subset to merge the losses at the end of each epoch and aggregate the gradients accordingly.
+The update is then executed on a single GPU and the next epoch is branched to 4 GPUs again.
+Initial experiments showed, that across-session pairing and data augmentation do not suffice to mitigate the relatively small sample size.
+Thus, pretraining was added to the training.
+First a base model was trained as an auto-encoder, i.e. the input was DTI data and the output was as well.
+Then for each modelitym the input head was trained to transfer the network to the new modality.
+Finally, in the fine tuning stage the whole model was retrained per modality with a learning rate of $\epsilon=1e-5$.
+With this addition the results improved strongly for all modalities besides DTI to DTI which slightly decreased in performance.
+However for the sake of comparability, the fine tuned result is also reported for DTI.

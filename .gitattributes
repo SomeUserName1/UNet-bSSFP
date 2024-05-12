@@ -16,3 +16,5 @@
 /lit/storage/Z5QTPV6V/d2l.ai.html filter=lfs diff=lfs merge=lfs -text
 /lit/zotero.sqlite filter=lfs diff=lfs merge=lfs -text
 /lit/zotero.sqlite.bak filter=lfs diff=lfs merge=lfs -text
+/lit/storage/IF99GMNX/augmentation.html filter=lfs diff=lfs merge=lfs -text
+/lit/zotero.sqlite.1.bak filter=lfs diff=lfs merge=lfs -text

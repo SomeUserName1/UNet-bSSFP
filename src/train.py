@@ -153,7 +153,6 @@ if __name__ == "__main__":
             with open('wandb-api-key.json') as f:
                 os.environ['WANDB_API_KEY'] = json.load(f)['key']
 
-    torch.multiprocessing.set_start_method('spawn')
     torch.set_float32_matmul_precision('medium')
     print(f'Last run on {time.ctime()}')
 
@@ -165,7 +164,7 @@ if __name__ == "__main__":
 #    model.change_training_state(TrainingState.FINE_TUNE, 'pc-bssfp')
 #    input_sample = torch.randn(1, 24, 96, 128, 128)
 #    model.to_onnx('model.onnx', input_sample=input_sample)
-
+#    model_graph = draw_graph(unet, input_size=(1, 6, 96, 128, 128), device='meta', save_graph=True)
     # check_input_shape(strides)
 
 #    ckpt = train_model(unet, data, stages=['pretrain'])

@@ -2,7 +2,70 @@
 kile_livePreviewEnabled=true
 kile_livePreviewStatusUserSpecified=false
 kile_livePreviewTool=LivePreview-PDFLaTeX
-lastDocument=00-thesis.tex
+lastDocument=03-methods.tex
+
+[document-settings,item:00-thesis.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:03-methods.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:04-results.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:05-discussion.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:06-appendix.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:resources.bib]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=BibTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=BibTeX
+Mode Set By User=false
+
+[document-settings,item:themeKonstanz.sty]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
 
 [item:00-thesis.tex]
 open=true
@@ -21,15 +84,15 @@ open=true
 order=1
 
 [item:04-results.tex]
-open=true
+open=false
 order=2
 
 [item:05-discussion.tex]
-open=true
+open=false
 order=3
 
 [item:06-appendix.tex]
-open=true
+open=false
 order=5
 
 [item:neuromasterthesis.kilepr]
@@ -38,15 +101,15 @@ order=-1
 
 [item:resources.bib]
 open=true
-order=4
+order=2
 
 [item:themeKonstanz.sty]
-open=false
-order=-1
+open=true
+order=3
 
 [view-settings,view=0,item:00-thesis.tex]
-CursorColumn=102
-CursorLine=11
+CursorColumn=0
+CursorLine=25
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
@@ -55,13 +118,13 @@ TextFolding={"checksum":"c109784ef9889d65eaa3eae0d812f3a910216810","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:03-methods.tex]
-CursorColumn=17
-CursorLine=53
+CursorColumn=76
+CursorLine=750
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=0
-TextFolding={"checksum":"d28b356b96a6cfc5557d9db4b0dc73b159f3bc18","ranges":[]}
+TextFolding={"checksum":"bcfbc53a2a2ace14f30d562874659f27d8302752","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:04-results.tex]
@@ -95,21 +158,21 @@ TextFolding={"checksum":"e330af6e55cc26e6ccf28711184cf5f7b0e9ba35","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:resources.bib]
-CursorColumn=0
-CursorLine=0
+CursorColumn=34
+CursorLine=1759
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=600
-TextFolding={"checksum":"76039e731dd4bdcd6b682df52523243e821f64d3","ranges":[]}
+TextFolding={"checksum":"45ae513bb9ab4dd8e0e15c44884b1461b53dd06b","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:themeKonstanz.sty]
-CursorColumn=40
-CursorLine=100
+CursorColumn=0
+CursorLine=98
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=41
-TextFolding={"checksum":"417be473335641ecf3bc8e874722a801f854a360","ranges":[]}
+TextFolding={"checksum":"d1ad950e40e6bc0d4173a895f6ccaa0f1ae389c8","ranges":[]}
 ViMarks=

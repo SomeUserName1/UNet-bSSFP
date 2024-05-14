@@ -19,3 +19,6 @@
 /lit/zotero.sqlite.bak filter=lfs diff=lfs merge=lfs -text
 /lit/storage/IF99GMNX/augmentation.html filter=lfs diff=lfs merge=lfs -text
 /lit/zotero.sqlite.1.bak filter=lfs diff=lfs merge=lfs -text
+/lit/pdfs/Handbook-of-MRI-Pulse-Sequences.pdf filter=lfs diff=lfs merge=lfs -text
+/lit/storage/4ZU5262P/Bernstein[[:space:]]et[[:space:]]al.[[:space:]]-[[:space:]]2004[[:space:]]-[[:space:]]Handbook[[:space:]]of[[:space:]]MRI[[:space:]]Pulse[[:space:]]Sequences.pdf filter=lfs diff=lfs merge=lfs -text
+/lit/storage/DW4YP9RE/Huisman[[:space:]]-[[:space:]]2010[[:space:]]-[[:space:]]Diffusion-weighted[[:space:]]and[[:space:]]diffusion[[:space:]]tensor[[:space:]]imaging[[:space:]]of.pdf filter=lfs diff=lfs merge=lfs -text

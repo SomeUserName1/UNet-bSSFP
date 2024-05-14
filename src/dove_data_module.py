@@ -163,7 +163,7 @@ class DoveDataModule(pl.LightningDataModule):
 
 
 def print_data_samples():
-    data = DoveDataModule('/home/someusername/workspace/DOVE/bids')
+    data = DoveDataModule('/ptmp/fklopfer/bids')
     data.prepare_data()
     data.print_info()
     data.setup()
@@ -178,13 +178,13 @@ def print_data_samples():
     print(batch['pc-bssfp'][tio.DATA].shape,
           batch['dwi-tensor_orig'][tio.DATA].shape)
 
-    fig, ax = plt.subplots(1, 4, figsize=(20, 25))
+    fig, ax = plt.subplots(1, 1, figsize=(10, 10))
     for i in range(1):
-        ax[0].imshow(batch_mag[i].cpu(), cmap='gray')
-        ax[1].imshow(batch_pha[i].cpu(), cmap='gray')
-        ax[2].imshow(batch_t2w[i].cpu(), cmap='gray')
-        ax[3].imshow(batch_diff[i].cpu(), cmap='gray')
-    plt.show()
+        ax.imshow(batch_mag[i].cpu(), cmap='gray')
+#        ax[1].imshow(batch_pha[i].cpu(), cmap='gray')
+#        ax[2].imshow(batch_t2w[i].cpu(), cmap='gray')
+#        ax[3].imshow(batch_diff[i].cpu(), cmap='gray')
+    fig.savefig('augmentation.png')
 
 
 if __name__ == "__main__":

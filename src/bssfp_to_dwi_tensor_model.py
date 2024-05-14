@@ -161,6 +161,15 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.batch_size = batch_size
         self.save_hyperparameters(ignore=['net', 'criterion'])
 
+    def forward(self, x):
+        if self.state == TrainingState.PRETRAIN:
+            x = self.net.blocks['dwi-tensor'](x)
+        else:
+            x = self.net.blocks[self.input_modality](x)
+
+        x = self.net.blocks['unet'](x)
+        return x
+
     def change_training_state(self, state, input_modality=None):
         self.state = state
         if self.state == TrainingState.PRETRAIN:

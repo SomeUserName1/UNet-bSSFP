@@ -118,6 +118,8 @@ def do_calc_scalar_maps(fname):
 
                 azimuth[i, j, k] = 180 / np.pi * np.arctan2(eigvecs[1, 2],
                                                             eigvecs[0, 2])
+                if azimuth[i, j, k] > 180:
+                    azimuth[i, j, k] = azimuth[i, j, k] - 360
 
                 r = np.sqrt((eigvecs[:, 2] ** 2).sum())
                 inclination[i, j, k] = (180 / np.pi * np.arccos(
@@ -164,9 +166,14 @@ def calc_scalar_maps(directory: str):
 def do_calc_diff_maps(pair: tuple):
     pred = pair[0]
     target = pair[1]
+    kind = pair[2]
     pred_img = nib.load(pred)
     target_img = nib.load(target)
-    diff = (pred_img.get_fdata() - target_img.get_fdata()) / target_img.get_fdata()
+    if kind not in ['azimuth', 'inclination']:
+        diff = (pred_img.get_fdata() - target_img.get_fdata()) / target_img.get_fdata()
+    else:
+        diff = (pred_img.get_fdata() - target_img.get_fdata()) % 360
+        diff = np.where(diff < 180, diff, 360 - diff)
     nib.save(nib.Nifti1Image(diff, pred_img.affine, pred_img.header),
              pred.replace('_pred-', '_diff-'))
 
@@ -192,7 +199,7 @@ def calc_diff_maps(directory: str):
             else:
                 pred = s_files[0] if '_pred' in s_files[0] else s_files[1]
                 target = s_files[1] if '_target' in s_files[1] else s_files[0]
-                pairs.append((pred, target))
+                pairs.append((pred, target, suffix.split('.')[0]))
 
         run_concurrently(do_calc_diff_maps, pairs)
 

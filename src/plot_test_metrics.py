@@ -23,23 +23,23 @@ def plot_nn_metrics():
     metrics.set_index('modality', inplace=True)
     reorder = ['dwi', 'pc-bssfp', 'one-bssfp', 't1w']
     metrics = metrics.reindex(reorder)
-    print(metrics)
     metrics.to_csv('test_metrics_all.csv')
+    metrics.rename(columns={'test_loss_L1': 'L1', 'test_loss_Perceptual': 'Perceptual Loss', 'test_loss_SSIM': 'SSIM Loss', 'test_metric_PSNRMetric': 'PSNR'}, inplace=True)
+    metrics.rename({'one-bssfp': 'bSSFP', 'dwi': 'DTI', 'pc-bssfp': 'pc-bSSFP', 't1w': 'T1w'}, inplace=True)
+    print(metrics)
 
-    loss = metrics[['test_loss_L1', 'test_loss_Perceptual', 'test_loss_SSIM']]
-    errors = metrics[['test_metric_MAEMetric']]
-    ssim = metrics[['test_metric_SSIMMetric']]
-    psnr = metrics[['test_metric_PSNRMetric']]
+    loss = metrics[['L1', 'Perceptual Loss', 'SSIM Loss']]
+    psnr = metrics[['PSNR']]
 
     ax = loss.plot.bar(title='Test Loss', stacked=True, rot=0)
     ax.figure.savefig('test_loss.pdf')
 
-    ax = errors.plot.bar(title='Test Metrics: Mean Absolute Error', rot=0)
-    ax.figure.savefig('test_mse_mae.pdf')
-
-    ax = ssim.plot.bar(title='Test Metrics: Structual Similarity Index Measure', ylim=(0.95, 1), rot=0)
-    ax.figure.savefig('test_ssim.pdf')
-
+#    ax = errors.plot.bar(title='Test Metrics: Mean Absolute Error', rot=0)
+#    ax.figure.savefig('test_mse_mae.pdf')
+#
+#    ax = ssim.plot.bar(title='Test Metrics: Structual Similarity Index Measure', ylim=(0.95, 1), rot=0)
+#    ax.figure.savefig('test_ssim.pdf')
+#
     ax = psnr.plot.bar(title='Test Metrics: Peak Signal to Noise Ratio', ylim=(30, 45), rot=0)
     ax.figure.savefig('test_psnr.pdf')
 
@@ -99,10 +99,60 @@ def plot_rel_errors():
     ax = stat_df.plot()
     fig = ax.figure.savefig('stats.pdf')
 
-    covs = group.cov()
-    ax = plt.matshow(covs)
-    ax.figure.savefig('cov.pdf')
+def plot_stacked_bar_tensors():
+    csv_name = '/home/fklopfer/UNet-bSSFP/src/sample_stats.csv'
+    df = pd.read_csv(csv_name)
+    
+    diag = ['dxx', 'dyy', 'dzz']
+    non_diag = ['dxy', 'dxz', 'dyz']
+    diag_norm = [x + '_norm' for x in diag]
+    non_diag_norm = [x + '_norm' for x in non_diag]
 
+    modalities = ['DTI', 'pc-bSSFP', 'bSSFP', 'T1w']
+    cols = ['CSF', 'WM', 'GM']
+    df['Modality'].replace({'bssfp': 'bSSFP', 'dwi-tensor': 'DTI', 'pc-bssfp': 'pc-bSSFP', 't1w': 'T1w'}, inplace=True)
+
+    for d, nd, pref in zip([diag, diag_norm], [non_diag, non_diag_norm], ['', 'Normalized ']):
+        df_diag = df.loc[df['Scalar'].isin(d)]
+        df_non_diag = df.loc[df['Scalar'].isin(nd)]
+        diag_group = df_diag.groupby(by=['ROI', 'Modality']).mean(numeric_only=True)
+        non_diag_group = df_non_diag.groupby(by=['ROI', 'Modality']).mean(numeric_only=True)
+        diag_mean = diag_group['Mean'].unstack().T.reindex(modalities).reset_index()
+        non_diag_mean = non_diag_group['Mean'].unstack().T.reindex(modalities).reset_index()
+        diag_std = diag_group['Std'].unstack().T.reindex(modalities).reset_index()
+        non_diag_std = non_diag_group['Std'].unstack().T.reindex(modalities).reset_index()
+
+        fig, (ax1, ax2) = plt.subplots(1, 2, sharey=True, figsize=(8, 4))
+        fig.suptitle('Mean relative Error of elements in the' + pref + 'Diffusion Tensor')
+        diag_mean.plot.bar(ax=ax1, title='Diagonal',  x='Modality', y=['CSF', 'GM', 'WM'], rot=0, yerr=diag_std.set_index('Modality'), capsize=2)
+        non_diag_mean.plot.bar(ax=ax2, title='Off-diagonal', x='Modality', y=['CSF', 'GM', 'WM'], rot=0, yerr=non_diag_std.set_index('Modality'), capsize=2)
+        plt.tight_layout()
+        fig.savefig(pref[:-1] + '_tensor_errs.pdf')
+
+
+def plot_stacked_bar_scalars():
+    csv_name = '/home/fklopfer/UNet-bSSFP/src/sample_stats.csv'
+    df = pd.read_csv(csv_name)
+
+    pretty_names = ['Fractional Anisotropy', 'Mean Diffusivity', 'Axial Diffusivity', 'Radial Diffusivity', 'Inclination', 'Azimuth']
+    scalars = ['fa', 'md', 'ad', 'rd', 'inclination', 'azimuth']
+    modalities = ['DTI', 'pc-bSSFP', 'bSSFP', 'T1w']
+
+    cols = ['CSF', 'WM', 'GM']
+
+    df['Modality'].replace({'bssfp': 'bSSFP', 'dwi-tensor': 'DTI', 'pc-bssfp': 'pc-bSSFP', 't1w': 'T1w'}, inplace=True)
+    for s, ps in zip(scalars, pretty_names):
+        df_scalar = df.loc[df['Scalar'] == s].set_index(['ROI', 'Modality'])
+        scalar_mean = df_scalar['Mean'].unstack().T.reindex(modalities).reset_index()
+        scalar_std = df_scalar['Std'].unstack().T.reindex(modalities).reset_index()
+
+        fig, ax = plt.subplots()
+        fig.suptitle('Mean relative Error of ' + ps)
+        scalar_mean.plot.bar(ax=ax, x='Modality', y=['CSF', 'GM', 'WM'], rot=0, yerr=scalar_std.set_index('Modality'), capsize=2)
+        plt.tight_layout()
+        fig.savefig(s + '_errs.pdf')
 
 if __name__ == '__main__':
-    plot_rel_errors()
+    plot_nn_metrics()
+    plot_stacked_bar_tensors()
+    plot_stacked_bar_scalars()

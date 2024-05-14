@@ -2502,7 +2502,9 @@
     <bcf:citekey order="119" intorder="1">noauthor_augmentation_nodate</bcf:citekey>
     <bcf:citekey order="120" intorder="1">noauthor_augmentation_nodate</bcf:citekey>
     <bcf:citekey order="121" intorder="1">van_leemput_automated_1999</bcf:citekey>
-    <bcf:citekey order="122" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="122" intorder="1">chen_med3d_2019</bcf:citekey>
+    <bcf:citekey order="123" intorder="1">he_deep_2016</bcf:citekey>
+    <bcf:citekey order="124" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

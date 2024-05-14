@@ -166,3 +166,5 @@ logs/
 lightning_logs
 checkpoints/
 preds/
+*.onnx
+*.gv

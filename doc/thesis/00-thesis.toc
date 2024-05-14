@@ -25,22 +25,17 @@
 \contentsline {subsection}{\numberline {3.3.2}Architecture}{34}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Training}{35}{subsection.3.3.3}%
 \contentsline {chapter}{\numberline {4}Results}{37}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Direct bSSFP to DWI Tensor Training}{37}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Pre-Training \& bSSFP Transfer-Learning}{37}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Comparison of Voxel-wise to Volume-wise Regression}{37}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Modality Comparisons}{37}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Quantitative comparison of Quality differences between Auto-Encoding and pc-bSSFP Image to Image Translation}{37}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}pc-bSSFP is more suitable than single-volume Structural Images}{37}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Phase-cycles contain relevant the Information}{37}{subsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.4.4}Asymmetry Index Maps distill phase-cycle Information}{37}{subsection.4.4.4}%
-\contentsline {chapter}{\numberline {5}Discussion}{39}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Limitations}{39}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Future Work}{39}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Modular Deep Learning}{39}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Conv Transf.}{39}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Neural Arch Search}{39}{subsection.5.2.3}%
-\contentsline {chapter}{\numberline {6}Acknowledgements}{40}{chapter.6}%
-\contentsline {chapter}{\nonumberline Bibliography}{41}{chapter*.48}%
-\contentsline {chapter}{Appendix}{50}{chapter*.49}%
-\contentsline {section}{\numberline {A}Supplementary Material}{50}{section.Alph0.1}%
+\contentsline {section}{\numberline {4.1}Neural Network Test Loss and Metrics}{37}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Qualitative Results}{37}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Quantitative Results}{37}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Discussion}{41}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Limitations}{41}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Future Work}{41}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Modular Deep Learning}{41}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Conv Transf.}{41}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Neural Arch Search}{41}{subsection.5.2.3}%
+\contentsline {chapter}{\numberline {6}Acknowledgements}{42}{chapter.6}%
+\contentsline {chapter}{\nonumberline Bibliography}{43}{chapter*.57}%
+\contentsline {chapter}{Appendix}{52}{chapter*.58}%
+\contentsline {section}{\numberline {A}Supplementary Material}{52}{section.Alph0.1}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

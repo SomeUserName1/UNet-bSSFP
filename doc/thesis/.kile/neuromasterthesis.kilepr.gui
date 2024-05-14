@@ -108,8 +108,8 @@ open=true
 order=3
 
 [view-settings,view=0,item:00-thesis.tex]
-CursorColumn=19
-CursorLine=11
+CursorColumn=0
+CursorLine=25
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
@@ -118,13 +118,13 @@ TextFolding={"checksum":"c109784ef9889d65eaa3eae0d812f3a910216810","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:03-methods.tex]
-CursorColumn=38
-CursorLine=621
+CursorColumn=76
+CursorLine=750
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=0
-TextFolding={"checksum":"30e3918660542aa294cf3480d79c50310ddef881","ranges":[]}
+TextFolding={"checksum":"bcfbc53a2a2ace14f30d562874659f27d8302752","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:04-results.tex]
@@ -158,13 +158,13 @@ TextFolding={"checksum":"e330af6e55cc26e6ccf28711184cf5f7b0e9ba35","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:resources.bib]
-CursorColumn=8
-CursorLine=559
+CursorColumn=34
+CursorLine=1759
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=600
-TextFolding={"checksum":"4b7ae70c861e9717acf73280dbe00d87167098f9","ranges":[]}
+TextFolding={"checksum":"45ae513bb9ab4dd8e0e15c44884b1461b53dd06b","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:themeKonstanz.sty]

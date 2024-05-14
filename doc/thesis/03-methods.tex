@@ -611,6 +611,7 @@ Further, the structural similarity index meassure (SSIM) quantifies the differen
 where $\mu_x$ and $\sigma_x$ are the mean and the variance of the pixels in the window, $\sigma_{xy}$ the covariance and $c_i = (k_i L)^2$ is used to stabilize the denominator based on the dynamic range $L$ of the pixel values and some constant $k_i$.
 The SSIM is then computed as
 \[ \text{SSIM} = l + c + s \]
+and is in the range $[0, 1]$ where values closer to $1$ mean more structural similarity.
 
 
 \subsection{Deep Learning-based Image-to-image Synthesis for MRI}
@@ -753,17 +754,18 @@ It makes the following modifications:
 \end{itemize}
 Besides the backbone, input heads for each modality have been added.
 They consist of a ResNet block as shown in~\ref{skip} with 6 input channels, 24 output channels and 3 convolutionals layers with ReLU activations, and batch normalization with a batch size of 1, which boils down to instance normalization.
-A visualization of the modified architecture is shown in~\ref{arch}.
-\fig{img/model.onnx.png}{arch}{The architecture of the model}{0.2}
+A basic overview of the modified architecture is shown in~\ref{arch}.
+A more detiled plot can be found in the appendix~\ref{arch-ext}.
+\fig{img/architecture.png}{arch}{The architecture of the model}{0.6}
 
 \subsection{Training}
+The loss function that is optimized is a sum of three different loss functions:
+\begin{enumerate}
+ \item the $L_1$ loss function to capture low frequency features and provide an optimization criterion which minimizes the differences between source and target based on the actual voxel value.
+ \item the SSIM loss, which is defined as $1 - \text{SSIM}$.
+ \item the perceptual loss function with MedicalNet as pretrained netork~\autocite{chen_med3d_2019}.
+ MedicalNet is based on ResNet-10~\autocite{he_deep_2016} and has been trained on a large dataset containing different organs, modalities and pathologies.
+ \end{enumerate}
 AdamW is used as optimization algorithm with a leanring rate $\epsilon=1e-4$, running moment coefficients $0.9$ and $0.999$, and a weight decay of $0.01$.
 Further, the training was distributed on 4 NVidia GeForce RTX 5000 GPUs using the distributed data parallel strategy, that split the dataset into 4 and performs training on each subset to merge the losses at the end of each epoch and aggregate the gradients accordingly.
 The update is then executed on a single GPU and the next epoch is branched to 4 GPUs again.
-Initial experiments showed, that across-session pairing and data augmentation do not suffice to mitigate the relatively small sample size.
-Thus, pretraining was added to the training.
-First a base model was trained as an auto-encoder, i.e. the input was DTI data and the output was as well.
-Then for each modelitym the input head was trained to transfer the network to the new modality.
-Finally, in the fine tuning stage the whole model was retrained per modality with a learning rate of $\epsilon=1e-5$.
-With this addition the results improved strongly for all modalities besides DTI to DTI which slightly decreased in performance.
-However for the sake of comparability, the fine tuned result is also reported for DTI.

@@ -1,7 +1,30 @@
 \chapter{Introduction}
-\begin{itemize}
- \item Largest multi modal data set of its kind
- \item bSSFP now feasible with new HW
- \item Speeds up scanning times potentially yielding multiple modalities with one scan
- \item Limited data available for ML applications
-\end{itemize}
+
+Diffusion-weighted imaging (DWI) has revolutionized the field of medical imaging by providing a unique window into the microstructural organization of tissues~\autocite{huisman_diffusion-weighted_2010}.
+At its core, DWI leverages the diffusion of water molecules to reveal the underlying architecture of cellular structures.
+This information is invaluable in clinical settings, as it allows for the diagnosis, characterization, and monitoring of a wide array of conditions, including ischemic stroke, brain tumors, and various neurodegenerative diseases~\autocite{sener_diffusion_2001}. \\
+
+Traditional DWI techniques, while powerful, typically rely on specialized pulse sequences that can be time-consuming in acquisition~\autocite{bernstein_handbook_2004}.
+These sequences involve the application of strong diffusion gradients, which can lead to prolonged scan times and potentially compromise patient comfort.
+Furthermore, the quality of DWI data can be affected by factors like low signal-to-noise ratios, motion artifacts and signal dropouts, particularly at high b-values (which are necessary for capturing subtle diffusion characteristics)~\autocite{tournier_diffusion_2011}.
+These limitations underscore the need for innovative approaches that can overcome the challenges associated with conventional DWI. \\
+
+Balanced steady-state free precession (bSSFP) imaging has emerged as a promising avenue for addressing these challenges.
+bSSFP sequences offer several key advantages over traditional DWI, including faster acquisition times, superior signal-to-noise ratio, and reduced susceptibility to specific artifacts~\autocite{scheffler_principles_2003}.
+The bSSFP signal is sensitive to a variety of tissue properties, including T1 and T2 relaxation times, proton density, and off-resonance effects~\autocite{heule_triple_2014, bieri_fundamentals_2013}.
+In \autocite{miller_asymmetries_2010i, miller_asymmetries_2010ii} the authors explore the connection between bSSFP data and white matter tracts based on the signal frequency response profile.
+However, extracting the specific diffusion-related information from this complex signal requires sophisticated analysis techniques. \\
+
+Deep learning, a subfield of machine learning that focuses on artificial neural networks, has demonstrated remarkable success in a wide range of image analysis tasks~\autocite{chai_deep_2021}.
+In particular, convolutional neural networks (CNNs), which are designed to exploit the spatial structure of images, have achieved state-of-the-art performance in areas like image classification, segmentation, and enhancement~\autocite{cardoso_monai_2022, ronneberger_u-net_2015, he_deep_2016}.
+This thesis investigates the potential of deep learning, specifically CNNs, to accurately estimate diffusion parameters from bSSFP data.
+We hypothesize that a carefully designed and trained CNN can effectively learn the complex mapping between bSSFP images and the underlying diffusion tensor, thus providing a rapid and reliable alternative to traditional DWI.
+Previous work has shown promising results in generating diffusion tensor scalar maps from phase-cycle bSSFP data, highlighting the potential of this approach~\autocite{birk_high-resolution_2022} to retrieve additional clinically relevant quantitative parameters beside relaxometry~\autocite{heule_multi-parametric_2020} from phase-cycled bSSFP data. \\
+
+The following chapters will lay the groundwork for this investigation by providing a comprehensive overview of the relevant background knowledge.
+We will first delve into the fundamental principles of magnetic resonance imaging (MRI), including the physics of nuclear magnetic resonance and the technical aspects of MRI scanners.
+We will then explore the unique characteristics of bSSFP imaging and the various factors that influence the bSSFP signal.
+Next, we will examine the concept of diffusion-weighted imaging, the mathematical models used to describe diffusion, and the different diffusion parameters that can be derived from DWI data.
+Then, we will present a comprehensive overview of deep learning, focusing on the fundamentals of neural networks (with a particular emphasis on CNNs), a common architecture, and training strategies.
+With this foundation in place, we will present our proposed deep learning methodology, including the architecture of our CNN, the training process, and the evaluation metrics used to assess its performance.
+Finally, we will present the results of our experiments, discuss the implications of our findings for the future of DWI, and identify potential avenues for further research.

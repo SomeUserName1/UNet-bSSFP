@@ -4,20 +4,20 @@ In this chapter, relevant background knowledge and related previously published 
 \section{Magnetic Resonance Imaging}
 \subsection{Fundamentals of MRI}
 %% RAD 229 Lect-01 A
-MRI uses the ability of certrain nuclei to absorb and emit energy in the radio frequency spectrum to generate images of organisms.
+Magnetic resonance imaging (MRI) uses the ability of nuclei to absorb and emit energy in the radio frequency (RF) spectrum to generate images of organisms and objects.
 This ability is called Nuclear Magnetic Resonance and depends on charge, spin, and mass, which are the intrinsic properties of particles. \\
-\textbf{Nuclear Magnetic Resonance-active Nuclei} are those atoms with  with an odd number of protons and/or neurtons\autocite{nishimura, halliday}.
+\textbf{Nuclear Magnetic Resonance-active Nuclei} are those atoms with an odd number of protons and/or neurtons\autocite{nishimura, halliday}.
 They have a spin angular momentum defined as
 \[ S = \hbar I, \]
 where $I$ is the spin operator and $\hbar$ is Planck's constant normalized by $2\pi$.
-The odd number of protons/neutrons also induces a magnetic dipole moment
-\[ \mu = \gamma S. \]
+The odd number of nucleons also induces a magnetic dipole moment
+\[ \mu  = \gamma S. \]
 $\gamma \ [\text{MHz} / \text{T}]$ is called the gyromagnetic ratio and is unique to each nuclear magnetic resonance-active nuclei.
-It is the ratio of the magnetic dipole moment $\mu$ to the spin of a particle $S$.
-The gyromagnetic ratio governs the frequency of precession and is meassured empirically. \\
-Specifically, ${}^1$H has a spin of $0.5$, a high natural abundance of $0.998$ and is therefore used primarily for clinical and medical MRI.
-its gyromagnetic ratio is $\gamma = 42.57$ MHz$/$T.\\
-When placing such nucleie into a magnetic field, the spins have a tendency to align with its direction, leading to a net or bulk magnetization per unit volume (or voxel) $v$,
+It is the ratio of the magnetic dipole moment $\mu \left[ \frac{N \cdot m}{T} \right]$ to the spin of a particle $S [N \cdot m \cdot s]$.
+The gyromagnetic ratio governs the frequency of precession and is measured empirically. \\
+Specifically, ${}^1$H has a spin of $1 / 2$, a high natural abundance of $0.998$ and is therefore used primarily for clinical MRI.
+Its gyromagnetic ratio is $\gamma = 42.57$ MHz$/$T.\\
+When placing such nuclei into a magnetic field, the spins have a tendency to align with its direction, leading to a net or bulk magnetization per unit volume (or voxel) $v$,
 \[ M = \sum_{v \in V} \mu_v. \]
 Additionally, due to spin and mass, the nucleus exhibits an angular momentum, i.e. it precesses e.g. in a gravitational field.
 The dynamics of this angular momentum  or pecession can be described by
@@ -28,43 +28,42 @@ The combination of magnetic and angular momentum causes the nucleus to precess i
 \[ \omega = \gamma B, \]
 where $B \ [T]$ is the strength of a magnetic field and $\gamma$ is the gyromagnetic ratio.
 
-A scanner MR scanner consists of a primary electromagnetic coil, that is surrounded by a cryostat and thermal insulation, an excitation coil, spatial localization coils, and a receiver coil, as shown in \ref{scanner-teardown}.
+A scanner consists of a primary superconductive electromagnetic coil, that is surrounded by a cryostat and thermal insulation, an excitation coil, spatial localization coils, and a receiver coil, as shown in \ref{scanner-teardown}.
 The excitation and the receiving coil are merged into one RF coil here. \\
 \fig{img/mri-scanner_teardown.png}{scanner-teardown}{MRI scanner with a part cut-away such that the main components are visible~\autocite{MRIAGuidedTourMagnetAcademy-2024-05-07}.}{0.5}
 
-This \textbf{primary electromagnet} provides the main magnetic field $B_0$ to polarize the NMR-active nuclei with field strengths up to $14.2 T$, but usually about $1.5 T$ to $3 T$ in medical applications.
-This is several orders of magnitude larger than the earth magnetic field which is approximately $0.5$ Gauss
+The \textbf{primary electromagnet} provides the main magnetic field $B_0$ to polarize the NMR-active nuclei with field strengths up to $14.2 T$, but usually about $1.5 T$ to $3 T$ in medical applications.
+This is several orders of magnitude larger than the earth magnetic field which is approximately in the range of $[22, 67] \ \mu T$.
 To provide such high fields, super-conductivity needs to be reached, thus the coil is cooled using liquid helium.
 The $B_0$ field is spatially uniform and temporally stable in an ideal scanner, such that the same polarization is applied to all atoms.
 In practice this field is not perfectly homogeneous, such that magnetic field probes are used to measure the field and shim cards are used to correct these inhomogenieties.
 This is called passive shimming.
 Alternatively, active shimming coils can be used to smooth the inhomogenieties.
-It is oriented along the ``long'' part of the scanner, so if a human lies in the scanner, the poles are oriented towards the head and the feet of the subject.
+From the perspective of a human subject the poles are oriented towards the head and the feet of the subject.
 We call this axis the $z$-axis. \\
 
-%% RAD 229 Lect 01 B
-Additionally, an \textbf{excitation system} is necessary to generate exciting magnetic pulses $B_1(t)$ to cause nutation of the nuclei of interest as well as to refocussing, spoiling, inversion and saturation.
-The $B_1(t)$ field is a radio frequency field with the excitation frequency defined by the $B_0$ field strength, the Larmor frequency of the excitation target nuclei and are both short in duration and amplitude.
+Additionally, an \textbf{excitation system} is necessary to generate magnetic pulses $B_1(t)$ to cause a nutation as well as refocussing, spoiling, inversion and saturation in the region of interest.
+The $B_1(t)$ field is a radio frequency field with the excitation frequency defined by the $B_0$ field strength, Larmor frequency of the excitation target nuclei.
 For example with $B_0 = 3$T we get
 \[ 42.58 \frac{\text{MHz}}{\text{T}} \cdot 3 \text{T} = 127.74 \text{MHz}. \]
 Typical pulse durations are on the intervall $[0.1, 10]$ ms and amplitude about $< 25 \mu \text{T}$.
 The shape of the excitation pulse is governed by an envelope function in terms of amplitude trajectory.
-\fig{img/nutation.png}{nutation}{A visualization of rotation $r$ (in out case we call it spin) in green, precession p in blue --- at the Larmor frequency --- and nutation n in red~\autocite{FilePraezessionsvgWikimediaCommons-2024-04-23}.}{0.2}
+\fig{img/nutation.png}{nutation}{A visualization of rotation $r$ (in our case we call it spin) in green, precession p in blue --- at the Larmor frequency --- and nutation n in red~\autocite{FilePraezessionsvgWikimediaCommons-2024-04-23}.}{0.2}
 The excitation pulses are perpendicular to the $B_0$ field, which is important to enable the excitation pulses to tip the spin system in the presence of the strong polarizing field.
 While the $B_0$ field causes polarization, thus alignment and precession, the $B_1(t)$ pulses cause a ``tipping'' or nutation of the precession --- shown in \ref{nutation}, generating transverse magnetization such that it is detectable using Faraday's law of induction.
 An example of an excitation pulse is
 \[ B_1(t) = B_1^e (t) \left(\cos\left(\omega_{RF} t + \theta \right) i - \sin\left(\omega_{RF} t + \theta \right) j \right), \]
-with $B_1(t)^e (t)$ a pulse envelope function, e.g. \texttt{sinc} or \texttt{rect} functions, $\omega_{RF}$ the excitation carrier frequency which should match the Larmor frequency of the spin system, and $i, \ j$ the polarization directions.
-Additionally a RF pulse has a filp angle $\alpha$ which is the angle between the $z$-axis and the $B1$ pulse (called inclination in spherical coordinates) and a phase $\theta$ which is the angle in the $xy$ plane, starting at the $x$-axis (azimuth in spherical coordinates).
-The excitation system is commonly implemented using a birdcage coil as it's highly efficient in terms of energy, excitation and  heating mitigation.
+with $B_1^e (t)$ a pulse envelope function, e.g. \texttt{sinc} or \texttt{rect} functions, $\omega_{RF}$ the excitation carrier frequency which should match the Larmor frequency of the spin system, and $i, \ j$ the polarization directions.
+Additionally a RF pulse has a flip angle $\alpha$ which is the angle between the $z$-axis and the $B_1$ pulse (called inclination in spherical coordinates) and a phase $\theta$ which is the angle in the $xy$ plane, starting at the $x$-axis (azimuth in spherical coordinates).
+The excitation system is commonly implemented using a birdcage coil as it is highly efficient in terms of energy, excitation and  heating mitigation.
 The $B_1(t)$ field is supposed to be highly uniform, especially radially while decaying slightly axially. \\
 
-A \textbf{receiving coil(s)} reads out the response of the excited tissue.
-This can be the same RF coil that is used for excitation.
+One or mutiple \textbf{Receiver coils} read out the response of the excited tissue.
+This can be the same RF coil that is used for excitation or a set of dedicated coils.
 As the precessing magnetization causes induction in the receiving coil(s), the flux in the receiving coil changes causing an electromotive force
 \[ \epsilon = - \frac{\partial \Phi}{\partial t}. \]
 The picked up signal is further split up, multiplied by $\cos{\omega_0 t}$ and $\sin{\omega_0 t}$ respectively and low-pass filtered to get the in-phase signal $I(t)$ and the quadrature signal $Q(t)$.
-The These signals are then quantized, yielding $I(t)$ as the real and $Q(t)$ as the imaginary part of the signal.
+These signals are then quantized, yielding $I(t)$ as the real and $Q(t)$ as the imaginary part of the signal.
 
 The excitation forces the magnetization off from its equilibrium state and thus induces relaxation back to the equilibrium again after excitation.
 This relaxation can be separated into two components: longitudinal and transverse relaxation.
@@ -73,10 +72,10 @@ The longitudinal component can be described as a return to the equilibrium state
 \[ \frac{d M_z}{d t} = - \frac{M_z - M_e}{T_1}, \]
 where $M_e$ is the equilibrium nuclear magnetization, which is proportional to the applied magnetic field $B_0$~\autocite{nishimura}.
 The solution to this equation is
-\[  M_z = M_e + (M_z - M_e) \exp{-t / T_1}. \]
-$T_1$ is the time constant of the longitudinal component also called longitudinal relaxation time constant or spin-lattice time constant.
+\[  M_z = M_e + (M_z(0) - M_e) e^{-t / T_1}. \]
+$T_1$ is the longitudinal relaxation time or spin-lattice time.
 It is proportional to the applied field strength and thus lengthens when $B_0$ is increased in strength.
-Practically, it is the time that it takes for $M_z$ to return to $63 \%$ of it's thermal eqilibrium state $M_e$~\autocite{relaxation, lauterbur}.
+Practically, it is the time that it takes for $M_z$ to return to $63 \%$ of its thermal eqilibrium state $M_e$~\autocite{relaxation, lauterbur}.
    \begin{figure}[h]
       \begin{center}
          \includegraphics[keepaspectratio, width=0.49\textwidth]{img/t1.png}
@@ -91,11 +90,13 @@ Practically, it is the time that it takes for $M_z$ to return to $63 \%$ of it's
 
 The transversal component can be formulated as a decay process
 \[ \frac{d M_{xy}}{d t} = - \frac{M_{xy}}{T_2}. \]
-Accordingly, $T_2$ is the time constant of the transverse relaxation component, also called spin-spin relaxation time constant.
-It is mostly independent from the $B_0$ field strength and $T_2 \leq T_1$.
+Accordingly, $T_2$ is the transverse relaxation time, also called spin-spin relaxation time.
+Solving the above equation gives
+\[ M_{xy} = M_e e^{-t / T_2}. \]
+It is less dependent on the $B_0$ field strength and $T_2 \leq T_1$ holds always.
 $T_2$ is more rapid, the less mobile the spins are, i.e. $T_2$ is larger in water than in solids.
-Practically, in one $T_2$, $M_{xy}$ loses $63 \%$ of it's magnetization right after excitation.
-Typical values for $T_1$ and $T_2$ for common tissue types are shown in table \ref{t1t2-vals}.
+Practically, in one $T_2$, $M_{xy}$ loses $63 \%$ of its magnetization right after excitation.
+Typical $T_1$ and $T_2$ values for common tissue types at $1.5$ T are shown in table \ref{t1t2-vals}.
 
 \begin{table}[h]
  \noindent\makebox[\textwidth]{%
@@ -103,16 +104,16 @@ Typical values for $T_1$ and $T_2$ for common tissue types are shown in table \r
  \toprule
   Tissue & $T_1$ [ms] & $T_2$ [ms] \\
   \midrule
-  GM & $950$ & $100$ \\
-  WM & $600$ & $60$ \\
+  Grey Matter (GM) & $950$ & $100$ \\
+  White Matter (WM) & $600$ & $60$ \\
   Muscle & $900$ & $50$ \\
-  CSF & $4500$ & $2200$ \\
+  Cerebrospinal Fluid (CSP) & $4500$ & $2200$ \\
   Fat & $250$ & $60$ \\
   Blood & $\sim 1400$ & $\sim 180-250$ \\
   \bottomrule
    \end{tabular}
 }
- \caption{Longitudinal relaxation $T_1$ and transversal relaxation $T_2$ time constants for typical tissue types at 1.5 T main magnetic field strength ~\autocite{plewes_physics_2012}.}
+ \caption{Longitudinal relaxation $T_1$ and transversal relaxation $T_2$ times for typical tissue types at 1.5 T main magnetic field strength ~\autocite{plewes_physics_2012}.}
  \label{t1t2-vals}
 \end{table}
 
@@ -125,6 +126,9 @@ In this frame, we can observe rotation/spin, precession and rotation.
 In contrast, the rotating frame, the rotational/spinning and the precessional behavior is factored out, such that only the nutational information is preserved.
 This can be achieved with a transformation of the $xy$-plane, while the $z$-axis stays the same as in the lab frame.
 Intuitively, the $xy$ plane in the rotational frame is rotating at frequency $\omega$ relative to the $xy$-axis of the lab frame.
+This is depicted in~\ref{rot-frame}.
+
+\fig{img/rot-frame.png}{rot-frame}{\textbf{(a)} An excitation pulse causes the magnetization towards the transverse plane in the laboratory frame. \textbf{(b)} The same phenomenon in the rotating frame. Note how the spiral with the $z$-axis as center is transformed into a geodesic~\autocite{nishimura}.}{0.8}
 
 The equation of motion for a system of spins in the lab frame can be described by the Bloch equation, which consists of the precession \& nutation, the transversal and the longitudinal relaxation terms:
 \[ \frac{dM}{dt} = M \times \gamma B - \frac{M_x i + M_y j}{T_2} - \frac{(M_z - M_e) k }{T_1}. \]
@@ -138,14 +142,13 @@ With this we can reformulate the Bloch equation in the rotating frame
 \[ \frac{dM}{dt} = M_R \times \gamma B_{\text{eff}} - \frac{M_{x'} i + M_{y'} j}{T_2} - \frac{(M_z - M_e) k }{T_1}, \]
 where \[ B_{\text{eff}} = \frac{\omega_R}{\gamma} + B_R \] and $\omega_R = \left( 0, 0, - \omega \right)$.
 
-% Maybe example without relaxation with the typical B1 pulse RAD 229
 
 \fig{img/mri_scannercoils.png}{gradient-coils}{A conceptual visualization of the gradient coils of an MRI scanner~\autocite{MRIAGuidedTourMagnetAcademy-2024-05-07}.}{0.4}
 %% RAD 229 Lect 02 A
 A \textbf{Gradient system} is used to select regions of interest from the full organism and to iterate over different regions. \\
 In figure~\ref{gradient-coils} the coil for gradients in the $z$-direction is shown in green, which spans the head to the feed of the patient.
 The $x$ gradient coil is shown in red and spans left to right of the patient.
-Last but not least, the yellow part shows the coil to generate gradients in the $y$ direction which spans back to chest of the patient.
+Lastly, the yellow part shows the coil to generate gradients in the $y$ direction which spans back to chest of the patient.
 These coils are opperated at a very high current and voltage and thus requires internal water cooling. \\
 
 Spatial information is encoded in three ways:
@@ -157,7 +160,7 @@ Spatial information is encoded in three ways:
 The gradient coils do also serve to cause spin de-, re- and pre-phasing to minimize artifacts, after slice selection and before readout respectively.
 Finally, the images can be sensitized or de-sensitized to motion, which will be used in DWI~\autocite{bernstein_handbook_2004}. \\
 
-The gradient fields generated are usually meassured in mT and depend on the size of the field of view.
+The gradient fields generated are usually measured in mT and depend on the size of the field of view.
 The literature states $50-100$ mT $/$ m~\autocite{bernstein_handbook_2004}.
 Further, the gradient fields are parallel to $B_0$ and thus only add or subtract to $B_0$ in the z-direction.
 They vary spatially in a linear manner, depending on the slew rate $S_R$ [T/m/s].
@@ -177,14 +180,14 @@ Thus, overall we get the following expression for the magnetic field
 
 Now let us revisit the Larmor frequency in the rotating frame, i.e. where the frame of reference rotates at frequency $\omega = \gamma B_0$ around the $z$-axis
 \[ \omega = \gamma \overrightarrow{B} \Rightarrow \gamma \overrightarrow{G}(t) \cdot \overrightarrow{r} = \omega(\overrightarrow{r}, t). \]
-First, this means that the Larmor frequency is now dependent on the position of the ROI and the time and we can control it locally using the gradient coils.
+First, this means that the Larmor frequency is now dependent on the position of the region of interest (ROI) and the time and we can control it locally using the gradient coils.
 Second, depending on how strong and how long the gradient pulse sequence is turned on, the more phase offset we get, i.e.
 \[ \phi_G = \int_0^t \overrightarrow{G}(\tau) \cdot \overrightarrow{r}(\tau) d \tau. \]
 If we assume that the phase offset is caused by a rectangular waveform in one dimension, for example $x$ we have
 \[ \phi_G (x, t) = \gamma G_x \cdot x \cdot t. \]
 
 To select a slice, a spatial gradient of frequency of constant magnitude in one dimension, an RF pulse with frequencies matched to the slice and a re-phasing gradient are reuquired.
-The former two actually select the slice, while the latter re-phases the spins within a slice to increase the SNR.
+The former two actually select the slice, while the latter re-phases the spins within a slice to increase the signal-to-noise ratio (SNR).
 The selected slice is in the plane that is perpendicular to the direction of the applied gradient and its thickness depends on the strength of the gradient and the excitation bandwith, i.e. the step size with respect to $\omega_{RF}$. \\
 
 With that and using Farraday's law of induction we get the MRI signal equation
@@ -199,55 +202,58 @@ So far we discussed slice selection.
 However, that is only one part of the encoding term and does not explain, how data is acquired in $k$-space.
 In order to sample data in $k$-space, we need to encode two more dimension which is done by phase and frequency encoding. \\
 
-Phase encoding occurs after excitatation and before readout.
-It is a gradient pulse whichs magniutude is changed between each repetition of the acquisition cycle.
+Phase encoding occurs after excitation and before readout.
+This is done by applying a gradient pulse with a different magnitude each repetition of the acqusition loop.
 Usually one phase encoding step is applied per echo.
-In terms of $k$-space it is an offset from the origin to higher frequency regions depending on the pulse length.
+In terms of $k$-space it is an offset from the origin to higher frequency regions depending on the pulse length and strength of the pulse.
+The longer or the stronger the pulse, the further the offset from the origin in $k$-space.
 This is depicted in \ref{k-space-sampling}: $G_y$ corresponds to the phase encoding gradient in (a).
 In (b) we can see how two different phase encoding amplitudes generate a different offset (the arrows pointing to the top left).
-It can be applied either in one direction for 2D imaging or in two directions for 3D imaging and can be combined with other gradients, like slice-selection or rephasing.
+It can be applied either in one direction for 2D imaging or in two directions for 3D imaging and can be combined with other pulses, like for slice-selection or rephasing.
 The resolution depends on the number of phase encoding steps per slice, as well as the duration of the gradient pulse and its amplitude.
 
-Frequency encoding is mutually exlusive with other simultaneous gradient or excitation pulses.
-It's also called the readout gradient and usually consists of two phases: the pre-phasing gradient is used to prepare the spin phases such that on (the middle of the) readout the peak amplitude is reached.
-The actual readout gradient consists of a constant magnitude gradient pulse and add linear spatial variation of the precession frequencies in the slice.
+Frequency encoding is mutually exlusive with other simultaneous pulses.
+It's also called the readout gradient and usually consists of two steps for gradient echo sequences: the pre-phasing pulse is used to dephase the spins such that the readout rephases the spins and the peak amplitude is reached at echo time.
+The actual readout consists of a constant magnitude gradient pulse and add linear spatial variation of the precession frequencies in the slice.
+Spin-echo sequences usually do not have a pre-phasing pulse.
 In \ref{k-space-sampling} we can see that $G_x$ is the frequency encoding gradient, consisting of the pre-phasing and the readout.
 The latter enables the acquisition across a line in $k$-space (horizontal arrows).
 
 \fig{img/k-space-sampling.png}{k-space-sampling}{Sampling in $k$-space is done using phase ($G_y$) and frequency ($G_x$) encoding. In (a) a timing diagram of a gradient echo sequence is depicted. The corresponding $k$-space sampling trajectory is shown in (b). The horizontal arrows correspond to the frequency encoding of the readout, while the more vertical arrows correspond to the offset by the phase encoding gradient~\autocite{nishimura}.}{0.6}
 
 
-Finally, Computers control the different coils, store the meassurements and reconstruct images from the meassured magnetizations as shown schematically in \ref{mri-block-diag}. \\
-\fig{img/mri-block-diagram.png}{mri-block-diag}{Block diagram of the components in an MRI scanner system~\autocite{Clare1997FunctionalM}.}{0.4}
+Finally, Computers control the different coils, store the measurements and reconstruct images from the measured magnetizations as shown schematically in \ref{mri-block-diag}. \\
+\fig{img/mri-block-diagram.png}{mri-block-diag}{Block diagram of the components in an MRI scanner system~\autocite{Clare1997FunctionalM}.}{0.5}
 
 Overall the components of MRI scanners are not as ideal as presented here.
 Both $B_0$ and $B_1$ may posses inhomogenieties, while gradient coils act rather non-linear than linear.
 Gradients induce currents --- called eddy currents --- in nearby conducitve structures.
 Concomitant fields are another example of noise that emerges in real world hardware.
-Most of these noise sources are addressed by either hardware or software, while mitigating sme is still a field of active research. \\
+Most of these noise sources are addressed by either hardware or software, while mitigating some is still a field of active research. \\
 
 Using the excitation and the gradient system now allows to construct different \textbf{excitation sequences}.
-The two most basic types are gradient echo sequences and spin echo sequences.
+The two most basic types are gradient echo and spin echo sequences.
 An example of a gradient echo sequence is shown in \ref{gradient-echo}.
-It uses the frequency-encoding gradient to refocus the phase of the spins in the region of interest and it uses flip angles lower than $90^\circ$.
+It uses the frequency-encoding gradient to refocus the phase of the spins in the region of interest.
 Gradient echo sequences have shorter repetition times $T_R$ enabling faster imaging.
 After the echo, some transverse magnetization remains, leaving options to generate different image contrasts, as shown in \ref{gradient-echo}.
-\fig{img/gradient-echo.jpg}{gradient-echo}{Timing diagram of a gradient echo sequence~\autocite{hargreaves_rapid_2012}}{0.4}
+\fig{img/gradient-echo.jpg}{gradient-echo}{Timing diagram of a gradient echo sequence~\autocite{hargreaves_rapid_2012}}{0.7}
 
-On the other hand there is spin echo sequences, which undo dephasing by initially applying a $90^\circ$ pulse followed by $180^\circ$ pulses per TR rephasing pulse that flips the phase causing the dephasing factors (for example inhomogenieties) to rephase the spins.
+On the other hand there are spin echo sequences, which re-phase by initially applying a $90^\circ$ pulse followed by $180^\circ$ pulses per $T_R$ rephasing pulse that flips the phase causing the dephasing factors (for example inhomogenieties) to rephase the spins.
 An example is shown in \ref{spin-echo}.
-Notice, that the readout gradient does not have a pre-phaser and that there is an initial $90^\circ$ pulse followed by a $180^\circ$ flipping pulse.
+Notice, that the readout gradient does not have a pre-phaser and that there is an initial $90^\circ$ pulse followed by a $180^\circ$ flipping pulse as just mentioned.
 \fig{img/spin-echo.jpg}{spin-echo}{Timing diagram of a spin echo sequence~\autocite{jung_spin_2013}.}{0.8}
 Spin echo sequences can be used for generating a wide range of contrasts depending on the echo time $T_E$ and the repetition time $T_R$.
 If both $T_E$ and $T_R$ are short, there is incomplete recovery of the transverse magnetization and the image will be $T_1$-weighted.
-When both repretition times are long, the signal can recover fully yielding a $T_2$ weighted image.
+When both are long, the signal can recover fully yielding a $T_2$-weighted image.
 
-\subsection{balanced Steady-State Free Precession Imaging}
+\subsection{Balanced Steady-State Free Precession Imaging}
 Balanced steady-state free precession is a gradient echo sequence with short $T_R$, thus it enables rapid 2D or 3D imaging.
-It has fully balanced gradients, i.e. over one $T_R$ the gradients will integrate to zero on all three axes.
+It is fully balanced in the sense that in one $T_R$ the gradient moments will integrate to zero on all three axes.
 A timing diagram for the sequence is shown in \ref{bssfp}.
 \fig{img/bssfp.png}{bssfp}{Timing diagram of a bSSFP sequence. All gradients integrate to zero per axis~\autocite{scheffler_principles_2003}.}{0.6}
-The magnetization is repeatedly tipped back and forth around the $z$-axis.
+A steady state is reached after a sequence of initial pulses, that are not used for imaging but merely to reach the steady state of the spin system in the ROI.
+Neglecting off-resonance effects, the magnetization is repeatedly tipped back and forth around the $z$-axis.
 The magnitude of the magnetization stays relatively constant, once the steady state is reached.
 However, the magnetization moves on the surface of an elipsoid with the RF flipping between two planes that are an angle $\alpha$ appart.
 This ellipsoid has an eccentricity of $\sqrt{T_2 / T_1}$, meaning that the contrast of the resulting image is $T_2 / T_1$ weighted. \\
@@ -257,11 +263,13 @@ The flip angle $\alpha$ is constant, when disregarding off-resonance effects.
 Taking the off-resonance effects into account, the effective flip angle $\beta$ emerges, that is always larger or equal to $\alpha$.
 The dephasing angle within one $T_R$ $\theta$, the flip angle $\alpha$ and the effective flip angle $\beta$ are related by
 \[ \tan(\alpha / 2) = \tan(\beta / 2) \cos(\theta / 2) \]
-Intuitively dephasing due to field inhomogenieties leads to a deviation from the on-resonance condition where the rotation around the $z$-axis is spherical.
-This rotation is described as a rotation by $\theta$ around the $z$-axis, distrubing the spherical oscilation of the magnetization around the $z$-axis.
-On the one handside, this causes the magetization to be akigned along the $x$-axis, providing a refocussing mechanism like in spin echo sequences.
-On the other handside, if the dephasing reaches a certain value, the signal intensity vanishes.
-These off-resonance effects give rise to the characteristic signal-(off-resonance) frequency profile of bSSFP images, as well as banding artifacts due to the signal drop at $\theta = \pm \pi$~\autocite{scheffler_principles_2003}.
+Intuitively dephasing due to field inhomogenieties --- among other factors --- leads to a deviation from the on-resonance condition where the rotation around the $z$-axis is spherical.
+This rotation is described as a rotation by $\theta$ around the $z$-axis, causes that the excitation pulses have a different effect on the magnetization, disturbing the spherical oscilation of the magnetization around the $z$-axis.
+On the one handside, this causes the magetization to be aligned along the $x$-axis, providing a refocussing mechanism like in spin echo sequences.
+On the other handside, the disturbance of the spheriocal oscillation causes dephasing.
+The signal is attenuated proportionally to the amount of dephasing.
+When the effective flip angle reaches $180^\circ$, the signal vanishes completely, while when there is no disturbance of the spherical oscillation, the signal intensity is maximal.
+These off-resonance effects give rise to the characteristic signal-(off-resonance) frequency response profile of bSSFP images, as well as banding artifacts due to the signal drop at $\theta = \pm \pi$~\autocite{scheffler_principles_2003}.
 \fig{img/bssfp-profile.png}{bssfp-profile}{(a) Position of the magnetization vector in the $xy$ plane depending on the dephasing $\theta$. (b) Signal magnitude as a function of the dephasing angle $\theta$~\autocite{scheffler_principles_2003}.}{0.6}
 
 Finally, the complex steady state magnetization directly after the RF pulse is applied is given by
@@ -270,24 +278,23 @@ Finally, the complex steady state magnetization directly after the RF pulse is a
 with $E_i = e^{-T_R / T_i}$.
 The Magnetization at time $t$ after an RF pulse is
 \[ M(t) = M(t) e^{-t / T_2} e^{i \phi(t)} \]
-with $\phi(t) = t / TR \cdot \Phi$ where $\Phi$ is the off-resonance rekated phase accumulated during each $T_R$~\autocite{nguyen_motion-insensitive_2017, ganter_steady_2006}.
+with $\phi(t) = t / T_R \cdot \Phi$ where $\Phi$ is the off-resonance related phase accumulated during each $T_R$~\autocite{nguyen_motion-insensitive_2017, ganter_steady_2006}.
 
 
-\subsection{Diffusion-weighted Imaging}
+\subsection{Diffusion-weighted Imaging}\label{sec-dwi}
 The Bloch equations can be extended to include diffusion effects using Fick's law of diffusion.
 This is called the Bloch-Torrey equation~\autocite{torrey_bloch_1956}:
 \[ \frac{dM}{dt} = \overrightarrow{M}_R \times \gamma \overrightarrow{B}_{\text{eff}} - \frac{M_{x} i + M_{y} j}{T_2} - \frac{(M_z - M_e) k }{T_1} + D\nabla^2 \overrightarrow{M}, \]
-where \[ \overrightarrow{B}_{\text{eff}} = \frac{\omega_R}{\gamma} + \overrightarrow{B}_R \], $\omega_R = \left( 0, 0, - \omega \right)$, $D$ is called the diffusion tensor.
+where \[ \overrightarrow{B}_{\text{eff}} = \frac{\omega_R}{\gamma} + \overrightarrow{B}_R, \] $\omega_R = \left( 0, 0, - \omega \right)$, and $D$ is called the diffusion tensor.
 
 Spins are thermodynamically driven to exchange positions.
 This process is irreversible and can lead to signal attenuation.
-
 Diffusion is modelled as a random walk by Fick's law.
 Adapting this to the diffusion of magnetization in one dimension, there is a probability of the spin moving left or right with each having the probability of $0.5$ in the 1D case, $0.25$ in the 2D case and $0.1\overline{6}$ in 3D.
 This gives rise to a Gaussian probability distribution for all spins for the §D case of
 \[ P(\overline{r}, t) = \frac{1}{\sqrt{4 \pi D t}} \exp{- \frac{\overrightarrow{r}^2}{4Dt}} \]
 
-In the case of free or isotropic diffusion the diffusion in all directions is equal or at least similar.
+In the case of free or isotropic diffusion the diffusion in all directions is similarly strong and will lead to a similar diffusion coefficient $D$.
 Contrary, if the diffusion is aniostropic or restricted, the probabilities for moving in a certain direction are dependent on the direction.
 This means the diffusion coefficients $D$ are equal or similar for the isotropic case.
 For example in an axon, particles can move along the axon (in the axial direction) rather freely while being highly restricted in the radial directions.
@@ -302,14 +309,14 @@ This transfers to systems of spins.
 So the larger the phase spread, the higher the diffusion.
 The longer and stronger the gradients are, the higher the sensitivity to diffusion. \\
 
-The diffusion-weighted MRI signal can be formulated as
+The diffusion-weighted MRI (DWI) signal can be formulated as
 \[ S = S_0 e^{-b \overrightarrow{g}_j \cdot D \overrightarrow{g}_j}, \]
-with $S$ the DW signal, $S_0$ the signal without diffusion effects, $D$ the diffusion coefficient, $g_j$ the diffusion encoding gradient unit vector, and $b$ the $b$ value.
+with $S$ the DW signal, $S_0$ the signal without diffusion effects, $D$ the diffusion tensor (DT), $g_j$ the diffusion encoding gradient unit vector, and $b$ the $b$ value. \\
 The $b$ value is a free parameter which is to be set by the exeprimenter.
 As $e^{-bD}$ is a dampening factor, diffusion always attenuates the signal amplitude.
-Specifically, $b$ has units of [$mm^2 / s$], is usually on the magnitude of $[100, 1500]$ and controls the signal attenuation induced by the diffusion.
+Specifically, $b$ has units of [$mm^2 / s$], is usually on the magnitude of $[100, 3000]$, and controls the signal attenuation induced by the diffusion.
 Thus, a high $b$ value leads to high diffusion sensitivity but low SNR, while a low $b$ value causes low diffusion sensitivity with a high SNR.
-For example a $b$ value causes $95\%$ signal attenuation for freely diffusing water.
+For example a $b$ value of $1000$ causes $95\%$ signal attenuation for freely diffusing water.
 As in biological tissue the diffusion coefficient is smaller than that of free moving water, the signal attenuation of water can be used as a lower bound.
 Diffusion coefficients for typical brain tissue types are shown in table~\ref{diff-coef}.
 
@@ -330,30 +337,30 @@ Diffusion coefficients for typical brain tissue types are shown in table~\ref{di
  \label{diff-coef}
 \end{table}
 
-The gradient pulse that induces the diffusion weighting needs to be bipolar or be designed in such a way, that it does not add phase to stationary particles.
+The gradient pulse that induces the diffusion weighting needs to be designed in such a way, that it does not add phase to stationary particles.
 This is the case for bipolar gradients for example.
 Duration and amplitude of the pulse depend on the $b$ value by
 \[ b = \frac{2}{3} \gamma^2 G^2 \delta^3, \] for gradient echo diffusion weighted imaging and by
 \[ b = \gamma^2 G^2 \delta^2 (\Delta - \frac{\delta}{3}) \]
-where $G$ is the gradient amplitude, $\delta$ is the pulse duration and $\Delta$ the duration between the gradient pulse beginning and the refocussing pulse.
+for spin echo diffusion weighted imaging, where $G$ is the gradient amplitude, $\delta$ is the pulse duration and $\Delta$ the duration between the gradient pulse beginning and the refocussing pulse.
 
 When applying a bipolar pulse to stationary spins, the phase of the spins depends on their position on the positive lobe, while undoing the phase addition on the negative lobe.
 Doing the same with diffusing spins, the positive lobe causes a phase addition and slight attenuation while due to the movement of spins, the phase cannot be refocussed and the signal further attentuates strongly.
 
 For spin echo sequences, the positive lobe is applied before the refocussing pulse, then there is a slight delay, followed by another positive pulse (as the refocussing pulse inverts the spins).
-As we want maximal diffusion weighting and short sequences, the gradient amplitude is fixed at its maximum value $G_max$ such that $\delta$ and $\Delta$ are the lef over free variables and chosen in trade-off with $b$.
+As we want maximal diffusion weighting and short sequences, the gradient amplitude is fixed at its maximum value $G_{max}$ such that $\delta$ and $\Delta$ are the left over free variables and chosen in trade-off with $b$.
 
 The diffusion weighting gradients can be applied using each gradient coil either separately or a linear combination of them.
 In order to obtain diffusion information in all spatial directions, different linear combinations of gradient coils applying the DW gradient pulse are needed.
 The experimental setup to acquire diffusion tensor images (i.e. gathering diffusion coefficients in all directions) is the following:
 \begin{enumerate}
- \item Set $b = 0$, meassure $S_0$.
- \item Set $b \neq 0$. For $j \in \{0, \dots, N_j \in \mathbb{N_0}\}$, meassure $S_j$.
+ \item Set $b = 0$, measure $S_0$.
+ \item Set $b \neq 0$. For $j \in \{0, \dots, N_j \in \mathbb{N_0}\}$, measure $S_j$.
  \item Calculate $D$ and it's Eigenspace to extract the diffusion coefficients.
 \end{enumerate}
 A high singal loss induces a high diffusion coefficient and vice versa.
-From the Eigenspace of the diffusion tensor per voxel, different scalar meassures can be calculated.
-Let $\lambda_0 \lambda_1, \lambda_2$ be the Eigenvalues of the diffusion tensor for a fixed but arbitrary voxel and $v_1, v_2, v_3$ the Eigenvectors.
+From the Eigenspace of the diffusion tensor per voxel, different scalar measures can be calculated.
+Let $\lambda_0, \lambda_1, \lambda_2$ be the Eigenvalues of the diffusion tensor for a fixed but arbitrary voxel and $v_0, v_1, v_2$ the Eigenvectors.
 Let the Eigenvalues and Eigenvectors be sorted by Eigenvalue ascending.
 The axial diffusivity is simply the value of the largest eigenvalue
 \[ \text{AD} = \lambda_2, \]
@@ -372,9 +379,9 @@ and an RGB image of the major direction of the diffusion can be generated by
 
 
 \section{Deep Learning}
-Machine learning gathered a lot of attention in the last decade.
-Specifically, neural networks were a main focus of ML research~\autocite{vaswani_attention_2017, goodfellow_generative_2020, krizhevsky_imagenet_2012}.
-Deep learning is a sub-area of neural network research, where many layers are stacked on top of each other, such that the network is considered ``deep''.
+Machine learning (ML) gathered a lot of attention in the last decade.
+Specifically, neural networks (NN) were a main focus of ML research~\autocite{vaswani_attention_2017, goodfellow_generative_2020, krizhevsky_imagenet_2012}.
+Deep learning (DL) is a sub-area of neural network research, where many layers are stacked on top of each other, such that the network is considered ``deep''.
 In this section, neural networks as well as their building blocks will be described shortly.
 Common neural network architectures used in practice will be introduced as well as the algorithm to train those networks.
 Finally, recent work in the fields of image-to-image generation and medical imaging will be presented.
@@ -385,7 +392,7 @@ A neural network is --- in its most basic form --- defined by several components
  \item A set of topological constraints --- also called the architecture --- $\mathcal{T}$,
  \item a set of learnable parameters $\theta$ consisting of,
  \begin{itemize}
-  \item weights $\theta_W$,
+  \item weight and bias parameters $\theta_W$,
   \item activation function parameters $\theta_A$,
  \end{itemize}
  \item additional intermediate functions like normalizations,
@@ -398,9 +405,9 @@ The topological constraints define to which neurons the input is fed, which neur
 In its simplest form a neural net consists of a single neuron with $n$ inputs $x_0, \dots, x_n$, weights and biases for each input $w_0, \dots, w_n$ and $b_0, \dots, b_n$, an activation function $f_A$, parameters to the activation function $\theta_A$ and outputs a single value with $n \in \mathbb{N}$ as shown in \ref{perceptron}.
 This is called a \textbf{perceptron} or McCulloh-Pitts-neuron~\autocite{rosenblatt_perceptron_1958, mcculloch_logical_1943}.
 The output is then computed by multiplying the inputs with the weights and adding the bias, summation of the resulting vector and the application of the activation function, as shown in \ref{preceptron-comp}.
-\[ f(\overrightarrow{x}; \theta) = f_A(\sum_{i = 0}^n (x_i \cdot w_i) + b_i; \theta_A). \]
-As $\overrightarrow{w} \cdot \overrightarrow{x} + \overrightarrow{b} = (\overrightarrow{w}, \overrightarrow{b}) \cdot (\overrightarrow{x}, \overrightarrow{1})$, we can add the bias term as another weight variable and reformulate
-\[ f(\overrightarrow{x}; \theta) = f_A(\sum_{i = 0}^{n + 1} (x_i \cdot w_i); \theta_A). \]
+\[ f(\overrightarrow{x}; \theta) = f_A(\sum_{i = 0}^{n - 1} (x_i \cdot w_i) + b_i; \theta_A). \]
+As $\overrightarrow{w} \cdot \overrightarrow{x} + \overrightarrow{b} = (\overrightarrow{w}, \overrightarrow{b}) \cdot (\overrightarrow{x}, \overrightarrow{1})$, we can add the bias term as another weight variable and reformulate \textbf{Ask Flo}
+\[ f(\overrightarrow{x}; \theta) = f_A(\sum_{i = 0}^{n} (x_i \cdot w_i); \theta_A). \]
 In the following and in agreement with the basic definition of a NN, bias vectors will be treated as part of the weight matrix. \\
 \fig{img/nn-comp-gr.png}{preceptron-comp}{The computational graph of a perceptron inference. $\sigma$ is the activation function~\autocite{goodfellow_deep_2016}.}{0.3}
 Perceptrons can be stacked on top of each other, but also next to each other.
@@ -430,10 +437,9 @@ Usually the weights (and biases) of a NN are initialized randomly or using some 
 Neural networks have been proven to be universal function approximators, i.e. can learn any function of arbitrary complexity, when given enough parameters, appropriate topology and a suitable loss function~\autocite{sonoda_neural_2017}. \\
 The two most common settings are classification and regression tasks.
 Classification takes an input and produces a discrete output --- usually a class label --- while regression outputs a continuous value.
-\fig{img/conv.png}{conv}{Application of the convolution operation on a 2D input. For each element in the output, the convolution is applied once to the input image and then slided to the next position~\autocite{dumoulin_guide_2018}.}{1}
 
 Now commonly used layers, that are also used in this work will be introduced.
-We already saw the basic architecture of a \textbf{dense} layer: the horizontally stacked perceptron forms a dense layer.
+We already saw the basic architecture of a \textbf{dense} layer: horizontally stacked perceptrons forms a dense layer.
 It is called dense as every input is potentially connected to all neurons (potentially as the weight can be zero after learning).
 This is then executed as a dense vector or matrix multiplication, again depending on the input dimensionality, followed by the application of the activation and other intermediate functions.
 Usually these layers are used as the final layer in a regression task, however for large inputs this is unfeasible as the layer would need
@@ -441,6 +447,7 @@ Usually these layers are used as the final layer in a regression task, however f
 neurons, where $d_i$ is the output dimensions and $c$ is the number of channels with each neuron being connected to all neurons in the previous layer.
 For example with an output size of $(96, 128, 128)$ with $6$ channels and $48 \cdot 64 \cdot 64 \cdot 24$ neurons in the previous layer, this would require $\sim22$ trillion weights or $\sim22 * 32B = 704$ TiB.
 
+\fig{img/conv.png}{conv}{Application of the convolution operation on a 2D input. For each element in the output, the convolution is applied once to the input image and then slided to the next position~\autocite{dumoulin_guide_2018}.}{1}
 \paragraph{Convolutional} layers are frequently used for image input data.
 Instead of connecting every input voxel (or pixel) to all neurons in the layer, convolution operates by learning a kernel of user defined size that is slided over the image.
 This keeps the amount of parameters low while still being able to process the full input.
@@ -448,8 +455,8 @@ However this requires the multiplication of the input with the kernel multiple t
 The application of a convolution operation on a whole 2D input is shown in \ref{conv}.
 The convolution operation can be defined mathematically for the 3D case for a single evaluation as
 \[ C(\overrightarrow{x}, i, j, k; \theta) = \sum_m \sum_n \sum_o x_{i + m, j+n, k+o} W^K_{m, n, o} \]
-where $W^K$ are the weights of kernel.
-Deconvolution or transpose convolution works analogously, just that the input is slided over the zero-padded kernel, i.e. the
+where $W^K$ are the weights of the kernel.
+Deconvolution or transpose convolution works analogously, just that the input is slided over the zero-padded kernel.
 For details on the arithmetics of convolution and deconvolution operations including padding, strides and dilation, the reader is refered to an excellent review~\autocite{dumoulin_guide_2018}
 
 \paragraph{Activation functions} are the major souce of non-linearity in NNs.
@@ -509,7 +516,7 @@ While it is not as sensitive to outliers, it may decrease the entropy of the sig
 A visualization of both operations in shown in~\ref{pooling}.
 \fig{img/pool.png}{pooling}{Max pooling (left) and average pooling (right) visualized for single channel 2D input from the previous layer.}{0.4}
 
-Finally, \paragraph{Skip connections} or residual connections were introduced by~\autocite{he_deep_2016} in order to reduce convergence time and imcrease accuracy.
+\paragraph{Skip connections} or residual connections were introduced by~\autocite{he_deep_2016} in order to reduce convergence time and increase accuracy.
 Essentially, skip connections cause convolutional layers (in combination they are used very commonly) not to learn an unreferenced presentation but rather to extract the desired change in representation.
 This is done by ``copying'' the input to a layer or a block, then performing convolution, activation and normalization and finally adding the input to the layer to the output.
 Again, this encourages the convolution operation to only address the changes from the identity mapping that are beneficial to the task instead of learning to conserve the general representation of the input from the previous layer as well.
@@ -520,14 +527,14 @@ An illustration of a skip connection in the architecture of a block is shown in 
 \subsection{Architectures}
 Various deep learning architectures have been proposed in the past.
 The more successful ones are convolutional networks, generative adversarial networks, transformers and stable diffusion models~\autocite{vaswani_attention_2017, goodfellow_generative_2020, krizhevsky_imagenet_2012, sohl-dickstein_deep_2015, lecun_handwritten_1989}.
-Here we will focus on convolutional networks for the most part. \\
+Here we will focus on convolutional networks mostly. \\
 
 A convolutional neural network uses convolutions, activation functions, pooling, and dropout as major layers in the network topology~\autocite{goodfellow_deep_2016}.
-Modern architectures use the notion of a block which groups a number of these layers together into a unit and reuses these blocks with different parameters with respect to input and output shapes, thus the number of parameters.
+Modern architectures use the notion of a block which groups a number of these layers together into a unit and reuses these blocks with different input and output shapes, thus the number of total learnable parameters.
 An example is the ResNet Block shown in~\ref{skip}~\autocite{he_deep_2016}.
 In this example, a block consists of a convolution, followed by an activation function, another convolution, the addition of the skip connection (i.e. the input to the block) and another activation function application.
 Usually dropout and normalization layers are also included. \\
-\fig{img/unet.png}{unet}{The architecture of the UNet NN}{0.8}
+\fig{img/unet.png}{unet}{The architecture of the UNet NN}{1}
 
 An extension of this method is the UNet architecture initially designed for the segmentation of cells in photomicrographs~\autocite{ronneberger_u-net_2015}.
 It is shown in~\ref{unet}.
@@ -551,7 +558,7 @@ AdamW additionally introduces a decaying of the weights into the optimization pr
 
 Given the architecture, the initialized weights and a dataset, the dataset is split into a training set and a test set that will not be used during training but rahter to compute prediction metrics on unseen data samples to evaluate generalization of the model.
 The algorithm is then executed and the weights  are updated.
-Training on the training dataset once usually leads to underfitting, i.e. pad predictions as the weights have not been adapted enoug.
+Training on the training dataset once usually leads to underfitting, i.e. bad predictions as the weights have not been adapted enough.
 Thus, the training reiterates on the training set multiple times.
 A single iteration of the optimization algorithm on the weights and dataset is called an epoch. \\
 
@@ -571,17 +578,17 @@ During training, only the parameters of the output layer or block of the new net
 Then, the learning rate is reduced by one or two orders of magnitude and either the layers are gradually unfrozen step by step or the full network is set to trainable.
 Many variations of this procedure have been developed in the past and are reviewed in~\autocite{peters_tune_2019} as well as extended in~\autocite{dale_fine-tuning_2024}.
 
-\subsection{Image-to-Image Synthesis}
+\subsection{Image-to-Image Translation}
 The task of image-to-image synthesis (or generation or translation) is to convert an input image from one domain to another.
 Examples include super-resolution, style transfer and image inpainting~\autocite{pang_image-image_2021}.
 There is large variety of proposed NNs to solve this problem, as shown in~\ref{i2i}.
-\fig{img/i2i.png}{i2i}{Previously proposed methods for image to image translation~\autocite{pang_image-image_2021}.}{0.8}
+\fig{img/i2i.png}{i2i}{Previously proposed methods for image to image translation~\autocite{pang_image-image_2021}.}{1}
 Most of these architectures use generative adverserial networks (GANs) and variational auto-encoders (VAEs)~\autocite{goodfellow_generative_2020, kingma_auto-encoding_2022}.
 These will not be elaborated on in detail but certain aspects of these architectures are highlighted.
-Autoencoders receive an input image and shall output the same image.
+Auto-encoders receive an input image and shall output the same image.
 Architecturally they consist of an encoder and a decoder.
 Between these two there is a representation of the input image in what is called the latent space.
-Autoencoder variants differ not only between the layers and the number of parameters but also introduce additional mechanisms to ensure certain properties of the representation in the latent space~\autocite{goodfellow_deep_2016}.
+Auto-encoder variants differ not only between the layers and the number of parameters but also introduce additional mechanisms to ensure certain properties of the representation in the latent space~\autocite{goodfellow_deep_2016}.
 The previously described UNet architecture can be seen as an example for such an encoder-decoder architecture where the contracting part is the encoder and the expanding part is the decoder, see~\ref{unet}. \\
 
 Common loss functions used in other tasks usually do not work as well for image generation tasks.
@@ -604,7 +611,7 @@ This is called a perceptual metric~\autocite{zhang_unreasonable_2018}. \\
 Already before the rise of NNs' popularity, metrics have been introduced to quantify differences in images, usually for applications in photography, TV and cinematic images.
 The peak signal to noise ratio (PSNR) [dB] is defined as the logarithm of the maximal possible pixel value (e.g. 255 for grayscale or RGB images or 1 for normalized images) divided by the $L_2$ norm of the two images~\autocite{rao_transform_2018}.
 \[ \text{PSNR} = 10 \cdot \log \left( \frac{\max}{L_2} \right) \]
-Further, the structural similarity index meassure (SSIM) quantifies the difference based on the luminance $l$, contrast $c$ and the structure $s$ of different windows of the images:
+Further, the structural similarity index measure (SSIM) quantifies the difference based on the luminance $l$, contrast $c$ and the structure $s$ of different windows of the images:
 \[ l(\overrightarrow{x}, \overrightarrow{y}) = \frac{2 \mu_x \mu_y + c_1}{\mu_x^2 + \mu_y^2 + c_1} \]
 \[ c(\overrightarrow{x}, \overrightarrow{y}) = \frac{2 \sigma_x \sigma_y + c_2}{\sigma_x^2 + \sigma_y^2 + c_2} \]
 \[ s(\overrightarrow{x}, \overrightarrow{y}) = \frac{\sigma_{xy} + c_3}{\sigma_x + \sigma_y + c_3} \]
@@ -614,7 +621,7 @@ The SSIM is then computed as
 and is in the range $[0, 1]$ where values closer to $1$ mean more structural similarity.
 
 
-\subsection{Deep Learning-based Image-to-image Synthesis for MRI}
+\subsection{Deep Learning-based Image-to-Image Translation for MRI}
 \autocite{van_nguyen_cross-domain_2015, huang_simultaneous_2017, vemulapalli_unsupervised_2015, yang_mri_2020} propose methods to do the image-to-image synthesis problem from MRI.
 All of these approaches use one of $T_1$-, $T_2$- and PD-weighted images as source and target modality each, that is a modality with a single channel.
 \autocite{vemulapalli_unsupervised_2015} and \autocite{huang_simultaneous_2017} use unpaired data for training where the dataset consists of a set of images, while paired datasets is a set of pairs of corresponding images.
@@ -628,7 +635,7 @@ The $L_2$ norm is used as a loss function along with an uncertainty term that is
 The network employs dense layers where the amount of neurons per layer and the number of layers as well as the batch size are subject to a secondary optimization algorithm.
 Further, not only the voxel to be predicted is passed as input to the network but also the neighboring $9$ voxels.
 The general method employed is shown in \ref{birk}.
-\fig{img/birk.jpg}{birk}{The method employed by Birk et al.~\autocite{birk_high-resolution_2022}.}{0.8}
+\fig{img/birk.jpg}{birk}{The method employed by Birk et al.~\autocite{birk_high-resolution_2022}.}{1}
 
 
 
@@ -636,20 +643,20 @@ The general method employed is shown in \ref{birk}.
 \newpage
 
 \chapter{Methods}\label{\positionnumber} 
-In this section, the dataset used, preprocessing applied and details on how the estimations were generated are presented.
+In this section, the dataset used, preprocessing and details on how the estimations were generated are presented.
 \section{The Dove Dataset}
-The dataset acquired for the DOVE study contains a variety of modalities recorded at 3T $B_0$ field strength using a Magnetom Prisma produced by Siemens Healthineers in Erlangen, Germany with 64-channel receive head coils.
-Besides our main modalities of interest --- phase-cycle bSSFP and DWI --- MP2RAGE~\autocite{marques_mp2rage_2010}. \\
+The dataset acquired for the DOVE study contains a variety of modalities recorded at \textbf{3T $B_0$ field strength (Ask Flo)} using a Magnetom Prisma produced by Siemens Healthineers in Erlangen, Germany with 64-channel receive head coils.
+Besides our main modalities of interest --- phase-cycle bSSFP and DWI --- \textbf{MP2RAGE Ask Flo}~\autocite{marques_mp2rage_2010} images were acquired as well. \\
 
 The dataset contains 120 healthy subjects each of which was scanned multiple times in 3-5 sessions at different times of the day.
 Phase-cycle bSSFP data was acquired in 3 sessions for most participants.
 The whole brain was imaged in 3D sagitally with 12 phase cycles with phase increments uniformly distributed between $[0^\circ, 360^\circ]$.
-A flip angle of $15^\circ$, an isotropic resolution of $1.4$ mm$^3$, a TE of $2.4$ ms, TR of $4.8$ ms was used with a field of view of $224$ mm and a bandwith of $401$ Hz per voxel as well as $B_0$ and $B_1$ shimming.
-To the best of the authors knowledge, this is the largest collection of bSSFP scans that has been acquired so far. \\
+A flip angle of $15^\circ$, an isotropic resolution of $1.4$ mm$^3$, a $T_E$ of $2.4$ ms, $T_R$ of $4.8$ ms was used with a field of view of $224$ mm and a bandwith of $401$ Hz per voxel.
+To the best of the authors knowledge, this is the largest collection of \textbf{bSSFP images Aks Flo} that has been acquired so far. \\
 
-DWI was acquired in 4 sessions using an interleaved multi-slice single-shot SE-EPI DWI sequence with a $b$ value of $2500$ s$/$mm$^2$, a resolution of $2$mm isotropic, a TE of $62$ms, TR of $3500$ms, a field of view of $220$mm, fat supression using saturation, $B_0$ and $B_1$ shimming. \\
+DWI was acquired in 4 sessions using an interleaved multi-slice single-shot SE-EPI DWI sequence with a $b$ value of $1000$ s$/$mm$^2$, a resolution of $2$mm isotropic, a $T_E$ of $62$ms, a $T_R$ of $3500$ms, a field of view of $220$mm, fat supression using saturation. \\
 
-Finally, magnetization-prepared two rapid gradient-echo $T_1$-weighted images were acquired in one session sagitally at a resolution of $1$mm isotopic, with a TE of $2.98$ ms, TR of $5000$ms in a single shot fashion with a field of view of $256$mm and flip angles of $4^\circ$ and $5^\circ$. \\
+Finally, magnetization-prepared two rapid gradient-echo $T_1$-weighted images were acquired in one session sagitally at a resolution of $1$mm$^3$, with a $T_E$ of $2.98$ ms, a $T_R$ of $5000$ms in a single shot fashion with a field of view of $256$mm and flip angles of $4^\circ$ and $5^\circ$. \\
 
 \section{Preprocessing}
 Regarding preprocessing, BIDScoin was used to convert the dataset from a collection of DICOMs per scan to one NIfTI file with a folder structure complying to the BIDS standard~\autocite{zwiers_bidscoin_2022, yarkoni_pybids_2019, gorgolewski_brain_2016}.
@@ -659,11 +666,11 @@ All modalities were then coregistered to the $T_1$-weighted image using SPM~\aut
 For \textbf{bSSFP}, the phase was rescaled from the scanner-produced range $[0, 4095]$ to radians $[-\pi,\pi]$ and phase correction was applied by multiplying the phase image of each of the 12 phase-cycles by a complex exponential with the phase of the sum of the complex data in the exponent.
 \[ \text{Phase corrected}_i = \text{Phase}_i \cdot \exp\left( -j \angle \left(\sum_{x, y, z} \text{Complex}_{i, x, y, z}\right) \right) \]
 Next, artifacts due to the Gibbs phenomenon were removed using DiPy~\autocite{garyfallidis_dipy_2014}.
-The complex bSSFP data were resampled to the resolution of the DTI data, $2$mm$^3$ isotropic using FSL~\autocite{smith_advances_2004} and a mask generated from the DTI images was applied.
+The complex bSSFP data were resampled to the resolution of the DTI data --- $2$mm$^3$ --- using FSL~\autocite{smith_advances_2004} and a mask generated from the DTI images was applied.
 Finally, phase and magnitude were extracted, normalized to be in the range $[0, 1]$ for each phase and magnitude across the whole dataset and aligned into one channel alternatingly, such that the image has 24 channels, each contianing one 3D volume.
 One sample of the first two channels is shown in~\ref{pc-bssfp-mag}, \ref{pc-bssfp-pha}.
-\fig{img/pc-bssfp-mag.png}{pc-bssfp-mag}{A data sample of the first channel of the preprocessed bSSFP images that is fed into the neural network.}{1.0}
-\fig{img/pc-bssfp-pha.png}{pc-bssfp-pha}{A data sample of the second channel of the preprocessed bSSFP images that is fed into the neural network.}{1.0}
+\fig{img/pc-bssfp-mag.png}{pc-bssfp-mag}{A data sample of the first channel containing the magnitude of the first phase cycle of the preprocessed pc-bSSFP images that is fed into the neural network.}{1.0}
+\fig{img/pc-bssfp-pha.png}{pc-bssfp-pha}{A data sample of the second channel containing the phase of the first pahse cycle of the preprocessed pc-bSSFP images that is fed into the neural network.}{1.0}
 In another experiment, a derived image is used: Instead of using all 12 phase cycles, only one phase-cycle is repeated 12 times to generate an image that have the information content of a single phase cylce only while having the same shape. \\
 
 
@@ -675,7 +682,7 @@ A sample of the first two channels is depicted in ~\ref{dti-dxx} and~\ref{dti-dx
 \fig{img/dti-dxy.png}{dti-dxy}{Sample of the second channel of a preprocessed DTI corresponding to the $D_{xy}$ element of the tensor.}{1}
 
 \textbf{MP2RAGE $T_1$-weighted} images are masked and resampled to match the DTI resolution.
-Then the single channel was normalized to the range $[0, 1]$ and repeated to 6 channels such that it matches the DTI input dimensionality.
+Then data was normalized to the range $[0, 1]$ and repeated to 6 channels such that it matches the DTI input dimensionality.
 A sample of this is shown in~\ref{t1w}
 \fig{img/t1w.png}{t1w}{Sample of a preprocessed $T_1$-weighted image fed to the NN.}{1}
 
@@ -701,7 +708,7 @@ When combining all images across sessions, we get $4 \cdot 3 = 12$ samples per p
 However as not for all subject, all sessions were recorded either due to subjects compliance to the scanning schedules or other reasons, $1077$ samples are available. \\
 
 To further increase the non-identical data samples during training, data augmentation was applied using TorchIO.
-Data Augmentation is the act of slightly introducing noise and other pertubations into a data sample, that are characteristic to the source of the data, such that the NN is not trained on the exact same image but slight variations of it.
+Data augmentation is the act of slightly introducing noise and other pertubations into a data sample, that are characteristic to the source of the data, such that the NN is not trained on the exact same image but slight variations of it.
 This leads to better generalization and robustness to noise.
 
 \begin{figure}[h]
@@ -731,15 +738,16 @@ This leads to better generalization and robustness to noise.
 
 The augmentations added to the training inputs is two-fold:
 \begin{enumerate}
- \item a random bias field is added with a probability of $25\%$ to mimic magnetic field inhomogenieties. This bias filed is mkodeled using a linear combination of polynomial basis functions as described in ~\autocite{van_leemput_automated_1999}.
+ \item a random bias field is added with a probability of $25\%$ to mimic magnetic field inhomogenieties.
+      It is modeled using a linear combination of polynomial basis functions as described in ~\autocite{van_leemput_automated_1999}.
       In this work the maximal order is $3$ and the coefficitents are sampled uniformly between $[0, 0.25]$.
-      An example of a stronger bias field augmentation is shown in~\ref{bias-field}.
+      An example of a bias field augmentation with greater coefficients than used in this work is shown in~\ref{bias-field}.
 
  \item gausian random noise is added to the image with a probability of $25\%$, zero mean and a standard deviation in the range of $[0, 0.01]$.
       An example of strong gaussian noise augmentation is shown in~\ref{random-noise}
 \end{enumerate}
-Effectively, the augmentation is minimal as can be seen in \ref{augmentation}.
-\fig{img/augmentation.png}{augmentation}{Samples of the training data after data augmentation was applied (with a probability of $1$).}{0.4}
+Effectively, the augmentation is minimal as can be seen in \ref{augmentation}. \textbf{Ask flo}
+\fig{img/augmentation.png}{augmentation}{Samples of the training data after data augmentation was applied (with a probability of $1$).}{1}
 
 
 \subsection{Architecture}
@@ -747,8 +755,8 @@ The backbone architecture of the model follows the standard UNet architecture an
 It makes the following modifications:
 \begin{itemize}
  \item normalization and dropout is added at each block to increase generalization and cause faster convergence,
- \item 3D inputs are supported as the task is to train on the full 12-volume bSSFP,
- \item input and output dimensions are adapted to the taks,
+ \item 3D inputs are supported as the task is to train on the full 12-pc-bSSFP,
+ \item input and output dimensions are adapted to the task,
  \item Instead of ReLU, PReLU is used, to add more flexibility to the model,
  \item the number of blocks and features are adapted to match the input dimensions. In this work 5 blocks for each contracting and expanding paths are used with the number of feature maps per block: $48, 96, 192, 384, 768, 384, 192, 96, 48, 24$
 \end{itemize}
@@ -756,7 +764,7 @@ Besides the backbone, input heads for each modality have been added.
 They consist of a ResNet block as shown in~\ref{skip} with 6 input channels, 24 output channels and 3 convolutionals layers with ReLU activations, and batch normalization with a batch size of 1, which boils down to instance normalization.
 A basic overview of the modified architecture is shown in~\ref{arch}.
 A more detiled plot can be found in the appendix~\ref{arch-ext}.
-\fig{img/architecture.png}{arch}{The architecture of the model}{0.6}
+\fig{img/architecture.png}{arch}{The architecture of the NN used to predict DT from bSSFP.}{1}
 
 \subsection{Training}
 The loss function that is optimized is a sum of three different loss functions:
@@ -769,3 +777,19 @@ The loss function that is optimized is a sum of three different loss functions:
 AdamW is used as optimization algorithm with a leanring rate $\epsilon=1e-4$, running moment coefficients $0.9$ and $0.999$, and a weight decay of $0.01$.
 Further, the training was distributed on 4 NVidia GeForce RTX 5000 GPUs using the distributed data parallel strategy, that split the dataset into 4 and performs training on each subset to merge the losses at the end of each epoch and aggregate the gradients accordingly.
 The update is then executed on a single GPU and the next epoch is branched to 4 GPUs again.
+Early Stopping is used as termination condition with a patience of 5 epochs. \\
+
+Two approaches have been explored.
+First, training the modalities with randomly initialized parameters directly on the DT generation task.
+The second approach is to pre-train an auto-encoder, i.e. a network that takes the DT as an input and generates it.
+This helps to store information about the task and output modality in the parameters of the model.
+Next, we transfer the NN to the new task of predicting the DT from a different modality by training theResNet input block, while the rest of the parameters in the NN remain frozen.
+Then, all weights are set to trainable and the learning rate is decreased to $1e-5$ for the finetuning stage. \\
+
+After training, the $108$ unseen data samples are used to evaluate the model.
+For that, the model is used to infer a prediction and the loss is calculated .
+Each predicted normalized diffusion tensor is divided into 3 ROIs corresponding to CSF, GM and WM.
+The average relative error per voxel is then computed for each of the diffusion tensor elements and ROIs.
+Then the DT is de-normalized by applying the inverse transformation, i.e. $x \cdot (\max - \min) + \min$ where $x$ is the value of the voxel and $\min, \max$ are the minimum and maximum value of the DTs across the whole dataset.
+From that, the scalars introduced in ~\ref{sec-dwi} are computed.
+For each of these scalars, again the average relative error per voxel, ROI and modality is computed.

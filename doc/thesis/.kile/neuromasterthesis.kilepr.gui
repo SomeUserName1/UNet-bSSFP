@@ -2,9 +2,27 @@
 kile_livePreviewEnabled=true
 kile_livePreviewStatusUserSpecified=false
 kile_livePreviewTool=LivePreview-PDFLaTeX
-lastDocument=03-methods.tex
+lastDocument=04-results.tex
 
 [document-settings,item:00-thesis.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:01-abstract.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:02-introduction.tex]
 Bookmarks=
 Encoding=UTF-8
 Highlighting=LaTeX
@@ -69,7 +87,7 @@ Mode Set By User=false
 
 [item:00-thesis.tex]
 open=true
-order=0
+order=5
 
 [item:01-abstract.tex]
 open=false
@@ -81,19 +99,19 @@ order=-1
 
 [item:03-methods.tex]
 open=true
-order=1
+order=3
 
 [item:04-results.tex]
-open=false
+open=true
 order=2
 
 [item:05-discussion.tex]
-open=false
-order=3
+open=true
+order=1
 
 [item:06-appendix.tex]
-open=false
-order=5
+open=true
+order=4
 
 [item:neuromasterthesis.kilepr]
 open=false
@@ -101,78 +119,94 @@ order=-1
 
 [item:resources.bib]
 open=true
-order=2
+order=0
 
 [item:themeKonstanz.sty]
-open=true
+open=false
 order=3
 
 [view-settings,view=0,item:00-thesis.tex]
 CursorColumn=0
-CursorLine=25
+CursorLine=0
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=0
-TextFolding={"checksum":"c109784ef9889d65eaa3eae0d812f3a910216810","ranges":[]}
+TextFolding={"checksum":"32fdbff4d13e075388d5533c51714fc6b34f40c3","ranges":[]}
+ViMarks=
+
+[view-settings,view=0,item:01-abstract.tex]
+CursorColumn=0
+CursorLine=0
+Dynamic Word Wrap=false
+JumpList=
+TextFolding={"checksum":"279274f34f581336633451523e7da08b209297a6","ranges":[]}
+ViMarks=
+
+[view-settings,view=0,item:02-introduction.tex]
+CursorColumn=134
+CursorLine=15
+Dynamic Word Wrap=false
+JumpList=
+TextFolding={"checksum":"4678ee5366a3d6908c38395d6e82f2694828f11d","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:03-methods.tex]
-CursorColumn=76
-CursorLine=750
+CursorColumn=74
+CursorLine=782
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=0
-TextFolding={"checksum":"bcfbc53a2a2ace14f30d562874659f27d8302752","ranges":[]}
+TextFolding={"checksum":"fa7ef8c2dc1d84f70f6abd9dd70a136eedab2cad","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:04-results.tex]
-CursorColumn=0
-CursorLine=20
+CursorColumn=85
+CursorLine=97
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=0
-TextFolding={"checksum":"409fb557521be5f8ba12417d4305dd56b654ccf7","ranges":[]}
+TextFolding={"checksum":"9ffaae7d94912634562fb4d879e2548c6321ebee","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:05-discussion.tex]
-CursorColumn=6
-CursorLine=14
+CursorColumn=225
+CursorLine=5
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=0
-TextFolding={"checksum":"c2a61604808cadf1e8b6ec203bb258d6853d17a8","ranges":[]}
+TextFolding={"checksum":"b3c37aa7fea8670e58366b5b305ce5cd9efa7dbd","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:06-appendix.tex]
-CursorColumn=0
-CursorLine=20
+CursorColumn=54
+CursorLine=18
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=0
-TextFolding={"checksum":"e330af6e55cc26e6ccf28711184cf5f7b0e9ba35","ranges":[]}
+TextFolding={"checksum":"e11da9b65f86a25eeff97efa642d33980a0fac94","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:resources.bib]
-CursorColumn=34
-CursorLine=1759
+CursorColumn=36
+CursorLine=1909
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=600
-TextFolding={"checksum":"45ae513bb9ab4dd8e0e15c44884b1461b53dd06b","ranges":[]}
+TextFolding={"checksum":"443bb0d6bebdc54a788c8a870b8f8e3c8a35f4f0","ranges":[]}
 ViMarks=
 
 [view-settings,view=0,item:themeKonstanz.sty]
-CursorColumn=0
-CursorLine=98
+CursorColumn=17
+CursorLine=45
 Dynamic Word Wrap=false
 Force RTL Direction=false
 JumpList=
 ScrollLine=41
-TextFolding={"checksum":"d1ad950e40e6bc0d4173a895f6ccaa0f1ae389c8","ranges":[]}
+TextFolding={"checksum":"2a13c264f79cc8b8d5734cf0033e1ef3b01e7d6f","ranges":[]}
 ViMarks=

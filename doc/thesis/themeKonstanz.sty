@@ -90,6 +90,11 @@
 \usepackage{booktabs}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
+\usepackage{csvsimple}
+\usepackage[round-mode=places, round-precision=2,
+    table-format = 4.2,
+    table-number-alignment=center]{siunitx}
+\newcolumntype{N}{c@{}S}
 
 % Referenzierung
 \usepackage[bookmarksopen,bookmarksdepth=5]{hyperref}
@@ -592,11 +597,12 @@ Disclosures%
 \begin{itemize}%
  \item I affirm that I have written the dissertation myself and have not used any sources and aids other than those indicated.%
  \item I affirm that I have not included data generated in one of my laboratory rotations and already presented in the respective laboratory report.%
+ \item I affirm that generative AI has been used only as a means of correcting spelling, and grammar errors as well as improving the overall language of the presented work.
 \end{itemize}%
 \end{textblock*}%
 \begin{textblock*}{\textwidth}(0.5\footspace, 26cm)%
 \selectfontsize{11pt}
- Tübingen, March 2024 \rule{8cm}{.4pt} \\
+ Tübingen, March 2024, \\ \hspace*{5cm} \includegraphics[keepaspectratio]{img/SCAN0007.png} \\
 \end{textblock*}%
 \end{sffamily}%
 \thispagestyle{empty} $ $

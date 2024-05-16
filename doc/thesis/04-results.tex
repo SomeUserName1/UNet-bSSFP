@@ -1,23 +1,123 @@
 \chapter{Results}\label{\positionnumber}
+When directly training the task to predict the DT from a given modality, the training time is a lot smaller compared to the pre-trained version.
+The qualitative and quantitative differences between modalities are shown in this section.
+\fig{img/direct-test_loss.pdf}{direct-nn-loss}{Test loss of the models for each modality when training the task without additional initialization steps.}{0.6}
+\section{Single-Stage Training}
+In~\ref{direct-nn-loss} we can see the test loss for each modality, split by the sub part of the loss.
+For all modalities, the perceptual loss is very small.
+The majority of the loss is based on the SSIM loss.
 
-\section{Neural Network Test Loss and Metrics}
-\fig{img/test_loss.pdf}{nn-loss}{losses}{0.6}
+While all losses are close in magnitude, the aut-encoding task works best, while pc-bSSFP performs worst without additional initialization steps. \\
 
-\section{Qualitative Results}
+However --- as can be seen in ~\ref{artifacts} --- all predictions contain artifacts of different sizes hinting, that the direct training approach does not suffice to generate results of acceptable quality.
+Still, the scalars were computed and evaluated to see how robust each scalar is.
+\fig{img/artifact-all.png}{artifacts}{Prediction examples for all modalities: left top --- DT, right top --- pc-bSSFP, left bottom --- bSSFP, right bottom --- $T_1$-weighted.}{0.6}
 
-\section{Quantitative Results}
-\fig{img/Normalized_tensor_errs.pdf}{norm-tensor}{norm TODO make figsize smaller st font is larger, move lagend outside of box}{1}
-\fig{img/_tensor_errs.pdf}{denorm-tensor}{denorm}{1}
-\fig{img/md_errs.pdf}{md}{md}{0.6}
-\fig{img/fa_errs.pdf}{fa}{af}{0.6}
-\fig{img/ad_errs.pdf}{ad}{ad}{0.6}
-\fig{img/rd_errs.pdf}{rd}{rd}{0.6}
-\fig{img/inclination_errs.pdf}{incel}{incl}{0.6}
-\fig{img/azimuth_errs.pdf}{azi}{azi}{0.6}
+Quantitatively, the diagonal elements of the diffusion tensor are predicted with a relatively small error between $5\%$ and $30\%$.
+The off-diagonal elements of the diffusion tensor vary greatly between modalities: $10\%$ for DT up to $3000\%$ for pc-bSSFP.
+Surprisingly, bSSFP data with just the first phase cycle repeated performs astonishingly well. \\
+The data is shown in ~\ref{direct-norm-tensor}.
+\fig{img/direct-normalized_tensor_errs.pdf}{direct-norm-tensor}{Mean relative error of the DT elements for each modality and group, split by diagonal and off-diagonal elements for directly trained models.}{1}
+
+The mean relative errors of mean diffusivity is --- given the artifact and the bad prediction quality of off-diagonal elements --- very robust as shown in~\ref{direct-mdfa}.
+Errors are in the range of $20\%$ to $50\%$ which however still renders them too imprecise for real-world applications.
+For the fractional anisotropy, the case is a lot clearer: not a single modality performs better than $100\%$ relative error.
+Even the previously rather acceptable result of the auto-encoder is not confirmed as this performs wost with errors of up to $600\%$.
+\begin{figure}[h]
+   \begin{center}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/direct-md_errs.pdf}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/direct-fa_errs.pdf}
+   \end{center}
+   \caption{
+      \textbf{Left:} Mean relative error of the mean diffusivity for directly trained models.
+      \textbf{Right:} Mean relative error of the fractional anisotropy for directly trained models.
+   }
+   \label{direct-mdfa}
+\end{figure}
+
+This is another indicator, that the chosen training strategy does not suffice for the taks.
+
+\section{Multi-Stage Training}
+\fig{img/finetune-test_loss.pdf}{finetune-nn-loss}{losses}{0.6}
+Therefore, pre-training has been applied such that information about the output modality is encoded in the weights on initialization of the training for the actual task.
+The losses are comparably in magnitude to the direct training.
+However, DT performs much better, pc-bSSFP as an input is superior to bSSFP and $T_1$-weighted in terms of the loss.
 
 
+\subsection{Quantitative Results}
+\fig{img/finetune-Normalized_tensor_errs.pdf}{finetune-norm-tensor}{Mean relative error of the DT elements for each modality and group, split by diagonal and off-diagonal elements for multi-stage-training models.}{1}
+When comparing the mean relative error of the elements in the normalized diffusion tensor, we can see in \ref{finetune-norm-tensor} that while the diagonal elements are predicted with comparable performance to the direct training, the off-diagonal elements improve order of magnitude for mos modalities.
+According with the loss, pc-bSSFP input outperforms both bSSFP with the first phase cycle repeated and $T_1$-weighted inputs.
+Off-diagonal elements in the white matter still have a rather large relative error compared to the other ROIs over all modalities. \\
+
+\begin{figure}[h]
+   \begin{center}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/finetune-rd_errs.pdf}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/finetune-ad_errs.pdf}
+   \end{center}
+   \caption{
+      \textbf{Left:} Mean relative error of the radial diffusivity for multi-stage-training models.
+      \textbf{Right:} Mean relative error of the axial diffusivity for multi-stage-training models.
+   }
+   \label{finetune-rdad}
+\end{figure}
+Fir both radial and axial diffusivity, the relative errors are up to $25 \%$.
+Here, the CSF is the most difficult region of interest to predict with the exception of RD when using DT as input.
+All non-DT inputs perform comparably within a margin of approximately $5\%$ as shown in \ref{finetune-rdad}.
+
+\begin{figure}[h]
+   \begin{center}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/finetune-md_errs.pdf}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/finetune-fa_errs.pdf}
+   \end{center}
+   \caption{
+      \textbf{Left:} Mean relative error of the mean diffusivity for multi-stage-training models.
+      \textbf{Right:} Mean relative error of the fractional anisotropy for multi-stage-training models.
+   }
+   \label{finetune-mdfa}
+\end{figure}
+Similarly for MD and FA, we can see that DT outperforms all other inputs in terms of prediction error.
+Again, we can see that the CSF ROI has the largest errors with the exception of DT as an input.
+
+Finally, inclination and azimuth are very robust with absolute errors below $0.5^\circ$ for inclination and $2^\circ$ for azimuth.
+\begin{figure}[h]
+   \begin{center}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/finetune-inclination_errs.pdf}
+      \includegraphics[keepaspectratio, width=0.49\textwidth]{img/finetune-azimuth_errs.pdf}
+   \end{center}
+   \caption{
+      \textbf{Left:} Mean absolute error of the inclination angle in degree for multi-stage-training models.
+      \textbf{Right:} Mean absolute error of the azimuth angle in degree for multi-stage-training models.
+   }
+   \label{finetune-incazi}
+\end{figure}
 
 
+\subsection{Qualitative Results}
+As the main goal of this thesis is to explore full volume-based inference of the DT from pc-bSSFP data, the focus is in the qualitative evaluation will be set on this input modality.
+Predictions for all modalities will be made available on the server of the institute.
+All of the following figures contains the ground truth on the left hand side and the prediction on the right handside. \\
+
+One example for each diagonal and off diagonal were chosen for comparison.
+\fig{img/dt0.png}{qual-dxx}{Comparison between $D_{xx}$ of original DT and predicted DT using pc-bSSFP as input modality.}{1}
+The diagonal element ($D_{xx}$, see~\ref{qual-dxx}) is predicted well in terms of detail, while the contrast is slightly different.
+No atrifacts are visible. \\
+
+\fig{img/dt4.png}{qual-dyz}{Comparison between $D_{yz}$ of original DT and predicted DT using pc-bSSFP as input modality.}{1}
+Regarding the off-diagonal example ($D_{yz}$, see~\ref{qual-dyz}), we can see that the contrast is mostly corresponding.
+The level of detail is perceivably lower than in the ground truth.
+Especially the high frequency components of the off-diagonal elements seem to be difficult to learn for the model with the current architecture. \\
 
 
+\fig{img/md.png}{qual-md}{Comparison between MD calculated from the original DT and the predicted DT using pc-bSSFP as input modality.}{1}
+\fig{img/fa.png}{qual-fa}{Comparison between FA calculated from the original DT and the predicted DT using pc-bSSFP asinput modality.}{1}
+For the MD, the predictions seem to be matching quite well both in terms of contrast as well as in level of detail, thus corresponding to the diagonal elements of the diffusion tensor in terms of prediction quality.
+Fractional anisotropy corresponds more closely to the off-diagonal tensor elements in terms of prediction quality.
+However, the contrast is slightly darker in the predicted FA map than in the ground truth.
+Further, the level of detail is lower as well. \\
 
+\fig{img/rgb.png}{qual-rgb}{Comparison between axial RGB images calculated from the original DT and the predicted DT using pc-bSSFP as input modality.}{1}
+\fig{img/rgb-c.png}{qual-rgb-c}{Comparison between coronal RGB images calculated from the original DT and the predicted DT using pc-bSSFP as input modality.}{1}
+To compare directionality information in a visually evaluatable way, RGB maps are shown in ~\ref{qual-rgb, qual-rgb-c}.
+The main white matter tracts seem to be captured in the prediction and even some details are preserved.
+Nevertheless, the contrast is slightly darker and the prediction is not as detailed or crisp as the ground truth. \\

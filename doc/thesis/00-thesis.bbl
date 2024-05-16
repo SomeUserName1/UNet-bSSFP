@@ -73,7 +73,6 @@
       \field{labeltitlesource}{title}
       \field{abstract}{Training state-of-the-art, deep neural networks is computationally expensive. One way to reduce the training time is to normalize the activities of the neurons. A recently introduced technique called batch normalization uses the distribution of the summed input to a neuron over a mini-batch of training cases to compute a mean and variance which are then used to normalize the summed input to that neuron on each training case. This significantly reduces the training time in feed-forward neural networks. However, the effect of batch normalization is dependent on the mini-batch size and it is not obvious how to apply it to recurrent neural networks. In this paper, we transpose batch normalization into layer normalization by computing the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case. Like batch normalization, we also give each neuron its own adaptive bias and gain which are applied after the normalization but before the non-linearity. Unlike batch normalization, layer normalization performs exactly the same computation at training and test times. It is also straightforward to apply to recurrent neural networks by computing the normalization statistics separately at each time step. Layer normalization is very effective at stabilizing the hidden state dynamics in recurrent networks. Empirically, we show that layer normalization can substantially reduce the training time compared with previously published techniques.}
       \field{month}{7}
-      \field{note}{arXiv:1607.06450 [cs, stat]}
       \field{title}{Layer {Normalization}}
       \field{urlday}{9}
       \field{urlmonth}{5}
@@ -131,7 +130,6 @@
       \field{abstract}{Magnetic Resonance Imaging (MRI) is among the most important medical imaging techniques available today. There is an installed base of approximately 15,000 MRI scanners worldwide. Each of these scanners is capable of running many different "pulse sequences", which are governed by physics and engineering principles, and implemented by software programs that control the MRI hardware. To utilize an MRI scanner to the fullest extent, a conceptual understanding of its pulse sequences is crucial. Handbook of MRI Pulse Sequences offers a complete guide that can help the scientists, engineers, clinicians, and technologists in the field of MRI understand and better employ their scanner. Explains pulse sequences, their components, and the associated image reconstruction methods commonly used in MRI Provides self-contained sections for individual techniques Can be used as a quick reference guide or as a resource for deeper study Includes both non-mathematical and mathematical descriptions Contains numerous figures, tables, references, and worked example problems}
       \field{isbn}{978-0-08-053312-4}
       \field{month}{9}
-      \field{note}{Google-Books-ID: d6PLHcyejEIC}
       \field{title}{Handbook of {MRI} {Pulse} {Sequences}}
       \field{year}{2004}
       \verb{file}
@@ -176,7 +174,6 @@
       \field{volume}{38}
       \field{year}{2013}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{2\bibrangedash 11}
       \range{pages}{10}
       \verb{doi}
@@ -296,7 +293,6 @@
       \field{issn}{1854-3871}
       \field{journaltitle}{Informatica}
       \field{month}{9}
-      \field{note}{Number: 3}
       \field{number}{3}
       \field{title}{Reminder of the {First} {Paper} on {Transfer} {Learning} in {Neural} {Networks}, 1976}
       \field{urlday}{10}
@@ -873,7 +869,6 @@
       \field{abstract}{The process by which the protons release the energy that they absorbed from the RF pulse is known as relaxation. Relaxation is a fundamental aspect of MR, as essential as energy absorption, and provides the primary mechanism for image contrast. In resonance absorption, RF energy is absorbed by the protons only when it is broadcast at the correct frequency. Following excitation, relaxation occurs in which the protons release this added energy and return to their original configuration through naturally occurring processes. Two relaxation times can be measured, known as T1 and T2. While both times measure the spontaneous energy transfer by an excited proton, they differ in the final disposition of the energy. The rate of RF pulse application and the efficiency of energy transfer must have the proper balance. Spin-lattice relaxation measures the rate of energy transfer from an excited proton to its surroundings.}
       \field{booktitle}{{MRI} {Basic} {Principles} and {Applications}}
       \field{isbn}{978-1-119-01306-8}
-      \field{note}{Section: 3 \_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119013068.ch3}
       \field{title}{Relaxation}
       \field{urlday}{18}
       \field{urlmonth}{4}
@@ -943,7 +938,6 @@
       \field{abstract}{This chapter introduces the basic electromagnetic and mathematical concepts needed to understand the design of the coils that generate the fields used in MRI. It discusses the desirable properties of the various coil systems (main magnet, rf, and gradient). The design of coils lies primarily in determining the optimal arrangements of current necessary to produce the magnetic fields used in MRI. The second class of coils employed in MRI are linear magnetic field gradient coils. These coils are used to encode spatially the positions of the spins in MRI by varying the value of the local magnetic field causing spins Larmor frequencies to vary as a function of their positions. These coils are rapidly switched during MRI sequences to allow the collection of large regions of κ-space in a short amount of time. It gives a brief introduction to radiofrequency power deposition and specific absorption rate.}
       \field{booktitle}{Magnetic {Resonance} {Imaging}}
       \field{isbn}{978-1-118-63395-3}
-      \field{note}{Section: 27 \_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118633953.ch27}
       \field{title}{Introduction to {MRI} {Coils} and {Magnets}}
       \field{urlday}{8}
       \field{urlmonth}{5}
@@ -1116,7 +1110,6 @@
       \field{abstract}{We propose a robust multimodal dictionary learning method for multimodal images. Joint dictionary learning for both modalities may be impaired by lack of correspondence between image modalities in training data, for example due to areas of low quality in one of the modalities. Dictionaries learned with such non-corresponding data will induce uncertainty about image representation. In this paper, we propose a probabilistic model that accounts for image areas that are poorly corresponding between the image modalities. We cast the problem of learning a dictionary in presence of problematic image patches as a likelihood maximization problem and solve it with a variant of the EM algorithm. Our algorithm iterates identiﬁcation of poorly corresponding patches and reﬁnements of the dictionary. We tested our method on synthetic and real data. We show improvements in image prediction quality and alignment accuracy when using the method for multimodal image registration.}
       \field{booktitle}{Advanced {Information} {Systems} {Engineering}}
       \field{isbn}{978-3-642-38708-1 978-3-642-38709-8}
-      \field{note}{Series Title: Lecture Notes in Computer Science}
       \field{title}{Robust {Multimodal} {Dictionary} {Learning}}
       \field{urlday}{10}
       \field{urlmonth}{5}
@@ -1463,6 +1456,67 @@
       \endverb
       \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition}
     \endentry
+    \entry{chai_deep_2021}{article}{}
+      \name{author}{4}{}{%
+        {{hash=ed6ce77049c03b0c0fa5feb502126e73}{%
+           family={Chai},
+           familyi={C\bibinitperiod},
+           given={Junyi},
+           giveni={J\bibinitperiod}}}%
+        {{hash=42bab849c7985f57db368fcd88835550}{%
+           family={Zeng},
+           familyi={Z\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+        {{hash=7b620dd2097ccd461cda89519288b736}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Anming},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7608a02fb3ca1b07207deca99d5c9f27}{%
+           family={Ngai},
+           familyi={N\bibinitperiod},
+           given={Eric\bibnamedelimb W.\bibnamedelimi T.},
+           giveni={E\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{4c6b4b46eb7e56037eb54fa25723fc8f}
+      \strng{fullhash}{a9d74dd728c8c63bb132f1dfd5790563}
+      \strng{bibnamehash}{4c6b4b46eb7e56037eb54fa25723fc8f}
+      \strng{authorbibnamehash}{4c6b4b46eb7e56037eb54fa25723fc8f}
+      \strng{authornamehash}{4c6b4b46eb7e56037eb54fa25723fc8f}
+      \strng{authorfullhash}{a9d74dd728c8c63bb132f1dfd5790563}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Deep learning has been overwhelmingly successful in computer vision (CV), natural language processing, and video/speech recognition. In this paper, our focus is on CV. We provide a critical review of recent achievements in terms of techniques and applications. We identify eight emerging techniques, investigate their origins and updates, and finally emphasize their applications in four key scenarios, including recognition, visual tracking, semantic segmentation, and image restoration. We recognize three development stages in the past decade and emphasize research trends for future works. The summarizations, knowledge accumulations, and creations could benefit researchers in the academia and participators in the CV industries.}
+      \field{issn}{2666-8270}
+      \field{journaltitle}{Machine Learning with Applications}
+      \field{month}{12}
+      \field{shorttitle}{Deep learning in computer vision}
+      \field{title}{Deep learning in computer vision: {A} critical review of emerging techniques and application scenarios}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{6}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{100134}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.mlwa.2021.100134
+      \endverb
+      \verb{file}
+      \verb Eingereichte Version:/home/someusername/workspace/UNet-bSSFP/lit/storage/5YN7USEW/Chai et al. - 2021 - Deep learning in computer vision A critical revie.pdf:application/pdf;ScienceDirect Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/8LIRIRYJ/S2666827021000670.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S2666827021000670
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S2666827021000670
+      \endverb
+      \keyw{Computer vision,Deep learning,Literature review,Machine learning}
+    \endentry
     \entry{chen_med3d_2019}{misc}{}
       \name{author}{3}{}{%
         {{hash=8a4e1b2730dcad4d093174fe61dd01eb}{%
@@ -1496,7 +1550,6 @@
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{The performance on deep learning is significantly affected by volume of training data. Models pre-trained from massive dataset such as ImageNet become a powerful weapon for speeding up training convergence and improving accuracy. Similarly, models based on large dataset are important for the development of deep learning in 3D medical images. However, it is extremely challenging to build a sufficiently large dataset due to difficulty of data acquisition and annotation in 3D medical imaging. We aggregate the dataset from several medical challenges to build 3DSeg-8 dataset with diverse modalities, target organs, and pathologies. To extract general medical three-dimension (3D) features, we design a heterogeneous 3D network called Med3D to co-train multi-domain 3DSeg-8 so as to make a series of pre-trained models. We transfer Med3D pre-trained models to lung segmentation in LIDC dataset, pulmonary nodule classification in LIDC dataset and liver segmentation on LiTS challenge. Experiments show that the Med3D can accelerate the training convergence speed of target 3D medical tasks 2 times compared with model pre-trained on Kinetics dataset, and 10 times compared with training from scratch as well as improve accuracy ranging from 3\% to 20\%. Transferring our Med3D model on state-the-of-art DenseASPP segmentation network, in case of single model, we achieve 94.6{\textbackslash}\% Dice coefficient which approaches the result of top-ranged algorithms on the LiTS challenge.}
       \field{month}{7}
-      \field{note}{arXiv:1904.00625 [cs]}
       \field{shorttitle}{{Med3D}}
       \field{title}{{Med3D}: {Transfer} {Learning} for {3D} {Medical} {Image} {Analysis}}
       \field{urlday}{10}
@@ -1517,85 +1570,6 @@
       \verb http://arxiv.org/abs/1904.00625
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
-    \endentry
-    \entry{chronopoulou_embarrassingly_2019}{inproceedings}{}
-      \name{author}{3}{}{%
-        {{hash=b0b7a7b96f4874316bb3a8dc595890e3}{%
-           family={Chronopoulou},
-           familyi={C\bibinitperiod},
-           given={Alexandra},
-           giveni={A\bibinitperiod}}}%
-        {{hash=b1fa8e198db3a205dd0e9a7b05909238}{%
-           family={Baziotis},
-           familyi={B\bibinitperiod},
-           given={Christos},
-           giveni={C\bibinitperiod}}}%
-        {{hash=2eb58cecf753a66a5aa5c394edd43442}{%
-           family={Potamianos},
-           familyi={P\bibinitperiod},
-           given={Alexandros},
-           giveni={A\bibinitperiod}}}%
-      }
-      \name{editor}{3}{}{%
-        {{hash=f974925c5c6cca1d67fd604cc9fc9c79}{%
-           family={Burstein},
-           familyi={B\bibinitperiod},
-           given={Jill},
-           giveni={J\bibinitperiod}}}%
-        {{hash=3aec97177cb69c892f2c8a2d9bc31a10}{%
-           family={Doran},
-           familyi={D\bibinitperiod},
-           given={Christy},
-           giveni={C\bibinitperiod}}}%
-        {{hash=b47889ad94571547c92970150485798b}{%
-           family={Solorio},
-           familyi={S\bibinitperiod},
-           given={Thamar},
-           giveni={T\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Minneapolis, Minnesota}%
-      }
-      \list{publisher}{1}{%
-        {Association for Computational Linguistics}%
-      }
-      \strng{namehash}{7271497ebbda9714386f51e78ca2c681}
-      \strng{fullhash}{7271497ebbda9714386f51e78ca2c681}
-      \strng{bibnamehash}{7271497ebbda9714386f51e78ca2c681}
-      \strng{authorbibnamehash}{7271497ebbda9714386f51e78ca2c681}
-      \strng{authornamehash}{7271497ebbda9714386f51e78ca2c681}
-      \strng{authorfullhash}{7271497ebbda9714386f51e78ca2c681}
-      \strng{editorbibnamehash}{3ba8abc3fd60f22784bd617fd230d1c6}
-      \strng{editornamehash}{3ba8abc3fd60f22784bd617fd230d1c6}
-      \strng{editorfullhash}{3ba8abc3fd60f22784bd617fd230d1c6}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{A growing number of state-of-the-art transfer learning methods employ language models pretrained on large generic corpora. In this paper we present a conceptually simple and effective transfer learning approach that addresses the problem of catastrophic forgetting. Specifically, we combine the task-specific optimization function with an auxiliary language model objective, which is adjusted during the training process. This preserves language regularities captured by language models, while enabling sufficient adaptation for solving the target task. Our method does not require pretraining or finetuning separate components of the network and we train our models end-to-end in a single step. We present results on a variety of challenging affective and text classification tasks, surpassing well established transfer learning methods with greater level of complexity.}
-      \field{booktitle}{Proceedings of the 2019 {Conference} of the {North} {American} {Chapter} of the {Association} for {Computational} {Linguistics}: {Human} {Language} {Technologies}, {Volume} 1 ({Long} and {Short} {Papers})}
-      \field{month}{6}
-      \field{title}{An {Embarrassingly} {Simple} {Approach} for {Transfer} {Learning} from {Pretrained} {Language} {Models}}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{year}{2019}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{2089\bibrangedash 2095}
-      \range{pages}{7}
-      \verb{doi}
-      \verb 10.18653/v1/N19-1213
-      \endverb
-      \verb{file}
-      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/4UEZKUMU/Chronopoulou et al. - 2019 - An Embarrassingly Simple Approach for Transfer Lea.pdf:application/pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://aclanthology.org/N19-1213
-      \endverb
-      \verb{url}
-      \verb https://aclanthology.org/N19-1213
-      \endverb
     \endentry
     \entry{Clare1997FunctionalM}{inproceedings}{}
       \name{author}{1}{}{%
@@ -1667,78 +1641,105 @@
       \endverb
       \keyw{artificial intelligence,deep learning,fine-tuning,finetuning,machine learning}
     \endentry
-    \entry{dhollander_diffusion_2016}{incollection}{}
-      \name{author}{1}{}{%
-        {{hash=d9d0c37e8431eea31a2703b5ab5ec161}{%
-           family={Dhollander},
+    \entry{dosovitskiy_image_2021}{misc}{}
+      \name{author}{12}{}{%
+        {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
+           family={Dosovitskiy},
            familyi={D\bibinitperiod},
-           given={Thijs},
-           giveni={T\bibinitperiod}}}%
-      }
-      \name{editor}{3}{}{%
-        {{hash=2cb5bf6ba938feb62a02e46afa5c212d}{%
-           family={Van\bibnamedelima Hecke},
-           familyi={V\bibinitperiod\bibinitdelim H\bibinitperiod},
-           given={Wim},
-           giveni={W\bibinitperiod}}}%
-        {{hash=ba9198970f88c4b262a4a83846190a98}{%
-           family={Emsell},
-           familyi={E\bibinitperiod},
-           given={Louise},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=836254958eac09b30d45dd67a75ce4fa}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={Lucas},
            giveni={L\bibinitperiod}}}%
-        {{hash=aad9368c18d7108ca49d81a5c8a5d36b}{%
-           family={Sunaert},
-           familyi={S\bibinitperiod},
-           given={Stefan},
+        {{hash=6807e3c00242c6bf6a3179905040471b}{%
+           family={Kolesnikov},
+           familyi={K\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b398fca6879fde89a032b8e7de2f26b5}{%
+           family={Weissenborn},
+           familyi={W\bibinitperiod},
+           given={Dirk},
+           giveni={D\bibinitperiod}}}%
+        {{hash=00b950307c7d096765bb6df00c7c5c3a}{%
+           family={Zhai},
+           familyi={Z\bibinitperiod},
+           given={Xiaohua},
+           giveni={X\bibinitperiod}}}%
+        {{hash=1a47640139e63b9b5969c969dfe95def}{%
+           family={Unterthiner},
+           familyi={U\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=965baf6fa5686a42b1564330c5e11f2f}{%
+           family={Dehghani},
+           familyi={D\bibinitperiod},
+           given={Mostafa},
+           giveni={M\bibinitperiod}}}%
+        {{hash=06829adce8713f0ace444279dcd7328f}{%
+           family={Minderer},
+           familyi={M\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c95269b4a2e23e1e526be521c7ec6ad4}{%
+           family={Heigold},
+           familyi={H\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=450963f966620925cb8fecd32f7a6ee1}{%
+           family={Gelly},
+           familyi={G\bibinitperiod},
+           given={Sylvain},
            giveni={S\bibinitperiod}}}%
+        {{hash=831027ee0ebf22375e2a86afc1881909}{%
+           family={Uszkoreit},
+           familyi={U\bibinitperiod},
+           given={Jakob},
+           giveni={J\bibinitperiod}}}%
+        {{hash=493a532418540859dca92cf3b579de2a}{%
+           family={Houlsby},
+           familyi={H\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
       }
       \list{language}{1}{%
         {en}%
       }
-      \list{location}{1}{%
-        {New York, NY}%
-      }
       \list{publisher}{1}{%
-        {Springer}%
+        {arXiv}%
       }
-      \strng{namehash}{d9d0c37e8431eea31a2703b5ab5ec161}
-      \strng{fullhash}{d9d0c37e8431eea31a2703b5ab5ec161}
-      \strng{bibnamehash}{d9d0c37e8431eea31a2703b5ab5ec161}
-      \strng{authorbibnamehash}{d9d0c37e8431eea31a2703b5ab5ec161}
-      \strng{authornamehash}{d9d0c37e8431eea31a2703b5ab5ec161}
-      \strng{authorfullhash}{d9d0c37e8431eea31a2703b5ab5ec161}
-      \strng{editorbibnamehash}{01ef7be86435b062beaaa4b99fc5a8a4}
-      \strng{editornamehash}{01ef7be86435b062beaaa4b99fc5a8a4}
-      \strng{editorfullhash}{01ef7be86435b062beaaa4b99fc5a8a4}
+      \strng{namehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{fullhash}{b8c06eaeb698f61fc96ff3e5570552ec}
+      \strng{bibnamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authorbibnamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authornamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authorfullhash}{b8c06eaeb698f61fc96ff3e5570552ec}
       \field{sortinit}{D}
       \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
       \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{The term “diffusion tensor imaging” (DTI) is used on many occasions to informally refer to anything related to diffusion-weighted imaging (DWI). From a formal point of view, however, DTI is the practice of fitting a tensor model to the DWI data. It is one of the simplest ways to model the DWI data that accounts, up to some extent, for the anisotropy in this kind of data. Exploiting this anisotropy is key to obtaining the characteristic directionally encoded color (DEC) maps and tractograms that are typically associated to the practice of DWI in general. Hence, it is not surprising many people use the term “DTI” in very different contexts. In this chapter, we aim to give the reader a feeling for what is really under the hood of the true art of DTI: obtaining these so-called diffusion tensors. What are they actually modeling? And, in this context, what is a tensor anyway? There’s a short and clear answer to this: the diffusion tensor describes the apparent diffusion coefficient (ADC), in function of direction. Hmm… “ADC” you say…?}
-      \field{booktitle}{Diffusion {Tensor} {Imaging}: {A} {Practical} {Handbook}}
-      \field{isbn}{978-1-4939-3118-7}
-      \field{title}{From {Diffusion} to the {Diffusion} {Tensor}}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{While the Transformer architecture has become the de-facto standard for natural language processing tasks, its applications to computer vision remain limited. In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure in place. We show that this reliance on CNNs is not necessary and a pure transformer applied directly to sequences of image patches can perform very well on image classification tasks. When pre-trained on large amounts of data and transferred to multiple mid-sized or small image recognition benchmarks (ImageNet, CIFAR-100, VTAB, etc.), Vision Transformer (ViT) attains excellent results compared to state-of-the-art convolutional networks while requiring substantially fewer computational resources to train.}
+      \field{annotation}{Comment: Fine-tuning code and pre-trained models are available at https://github.com/google-research/vision\_transformer. ICLR camera-ready version with 2 small modifications: 1) Added a discussion of CLS vs GAP classifier in the appendix, 2) Fixed an error in exaFLOPs computation in Figure 5 and Table 6 (relative performance of models is basically not affected)}
+      \field{month}{6}
+      \field{shorttitle}{An {Image} is {Worth} 16x16 {Words}}
+      \field{title}{An {Image} is {Worth} 16x16 {Words}: {Transformers} for {Image} {Recognition} at {Scale}}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
       \field{urlyear}{2024}
-      \field{year}{2016}
+      \field{year}{2021}
       \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{37\bibrangedash 63}
-      \range{pages}{27}
-      \verb{doi}
-      \verb 10.1007/978-1-4939-3118-7_4
-      \endverb
       \verb{file}
-      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/RKQUQZES/Dhollander - 2016 - From Diffusion to the Diffusion Tensor.pdf:application/pdf
+      \verb Dosovitskiy et al. - 2021 - An Image is Worth 16x16 Words Transformers for Im.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/QNFNR3HQ/Dosovitskiy et al. - 2021 - An Image is Worth 16x16 Words Transformers for Im.pdf:application/pdf
       \endverb
       \verb{urlraw}
-      \verb https://doi.org/10.1007/978-1-4939-3118-7_4
+      \verb http://arxiv.org/abs/2010.11929
       \endverb
       \verb{url}
-      \verb https://doi.org/10.1007/978-1-4939-3118-7_4
+      \verb http://arxiv.org/abs/2010.11929
       \endverb
-      \keyw{Anisotropy,Apparent diffusion coefficient,Eigenvalues,Eigenvectors,Tensor fitting}
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning}
     \endentry
     \entry{dumoulin_guide_2018}{misc}{}
       \name{author}{2}{}{%
@@ -1771,7 +1772,6 @@
       \field{labeltitlesource}{title}
       \field{abstract}{We introduce a guide to help deep learning practitioners understand and manipulate convolutional neural network architectures. The guide clarifies the relationship between various properties (input shape, kernel shape, zero padding, strides and output shape) of convolutional, pooling and transposed convolutional layers, as well as the relationship between convolutional and transposed convolutional layers. Relationships are derived for various cases, and are illustrated in order to make them intuitive.}
       \field{month}{1}
-      \field{note}{arXiv:1603.07285 [cs, stat]}
       \field{title}{A guide to convolution arithmetic for deep learning}
       \field{urlday}{9}
       \field{urlmonth}{5}
@@ -2023,7 +2023,6 @@
       \field{issn}{1662-5196}
       \field{journaltitle}{Frontiers in Neuroinformatics}
       \field{month}{2}
-      \field{note}{Publisher: Frontiers}
       \field{title}{Dipy, a library for the analysis of diffusion {MRI} data}
       \field{urlday}{10}
       \field{urlmonth}{4}
@@ -2072,7 +2071,6 @@
       \field{issn}{1941-0093}
       \field{journaltitle}{IEEE Transactions on Neural Networks}
       \field{month}{7}
-      \field{note}{Conference Name: IEEE Transactions on Neural Networks}
       \field{number}{4}
       \field{shorttitle}{Pricing and hedging derivative securities with neural networks}
       \field{title}{Pricing and hedging derivative securities with neural networks: {Bayesian} regularization, early stopping, and bagging}
@@ -2163,7 +2161,6 @@
       \field{abstract}{Whereas before 2006 it appears that deep multi-layer neural networks were not successfully trained, since then several algorithms have been shown to successfully train them, with experimental results showing the superiority of deeper vs less deep architectures. All these experimental results were obtained with new initialization or training mechanisms. Our objective here is to understand better why standard gradient descent from random initialization is doing so poorly with deep neural networks, to better understand these recent relative successes and help design better algorithms in the future. We first observe the influence of the non-linear activations functions. We find that the logistic sigmoid activation is unsuited for deep networks with random initialization because of its mean value, which can drive especially the top hidden layer into saturation. Surprisingly, we find that saturated units can move out of saturation by themselves, albeit slowly, and explaining the plateaus sometimes seen when training neural networks. We find that a new non-linearity that saturates less can often be beneficial. Finally, we study how activations and gradients vary across layers and during training, with the idea that training may be more difficult when the singular values of the Jacobian associated with each layer are far from 1. Based on these considerations, we propose a new initialization scheme that brings substantially faster convergence.}
       \field{booktitle}{Proceedings of the {Thirteenth} {International} {Conference} on {Artificial} {Intelligence} and {Statistics}}
       \field{month}{3}
-      \field{note}{ISSN: 1938-7228}
       \field{title}{Understanding the difficulty of training deep feedforward neural networks}
       \field{urlday}{9}
       \field{urlmonth}{5}
@@ -2461,7 +2458,6 @@
       \field{issn}{2052-4463}
       \field{journaltitle}{Scientific Data}
       \field{month}{6}
-      \field{note}{Publisher: Nature Publishing Group}
       \field{number}{1}
       \field{title}{The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments}
       \field{urlday}{12}
@@ -2485,56 +2481,6 @@
       \verb https://www.nature.com/articles/sdata201644
       \endverb
       \keyw{Data publication and archiving,Research data}
-    \endentry
-    \entry{grigoryev_when_2021}{inproceedings}{}
-      \name{author}{3}{}{%
-        {{hash=29a79315c025f2c516603511dbcf15a4}{%
-           family={Grigoryev},
-           familyi={G\bibinitperiod},
-           given={Timofey},
-           giveni={T\bibinitperiod}}}%
-        {{hash=241aaf39d02a12eaf63714760ef624fa}{%
-           family={Voynov},
-           familyi={V\bibinitperiod},
-           given={Andrey},
-           giveni={A\bibinitperiod}}}%
-        {{hash=799a6bc499428a859c0cfe734a21bdbb}{%
-           family={Babenko},
-           familyi={B\bibinitperiod},
-           given={Artem},
-           giveni={A\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{557f77d770d7327a393b638e99206643}
-      \strng{fullhash}{557f77d770d7327a393b638e99206643}
-      \strng{bibnamehash}{557f77d770d7327a393b638e99206643}
-      \strng{authorbibnamehash}{557f77d770d7327a393b638e99206643}
-      \strng{authornamehash}{557f77d770d7327a393b638e99206643}
-      \strng{authorfullhash}{557f77d770d7327a393b638e99206643}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{The literature has proposed several methods to finetune pretrained GANs on new datasets, which typically results in higher performance compared to training from scratch, especially in the limited-data regime. However, despite the apparent empirical benefits of GAN pretraining, its inner mechanisms were not analyzed in-depth, and understanding of its role is not entirely clear. Moreover, the essential practical details, e.g., selecting a proper pretrained GAN checkpoint, currently do not have rigorous grounding and are typically determined by trial and error. This work aims to dissect the process of GAN finetuning. First, we show that initializing the GAN training process by a pretrained checkpoint primarily affects the model's coverage rather than the fidelity of individual samples. Second, we explicitly describe how pretrained generators and discriminators contribute to the finetuning process and explain the previous evidence on the importance of pretraining both of them. Finally, as an immediate practical benefit of our analysis, we describe a simple recipe to choose an appropriate GAN checkpoint that is the most suitable for finetuning to a particular target task. Importantly, for most of the target tasks, Imagenet-pretrained GAN, despite having poor visual quality, appears to be an excellent starting point for finetuning, resembling the typical pretraining scenario of discriminative computer vision models.}
-      \field{month}{10}
-      \field{title}{When, {Why}, and {Which} {Pretrained} {GANs} {Are} {Useful}?}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{year}{2021}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \verb{file}
-      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/DEH66NEP/Grigoryev et al. - 2021 - When, Why, and Which Pretrained GANs Are Useful.pdf:application/pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://openreview.net/forum?id=4Ycr8oeCoIh
-      \endverb
-      \verb{url}
-      \verb https://openreview.net/forum?id=4Ycr8oeCoIh
-      \endverb
     \endentry
     \entry{halliday}{book}{}
       \name{author}{3}{}{%
@@ -2573,7 +2519,6 @@
       \field{abstract}{The 10th edition of Halliday, Resnick and Walkers Fundamentals of Physics provides the perfect solution for teaching a 2 or 3 semester calculus-based physics course, providing instructors with a tool by which they can teach students how to effectively read scientific material, identify fundamental concepts, reason through scientific questions, and solve quantitative problems. The 10th edition builds upon previous editions by offering new features designed to better engage students and support critical thinking. These include NEW Video Illustrations that bring the subject matter to life, NEW Vector Drawing Questions that test students conceptual understanding, and additional multimedia resources (videos and animations) that provide an alternative pathway through the material for those who struggle with reading scientific exposition. WileyPLUS sold separately from text.}
       \field{isbn}{978-1-118-23071-8}
       \field{month}{8}
-      \field{note}{Google-Books-ID: HybkAwAAQBAJ}
       \field{title}{Fundamentals of {Physics}}
       \field{year}{2013}
       \verb{file}
@@ -2782,7 +2727,6 @@
       \field{issn}{1476-4687}
       \field{journaltitle}{Nature}
       \field{month}{9}
-      \field{note}{Publisher: Nature Publishing Group}
       \field{number}{7825}
       \field{title}{Array programming with {NumPy}}
       \field{urlday}{12}
@@ -2806,6 +2750,76 @@
       \verb https://www.nature.com/articles/s41586-020-2649-2
       \endverb
       \keyw{Computational neuroscience,Computational science,Computer science,Software,Solar physics}
+    \endentry
+    \entry{hatamizadeh_swin_2022}{misc}{}
+      \name{author}{6}{}{%
+        {{hash=4a8b0d75ef5dd9aff244bd459eb56921}{%
+           family={Hatamizadeh},
+           familyi={H\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d0968ce3719368d26817f02301e44c29}{%
+           family={Nath},
+           familyi={N\bibinitperiod},
+           given={Vishwesh},
+           giveni={V\bibinitperiod}}}%
+        {{hash=caeb0e5523b56ad22085585d7f65afa4}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Yucheng},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=43bfecf0db835905ffe98dadaa0b057f}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Dong},
+           giveni={D\bibinitperiod}}}%
+        {{hash=930b2a18b29ddf8edf110e14b3428bfc}{%
+           family={Roth},
+           familyi={R\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod}}}%
+        {{hash=40c221ac11c898cb10013b2468fc229b}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Daguang},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{4e0e6478f86fbf44f0fdf0c69f65846f}
+      \strng{fullhash}{7f4d2c9a158a78935d0ebb34094ac757}
+      \strng{bibnamehash}{4e0e6478f86fbf44f0fdf0c69f65846f}
+      \strng{authorbibnamehash}{4e0e6478f86fbf44f0fdf0c69f65846f}
+      \strng{authornamehash}{4e0e6478f86fbf44f0fdf0c69f65846f}
+      \strng{authorfullhash}{7f4d2c9a158a78935d0ebb34094ac757}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Semantic segmentation of brain tumors is a fundamental medical image analysis task involving multiple MRI imaging modalities that can assist clinicians in diagnosing the patient and successively studying the progression of the malignant entity. In recent years, Fully Convolutional Neural Networks (FCNNs) approaches have become the de facto standard for 3D medical image segmentation. The popular "U-shaped" network architecture has achieved state-of-the-art performance benchmarks on different 2D and 3D semantic segmentation tasks and across various imaging modalities. However, due to the limited kernel size of convolution layers in FCNNs, their performance of modeling long-range information is sub-optimal, and this can lead to deficiencies in the segmentation of tumors with variable sizes. On the other hand, transformer models have demonstrated excellent capabilities in capturing such long-range information in multiple domains, including natural language processing and computer vision. Inspired by the success of vision transformers and their variants, we propose a novel segmentation model termed Swin UNEt TRansformers (Swin UNETR). Specifically, the task of 3D brain tumor semantic segmentation is reformulated as a sequence to sequence prediction problem wherein multi-modal input data is projected into a 1D sequence of embedding and used as an input to a hierarchical Swin transformer as the encoder. The swin transformer encoder extracts features at five different resolutions by utilizing shifted windows for computing self-attention and is connected to an FCNN-based decoder at each resolution via skip connections. We have participated in BraTS 2021 segmentation challenge, and our proposed model ranks among the top-performing approaches in the validation phase. Code: https://monai.io/research/swin-unetr}
+      \field{annotation}{Comment: 13 pages, 3 figures}
+      \field{month}{1}
+      \field{shorttitle}{Swin {UNETR}}
+      \field{title}{Swin {UNETR}: {Swin} {Transformers} for {Semantic} {Segmentation} of {Brain} {Tumors} in {MRI} {Images}}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2201.01266
+      \endverb
+      \verb{file}
+      \verb arXiv Fulltext PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/7RJ5JWQG/Hatamizadeh et al. - 2022 - Swin UNETR Swin Transformers for Semantic Segment.pdf:application/pdf;arXiv.org Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/5GJDTZR7/2201.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2201.01266
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2201.01266
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning,Electrical Engineering and Systems Science - Image and Video Processing}
     \endentry
     \entry{he_deep_2016}{inproceedings}{}
       \name{author}{4}{}{%
@@ -2977,7 +2991,6 @@
       \field{issn}{0195-6108, 1936-959X}
       \field{journaltitle}{American Journal of Neuroradiology}
       \field{month}{2}
-      \field{note}{Publisher: American Journal of Neuroradiology Section: BRAIN}
       \field{number}{2}
       \field{title}{Diffusion-{Weighted} {MR} {Imaging} in {Normal} {Human} {Brains} in {Various} {Age} {Groups}}
       \field{urlday}{8}
@@ -3040,7 +3053,6 @@
       \field{volume}{71}
       \field{year}{2014}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{230\bibrangedash 237}
       \range{pages}{8}
       \verb{doi}
@@ -3057,74 +3069,69 @@
       \endverb
       \keyw{fast imaging,quantification,relaxometry,T1,T2,triple echo steady-state}
     \endentry
-    \entry{howard_universal_2018}{inproceedings}{}
-      \name{author}{2}{}{%
-        {{hash=5ed422e177c5444b96679479aeed0c51}{%
-           family={Howard},
+    \entry{heule_multi-parametric_2020}{article}{}
+      \name{author}{4}{}{%
+        {{hash=5ce46428423062d80a85b723425cef79}{%
+           family={Heule},
            familyi={H\bibinitperiod},
-           given={Jeremy},
+           given={Rahel},
+           giveni={R\bibinitperiod}}}%
+        {{hash=4d4c9e88cbff53bc331ef8944a7ee95c}{%
+           family={Bause},
+           familyi={B\bibinitperiod},
+           given={Jonas},
            giveni={J\bibinitperiod}}}%
-        {{hash=b468248a20d75c52ee742f4592c2569f}{%
-           family={Ruder},
-           familyi={R\bibinitperiod},
-           given={Sebastian},
-           giveni={S\bibinitperiod}}}%
+        {{hash=f81e2a31a932e555310527a1c9349cec}{%
+           family={Pusterla},
+           familyi={P\bibinitperiod},
+           given={Orso},
+           giveni={O\bibinitperiod}}}%
+        {{hash=d32aa293ed7ed32a40025c81e59197f9}{%
+           family={Scheffler},
+           familyi={S\bibinitperiod},
+           given={Klaus},
+           giveni={K\bibinitperiod}}}%
       }
-      \name{editor}{2}{}{%
-        {{hash=ea70b44be1920f6e8c379706bc7d047a}{%
-           family={Gurevych},
-           familyi={G\bibinitperiod},
-           given={Iryna},
-           giveni={I\bibinitperiod}}}%
-        {{hash=e3085b34ce73d4eb1516551aa3eb4beb}{%
-           family={Miyao},
-           familyi={M\bibinitperiod},
-           given={Yusuke},
-           giveni={Y\bibinitperiod}}}%
+      \list{language}{1}{%
+        {en}%
       }
-      \list{location}{1}{%
-        {Melbourne, Australia}%
-      }
-      \list{publisher}{1}{%
-        {Association for Computational Linguistics}%
-      }
-      \strng{namehash}{7caeb63ea6a1e3558e6f9d46f7f11450}
-      \strng{fullhash}{7caeb63ea6a1e3558e6f9d46f7f11450}
-      \strng{bibnamehash}{7caeb63ea6a1e3558e6f9d46f7f11450}
-      \strng{authorbibnamehash}{7caeb63ea6a1e3558e6f9d46f7f11450}
-      \strng{authornamehash}{7caeb63ea6a1e3558e6f9d46f7f11450}
-      \strng{authorfullhash}{7caeb63ea6a1e3558e6f9d46f7f11450}
-      \strng{editorbibnamehash}{49872d3e2bf9fbad3a0eb3aab98db401}
-      \strng{editornamehash}{49872d3e2bf9fbad3a0eb3aab98db401}
-      \strng{editorfullhash}{49872d3e2bf9fbad3a0eb3aab98db401}
+      \strng{namehash}{90cd1433493371798caa88670bc2b270}
+      \strng{fullhash}{2e5aa06d65242756556c221f1cb15b9e}
+      \strng{bibnamehash}{90cd1433493371798caa88670bc2b270}
+      \strng{authorbibnamehash}{90cd1433493371798caa88670bc2b270}
+      \strng{authornamehash}{90cd1433493371798caa88670bc2b270}
+      \strng{authorfullhash}{2e5aa06d65242756556c221f1cb15b9e}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Inductive transfer learning has greatly impacted computer vision, but existing approaches in NLP still require task-specific modifications and training from scratch. We propose Universal Language Model Fine-tuning (ULMFiT), an effective transfer learning method that can be applied to any task in NLP, and introduce techniques that are key for fine-tuning a language model. Our method significantly outperforms the state-of-the-art on six text classification tasks, reducing the error by 18-24\% on the majority of datasets. Furthermore, with only 100 labeled examples, it matches the performance of training from scratch on 100 times more data. We open-source our pretrained models and code.}
-      \field{booktitle}{Proceedings of the 56th {Annual} {Meeting} of the {Association} for {Computational} {Linguistics} ({Volume} 1: {Long} {Papers})}
-      \field{month}{7}
-      \field{title}{Universal {Language} {Model} {Fine}-tuning for {Text} {Classification}}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
+      \field{abstract}{Purpose Standard relaxation time quantification using phase-cycled balanced steady-state free precession (bSSFP), eg, motion-insensitive rapid configuration relaxometry (MIRACLE), is subject to a considerable underestimation of tissue T1 and T2 due to asymmetric intra-voxel frequency distributions. In this work, an artificial neural network (ANN) fitting approach is proposed to simultaneously extract accurate reference relaxation times (T1, T2) and robust field map estimates ( , ΔB0) from the bSSFP profile. Methods Whole-brain bSSFP data acquired at 3T were used for the training of a feedforward ANN with N = 12, 6, and 4 phase-cycles. The magnitude and phase of the Fourier transformed complex bSSFP frequency response served as input and the multi-parametric reference set [T1, T2, , ∆B0] as target. The ANN predicted relaxation times were validated against the target and MIRACLE. Results The ANN prediction of T1 and T2 for trained and untrained data agreed well with the reference, even for only four acquired phase-cycles. In contrast, relaxometry based on 4-point MIRACLE was prone to severe off-resonance-related artifacts. ANN predicted and ∆B0 maps showed the expected spatial inhomogeneity patterns in high agreement with the reference measurements for 12-point, 6-point, and 4-point bSSFP phase-cycling schemes. Conclusion ANNs show promise to provide accurate brain tissue T1 and T2 values as well as reliable field map estimates. Moreover, the bSSFP acquisition can be accelerated by reducing the number of phase-cycles while still delivering robust T1, T2, , and ∆B0 estimates.}
+      \field{issn}{1522-2594}
+      \field{journaltitle}{Magnetic Resonance in Medicine}
+      \field{note}{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/mrm.28325}
+      \field{number}{6}
+      \field{title}{Multi-parametric artificial neural network fitting of phase-cycled balanced steady-state free precession data}
+      \field{urlday}{16}
+      \field{urlmonth}{5}
       \field{urlyear}{2024}
-      \field{year}{2018}
+      \field{volume}{84}
+      \field{year}{2020}
       \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{328\bibrangedash 339}
-      \range{pages}{12}
+      \field{pages}{2981\bibrangedash 2993}
+      \range{pages}{13}
       \verb{doi}
-      \verb 10.18653/v1/P18-1031
+      \verb 10.1002/mrm.28325
       \endverb
       \verb{file}
-      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/4WU8IJDP/Howard and Ruder - 2018 - Universal Language Model Fine-tuning for Text Clas.pdf:application/pdf
+      \verb Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/D2NI8QNE/mrm.html:text/html
       \endverb
       \verb{urlraw}
-      \verb https://aclanthology.org/P18-1031
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.28325
       \endverb
       \verb{url}
-      \verb https://aclanthology.org/P18-1031
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.28325
       \endverb
+      \keyw{human brain tissues,multi-parametric mapping,neural networks,phase-cycled bSSFP,relaxometry}
     \endentry
     \entry{huang_simultaneous_2017}{inproceedings}{}
       \name{author}{3}{}{%
@@ -3157,7 +3164,6 @@
       \field{abstract}{Magnetic Resonance Imaging (MRI) offers high-resolution in vivo imaging and rich functional and anatomical multimodality tissue contrast. In practice, however, there are challenges associated with considerations of scanning costs, patient comfort, and scanning time that constrain how much data can be acquired in clinical or research studies. In this paper, we explore the possibility of generating high-resolution and multimodal images from low-resolution single-modality imagery. We propose the weakly-supervised joint convolutional sparse coding to simultaneously solve the problems of super-resolution (SR) and cross-modality image synthesis. The learning process requires only a few registered multimodal image pairs as the training set. Additionally, the quality of the joint dictionary learning can be improved using a larger set of unpaired images. To combine unpaired data from different image resolutions/modalities, a hetero-domain image alignment term is proposed. Local image neighborhoods are naturally preserved by operating on the whole image domain (as opposed to image patches) and using joint convolutional sparse coding. The paired images are enhanced in the joint learning process with unpaired data and an additional maximum mean discrepancy term, which minimizes the dissimilarity between their feature distributions. Experiments show that the proposed method outperforms state-of-the-art techniques on both SR reconstruction and simultaneous SR and cross-modality synthesis.}
       \field{booktitle}{2017 {IEEE} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR})}
       \field{month}{7}
-      \field{note}{ISSN: 1063-6919}
       \field{title}{Simultaneous {Super}-{Resolution} and {Cross}-{Modality} {Synthesis} of {3D} {Medical} {Images} {Using} {Weakly}-{Supervised} {Joint} {Convolutional} {Sparse} {Coding}}
       \field{urlday}{10}
       \field{urlmonth}{5}
@@ -3210,7 +3216,6 @@
       \field{volume}{10}
       \field{year}{2010}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{S163\bibrangedash S171}
       \range{pages}{-1}
       \verb{doi}
@@ -3248,7 +3253,6 @@
       \field{issn}{1558-366X}
       \field{journaltitle}{Computing in Science \& Engineering}
       \field{month}{5}
-      \field{note}{Conference Name: Computing in Science \& Engineering}
       \field{number}{3}
       \field{shorttitle}{Matplotlib}
       \field{title}{Matplotlib: {A} {2D} {Graphics} {Environment}}
@@ -3368,126 +3372,6 @@
       \verb https://openaccess.thecvf.com/content_cvpr_2017/html/Isola_Image-To-Image_Translation_With_CVPR_2017_paper.html
       \endverb
     \endentry
-    \entry{izmailov_averaging_2019}{misc}{}
-      \name{author}{5}{}{%
-        {{hash=510d675b8d71e867463f4025e0f66971}{%
-           family={Izmailov},
-           familyi={I\bibinitperiod},
-           given={Pavel},
-           giveni={P\bibinitperiod}}}%
-        {{hash=5ee4a652a0fe093122681236d4d4cd29}{%
-           family={Podoprikhin},
-           familyi={P\bibinitperiod},
-           given={Dmitrii},
-           giveni={D\bibinitperiod}}}%
-        {{hash=4b99e011f8a557619a28adf82fc51ddd}{%
-           family={Garipov},
-           familyi={G\bibinitperiod},
-           given={Timur},
-           giveni={T\bibinitperiod}}}%
-        {{hash=f1c8fe7ad4d22499bdaaa3917e11783d}{%
-           family={Vetrov},
-           familyi={V\bibinitperiod},
-           given={Dmitry},
-           giveni={D\bibinitperiod}}}%
-        {{hash=f58290185dfd014024f7abaf3fc0d0f2}{%
-           family={Wilson},
-           familyi={W\bibinitperiod},
-           given={Andrew\bibnamedelima Gordon},
-           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {arXiv}%
-      }
-      \strng{namehash}{1e32dac02a9d45257816a00000c4f5e6}
-      \strng{fullhash}{729469f27be3d36e6186ebad85eb7d32}
-      \strng{bibnamehash}{1e32dac02a9d45257816a00000c4f5e6}
-      \strng{authorbibnamehash}{1e32dac02a9d45257816a00000c4f5e6}
-      \strng{authornamehash}{1e32dac02a9d45257816a00000c4f5e6}
-      \strng{authorfullhash}{729469f27be3d36e6186ebad85eb7d32}
-      \field{sortinit}{I}
-      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Deep neural networks are typically trained by optimizing a loss function with an SGD variant, in conjunction with a decaying learning rate, until convergence. We show that simple averaging of multiple points along the trajectory of SGD, with a cyclical or constant learning rate, leads to better generalization than conventional training. We also show that this Stochastic Weight Averaging (SWA) procedure finds much flatter solutions than SGD, and approximates the recent Fast Geometric Ensembling (FGE) approach with a single model. Using SWA we achieve notable improvement in test accuracy over conventional SGD training on a range of state-of-the-art residual networks, PyramidNets, DenseNets, and Shake-Shake networks on CIFAR-10, CIFAR-100, and ImageNet. In short, SWA is extremely easy to implement, improves generalization, and has almost no computational overhead.}
-      \field{annotation}{Comment: Appears at the Conference on Uncertainty in Artificial Intelligence (UAI), 2018}
-      \field{month}{2}
-      \field{title}{Averaging {Weights} {Leads} to {Wider} {Optima} and {Better} {Generalization}}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{year}{2019}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \verb{doi}
-      \verb 10.48550/arXiv.1803.05407
-      \endverb
-      \verb{file}
-      \verb arXiv Fulltext PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/TLX4R4JU/Izmailov et al. - 2019 - Averaging Weights Leads to Wider Optima and Better.pdf:application/pdf;arXiv.org Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/UNLTZ6M9/1803.html:text/html
-      \endverb
-      \verb{urlraw}
-      \verb http://arxiv.org/abs/1803.05407
-      \endverb
-      \verb{url}
-      \verb http://arxiv.org/abs/1803.05407
-      \endverb
-      \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence,Statistics - Machine Learning,Computer Science - Computer Vision and Pattern Recognition}
-    \endentry
-    \entry{jeevanandham_comparison_2017}{article}{}
-      \name{author}{4}{}{%
-        {{hash=6e5abd14de80919c9c657323ea75dbf7}{%
-           family={Jeevanandham},
-           familyi={J\bibinitperiod},
-           given={Balaji},
-           giveni={B\bibinitperiod}}}%
-        {{hash=8af4c41ede3f08d6f4c08ed83221c904}{%
-           family={Kalyanpur},
-           familyi={K\bibinitperiod},
-           given={Tejas},
-           giveni={T\bibinitperiod}}}%
-        {{hash=42bc7a574ae1f7adf2636b11f4736bb7}{%
-           family={Gupta},
-           familyi={G\bibinitperiod},
-           given={Prashant},
-           giveni={P\bibinitperiod}}}%
-        {{hash=a424d49971fa68f39e45d8c805e76191}{%
-           family={Cherian},
-           familyi={C\bibinitperiod},
-           given={Mathew},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {eng}%
-      }
-      \strng{namehash}{94cffe6b2b5f3af63373c9b5fb89913e}
-      \strng{fullhash}{625e66546b7a6792ceb2742fc170cd06}
-      \strng{bibnamehash}{94cffe6b2b5f3af63373c9b5fb89913e}
-      \strng{authorbibnamehash}{94cffe6b2b5f3af63373c9b5fb89913e}
-      \strng{authornamehash}{94cffe6b2b5f3af63373c9b5fb89913e}
-      \strng{authorfullhash}{625e66546b7a6792ceb2742fc170cd06}
-      \field{sortinit}{J}
-      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{OBJECTIVE: This study was to assess the usefulness of newer three-dimensional (3D)-T1 sampling perfection with application optimized contrast using different flip-angle evolutions (SPACE) and 3D-T2 fluid-attenuated inversion recovery (FLAIR) sequences in evaluation of meningeal abnormalities. METHODS: 78 patients who presented with high suspicion of meningeal abnormalities were evaluated using post-contrast 3D-T2-FLAIR, 3D-T1 magnetization-prepared rapid gradient-echo (MPRAGE) and 3D-T1-SPACE sequences. The images were evaluated independently by two radiologists for cortical gyral, sulcal space, basal cisterns and dural enhancement. The diagnoses were confirmed by further investigations including histopathology. RESULTS: Post-contrast 3D-T1-SPACE and 3D-T2-FLAIR images yielded significantly more information than MPRAGE images (p {<} 0.05 for both SPACE and FLAIR images) in detection of meningeal abnormalities. SPACE images best demonstrated abnormalities in dural and sulcal spaces, whereas FLAIR was useful for basal cisterns enhancement. Both SPACE and FLAIR performed equally well in detection of gyral enhancement. In all 10 patients, where both SPACE and T2-FLAIR images failed to demonstrate any abnormality, further analysis was also negative. CONCLUSION: The 3D-T1-SPACE sequence best demonstrated abnormalities in dural and sulcal spaces, whereas FLAIR was useful for abnormalities in basal cisterns. Both SPACE and FLAIR performed holds good for detection of gyral enhancement. Post-contrast SPACE and FLAIR sequences are superior to the MPRAGE sequence for evaluation of meningeal abnormalities and when used in combination have the maximum sensitivity for leptomeningeal abnormalities. The negative-predictive value is nearly 100\%, where no leptomeningeal abnormality was detected on these sequences. Advances in knowledge: Post-contrast 3D-T1-SPACE and 3D-T2-FLAIR images are more useful than 3D-T1-MPRAGE images in evaluation of meningeal abnormalities.}
-      \field{issn}{1748-880X}
-      \field{journaltitle}{The British Journal of Radiology}
-      \field{month}{6}
-      \field{number}{1074}
-      \field{title}{Comparison of post-contrast {3D}-{T1}-{MPRAGE}, {3D}-{T1}-{SPACE} and {3D}-{T2}-{FLAIR} {MR} images in evaluation of meningeal abnormalities at 3-{T} {MRI}}
-      \field{volume}{90}
-      \field{year}{2017}
-      \true{nocite}
-      \field{pages}{20160834}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.1259/bjr.20160834
-      \endverb
-      \verb{file}
-      \verb Volltext:/home/someusername/workspace/UNet-bSSFP/lit/storage/YYNNKS4N/Jeevanandham et al. - 2017 - Comparison of post-contrast 3D-T1-MPRAGE, 3D-T1-SP.pdf:application/pdf
-      \endverb
-      \keyw{Adolescent,Adult,Child,Contrast Media,Female,Humans,Image Interpretation,Computer-Assisted,Imaging,Three-Dimensional,India,Magnetic Resonance Imaging,Male,Meninges,Middle Aged,Prospective Studies}
-    \endentry
     \entry{jung_spin_2013}{article}{}
       \name{author}{2}{}{%
         {{hash=28050a8cc85001a01b58d05ac5586c44}{%
@@ -3573,7 +3457,6 @@
       \field{abstract}{We introduce Adam, an algorithm for ﬁrst-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efﬁcient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the inﬁnity norm.}
       \field{annotation}{Comment: Published as a conference paper at the 3rd International Conference for Learning Representations, San Diego, 2015}
       \field{month}{1}
-      \field{note}{arXiv:1412.6980 [cs]}
       \field{shorttitle}{Adam}
       \field{title}{Adam: {A} {Method} for {Stochastic} {Optimization}}
       \field{urlday}{10}
@@ -3624,7 +3507,6 @@
       \field{abstract}{How can we perform efﬁcient inference and learning in directed probabilistic models, in the presence of continuous latent variables with intractable posterior distributions, and large datasets? We introduce a stochastic variational inference and learning algorithm that scales to large datasets and, under some mild differentiability conditions, even works in the intractable case. Our contributions are two-fold. First, we show that a reparameterization of the variational lower bound yields a lower bound estimator that can be straightforwardly optimized using standard stochastic gradient methods. Second, we show that for i.i.d. datasets with continuous latent variables per datapoint, posterior inference can be made especially efﬁcient by ﬁtting an approximate inference model (also called a recognition model) to the intractable posterior using the proposed lower bound estimator. Theoretical advantages are reﬂected in experimental results.}
       \field{annotation}{Comment: Fixes a typo in the abstract, no other changes}
       \field{month}{12}
-      \field{note}{arXiv:1312.6114 [cs, stat]}
       \field{title}{Auto-{Encoding} {Variational} {Bayes}}
       \field{urlday}{10}
       \field{urlmonth}{5}
@@ -3692,6 +3574,106 @@
       \verb https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
       \endverb
     \endentry
+    \entry{kustner_cinenet_2020}{article}{}
+      \name{author}{11}{}{%
+        {{hash=2e7ee55eb5a3df8620e623a874095c8b}{%
+           family={Küstner},
+           familyi={K\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=0ea7f7a1dde7d003b345f952e10a40ff}{%
+           family={Fuin},
+           familyi={F\bibinitperiod},
+           given={Niccolo},
+           giveni={N\bibinitperiod}}}%
+        {{hash=09bd4cf1c5543a070103d769da228d4d}{%
+           family={Hammernik},
+           familyi={H\bibinitperiod},
+           given={Kerstin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=3d9f202e1cc6d0fe4ef0dbdddfab7f63}{%
+           family={Bustin},
+           familyi={B\bibinitperiod},
+           given={Aurelien},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f6b8d1c88902fb26f504534e20486314}{%
+           family={Qi},
+           familyi={Q\bibinitperiod},
+           given={Haikun},
+           giveni={H\bibinitperiod}}}%
+        {{hash=fc64414da0c5684e9abad95e7003d2e2}{%
+           family={Hajhosseiny},
+           familyi={H\bibinitperiod},
+           given={Reza},
+           giveni={R\bibinitperiod}}}%
+        {{hash=01ca896ebaf03d43c95d6ed9eb9ac40b}{%
+           family={Masci},
+           familyi={M\bibinitperiod},
+           given={Pier\bibnamedelima Giorgio},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=91c07ff5d8a82598f0a3b86baa2216fc}{%
+           family={Neji},
+           familyi={N\bibinitperiod},
+           given={Radhouene},
+           giveni={R\bibinitperiod}}}%
+        {{hash=92712fbc7c7c3c1daa0630f54b19b582}{%
+           family={Rueckert},
+           familyi={R\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=7c0b058413293bfb28ab77141bbac2bf}{%
+           family={Botnar},
+           familyi={B\bibinitperiod},
+           given={René\bibnamedelima M.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=745aad50d91ffc4d79f3fefb03b2fb79}{%
+           family={Prieto},
+           familyi={P\bibinitperiod},
+           given={Claudia},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{80601f83f37a68fd67fffa7198a837c3}
+      \strng{fullhash}{3a2c07f039f965d08e9cee30fcd56058}
+      \strng{bibnamehash}{80601f83f37a68fd67fffa7198a837c3}
+      \strng{authorbibnamehash}{80601f83f37a68fd67fffa7198a837c3}
+      \strng{authornamehash}{80601f83f37a68fd67fffa7198a837c3}
+      \strng{authorfullhash}{3a2c07f039f965d08e9cee30fcd56058}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Cardiac CINE magnetic resonance imaging is the gold-standard for the assessment of cardiac function. Imaging accelerations have shown to enable 3D CINE with left ventricular (LV) coverage in a single breath-hold. However, 3D imaging remains limited to anisotropic resolution and long reconstruction times. Recently deep learning has shown promising results for computationally efficient reconstructions of highly accelerated 2D CINE imaging. In this work, we propose a novel 4D (3D + time) deep learning-based reconstruction network, termed 4D CINENet, for prospectively undersampled 3D Cartesian CINE imaging. CINENet is based on (3 + 1)D complex-valued spatio-temporal convolutions and multi-coil data processing. We trained and evaluated the proposed CINENet on in-house acquired 3D CINE data of 20 healthy subjects and 15 patients with suspected cardiovascular disease. The proposed CINENet network outperforms iterative reconstructions in visual image quality and contrast (+ 67\% improvement). We found good agreement in LV function (bias ± 95\% confidence) in terms of end-systolic volume (0 ± 3.3 ml), end-diastolic volume (− 0.4 ± 2.0 ml) and ejection fraction (0.1 ± 3.2\%) compared to clinical gold-standard 2D CINE, enabling single breath-hold isotropic 3D CINE in less than 10 s scan and {\textasciitilde} 5 s reconstruction time.}
+      \field{issn}{2045-2322}
+      \field{journaltitle}{Scientific Reports}
+      \field{month}{8}
+      \field{number}{1}
+      \field{shorttitle}{{CINENet}}
+      \field{title}{{CINENet}: deep learning-based {3D} cardiac {CINE} {MRI} reconstruction with multi-coil complex-valued {4D} spatio-temporal convolutions}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{10}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{13710}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1038/s41598-020-70551-8
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/P39MQU2Z/Küstner et al. - 2020 - CINENet deep learning-based 3D cardiac CINE MRI r.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/s41598-020-70551-8
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/s41598-020-70551-8
+      \endverb
+      \keyw{Biomedical engineering,Cardiology,Computational models,Computational science,Data acquisition,Image processing,Machine learning,Magnetic resonance imaging,Three-dimensional imaging}
+    \endentry
     \entry{MRIAGuidedTourMagnetAcademy-2024-05-07}{misc}{}
       \name{author}{1}{}{%
         {{hash=f8cd07e6b2072f0498f9ea8aafff4e99}{%
@@ -3728,67 +3710,6 @@
       \verb{url}
       \verb https://nationalmaglab.org/magnet-academy/read-science-stories/science-simplified/mri-a-guided-tour/
       \endverb
-    \endentry
-    \entry{lecun_deep_2015}{article}{}
-      \name{author}{3}{}{%
-        {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
-           family={LeCun},
-           familyi={L\bibinitperiod},
-           given={Yann},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=40a8e4774982146adc2688546f54efb2}{%
-           family={Bengio},
-           familyi={B\bibinitperiod},
-           given={Yoshua},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=9a8750ccdb2a4cf14d2655face1ce016}{%
-           family={Hinton},
-           familyi={H\bibinitperiod},
-           given={Geoffrey},
-           giveni={G\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{c6c75bd00ce5a488e91a749d8383b3df}
-      \strng{fullhash}{c6c75bd00ce5a488e91a749d8383b3df}
-      \strng{bibnamehash}{c6c75bd00ce5a488e91a749d8383b3df}
-      \strng{authorbibnamehash}{c6c75bd00ce5a488e91a749d8383b3df}
-      \strng{authornamehash}{c6c75bd00ce5a488e91a749d8383b3df}
-      \strng{authorfullhash}{c6c75bd00ce5a488e91a749d8383b3df}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Deep learning allows computational models that are composed of multiple processing layers to learn representations of data with multiple levels of abstraction. These methods have dramatically improved the state-of-the-art in speech recognition, visual object recognition, object detection and many other domains such as drug discovery and genomics. Deep learning discovers intricate structure in large data sets by using the backpropagation algorithm to indicate how a machine should change its internal parameters that are used to compute the representation in each layer from the representation in the previous layer. Deep convolutional nets have brought about breakthroughs in processing images, video, speech and audio, whereas recurrent nets have shone light on sequential data such as text and speech.}
-      \field{issn}{1476-4687}
-      \field{journaltitle}{Nature}
-      \field{month}{5}
-      \field{note}{Publisher: Nature Publishing Group}
-      \field{number}{7553}
-      \field{title}{Deep learning}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{volume}{521}
-      \field{year}{2015}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{436\bibrangedash 444}
-      \range{pages}{9}
-      \verb{doi}
-      \verb 10.1038/nature14539
-      \endverb
-      \verb{file}
-      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/DRLEAYRB/LeCun et al. - 2015 - Deep learning.pdf:application/pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://www.nature.com/articles/nature14539
-      \endverb
-      \verb{url}
-      \verb https://www.nature.com/articles/nature14539
-      \endverb
-      \keyw{Computer science,Mathematics and computing}
     \endentry
     \entry{lecun_handwritten_1989}{inproceedings}{}
       \name{author}{7}{}{%
@@ -3931,7 +3852,6 @@
       \field{abstract}{L\$\_2\$ regularization and weight decay regularization are equivalent for standard stochastic gradient descent (when rescaled by the learning rate), but as we demonstrate this is {\textbackslash}emph\{not\} the case for adaptive gradient algorithms, such as Adam. While common implementations of these algorithms employ L\$\_2\$ regularization (often calling it "weight decay" in what may be misleading due to the inequivalence we expose), we propose a simple modification to recover the original formulation of weight decay regularization by {\textbackslash}emph\{decoupling\} the weight decay from the optimization steps taken w.r.t. the loss function. We provide empirical evidence that our proposed modification (i) decouples the optimal choice of weight decay factor from the setting of the learning rate for both standard SGD and Adam and (ii) substantially improves Adam's generalization performance, allowing it to compete with SGD with momentum on image classification datasets (on which it was previously typically outperformed by the latter). Our proposed decoupled weight decay has already been adopted by many researchers, and the community has implemented it in TensorFlow and PyTorch; the complete source code for our experiments is available at https://github.com/loshchil/AdamW-and-SGDW}
       \field{annotation}{Comment: Published as a conference paper at ICLR 2019}
       \field{month}{1}
-      \field{note}{arXiv:1711.05101 [cs, math]}
       \field{title}{Decoupled {Weight} {Decay} {Regularization}}
       \field{urlday}{10}
       \field{urlmonth}{4}
@@ -4077,6 +3997,114 @@
       \verb https://doi.org/10.1007/BF02478259
       \endverb
       \keyw{Excitatory Synapse,Inhibitory Synapse,Nervous Activity,Spatial Summation,Temporal Summation}
+    \endentry
+    \entry{miller_asymmetries_2010i}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0f424f6f8a9bc7988a594f4ebe521f16}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Karla\bibnamedelima L.},
+           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{0f424f6f8a9bc7988a594f4ebe521f16}
+      \strng{fullhash}{0f424f6f8a9bc7988a594f4ebe521f16}
+      \strng{bibnamehash}{0f424f6f8a9bc7988a594f4ebe521f16}
+      \strng{authorbibnamehash}{0f424f6f8a9bc7988a594f4ebe521f16}
+      \strng{authornamehash}{0f424f6f8a9bc7988a594f4ebe521f16}
+      \strng{authorfullhash}{0f424f6f8a9bc7988a594f4ebe521f16}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The signal in balanced steady-state free precession has a strong sensitivity to off-resonance, which is typically described in terms of a signal “profile” over a range of frequencies. This profile has a well-known form for homogeneous media with a single T1, T2, and resonance frequency, which is symmetric about the on-resonance frequency. However, a straightforward extension to this established signal model predicts that the profile may become asymmetric in the presence of inhomogeneous frequency content, as would be expected to happen in tissue due to microstructural boundaries, compartments, and chemical shift. The presence of asymmetries in the balanced steady-state free precession profile may therefore provide a marker of tissue integrity. This manuscript describes the theory behind balanced steady-state free precession asymmetries, a method for detecting these effects, and the first measurements of balanced steady-state free precession asymmetries in tissue. Asymmetries are found in gray matter, white matter, and muscle, with excellent reproducibility. A companion paper considers the large white matter asymmetries in more detail. Magn Reson Med, 2010. © 2010 Wiley-Liss, Inc.}
+      \field{issn}{1522-2594}
+      \field{journaltitle}{Magnetic Resonance in Medicine}
+      \field{number}{2}
+      \field{shorttitle}{Asymmetries of the balanced {SSFP} profile. {Part} {I}}
+      \field{title}{Asymmetries of the balanced {SSFP} profile. {Part} {I}: {Theory} and observation}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{63}
+      \field{year}{2010}
+      \field{urldateera}{ce}
+      \field{pages}{385\bibrangedash 395}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1002/mrm.22212
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/TR4SPMEP/Miller - 2010 - Asymmetries of the balanced SSFP profile. Part I .pdf:application/pdf;Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/ZSX8AF9M/mrm.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.22212
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.22212
+      \endverb
+      \keyw{asymmetry,balanced SSFP,brain,frequency distribution,muscle}
+    \endentry
+    \entry{miller_asymmetries_2010ii}{article}{}
+      \name{author}{3}{}{%
+        {{hash=0f424f6f8a9bc7988a594f4ebe521f16}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Karla\bibnamedelima L.},
+           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=1b067e83d2e7008cdc1841a1e60c00b5}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={Stephen\bibnamedelima M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=76699172424e6aba3dee772f43f676b6}{%
+           family={Jezzard},
+           familyi={J\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{6385c9862406b55e0b0b499524a18589}
+      \strng{fullhash}{6385c9862406b55e0b0b499524a18589}
+      \strng{bibnamehash}{6385c9862406b55e0b0b499524a18589}
+      \strng{authorbibnamehash}{6385c9862406b55e0b0b499524a18589}
+      \strng{authornamehash}{6385c9862406b55e0b0b499524a18589}
+      \strng{authorfullhash}{6385c9862406b55e0b0b499524a18589}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The signal profile measured in balanced steady-state free precession has been shown to exhibit tissue-dependent asymmetries that were hypothesized to relate to properties of the tissue microenvironment. It was proposed that balanced steady-state free precession asymmetry may reflect subtle features of the frequency distribution in tissue. The present work investigates the large balanced steady-state free precession asymmetries observed in white matter. First, maps quantifying the asymmetry are presented, which demonstrate considerable heterogeneity within white matter, with some tracts exhibiting significant asymmetry and others having a nearly symmetric profile. These maps are compared with a diffusion-tensor atlas and indicate that the highest asymmetry is found in tracts oriented perpendicular to the main magnetic field. Measurements conducted at multiple repetition times suggest that the asymmetries are characterized by relatively small frequency shifts. These results are discussed in the context of previous work studying gradient-recalled echo (GRE) signal behavior in white matter, and it is suggested that these two techniques are detecting closely related phenomena. Magn Reson Med, 2010. © 2010 Wiley-Liss, Inc.}
+      \field{issn}{1522-2594}
+      \field{journaltitle}{Magnetic Resonance in Medicine}
+      \field{number}{2}
+      \field{shorttitle}{Asymmetries of the balanced {SSFP} profile. {Part} {II}}
+      \field{title}{Asymmetries of the balanced {SSFP} profile. {Part} {II}: {White} matter}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{63}
+      \field{year}{2010}
+      \field{urldateera}{ce}
+      \field{pages}{396\bibrangedash 406}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1002/mrm.22249
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/G7FPYHXE/Miller et al. - 2010 - Asymmetries of the balanced SSFP profile. Part II.pdf:application/pdf;Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/AD7RKCE7/mrm.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.22249
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.22249
+      \endverb
+      \keyw{asymmetry,balanced SSFP,brain,frequency distribution,white matter}
     \endentry
     \entry{nair_rectified_2010}{inproceedings}{}
       \name{author}{2}{}{%
@@ -4248,7 +4276,6 @@
       \field{abstract}{Image-to-image translation (I2I) aims to transfer images from a source domain to a target domain while preserving the content representations. I2I has drawn increasing attention and made tremendous progress in recent years because of its wide range of applications in many computer vision and image processing problems, such as image synthesis, segmentation, style transfer, restoration, and pose estimation. In this paper, we provide an overview of the I2I works developed in recent years. We will analyze the key techniques of the existing I2I works and clarify the main progress the community has made. Additionally, we will elaborate on the effect of I2I on the research and industry community and point out remaining challenges in related ﬁelds.}
       \field{annotation}{Comment: 24 pages, 21 figures}
       \field{month}{7}
-      \field{note}{arXiv:2101.08629 [cs]}
       \field{shorttitle}{Image-to-{Image} {Translation}}
       \field{title}{Image-to-{Image} {Translation}: {Methods} and {Applications}}
       \field{urlday}{10}
@@ -4617,7 +4644,6 @@
       \field{urlyear}{2024}
       \field{year}{2024}
       \field{urldateera}{ce}
-      \true{nocite}
       \verb{doi}
       \verb 10.48550/arXiv.2302.11529
       \endverb
@@ -4685,74 +4711,6 @@
       \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/jmri.23642
       \endverb
       \keyw{k-space,MRI image formation,MRI physics,NMR relaxation}
-    \endentry
-    \entry{prechelt_early_1998}{incollection}{}
-      \name{author}{1}{}{%
-        {{hash=c33e375f7c45363931f7e4ffe01192cc}{%
-           family={Prechelt},
-           familyi={P\bibinitperiod},
-           given={Lutz},
-           giveni={L\bibinitperiod}}}%
-      }
-      \name{editor}{2}{}{%
-        {{hash=ea9de995dd928a60e9f2ec878f176627}{%
-           family={Orr},
-           familyi={O\bibinitperiod},
-           given={Genevieve\bibnamedelima B.},
-           giveni={G\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{hash=9f1b6144a45b1967e989e74552e37ada}{%
-           family={Müller},
-           familyi={M\bibinitperiod},
-           given={Klaus-Robert},
-           giveni={K\bibinithyphendelim R\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {en}%
-      }
-      \list{location}{1}{%
-        {Berlin, Heidelberg}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{c33e375f7c45363931f7e4ffe01192cc}
-      \strng{fullhash}{c33e375f7c45363931f7e4ffe01192cc}
-      \strng{bibnamehash}{c33e375f7c45363931f7e4ffe01192cc}
-      \strng{authorbibnamehash}{c33e375f7c45363931f7e4ffe01192cc}
-      \strng{authornamehash}{c33e375f7c45363931f7e4ffe01192cc}
-      \strng{authorfullhash}{c33e375f7c45363931f7e4ffe01192cc}
-      \strng{editorbibnamehash}{bc30a6a4a7cd5205b397256133ad7b2a}
-      \strng{editornamehash}{bc30a6a4a7cd5205b397256133ad7b2a}
-      \strng{editorfullhash}{bc30a6a4a7cd5205b397256133ad7b2a}
-      \field{sortinit}{P}
-      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Validation can be used to detect when overfitting starts during supervised training of a neural network; training is then stopped before convergence to avoid the overfitting (“early stopping”). The exact criterion used for validation-based early stopping, however, is usually chosen in an ad-hoc fashion or training is stopped interactively. This trick describes how to select a stopping criterion in a systematic fashion; it is a trick for either speeding learning procedures or improving generalization, whichever is more important in the particular situation. An empirical investigation on multi-layer perceptrons shows that there exists a tradeoff between training time and generalization: From the given mix of 1296 training runs using difierent 12 problems and 24 difierent network architectures I conclude slower stopping criteria allow for small improvements in generalization (here: about 4\% on average), but cost much more training time (here: about factor 4 longer on average).}
-      \field{booktitle}{Neural {Networks}: {Tricks} of the {Trade}}
-      \field{isbn}{978-3-540-49430-0}
-      \field{title}{Early {Stopping} - {But} {When}?}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{year}{1998}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{55\bibrangedash 69}
-      \range{pages}{15}
-      \verb{doi}
-      \verb 10.1007/3-540-49430-8_3
-      \endverb
-      \verb{file}
-      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/NF7I984X/Prechelt - 1998 - Early Stopping - But When.pdf:application/pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1007/3-540-49430-8_3
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1007/3-540-49430-8_3
-      \endverb
-      \keyw{Early Stopping,Generalization Error,Neural Information Processing System,Training Time,Validation Error}
     \endentry
     \entry{radford_improving_nodate}{article}{}
       \name{author}{4}{}{%
@@ -4828,7 +4786,6 @@
       \field{abstract}{Data compression is one of the main contributing factors in the explosive growth in information technology. Without it, a number of consumer and commercial products, such as DVD, videophone, digital camera, MP3, video-streaming and wireless PCS, would have been virtually impossible. Transforming the data to a frequency or other domain enables even more efficient compression. By illustrating this intimate link, The Transform and Data Compression Handbook serves as a much-needed handbook for a wide range of researchers and engineers.The authors describe various discrete transforms and their applications in different disciplines. They cover techniques, such as adaptive quantization and entropy coding, that result in significant reduction in bit rates when applied to the transform coefficients. With clear and concise presentations of the ideas and concepts, as well as detailed descriptions of the algorithms, the authors provide important insight into the applications and their limitations. Data compression is an essential step towards the efficient storage and transmission of information. The Transform and Data Compression Handbook provides a wealth of information regarding different discrete transforms and demonstrates their power and practicality in data compression.}
       \field{isbn}{978-1-4200-3738-8}
       \field{month}{10}
-      \field{note}{Google-Books-ID: EgvOBQAAQBAJ}
       \field{title}{The {Transform} and {Data} {Compression} {Handbook}}
       \field{year}{2018}
       \verb{file}
@@ -4873,7 +4830,6 @@
       \field{abstract}{The strategy of early stopping is a regularization technique based on choosing a stopping time for an iterative algorithm. Focusing on non-parametric regression in a reproducing kernel Hilbert space, we analyze the early stopping strategy for a form of gradient-descent applied to the least-squares loss function. We propose a data-dependent stopping rule that does not involve hold-out or cross-validation data, and we prove upper bounds on the squared error of the resulting function estimate, measured in either the L2(P) and L2(Pn) norm. These upper bounds lead to minimax-optimal rates for various kernel classes, including Sobolev smoothness classes and other forms of reproducing kernel Hilbert spaces. We show through simulation that our stopping rule compares favorably to two other stopping rules, one based on hold-out data and the other based on Stein’s unbiased risk estimate. We also establish a tight connection between our early stopping strategy and the solution path of a kernel ridge regression estimator.}
       \field{annotation}{Comment: 29 pages, 4 figures}
       \field{month}{6}
-      \field{note}{arXiv:1306.3574 [stat]}
       \field{shorttitle}{Early stopping and non-parametric regression}
       \field{title}{Early stopping and non-parametric regression: {An} optimal data-dependent stopping rule}
       \field{urlday}{10}
@@ -5337,55 +5293,6 @@
       \endverb
       \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence,Statistics - Machine Learning}
     \endentry
-    \entry{scheffler_pictorial_1999}{article}{}
-      \name{author}{1}{}{%
-        {{hash=d32aa293ed7ed32a40025c81e59197f9}{%
-           family={Scheffler},
-           familyi={S\bibinitperiod},
-           given={Klaus},
-           giveni={K\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{d32aa293ed7ed32a40025c81e59197f9}
-      \strng{fullhash}{d32aa293ed7ed32a40025c81e59197f9}
-      \strng{bibnamehash}{d32aa293ed7ed32a40025c81e59197f9}
-      \strng{authorbibnamehash}{d32aa293ed7ed32a40025c81e59197f9}
-      \strng{authornamehash}{d32aa293ed7ed32a40025c81e59197f9}
-      \strng{authorfullhash}{d32aa293ed7ed32a40025c81e59197f9}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Magnetic resonance imaging in biochemical and clinical research requires rapid imaging sequences. Time-resolved imaging of heart movement and the acquisition of a three-dimensional image block within the circulation time of a contrast agent bolus are two typical examples. Rapid imaging sequences are characterized by a very fast train of radiofrequency (rf) and gradient pulses. Between these rf pulses, the excited magnetization is unable to return to its thermal equilibrium. As a consequence, further rf pulses will influence both the remaining transversal and the remaining equilibrium state. The steady-state magnetization of a multi-rf pulse and gradient pulse experiment is thus a mixture or superposition of different transversal and longitudinal states and the acquired image amplitude becomes a complex function of the investigated tissue's relaxation properties. Based on the works of Woessner, Kaiser, and Hennig, this article intends to give a pictorial description of rapid multipulse imaging experiments. It also provides an extension of this theory applied to modern imaging sequences such as TRUE FISP and rf-spoiled techniques. ©1999 John Wiley \& Sons, Inc. Concepts Magn Reson 11: 291–304, 1999}
-      \field{issn}{1099-0534}
-      \field{journaltitle}{Concepts in Magnetic Resonance}
-      \field{number}{5}
-      \field{title}{A pictorial description of steady-states in rapid magnetic resonance imaging}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{volume}{11}
-      \field{year}{1999}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{291\bibrangedash 304}
-      \range{pages}{14}
-      \verb{doi}
-      \verb 10.1002/(SICI)1099-0534(1999)11:5<291::AID-CMR2>3.0.CO;2-J
-      \endverb
-      \verb{file}
-      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/2HGA8NQB/Scheffler - 1999 - A pictorial description of steady-states in rapid .pdf:application/pdf;Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/2HD3SBLV/(SICI)1099-0534(1999)115291AID-CMR23.0.html:text/html
-      \endverb
-      \verb{urlraw}
-      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291099-0534%281999%2911%3A5%3C291%3A%3AAID-CMR2%3E3.0.CO%3B2-J
-      \endverb
-      \verb{url}
-      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291099-0534%281999%2911%3A5%3C291%3A%3AAID-CMR2%3E3.0.CO%3B2-J
-      \endverb
-      \keyw{phase–graph description,rapid imaging,refocusing,rf spoiling,steady-state}
-    \endentry
     \entry{scheffler_principles_2003}{article}{}
       \name{author}{2}{}{%
         {{hash=d32aa293ed7ed32a40025c81e59197f9}{%
@@ -5504,6 +5411,51 @@
       \verb https://www.sciencedirect.com/science/article/pii/S0895611100000835
       \endverb
       \keyw{Apparent diffusion coefficient,Classification of brain disorders,diffusion MRI,Diffusion-weighted MR imaging,Normal brain,diffusion MRI}
+    \endentry
+    \entry{sherstinsky_fundamentals_2020}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6f46a859f5b9b1e6c5f5bdc8e43a3c09}{%
+           family={Sherstinsky},
+           familyi={S\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f46a859f5b9b1e6c5f5bdc8e43a3c09}
+      \strng{fullhash}{6f46a859f5b9b1e6c5f5bdc8e43a3c09}
+      \strng{bibnamehash}{6f46a859f5b9b1e6c5f5bdc8e43a3c09}
+      \strng{authorbibnamehash}{6f46a859f5b9b1e6c5f5bdc8e43a3c09}
+      \strng{authornamehash}{6f46a859f5b9b1e6c5f5bdc8e43a3c09}
+      \strng{authorfullhash}{6f46a859f5b9b1e6c5f5bdc8e43a3c09}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Because of their effectiveness in broad practical applications, LSTM networks have received a wealth of coverage in scientific journals, technical blogs, and implementation guides. However, in most articles, the inference formulas for the LSTM network and its parent, RNN, are stated axiomatically, while the training formulas are omitted altogether. In addition, the technique of “unrolling” an RNN is routinely presented without justification throughout the literature. The goal of this tutorial is to explain the essential RNN and LSTM fundamentals in a single document. Drawing from concepts in Signal Processing, we formally derive the canonical RNN formulation from differential equations. We then propose and prove a precise statement, which yields the RNN unrolling technique. We also review the difficulties with training the standard RNN and address them by transforming the RNN into the “Vanilla LSTM”1 1The nickname “Vanilla LSTM” symbolizes this model’s flexibility and generality (Greff et al., 2015). network through a series of logical arguments. We provide all equations pertaining to the LSTM system together with detailed descriptions of its constituent entities. Albeit unconventional, our choice of notation and the method for presenting the LSTM system emphasizes ease of understanding. As part of the analysis, we identify new opportunities to enrich the LSTM system and incorporate these extensions into the Vanilla LSTM network, producing the most general LSTM variant to date. The target reader has already been exposed to RNNs and LSTM networks through numerous available resources and is open to an alternative pedagogical approach. A Machine Learning practitioner seeking guidance for implementing our new augmented LSTM model in software for experimentation and research will find the insights and derivations in this treatise valuable as well.}
+      \field{issn}{0167-2789}
+      \field{journaltitle}{Physica D: Nonlinear Phenomena}
+      \field{month}{3}
+      \field{title}{Fundamentals of {Recurrent} {Neural} {Network} ({RNN}) and {Long} {Short}-{Term} {Memory} ({LSTM}) network}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{404}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{132306}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.physd.2019.132306
+      \endverb
+      \verb{file}
+      \verb Eingereichte Version:/home/someusername/workspace/UNet-bSSFP/lit/storage/NQZQKIBG/Sherstinsky - 2020 - Fundamentals of Recurrent Neural Network (RNN) and.pdf:application/pdf;ScienceDirect Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/5ZGC4XLW/S0167278919305974.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0167278919305974
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0167278919305974
+      \endverb
+      \keyw{Convolutional input context windows,External input gate,LSTM,RNN,RNN unfolding/unrolling}
     \endentry
     \entry{smith_advances_2004}{article}{}
       \name{author}{17}{}{%
@@ -5796,6 +5748,85 @@
       \verb http://jmlr.org/papers/v15/srivastava14a.html
       \endverb
     \endentry
+    \entry{tong_improving_2024}{misc}{}
+      \name{author}{8}{}{%
+        {{hash=73be8b02aa5062df519d5d7d1f28dd36}{%
+           family={Tong},
+           familyi={T\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e7dc38aa6da6e801d5f0a22078726b16}{%
+           family={Fatras},
+           familyi={F\bibinitperiod},
+           given={Kilian},
+           giveni={K\bibinitperiod}}}%
+        {{hash=c6bdc75ef5c2c84edff84fdad7d7a93b}{%
+           family={Malkin},
+           familyi={M\bibinitperiod},
+           given={Nikolay},
+           giveni={N\bibinitperiod}}}%
+        {{hash=ce32cf030d6286d3f26ad4afe2dbe23e}{%
+           family={Huguet},
+           familyi={H\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+        {{hash=966ccdf9536d54b5d7a418b985ee2e30}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yanlei},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=c1194de75955ff433c1ec2a240c137f9}{%
+           family={Rector-Brooks},
+           familyi={R\bibinithyphendelim B\bibinitperiod},
+           given={Jarrid},
+           giveni={J\bibinitperiod}}}%
+        {{hash=464e8105d6ff31ad7fed51731c8a5048}{%
+           family={Wolf},
+           familyi={W\bibinitperiod},
+           given={Guy},
+           giveni={G\bibinitperiod}}}%
+        {{hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{c6ef8496e684009f21099199ab794ad1}
+      \strng{fullhash}{c94722ceee01c24b63fd8a3abdefff3d}
+      \strng{bibnamehash}{c6ef8496e684009f21099199ab794ad1}
+      \strng{authorbibnamehash}{c6ef8496e684009f21099199ab794ad1}
+      \strng{authornamehash}{c6ef8496e684009f21099199ab794ad1}
+      \strng{authorfullhash}{c94722ceee01c24b63fd8a3abdefff3d}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Continuous normalizing flows (CNFs) are an attractive generative modeling technique, but they have been held back by limitations in their simulation-based maximum likelihood training. We introduce the generalized conditional flow matching (CFM) technique, a family of simulation-free training objectives for CNFs. CFM features a stable regression objective like that used to train the stochastic flow in diffusion models but enjoys the efficient inference of deterministic flow models. In contrast to both diffusion models and prior CNF training algorithms, CFM does not require the source distribution to be Gaussian or require evaluation of its density. A variant of our objective is optimal transport CFM (OT-CFM), which creates simpler flows that are more stable to train and lead to faster inference, as evaluated in our experiments. Furthermore, we show that when the true OT plan is available, our OT-CFM method approximates dynamic OT. Training CNFs with CFM improves results on a variety of conditional and unconditional generation tasks, such as inferring single cell dynamics, unsupervised image translation, and Schrödinger bridge inference. The Python code is available at https://github.com/atong01/conditional-flow-matching.}
+      \field{annotation}{Comment: TMLR. Code: https://github.com/atong01/conditional-flow-matching}
+      \field{month}{3}
+      \field{title}{Improving and generalizing flow-based generative models with minibatch optimal transport}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Tong et al. - 2024 - Improving and generalizing flow-based generative m.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/GGCIEPZF/Tong et al. - 2024 - Improving and generalizing flow-based generative m.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2302.00482
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2302.00482
+      \endverb
+      \keyw{Computer Science - Machine Learning}
+    \endentry
     \entry{torrey_bloch_1956}{article}{}
       \name{author}{1}{}{%
         {{hash=3ab84e3bd7a8f70b547eb9e9d9e5ac8a}{%
@@ -5817,7 +5848,6 @@
       \field{abstract}{The phenomenological Bloch equations in nuclear magnetic resonance are generalized by the addition of terms due to the transfer of magnetization by diffusion. The revised equations describe phenomena under conditions of inhomogeneity in magnetic field, relaxation rates, or initial magnetization. As an example the equations are solved in the case of the free precession of magnetic moment in the presence of an inhomogeneous magnetic field following the application of a 90° pulse with subsequent applications of a succession of 180° pulses. The spin-echo amplitudes agree with the results of Carr and Purcell from a random walk theory.}
       \field{journaltitle}{Physical Review}
       \field{month}{11}
-      \field{note}{Publisher: American Physical Society}
       \field{number}{3}
       \field{title}{Bloch {Equations} with {Diffusion} {Terms}}
       \field{urlday}{8}
@@ -5880,7 +5910,6 @@
       \field{volume}{65}
       \field{year}{2011}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{1532\bibrangedash 1556}
       \range{pages}{25}
       \verb{doi}
@@ -5929,7 +5958,6 @@
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{It this paper we revisit the fast stylization method introduced in Ulyanov et. al. (2016). We show how a small change in the stylization architecture results in a significant qualitative improvement in the generated images. The change is limited to swapping batch normalization with instance normalization, and to apply the latter both at training and testing times. The resulting method can be used to train high-performance architectures for real-time image generation. The code will is made available on github at https://github.com/DmitryUlyanov/texture\_nets. Full paper can be found at arXiv:1701.02096.}
       \field{month}{11}
-      \field{note}{arXiv:1607.08022 [cs]}
       \field{shorttitle}{Instance {Normalization}}
       \field{title}{Instance {Normalization}: {The} {Missing} {Ingredient} for {Fast} {Stylization}}
       \field{urlday}{9}
@@ -6046,7 +6074,6 @@
       \field{issn}{1558-254X}
       \field{journaltitle}{IEEE Transactions on Medical Imaging}
       \field{month}{10}
-      \field{note}{Conference Name: IEEE Transactions on Medical Imaging}
       \field{number}{10}
       \field{title}{Automated model-based tissue classification of {MR} images of the brain}
       \field{urlday}{12}
@@ -6252,7 +6279,6 @@
       \field{abstract}{Recently, cross-modal synthesis of subject-specific scans has been receiving significant attention from the medical imaging community. Though various synthesis approaches have been introduced in the recent past, most of them are either tailored to a specific application or proposed for the supervised setting, i.e., they assume the availability of training data from the same set of subjects in both source and target modalities. But, collecting multiple scans from each subject is undesirable. Hence, to address this issue, we propose a general unsupervised cross-modal medical image synthesis approach that works without paired training data. Given a source modality image of a subject, we first generate multiple target modality candidate values for each voxel independently using cross-modal nearest neighbor search. Then, we select the best candidate values jointly for all the voxels by simultaneously maximizing a global mutual information cost function and a local spatial consistency cost function. Finally, we use coupled sparse representation for further refinement of synthesized images. Our experiments on generating T1-MRI brain scans from T2-MRI and vice versa demonstrate that the synthesis capability of the proposed unsupervised approach is comparable to various state-of-the-art supervised approaches in the literature.}
       \field{booktitle}{2015 {IEEE} {International} {Conference} on {Computer} {Vision} ({ICCV})}
       \field{month}{12}
-      \field{note}{ISSN: 2380-7504}
       \field{title}{Unsupervised {Cross}-{Modal} {Synthesis} of {Subject}-{Specific} {Scans}}
       \field{urlday}{10}
       \field{urlmonth}{5}
@@ -6322,7 +6348,6 @@
       \strng{authorbibnamehash}{7790b3713d162f8d9ec622a500cc8d63}
       \strng{authornamehash}{7790b3713d162f8d9ec622a500cc8d63}
       \strng{authorfullhash}{5e8782b8b257f7462b0c163e4c259a16}
-      \field{extraname}{1}
       \field{sortinit}{W}
       \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
       \field{labelnamesource}{author}
@@ -6348,71 +6373,6 @@
       \verb http://arxiv.org/abs/2205.12952
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
-    \endentry
-    \entry{wang_image_2004}{article}{}
-      \name{author}{4}{}{%
-        {{hash=f244e8ae5eff7776cf2b4b5b84ad8c4a}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={Zhou},
-           giveni={Z\bibinitperiod}}}%
-        {{hash=6192fbf30c45211fdfc67652236bec72}{%
-           family={Bovik},
-           familyi={B\bibinitperiod},
-           given={A.C.},
-           giveni={A\bibinitperiod}}}%
-        {{hash=84051ed6c4d99d3ccc763a9bfdfd28a8}{%
-           family={Sheikh},
-           familyi={S\bibinitperiod},
-           given={H.R.},
-           giveni={H\bibinitperiod}}}%
-        {{hash=071228688c89a654d8f1b7ca8d022a6f}{%
-           family={Simoncelli},
-           familyi={S\bibinitperiod},
-           given={E.P.},
-           giveni={E\bibinitperiod}}}%
-      }
-      \strng{namehash}{ec7f3703fbd419b313e0a329e6241059}
-      \strng{fullhash}{4eadc44b73c932989cbd36a77d356aab}
-      \strng{bibnamehash}{ec7f3703fbd419b313e0a329e6241059}
-      \strng{authorbibnamehash}{ec7f3703fbd419b313e0a329e6241059}
-      \strng{authornamehash}{ec7f3703fbd419b313e0a329e6241059}
-      \strng{authorfullhash}{4eadc44b73c932989cbd36a77d356aab}
-      \field{extraname}{2}
-      \field{sortinit}{W}
-      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{abstract}{Objective methods for assessing perceptual image quality traditionally attempted to quantify the visibility of errors (differences) between a distorted image and a reference image using a variety of known properties of the human visual system. Under the assumption that human visual perception is highly adapted for extracting structural information from a scene, we introduce an alternative complementary framework for quality assessment based on the degradation of structural information. As a specific example of this concept, we develop a structural similarity index and demonstrate its promise through a set of intuitive examples, as well as comparison to both subjective ratings and state-of-the-art objective methods on a database of images compressed with JPEG and JPEG2000. A MATLAB implementation of the proposed algorithm is available online at http://www.cns.nyu.edu//spl sim/lcv/ssim/.}
-      \field{issn}{1941-0042}
-      \field{journaltitle}{IEEE Transactions on Image Processing}
-      \field{month}{4}
-      \field{note}{Conference Name: IEEE Transactions on Image Processing}
-      \field{number}{4}
-      \field{shorttitle}{Image quality assessment}
-      \field{title}{Image quality assessment: from error visibility to structural similarity}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{volume}{13}
-      \field{year}{2004}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{600\bibrangedash 612}
-      \range{pages}{13}
-      \verb{doi}
-      \verb 10.1109/TIP.2003.819861
-      \endverb
-      \verb{file}
-      \verb IEEE Xplore Abstract Record:/home/someusername/workspace/UNet-bSSFP/lit/storage/QRB4EXV2/1284395.html:text/html;IEEE Xplore Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/4IEYMWBE/Wang et al. - 2004 - Image quality assessment from error visibility to.pdf:application/pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://ieeexplore.ieee.org/document/1284395
-      \endverb
-      \verb{url}
-      \verb https://ieeexplore.ieee.org/document/1284395
-      \endverb
-      \keyw{Data mining,Degradation,Humans,Image quality,Indexes,Layout,Quality assessment,Transform coding,Visual perception,Visual system}
     \endentry
     \entry{waskom_seaborn_2021}{article}{}
       \name{author}{1}{}{%
@@ -6463,55 +6423,84 @@
       \verb https://joss.theoj.org/papers/10.21105/joss.03021
       \endverb
     \endentry
-    \entry{weigel_extended_2015}{article}{}
-      \name{author}{1}{}{%
-        {{hash=fa947fcb01d8f6e7312e2b8684bec2fd}{%
-           family={Weigel},
+    \entry{white_neural_2023}{misc}{}
+      \name{author}{8}{}{%
+        {{hash=06b08277491e42a0282f55e671cd7327}{%
+           family={White},
            familyi={W\bibinitperiod},
-           given={Matthias},
+           given={Colin},
+           giveni={C\bibinitperiod}}}%
+        {{hash=2fc7924daf9e28a3440a4701879cba2e}{%
+           family={Safari},
+           familyi={S\bibinitperiod},
+           given={Mahmoud},
            giveni={M\bibinitperiod}}}%
+        {{hash=b77cd851df16baba3c05f4cb3c6ffdcb}{%
+           family={Sukthanker},
+           familyi={S\bibinitperiod},
+           given={Rhea},
+           giveni={R\bibinitperiod}}}%
+        {{hash=dd61baa5c0a8736cb4055a390447e693}{%
+           family={Ru},
+           familyi={R\bibinitperiod},
+           given={Binxin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=17831398c93648de0ce8c5bcfbbc9784}{%
+           family={Elsken},
+           familyi={E\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=a0becca0ed2fe180b2125081258108f1}{%
+           family={Zela},
+           familyi={Z\bibinitperiod},
+           given={Arber},
+           giveni={A\bibinitperiod}}}%
+        {{hash=14a631e77effc1b5f2774d9255ed6ebc}{%
+           family={Dey},
+           familyi={D\bibinitperiod},
+           given={Debadeepta},
+           giveni={D\bibinitperiod}}}%
+        {{hash=528d4af87fd2ecf5fb8a22db913ce088}{%
+           family={Hutter},
+           familyi={H\bibinitperiod},
+           given={Frank},
+           giveni={F\bibinitperiod}}}%
       }
       \list{language}{1}{%
         {en}%
       }
-      \strng{namehash}{fa947fcb01d8f6e7312e2b8684bec2fd}
-      \strng{fullhash}{fa947fcb01d8f6e7312e2b8684bec2fd}
-      \strng{bibnamehash}{fa947fcb01d8f6e7312e2b8684bec2fd}
-      \strng{authorbibnamehash}{fa947fcb01d8f6e7312e2b8684bec2fd}
-      \strng{authornamehash}{fa947fcb01d8f6e7312e2b8684bec2fd}
-      \strng{authorfullhash}{fa947fcb01d8f6e7312e2b8684bec2fd}
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{189176fa9094c2790e379a50e7bd2040}
+      \strng{fullhash}{a60c47cb0f746ba385024adfaa5a69d1}
+      \strng{bibnamehash}{189176fa9094c2790e379a50e7bd2040}
+      \strng{authorbibnamehash}{189176fa9094c2790e379a50e7bd2040}
+      \strng{authornamehash}{189176fa9094c2790e379a50e7bd2040}
+      \strng{authorfullhash}{a60c47cb0f746ba385024adfaa5a69d1}
       \field{sortinit}{W}
       \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
-      \field{abstract}{The extended phase graph (EPG) concept represents a powerful tool for depicting and understanding the magnetization response of a broad variety of MR sequences. EPGs focus on echo generation as well as on classification and use a Fourier based magnetization description in terms of “configurations states”. The effect of gradients, radiofrequency (RF) pulses, relaxation, and motion phenomena during the MR sequence is characterized as the action of a few matrix operations on these configuration states. Thus, the EPG method allows for fast and precise quantitation of echo intensities even if several gradients and RF pulses are applied. EPG diagrams aid in the comprehension of different types of echoes and their corresponding echo time. Despite its several benefits in regard to a large number of problems and issues, researchers and users still often refrain from applying EPGs. It seems that “phase graphing” is still seen as a kind of “magic.” The present review investigates the foundation of EPGs and sheds light on prerequisites for adding more advanced phenomena such as diffusion. The links between diagrams and calculations are discussed. A further focus is on limitations and simplifications as well recent extensions within the EPG concept. To make the review complete, representative software for EPG coding is provided. J. Magn. Reson. Imaging 2015;41:266–295.© 2013 Wiley Periodicals, Inc.}
-      \field{issn}{1522-2586}
-      \field{journaltitle}{Journal of Magnetic Resonance Imaging}
-      \field{number}{2}
-      \field{shorttitle}{Extended phase graphs}
-      \field{title}{Extended phase graphs: {Dephasing}, {RF} pulses, and echoes - pure and simple}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
+      \field{abstract}{In the past decade, advances in deep learning have resulted in breakthroughs in a variety of areas, including computer vision, natural language understanding, speech recognition, and reinforcement learning. Specialized, high-performing neural architectures are crucial to the success of deep learning in these areas. Neural architecture search (NAS), the process of automating the design of neural architectures for a given task, is an inevitable next step in automating machine learning and has already outpaced the best human-designed architectures on many tasks. In the past few years, research in NAS has been progressing rapidly, with over 1000 papers released since 2020 (Deng and Lindauer, 2021). In this survey, we provide an organized and comprehensive guide to neural architecture search. We give a taxonomy of search spaces, algorithms, and speedup techniques, and we discuss resources such as benchmarks, best practices, other surveys, and open-source libraries.}
+      \field{month}{1}
+      \field{shorttitle}{Neural {Architecture} {Search}}
+      \field{title}{Neural {Architecture} {Search}: {Insights} from 1000 {Papers}}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
       \field{urlyear}{2024}
-      \field{volume}{41}
-      \field{year}{2015}
+      \field{year}{2023}
       \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{266\bibrangedash 295}
-      \range{pages}{30}
-      \verb{doi}
-      \verb 10.1002/jmri.24619
-      \endverb
       \verb{file}
-      \verb Full Text PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/P42N4AEI/Weigel - 2015 - Extended phase graphs Dephasing, RF pulses, and e.pdf:application/pdf
+      \verb White et al. - 2023 - Neural Architecture Search Insights from 1000 Pap.pdf:/home/someusername/workspace/UNet-bSSFP/lit/storage/EIZQ498D/White et al. - 2023 - Neural Architecture Search Insights from 1000 Pap.pdf:application/pdf
       \endverb
       \verb{urlraw}
-      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/jmri.24619
+      \verb http://arxiv.org/abs/2301.08727
       \endverb
       \verb{url}
-      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/jmri.24619
+      \verb http://arxiv.org/abs/2301.08727
       \endverb
-      \keyw{configuration states,dephasing,extended phase graph,Fourier space,partitioning,phase graph}
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Statistics - Machine Learning}
     \endentry
     \entry{wu_group_2018}{inproceedings}{}
       \name{author}{2}{}{%
@@ -6604,7 +6593,6 @@
       \field{issn}{2045-2322}
       \field{journaltitle}{Scientific Reports}
       \field{month}{2}
-      \field{note}{Publisher: Nature Publishing Group}
       \field{number}{1}
       \field{title}{{MRI} {Cross}-{Modality} {Image}-to-{Image} {Translation}}
       \field{urlday}{10}
@@ -6825,66 +6813,6 @@
       \verb https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7409983/
       \endverb
     \endentry
-    \entry{zhang_dive_2023}{misc}{}
-      \name{author}{4}{}{%
-        {{hash=983273ab2d972b56d8b64d220726b6aa}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={Aston},
-           giveni={A\bibinitperiod}}}%
-        {{hash=599ae457cf41d4ce64e09433edbc964b}{%
-           family={Lipton},
-           familyi={L\bibinitperiod},
-           given={Zachary\bibnamedelima C.},
-           giveni={Z\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=c4a02f87e51fc72ab3f841de1a3982a7}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Mu},
-           giveni={M\bibinitperiod}}}%
-        {{hash=82d61e31b4f7f82ad59ff887349bdfe3}{%
-           family={Smola},
-           familyi={S\bibinitperiod},
-           given={Alexander\bibnamedelima J.},
-           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {arXiv}%
-      }
-      \strng{namehash}{7174309e70e2a2bac293d53405348f6b}
-      \strng{fullhash}{6bbccfc10d5cec4da080438a1099af8b}
-      \strng{bibnamehash}{7174309e70e2a2bac293d53405348f6b}
-      \strng{authorbibnamehash}{7174309e70e2a2bac293d53405348f6b}
-      \strng{authornamehash}{7174309e70e2a2bac293d53405348f6b}
-      \strng{authorfullhash}{6bbccfc10d5cec4da080438a1099af8b}
-      \field{extraname}{1}
-      \field{sortinit}{Z}
-      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{This open-source book represents our attempt to make deep learning approachable, teaching readers the concepts, the context, and the code. The entire book is drafted in Jupyter notebooks, seamlessly integrating exposition figures, math, and interactive examples with self-contained code. Our goal is to offer a resource that could (i) be freely available for everyone; (ii) offer sufficient technical depth to provide a starting point on the path to actually becoming an applied machine learning scientist; (iii) include runnable code, showing readers how to solve problems in practice; (iv) allow for rapid updates, both by us and also by the community at large; (v) be complemented by a forum for interactive discussion of technical details and to answer questions.}
-      \field{month}{8}
-      \field{title}{Dive into {Deep} {Learning}}
-      \field{urlday}{10}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{year}{2023}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \verb{doi}
-      \verb 10.48550/arXiv.2106.11342
-      \endverb
-      \verb{file}
-      \verb arXiv Fulltext PDF:/home/someusername/workspace/UNet-bSSFP/lit/storage/6UQVDYIR/Zhang et al. - 2023 - Dive into Deep Learning.pdf:application/pdf;arXiv.org Snapshot:/home/someusername/workspace/UNet-bSSFP/lit/storage/P8FZREAH/2106.html:text/html
-      \endverb
-      \verb{urlraw}
-      \verb http://arxiv.org/abs/2106.11342
-      \endverb
-      \verb{url}
-      \verb http://arxiv.org/abs/2106.11342
-      \endverb
-      \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Computation and Language}
-    \endentry
     \entry{zhang_unreasonable_2018}{misc}{}
       \name{author}{5}{}{%
         {{hash=0c65190dcbd461dee172354f7938ae43}{%
@@ -6922,7 +6850,6 @@
       \strng{authorbibnamehash}{a186c318a8836d77467280ce6646a302}
       \strng{authornamehash}{a186c318a8836d77467280ce6646a302}
       \strng{authorfullhash}{b4812124f82ca96d3c1cb10ee3db7804}
-      \field{extraname}{2}
       \field{sortinit}{Z}
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
       \field{labelnamesource}{author}
@@ -6930,7 +6857,6 @@
       \field{abstract}{While it is nearly effortless for humans to quickly assess the perceptual similarity between two images, the underlying processes are thought to be quite complex. Despite this, the most widely used perceptual metrics today, such as PSNR and SSIM, are simple, shallow functions, and fail to account for many nuances of human perception. Recently, the deep learning community has found that features of the VGG network trained on ImageNet classification has been remarkably useful as a training loss for image synthesis. But how perceptual are these so-called "perceptual losses"? What elements are critical for their success? To answer these questions, we introduce a new dataset of human perceptual similarity judgments. We systematically evaluate deep features across different architectures and tasks and compare them with classic metrics. We find that deep features outperform all previous metrics by large margins on our dataset. More surprisingly, this result is not restricted to ImageNet-trained VGG features, but holds across different deep architectures and levels of supervision (supervised, self-supervised, or even unsupervised). Our results suggest that perceptual similarity is an emergent property shared across deep visual representations.}
       \field{annotation}{Comment: Accepted to CVPR 2018; Code and data available at https://www.github.com/richzhang/PerceptualSimilarity}
       \field{month}{4}
-      \field{note}{arXiv:1801.03924 [cs]}
       \field{title}{The {Unreasonable} {Effectiveness} of {Deep} {Features} as a {Perceptual} {Metric}}
       \field{urlday}{10}
       \field{urlmonth}{4}
@@ -7030,7 +6956,6 @@
       \field{issn}{1662-5196}
       \field{journaltitle}{Frontiers in Neuroinformatics}
       \field{month}{1}
-      \field{note}{Publisher: Frontiers}
       \field{shorttitle}{{BIDScoin}}
       \field{title}{{BIDScoin}: {A} {User}-{Friendly} {Application} to {Convert} {Source} {Data} to {Brain} {Imaging} {Data} {Structure}}
       \field{urlday}{12}

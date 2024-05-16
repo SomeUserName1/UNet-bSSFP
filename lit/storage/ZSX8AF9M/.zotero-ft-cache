@@ -1,0 +1,243 @@
+
+Schließen Sie diesen Dialog
+Diese Website nutzt Technologien wie Cookies, um wesentliche Funktionen der Website zu ermöglichen, sowie für analyse, personalisierung und gezielte werbung. Sie können Ihre Einstellungen jederzeit ändern oder die Standardeinstellungen übernehmen. Datenschutz-Bestimmungen
+Einstellungen verwalten Alle akzeptieren Alles ablehnen
+
+Schließen Sie die Cookie-Einstellungen
+
+    Skip to Article Content
+    Skip to Article Information
+
+Wiley Online Library
+Search within
+
+    Search term
+
+Login / Register
+Magnetic Resonance in Medicine
+Volume 63, Issue 2 p. 385-395 Magnetic Resonance in Medicine
+Full Paper
+Free Access
+Asymmetries of the balanced SSFP profile. Part I: Theory and observation
+Karla L. Miller , 
+Centre for Functional MRI of the Brain (FMRIB), University of Oxford, Oxford, UK===
+First published: 23 January 2010
+https://doi.org/10.1002/mrm.22212
+Citations: 31
+Sections
+PDF PDF
+Tools
+Share
+Abstract
+
+The signal in balanced steady-state free precession has a strong sensitivity to off-resonance, which is typically described in terms of a signal “profile” over a range of frequencies. This profile has a well-known form for homogeneous media with a single T 1 , T 2 , and resonance frequency, which is symmetric about the on-resonance frequency. However, a straightforward extension to this established signal model predicts that the profile may become asymmetric in the presence of inhomogeneous frequency content, as would be expected to happen in tissue due to microstructural boundaries, compartments, and chemical shift. The presence of asymmetries in the balanced steady-state free precession profile may therefore provide a marker of tissue integrity. This manuscript describes the theory behind balanced steady-state free precession asymmetries, a method for detecting these effects, and the first measurements of balanced steady-state free precession asymmetries in tissue. Asymmetries are found in gray matter, white matter, and muscle, with excellent reproducibility. A companion paper considers the large white matter asymmetries in more detail. Magn Reson Med, 2010. © 2010 Wiley-Liss, Inc.
+
+The balanced steady-state free precession (BSSFP) pulse sequence has the unusual property that the signal has a strong dependence on resonance frequency. For homogeneous tissue characterized by a single T 1 , T 2 , and off-resonance frequency, this dependence has a well-known mathematical form ( 1 ). Recently, however, a number of studies have reported deviations from this form due to effects such as water exchange ( 2 ), diffusion ( 3 ), and magnetization transfer ( 4 ). These studies are chiefly concerned with discrepancies between the predicted and observed signal magnitude in a narrow range of frequencies (the “pass band”), but the results can be extended to the entire frequency range. In all of these cases, the signal profile across the frequency range is symmetric with respect to frequency: in other words, the signal magnitude depends only on the size of frequency offset, but not whether it is a positive or negative offset.
+
+However, the presence of a distribution of frequencies within a voxel blurs the off-resonance profile ( 5 ) and can cause the profile to become asymmetric. This behavior is described mathematically as a convolution of the off-resonance profile with the frequency distribution. If the distribution is symmetric, such as a Lorentzian or Gaussian distribution, the BSSFP signal profile will remain symmetric after convolution. However, in the case of an asymmetric distribution (for example, due to two unequal, frequency-shifted compartments), the convolution results in an asymmetric magnitude profile. The shape of the measured BSSFP signal profile therefore carries information about the voxel frequency content. Previous modeling work by our group has indicated that the BSSFP profile shape has great potential for detecting frequency distribution properties ( 6 ), although only symmetric distributions were considered in that study.
+
+To our knowledge, no previous work has sought or reported measured asymmetries in the BSSFP profile. The presence of profile asymmetries in tissue would be driven by the voxel frequency distribution, which in turn is related to the tissue microstructure. Thus, asymmetries could provide a useful biomarker, for example, of tissue integrity. Although it is unclear whether these effects might be detectable, the high signal-to-noise ratio (SNR) efficiency of BSSFP makes this possibility intriguing.
+
+This manuscript is the first of two describing the theory, demonstration, and characterization of BSSFP asymmetries. In part I, I describe the theory behind profile asymmetries, introduce a method for robustly measuring the BSSFP profile, and present in vivo measurements of asymmetries in brain and muscle. Part II will consider the observed asymmetries in white matter in greater detail and present further methods for detecting and quantifying these effects in vivo.
+THEORY
+Frequency Dependence and Phase Cycling
+
+For our purposes, the most important property of BSSFP is that the signal differs for magnetization at different resonance frequencies, which we will refer to as “isochromats.” This dependence results from the sequence property that all gradients are fully refocused (have zero net area) across a repetition period, so that the only source of phase accrual is due to off-resonance precession. Each isochromat is characterized by how far it precesses during a T R . Even if all isochromats begin the T R at the same location, they will have precessed by a different angle during the T R , and the subsequent radiofrequency (RF) pulse will rotate each accordingly to a different location. In early repetition periods, successive rotations due to precession and RF tip lead to a seemingly chaotic motion of the various isochromats, but eventually each reaches a steady state that depends on its precession angle. Example steady-state signal levels are shown in Fig. 1 a (note that this and subsequent plots use approximate T 1 and T 2 of white matter at 3 T and use T E = T R /2 ( 7 )). We can interpret the plots as depicting the signal magnitude for a range of isochromats in a single experiment. For example, in a scan of an object with an imperfect shim, different regions of the object will have different signal levels, resulting in the familiar “banding artifacts” of BSSFP images.
+Details are in the caption following the image
+Figure 1
+Open in figure viewer PowerPoint
+
+The homogeneous BSSFP profile (for tissue with a single T 1 , T 2 , and frequency) is plotted at three flip angles, showing (a) magnitude and (b) complex signal behavior. Different isochromats are plotted with different colors, and the black lines indicate the signal. Plots were calculated using T 1 / T 2 = 830/80 ms and T E /T R = 6/12 ms, such that an isochromat at T R -1 = 83.3 Hz will precess 360° per T R . Each plot can be interpreted as either the signal for a range of isochromates for a single phase increment or a single isochromat for a range of phase increments. a: The black lines indicate signal magnitude at a range of frequencies, and the colored vertical lines indicate regularly spaced isochromat frequencies. Although the profile shape changes with flip angle, it is always symmetric with respect to frequency. b: The same profiles are plotted in the complex plane (black lines), with the colored spokes mapping to the same isochromats as in the top row. The direction of RF tip is indicated in the bottom center, and pass band (PB) and transition band (TB) parts of the profile are indicated in the right-hand plots.
+
+However, the relationship between an isochromat's frequency and the achievable signal is not fixed. We can control where a given isochromat lies along the frequency axis in Fig. 1 a by incrementing the phase of the RF pulse by a fixed value each T R . For example, an isochromat that precesses 30° during one T R in an acquisition with no phase increment will have the same steady-state signal level as an isochromat that precesses 45° per T R in an acquisition with a 15° increment, since in either case the precession has a 30° phase offset from the RF pulse. This suggests a second interpretation of Fig. 1 a as the signal level measured from a single isochromat in a series of experiments with varying phase increment.
+
+These two interpretations are unified in the frame of reference of the phase cycling increment. An isochromat is “on resonance” when its precession angle is matched to the RF phase increment (i.e., precession causes the isochromat to track the RF pulse), and changing the RF phase increment effectively changes how far off-resonance it appears. We define the “center frequency” of the experiment ( f cent ) according to the RF phase increment Δ ϕ = 2π f cent T R . Note that this definition of off-resonance and center frequency is different from most MRI methods, where resonance is defined by the frequency of RF transmission.
+Homogeneous Voxels
+
+The BSSFP magnetization can be calculated within the frame of reference of the RF phase increment by imposing an equilibrium constraint: after experiencing all motion during a T R (relaxation, off-resonance precession and RF tip), the magnetization vector must return to its starting position. This standard calculation assumes a homogeneous voxel with a single T 1 , T 2 , and (implicitly) diffusion coefficient, and the precise details of the resulting magnetization dynamics also depend on flip angle and T R . Nevertheless, there are a few important characteristics of the resulting signal profile that hold independent of the tissue or sequence parameters.
+
+The magnitude of this theoretical BSSFP profile is predicted to be symmetric with respect to on-resonance frequency since positive and negative frequencies experience the same magnitude of phase offset relative to the RF pulse. Similarly, isochromats that precess more than one cycle per T R (ϕ + n 360 for some integer n ) have the same relationship to the subsequent RF pulse as those that precess a fraction of a cycle (ϕ), causing the magnitude profile to alias every T R -1 Hz to form “bands” of repeated signal patterns along the frequency axis (two bands are shown in Fig. 1 a). It is convenient to differentiate between two regimes of the BSSFP profile using filter design terminology: signal in the “transition band” (near multiples of 360° precession angle) varies sharply with frequency, whereas signal in the “pass band” (odd multiples of 180°) is relatively insensitive to frequency.
+
+The BSSFP signal behavior in the complex plane is less commonly considered but is of critical importance to the present work. The steady state of isochromats in the pass band is centered about the axis of RF excitation ( x in Fig. 1 ), with the isochromats aligning with this axis halfway through the T R , forming a kind of spin echo ( 5 ). In adjacent bands, this spin echo forms on opposing axes such that the signal phase changes by 180°, as shown in Fig. 1 b. Between adjacent pass bands, the signal in the transition band sweeps between these opposing axes, creating signal phase with striking dependence on frequency. The entire complex profile repeats every 2(T R ) −1 Hz.
+
+As will become clear below, the greatest sensitivity to the voxel frequency distribution occurs when the distribution overlaps the transition band, where the colored spokes in Fig. 1 b have lowest density. As shown in Fig. 1 a, there is high signal in the transition band at low flip angle, and we will therefore focus on low flip angle BSSFP (α = 10°) in this work. The resulting profile shape is different from that most commonly used in BSSFP imaging (e.g., the shape for α = 30° in Fig. 1 ).
+
+These characteristics assume a single compartment with homogeneous T 1 , T 2 , and resonance frequency, which is never the case in tissue. For clarity, we will refer to the theoretical off-resonance profile as the “homogeneous profile” to distinguish it from the “inhomogeneous profile” measured from a voxel containing a range of frequencies.
+The Effect of the Voxel Frequency Distribution
+If a range of isochromats is present within a voxel, the signal behavior is different from that described above. Neglecting the effects of diffusion and exchange, the total signal is the sum of the signal from each isochromat weighted by its distribution fraction ( 8 ):
+equation image (1)
+where f cent is the experimental resonance frequency (determined by the RF phase increment), f represents a given isochromat frequency, H ( f ) is the voxel frequency distribution, and M xy ( f ) is the homogeneous BSSFP signal profile. The bottom line expresses this integral as a convolution (denoted by ⊗) evaluated at f cent . The inhomogeneous profile that we would measure is thus given by the convolution of the voxel frequency distribution with the homogeneous profile. Because neither waveform is reflected, this is technically a cross-correlation, rather than a convolution. However, my interpretation is that the distribution blurs the BSSFP signal profile, and I therefore make gentle abuse of mathematical convention.
+
+For a symmetric frequency distribution (e.g., a single Gaussian or Lorentzian distribution of frequencies), the blurring induced by this convolution will modulate the shape of the profile but will not alter its symmetry, as demonstrated in Fig. 2 a-f. In other words, for symmetric distributions, positive and negative center frequency offsets are equivalent (Fig. 2 d and f are reflections of each other). However, if the distribution is asymmetric (e.g., due to unequal, frequency-shifted pools), the convolution can result in an asymmetric BSSFP signal profile, as demonstrated in Fig. 2 g-l. Here, positive and negative center frequency offsets are nonequivalent (Fig. 2 j and l are not reflections of each other). The induced asymmetries can be large due to the 180° phase shift between adjacent bands (dashed lines in Fig. 2 a and g). Signal from different parts of the distribution can phase cancel, effectively placing a large gain on relatively small frequency shifts (this is also the cause of signal reduction in the transition band for symmetric distributions). This gain mechanism has previously been exploited to detect distribution modulations due to fluctuations in blood oxygenation ( 9 ) but to my knowledge has not been used to probe the details of the frequency distribution. Note that the primary effect of the convolution on the phase profile is to blur the region of the phase transition.
+Details are in the caption following the image
+Figure 2
+Open in figure viewer PowerPoint
+
+Illustration of the convolution model for BSSFP signal in the presence of symmetric (top) and asymmetric (bottom) frequency distributions. The homogeneous profile (a,g) is convolved with the isochromat distribution (b,h) to give the inhomogeneous profile (c,i) . The plots in (d-f,j-l) visualize different points in this convolution (indicated by vertical dashed the lines in (c,i) ). The curved outline plots the homogeneous profile in the complex plane (as in Fig. 1 b), and the distribution is indicated by the shading, with darker regions indicating high isochromat density. The total signal is the complex sum over the entire profile (black line), weighted according to the distribution (shading). The resulting profile is symmetric about f cent = 0 for a symmetric distribution but asymmetric for an asymmetric distribution. Calculations use T 1 / T 2 = 830/80 ms, T E /T R = 6/12 ms, α = 10°. The symmetric distribution (b) is a single Lorentzian with Γ = 1 Hz, and the asymmetric distribution (h) is the summation of two Lorentzians, with Γ 1 /Γ 2 = 1/2 Hz and fraction 25/75%.
+Multifrequency Measurements
+
+To look for asymmetries in the BSSFP magnitude profile, we need to acquire data at series of center frequencies ( f cent ) spanning T R −1 Hz. For typical repetition times of T R = 3–15 ms, this corresponds to a bandwidth of 67–333 Hz; here, we use T R = 12 ms, corresponding to a bandwidth of 83 Hz. One important consideration is how to cover this bandwidth in a relatively short scan time, and in particular how to transition efficiently between frequencies.
+
+When acquiring single BSSFP images, it is common to establish the steady state with “dummy cycling”: applying RF pulses every T R seconds (including phase increment) for an initial period without acquiring data. A useful heuristic is that it takes about 3 × T 1 seconds to reach the steady state. If we want to cover the profile at relatively high frequency resolution (e.g., 50–100 measurements), waiting for several seconds between each measurement accumulates to several minutes over the entire scan, during which no data are being acquired. There are several schemes for rapidly establishing the steady state, but these are designed to start with the equilibrium magnetization ( 10 ) and/or focus solely on the pass band ( 11 ). We would prefer a scheme that will allow us to take advantage of the established steady-state signal for one phase increment to transition quickly to the steady state for the next increment.
+
+A simple approach is to acquire each volume with a constant phase increment that is then increased or decreased between volumes to sweep across the desired frequency range. Provided the change in phase increment is small, the current steady state is not drastically different from the next, and the transition should be relatively fast and smooth. However, the transition must not introduce any asymmetries to the profile. As shown in Fig. 3 a, measuring the magnetization immediately after the transition could introduce an apparent asymmetry. However, with a sufficiently long delay for dummy cycling between the transition and data acquisition, the symmetry of the profile measured with such a scheme should not be affected by the transition, as shown in Fig. 3 b.
+Details are in the caption following the image
+Figure 3
+Open in figure viewer PowerPoint
+
+Simulations of different methods for transitioning between phase increments to measure one BSSFP magnitude band. Top row shows the phase increment over time (gray) and the resulting BSSFP signal (black). The middle row zooms in on the black boxes indicated in the top row. To simulate the profile measured during an imaging experiment, the signal for each phase increment is averaged over the time window indicated by the gray swath (2.4 sec). Acquisition may or may not be preceded by a “dummy cycle” period during which no data are acquired. The bottom row depicts the resulting measured profile, including magnitude (black solid) and phase (gray dashed). The depicted schemes are (a) step increase in phase increment, no dummy cycles; (b) step increase, 1.2-sec dummy cycles; (c) linear increase, 1.2-sec dummy cycles; (d) step decrease, no dummy cycles. Calculations use T 1 / T 2 = 830/80 ms, T E /T R = 6/12 ms, α = 10°.
+
+Rather than sweeping the frequency axis with a series of step increases in the phase increment, one could use a constantly increasing phase increment ( 12 ). However, this scheme introduces asymmetry to the profile (Fig. 3 c), with greater asymmetry as the rate of frequency sweep increases ( 12 ). Even if dummy cycles are included to reduce the rate of frequency sweep, this scheme results in a profile that is fundamentally asymmetric, making it incompatible with our needs.
+
+Transient asymmetries are introduced because the transition into the steady state depends on the prior state of the magnetization (i.e., whether the previous steady state was at a higher or lower center frequency). This can be seen by reversing the direction of sweep, which also reverses the direction of the asymmetry, as shown in Fig. 3 d. This effect provides an opportunity to differentiate between asymmetries introduced due to the frequency sweep, which follow the direction of sweep in time, and asymmetries due to isochromat distribution, which will exhibit a direction of asymmetry that is fixed with respect to the absolute center frequency. An asymmetry that reverses with sweep direction is an artifact of the acquisition (which indicates that a longer dummy cycle period is required between images), while consistent asymmetries should reflect tissue frequency distribution effects regardless of sweep direction.
+
+Finally, it is worth noting that the phase profile predicted in these simulations (Fig. 3 , bottom row) is different from that shown in Fig. 2 a and g. Above, we note that incrementing the phase of the RF pulse shifts the magnitude profile with respect to isochromat frequency. Additionally, it rotates the signal profile in the complex plane by half the angle of the phase increment (even when the acquisition is phase-locked to the RF excitation). This effect is a direct result of measuring the magnetization halfway through the T R when it has rotated by half its total precession angle. This results in the altered phase profile shown in the bottom row of Fig. 3 . Note, however, that while measurements of a given voxel across multiple frequencies have the altered profile shown in Fig. 3 , the phase of different isochromats in a single experiment is still characterized by the phase profile shown in Fig. 2 .
+MATERIALS AND METHODS
+Data Acquisition
+Pulse Sequence
+
+All imaging was performed on a Trio 3-T scanner, using a 12-channel receive coil (Siemens Medical Systems, Erlangen). The pulse sequence used in all experiments is diagrammed in Fig. 4 . A series of image volumes is acquired, with variable RF phase increment. At the end of each volume acquisition, the phase increment is increased (or decreased) to shift to the next center frequency, and acquisition is repeated at enough frequencies to cover the BSSFP magnitude profile. In all experiments, T E /T R = 6/12 ms, so that the BSSFP magnitude profile is T R −1 = 83 Hz wide. We acquire 90 images at 1-Hz resolution, covering a slightly greater range of frequencies in case frequency drift results in smaller-than-expected frequency shifts between images. To ensure that observed asymmetries are not due to signal transients, dummy cycles without data acquisition are run before each volume acquisition (with a tunable dummy cycle duration). Image volumes are acquired with a BSSFP sequence using a three-dimensional segmented–echo-planar imaging readout, as described previously ( 13 ). Unlike most BSSFP sequences, which acquire a single k -space line each T R , this sequence acquires several lines each T R to reduce the volume scan time. To determine if any detected asymmetries are physiological or artifactual in origin, each acquisition was repeated with both increasing and decreasing frequency. If asymmetries are induced by signal transients following the change in phase increment, the direction of asymmetry with respect to center frequency will reverse, as shown in Fig. 3 a and d.
+Details are in the caption following the image
+Figure 4
+Open in figure viewer PowerPoint
+
+Our modified BSSFP sequence acquires a series of image volumes with varying phase increments (ACQ = data acquisition, ϕ RF = RF phase). a: Seven volume acquisitions with increasing phase increment are depicted. Acquisition is preceded by a dummy cycle period to establish the steady state. At the end of each volume acquisition, the phase increment is increased (for clarity, the RF phase is also shown to return to zero after each volume acquisition, while in practice only the increment is changed). b: The RF and acquisition for seven representative T R s are shown, including two dummy cycles and five acquisition periods. c: Each T R consists of excitation followed by a three-dimensional-segmented echo-planar imaging trajectory (here, eight lines per segment), which is fully balanced to have zero net area on every gradient axis.
+Phantom Imaging
+
+A bottle of water doped with copper sulfate was scanned to test the sequence on a homogeneous medium. The acquisition used field of view = 16 × 16 × 3.2 cm, matrix size 80 × 80 × 16, and resolution 2 × 2 × 2 mm and acquired six lines per T R . Data were acquired with α = 12°, 15°, and 20°, which are higher than used in vivo to achieve the desired shape, given the T 1 and T 2 of the phantom. Four scans were run at each flip angle, varying the settings of the dummy cycle period (no dummy period vs two seconds of dummy cycles) and the direction of frequency sweep (up vs down). To measure the phase profile, a single-channel head coil was used and data were reconstructed off-line using a modified phase correction. The echo-planar imaging reconstruction provided by the scanner manufacturer removes the mean phase from each volume, altering the measured phase profile. Instead, I used the phase navigator scan from the first volume to correct all 90 volumes, retaining the variations in phase due to the change in center frequency.
+Brain Imaging
+
+Brain scans of three subjects were performed using a 12-channel head coil. The acquisition used an axial orientation with field of view = 22 × 16.4 × 6 cm and matrix size 110 × 82 × 30 for 2 × 2 × 2 mm voxels. The flip angle was set to α = 10° to achieve the profile shown in Fig. 3 b. Dummy cycles were run for 3 sec between imaging volumes, which the simulation in Fig. 3 b predicts to be a conservative duration (i.e., fewer dummy cycles could be used without introducing asymmetries due to transients). The relatively long scan times (10:29 per sweep direction) could therefore be considerably shortened in future experiments. In addition to the BSSFP acquisitions, I acquired T 1 -weighted structural scans using an inversion-prepared (magnetization-prepared rapid gradient echo, MPRAGE) three-dimensional sequence with T E /T R /T I = 4.5/3300/1100 ms, matrix 256 × 176 × 224, and resolution 1 × 1 × 1 mm.
+Leg Imaging
+
+Scans of the lower leg of three subjects were performed using a four-channel surface coil designed for carotid imaging. The coil consists of two separate elements that were strapped to the inside and outside of the leg so that the gastrocnemius and peroneus muscles are close to the elements. The acquisition used a coronal orientation and covered field of view = 19.2 × 12.0 × 12.8 cm, with matrix size 96 × 60 × 64 and partial Fourier of 6/8 along the slab select direction for 2 × 2 × 2 mm voxels. The partial Fourier data were reconstructed using the vendor reconstruction (zero filling followed by k -space filtering). Dummy cycles were run for 3 sec between imaging volumes. Total scan time per sweep direction was approximately the same as for the brain scan, 10:32.
+Analysis
+Preprocessing
+
+Prior to analysis of the BSSFP profile, some basic preprocessing was performed. The outer four slices were discarded due to aliasing of the three-dimensional slab profile. Additional processing was performed on the brain data as follows: the brain was extracted using BET ( 14 ) to remove the skull and scalp, which enables better alignment to structural scans. Motion correction was then performed using FLIRT ( 15 ) to reduce the effects of bulk motion during the relatively long multifrequency acquisition (motion correction was not found to be robust in the lower leg experiments, but here motion was also observed to be minimal). A small amount of spatial smoothing was then performed using a Gaussian kernel with σ = 1 mm, which should only slightly reduce the image resolution. This was done to homogenize SNR and levels of blurring after motion correction, which introduces slight blurring to interpolated volumes.
+Temporal Amplitude of Static Field B 0 Drift
+
+These experiments were sensitive to B 0 drift, presumably due to heating from the gradient-intensive pulse sequence. This causes the frequency in each voxel to change over time, resulting in a faster or slower traversal of the frequency axis than intended. This drift was the main motivation for covering 90 Hz rather than 83 Hz, the expected profile band width. Assuming that the drift is linear over time (which should be a reasonable approximation for the relatively short scans used here ( 16 )), the measured profiles are simply compressed or expanded relative to the intended frequency axis. One possible solution would be to try to calibrate this effect; however, the amount of B 0 drift will in general depend on the prior state of the scanner, making calibration difficult. Because this effect cannot introduce asymmetries to the measured profile, we decided to adopt a simple approach to this problem. We manually found an adjustment to the data such that the curves matched well between increasing and decreasing frequency sweep. Note that this was a global adjustment (not voxelwise) since B 0 drift is a global effect. The required adjustment varied from scan to scan and retained 83–89 points from the increasing frequency sweep and 77–83 points from the decreasing frequency sweep, corresponding to a drift of up to 6 Hz over a 10-min scan.
+Profile Recentering
+
+The profile measured in each voxel is shifted according to its mean resonance frequency, making it necessary to center the profile measured in each voxel before any subsequent assessment of asymmetry. Initially, I shifted each profile by a frequency estimated from an acquired field map. However, I found field maps to lack the accuracy required to achieve robust recentering. I was able to achieve more robust centering based on the profile itself. After smoothing and up-sampling, I calculate the second derivative of the profile and identify its maximum, which should correspond to the dip in the center of the transition band for profiles of the expected shape (e.g., Fig. 3 ). The raw curves were then shifted according to this center frequency (but neither smoothed nor up-sampled).
+Region-of-Interest Analysis
+
+Following recentering, region-of-interest (ROI) analysis was performed to assess the profile shape. In the phantom data, an ROI in the center of the bottle was hand-drawn, encompassing 197 voxels. In these data, the average magnitude and phase profile were calculated for each dataset. For the leg imaging experiment, ROIs encompassing a significant part of the gastrocnemius (548 ± 43) and peroneus (379 ± 92 voxels) were drawn, and the average magnitude profile was calculated. In the brain imaging experiments, the T 1 -weighted structurals were segmented into tissue types to generate whole-brain, tissue-specific ROIs. The FAST segmentation tool ( 17 ) was run to identify the gray matter, white matter, and cerebrospinal fluid, using partial-volume classification. The structurals were aligned to the BSSFP data and down-sampled to the same resolution and finally thresholded to create binary masks for each tissue type (where a voxel was assigned to a given class if it had a 75% membership in that class). These masks were then used to calculate mean profiles for each tissue type.
+RESULTS
+Phantom Data
+
+Profiles measured in the water phantom are shown in Fig. 5 , including magnitude and phase. When no dummy cycles are included prior to image acquisition, the measured magnitude profiles exhibit asymmetries. These asymmetries are reflected between the increasing and decreasing frequency acquisitions, as predicted in my simulations shown in Fig. 3 a and d. When dummy cycles are included, the measured profiles are symmetric, as predicted by the standard signal model for a homogeneous medium. The phase profile is in excellent agreement with the simulations in Fig. 3 .
+Details are in the caption following the image
+Figure 5
+Open in figure viewer PowerPoint
+
+Average BSSFP profiles measured in a phantom (solid = magnitude, dashed = phase) where the profile is expected to be symmetric. Data were acquired with increasing and decreasing frequency using three flip angles. a: When no dummy cycles are included, an apparent asymmetry occurs, which reverses when the direction of frequency sweep changes. This is the effect simulated in Fig. 3 a and d. b: When dummy cycles are included, the transient effects of the change in center frequency die out prior to acquisition, and the measured profiles are symmetric for both sweep directions.
+Brain Data
+
+Example BSSFP profiles measured in the brain of one subject are shown in Fig. 6 . The images acquired at different experimental frequencies exhibit the characteristic BSSFP “banding artifacts,” which occur due to the imperfect shim across the brain. This macroscopic field inhomogeneity corresponds to different mean frequency in voxels at different spatial locations and results in a shift of the measured BSSFP profile. Unprocessed and recentered profiles are also shown from one voxel of each tissue type.
+Details are in the caption following the image
+Figure 6
+Open in figure viewer PowerPoint
+
+Example data acquired in the brain of one subject. Top: Images acquired at five different center frequencies roughly spanning the acquired range (83 Hz). Middle and bottom: Raw (middle) and recentered (bottom) profiles in representative voxels in gray matter, white matter, and CSF.
+
+Example profiles in a range of gray matter, white matter, and cerebrospinal fluid (CSF) voxels are shown for one subject in Fig. 7 , including both increasing and decreasing frequency sweep. Most voxels in gray and white matter exhibit some degree of asymmetry, with the most striking asymmetry in white matter. The profiles measured in gray and white matter are highly consistent for the two sweep directions, indicating that the profile shape is not being driven by transients. It is also clear that the SNR is sufficient to detect the asymmetries on a voxelwise basis. The pattern in CSF is more complicated. The voxels that lie in the center of the ventricles tend not to exhibit asymmetries that are consistent between sweep directions, but voxels closer to the boundary of white matter appear to show a more consistent asymmetry. There is also greater variation in signal amplitude between scans for these boundary voxels, which may reflect slight subject movement changing the partial volume fractions of CSF and white matter. Similar results are found for all subjects.
+Details are in the caption following the image
+Figure 7
+Open in figure viewer PowerPoint
+
+Profiles measured in the brain for increasing and decreasing sweep within small ROIs defined in white matter (WM), gray matter (GM) and cerebrospinal fluid (CSF). The only preprocessing was motion correction and recentering of the profiles. Profiles are scaled arbitrarily from one voxel to another, but the increasing and decreasing sweep profiles in each voxel have identical scaling (in scanner units).
+
+Mean profiles measured in the three brain tissue types for three subjects are shown in Fig. 8 . Gray and white matter exhibit an asymmetric profile with good consistency both across subjects and sweep direction. The latter result indicates that the asymmetry is likely not introduced due to transients from the change in phase cycling. This is in good agreement with my simulations (Fig. 3 b) due to the fairly long dummy cycle period (3 sec) following each transition and the relatively small change to the phase increment. By comparison, the CSF does not show a consistent asymmetry across subjects or sweep direction. There is a general tendency for an asymmetry that reverses with sweep direction, which may indicate that the longer T 1 and T 2 in CSF require longer dummy cycles.
+Details are in the caption following the image
+Figure 8
+Open in figure viewer PowerPoint
+
+Mean profiles measured in brain tissue ROIs for three subjects. For each ROI, the mean ± standard error is plotted, and data acquired with both increasing and decreasing frequency sweep are shown. There is good consistency across subjects, demonstrating a strongly asymmetric profile in white matter, smaller asymmetry in gray matter, and no consistent effect in CSF. In gray and white matter, the agreement between increasing and decreasing frequency sweeps is evidence against artificial asymmetries due to transient effects of the kind shown in Fig. 3 .
+Muscle Data
+
+A very different pattern of BSSFP profiles was observed in the muscle data. The ROI average profiles of the two muscle groups did exhibit asymmetries (which were not reversed with reversing sweep), but there was profound intersubject variability, including opposing (i.e., reflected) asymmetries in different subjects. The reason for this discrepancy became clear when looking at the measurements in individual voxels, shown in Fig. 9 . While individual voxels often show striking asymmetries that are highly reproducible regardless of sweep direction, the profiles themselves are spatially heterogeneous. Compared to the measurements in brain (Fig. 7 ) where neighboring voxels are very similar, the profiles in muscle are highly variable. Moreover, several of the profiles depart from the shape of the homogeneous profile to exhibit additional bumps or dips not observed in brain tissue.
+Details are in the caption following the image
+Figure 9
+Open in figure viewer PowerPoint
+
+Profiles measured in leg muscle of two subjects for increasing and decreasing sweep within small ROIs defined in the medial gastrocnemium (MG) and the peroneus longus (PL). The only preprocessing was recentering of the profiles. Unlike the profiles measured in the brain (Fig. 7 ), the profiles vary strongly from voxel to voxel but are nevertheless reproducible with reversing sweep direction.
+DISCUSSION
+Pulse Sequence Implementation
+
+One subtlety of BSSFP is the need to shift the profile using phase cycling rather than the more obvious approach of shifting the RF excitation frequency. Changing the carrier frequency of the RF pulse would also shift the excited slab. In my experiments, which use excitation gradients of 3 mT/m and cover the BSSFP profile over 100 Hz, the slab would shift by 0.8 mm over the course of the scan. This shift would represent a systematic effect over our experiment that could lead to apparent asymmetries as the partial volume of reconstructed voxels varies.
+
+Another issue in my implementation is the use of segmented echo-planar imaging for image acquisition. Although this method is highly beneficial for faster scan times, it is also associated with sources of image artifact. Prior to each image volume acquisition, my sequence collects phase navigator lines to correct for inconsistencies between even and odd lines. However, I did note some signal instabilities near the ventricles, which will be addressed in future work. An alternative is to use single-line acquisitions and accelerate the sequence using parallel imaging.
+Sources of Frequency Distribution Asymmetry
+
+There are several potential sources of frequency shifts that might be detected as asymmetries in the BSSFP profile. Most likely sources of asymmetries essentially relate to partial-volume effects due to different voxel components with a frequency offset relative to each other. To the extent that the components are relatively large-scale structures, such as fat deposits or large blood vessels, the observed asymmetries would depend on voxel size. This is one possible source of asymmetries in the leg, where tissue heterogeneity could lead to the observed spatial variability (and this effect would be exacerbated by the blurring induced due to the partial Fourier acquisition). Similarly, this may explain the variability in brain voxels near the CSF-white matter (WM) boundary. However, the consistency of asymmetry across white (and gray) matter voxels can be argued to indicate that the relevant components in these tissues have a much smaller scale than the voxel size.
+
+Tissue generally consists of a range of substructures with varying content of lipids, proteins, iron carriers ( 18 ), and other molecules that have differing magnetic susceptibility. The presence of cell membranes can create relatively isolated compartments with differing frequency. Some tissue models therefore incorporate a frequency shift for interstitial water compared to the intracellular space ( 19 ). Fast spectroscopic imaging has been used to measure the water frequency distribution directly, reporting distribution asymmetries that seem to relate to microstructural changes in tumors ( 20 , 21 ). In the presence of anisotropic tissue structure, frequency-shifted compartments can also lead to spatial patterns of frequency shifts in the adjacent tissue. This is a well-known phenomenon for blood vessels carrying deoxyhemoglobin, which results in the blood oxygen level dependent effect that is exploited in functional MRI ( 22 ). Tissue with large blood volumes may exhibit blood oxygen level dependent–related asymmetries, which may account for the asymmetries in gray matter and muscle (for the latter, vascular heterogeneity could explain the spatial variations shown in Fig. 9 ). In white matter, gradient-recalled echo (GRE) signal phase ( 23 ) and magnitude ( 24 , 25 ) have recently been reported to depend on tract direction relative to B 0 and are hypothesized to relate to the cylindrical geometry of tracts. A recent report provides evidence for this relationship by comparison of quantitative T 2 * with diffusion tensor data ( 26 ).
+Relation to Line Shape
+
+It is important to distinguish the frequency distribution effects considered here from the line shape that is measured in water-peak spectroscopy. The latter method measures the free-induction decay of a gradient echo sequence. This therefore includes both the effects of spin-spin relaxation (typically described by the T 2 time constant) and static dephasing effects due to the voxel frequency distribution (typically described by the T urn:x-wiley:07403194:media:MRM22212:tex2gif-stack-1 time constant). Like GRE, spin-spin effects can be treated in BSSFP as a relaxation mechanism, but voxel frequency distribution effects must be incorporated using the convolution model ( 5 , 6 ). Most important, the sources of spin-spin interactions ( T 2 ) cannot lead to asymmetries in the profile. Asymmetries can only be caused by the integration of different isochromats exhibiting unique steady-state signals. Thus, while the entire profile is sensitive to both spin-spin ( T 2 ) and static dephasing ( T urn:x-wiley:07403194:media:MRM22212:tex2gif-stack-2 ) effects, the asymmetries only reflect properties of the static dephasing frequency distribution.
+Asymmetry in BSSFP
+
+Above, I have described the BSSFP profile as being symmetric under all circumstances, except in the presence of an asymmetric frequency distribution or measurement during transients (where asymmetries observed due to flow ( 27 ) can be considered a special case of transients ( 12 )). Although this is true for the most commonly used form of BSSFP (as implemented here), there are variants to the sequence that are known to create an asymmetric profile. Most of these variants are designed to alter the BSSFP contrast; for example, removing fat signal from BSSFP ( 28 ) or introducing flow weighting ( 29 ). In general, one can design a broad range of BSSFP profiles ( 30 ), but these methods all involve a departure from the basic sequence described here: a fully balanced sequence with fixed T R , flip angle, and phase increment. As we have seen above, when transitioning between center frequencies, the condition for a constant phase increment must hold approximately by allowing sufficient time following a change to the phase increment before data are acquired.
+
+Given that I observed the same asymmetries in vivo regardless of the direction, I have some confidence that the asymmetry was not introduced due to the frequency sweep. We can make use of Foxall's finding that the disruption of the steady state is minimal when Δ ω T R ≪ 0.5 ( 12 ). My acquisition is well within this regimen, given that Δ ω = 1 Hz and T R = 12 ms. This may indicate that conservative use of dummy cycles is not necessary, which can considerably accelerate the scan times for this method.
+Future Work
+
+In this manuscript, part I, I have presented the theory of BSSFP asymmetries and demonstrated this effect in tissue. In the following companion paper, I characterize the BSSFP asymmetries in white matter, where I observe the largest asymmetries, and also present several methodological advances. I go beyond the ROI analyses presented here to calculate voxelwise maps of asymmetry, which require a more robust and accurate method of recentering the profiles. I demonstrate that asymmetry in white matter has spatial heterogeneity that may reveal information about its source. I also fit a simple convolution model to characterize the frequency distribution in white matter.
+
+Beyond the methods presented in parts I and II, there are several improvements to the acquisition and analysis that will be crucial to making this technique robust and useful. As mentioned above, the scan times used here, about 10 min, are longer than desirable for clinical settings. If we are interested primarily in tissues like white or gray matter, we may be able to reduce the scan time by using fewer dummy cycles (although this may further increase apparent asymmetries in long- T 1 tissues like CSF). Care must be taken to ensure that signal transients are not introducing apparent asymmetries. A 5-min protocol of this kind is being piloted within my group. Further reductions may be achievable by reducing the frequency resolution of profile coverage or covering a limited portion of the profile. However, this will require careful optimization to ensure that estimation of the asymmetry is not compromised. Many of these speed-ups could also be used to improve spatial coverage or resolution within the same scan time. It will also be important to find an automated method for correcting for temporal B 0 drift, either by measuring or fitting drift. It is useful to note that, although heating-induced B 0 drift is generally exponential, the time constants are relatively long and it has been shown that echo-planar-imaging acquisitions create a fairly linear drift over the time frame of our experiments ( 16 ). Finally, in developing the sequence I have observed signal transients from CSF that create signal instabilities throughout the imaging volumes. Future work will consider methods for reducing these artifacts.
+CONCLUSIONS
+
+Although the sensitivity of the BSSFP profile to resonance frequency is a well-known effect, the sensitivity of BSSFP to the details of the voxel frequency distribution has not been explored in detail. Here, I consider the possibility of detecting frequency distribution asymmetries as reflected in an asymmetry in the BSSFP signal measured at a range of frequencies. Reproducible asymmetries occur in brain, with different size of effect for different tissue types and strongest asymmetry in white matter. This represents a unique contrast mechanism that may yield useful information about tissue microstructure.
+Acknowledgements
+
+The author thanks Peter Jezzard, Rob Tijssen, and attendees of the 2008 Gordon Research Conference on In Vivo MR for useful discussion and feedback. This work is supported by the Royal Academy of Engineering and EPSRC Post-Doctoral Research Fellowship.
+
+REFERENCES
+Citing Literature
+
+Volume 63 , Issue 2
+
+February 2010
+
+Pages 385-395
+
+    Figures
+    References
+    Related
+    Information
+
+Download PDF
+back
+Additional links
+About Wiley Online Library
+
+    Privacy Policy
+    Terms of Use
+    About Cookies
+    Manage Cookies
+    Accessibility
+    Wiley Research DE&I Statement and Publishing Policies
+    Developing World Access
+
+Help & Support
+
+    Contact Us
+    Training and Support
+    DMCA & Reporting Piracy
+
+Opportunities
+
+    Subscription Agents
+    Advertisers & Corporate Partners
+
+Connect with Wiley
+
+    The Wiley Network
+    Wiley Press Room
+
+Copyright © 1999-2024 John Wiley & Sons, Inc or related companies. All rights reserved, including rights for text and data mining and training of artificial technologies or similar technologies.
+
+Wiley Home Page
+

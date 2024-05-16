@@ -1,0 +1,85 @@
+
+Skip to main content
+Cornell University
+We gratefully acknowledge support from the Simons Foundation, member institutions , and all contributors. Donate
+arxiv logo > eess > arXiv:2201.01266
+
+Help | Advanced Search
+Search
+Electrical Engineering and Systems Science > Image and Video Processing
+(eess)
+[Submitted on 4 Jan 2022]
+Title: Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images
+Authors: Ali Hatamizadeh , Vishwesh Nath , Yucheng Tang , Dong Yang , Holger Roth , Daguang Xu
+View a PDF of the paper titled Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images, by Ali Hatamizadeh and 4 other authors
+View PDF
+
+    Abstract: Semantic segmentation of brain tumors is a fundamental medical image analysis task involving multiple MRI imaging modalities that can assist clinicians in diagnosing the patient and successively studying the progression of the malignant entity. In recent years, Fully Convolutional Neural Networks (FCNNs) approaches have become the de facto standard for 3D medical image segmentation. The popular "U-shaped" network architecture has achieved state-of-the-art performance benchmarks on different 2D and 3D semantic segmentation tasks and across various imaging modalities. However, due to the limited kernel size of convolution layers in FCNNs, their performance of modeling long-range information is sub-optimal, and this can lead to deficiencies in the segmentation of tumors with variable sizes. On the other hand, transformer models have demonstrated excellent capabilities in capturing such long-range information in multiple domains, including natural language processing and computer vision. Inspired by the success of vision transformers and their variants, we propose a novel segmentation model termed Swin UNEt TRansformers (Swin UNETR). Specifically, the task of 3D brain tumor semantic segmentation is reformulated as a sequence to sequence prediction problem wherein multi-modal input data is projected into a 1D sequence of embedding and used as an input to a hierarchical Swin transformer as the encoder. The swin transformer encoder extracts features at five different resolutions by utilizing shifted windows for computing self-attention and is connected to an FCNN-based decoder at each resolution via skip connections. We have participated in BraTS 2021 segmentation challenge, and our proposed model ranks among the top-performing approaches in the validation phase. Code: this https URL 
+
+Comments: 	13 pages, 3 figures
+Subjects: 	Image and Video Processing (eess.IV) ; Computer Vision and Pattern Recognition (cs.CV); Machine Learning (cs.LG)
+Cite as: 	arXiv:2201.01266 [eess.IV]
+  	(or arXiv:2201.01266v1 [eess.IV] for this version)
+  	https://doi.org/10.48550/arXiv.2201.01266
+Focus to learn more
+arXiv-issued DOI via DataCite
+Submission history
+From: Ali Hatamizadeh [ view email ]
+[v1] Tue, 4 Jan 2022 18:01:34 UTC (615 KB)
+Full-text links:
+Access Paper:
+
+    View a PDF of the paper titled Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images, by Ali Hatamizadeh and 4 other authors
+    View PDF
+    TeX Source
+    Other Formats 
+
+license icon view license
+Current browse context:
+eess.IV
+< prev   |   next >
+new | recent | 2201
+Change to browse by:
+cs
+cs.CV
+cs.LG
+eess
+References & Citations
+
+    NASA ADS
+    Google Scholar
+    Semantic Scholar
+
+1 blog link
+( what is this? )
+a export BibTeX citation Loading...
+Bookmark
+BibSonomy logo Reddit logo
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer ( What is the Explorer? )
+Litmaps Toggle
+Litmaps ( What is Litmaps? )
+scite.ai Toggle
+scite Smart Citations ( What are Smart Citations? )
+Code, Data, Media
+Demos
+Related Papers
+About arXivLabs
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? )
+
+    About
+    Help
+
+    contact arXiv Click here to contact arXiv Contact
+    subscribe to arXiv mailings Click here to subscribe Subscribe
+
+    Copyright
+    Privacy Policy
+
+    Web Accessibility Assistance
+
+    arXiv Operational Status
+    Get status notifications via email or slack
+

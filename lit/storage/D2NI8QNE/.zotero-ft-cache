@@ -1,0 +1,110 @@
+
+Schließen Sie diesen Dialog
+Diese Website nutzt Technologien wie Cookies, um wesentliche Funktionen der Website zu ermöglichen, sowie für analyse, personalisierung und gezielte werbung. Sie können Ihre Einstellungen jederzeit ändern oder die Standardeinstellungen übernehmen. Datenschutz-Bestimmungen
+Einstellungen verwalten Alle akzeptieren Alles ablehnen
+
+    Skip to Article Content
+    Skip to Article Information
+
+Wiley Online Library
+Search within
+
+    Search term
+
+Login / Register
+Magnetic Resonance in Medicine
+Volume 84, Issue 6 p. 2981-2993 Magnetic Resonance in Medicine
+FULL PAPER
+Multi-parametric artificial neural network fitting of phase-cycled balanced steady-state free precession data
+Rahel Heule , 
+Jonas Bause , 
+Orso Pusterla , 
+Klaus Scheffler , 
+First published: 01 June 2020
+https://doi.org/10.1002/mrm.28325
+Citations: 8
+Read the full text
+PDF PDF
+Tools
+Share
+Abstract
+Purpose
+
+Standard relaxation time quantification using phase-cycled balanced steady-state free precession (bSSFP), eg, motion-insensitive rapid configuration relaxometry (MIRACLE), is subject to a considerable underestimation of tissue T 1 and T 2 due to asymmetric intra-voxel frequency distributions. In this work, an artificial neural network (ANN) fitting approach is proposed to simultaneously extract accurate reference relaxation times (T 1 , T 2 ) and robust field map estimates ( urn:x-wiley:07403194:media:mrm28325:mrm28325-math-0001 , ΔB 0 ) from the bSSFP profile.
+Methods
+
+Whole-brain bSSFP data acquired at 3T were used for the training of a feedforward ANN with N = 12, 6, and 4 phase-cycles. The magnitude and phase of the Fourier transformed complex bSSFP frequency response served as input and the multi-parametric reference set [T 1 , T 2 , urn:x-wiley:07403194:media:mrm28325:mrm28325-math-0002 , ∆B 0 ] as target. The ANN predicted relaxation times were validated against the target and MIRACLE.
+Results
+
+The ANN prediction of T 1 and T 2 for trained and untrained data agreed well with the reference, even for only four acquired phase-cycles. In contrast, relaxometry based on 4-point MIRACLE was prone to severe off-resonance-related artifacts. ANN predicted urn:x-wiley:07403194:media:mrm28325:mrm28325-math-0003 and ∆B 0 maps showed the expected spatial inhomogeneity patterns in high agreement with the reference measurements for 12-point, 6-point, and 4-point bSSFP phase-cycling schemes.
+Conclusion
+
+ANNs show promise to provide accurate brain tissue T 1 and T 2 values as well as reliable field map estimates. Moreover, the bSSFP acquisition can be accelerated by reducing the number of phase-cycles while still delivering robust T 1 , T 2 , urn:x-wiley:07403194:media:mrm28325:mrm28325-math-0004 , and ∆B 0 estimates.
+Supporting Information
+REFERENCES
+Citing Literature
+
+Volume 84 , Issue 6
+
+December 2020
+
+Pages 2981-2993
+
+    References
+    Related
+    Information
+
+Recommended
+
+    PLANET: An ellipse fitting approach for simultaneous T 1 and T 2 mapping using phase-cycled balanced steady-state free precession
+    Yulia Shcherbakova ,  Cornelis A.T. van den Berg ,  Chrit T.W. Moonen ,  Lambertus W. Bartels , 
+    Magnetic Resonance in Medicine
+
+    Analytical characterization of RF phase‐cycled balanced steady‐state free precession
+    M. Louis Lauzon ,  Richard Frayne , 
+    Concepts in Magnetic Resonance Part A
+
+    Rapid T 2 estimation with phase-cycled variable nutation steady-state free precession
+    Sean C.L. Deoni ,  Heidi A. Ward ,  Terry M. Peters ,  Brian K. Rutt , 
+    Magnetic Resonance in Medicine
+
+    Phase imaging with multiple phase‐cycled balanced steady‐state free precession at 9.4 T
+    Jae-Woong Kim ,  Seong-Gi Kim ,  Sung-Hong Park , 
+    NMR in Biomedicine
+
+    High‐resolution neural network‐driven mapping of multiple diffusion metrics leveraging asymmetries in the balanced steady‐state free precession frequency profile
+    Florian Birk ,  Felix Glang ,  Alexander Loktyushin ,  Christoph Birkl ,  Philipp Ehses ,  Klaus Scheffler ,  Rahel Heule , 
+    NMR in Biomedicine
+
+Download PDF
+back
+Additional links
+About Wiley Online Library
+
+    Privacy Policy
+    Terms of Use
+    About Cookies
+    Manage Cookies
+    Accessibility
+    Wiley Research DE&I Statement and Publishing Policies
+    Developing World Access
+
+Help & Support
+
+    Contact Us
+    Training and Support
+    DMCA & Reporting Piracy
+
+Opportunities
+
+    Subscription Agents
+    Advertisers & Corporate Partners
+
+Connect with Wiley
+
+    The Wiley Network
+    Wiley Press Room
+
+Copyright © 1999-2024 John Wiley & Sons, Inc or related companies. All rights reserved, including rights for text and data mining and training of artificial technologies or similar technologies.
+
+Wiley Home Page

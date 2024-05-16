@@ -1,0 +1,517 @@
+Magnetic Resonance in Medicine 63:396–406 (2010)
+Asymmetries of the Balanced SSFP Proﬁle. Part II: White Matter
+Karla L. Miller,* Stephen M. Smith, and Peter Jezzard
+
+The signal proﬁle measured in balanced steady-state free precession has been shown to exhibit tissue-dependent asymmetries that were hypothesized to relate to properties of the tissue microenvironment. It was proposed that balanced steady-state free precession asymmetry may reﬂect subtle features of the frequency distribution in tissue. The present work investigates the large balanced steady-state free precession asymmetries observed in white matter. First, maps quantifying the asymmetry are presented, which demonstrate considerable heterogeneity within white matter, with some tracts exhibiting signiﬁcant
+
+This “homogeneous proﬁle” is symmetric with respect to the voxel center frequency. However, a straightforward extension of this theory predicts that a distribution of frequencies within a voxel will blur the BSSFP proﬁle (2). Even simple tissues exhibit such a distribution of frequencies, leading to an “inhomogeneous proﬁle” with altered shape and signal levels. Critically, an asymmetric frequency distribution will lead to an asymmetric BSSFP signal proﬁle, as described in part I. BSSFP proﬁles mea-
+
+asymmetry and others having a nearly symmetric proﬁle. These sured in vivo demonstrated a pronounced asymmetry in
+
+maps are compared with a diffusion-tensor atlas and indicate that the highest asymmetry is found in tracts oriented perpendicular to the main magnetic ﬁeld. Measurements conducted at multiple repetition times suggest that the asymmetries are characterized by relatively small frequency shifts. These results are discussed in the context of previous work studying gradientrecalled echo (GRE) signal behavior in white matter, and it is suggested that these two techniques are detecting closely related phenomena. Magn Reson Med 63:396–406, 2010. © 2010 Wiley-Liss, Inc.
+Key words: balanced SSFP; asymmetry; white matter; frequency distribution; brain
+
+some tissues, with greatest reported asymmetry in white matter. Given that tissue properties such as T1, T2, and diffusion cannot create such asymmetries, we hypothesized that this effect results from an asymmetric voxel frequency histogram, which may contain useful physiological information.
+Intravoxel frequency shifts can come from a number of sources, which may lead to complicated frequency distributions within a voxel. Proteins, lipids, iron-bearing molecules, and many other chemical species have a chemical or susceptibility shift relative to water, leading to a range of frequencies within a voxel, even in simple tis-
+
+sues. Further frequency dispersion within a voxel occurs
+
+This paper is the second in a pair of manuscripts describing a new contrast mechanism based on the frequency sensitivity of balanced steady-state free precession (BSSFP). In part I, we described the theory behind this contrast mechanism, demonstrated its existence in a range of tissue types, and hypothesized that this technique detects properties of the intravoxel frequency distribution. In part II, we present an in-depth study of this contrast in cerebral white matter, where the strongest effect was observed.
+BSSFP is a unique imaging method due to the strong dependence of the signal on resonance frequency. For many imaging applications, this dependence is a disadvantage as it leads to signal variations (often called “bands”) across
+
+when frequency-shifted species are distributed heterogeneously, creating complex local patterns of magnetic ﬁeld distortion that depend on the geometry of the tissue (7). A well-known example is the blood oxygenation level dependent effect, where the compartmentalization of deoxyhemoglobin in the blood creates extravascular ﬁeld patterns that are speciﬁc to vascular geometry (8). This broadens the frequency distribution, and is typically detected indirectly as a change in T2*. In white matter, several groups have recently reported variations in with gradient-recalled echo (GRE) signal magnitude and phase (9–15), which appear to depend on tract direction relative to amplitude of the static ﬁeld (B0). These signal changes are hypothesized to result from frequency shifts due to tract geometry, similar to the
+
+the image due to imperfect shim. However, it has also been blood oxygenation level dependent effect. Most of these
+
+exploited as a source of contrast based on frequency dis- studies detect frequency shifts and dispersion indirectly,
+
+crimination; for example, for fat suppression (1), functional MRI (2,3), thermometry (4), and detection of bulk magnetic susceptibility agents (5).
+The BSSFP signal proﬁle measured over a range of center frequencies has a well-known form for a homogeneous sample with a single off-resonance frequency (6).
+
+but these effects can be measured directly with spectroscopic imaging. Asymmetries in the frequency proﬁle have been demonstrated with spectroscopic imaging (16) and proposed as a unique contrast detecting tissue heterogeneity in tumors (17). The BSSFP asymmetries we observe in white matter could reﬂect one or a number of these sources of frequency shifts.
+
+Drawing on the theory and results from part I, we study
+
+the BSSFP proﬁle asymmetries in white matter. We intro-
+
+duce a simple metric for the size of the effect and present
+
+Centre for Functional MRI of the Brain, University of Oxford, Oxford, UK
+*Correspondence to: Karla L. Miller, Ph.D., FMRIB Centre, John Radcliffe Hospital, Headington, Oxford OX3 9DU, United Kingdom. E-mail: karla@fmrib.ox.ac.uk
+Received 7 April 2009; revised 31 July 2009; accepted 24 September 2009.
+DOI 10.1002/mrm.22249 Published online in Wiley InterScience (www.interscience.wiley.com).
+
+the ﬁrst voxelwise maps of BSSFP asymmetry. The white matter asymmetries are found to have a dependence on the tract direction relative to (B0), as indicated through correspondence with a diffusion-tensor estimate of tract direction. This effect is observed more directly through data acquired with the brain at two orientations to B0,
+
+© 2010 Wiley-Liss, Inc.
+
+396
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Asymmetries of the Balanced SSFP Proﬁle. Part II: White Matter
+
+397
+
+resulting in a modulation of the BSSFP asymmetries. Comparison of data acquired at a range of pulse repetition time (TR) to a simple theoretical model suggests that the asymmetries are consistent, with relatively small frequency shifts (less than 100 Hz). We hypothesize that the primary source of asymmetries is susceptibility-induced ﬁeld shifts dictated by tract geometry and orientation to B0, discuss possible sources of the observed asymmetries and consider a simple model for the effect.
+MATERIALS AND METHODS
+BSSFP Signal Model
+The convolution model described in part I predicts that the signal measured in the presence of frequency inhomogeneity is the complex BSSFP signal proﬁle convolved with the frequency distribution. For example, the BSSFP signal proﬁle for a frequency distribution consisting of two Lorentzians is shown in Fig. 1. This distribution is convolved with the homogeneous proﬁle (calculated as the standard expression for BSSFP signal, assuming a single frequency (6)) to achieve the inhomogeneous proﬁle measured for this particular distibution. Although the homogeneous proﬁle is always symmetric, the inhomogeneous proﬁle can be asymmetric if and only if the frequency distribution is asymmetric. Note that, although the asymmetries of interest are primarily reﬂected in the magnitude proﬁle, the convolution model must be calculated using the full complex homogeneous proﬁle because much of the asymmetry is a direct result of the abrupt 180◦ phase shift in the transition band (see part I). This model was implemented in Matlab (Natick, MA) and embedded in a nonlinear ﬁtting procedure for proﬁle centering and the model ﬁts presented in the Discussion.
+MRI Acquisition
+Ten subjects were scanned with a BSSFP sequence using a three-dimensional segmented echo-planar imaging readout (18) on a Siemens (Erlangen, Germany) 3-T Tim Trio system with a 12-channel head coil. The details of this sequence
+
+are described in part I and summarized here. Unlike most BSSFP sequences, which acquire a single k-space line per repetition period, this sequence acquires several lines at each TR (centered at echo time TE = TR/2) to reduce the volume scan time. At the end of each volume acquisition, the radio frequency phase increment is increased/decreased to shift to the next frequency, and the acquisition is repeated at enough frequencies to span the BSSFP proﬁle. To ensure that observed asymmetries are not due to signal transients, three seconds of dummy cycles without data acquisition are run before each volume acquisition. Data presented in this paper were acquired using three protocols. Initial experiments used a single TR and aimed to demonstrate basic contrast properties and generate reproducible asymmetry maps. A second set of experiments was conducted at multiple TR, with the goal of establishing the size of frequency shifts consistent with the observed asymmetries. A ﬁnal experiment was conducted in a single subject with two orientations of the head to test signal dependence on angle to B0.
+In the single-TR experiment, six subjects were scanned with echo time TE/TR = 6/12 ms and α = 10◦. The acquisition consists of eight k-space lines per TR, bandwidth = 1516 Hz/pixel, ﬁeld of view = 22 × 16.4 cm, matrix size 110 × 82, 2 × 2 × 2 mm voxels, and either 20 (n = 3) or 30 (n = 3) slices. For TR = 12 ms, the TR−1 = 83 Hz proﬁle is covered with 90 images at 1-Hz resolution (this ensures the acquisition covers the entire bandwidth, even if scanner drift causes smaller frequency increments than expected). These results include equal number of scans with increasing and decreasing frequency sweep.
+In the multi-TR experiment, three subjects were scanned with TR = 10, 15, and 20 ms and α = 10◦. Imaging volumes covered Field of view = 19.2 × 19.2 × 12 cm and matrix size 96 × 96 × 60 for 2 × 2 × 2 mm voxels, acquiring either six (TR = 10 ms) or 14 (TR = 15−20 ms) k-space lines per TR with bandwidth = 1796 Hz/pixel. The BSSFP bandwidth was covered at 1-Hz resolution using 100, 75, and 60 images for TR = 10, 15, and 20 ms, respectively. In this experiment, the frequency sweep was always increasing, which we have found to be more stable than decreasing sweep.
+
+FIG. 1. Cartoon illustration of BSSFP asymmetries. The standard expression for the BSSFP signal assumes homogeneous T1, T2 and frequency within a voxel and results in a well-known dependence of the signal on the experimental center frequency (left, the homogeneous proﬁle). However, voxels with a distribution of frequencies (center) have an altered signal proﬁle (right, the inhomogeneous proﬁle), which is the convolution of the homogeneous proﬁle with the frequency distribution (where the symbol (x) denotes convolution). If the frequency distribution is asymmetric (as shown here), this can lead to an inhomogeneous BSSFP signal proﬁle that is also asymmetric (note the difference in peak heights for positive and negative frequency offsets). [Color ﬁgure can be viewed in the online issue, which is available at www.interscience.wiley.com.]
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+398
+
+Miller et al.
+
+The single subject acquired with two head orientations was scanned using Field of view = 19.2 × 19.2 × 12 cm and matrix size 96 × 96 × 60 for 2 × 2 × 2 mm voxels, echo time/TR = 6/12 ms (eight k-space lines per TR with bandwidth = 1796 Hz/pixel) with 85 frequencies at 1-Hz resolution. The subject was asked to maintain two different head orientations, tilted ﬁrst toward the right shoulder and then toward the left shoulder. The BSSFP data and a diffusion tensor imaging (DTI) scan (described below) were acquired for each orientation. The goal was to achieve two orientations of the corticospinal tracts (CSTs) relative to B0.
+The subjects in the single-TR experiment had previously participated in a DTI study, and these data were adopted for comparison with the BSSFP frequency proﬁles. The diffusion data were acquired on a 1.5-T Siemens Sonata with a single-channel head coil. Acquisition used a twicerefocused spin-echo with an echo-planer imaging readout (echo time/TR = 94/9300 ms, matrix 128 × 128 × 60, bandwidth 1860 Hz/pixel, 2 × 2 × 2 mm resolution). Diffusion weighting consisted of 60 isotropically distributed diffusion directions with b = 1000 sec/mm2 and ﬁve images with b = 0 sec/mm2. Three repeats of this protocol were acquired and the data were averaged. The same protocol was used at 3 T for the subject scanned at two orientations, but only a single average of 32 directions was acquired for each orientation.
+In addition to BSSFP data, a T1-weighted structural scan was acquired on each subject, using an inversion-prepared (magnetization-prepared rapid gradient echo, MPRAGE) three-dimensional a sequence with echo time/TR/inversion time = 4.5/3300/1100 ms, matrix 256 × 176 × 224 and resolution 1 × 1 × 1 mm. These data are primarily used for alignment to a standard-space atlas.
+Analysis and Asymmetry Quantiﬁcation
+Prior to analysis of the BSSFP proﬁle, some basic image preprocessing was performed. The brain was extracted using BET (19) to remove the skull and scalp, which enables better alignment to structural scans. Motion correction was performed using FLIRT (20) to reduce the effects of subject movement during the relatively long multifrequency acquisition. A small amount of spatial smoothing was then performed using a Gaussian kernel with σ = 1 mm. This smoothing should only slightly reduce the image resolution and is used to ensure similar signal-to-noise ratio and levels of blurring in each imaging volume after motion correction (which will introduce slight blurring to interpolated volumes). The mean BSSFP images were aligned to the T1-weighted structurals and the structurals were aligned to MNI152 standard space using FLIRT (20). The concatenated alignment parameters can then be used to align the BSSFP images to standard space, although in general this was always performed as late as possible in the processing chain (e.g., after calculation of asymmetry maps).
+The proﬁle measured in each voxel will be shifted according to its center frequency, making it necessary to center the proﬁle voxelwise before any subsequent assessment of asymmetry. In part I, we used a simple approach based on the second derivative of the BSSFP proﬁle. Although this method was sufﬁcient for basic demonstration purposes, it relies on the presence of a sharp signal dip
+
+at the center of the proﬁle, which may not hold for extreme asymmetries or altered relaxation times. Instead, we ﬁt the homogeneous proﬁle to determine the center frequency. The proﬁle is sinc interpolated to this center frequency, enabling correction of subsample frequency shifts.
+To quantify the proﬁle asymmetry, we deﬁne an asymmetry index (AI) from the rectiﬁed magnitude proﬁle:
+
+AI
+
+=
+
+hp hp
+
+− +
+
+hn hn
+
+[1]
+
+where hp,n is the peak signal for positive (p) or negative (n) frequency offsets after centering. Although a range of reasonable asymmetry measures can be devised, for the observed proﬁle shapes, this deﬁnition has the beneﬁts that it focuses on a highly relevant proﬁle feature (the peaks) and it is relatively insensitive to errors in the centering. The sign and magnitude of this value reﬂect the direction and degree of asymmetry, respectively.
+Region-of-interest (ROI) analyses were performed for all experiments, from which the average proﬁles were extracted. For the single-TR experiment, the ROIs are based entirely on the DTI data and allow us to select voxels based on the tract direction and to limit the ROI to the center of white matter tracts to avoid partial volume with gray matter and cerebrospinal ﬂuid. No DTI data were available for the subjects in the multi-TR experiment. Instead, ROIs were hand drawn on the splenium of the corpus callosum and the CST, limiting the ROI to the tract center to avoid partial volume with other tissues. These two structures were chosen based on our observation of very different proﬁle asymmetries from the single-TR experiment. For the single subject scanned at two orientations, ROIs at the center of the right and left CST were hand drawn using the DTI data as a reference.
+
+Comparison With DTI
+Previous work has suggesed frequency offsets relating to tract orientation with respect to B0 (9,12–14). We investigated whether this effect might contribute to BSSFP asymmetries by comparing the measured proﬁles to diffusion tensor data. The DTI data were collected separately in another study, meaning that the orientation of tracts with respect to B0 will not be perfectly matched for an individual’s scans. However, due to the constraints of head coils, we expect the differences in head orientation to be small relative to gross tract orientations. We therefore compare our BSSFP asymmetry data to a group-average (n = 25) DTI analysis in standard space. This standard-space atlas beneﬁts from high signal-to-noise ratio and should reﬂect an average orientation with respect to B0 (assumed to correspond to the superior-inferior direction).
+One issue in comparing subject-speciﬁc AI to groupaverage DTI is anatomical correspondence, where slight shifts in tract location across subjects can introduce apparent variability within the group. This is a well-known problem in DTI analysis, which we address using tractbased spatial statistics (21). Tract-based spatial statistics deﬁnes the “skeleton” corresponding to the center of white matter tracts based on fractional anisotropy (FA) values and provides a mapping from each individual’s white matter skeleton to the group-average skeleton. This allows
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Asymmetries of the Balanced SSFP Proﬁle. Part II: White Matter
+
+399
+
+FIG. 2. AI map for an example subject from the single-TR experiment and the BSSFP proﬁles measured in a white matter ROI. The axial slice is taken just above the lateral ventricles. The ROI spans (from left to right) the superior longitudinal fasciculus, CST, and cingulum, with the central region of low AI corresponding to the CST. Increasing asymmetry in the BSSFP proﬁles is encapsulated as higher AI.
+
+us to beneﬁt from the high signal-to-noise ratio in groupaveraged parameters while avoiding the issue of anatomical misalignment. Here, we use the standard-space skeleton as an ROI to compare group-averaged AI values with parameters of interest derived from the DTI analysis. In addition, we can map the group-averaged DTI data onto each subject’s skeleton to deﬁne tract ROIs in a subject’s native space. We use this to deﬁne subject-speciﬁc ROIs for tracts with a particular orientation, and extract the mean BSSFP proﬁles for these ROIs.
+We compare our BSSFP data with three possible metrics derived from the DTI data (each described below): FA, v , and T⊥/T . FA is a common measure of white matter integrity (22), which generally reﬂects the strength of tract directionality without reference to its orientation. We also deﬁne v , the component of the principal diffusion eigenvector parallel to B0, which purely reﬂects directionality information. Finally, we deﬁne an empirical metric that reﬂects both orientation with respect to B0 and the strength of tensor directionality:
+
+1
+T⊥ = 2
+
+Dx2x + Dy2y
+
+[2]
+
+T
+
+Dzz
+
+where Djj is the tensor diagonal element along the j direction, and T⊥ and T are the orthogonal and parallel diffusion components with respect to z. This ﬁnal metric, T⊥/T , is a composite of the information available in FA and v .
+
+RESULTS AI Maps
+Figure 2 shows example data in a single subject, including the voxelwise AI map and the centered BSSFP proﬁles in a
+
+white matter ROI. There is good qualitative correspondence between the calculated AI and the BSSFP proﬁle asymmetry. The asymmetry exhibits considerable variability within white matter, with the proﬁle becoming largely symmetric in the CST (the central part of the zoomed region).
+Figure 3 shows AI maps in three subjects from the multiTR experiment, where the ﬁeld of view covered most of the cortex. The maps demonstrate clearly reproducible patterns of asymmetry across subjects, with strong asymmetry in white matter. Most prominent is high AI in the corpus callosum. Regions of reduced AI are visible in the center of the cortical white matter in higher slices, again corresponding to the CSTs. Similar results were obtained in the single-TR experiment with a reduced number of slices. Most subjects had a few focal areas with negative asymmetries in lower slices (i.e., asymmetries with reversed dominance relative to those normally observed in white matter). Interrogation of voxels with negative AI showed that the recentering had failed, highlighting the sensitivity of asymmetry calculations to robust centering (a topic of future work). Some maps also show a tendency for one hemisphere to have stronger asymmetry than the other. Inspection of these areas suggests that this is not an artifact of the recentering procedure, but rather seems to reﬂect a true reduction in asymmetry. In light of data presented below, we hypothesize that this is related to the orientation of the subject in the scanner.
+BSSFP Asymmetry and Tract Direction
+Figure 4 compares the standard-space average AI in the single-TR subjects with maps derived from the DTI atlas. There is clear spatial correspondence between the AI and T⊥/T values. Further, comparing these maps with the color-coded map of principal diffusion direction indicates that tracts running in the transverse plane (red-green in
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+400
+
+Miller et al.
+
+FIG. 3. AI maps for three subjects with whole-brain coverage (from the multi-TR experiment, with TR = 10 ms). The bottom row shows one subject’s structural for reference.
+
+the color map) have high AI, while tracts parallel to B0 (blue) have low AI. In particular, high AI (and T⊥/T ) can be observed in the corpus callosum, cingulum body, cortical projections of the superior longitudinal fasciculus, and optic radiations, all of which run approximately parallel to
+
+the axial plane. Low AI can be observed in several tracts oriented primarily parallel to B0. Most prominently, low AI can be seen in the CST, but is also discernible in the posterior limb of the cingulum and the inferior aspects of the superior longitudinal fasciculus.
+
+FIG. 4. Standard space maps of BSSFP asymmetry (AI; top), tract strength orthogonal to B0 (T⊥/T ; middle) and the principal diffusion direction weighted by FA (bottom; right-left = red, anterior-posterior = green, superior-inferior = blue). Data are shown only within a
+white-matter mask derived by thresholding the standard-space FA map at 0.25.
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Asymmetries of the Balanced SSFP Proﬁle. Part II: White Matter
+
+401
+
+FIG. 5. Correlation of group-averaged diffusion-derived metrics with group-averaged AI values taken from the standard-space white matter
+skeleton. Each plotted point represents one voxel on the white matter skeleton, and each red line indicates the linear regression with slope m and correlation coefﬁcient r. AI is plotted versus (a) FA, (b) v , and (c) T⊥/T . While AI has a highly signiﬁcant (P < 10−10) correlation with all three diffusion metrics, the strongest correlation is withT⊥/T . [Color ﬁgure can be viewed in the online issue, which is available at www. interscience.wiley.com.]
+
+A quantitative comparison of AI with diffusion-derived metrics (FA, v , and T⊥/T ) is given in Fig. 5, using the group-averaged values taken from the standard-space white matter skeleton. While AI correlates strongly with all three values (P < 10−10 for 5060 points on the downsampled white matter skeleton), the strongest correlation is with T⊥/T . This suggests that the asymmetry is driven by both the strength of the tract directionality and the tract orientation with respect to B0.
+The relationship between T⊥/T can be further elucidated by deﬁning masks of “parallel” (0 ≤ T⊥/T ≤ 1 ) and “orthogonal” (2 ≤ T⊥/T ≤ 10) tracts. The standard-space diffusion metrics are mapped into each subject’s native space to generate a subject-speciﬁc ROI, and the centered proﬁles within each ROI are extracted and averaged. Proﬁles for each subject and ROI are shown in Fig. 6. Despite being deﬁned from an independent modality, these masks robustly select very distinct and reproducible shapes of BSSFP proﬁles. Orthogonal tracts exhibit much stronger asymmetry than parallel tracts.
+
+Although the above results suggest that BSSFP asymmetries are related to tract orientation to B0, this evidence is somewhat indirect. We therefore tested the orientation dependence more directly in one subject with data acquired at two orientations (head tilted to the right and left). For these two orientations, the left CST is oriented approximately parallel to B0 for the ﬁrst scan and at a signiﬁcant angle for the second, and vice versa for the right CST. This orientation dependence is indicated by the DTI color map in the top row of Fig. 7, where the blue part of the colormap indicates tracts running parallel to B0. ROIs in the center of the right and left CST were manually drawn (89 and 77 voxels, respectively), and the average proﬁles extracted. The mean proﬁles for the right and left CST demonstrate a clear dependence on B0. As expected, the asymmetry becomes more pronounced as the angle to B0 increases. The calculated AI for the two tracts was significantly different for the two orientations. In the left ROI, the AI increased from 0.020 ± 0.032 to 0.065 ± 0.047 when the angle to B0 changed from 15.6 ± 7.1◦ to 54.1 ± 8.3◦.
+
+FIG. 6. Proﬁles for tracts running approximately parallel (top) and orthogonal (bottom) to B0 for the six single-TR subjects (blue x’s). ROIs are determined from the DTI atlas as skeleton points satisfying 0 ≤ T⊥/T ≤ 1 (for the “parallel tract” ROI) or 2 ≤ T⊥/T ≤ 4 (for the “orthogonal tract” ROI). The green line plots the model ﬁt reported in Table 2, detailed in the Discussion. [Color ﬁgure can be viewed in the online issue,
+which is available at www.interscience.wiley.com.]
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+402
+
+Miller et al.
+
+FIG. 7. Results from the subject acquired with two orientations to B0. In the top row, the color-coded DTI maps for the two orientations are aligned to the structural with diffusion directions in the scanner coordinate system, where blue encodes the direction of B0. The right most image indicates the hand-drawn ROIs for the right and left CST (shown on the mean FA map). The bottom row shows the mean proﬁle (with error bars indicating the standard error) for the two orientations. The observed asymmetry increases with greater angle to B0 (θB0 ).
+
+In the right ROI, the AI increased from −0.012 ± 0.027 to 0.046 ± 0.024 when the orientation changed from 26.6 ± 8.6◦ to 44.1 ± 4.7◦. Paired t tests across the ROI indicated that these changes are signiﬁcant (P < 10−8).
+Multi-TR Experiments
+Multi-TR data have the potential to reveal insight into the breadth of frequency distribution driving BSSFP asymmetries. The repetition time determines the BSSFP bandwidth, with the proﬁle becoming broader in absolute frequency for shorter TR. The top row of Fig. 8 shows simulated signal for TR = 10–20 ms and two Lorentzians with a small peak separation, f = 10 Hz. This narrow frequency distribution occupies a restricted portion of the BSSFP bandwidth for all TR, causing fairly subtle changes in the shape of the resulting proﬁle with changing TR. The bottom row of Fig. 8 shows the same signal calculations for
+f = 100 Hz. As the TR changes, the two peaks lie in different parts of adjacent bands, causing dramatic changes in the shape of the inhomogeneous proﬁle. The sensitivity of the signal proﬁle to TR is therefore an indicator of the breadth of the frequency distribution that leads to an asymmetry.
+Figure 9 shows the proﬁles measured in the three multiTR subjects for the ROIs in the splenium of the corpus callosum (approximately orthogonal to B0) and the CST (approximately parallel) for TR = 10–20 ms. These proﬁles exhibit a relatively subtle dependence on TR and do not qualitatively demonstrate the profound shape changes predicted for broad frequency distributions. This suggests
+
+that the frequency histogram is largely conﬁned to a single BSSFP band, with most narrow bandwidth of 100 Hz corresponding to the data with TR = 20 ms.
+DISCUSSION
+Relation to Previous Studies
+The dependence of BSSFP asymmetries on the tract orientation with respect to B0 suggests that white matter asymmetries are driven, at least in part, by susceptibilityshifted molecules associated with some aspect of tract geometry. Similar orientation dependence has been demonstrated in GRE images by changing the orientation of axons with respect to B0 in peripheral nerve (9), animal models (12,14) and postmortem human brain (13). These effects have been observed in both GRE signal phase (reﬂecting mean frequency shift) and magnitude (reﬂecting line-shape broadening, or T2* changes). Further evidence for this effect has been obtained via the comparison of T2* measurements with DTI data across a range of white matter tracts in a cohort of 30 subjects (15). There is also evidence that the orientation dependence exhibits “magic angle” effects, at least in peripheral nerve (9). However, it is important to note that the sources of these distribution variations are unlikely to be driven solely by tract geometry. For example, iron concentration is known to be heterogeneous throughout the brain (24), and any effects driven by iron would be expected to modulate any geometric dependence.
+Several groups have begun to investigate the source of these signal dependences in GRE imaging, with candidates including myelin, nonheme iron, deoxyhemoglobin and
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Asymmetries of the Balanced SSFP Proﬁle. Part II: White Matter
+
+403
+
+FIG. 8. The effect of TR on the BSSFP signal magnitude for frequency distributions with narrow (top) and broad (bottom) frequency distributions. Each plot shows the homogeneous BSSFP proﬁle (gray dashed) and the inhomogeneous proﬁle (black solid), with the frequency
+distribution plotted above for reference. As shown in the top row, a frequency distribution that is narrow relative to the BSSFP bandwidth will
+exhibit subtle proﬁle modulations with changing TR. As shown in the bottom row, a frequency distribution with similar breadth to the BSSFP bandwidth causes the inhomogeneous proﬁle to become very sensitive to TR. Calculations used T1/T2 = 830/80 ms (approximate for white matter at 3 T (23)) and ﬂip angle 10◦. Distributions are a sum of two Lorentzians with 1 = 2 = 2 Hz and volume fraction v = 0.3, separated by 10 Hz (top) and 100 Hz (bottom). [Color ﬁgure can be viewed in the online issue, which is available at www.interscience.wiley.com.]
+
+macromolecules such as lipids. Comparison of T2* values with histochemical stains for nonheme iron and myelin
+implicate iron as the major source of susceptibility-based contrast, with a weaker correlation of T2* with myelin (25).
+
+It has also been observed that frequency shifts correlate well with synaptic density and that this may implicate iron in heme proteins (14). However, another study comparing age-related changes in iron content with GRE phase
+
+FIG. 9. BSSFP signal magnitude proﬁles measured at multiple TR. Data in gray are the mean ± standard error within each subject’s ROI. The black dashed lines indicate the convolution model ﬁt to the multi-TR measurements (i.e., one set of parameters for all three TR), detailed in the Discussion. [Color ﬁgure can be viewed in the online issue, which is available at www.interscience.wiley.com.]
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+404
+
+Miller et al.
+
+in white matter failed to ﬁnd such a correlation (26). Deoxyhemoglobin is another source of orientation-dependent susceptibility shift (8,27), but studies modulating the blood oxygenation level dependent effect suggest that this is not a major source of contrast between white and gray matter (14,28). In addition to susceptibility shifts, it has been suggested that macromolecular exchange could contribute to frequency offsets (29); however, this effect should not depend on the orientation to B0.
+Rather than a single dominant source, it is likely that a range of effects contributes. Recent theoretical work estimated the frequency shifts contributed by nonheme iron, proteins, lipids, and deoxyhemoglobin (13). The net frequency shift predicted by these calculations is in good agreement with frequency shifts measured in a previous study (11). This work attributes the frequency shifts in white matter to signiﬁcant contributions from lipids and nonheme iron (both with a positive frequency shift) and proteins (with an opposing negative frequency shift) (13).
+The phenomena measured in our study and previous work (10–13,15) can all be considered within the framework of the moments of the frequency distribution or spectrum. In particular, the ﬁrst-, second-, and third-order moments are relevant here:
+
+µ1 = f p(f )f = µ
+
+[3]
+
+µ2 = f p(f )(f − µ1)2 = σ 2
+
+[4]
+
+µ3 = f p(f )(f − µ1)3 = ξ 3
+
+[5]
+
+where p(f ) is the frequency distribution or spectrum. The ﬁrst moment (µ) is relevant to measures of signal phase, i.e., the mean frequency (11,13). In MRI experiments, the mean is necessarily deﬁned with respect to a reference; for example, Duyn and colleagues (11) measured frequency offsets between tissue types (e.g., white matter compared to CSF). The second moment is the variance of the distribution, which is relevant to T2* and signal magnitude (10,12,15). Finally, the third moment is the (unnormalized) skew, which relates to the distribution’s asymmetry. This moment is the characteristic that is most relevant to BSSFP asymmetries.
+
+Model and Fitting
+The multi-TR data presented above provide some evidence that the observed BSSFP asymmetries are driven by a distribution spanning a relatively narrow frequency range. In this section, we attempt to characterize this further by ﬁtting a simple version of the BSSFP inhomogeneous signal model to the ROI proﬁles extracted for the single- and multiple-TR data set. This model requires that we choose a form for the frequency distribution, for which we use a sum of two Lorentzians. This distribution is primarily motivated by its simplicity: line-shape models in NMR are often based on Lorentzians since this frequency distribution corresponds to exponential decay in time, and a two-Lorentz line-shape is the simplest asymmetric distribution of this kind.
+However, the primary goal of this ﬁtting is to establish the frequency distribution characteristics that are consistent
+
+Table 1 Bounds Used in Different Model Fits Described in the Text
+
+Fit A
+
+f0(Hz)
+
+f (Hz) v 1 (Hz) 2 (Hz)
+
+1 0–∞ −(2TR)−1– (2TR)−1
+
+–
+
+–
+
+–
+
+–
+
+2 0–∞ −(2TR)−1– (2TR)−1 −500–500 0–0.5 0–60 0–60
+
+3 0–∞ −(2TR)−1– (2TR)−1 −50–50 0–0.5 0–40 0–40
+
+4 0–∞ −(2TR)−1– (2TR)−1 −50–50 0–0.5 0–40 0.1 (ﬁxed)
+
+Dashes indicate that a given parameter was not optimized.
+
+with our data, not to interpret the ﬁtted parameters physiologically. We therefore choose to characterize the ﬁtted distribution based on its moments. Moments are a useful metric for comparing distributions and in this case allow our ﬁts to be placed in the context of previous work. The moments are calculated numerically from the ﬁtted distributions as follows. The calculated mean (ﬁrst moment) depends on how we deﬁne zero frequency. We deﬁne zero frequency as the location of the peak of the larger Lorentzian, so that µ describes the distance between this main peak and the center of mass of the distribution. If this main peak represents water, this should be similar to using a water reference in measurements of frequency shifts. We also report the standard deviation, σ , and unnormalized skew, ξ , with units in hertz. We hypothesize that these moments will provide a useful description of the distribution driving BSSFP asymmetries, provided the distribution is not drastically different from a sum of two Lorentzians.
+The inhomogeneous BSSFP model calculation was embedded into a bounded, nonlinear ﬁtting procedure. The Lorentzians are separated by f Hz, have half width at half maximum 1 and 2, and relative fracion v and 1-v . These parameters are ﬁt to the data, along with the center frequency, f0, and a scale factor, A. Calculations used T1/T2 = 830/80 ms (approximate for white matter at 3 T (23)) and ﬂip angle 10◦. These ﬁts were found to exhibit local minima, which are dealt with by repeating the ﬁtting procedure from multiple starting values. All ﬁts within 10% of the global minimum error are considered acceptable ﬁts, and the parameters corresponding to these ﬁts are reported as mean ± standard deviation. These ﬁts were performed with different parameter bounds, as described in Table 1. Fit 1 is used as a initial ﬁt to establish sensible starting parameters. Fits 2–4 were performed sequentially, with 300 repeated starts. This sequence of ﬁts enabled us to narrow parameter bounds. For all subjects, ﬁt 2 converged clearly to a small peak separation ( f < 50 Hz), and ﬁt 3 indicated a very narrow Lorentzian for the larger component, which was ﬁxed to 0.1 Hz width in ﬁt 4.
+Fits to the single- and multi-TR data (using the bounds for ﬁt 4) are shown in Figs. 6 and 9, respectively. The ﬁtted parameters are given in Tables 2 and 3. The peak separation ( f), volume fraction (v ), and width ( 1) of the small fraction component all converged to signiﬁcantly different values for the parallel and orthogonal tract proﬁles. These parameters were less stable across subject when ﬁtted to the parallel (or CST) tract proﬁles, which likely reﬂects poor conditioning of the inhomogeneous BSSFP model for these more symmetric proﬁles. Although these ﬁts clearly capture the basic features of the multi-TR proﬁles, the ﬁt quality is generally not as good as for the single-TR data. In particular, the ﬁtted model tends not to capture the full
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Asymmetries of the Balanced SSFP Proﬁle. Part II: White Matter
+
+405
+
+Table 2 Model Parameters Fit to Single-TR Experiment Data*
+
+ROI
+
+subject
+
+f (Hz)
+
+v
+
+⊥
+
+1
+
+23.23 ± 4.32
+
+0.164 ± 0.021
+
+2
+
+24.87 ± 4.34
+
+0.142 ± 0.031
+
+3
+
+22.41 ± 4.22
+
+0.169 ± 0.022
+
+4
+
+20.96 ± 2.87
+
+0.207 ± 0.042
+
+5
+
+28.17 ± 2.17
+
+0.168 ± 0.018
+
+6
+
+23.63 ± 2.97
+
+0.102 ± 0.029
+
+Mean
+
+23.48 ± 2.83
+
+0.162 ± 0.041
+
+1 (Hz)
+19.91 ± 4.09 20.60 ± 7.40 18.61 ± 5.70 19.53 ± 8.07 24.51 ± 3.69
+7.75 ± 5.72 19.02 ± 8.92
+
+µ (Hz)
+3.27 3.00 3.30 3.74 3.95 2.29 3.26
+
+σ (Hz)
+15.26 14.60 15.08 16.52 17.07
+9.93 14.74
+
+ξ (Hz)
+17.84 17.87 17.50 17.80 20.11 13.64 17.46
+
+1 2 3 4 5 6 Mean
+
+11.93 ± 3.46 26.18 ± 5.08 21.76 ± 8.81
+9.76 ± 1.41 7.55 ± 2.11 21.96 ± 10.03 16.92 ± 7.24
+
+0.132 ± 0.023 0.098 ± 0.011 0.102 ± 0.022 0.119 ± 0.006 0.158 ± 0.049 0.083 ± 0.014 0.111 ± 0.028
+
+14.06 ± 9.58
+
+1.43
+
+35.34 ± 6.01
+
+1.90
+
+26.85 ± 16.63
+
+1.79
+
+11.59 ± 4.47
+
+1.07
+
+3.02 ± 0.91
+
+1.17
+
+32.46 ± 9.93
+
+1.38
+
+22.04 ± 15.73
+
+1.46
+
+11.08 14.08 13.03
+9.63 6.50 12.38 11.12
+
+12.24 17.61 16.17 10.57
+7.05 15.61 13.21
+
+*Model is ﬁt to each subject’s mean BSSFP proﬁle extracted from the ROIs for tracts running approximately parallel ( ) and orthogonal (⊥)
+
+to B0.
+
+extent of the asymmetry present in the data for the corpus
+callosum ROIs. This may reﬂect inaccuracies in the model;
+for example, the use of a single T2, which is known to be an oversimpliﬁcation in white matter.
+The calculated moments for the ﬁtted distributions (µ, σ , and ξ ) are in reasonable agreement both across subjects
+and across the two experiments. Tracts running orthogonal
+to B0 (including the corpus callosum) are characterized by µ/σ/ξ = 3/15/17 Hz.
+The skew (ξ ) can be interpreted as a characteristic fre-
+quency range over which the distribution is asymmetric.
+Above, we argued that the insensitivity of the BSSFP pro-
+ﬁle shape to changes in TR indicates that the distribution is narrower than the 100-Hz BSSFP bandwidth, in good agreement with the skew (ξ = 17 Hz) of the ﬁtted distribution.
+The skew is reduced for ﬁts to tracts oriented more parallel to B0. An unpaired, two-sample t test indicates that ξ is signiﬁcantly different for the distributions ﬁt to orthogonal and perpendicular ROIs in the single-TR data (P < 0.05).
+It is also possible to compare the ﬁtted mean and standard
+deviation to previous measurements of frequency shifts and T2*. However, these comparisons must be interpreted cautiously since the distribution ﬁtted to BSSFP proﬁles
+should only correspond to static dephasing effects (i.e., the T2 part of T2*) and does not include any motional narrowing effects (i.e., T2). Calculations based on recent modeling work (13) predict that frequency shifts between
+white matter and pure water would be about 4.4 Hz at 3 T (34.6 × 10−3 parts-per-million) for tracts orthogonal
+
+to B0 and slightly negative shifts for tracts parallel to B0. The latter have been veriﬁed with measurements in the motor cortex (11). These values are in good agreement with the µ = 1–3 Hz associated with our ﬁts. We can also compare the standard deviation of the ﬁtted distributions to measured T2 and T2* values. Our ﬁtted distributions were characterized by σ = 15 Hz, which would correspond to (T2)−1 = 2π = 2.8 Hz (where is the half width at half maximum for a gaussian with σ = 15 Hz). Assuming T2 = 75 ms (30), this would give T2* = 61.9 ms, in reasonable agreement with literature values of 53 ms (31).
+AI
+The AI maps presented here use a simple metric of asymmetry based on the difference in peak amplitude between positive and negative frequency offsets. Several different metrics were considered, including normalized difference in area under the proﬁle for positive and negative frequency offsets, the area under the difference between the proﬁle and its reﬂection, the third moment, and the magnitude of the imaginary component of the Fourier transform of the proﬁle. Although these alternative metrics of asymmetry are in general more mathematically elegant, the peak metric used here has the primary beneﬁt that it is much less sensitive to errors in proﬁle centering. However, it is also expected to be a more noise-sensitive measure. It is to be expected that the asymmetry (AI) measure used here
+
+Table 3 Model Parameters Fit to Single-TR Experiment Data*
+
+ROI
+
+subject
+
+f (Hz)
+
+CC (⊥)
+
+7
+
+18.35 ± 0.74
+
+8
+
+14.52 ± 2.21
+
+9
+
+17.85 ± 1.86
+
+v
+0.249 ± 0.013 0.180 ± 0.013 0.189 ± 0.012
+
+1 (Hz)
+20.43 ± 2.80 10.39 ± 1.72 15.80 ± 3.20
+
+µ (Hz)
+3.90 2.44 2.99
+
+CST ( )
+
+7
+
+8
+
+9
+
+7.45 ± 1.79
+
+0.170 ± 0.035
+
+3.92 ± 0.64
+
+1.23
+
+3.65 ± 3.91
+
+0.023 ± 0.020
+
+3.54 ± 2.47
+
+0.08
+
+3.81 ± 2.13
+
+0.374 ± 0.129
+
+1.12 ± 0.30
+
+1.42
+
+*Model is ﬁt to each subject’s mean BSSFP proﬁle extracted from the ROIs in the corpus callosum (CC) and CST.
+
+σ (Hz) 17.83 11.85 14.40
+7.32 3.40 5.81
+
+ξ (Hz) 17.47 13.17 15.81
+7.69 3.25 4.19
+
+15222594, 2010, 2, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mrm.22249, Wiley Online Library on [14/05/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+406
+
+Miller et al.
+
+may not represent the ideal metric, but for the present work it was found to provide the most robust and reproducible maps of BSSFP asymmetry. Ultimately, one might prefer to deﬁne the asymmetry based on ﬁtted model parameters (such as estimated distribution skew), rather than the raw proﬁle data, as the spectral properties may be more interpretable. At present, our ﬁtting procedure is not sufﬁciently stable to produce good voxelwise maps, given the quality of data, but future work will aim to address this issue.
+CONCLUSIONS
+We present a novel contrast mechanism for white matter based on the frequency sensitivity of BSSFP. Asymmetries in the frequency distribution within a voxel are predicted to cause asymmetries in the BSSFP proﬁle. Strong and reproducible asymmetries are observed in white matter, which appear to relate to white matter tract structure. Comparison with diffusion data suggests that the largest asymmetries occur in tracts oriented orthogonal to B0. Our experiments and preliminary modeling indicate that the asymmetries are characterized by a relatively narrow frequency distribution.
+ACKNOWLEDGMENTS
+The authors thank Greg Stanicz, Truman Brown, and attendees of the 2008 Gordon Conference on In Vivo MR for useful discussion and feedback.
+REFERENCES
+1. Hargreaves BA, Vasanawala SS, Nayak KS, Hu BS, Nishimura DG. Fat suppressed steady-state free precession imaging using phase detection. Magn Reson Med 2003;50:210–213.
+2. Schefﬂer K, Seifritz E, Bilecen D, Venkatesan R, Hennig J, Deimling M, Haacke EM. Detection of BOLD changes by means of a frequency-sensitive trueFISP technique: preliminary results. NMR Biomed, 2001;14:490–496.
+3. Miller KL, Hargreaves BA, Lee J, Ress D, deCharms RC, Pauly, JM. Functional MRI using a blood oxygenation sensitive steady state. Magn Reson Med, 2003;50:675–683.
+4. Paliwal V, El-Sharkawy A-M, Du X, Yang X, Atalar E. SSFP-based MR thermometry. Magn Reson Med, 2004;52:704–708.
+5. Dubois J, Lethimonnier F, Vaufrey F, Robert P, Le Bihan D. Frequencyshift based detection of BMS contrast agents using SSFP: potential for MRA. Magn Reson Imaging, 2005;23:453–462.
+6. Freeman R, Hill HDW. Phase and intensity anomalies in Fourier transform NMR. J Magn Reson, 1971;4:366–383.
+7. Yablonskiy DA, Haacke EM. Theory of NMR signal behavior in magnetically inhomogeneous tissues: the static dephasing regime. Magn Reson Med, 1994;32:749–763.
+8. Ogawa S, Lee T-M, Nayak AS, Glynn P. Oxygenation-sensitive contrast in magnetic resonance images of rodent brain at high magnetic ﬁelds. Magn Reson Med, 1990;14:68–78.
+9. Chappell KE, Robson MD, Stonebridge-Foster A, Glover A, Allsop JM, Williams AD, Herlihy AH, Moss J, Gishen P, Bydder GM. Magic angle effects in MR neurography. Am J Neuroradiol, 2004;25:431– 440.
+
+10. Li TQ, van Gelderen P, Merkle H, Talagala L, Koretsky AP, Duyn J. Extensive heterogeneity in white matter intensity in high-resolution T2*weighted MRI of the human brain at 7T. Neuroimage, 2006;32:1032– 1040.
+11. Duyn DH, VanGelderen P, Li T, deZwart J, Koretsky A, Fukunaga M. High-ﬁeld MRI of brain cortical substructure based on signal phase. Proc Natl Acad Sci, USA 2007;104:11796–11801.
+12. Wiggins CJ, Gudmundsdottir V, LeBihan, D, Lebon V, Chaumeil M. Orientation dependence of white matter T2* contrast at 7T: a direct demonstration. In: Proc 16th International Society for Magnetic Resonance in Medicine, Toronto, 2008, p 237.
+13. He X, Yablonskiy DA. Biophysical mechanisms of phase contrast in gradient echo MRI. Proc Natl Acad Sci, USA. In press. doi:10.1073:pnas.0904899106.
+14. Marques JP, Maddage R, Mlynarik V, Gruetter R, On the origin of the MR image phase contrast: an in vivo MR microscopy study of the rat brain at 14.1T. Neuroimage, 2009;46:345–352.
+15. Cherubini A, Peran P, Hagberg GE, Varsi AE, Luccichenti G, Caltagirone C, Sabatini U, Spalletta G. Characterization of white matter ﬁber bundles with T2* relaxometry and diffusion tensor imaging. Magn Reson Med, 2009;61:1066–1072.
+16. Medved M, Newstead GM, Fan X, Du W, Du YP, MacEneaney PM, Culp RM, Kelcz F, Olopade OI, Zamora MA, Karczmar GS. Fourier components of inhomogeneously broadened water resonances in breast: a new source of MRI contrast. Magn Reson Med, 2004;52:193–196.
+17. Foxley S, Fan X, Jansen SA, Zamora M, Markiewicz E, Al-Ahmadie H, Karczmar GS. High spectral and spatial resolution MRI of age-related changes in murine prostate. Magn Reson Med, 2008;60:575–581.
+18. Miller KL, Smith SM, Jezzard P, Pauly JM. High-resolution FMRI at 1.5 T using balanced SSFP. Magn Reson Med, 2006;55:161–170.
+19. Smith SM. Fast robust automated brain extraction. Hum Brain Mapp, 2002;17:143–155.
+20. Jenkinson M, Smith SM, A global optimisation method for robust afﬁne registration of brain images. Med Image Anal, 2001;5:143–156.
+21. Smith SM, Jenkinson M, Johansen-Berg H, Rueckert D, Nichols TE, Mackay CE, Watkins KE, Ciccarelli O, Cader MZ, Matthews PM, Behrens TEJ. Tract-based spatial statistics: voxelwise analysis of multi-subject diffusion data. Neuroimage, 2006;31:1487–1506.
+22. Basser PJ, Pierpaoli C. Microstructural and physiological features of tissues elucidated by quantitative diffusion-tensor MRI. J Magn Reson B, 1996;111:209–219.
+23. Wansapura JP, Holland SK, Dunn RS, Ball WS. NMR relaxation times in the human brain at 3.0 tesla. J Magn Reson Imaging, 1999;9:531–538.
+24. Haacke EM, Cheng NYC, House MJ, Liu Q, Neelavalli J, Ogg RJ, Khan A, Ayaz M, Kirsch W, Obenaus A, Imaging iron stores in the brain using magnetic resonance imaging. Magn Reson Imaging, 2005;23:1–25.
+25. Fukunaga M, Lee J, Li T-Q, Matsuda KK, Merkle H, vanGelderen P, deZwart JA, Duyn JH, Within gray and white matter R2* variations correlate histohemical iron stain of the human brain. In: Proc 17th International Society for Magnetic Resonance in Medicine, Honolulu, 2009, p 47.
+26. Ogg RJ, Langston JW, Haacke EM, Steen RG, Taylor JS. The correlation between phase shifts in gradient-echo MR images and regional brain iron concentration. Magn Reson Imaging, 1999;17:1141–1148.
+27. Thulborn KR, Waterton JC, Matthews PM, Radda GK. Oxygenation dependence of the transverse relaxation time of water protons in whole blood at high ﬁeld. Biochim Biophys Acta, 1982;714:265–270.
+28. Lee J, Hirano Y, Fukunaga M, Silva, AC, Duyn JH, On the contribution of deoxy-hemoglobin to MRI gray-white matter phase contrast at high ﬁeld. Neuroimage. In press. doi:10.1016/j.neuroimage.2009.07.017.
+29. Zhong K, Leupold J, Vonelverfeldt D, Speck O. The molecular basis for gray and white matter phase contrast in phase imaging. Neuroimage, 2008;40:1561–1566.
+30. Whittall KP, MacKay AL, Graeb DA, Nugent RA, Li DKB, Paty DW. In vivo measurement of T2 distributions and water contents in normal human brain. Magn Reson Med, 1997;37:34–43.
+31. Peters AM, Brookes MJ, Hoogenraad FG, Gowland PA, Francis ST, Morris PG, Bowtell R. T2* measurements in human brain at 1.5, 3 and 7 T. Magn Reson Imaging, 2007;25:748–753.
+

@@ -13,79 +13,73 @@ import torchio as tio
 from dove_data_module import DoveDataModule
 
 
-class MultiInputUNet(torch.nn.Module):
-    def __init__(self, state):
+class Generator(torch.nn.Module):
+    def __init__(self):
         super().__init__()
-        self.state = state
         dwi_tensor_input = mainets.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=6, out_channels=24, num_layers=3)
         pc_bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
                 spatial_dims=3, in_channels=24, out_channels=24, num_layers=3)
-        bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=24, out_channels=24, num_layers=3)
-        t1w_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=6, out_channels=24, num_layers=3)
         unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
                 in_channels=24,
                 out_channels=6,
-                features=(48, 96, 192, 384, 768, 48),
-                dropout=0.1,
+                features=(64, 128, 256, 512, 64),
+                dropout=0.25,
                 )
         self.blocks = torch.nn.ModuleDict(
                 {'dwi-tensor': dwi_tensor_input,
                  'pc-bssfp': pc_bssfp_input,
-                 'bssfp': bssfp_input,
-                 't1w': t1w_input,
+                 'bssfp': pc_bssfp_input,
+                 't1w': dwi_tensor_input,
                  'unet': unet})
 
-    def change_state(self, state, input_modality):
-        self.state = state
-        self.input_modality = input_modality
-
-        if self.state == TrainingState.PRETRAIN:
-        # Make model autoencoder with all layers trainable
-            for block in self.blocks.values():
-                for layer in block.children():
-                    for param in layer.parameters():
-                        param.requires_grad = True
-
-        elif self.state == TrainingState.TRANSFER:
-        # Freeze all layers but the new head
-            for block in self.blocks.values():
-                for layer in block.children():
-                    for param in layer.parameters():
-                        param.requires_grad = False
-            for layer in self.blocks[input_modality].children():
-                for param in layer.parameters():
-                    param.requires_grad = True
-
-        elif self.state == TrainingState.FINE_TUNE:
-        #   Unfreeze all layers
-            for block in self.blocks.values():
-                for layer in block.children():
-                    for param in layer.parameters():
-                        param.requires_grad = True
-            for k, mods in self.blocks.items():
-                if k == 'unet':
-                    continue
-                for layer in mods.children():
-                    for param in layer.parameters():
-                        param.requires_grad = False
-            for layer in self.blocks[input_modality].children():
-                for param in layer.parameters():
-                    param.requires_grad = True
-        else:
-            raise ValueError('Invalid Training State')
-
     def forward(self, x):
-        if self.state == TrainingState.PRETRAIN:
-            x = self.blocks['dwi-tensor'](x)
-        else:
-            x = self.blocks[self.input_modality](x)
-
+        x = self.blocks[self.input_modality](x)
         x = self.blocks['unet'](x)
         return x
+
+
+class DownSampleConv(torch.nn.Module):
+    def __init__(
+        self, in_channels, out_channels, kernel=4, strides=2, padding=1, activation=True, batchnorm=True
+    ) -> None:
+        super().__init__()
+        self.activation = activation
+        self.batchnorm = batchnorm
+        self.conv = nn.Conv3d(in_channels, out_channels, kernel, strides, padding)
+
+        if batchnorm:
+            self.bn = nn.BatchNorm3d(out_channels)
+
+        if activation:
+            self.act = nn.LeakyReLU(0.2)
+
+    def forward(self, x):
+        x = self.conv(x)
+        if self.batchnorm:
+            x = self.bn(x)
+        if self.activation:
+            x = self.act(x)
+        return x
+
+
+class PatchGAN(nn.Module):
+    def __init__(self, input_channels) -> None:
+        super().__init__()
+        self.d1 = DownSampleConv(24, 64, batchnorm=False)
+        self.d2 = DownSampleConv(64, 128)
+        self.d3 = DownSampleConv(128, 256)
+        self.d4 = DownSampleConv(256, 512)
+        self.final = nn.Conv3d(512, 1, kernel_size=1)
+
+    def forward(self, x, y):
+        x = torch.cat([x, y], axis=1)
+        x = self.d1(x)
+        x = self.d2(x)
+        x = self.d3(x)
+        x = self.d4(x)
+        return self.final(x)
 
 
 def check_input_shape(strides):
@@ -117,95 +111,80 @@ def check_input_shape(strides):
 
 
 class PerceptualL1SSIMLoss(torch.nn.Module):
-    def __init__(self):
+    def __init__(self, perceptual_factor=100):
         super().__init__()
         self.l1 = torch.nn.L1Loss()
-        self.ssim = monai.losses.ssim_loss.SSIMLoss(3, data_range=1.0)
         self.perceptual = monai.losses.PerceptualLoss(
                 spatial_dims=3, is_fake_3d=False,
                 network_type=("medicalnet_resnet10_23datasets"))
+        self.perceptual_factor = perceptual_factor
 
     def forward(self, y_hat, y):
         l1 = self.l1(y_hat, y)
-        ssim = self.ssim(y_hat, y)
-        perceptual = self.perceptual(y_hat, y)
-
-        return {'L1': l1, 'SSIM': ssim, 'Perceptual': perceptual}
-
-
-class TrainingState(Enum):
-    PRETRAIN = 1
-    TRANSFER = 2
-    FINE_TUNE = 3
+        perceptual = self.perceptual(y_hat, y) * perceptual_factor 
+        return {'L1': l1, 'Perceptual': perceptual}
 
 
 class bSSFPToDWITensorModel(pl.LightningModule):
     def __init__(self,
-                 net,
-                 criterion=PerceptualL1SSIMLoss(),
                  lr=1e-3,
-                 optimizer_class=torch.optim.AdamW,
-                 state=None,
-                 batch_size=1):
+                 batch_size=1,
+                 perceptual_factor,
+                 recon_factor):
         super().__init__()
-        self.net = net
-        self.criterion = criterion
+        self.save_hyperparameters(ignore=['net', 'criterion'])
+        self.gen = Generator()
+        self.discr = PatchGAN()
+        self.recon_criterion = PerceptualL1SSIMLoss(perceptual_factor)
+        self.adversarial_criterion = torch.nn.BCEWithLogitsLoss()
+        self.recon_factor = recon_factor
         self.lr = lr
         self.metric_fns = [monai.metrics.PSNRMetric(1),
-                           monai.metrics.SSIMMetric(3),
+                           monai.metrics.SSIMMetric(3, data_range=1),
                            monai.metrics.MAEMetric(),
-                           monai.metrics.MSEMetric(),
+                           monai.metrics.FIDMetric()
                            ]
-        self.optimizer_class = optimizer_class
-        self.state = state
+        self.optimizer_class = torch.optim.AdamW
         self.batch_size = batch_size
-        self.save_hyperparameters(ignore=['net', 'criterion'])
 
-    def forward(self, x):
-        if self.state == TrainingState.PRETRAIN:
-            x = self.net.blocks['dwi-tensor'](x)
-        else:
-            x = self.net.blocks[self.input_modality](x)
 
-        x = self.net.blocks['unet'](x)
-        return x
+    def _gen_step(self, x, y, step_name):
+        y_hat = self.gen(x)
+        discr_logits = self.disrc(x, y_hat)
+        adv_loss = self.adversarial_condition(discr_logits, np.ones_like(discr_logits))
+        recon_loss = self.compute_recon_loss(y_hat, y, step_name + '_gen')
 
-    def change_training_state(self, state, input_modality=None):
-        self.state = state
-        if self.state == TrainingState.PRETRAIN:
-            self.input_modality = 'dwi-tensor'
-        else:
-            self.input_modality = input_modality
-        lr=1e-4
-        self.net.change_state(self.state, self.input_modality)
-        self.configure_optimizers()
-        self.save_hyperparameters()
+        self.log(f'{step_name}_gen_loss_adversarial', adv_loss, logger=True,
+                     batch_size=self.batch_size, sync_dist=sync)
+
+        return adv_loss + recon_loss * self.recon_factor, y_hat
+
+    def _discr_step(self, x, y):
+        y_hat = self.gen(x).detach()
+        logits_hat = self.discr(x, y_hat)
+        logits = self.discr(x, y)
+        loss_hat = self.adversarial_criterion(logits_hat, np.zeros_like(logits_hat))
+        loss = self.adversarial_criterion(logits, np.ones_like(logits))
+        return (loss + loss_hat) / 2
 
     def unpack_batch(self, batch, test=False):
-        if self.state == TrainingState.PRETRAIN:
-            x = batch['dwi-tensor'][tio.DATA]
-            y = x if test else batch['dwi-tensor_orig'][tio.DATA]
-        elif self.state is not None:
             x = batch[self.input_modality][tio.DATA]
             y = (batch['dwi-tensor'][tio.DATA] if test
                  else batch['dwi-tensor_orig'][tio.DATA])
-        else:
-            raise RuntimeError('Model state not set')
-
         return x, y
 
-    def compute_loss(self, y_hat, y, step_name):
+    def compute_recon_loss(self, y_hat, y, step_name):
         losses = self.criterion(y_hat, y)
         loss_tot = 0
         sync = step_name != 'train'
         for name, loss in losses.items():
-            self.log(f'{step_name}_loss_{name}', loss, logger=True,
+            self.log(f'{step_name}_loss_recon_{name}', loss, logger=True,
                      batch_size=self.batch_size, sync_dist=sync)
             loss_tot += loss
 
-        self.log(f'{step_name}_loss', loss_tot, prog_bar=True,
+        self.log(f'{step_name}_loss_recon', loss_tot, prog_bar=True,
                  logger=True, batch_size=self.batch_size, sync_dist=sync)
-        return loss_tot
+        return loss_tot / len(losses.items())
 
     def compute_metrics(self, y_hat, y, step_name):
         for metric_fn in self.metric_fns:
@@ -213,31 +192,39 @@ class bSSFPToDWITensorModel(pl.LightningModule):
             self.log(f'{step_name}_metric_{metric_fn.__class__.__name__}',
                      m, logger=True, batch_size=self.batch_size, sync_dist=True)
 
-    def training_step(self, batch, batch_idx):
+    def training_step(self, batch, batch_idx, optimizer_idx):
         x, y = self.unpack_batch(batch)
-        y_hat = self.net(x)
-        return self.compute_loss(y_hat, y, 'train')
+        loss = None
+        if optimizer_idx == 0:
+            loss = self._discr_step(x, y)
+            self.log(f'{step_name}_discr_loss', loss, logger=True,
+                    batch_size=self.batch_size, sync_dist=sync)
+        elif optimizer_idx == 1:
+            loss, _ = self._gen_step(x, y, 'train')
+            self.log(f'{step_name}_gen_loss', loss, logger=True,
+                    batch_size=self.batch_size, sync_dist=sync)
+        return loss
 
     def validation_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
-        y_hat = self.net(x)
+        loss, y_hat = self._gen_step(x)
         self.compute_metrics(y_hat, y, 'val')
-        return self.compute_loss(y_hat, y, 'val')
+        return loss
 
     def test_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch, test=True)
-        y_hat = self.net(x)
+        loss, y_hat = self._gen_step(x)
         self.compute_metrics(y_hat, y, 'test')
         self.save_predicitions(batch, batch_idx, x, y, y_hat, 'test')
-        return self.compute_loss(y_hat, y, 'test')
+        return loss
 
     def predict_step(self, batch, batch_idx, dataloader_idx=None):
         x, y = self.unpack_batch(batch, test=True)
-        y_hat = self.net(x)
+        y_hat = self.gen(x)
         self.save_predicitions(batch, batch_idx, x, y, y_hat, 'predict')
         return y_hat
 
-    def save_predicitions(self, batch, batch_idx, x, y, y_hat, step):
+    def save_predicitions(self, batch, batch_idx, x, y, y_hat, step, time=True):
         input_path = batch[self.input_modality][tio.PATH][0]
         i_sub_id = input_path.split('/')[-4].split('-')[-1]
         i_ses_id = input_path.split('/')[-3].split('-')[-1]
@@ -249,25 +236,20 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         y_hat_img = np.moveaxis(y_hat.cpu().numpy().squeeze(), 0, -1)
         y_img = np.moveaxis(y.cpu().numpy().squeeze(), 0, -1)
 
-        state = self.state.name.lower()
+        time = f'_{datetime.datetime.now()}' if time else ''
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
-                 (f'{step}_input-{batch_idx}_state-{state}_'
-                  f'mod-{self.input_modality}_{datetime.datetime.now()}_sub-{i_sub_id}_'
-                  f'ses-{i_ses_id}.nii.gz'))
+                 (f'input-{batch_idx}_state-{state}_'
+                  f'mod-{self.input_modality}' + time +
+                  f'_sub-{i_sub_id}_ses-{i_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
-                 (f'{step}_pred-{batch_idx}_state-{state}'
-                  f'_mod-{self.input_modality}_{datetime.datetime.now()}_sub-{t_sub_id}_'
-                  f'ses-{t_ses_id}.nii.gz'))
+                 (f'pred-{batch_idx}_state-{state}'
+                  f'_mod-{self.input_modality}' + time +
+                  f'_sub-{t_sub_id}_ses-{t_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
-                 (f'{step}_target-{batch_idx}_state-{state}'
-                  f'_mod-{self.input_modality}_{datetime.datetime.now()}_sub-{t_sub_id}_'
-                  f'ses-{t_ses_id}.nii.gz'))
-        nib.save(nib.Nifti1Image((y_img - y_hat_img) / y_img, np.eye(4)),
-                 (f'{step}_diff-{batch_idx}_state-{state}'
-                  f'_mod-{self.input_modality}_{datetime.datetime.now()}_sub-{t_sub_id}_'
-                  f'ses-{t_ses_id}.nii.gz'))
+                 (f'target-{batch_idx}_state-{state}'
+                  f'_mod-{self.input_modality}' + time +
+                  f'_sub-{t_sub_id}_ses-{t_ses_id}.nii.gz'))
+
 
     def configure_optimizers(self):
-        return self.optimizer_class(
-                filter(lambda p: p.requires_grad, self.net.parameters()),
-                lr=self.lr)
+        return self.optimizer_class(lr=self.lr), self.optimizer_class(lr=self.lr)

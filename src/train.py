@@ -3,17 +3,13 @@ import time
 import json
 import os
 
-from finetuning_scheduler import (FinetuningScheduler,
-                                  FTSEarlyStopping,
-                                  FTSCheckpoint)
 import lightning.pytorch as pl
 import torch
 import wandb
 from torchview import draw_graph
 
 from dove_data_module import DoveDataModule
-from bssfp_to_dwi_tensor_model import (bSSFPToDWITensorModel, MultiInputUNet,
-                                       TrainingState)
+from bssfp_to_dwi_tensor_model import bSSFPToDWITensorModel
 
 
 def build_trainer_args(debug, modality, state):
@@ -50,17 +46,10 @@ def build_trainer_args(debug, modality, state):
     return trainer_args, checkpoint_callback
 
 
-def generate_default_finetuning_schedule(unet, data):
-    model = bSSFPToDWITensorModel(net=unet)
-    tr = pl.Trainer(callbacks=[FinetuningScheduler(gen_ft_sched_only=True)])
-    tr.fit(model, datamodule=data)
-
-
 def train_model(net,
                 data,
                 ckpt_path=None,
                 modality='bssfp',
-                stages=['all'],
                 debug=False,
                 infer_params=False):
     start = datetime.datetime.now()

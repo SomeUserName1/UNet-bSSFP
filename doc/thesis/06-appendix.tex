@@ -4,19 +4,42 @@
 \addcontentsline{toc}{chapter}{Appendix}
 
 \section{Supplementary Material}
+\paragraph{Detailed Model Architecture}
+\fig{img/model.onnx.png}{arch-ext}{The architecture of the model used in this work. Please zoom in to explore in detail.}{0.15}
 
-\fig{img/model.onnx.png}{arch-ext}{The architecture of the model}{0.18}
+\section{Direct Training: Qualitative Plots for all Scalars}
+\fig{img/direct-md_errs.pdf}{direct-md}{md}{0.6}
+\fig{img/direct-rd_errs.pdf}{direct-rd}{rd}{0.6}
+\fig{img/direct-ad_errs.pdf}{direct-ad}{ad}{0.6}
+\fig{img/direct-fa_errs.pdf}{direct-fa}{af}{0.6}
+\fig{img/direct-inclination_errs.pdf}{direct-incl}{incl}{0.6}
+\fig{img/direct-azimuth_errs.pdf}{direct-azi}{azi}{0.6}
 
-   \begin{figure}[h]
-      \begin{center}
-         %[keepaspectratio, width=0.45\textwidth]{img/0.jpg}
-      \end{center}
-      \caption{
-         \textbf{A. \& B.} SNc and projections to the dorsal striatum in healthy subjects and patients with PD.
-         In the healthy subject, the SNc is still highly pigmented due to the melanin-containing dopamine-producing cells being intact.
-         The SNc projects to the striatum and delivers normal amounts of DA into the basal ganglia (BG) circuit.
-         If the dopamine-producing neurons undergo apoptosis, the pigmentation decreases and so does the amount of dopamine adimnistered to the striatum.
-         \textbf{C.} Photomicrographs of Lewy bodies.
-      }
-      \label{broad-mech}
-   \end{figure}
+\section{Multi-Stage Training: Quantitative Plots for all Tensor Elements and Scalars}
+\fig{img/dt3.png}{qual-dyy}{Comparison between $D_{yy}$ of original DT and predicted DT using pc-bSSFP as input modality.}{1}
+\fig{img/dt5.png}{qual-dzz}{Comparison between $D_{zz}$ of original DT and predicted DT using pc-bSSFP as input modality.}{1}
+\fig{img/dt1.png}{qual-dxy}{Comparison between $D_{xy}$ of original DT and predicted DT using pc-bSSFP as input modality.}{1}
+\fig{img/dt2.png}{qual-dxz}{Comparison between $D_{xz}$ of original DT and predicted DT using pc-bSSFP as input modality.}{1}
+
+\fig{img/ad.png}{qual-ad}{Comparison between RD calculated from the original DT and the predicted DT using pc-bSSFP as input modality.}{1}
+\fig{img/rd.png}{qual-rd}{Comparison between AD calculated from the original DT and the predicted DT using pc-bSSFP as input modality.}{1}
+
+\section{Direct Training Evaluation Statistics}
+\csvreader[head to column names,
+         before reading       = \begin{center},
+         longtable            = l l l c c c c c,
+         table head           = \toprule \bfseries Modality & \bfseries ROI & \bfseries Scalar & \bfseries Median & \bfseries $1\%$ & \bfseries $25\%$ & \bfseries $75\%$ & \bfseries $99\%$ \\ \midrule,
+         table foot           = \bottomrule,
+         after reading        = \end{center}
+         ]{img/direct-sample_stats.csv}{}%
+         {\csvcoliii & \csvcolii & \csvcoli & \tablenum{\fpeval{100*\csvcoliv}} & \tablenum{\fpeval{100*\csvcolv}} & \tablenum{\fpeval{100*\csvcolvi}} & \tablenum{\fpeval{100*\csvcolvii}} & \tablenum{\fpeval{100*\csvcolviii}} \\}
+
+\section{Fine-Tuning Evaluation Statistics}
+\csvreader[head to column names,
+         before reading       = \begin{center},
+         longtable            = l l l c c c c c,
+         table head           = \toprule \bfseries Modality & \bfseries ROI & \bfseries Scalar & \bfseries Median & \bfseries $1\%$ & \bfseries $25\%$ & \bfseries $75\%$ & \bfseries $99\%$ \\ \midrule,
+         table foot           = \bottomrule,
+         after reading        = \end{center}
+         ]{img/finetune-sample_stats.csv}{}%
+         {\csvcoliii & \csvcolii & \csvcoli & \tablenum{\fpeval{100*\csvcoliv}} & \tablenum{\fpeval{100*\csvcolv}} & \tablenum{\fpeval{100*\csvcolvi}} & \tablenum{\fpeval{100*\csvcolvii}} & \tablenum{\fpeval{100*\csvcolviii}} \\}

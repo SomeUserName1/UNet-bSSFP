@@ -1,5 +1,6 @@
 # UNet-bSSFP
 
 ## Setup
-- tensorflow nightly
-
+```
+pip install -r requirements.txt
+```

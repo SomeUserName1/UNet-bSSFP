@@ -36,22 +36,12 @@ def run_concurrently(func, arglist, n_concurrent=cpu_count()-3):
             wait(futures)
 
 
-def do_invert_dwi_tensor_norm(fname, refl_min, refl_max, non_refl_min, non_refl_max):
+def do_invert_dwi_tensor_norm(fname, min_v, max_v):
     img = nib.load(fname)
-    data = img.get_fdata()
-    refl_ch = [0, 3, 5]
-    non_refl_ch = [1, 2, 4]
+    data = img.get_fdata(dtype=np.float64)
 
     for i in range(data.shape[-1]):
-        if i in refl_ch:
-            min_v = refl_min
-            max_v = refl_max
-        elif i in non_refl_ch:
-            min_v = non_refl_min
-            max_v = non_refl_max
-
-        data[..., i] = data[..., i] * np.abs(max_v - min_v)
-        data[..., i] += min_v
+        data[..., i] = (data[..., i] * np.abs(max_v - min_v)) + min_v
 
     img = nib.Nifti1Image(data, img.affine, img.header)
     nib.save(img, fname.replace('.nii.gz', '_denorm.nii.gz'))
@@ -59,13 +49,11 @@ def do_invert_dwi_tensor_norm(fname, refl_min, refl_max, non_refl_min, non_refl_
 
 def invert_dwi_tensor_norm(directory: str, params: str):
     mat = np.loadtxt(params)
-    refl_min, refl_max, non_refl_min, non_refl_max = mat
+    min_v, max_v = mat
 
     invert_fn = partial(do_invert_dwi_tensor_norm,
-            refl_min=refl_min,
-            refl_max=refl_max,
-            non_refl_min=non_refl_min,
-            non_refl_max=non_refl_max)
+            min_v=min_v,
+            max_v=max_v)
     invert_fn.__name__ = 'invert_dwi_tensor_normalization'
 
     files = [os.path.join(directory, fn) for fn in next(os.walk(directory))[2]]
@@ -170,7 +158,7 @@ def do_calc_diff_maps(pair: tuple):
     pred_img = nib.load(pred)
     target_img = nib.load(target)
     if kind not in ['azimuth', 'inclination']:
-        diff = (pred_img.get_fdata() - target_img.get_fdata()) / target_img.get_fdata()
+        diff = np.abs(pred_img.get_fdata() - target_img.get_fdata()) / target_img.get_fdata()
     else:
         diff = (pred_img.get_fdata() - target_img.get_fdata()) % 360
         diff = np.where(diff < 180, diff, 360 - diff)
@@ -240,10 +228,8 @@ def do_calc_error_avg(args: Tuple[str, nib.Nifti1Image, nib.Nifti1Image]):
 
     cols = ['modality', 'pred_id', 'sub', 'ses', 'roi']
 
-    if 'denorm' == value_t or 'nii.gz' == value_t:
-        suffix = '' if 'denorm' == value_t else '_norm'
+    if 'nii.gz' == value_t:
         cc = ['dxx', 'dxy', 'dxz', 'dyy', 'dyz', 'dzz']
-        cc = [c + suffix for c in cc]
     else:
         cc = [value_t]
 
@@ -255,6 +241,8 @@ def do_calc_error_avg(args: Tuple[str, nib.Nifti1Image, nib.Nifti1Image]):
     diff_map = diff_map if len(diff_map.shape) == 4 else diff_map[..., np.newaxis]
 
     for i in range(diff_map.shape[-1]):
+        diff_map[..., i] = np.where(mask > 0, diff_map[..., i], 0)
+        diff_map[..., i] = np.where(diff_map[..., i] == np.inf, 0, diff_map[..., i])
         for roi_idx in range(probseg.shape[-1]):
             segmented = probseg[..., roi_idx] * diff_map[..., i]
             norm = probseg[..., roi_idx].sum()
@@ -304,7 +292,7 @@ def calc_error_table(pred_path: str, data_path: str):
         for dname in dnames:
             dir_name = os.path.join(root, dname)
             for fname in next(os.walk(dir_name))[2]:
-                if '_diff-' in fname and '.nii.gz' in fname:
+                if '_diff-' in fname and '.nii.gz' in fname and 'denorm' not in fname:
                     sub = fname.split('_sub-')[-1].split('_ses-')[0]
                     f_p = os.path.join(dir_name, fname)
                     argslist.append((f_p, masks[sub], probsegs[sub]))
@@ -313,8 +301,7 @@ def calc_error_table(pred_path: str, data_path: str):
 
     index_cols = ['modality', 'pred_id', 'roi']
     rel_errors = pd.DataFrame(columns=['modality', 'pred_id', 'sub', 'ses', 'roi',
-        'dxx_norm', 'dxy_norm', 'dxz_norm', 'dyy_norm', 'dyz_norm',
-        'dzz_norm', 'dxx', 'dxy', 'dxz', 'dyy', 'dyz', 'dzz', 'md', 'fa',
+        'dxx', 'dxy', 'dxz', 'dyy', 'dyz', 'dzz', 'md', 'fa',
         'ad', 'rd', 'azimuth', 'inclination'])
     rel_errors.set_index(index_cols, inplace=True)
     for root, dnames, _ in os.walk(pred_path):
@@ -327,11 +314,11 @@ def calc_error_table(pred_path: str, data_path: str):
                     rel_errors = rel_errors.combine_first(row)
 
     print(rel_errors.to_string())
-    rel_errors.to_csv('relative_errors.csv')
+    rel_errors.to_csv('/home/fklopfer/relative_errors.csv')
 
 
 def eval_dwi_tensors(pred_dir, dwi_rescale_args_path):
-    invert_dwi_tensor_norm(pred_dir, dwi_rescale_args_path)
+    # invert_dwi_tensor_norm(pred_dir, dwi_rescale_args_path)
     calc_scalar_maps(pred_dir)
     calc_diff_maps(pred_dir)
 
@@ -345,25 +332,25 @@ def gen_predictions():
 
     modalities = ['dwi-tensor', 'pc-bssfp', 'bssfp', 't1w']
     ckpts = [
-            '/ptmp/fklopfer/logs/finetune/dwi/TrainingState.FINE_TUNE-dwi-tensor-epoch=00-val_loss=0.00662024-04-24 14:29:21.450677.ckpt',
-            '/ptmp/fklopfer/logs/finetune/pc-bssfp-local-norm/TrainingState.FINE_TUNE-pc-bssfp-epoch=40-val_loss=0.03032024-04-24 17:39:30.603000.ckpt',
-            '/ptmp/fklopfer/logs/finetune/one-bssfp-local-norm/TrainingState.FINE_TUNE-bssfp-epoch=32-val_loss=0.03362024-04-24 14:30:28.831256.ckpt',
-            '/ptmp/fklopfer/logs/finetune/t1w/TrainingState.FINE_TUNE-t1w-epoch=40-val_loss=0.04312024-04-24 21:18:44.008765.ckpt'
+            '/home/fklopfer/logs/base-dwi-tensor-epoch=12-val_loss=0.02282024-05-14 21:12:00.772511.ckpt',
+            '/home/fklopfer/logs/base-pc-bssfp-epoch=12-val_loss=0.04042024-05-15 00:19:54.554971.ckpt',
+            '/home/fklopfer/logs/base-bssfp-epoch=18-val_loss=0.04762024-05-14 21:13:06.915774.ckpt',
+            '/home/fklopfer/logs/base-t1w-epoch=37-val_loss=0.04532024-05-15 01:04:08.026610.ckpt'
              ]
     pred_base = '/ptmp/fklopfer/preds/finetune/best/'
     pred_dirs = [
             pred_base + 'dwi/',
-            pred_base + 'pc-bssfp-local-norm/',
-            pred_base + 'one-bssfp-local-norm/',
+            pred_base + 'pc-bssfp/',
+            pred_base + 'one-bssfp/',
             pred_base + 't1w/',
             ]
 
     for modality, ckpt, pred_dir in zip(modalities, ckpts, pred_dirs):
-        eval_model(unet, data, ckpt, TrainingState.FINE_TUNE,
-                   modality, pred_dir)
+        # eval_model(unet, data, ckpt, TrainingState.FINE_TUNE,
+        #            modality, pred_dir)
         eval_dwi_tensors(pred_dir, dwi_rescale_args_path)
 
 if __name__ == "__main__":
     set_start_method('spawn')
-    # gen_predictions()
+    gen_predictions()
     calc_error_table('/ptmp/fklopfer/preds/finetune/best/', '/ptmp/fklopfer/bids')

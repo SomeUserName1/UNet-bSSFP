@@ -31,7 +31,7 @@ def build_trainer_args(debug, modality, state):
             dirpath="/home/fklopfer/logs/"
             )
     cbs = [early_stopping_cb, checkpoint_callback]
-    trainer_args = {'max_epochs': 100,
+    trainer_args = {'max_epochs': 50,
                     'accelerator': 'gpu',
                     'strategy': 'ddp',
                     'devices': 'auto',
@@ -178,7 +178,7 @@ if __name__ == "__main__":
 #    for ckpt in ckpts:
 #        assert os.path.exists(ckpt), f'Typo in checkpoint path {ckpt}'
 #
-    modalities =  ['dwi-tensor', 'pc-bssfp']# , 'bssfp', 't1w']
-    for modality in zip(modalities):
+    modalities =  ['bssfp', 't1w'] # ['dwi-tensor', 'pc-bssfp']# , 
+    for modality in modalities:
         train_model(unet, data, None, modality, stages=['finetune'])
 

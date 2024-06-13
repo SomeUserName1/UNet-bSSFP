@@ -13,6 +13,9 @@ class DoveDataModule(pl.LightningDataModule):
                  test_split=0.1,
                  val_split=0.1,
                  num_workers=8,
+                 max_queue_len=48,
+                 samples_per_vol=16,
+                 patch_sz=64,
                  seed=42):
         super().__init__()
         self.name = "DOVE Dataset"
@@ -26,6 +29,9 @@ class DoveDataModule(pl.LightningDataModule):
         self.test_split = test_split
         self.val_split = val_split
         self.num_workers = num_workers
+        self.max_q_len = max_queue_len
+        self.samples_p_vol = samples_per_vol
+        self.patch_sz = patch_sz
         self.seed = seed
         self.bids_layout = None
         self.train_subjects = None
@@ -124,12 +130,16 @@ class DoveDataModule(pl.LightningDataModule):
 
     def get_augmentation_transform(self):
         return tio.Compose([
-            tio.RandomBiasField(p=0.25, coefficients=0.25),
-            tio.RandomNoise(p=0.25, std=(0, 0.01)),
+            tio.RandomMotion(p=0.2),
+            tio.RandomGhosting(p=0.2),
+            tio.RandomSpike(p=0.2, intensity=(0.01, 0.1)),
+            tio.RandomBiasField(p=0.2),
+            tio.RandomBlur(p=0.2, std=(0.01, 0.1)),
+            tio.RandomNoise(p=0.2, std=(0.001, 0.01)),
+            tio.RandomGamma(p=0.2)
             ], p=1,  keep={'dwi-tensor': 'dwi-tensor_orig'})
 
     def setup(self, stage=None):
-        print(self.get_preprocessing_transform()[-1].include)
         self.transform = tio.Compose([self.get_preprocessing_transform(),
                                       self.get_augmentation_transform()])
         self.train_set = tio.SubjectsDataset(self.train_subjects,
@@ -140,23 +150,57 @@ class DoveDataModule(pl.LightningDataModule):
                 self.test_subjects,
                 transform=self.get_preprocessing_transform())
 
+        self.train_sampler = tio.data.UniformSampler(self.patch_sz)
+        self.train_patch_q = tio.Queue(
+                self.train_set,
+                self.max_q_len,
+                self.samples_p_vol,
+                self.train_sampler,
+                num_workers=self.num_workers)
+
+        self.val_sampler = tio.data.UniformSampler(self.patch_sz)
+        self.val_patch_q = tio.Queue(
+                self.val_set,
+                self.max_q_len,
+                self.samples_p_vol,
+                self.val_sampler,
+                num_workers=self.num_workers)
+
+        self.test_grid_samplers = []
+        self.test_grid_aggregators = []
+        for sub in self.test_set:
+            self.test_grid_samplers.append(
+                    tio.inference.GridSampler(
+                        sub,
+                        self.patch_sz,
+                        )
+                    )
+            self.test_grid_aggregators.append(
+                [
+                    tio.inference.GridAggregator(self.test_grid_samplers[-1]),
+                    tio.inference.GridAggregator(self.test_grid_samplers[-1]),
+                    tio.inference.GridAggregator(self.test_grid_samplers[-1])
+                ]
+                )
+
+
     def train_dataloader(self):
-        return DataLoader(self.train_set,
-                          shuffle=True,
+        return DataLoader(self.train_patch_q,
                           batch_size=self.batch_size,
-                          num_workers=self.num_workers,
+                          num_workers=0,
                           persistent_workers=True)
 
     def val_dataloader(self):
-        return DataLoader(self.val_set,
+        return DataLoader(self.val_patch_q,
                           batch_size=self.batch_size,
-                          num_workers=self.num_workers // 2,
+                          num_workers=0,
                           persistent_workers=True)
 
     def test_dataloader(self):
-        return DataLoader(self.test_set,
-                          batch_size=self.batch_size,
-                          num_workers=self.num_workers)
+        return DataLoader(
+                zip(self.test_grid_samplers, self.test_grid_aggregators),
+                batch_size=self.batch_size,
+                num_workers=0)
 
     def predict_dataloader(self):
         return self.test_dataloader()

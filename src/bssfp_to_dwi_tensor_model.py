@@ -212,17 +212,48 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         return loss
 
     def test_step(self, batch, batch_idx):
-        x, y = self.unpack_batch(batch, test=True)
-        loss, y_hat = self._gen_step(x)
-        self.compute_metrics(y_hat, y, 'test')
-        self.save_predicitions(batch, batch_idx, x, y, y_hat, 'test')
-        return loss
+        sampler, i_agg, t_agg, o_agg = batch
+        tot_loss = 0.
+        for patch_batch in sampler:
+            x, y = self.unpack_batch(patch_batch, test=True)
+            loc = patch_batch[tio.LOCATION]
+            loss, y_hat = self._gen_step(x)
+            tot_loss += loss
+            i_agg.add_batch(y_hat, loc)
+            t_agg.add_batch(y, loc)
+            o_agg.add_batch(x, loc)
+
+        in_tensor = i_agg.get_output_tensor()
+        true_tensor = t_agg.get_output_tensor()
+        pred_tensor = o_agg.get_output_tensor()
+
+        self.compute_metrics(pred_tensor, true_tensor, 'test')
+        self.log(f'{step_name}_gen_loss_subject', tot_loss, logger=True,
+                batch_size=self.batch_size, sync_dist=sync)
+        # FIXME patch_batch is sic info if it contains tio.PATH
+        self.save_predicitions(patch_batch, i, in_tensor, true_tensor, pred_tensor, 'test')
+        return tot_loss
 
     def predict_step(self, batch, batch_idx, dataloader_idx=None):
-        x, y = self.unpack_batch(batch, test=True)
-        y_hat = self.gen(x)
-        self.save_predicitions(batch, batch_idx, x, y, y_hat, 'predict')
-        return y_hat
+        sampler, i_agg, t_agg, o_agg = batch
+        for patch_batch in sampler:
+            x, y = self.unpack_batch(patch_batch, test=True)
+            loc = patch_batch[tio.LOCATION]
+            loss, y_hat = self._gen_step(x)
+            i_agg.add_batch(y_hat, loc)
+            t_agg.add_batch(y, loc)
+            o_agg.add_batch(x, loc)
+
+        in_tensor = i_agg.get_output_tensor()
+        true_tensor = t_agg.get_output_tensor()
+        pred_tensor = o_agg.get_output_tensor()
+
+        self.compute_metrics(pred_tensor, true_tensor, 'test')
+        self.log(f'{step_name}_gen_loss_subject', tot_loss, logger=True,
+                batch_size=self.batch_size, sync_dist=sync)
+        # FIXME patch_batch is sic info if it contains tio.PATH
+        self.save_predicitions(patch_batch, i, in_tensor, true_tensor, pred_tensor, 'test')
+        return pred_tensor
 
     def save_predicitions(self, batch, batch_idx, x, y, y_hat, step, time=True):
         input_path = batch[self.input_modality][tio.PATH][0]

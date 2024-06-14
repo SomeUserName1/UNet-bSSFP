@@ -16,21 +16,19 @@ from dove_data_module import DoveDataModule
 class Generator(torch.nn.Module):
     def __init__(self):
         super().__init__()
-        dwi_tensor_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=6, out_channels=24, num_layers=3)
-        pc_bssfp_input = mainets.blocks.RegistrationResidualConvBlock(
-                spatial_dims=3, in_channels=24, out_channels=24, num_layers=3)
+        dwi_tensor_input = DownSampleConv(6, 24)
+        bssfp_input = DownSampleConv(24, 24)
         unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
                 in_channels=24,
                 out_channels=6,
-                features=(64, 128, 256, 512, 64),
+                features=(48, 64, 128, 256, 512, 48),
                 dropout=0.25,
                 )
         self.blocks = torch.nn.ModuleDict(
                 {'dwi-tensor': dwi_tensor_input,
-                 'pc-bssfp': pc_bssfp_input,
-                 'bssfp': pc_bssfp_input,
+                 'pc-bssfp': bssfp_input,
+                 'bssfp': bssfp_input,
                  't1w': dwi_tensor_input,
                  'unet': unet})
 
@@ -47,13 +45,13 @@ class DownSampleConv(torch.nn.Module):
         super().__init__()
         self.activation = activation
         self.batchnorm = batchnorm
-        self.conv = nn.Conv3d(in_channels, out_channels, kernel, strides, padding)
+        self.conv = torch.nn.Conv3d(in_channels, out_channels, kernel, strides, padding)
 
         if batchnorm:
-            self.bn = nn.BatchNorm3d(out_channels)
+            self.bn = torch.nn.BatchNorm3d(out_channels)
 
         if activation:
-            self.act = nn.LeakyReLU(0.2)
+            self.act = torch.nn.LeakyReLU(0.2)
 
     def forward(self, x):
         x = self.conv(x)
@@ -64,14 +62,14 @@ class DownSampleConv(torch.nn.Module):
         return x
 
 
-class PatchGAN(nn.Module):
-    def __init__(self, input_channels) -> None:
+class PatchGAN(torch.nn.Module):
+    def __init__(self) -> None:
         super().__init__()
         self.d1 = DownSampleConv(24, 64, batchnorm=False)
         self.d2 = DownSampleConv(64, 128)
         self.d3 = DownSampleConv(128, 256)
         self.d4 = DownSampleConv(256, 512)
-        self.final = nn.Conv3d(512, 1, kernel_size=1)
+        self.final = torch.nn.Conv3d(512, 1, kernel_size=1)
 
     def forward(self, x, y):
         x = torch.cat([x, y], axis=1)
@@ -110,7 +108,7 @@ def check_input_shape(strides):
             ('Input shape doesnt match stride due to instance norm'))
 
 
-class PerceptualL1SSIMLoss(torch.nn.Module):
+class PerceptualL1Loss(torch.nn.Module):
     def __init__(self, perceptual_factor=100):
         super().__init__()
         self.l1 = torch.nn.L1Loss()
@@ -121,7 +119,7 @@ class PerceptualL1SSIMLoss(torch.nn.Module):
 
     def forward(self, y_hat, y):
         l1 = self.l1(y_hat, y)
-        perceptual = self.perceptual(y_hat, y) * perceptual_factor 
+        perceptual = self.perceptual(y_hat, y) * perceptual_factor
         return {'L1': l1, 'Perceptual': perceptual}
 
 
@@ -129,13 +127,13 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def __init__(self,
                  lr=1e-3,
                  batch_size=1,
-                 perceptual_factor,
-                 recon_factor):
+                 perceptual_factor=1e3,
+                 recon_factor=1e2):
         super().__init__()
         self.save_hyperparameters(ignore=['net', 'criterion'])
         self.gen = Generator()
         self.discr = PatchGAN()
-        self.recon_criterion = PerceptualL1SSIMLoss(perceptual_factor)
+        self.recon_criterion = PerceptualL1Loss(perceptual_factor)
         self.adversarial_criterion = torch.nn.BCEWithLogitsLoss()
         self.recon_factor = recon_factor
         self.lr = lr
@@ -168,9 +166,9 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         return (loss + loss_hat) / 2
 
     def unpack_batch(self, batch, test=False):
-            x = batch[self.input_modality][tio.DATA]
-            y = (batch['dwi-tensor'][tio.DATA] if test
-                 else batch['dwi-tensor_orig'][tio.DATA])
+        x = batch[self.input_modality][tio.DATA]
+        y = (batch['dwi-tensor'][tio.DATA] if test
+         else batch['dwi-tensor_orig'][tio.DATA])
         return x, y
 
     def compute_recon_loss(self, y_hat, y, step_name):
@@ -283,4 +281,5 @@ class bSSFPToDWITensorModel(pl.LightningModule):
 
 
     def configure_optimizers(self):
-        return self.optimizer_class(lr=self.lr), self.optimizer_class(lr=self.lr)
+        return (self.optimizer_class(self.gen.parameters(), lr=self.lr),
+                self.optimizer_class(self.discr.parameters(), lr=self.lr))

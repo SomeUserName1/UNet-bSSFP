@@ -124,7 +124,7 @@ class DoveDataModule(pl.LightningDataModule):
 
     def get_preprocessing_transform(self):
         return tio.Compose([
-            tio.Resample('dwi-tensor', include=['t1w']),
+            tio.Resample('dwi-tensor'),
             tio.CropOrPad((96, 128, 128), 0)
             ])
 

@@ -14,15 +14,16 @@ from dove_data_module import DoveDataModule
 
 
 class Generator(torch.nn.Module):
-    def __init__(self):
+    def __init__(self, input_modality):
         super().__init__()
-        dwi_tensor_input = DownSampleConv(6, 24)
-        bssfp_input = DownSampleConv(24, 24)
+        self.input_modality = input_modality
+        dwi_tensor_input = DownSampleConv(6, 24, kernel=1, strides=1, padding=0)
+        bssfp_input = DownSampleConv(24, 24, kernel=1, strides=1, padding=0)
         unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
                 in_channels=24,
                 out_channels=6,
-                features=(48, 64, 128, 256, 512, 48),
+                features=(32, 64, 128, 256, 512, 32),
                 dropout=0.25,
                 )
         self.blocks = torch.nn.ModuleDict(
@@ -62,13 +63,14 @@ class DownSampleConv(torch.nn.Module):
         return x
 
 
-class PatchGAN(torch.nn.Module):
+class Discriminator(torch.nn.Module):
     def __init__(self) -> None:
         super().__init__()
-        self.d1 = DownSampleConv(24, 64, batchnorm=False)
-        self.d2 = DownSampleConv(64, 128)
-        self.d3 = DownSampleConv(128, 256)
-        self.d4 = DownSampleConv(256, 512)
+        self.d1 = DownSampleConv(12, 32, batchnorm=False)
+        self.d2 = DownSampleConv(32, 64)
+        self.d3 = DownSampleConv(64, 128)
+        self.d4 = DownSampleConv(128, 256)
+        self.d5 = DownSampleConv(256, 512)
         self.final = torch.nn.Conv3d(512, 1, kernel_size=1)
 
     def forward(self, x, y):
@@ -77,6 +79,7 @@ class PatchGAN(torch.nn.Module):
         x = self.d2(x)
         x = self.d3(x)
         x = self.d4(x)
+        x = self.d5(x)
         return self.final(x)
 
 
@@ -109,7 +112,7 @@ def check_input_shape(strides):
 
 
 class PerceptualL1Loss(torch.nn.Module):
-    def __init__(self, perceptual_factor=100):
+    def __init__(self, perceptual_factor):
         super().__init__()
         self.l1 = torch.nn.L1Loss()
         self.perceptual = monai.losses.PerceptualLoss(
@@ -119,20 +122,23 @@ class PerceptualL1Loss(torch.nn.Module):
 
     def forward(self, y_hat, y):
         l1 = self.l1(y_hat, y)
-        perceptual = self.perceptual(y_hat, y) * perceptual_factor
+        perceptual = self.perceptual(y_hat, y) * self.perceptual_factor
         return {'L1': l1, 'Perceptual': perceptual}
 
 
 class bSSFPToDWITensorModel(pl.LightningModule):
     def __init__(self,
+                 input_modality,
                  lr=1e-3,
-                 batch_size=1,
+                 batch_size=4,
                  perceptual_factor=1e3,
                  recon_factor=1e2):
         super().__init__()
         self.save_hyperparameters(ignore=['net', 'criterion'])
-        self.gen = Generator()
-        self.discr = PatchGAN()
+        self.automatic_optimization = False
+        self.input_modality = input_modality
+        self.gen = Generator(input_modality)
+        self.discr = Discriminator()
         self.recon_criterion = PerceptualL1Loss(perceptual_factor)
         self.adversarial_criterion = torch.nn.BCEWithLogitsLoss()
         self.recon_factor = recon_factor
@@ -145,15 +151,20 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.optimizer_class = torch.optim.AdamW
         self.batch_size = batch_size
 
+    def forward(self, x):
+        return self.gen(x)
 
     def _gen_step(self, x, y, step_name):
         y_hat = self.gen(x)
-        discr_logits = self.disrc(x, y_hat)
-        adv_loss = self.adversarial_condition(discr_logits, np.ones_like(discr_logits))
+        discr_logits = self.discr(x, y_hat)
+        print(f'logits shape {discr_logits.shape}', flush=True)
+        valid = torch.ones_like(discr_logits)
+        valid = valid.type_as(x)
+        adv_loss = self.adversarial_criterion(discr_logits, valid)
         recon_loss = self.compute_recon_loss(y_hat, y, step_name + '_gen')
 
         self.log(f'{step_name}_gen_loss_adversarial', adv_loss, logger=True,
-                     batch_size=self.batch_size, sync_dist=sync)
+                     batch_size=self.batch_size)
 
         return adv_loss + recon_loss * self.recon_factor, y_hat
 
@@ -161,8 +172,12 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         y_hat = self.gen(x).detach()
         logits_hat = self.discr(x, y_hat)
         logits = self.discr(x, y)
-        loss_hat = self.adversarial_criterion(logits_hat, np.zeros_like(logits_hat))
-        loss = self.adversarial_criterion(logits, np.ones_like(logits))
+        invalid = torch.zeros_like(logits_hat)
+        invalid = invalid.type_as(x)
+        valid = torch.ones_like(logits)
+        valid = valid.type_as(x)
+        loss_hat = self.adversarial_criterion(logits_hat, invalid)
+        loss = self.adversarial_criterion(logits, valid)
         return (loss + loss_hat) / 2
 
     def unpack_batch(self, batch, test=False):
@@ -172,40 +187,51 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         return x, y
 
     def compute_recon_loss(self, y_hat, y, step_name):
-        losses = self.criterion(y_hat, y)
+        losses = self.recon_criterion(y_hat, y)
         loss_tot = 0
         sync = step_name != 'train'
         for name, loss in losses.items():
             self.log(f'{step_name}_loss_recon_{name}', loss, logger=True,
-                     batch_size=self.batch_size, sync_dist=sync)
+                     batch_size=self.batch_size)
             loss_tot += loss
 
         self.log(f'{step_name}_loss_recon', loss_tot, prog_bar=True,
-                 logger=True, batch_size=self.batch_size, sync_dist=sync)
+                 logger=True, batch_size=self.batch_size)
         return loss_tot / len(losses.items())
 
     def compute_metrics(self, y_hat, y, step_name):
         for metric_fn in self.metric_fns:
             m = metric_fn(y_hat, y)
             self.log(f'{step_name}_metric_{metric_fn.__class__.__name__}',
-                     m, logger=True, batch_size=self.batch_size, sync_dist=True)
+                     m.mean(), logger=True, batch_size=self.batch_size)
 
-    def training_step(self, batch, batch_idx, optimizer_idx):
+    def training_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
-        loss = None
-        if optimizer_idx == 0:
-            loss = self._discr_step(x, y)
-            self.log(f'{step_name}_discr_loss', loss, logger=True,
-                    batch_size=self.batch_size, sync_dist=sync)
-        elif optimizer_idx == 1:
-            loss, _ = self._gen_step(x, y, 'train')
-            self.log(f'{step_name}_gen_loss', loss, logger=True,
-                    batch_size=self.batch_size, sync_dist=sync)
-        return loss
+        gen_optimizer, discr_optimizer = self.optimizers()
+
+        # Train Generator
+        self.toggle_optimizer(gen_optimizer)
+        loss, _ = self._gen_step(x, y, 'train')
+        self.log(f'{step_name}_gen_loss', loss, logger=True,
+                 batch_size=self.batch_size)
+        self.manual_backward(loss)
+        gen_optimizer.step()
+        gen_optimizer.zero_grad()
+        self.untoggle_optimizer(gern_optimizer)
+
+        # Train Discriminator
+        self.toggle_optimizer(discr_optimizer)
+        loss = self._discr_step(x, y)
+        self.log(f'{step_name}_discr_loss', loss, logger=True,
+                 batch_size=self.batch_size)
+        self.manual_backward(loss)
+        discr_optimizer.step()
+        discr_optimizer.zero_grad()
+        self.untoggle_optimizer(discr_optimizer)
 
     def validation_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
-        loss, y_hat = self._gen_step(x)
+        loss, y_hat = self._gen_step(x, y, 'val')
         self.compute_metrics(y_hat, y, 'val')
         return loss
 
@@ -215,7 +241,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         for patch_batch in sampler:
             x, y = self.unpack_batch(patch_batch, test=True)
             loc = patch_batch[tio.LOCATION]
-            loss, y_hat = self._gen_step(x)
+            loss, y_hat = self._gen_step(x, y, 'test')
             tot_loss += loss
             i_agg.add_batch(y_hat, loc)
             t_agg.add_batch(y, loc)
@@ -227,7 +253,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
 
         self.compute_metrics(pred_tensor, true_tensor, 'test')
         self.log(f'{step_name}_gen_loss_subject', tot_loss, logger=True,
-                batch_size=self.batch_size, sync_dist=sync)
+                batch_size=self.batch_size)
         # FIXME patch_batch is sic info if it contains tio.PATH
         self.save_predicitions(patch_batch, i, in_tensor, true_tensor, pred_tensor, 'test')
         return tot_loss
@@ -237,7 +263,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         for patch_batch in sampler:
             x, y = self.unpack_batch(patch_batch, test=True)
             loc = patch_batch[tio.LOCATION]
-            loss, y_hat = self._gen_step(x)
+            y_hat = self(x)
             i_agg.add_batch(y_hat, loc)
             t_agg.add_batch(y, loc)
             o_agg.add_batch(x, loc)
@@ -247,8 +273,6 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         pred_tensor = o_agg.get_output_tensor()
 
         self.compute_metrics(pred_tensor, true_tensor, 'test')
-        self.log(f'{step_name}_gen_loss_subject', tot_loss, logger=True,
-                batch_size=self.batch_size, sync_dist=sync)
         # FIXME patch_batch is sic info if it contains tio.PATH
         self.save_predicitions(patch_batch, i, in_tensor, true_tensor, pred_tensor, 'test')
         return pred_tensor

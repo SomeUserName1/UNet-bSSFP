@@ -28,10 +28,8 @@ def build_trainer_args(debug, modality):
     cbs = [early_stopping_cb, checkpoint_callback]
     trainer_args = {'max_epochs': 50,
                     'accelerator': 'gpu',
-                    'strategy': 'ddp',
                     'devices': 'auto',
                     'precision': '32',
-                    'accumulate_grad_batches': 1,
                     'logger': logger,
                     'enable_checkpointing': True,
                     'enable_model_summary': True,
@@ -58,7 +56,7 @@ def train_model(data,
         model = bSSFPToDWITensorModel.load_from_checkpoint(ckpt_path)
     else:
         with trainer.init_module():
-            model = bSSFPToDWITensorModel()
+            model = bSSFPToDWITensorModel(modality)
 
     print(f"Training for modality {modality} started at {start}")
     trainer.fit(model, datamodule=data)
@@ -72,7 +70,7 @@ def train_model(data,
     trainer.test(model, datamodule=data)
 
     end = datetime.datetime.now()
-    print(f"Total time taken: {end - start_total}")
+    print(f"Training modality {modality} done!. Total time taken: {end - start_total}")
     wandb.finish()
 
     return ckpt_cb.best_model_path
@@ -96,6 +94,9 @@ if __name__ == "__main__":
     # check_input_shape(strides)
 
     modalities = ['dwi-tensor', 'pc-bssfp', 'bssfp', 't1w']
-    for modality in modalities:
-        train_model(data, modality)
+    train_model(data, modalities[0])
+#    with ProcessPoolExecutor(max_workers=len(modalities),
+#                             max_tasks_per_child=1) as executor:
+#        for modality in modalities:
+#            futures.append(executor.submit(train_model, data, modality))
 

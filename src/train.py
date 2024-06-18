@@ -4,6 +4,7 @@ import json
 import os
 
 import lightning.pytorch as pl
+from lightning.pytorch.strategies import SingleDeviceStrategy
 import torch
 import wandb
 from torchview import draw_graph
@@ -27,6 +28,7 @@ def build_trainer_args(debug, modality):
             )
     cbs = [early_stopping_cb, checkpoint_callback]
     trainer_args = {'max_epochs': 50,
+                    'strategy': 'ddp_find_unused_parameters_true',
                     'accelerator': 'gpu',
                     'devices': 'auto',
                     'precision': '32',
@@ -94,9 +96,5 @@ if __name__ == "__main__":
     # check_input_shape(strides)
 
     modalities = ['dwi-tensor', 'pc-bssfp', 'bssfp', 't1w']
-    train_model(data, modalities[0])
-#    with ProcessPoolExecutor(max_workers=len(modalities),
-#                             max_tasks_per_child=1) as executor:
-#        for modality in modalities:
-#            futures.append(executor.submit(train_model, data, modality))
-
+    for modality in modalities:
+        train_model(data, modality)

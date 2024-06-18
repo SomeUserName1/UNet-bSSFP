@@ -120,6 +120,9 @@ class PerceptualL1Loss(torch.nn.Module):
                 network_type=("medicalnet_resnet10_23datasets"))
         self.perceptual_factor = perceptual_factor
 
+    def get_perceptual_model(self):
+        return self.perceptual.perceptual_function.model
+
     def forward(self, y_hat, y):
         l1 = self.l1(y_hat, y)
         perceptual = self.perceptual(y_hat, y) * self.perceptual_factor
@@ -146,8 +149,9 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.metric_fns = [monai.metrics.PSNRMetric(1),
                            monai.metrics.SSIMMetric(3, data_range=1),
                            monai.metrics.MAEMetric(),
-                           monai.metrics.FIDMetric()
+                           self.compute_fid_medicalnet
                            ]
+        self.fid = monai.metrics.FIDMetric()
         self.optimizer_class = torch.optim.AdamW
         self.batch_size = batch_size
 
@@ -157,14 +161,13 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def _gen_step(self, x, y, step_name):
         y_hat = self.gen(x)
         discr_logits = self.discr(x, y_hat)
-        print(f'logits shape {discr_logits.shape}', flush=True)
         valid = torch.ones_like(discr_logits)
         valid = valid.type_as(x)
         adv_loss = self.adversarial_criterion(discr_logits, valid)
         recon_loss = self.compute_recon_loss(y_hat, y, step_name + '_gen')
 
         self.log(f'{step_name}_gen_loss_adversarial', adv_loss, logger=True,
-                     batch_size=self.batch_size)
+                     batch_size=self.batch_size, sync_dist=True)
 
         return adv_loss + recon_loss * self.recon_factor, y_hat
 
@@ -183,7 +186,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def unpack_batch(self, batch, test=False):
         x = batch[self.input_modality][tio.DATA]
         y = (batch['dwi-tensor'][tio.DATA] if test
-         else batch['dwi-tensor_orig'][tio.DATA])
+             else batch['dwi-tensor_orig'][tio.DATA])
         return x, y
 
     def compute_recon_loss(self, y_hat, y, step_name):
@@ -192,18 +195,57 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         sync = step_name != 'train'
         for name, loss in losses.items():
             self.log(f'{step_name}_loss_recon_{name}', loss, logger=True,
-                     batch_size=self.batch_size)
+                     batch_size=self.batch_size, sync_dist=True)
             loss_tot += loss
 
         self.log(f'{step_name}_loss_recon', loss_tot, prog_bar=True,
-                 logger=True, batch_size=self.batch_size)
+                 logger=True, batch_size=self.batch_size, sync_dist=True)
         return loss_tot / len(losses.items())
 
     def compute_metrics(self, y_hat, y, step_name):
         for metric_fn in self.metric_fns:
             m = metric_fn(y_hat, y)
             self.log(f'{step_name}_metric_{metric_fn.__class__.__name__}',
-                     m.mean(), logger=True, batch_size=self.batch_size)
+                     m.mean(), logger=True, batch_size=self.batch_size,
+                     sync_dist=True)
+            
+    @staticmethod
+    def normalize(volume):
+        mean = volume.mean()
+        std = volume.std()
+        return (volume - mean) / std
+
+    @staticmethod
+    def spatial_average(feats):
+        return feats.mean([2, 3, 4], keepdim=False)
+
+    def medicalnet(self):
+        return self.recon_criterion.get_perceptual_model()
+
+    def compute_fid_medicalnet(self, y_hat, y):
+        inp = self.normalize(y_hat)
+        tgt = self.normalize(y)
+        net = self.medicalnet()
+
+        # Get model outputs
+        feats_per_ch = 0
+        for ch_idx in range(inp.shape[1]):
+            input_channel = inp[:, ch_idx, ...].unsqueeze(1)
+            target_channel = tgt[:, ch_idx, ...].unsqueeze(1)
+
+            if ch_idx == 0:
+                outs_input = net(input_channel)
+                outs_target = net(target_channel)
+            else:
+                outs_input = torch.cat([outs_input, net(input_channel)],
+                        dim=1)
+                outs_target = torch.cat([outs_target, net(target_channel)],
+                        dim=1)
+
+        inp_feats = self.spatial_average(outs_input)
+        tgt_feats = self.spatial_average(outs_target)
+
+        return self.fid(inp_feats, tgt_feats)
 
     def training_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
@@ -212,18 +254,18 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         # Train Generator
         self.toggle_optimizer(gen_optimizer)
         loss, _ = self._gen_step(x, y, 'train')
-        self.log(f'{step_name}_gen_loss', loss, logger=True,
-                 batch_size=self.batch_size)
+        self.log(f'train_gen_loss', loss, logger=True,
+                 batch_size=self.batch_size, sync_dist=True)
         self.manual_backward(loss)
         gen_optimizer.step()
         gen_optimizer.zero_grad()
-        self.untoggle_optimizer(gern_optimizer)
+        self.untoggle_optimizer(gen_optimizer)
 
         # Train Discriminator
         self.toggle_optimizer(discr_optimizer)
         loss = self._discr_step(x, y)
-        self.log(f'{step_name}_discr_loss', loss, logger=True,
-                 batch_size=self.batch_size)
+        self.log(f'train_discr_loss', loss, logger=True,
+                 batch_size=self.batch_size, sync_dist=True)
         self.manual_backward(loss)
         discr_optimizer.step()
         discr_optimizer.zero_grad()
@@ -253,7 +295,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
 
         self.compute_metrics(pred_tensor, true_tensor, 'test')
         self.log(f'{step_name}_gen_loss_subject', tot_loss, logger=True,
-                batch_size=self.batch_size)
+                batch_size=self.batch_size, sync_dist=True)
         # FIXME patch_batch is sic info if it contains tio.PATH
         self.save_predicitions(patch_batch, i, in_tensor, true_tensor, pred_tensor, 'test')
         return tot_loss

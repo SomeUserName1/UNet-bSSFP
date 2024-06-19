@@ -1,4 +1,3 @@
-from enum import Enum
 import math
 import datetime
 
@@ -17,7 +16,8 @@ class Generator(torch.nn.Module):
     def __init__(self, input_modality):
         super().__init__()
         self.input_modality = input_modality
-        dwi_tensor_input = DownSampleConv(6, 24, kernel=1, strides=1, padding=0)
+        dwi_tensor_input = DownSampleConv(6, 24, kernel=1, strides=1,
+                                          padding=0)
         bssfp_input = DownSampleConv(24, 24, kernel=1, strides=1, padding=0)
         unet = mainets.nets.BasicUNet(
                 spatial_dims=3,
@@ -41,12 +41,14 @@ class Generator(torch.nn.Module):
 
 class DownSampleConv(torch.nn.Module):
     def __init__(
-        self, in_channels, out_channels, kernel=4, strides=2, padding=1, activation=True, batchnorm=True
-    ) -> None:
+            self, in_channels, out_channels, kernel=4, strides=2, padding=1,
+            activation=True, batchnorm=True
+            ) -> None:
         super().__init__()
         self.activation = activation
         self.batchnorm = batchnorm
-        self.conv = torch.nn.Conv3d(in_channels, out_channels, kernel, strides, padding)
+        self.conv = torch.nn.Conv3d(in_channels, out_channels, kernel, strides,
+                                    padding)
 
         if batchnorm:
             self.bn = torch.nn.BatchNorm3d(out_channels)
@@ -133,7 +135,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def __init__(self,
                  input_modality,
                  lr=1e-3,
-                 batch_size=4,
+                 batch_size=8,
                  perceptual_factor=1e3,
                  recon_factor=1e2):
         super().__init__()
@@ -166,8 +168,9 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         adv_loss = self.adversarial_criterion(discr_logits, valid)
         recon_loss = self.compute_recon_loss(y_hat, y, step_name + '_gen')
 
+        sync = step_name != 'train'
         self.log(f'{step_name}_gen_loss_adversarial', adv_loss, logger=True,
-                     batch_size=self.batch_size, sync_dist=True)
+                 batch_size=self.batch_size, sync_dist=sync, on_epoch=True)
 
         return adv_loss + recon_loss * self.recon_factor, y_hat
 
@@ -195,11 +198,12 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         sync = step_name != 'train'
         for name, loss in losses.items():
             self.log(f'{step_name}_loss_recon_{name}', loss, logger=True,
-                     batch_size=self.batch_size, sync_dist=True)
+                     batch_size=self.batch_size, sync_dist=sync, on_epoch=True)
             loss_tot += loss
         loss_tot /= len(losses.keys())
         self.log(f'{step_name}_loss_recon', loss_tot, prog_bar=True,
-                 logger=True, batch_size=self.batch_size, sync_dist=True)
+                 logger=True, batch_size=self.batch_size, sync_dist=sync,
+                 on_epoch=True)
         return loss_tot
 
     def compute_metrics(self, y_hat, y, step_name):
@@ -207,8 +211,8 @@ class bSSFPToDWITensorModel(pl.LightningModule):
             m = metric_fn(y_hat, y)
             self.log(f'{step_name}_metric_{name}',
                      m.mean(), logger=True, batch_size=self.batch_size,
-                     sync_dist=True)
-            
+                     sync_dist=True, on_epoch=True)
+
     @staticmethod
     def normalize(volume):
         mean = volume.mean()
@@ -228,7 +232,6 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         net = self.medicalnet()
 
         # Get model outputs
-        feats_per_ch = 0
         for ch_idx in range(inp.shape[1]):
             input_channel = inp[:, ch_idx, ...].unsqueeze(1)
             target_channel = tgt[:, ch_idx, ...].unsqueeze(1)
@@ -238,9 +241,9 @@ class bSSFPToDWITensorModel(pl.LightningModule):
                 outs_target = net(target_channel)
             else:
                 outs_input = torch.cat([outs_input, net(input_channel)],
-                        dim=1)
+                                       dim=1)
                 outs_target = torch.cat([outs_target, net(target_channel)],
-                        dim=1)
+                                        dim=1)
 
         inp_feats = self.spatial_average(outs_input)
         tgt_feats = self.spatial_average(outs_target)
@@ -255,7 +258,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.toggle_optimizer(gen_optimizer)
         loss, _ = self._gen_step(x, y, 'train')
         self.log('train_gen_loss', loss, logger=True,
-                 batch_size=self.batch_size, sync_dist=True)
+                 batch_size=self.batch_size, sync_dist=False, on_epoch=True)
         self.manual_backward(loss)
         gen_optimizer.step()
         gen_optimizer.zero_grad()
@@ -265,7 +268,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.toggle_optimizer(discr_optimizer)
         loss = self._discr_step(x, y)
         self.log('train_discr_loss', loss, logger=True,
-                 batch_size=self.batch_size, sync_dist=True)
+                 batch_size=self.batch_size, sync_dist=False, on_epoch=True)
         self.manual_backward(loss)
         discr_optimizer.step()
         discr_optimizer.zero_grad()
@@ -275,7 +278,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         x, y = self.unpack_batch(batch)
         loss, y_hat = self._gen_step(x, y, 'val')
         self.log('val_loss', loss, logger=True, batch_size=self.batch_size,
-                sync_dist=True)
+                 sync_dist=True, on_epoch=True)
         self.compute_metrics(y_hat, y, 'val')
         return loss
 
@@ -296,10 +299,11 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         pred_tensor = o_agg.get_output_tensor()
 
         self.compute_metrics(pred_tensor, true_tensor, 'test')
-        self.log(f'{step_name}_gen_loss_subject', tot_loss, logger=True,
-                batch_size=self.batch_size, sync_dist=True)
+        self.log('test_gen_loss_subject', tot_loss, logger=True,
+                 batch_size=self.batch_size, sync_dist=True, on_epoch=True)
         # FIXME patch_batch is sic info if it contains tio.PATH
-        self.save_predicitions(patch_batch, i, in_tensor, true_tensor, pred_tensor, 'test')
+        self.save_predicitions(patch_batch, batch_idx, in_tensor, true_tensor,
+                               pred_tensor, 'test')
         return tot_loss
 
     def predict_step(self, batch, batch_idx, dataloader_idx=None):
@@ -318,10 +322,12 @@ class bSSFPToDWITensorModel(pl.LightningModule):
 
         self.compute_metrics(pred_tensor, true_tensor, 'test')
         # FIXME patch_batch is sic info if it contains tio.PATH
-        self.save_predicitions(patch_batch, i, in_tensor, true_tensor, pred_tensor, 'test')
+        self.save_predicitions(patch_batch, batch_idx, in_tensor, true_tensor,
+                               pred_tensor, 'test')
         return pred_tensor
 
-    def save_predicitions(self, batch, batch_idx, x, y, y_hat, step, time=True):
+    def save_predicitions(self, batch, batch_idx, x, y, y_hat, step,
+                          time=True):
         input_path = batch[self.input_modality][tio.PATH][0]
         i_sub_id = input_path.split('/')[-4].split('-')[-1]
         i_ses_id = input_path.split('/')[-3].split('-')[-1]
@@ -335,18 +341,14 @@ class bSSFPToDWITensorModel(pl.LightningModule):
 
         time = f'_{datetime.datetime.now()}' if time else ''
         nib.save(nib.Nifti1Image(x_img, np.eye(4)),
-                 (f'input-{batch_idx}_state-{state}_'
-                  f'mod-{self.input_modality}' + time +
+                 (f'input-{batch_idx}_mod-{self.input_modality}' + time +
                   f'_sub-{i_sub_id}_ses-{i_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_hat_img, np.eye(4)),
-                 (f'pred-{batch_idx}_state-{state}'
-                  f'_mod-{self.input_modality}' + time +
+                 (f'pred-{batch_idx}_mod-{self.input_modality}' + time +
                   f'_sub-{t_sub_id}_ses-{t_ses_id}.nii.gz'))
         nib.save(nib.Nifti1Image(y_img, np.eye(4)),
-                 (f'target-{batch_idx}_state-{state}'
-                  f'_mod-{self.input_modality}' + time +
+                 (f'target-{batch_idx}_mod-{self.input_modality}' + time +
                   f'_sub-{t_sub_id}_ses-{t_ses_id}.nii.gz'))
-
 
     def configure_optimizers(self):
         return (self.optimizer_class(self.gen.parameters(), lr=self.lr),

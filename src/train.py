@@ -4,7 +4,6 @@ import json
 import os
 
 import lightning.pytorch as pl
-from lightning.pytorch.strategies import SingleDeviceStrategy
 import torch
 import wandb
 from torchview import draw_graph
@@ -68,8 +67,8 @@ def train_model(data,
         trainer_args['profiler'].plot()
         trainer_args['profiler'].summary()
 
-    trainer = pl.Trainer(devices=1, num_nodes=1)
-    trainer.test(model, datamodule=data)
+    # trainer = pl.Trainer(devices=1, num_nodes=1)
+    # trainer.test(model, datamodule=data)
 
     end = datetime.datetime.now()
     print(f"Training modality {modality} done!. Total time taken: {end - start_total}")

@@ -9,12 +9,12 @@ import torchio as tio
 class DoveDataModule(pl.LightningDataModule):
     def __init__(self,
                  data_dir,
-                 batch_size=4,
+                 batch_size=8,
                  test_split=0.1,
                  val_split=0.1,
                  num_workers=8,
                  max_queue_len=16,
-                 samples_per_vol=16,
+                 samples_per_vol=8,
                  patch_sz=64,
                  seed=42):
         super().__init__()
@@ -124,7 +124,6 @@ class DoveDataModule(pl.LightningDataModule):
 
     def get_preprocessing_transform(self):
         return tio.Compose([
-            tio.Resample('dwi-tensor', include=['t1w']),
             tio.CropOrPad((96, 128, 128), 0)
             ])
 
@@ -182,7 +181,6 @@ class DoveDataModule(pl.LightningDataModule):
                     tio.inference.GridAggregator(self.test_grid_samplers[-1])
                 ]
                 )
-
 
     def train_dataloader(self):
         return DataLoader(self.train_patch_q,

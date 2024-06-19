@@ -146,10 +146,10 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.adversarial_criterion = torch.nn.BCEWithLogitsLoss()
         self.recon_factor = recon_factor
         self.lr = lr
-        self.metric_fns = [monai.metrics.PSNRMetric(1),
-                           monai.metrics.SSIMMetric(3, data_range=1),
-                           monai.metrics.MAEMetric(),
-                           self.compute_fid_medicalnet
+        self.metric_fns = [[monai.metrics.PSNRMetric(1), 'PSNR'],
+                           [monai.metrics.SSIMMetric(3, data_range=1), 'SSIM'],
+                           [monai.metrics.MAEMetric(), 'L1'],
+                           [self.compute_fid_medicalnet, 'FID']
                            ]
         self.fid = monai.metrics.FIDMetric()
         self.optimizer_class = torch.optim.AdamW
@@ -197,15 +197,15 @@ class bSSFPToDWITensorModel(pl.LightningModule):
             self.log(f'{step_name}_loss_recon_{name}', loss, logger=True,
                      batch_size=self.batch_size, sync_dist=True)
             loss_tot += loss
-
+        loss_tot /= len(losses.keys())
         self.log(f'{step_name}_loss_recon', loss_tot, prog_bar=True,
                  logger=True, batch_size=self.batch_size, sync_dist=True)
-        return loss_tot / len(losses.items())
+        return loss_tot
 
     def compute_metrics(self, y_hat, y, step_name):
-        for metric_fn in self.metric_fns:
+        for metric_fn, name in self.metric_fns:
             m = metric_fn(y_hat, y)
-            self.log(f'{step_name}_metric_{metric_fn.__class__.__name__}',
+            self.log(f'{step_name}_metric_{name}',
                      m.mean(), logger=True, batch_size=self.batch_size,
                      sync_dist=True)
             
@@ -254,7 +254,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         # Train Generator
         self.toggle_optimizer(gen_optimizer)
         loss, _ = self._gen_step(x, y, 'train')
-        self.log(f'train_gen_loss', loss, logger=True,
+        self.log('train_gen_loss', loss, logger=True,
                  batch_size=self.batch_size, sync_dist=True)
         self.manual_backward(loss)
         gen_optimizer.step()
@@ -264,7 +264,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         # Train Discriminator
         self.toggle_optimizer(discr_optimizer)
         loss = self._discr_step(x, y)
-        self.log(f'train_discr_loss', loss, logger=True,
+        self.log('train_discr_loss', loss, logger=True,
                  batch_size=self.batch_size, sync_dist=True)
         self.manual_backward(loss)
         discr_optimizer.step()
@@ -274,6 +274,8 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = self.unpack_batch(batch)
         loss, y_hat = self._gen_step(x, y, 'val')
+        self.log('val_loss', loss, logger=True, batch_size=self.batch_size,
+                sync_dist=True)
         self.compute_metrics(y_hat, y, 'val')
         return loss
 

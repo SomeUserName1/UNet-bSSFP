@@ -129,13 +129,13 @@ class DoveDataModule(pl.LightningDataModule):
 
     def get_augmentation_transform(self):
         return tio.Compose([
-            tio.RandomMotion(p=0.2),
-            tio.RandomGhosting(p=0.2),
-            tio.RandomSpike(p=0.2, intensity=(0.01, 0.1)),
-            tio.RandomBiasField(p=0.2),
-            tio.RandomBlur(p=0.2, std=(0.01, 0.1)),
-            tio.RandomNoise(p=0.2, std=(0.001, 0.01)),
-            tio.RandomGamma(p=0.2)
+            tio.RandomMotion(p=0.1),
+            tio.RandomGhosting(p=0.1),
+            tio.RandomSpike(p=0.1, intensity=(0.01, 0.1)),
+            tio.RandomBiasField(p=0.1),
+            tio.RandomBlur(p=0.1, std=(0.01, 0.1)),
+            tio.RandomNoise(p=0.1, std=(0.01, 0.1)),
+            tio.RandomGamma(p=0.1)
             ], p=1,  keep={'dwi-tensor': 'dwi-tensor_orig'})
 
     def setup(self, stage=None):

@@ -24,7 +24,7 @@ class Generator(torch.nn.Module):
                 in_channels=24,
                 out_channels=6,
                 features=(32, 64, 128, 256, 512, 32),
-                dropout=0.25,
+                dropout=0.05,
                 )
         self.blocks = torch.nn.ModuleDict(
                 {'dwi-tensor': dwi_tensor_input,
@@ -66,9 +66,16 @@ class DownSampleConv(torch.nn.Module):
 
 
 class Discriminator(torch.nn.Module):
-    def __init__(self) -> None:
+    def __init__(self, modality) -> None:
         super().__init__()
-        self.d1 = DownSampleConv(12, 32, batchnorm=False)
+        self.modality = modality
+        d1_bssfp = DownSampleConv(30, 32, batchnorm=False)
+        d1_dwi = DownSampleConv(12, 32, batchnorm=False)
+        self.d1 = self.blocks = torch.nn.ModuleDict(
+                {'dwi-tensor': d1_dwi,
+                 'pc-bssfp': d1_bssfp,
+                 'bssfp': d1_bssfp,
+                 't1w': d1_dwi})
         self.d2 = DownSampleConv(32, 64)
         self.d3 = DownSampleConv(64, 128)
         self.d4 = DownSampleConv(128, 256)
@@ -77,7 +84,7 @@ class Discriminator(torch.nn.Module):
 
     def forward(self, x, y):
         x = torch.cat([x, y], axis=1)
-        x = self.d1(x)
+        x = self.d1[self.modality](x)
         x = self.d2(x)
         x = self.d3(x)
         x = self.d4(x)
@@ -143,7 +150,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.automatic_optimization = False
         self.input_modality = input_modality
         self.gen = Generator(input_modality)
-        self.discr = Discriminator()
+        self.discr = Discriminator(input_modality)
         self.recon_criterion = PerceptualL1Loss(perceptual_factor)
         self.adversarial_criterion = torch.nn.BCEWithLogitsLoss()
         self.recon_factor = recon_factor
@@ -168,9 +175,8 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         adv_loss = self.adversarial_criterion(discr_logits, valid)
         recon_loss = self.compute_recon_loss(y_hat, y, step_name + '_gen')
 
-        sync = step_name != 'train'
         self.log(f'{step_name}_gen_loss_adversarial', adv_loss, logger=True,
-                 batch_size=self.batch_size, sync_dist=sync, on_epoch=True)
+                 batch_size=self.batch_size, sync_dist=True, on_epoch=True)
 
         return adv_loss + recon_loss * self.recon_factor, y_hat
 
@@ -195,14 +201,12 @@ class bSSFPToDWITensorModel(pl.LightningModule):
     def compute_recon_loss(self, y_hat, y, step_name):
         losses = self.recon_criterion(y_hat, y)
         loss_tot = 0
-        sync = step_name != 'train'
         for name, loss in losses.items():
             self.log(f'{step_name}_loss_recon_{name}', loss, logger=True,
-                     batch_size=self.batch_size, sync_dist=sync, on_epoch=True)
+                     batch_size=self.batch_size, sync_dist=True, on_epoch=True)
             loss_tot += loss
-        loss_tot /= len(losses.keys())
         self.log(f'{step_name}_loss_recon', loss_tot, prog_bar=True,
-                 logger=True, batch_size=self.batch_size, sync_dist=sync,
+                 logger=True, batch_size=self.batch_size, sync_dist=True,
                  on_epoch=True)
         return loss_tot
 
@@ -258,7 +262,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.toggle_optimizer(gen_optimizer)
         loss, _ = self._gen_step(x, y, 'train')
         self.log('train_gen_loss', loss, logger=True,
-                 batch_size=self.batch_size, sync_dist=False, on_epoch=True)
+                 batch_size=self.batch_size, sync_dist=True, on_epoch=True)
         self.manual_backward(loss)
         gen_optimizer.step()
         gen_optimizer.zero_grad()
@@ -268,7 +272,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.toggle_optimizer(discr_optimizer)
         loss = self._discr_step(x, y)
         self.log('train_discr_loss', loss, logger=True,
-                 batch_size=self.batch_size, sync_dist=False, on_epoch=True)
+                 batch_size=self.batch_size, sync_dist=True, on_epoch=True)
         self.manual_backward(loss)
         discr_optimizer.step()
         discr_optimizer.zero_grad()

@@ -178,7 +178,7 @@ class bSSFPToDWITensorModel(pl.LightningModule):
         self.log(f'{step_name}_gen_loss_adversarial', adv_loss, logger=True,
                  batch_size=self.batch_size, sync_dist=True, on_epoch=True)
 
-        return adv_loss + recon_loss * self.recon_factor, y_hat
+        return adv_loss + recon_loss, y_hat
 
     def _discr_step(self, x, y):
         y_hat = self.gen(x).detach()
@@ -205,6 +205,8 @@ class bSSFPToDWITensorModel(pl.LightningModule):
             self.log(f'{step_name}_loss_recon_{name}', loss, logger=True,
                      batch_size=self.batch_size, sync_dist=True, on_epoch=True)
             loss_tot += loss
+
+        loss_tot = loss_tot / len(losses.keys()) * self.recon_factor
         self.log(f'{step_name}_loss_recon', loss_tot, prog_bar=True,
                  logger=True, batch_size=self.batch_size, sync_dist=True,
                  on_epoch=True)

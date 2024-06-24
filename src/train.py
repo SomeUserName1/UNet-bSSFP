@@ -16,7 +16,7 @@ def build_trainer_args(debug, modality):
     logger = pl.loggers.WandbLogger(project='dove',
                                     log_model='all',
                                     save_dir='logs')
-    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_loss_gen_recon',
+    early_stopping_cb = pl.callbacks.EarlyStopping(monitor='val_gen_loss_recon',
                                                    patience=10)
     checkpoint_callback = pl.callbacks.ModelCheckpoint(
             save_top_k=10,

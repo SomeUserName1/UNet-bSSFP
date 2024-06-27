@@ -2,7 +2,7 @@
 This repository contains a GAN implemented using PyTorch Lightning based on a modified U-Net as the generator and a discriminator following the patchGAN paper to predict the diffusion tensor from other MRI modalities like T1w/MP2RAGE, or balanced steady-state free precession/TrueFISP.
 Further, it contains a preprocessing pipeline based on TorchIO and code to evaluate the relative prediction error per voxel.
 Preliminary results indicate that a relative error of 10% and below is achievable.
-Most of the code was written for my master thesis, thus the number of channels and data paths have been hard-coded and need to be adapted in the code.
+Most of the code was written for my master thesis in neuroscience, thus the number of channels and data paths have been hard-coded and need to be adapted in the code.
 
 
 ## Setup
